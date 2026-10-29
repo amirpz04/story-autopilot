@@ -8,7 +8,10 @@ import base64
 import html
 import json
 import mimetypes
+import os
+import re
 import sys
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -39,11 +42,50 @@ def fetch_image(url):
         return None
 
 
+def get_json(url, headers=None):
+    req = urllib.request.Request(url, headers=dict({"User-Agent": USER_AGENT}, **(headers or {})))
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return json.loads(resp.read())
+
+
+def search_pexels(query, orientation):
+    key = os.environ.get("PEXELS_API_KEY")
+    if not key:
+        return None
+    params = urllib.parse.urlencode({"query": query, "orientation": orientation, "size": "large", "per_page": 1})
+    photos = get_json("https://api.pexels.com/v1/search?" + params, {"Authorization": key}).get("photos")
+    if not photos:
+        return None
+    photo = photos[0]
+    return photo["src"]["original"] + "?auto=compress&cs=tinysrgb&w=1600", "Stock photo: %s / Pexels" % photo["photographer"]
+
+
+def resolve_image(image, slide_type):
+    """Return (url, credit) for a slide image: a direct url, or a Pexels stock photo search.
+
+    Without a PEXELS_API_KEY (or with no match) the slide uses the text-only design.
+    """
+    if image.get("url"):
+        return image["url"], image.get("credit", "")
+    query = image.get("search")
+    if not query:
+        return None, ""
+    orientation = "landscape" if slide_type == "text" else "portrait"
+    try:
+        found = search_pexels(query, orientation)
+    except Exception as exc:
+        print("  ! stock search failed (%s): %s" % (exc, query))
+        found = None
+    if not found:
+        print("  ! no stock photo for %r, using text design" % query)
+    return found or (None, "")
+
+
 def slide_html(slide, index, total, config):
     brand = config["brand"]
-    image = slide.get("image") or {}
-    src = fetch_image(image["url"]) if image.get("url") else None
     kind = slide["type"]
+    url, credit = resolve_image(slide.get("image") or {}, kind)
+    src = fetch_image(url) if url else None
     esc = lambda s: html.escape(s or "")
 
     if kind == "cover":
@@ -69,7 +111,7 @@ def slide_html(slide, index, total, config):
         .replace("{{font}}", brand["font"])
         .replace("{{fontdata}}", FONT_DATA)
         .replace("{{image}}", src or "")
-        .replace("{{credit}}", esc(image.get("credit") if src else ""))
+        .replace("{{credit}}", esc(credit if src else ""))
         .replace("{{handle}}", esc(config["handle"]))
         .replace("{{counter}}", "%d/%d" % (index, total))
         .replace("{{body}}", body)

@@ -92,8 +92,23 @@ The post needs real, legally usable images where possible. In order of preferenc
 4. Official press-kit images explicitly offered for media use
 
 Do not use photos copied from news articles or social media unless their license
-allows it. If no good image exists, leave `image` out of a slide; the renderer
-makes a clean text design instead. Every image needs a `credit`.
+allows it. Every direct image needs a `credit`.
+
+**No real photo? Use a stock photo.** A good story is never dropped for lack of
+images. Instead of a `url`, give a `search` describing a generic scene that fits
+the story's mood, and the renderer finds a sharp stock photo (Pexels, then
+Wikimedia Commons) and writes the credit itself:
+
+```json
+"image": {"search": "scientist holding test tubes in a laboratory"}
+```
+
+Good searches are concrete and visual: "rescue dog wrapped in a blanket",
+"old man smiling at a graduation ceremony", "night sky full of stars over mountains",
+"hospital corridor", "pile of cash on a table". Stock photos must never pretend to be the
+real people or place: no searches for named people, and avoid scenes that
+suggest something false (e.g. a police car for a story with no police).
+Mix: use the real photo where you have one and stock for the rest.
 
 Use only direct image URLs ending in .jpg, .jpeg, .png or .webp that load without a login.
 Images must be at least 1200 pixels wide (use `iiurlwidth=1600` on Wikimedia). The
@@ -157,6 +172,7 @@ Write each post as `queue/<date>/<NN>/post.json`:
   "slides": [
     {"type": "cover", "kicker": "WILDLIFE", "headline": "...", "image": {"url": "https://upload.wikimedia.org/...", "credit": "Photo: Jane Doe / Wikimedia Commons, CC BY-SA 4.0"}},
     {"type": "text", "text": "...", "image": {"url": "...", "credit": "..."}},
+    {"type": "text", "text": "...", "image": {"search": "rescue dog wrapped in a blanket"}},
     {"type": "text", "text": "..."},
     {"type": "end", "text": "Would you have done the same?"}
   ],

@@ -37,6 +37,7 @@ Preview a day locally: `.venv/bin/python scripts/render.py queue/2026-10-30` (sl
 3. In the repo: **Settings → Secrets and variables → Actions → New repository secret**, add:
    - `IG_USER_ID`: the Instagram user ID
    - `IG_ACCESS_TOKEN`: the token
+   - `PEXELS_API_KEY`: free key from [pexels.com/api](https://www.pexels.com/api/) (sign up, request key, instant). Used for stock photos when a story has no real photo.
    - `GH_PAT`: a [fine-grained GitHub token](https://github.com/settings/personal-access-tokens/new) for this repo with **Secrets: Read and write** (lets the token refresh itself)
 4. **Settings → Actions → General → Workflow permissions →** "Read and write permissions".
 

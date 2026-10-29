@@ -36,11 +36,18 @@
     },
     {
       "type": "text",
-      "text": "It's about the size of a golf ball, and it lives nearly 6,000 feet below the surface off the Galápagos Islands."
+      "text": "It's about the size of a golf ball, and it lives nearly 6,000 feet below the surface off the Galápagos Islands.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Aerial_photograph_Gal%C3%A1pagos_Islands_02a.JPG/1920px-Aerial_photograph_Gal%C3%A1pagos_Islands_02a.JPG",
+        "credit": "Photo: David Adam Kess / Wikimedia Commons, CC BY-SA 4.0"
+      }
     },
     {
       "type": "text",
-      "text": "A deep-sea camera first filmed it in 2015. The specimen only reached a museum in 2022."
+      "text": "A deep-sea camera first filmed it in 2015. The specimen only reached a museum in 2022.",
+      "image": {
+        "search": "deep sea submersible underwater exploration"
+      }
     },
     {
       "type": "text",

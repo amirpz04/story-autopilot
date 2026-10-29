@@ -55,7 +55,10 @@ def check_post(path, config):
         if words > limit:
             errors.append("slide %d: %d words, max %d" % (i, words, limit))
         image = slide.get("image")
-        if image:
+        if image and "url" not in image:
+            if not image.get("search", "").strip():
+                errors.append("slide %d: image needs a 'url' or a stock 'search'" % i)
+        elif image:
             url = image.get("url", "")
             if not url.startswith("https://"):
                 errors.append("slide %d: image url must start with https://" % i)
