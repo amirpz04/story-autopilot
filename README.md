@@ -37,7 +37,7 @@ Preview a day locally: `.venv/bin/python scripts/render.py queue/2026-10-30` (sl
 3. In the repo: **Settings → Secrets and variables → Actions → New repository secret**, add:
    - `IG_USER_ID`: the Instagram user ID
    - `IG_ACCESS_TOKEN`: the token
-   - `PIXABAY_API_KEY`: free key from [pixabay.com/api/docs](https://pixabay.com/api/docs/) (log in and your key is shown on that page). Used for stock photos when a story has no real photo.
+   - `UNSPLASH_ACCESS_KEY`: the **Access Key** of a free app at [unsplash.com/oauth/applications](https://unsplash.com/oauth/applications). Used for stock photos when a story has no real photo; the system never makes more than 30 Unsplash requests per hour.
    - `GH_PAT`: a [fine-grained GitHub token](https://github.com/settings/personal-access-tokens/new) for this repo with **Secrets: Read and write** (lets the token refresh itself)
 4. **Settings → Actions → General → Workflow permissions →** "Read and write permissions".
 

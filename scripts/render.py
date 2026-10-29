@@ -8,10 +8,7 @@ import base64
 import html
 import json
 import mimetypes
-import os
-import re
 import sys
-import urllib.parse
 import urllib.request
 from pathlib import Path
 
@@ -42,53 +39,22 @@ def fetch_image(url):
         return None
 
 
-def get_json(url, headers=None):
-    req = urllib.request.Request(url, headers=dict({"User-Agent": USER_AGENT}, **(headers or {})))
-    with urllib.request.urlopen(req, timeout=30) as resp:
-        return json.loads(resp.read())
 
+def resolve_image(image):
+    """Return (url, credit) for a slide image.
 
-def search_pixabay(query, orientation):
-    """Top Pixabay photo for the query, big enough to stay sharp in its slot."""
-    key = os.environ.get("PIXABAY_API_KEY")
-    if not key:
-        return None
-    params = {"key": key, "q": query[:100], "image_type": "photo", "safesearch": "true", "per_page": 3}
-    if orientation == "portrait":
-        params.update(orientation="vertical", min_height=1200)
-    else:
-        params.update(orientation="horizontal", min_width=1200)
-    hits = get_json("https://pixabay.com/api/?" + urllib.parse.urlencode(params)).get("hits")
-    if not hits:
-        return None
-    return hits[0]["largeImageURL"], "Stock photo: %s / Pixabay" % hits[0]["user"]
-
-
-def resolve_image(image, slide_type):
-    """Return (url, credit) for a slide image: a direct url, or a Pixabay stock photo search.
-
-    Without a PIXABAY_API_KEY (or with no match) the slide uses the text-only design.
+    Stock searches ({"search": ...}) are turned into urls beforehand by stock.py;
+    a slide whose search hasn't been resolved uses the text-only design.
     """
     if image.get("url"):
         return image["url"], image.get("credit", "")
-    query = image.get("search")
-    if not query:
-        return None, ""
-    orientation = "landscape" if slide_type == "text" else "portrait"
-    try:
-        found = search_pixabay(query, orientation)
-    except Exception as exc:
-        print("  ! stock search failed (%s): %s" % (exc, query))
-        found = None
-    if not found:
-        print("  ! no stock photo for %r, using text design" % query)
-    return found or (None, "")
+    return None, ""
 
 
 def slide_html(slide, index, total, config):
     brand = config["brand"]
     kind = slide["type"]
-    url, credit = resolve_image(slide.get("image") or {}, kind)
+    url, credit = resolve_image(slide.get("image") or {})
     src = fetch_image(url) if url else None
     esc = lambda s: html.escape(s or "")
 

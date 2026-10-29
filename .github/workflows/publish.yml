@@ -8,8 +8,10 @@ on:
 permissions:
   contents: write
 
+# Shared with the Preview workflow so the two never write to the repo (or spend
+# the Unsplash budget) at the same time.
 concurrency:
-  group: publish
+  group: repo-writes
   cancel-in-progress: false
 
 jobs:
@@ -21,6 +23,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Fetch stock photos (max 30 Unsplash requests per hour)
+        env:
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+        run: |
+          day=$(python -c "import json,datetime,zoneinfo; print(datetime.datetime.now(zoneinfo.ZoneInfo(json.load(open('config.json'))['timezone'])).strftime('%Y-%m-%d'))")
+          if [ -d "queue/$day" ]; then python scripts/stock.py "queue/$day"; fi
 
       - name: Is a post due?
         id: due
@@ -38,15 +47,14 @@ jobs:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
         run: python scripts/publish.py
 
-      - name: Save publishing state
-        if: always() && steps.due.outputs.post != ''
+      - name: Save state
+        if: always()
         run: |
           git config user.name "publisher"
           git config user.email "publisher@users.noreply.github.com"
-          git add state/posted.json
+          git add state queue
           git diff --cached --quiet && exit 0
-          git commit -m "Record publish of ${{ steps.due.outputs.post }}"
+          git commit -m "Update publishing state ${{ steps.due.outputs.post }}"
           for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done

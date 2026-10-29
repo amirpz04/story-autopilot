@@ -1,11 +1,19 @@
 name: Preview
 
-# Renders every newly queued post so you can look at the slides before they go out:
-# open the run in the Actions tab and download the "slides" artifact.
+# Runs when new posts are queued: fetches stock photos (within the hourly budget),
+# checks the posts and renders every slide. To look at them, open the run in the
+# Actions tab and download the "slides" artifact.
 on:
   push:
     paths: ["queue/**"]
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repo-writes
+  cancel-in-progress: false
 
 jobs:
   preview:
@@ -18,14 +26,23 @@ jobs:
       - run: |
           pip install playwright
           python -m playwright install --with-deps chromium
-      - name: Validate and render today's queue
+      - name: Fetch stock photos, validate and render the newest day
         env:
-          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
         run: |
-          day=$(ls -d queue/*/ | sort | tail -1)
+          day=$(ls -d queue/2*/ | sort | tail -1)
+          python scripts/stock.py "$day"
           python scripts/validate.py "$day"
           python scripts/render.py "$day"
       - uses: actions/upload-artifact@v4
         with:
           name: slides
           path: preview/
+      - name: Save fetched photos
+        run: |
+          git config user.name "publisher"
+          git config user.email "publisher@users.noreply.github.com"
+          git add state queue
+          git diff --cached --quiet && exit 0
+          git commit -m "Save stock photos"
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done

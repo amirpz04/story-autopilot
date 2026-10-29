@@ -62,7 +62,7 @@ def check_post(path, config):
             url = image.get("url", "")
             if not url.startswith("https://"):
                 errors.append("slide %d: image url must start with https://" % i)
-            if not url.lower().split("?")[0].endswith(IMAGE_EXTS):
+            if not url.lower().split("?")[0].endswith(IMAGE_EXTS) and not url.startswith("https://images.unsplash.com/"):
                 errors.append("slide %d: image url must be a direct image file" % i)
             if not image.get("credit"):
                 errors.append("slide %d: image needs a credit" % i)

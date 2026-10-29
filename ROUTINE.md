@@ -107,7 +107,7 @@ allows it. Every direct image needs a `credit`.
 
 **No real photo? Use a stock photo.** A good story is never dropped for lack of
 images. Instead of a `url`, give a `search` describing a generic scene that fits
-the story's mood, and the renderer finds a sharp stock photo on Pixabay and
+the story's mood, and the renderer finds a sharp stock photo on Unsplash and
 writes the credit itself:
 
 ```json
@@ -119,7 +119,9 @@ Good searches are concrete and visual: "rescue dog wrapped in a blanket",
 "hospital corridor", "pile of cash on a table". Stock photos must never pretend to be the
 real people or place: no searches for named people, and avoid scenes that
 suggest something false (e.g. a police car for a story with no police).
-Mix: use the real photo where you have one and stock for the rest.
+Mix: use the real photo where you have one and stock for the rest. Stock photos
+are limited (about 15 per hour), so use at most 3 stock searches per post and put
+them on the slides that matter most (the cover first).
 
 Use only direct image URLs ending in .jpg, .jpeg, .png or .webp that load without a login.
 Images must be at least 1200 pixels wide (use `iiurlwidth=1600` on Wikimedia). The
