@@ -30,7 +30,8 @@ jobs:
         env:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
         run: |
-          day=$(ls -d queue/2*/ | sort | tail -1)
+          day=$(ls -d queue/2*/ 2>/dev/null | sort | tail -1)
+          if [ -z "$day" ]; then echo "No dated posts yet."; mkdir -p preview; exit 0; fi
           python scripts/stock.py "$day"
           python scripts/validate.py "$day"
           python scripts/render.py "$day"
