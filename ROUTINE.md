@@ -96,6 +96,8 @@ allows it. If no good image exists, leave `image` out of a slide; the renderer
 makes a clean text design instead. Every image needs a `credit`.
 
 Use only direct image URLs ending in .jpg, .jpeg, .png or .webp that load without a login.
+Images must be at least 1200 pixels wide (use `iiurlwidth=1600` on Wikimedia). The
+renderer silently drops any photo under ~1000px because it would look blurry.
 
 An illustrative image must never contradict the story (a red octopus on a post
 about a blue one, the wrong country's flag, a different breed of dog). If the
@@ -122,8 +124,19 @@ Each post is a carousel of 4–8 slides:
 - **Final slide (type `end`):** one question that invites comments
   (e.g. "Would you have done the same?"), and the follow line is added automatically.
 
-**Caption:** 2–4 sentences retelling the story, then the question again, then
-`Source: <publication name>`, then 3–5 relevant hashtags. No emoji spam (max 2).
+**Caption:** the slides are the quick version; the caption is the full story for
+people who want to know more. Write a detailed, well-researched explanation of
+roughly 180–300 words (900–1,800 characters), in short paragraphs separated by
+blank lines:
+1. A strong first line that restates the hook (it shows before "more", so it must make people tap).
+2. The full story: who, what, where, when, and how it happened, with the specific details, numbers and quotes from your sources.
+3. Background and context that the slides didn't have room for: why it's unusual, how it compares, what led up to it.
+4. What happens next, or why it matters to ordinary people.
+5. The comment question from the end slide.
+6. `Source: <publication name(s)>`, then 3–5 relevant hashtags.
+
+Write it like a good storyteller, not a press release: plain words, short
+sentences, no filler. Every fact must come from your sources. Max 2 emoji.
 
 Write in the configured `language`. Never invent quotes, numbers or details.
 

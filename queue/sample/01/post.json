@@ -4,20 +4,63 @@
   "slot": 1,
   "title": "New tiny blue deep-sea octopus off the Galapagos",
   "category": "animals",
-  "scores": {"hook": 8, "surprise": 8, "emotion": 7, "shareability": 7, "talkability": 6, "no_context": 9, "freshness": 6},
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 7,
+    "talkability": 6,
+    "no_context": 9,
+    "freshness": 6
+  },
   "sources": [
-    {"name": "Dawn / AFP", "url": "https://www.dawn.com/news/amp/2003109"},
-    {"name": "The Star", "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/05/26/039he039s-tiny-it039s-blue039-scientists-find-new-deep-sea-octopus"}
+    {
+      "name": "Dawn / AFP",
+      "url": "https://www.dawn.com/news/amp/2003109"
+    },
+    {
+      "name": "The Star",
+      "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/05/26/039he039s-tiny-it039s-blue039-scientists-find-new-deep-sea-octopus"
+    }
   ],
   "verification": "Species name, scientist, journal and dates matched across two independent outlets.",
   "slides": [
-    {"type": "cover", "kicker": "New species", "headline": "Scientists found a tiny blue octopus no one had ever seen before", "image": {"url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/MBNMS_--_Benthic_Octopus_%2835991148936%29.jpg/1920px-MBNMS_--_Benthic_Octopus_%2835991148936%29.jpg", "credit": "Illustrative photo of a related deep-sea octopus: NOAA National Marine Sanctuaries, public domain"}},
-    {"type": "text", "text": "It's about the size of a golf ball, and it lives nearly 6,000 feet below the surface off the Galápagos Islands.", "image": {"url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Aerial_photograph_Gal%C3%A1pagos_Islands_02a.JPG/1920px-Aerial_photograph_Gal%C3%A1pagos_Islands_02a.JPG", "credit": "Photo: David Adam Kess / Wikimedia Commons, CC BY-SA 4.0"}},
-    {"type": "text", "text": "A deep-sea camera first filmed it in 2015. The specimen only reached a museum in 2022."},
-    {"type": "text", "text": "When Field Museum curator Janet Voight finally examined it, her reaction was: \"He's tiny! It's blue!\""},
-    {"type": "text", "text": "It's now officially a new species: Microeledone galapagensis, described in the journal Zootaxa."},
-    {"type": "end", "text": "How many creatures do you think are still hiding down there?"}
+    {
+      "type": "cover",
+      "kicker": "New species",
+      "headline": "Scientists found a tiny blue octopus no one had ever seen before",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Aerial_photograph_Gal%C3%A1pagos_Islands_02a.JPG/1920px-Aerial_photograph_Gal%C3%A1pagos_Islands_02a.JPG",
+        "credit": "Photo: David Adam Kess / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "It's about the size of a golf ball, and it lives nearly 6,000 feet below the surface off the Galápagos Islands."
+    },
+    {
+      "type": "text",
+      "text": "A deep-sea camera first filmed it in 2015. The specimen only reached a museum in 2022."
+    },
+    {
+      "type": "text",
+      "text": "When Field Museum curator Janet Voight finally examined it, her reaction was: \"He's tiny! It's blue!\""
+    },
+    {
+      "type": "text",
+      "text": "It's now officially a new species: Microeledone galapagensis, described in the journal Zootaxa."
+    },
+    {
+      "type": "end",
+      "text": "How many creatures do you think are still hiding down there?"
+    }
   ],
-  "caption": "Scientists have confirmed a brand-new species of octopus living nearly 6,000 feet deep off the Galápagos. It's the size of a golf ball, it's blue, and it took seven years from first sighting to reach a lab.\n\nHow many creatures do you think are still hiding down there?\n\nSource: AFP via Dawn",
-  "hashtags": ["#octopus", "#deepsea", "#galapagos", "#science", "#newspecies"]
+  "caption": "Scientists just confirmed a brand-new species of octopus, and it's small enough to sit in the palm of your hand.\n\nIt's called Microeledone galapagensis. It's roughly the size of a golf ball, it's blue, and it lives in total darkness nearly 6,000 feet below the surface off the Galápagos Islands.\n\nThe strangest part is how long it took to be recognized. A deep-sea camera first filmed one back in 2015. It wasn't until 2022 that a specimen finally reached the Field Museum in Chicago, where invertebrate curator emerita Janet Voight examined it. Her first reaction: \"He's tiny! It's blue!\"\n\nAfter comparing it with known species, she concluded it was something science had never described before. The study was published on May 24 in the journal Zootaxa.\n\nFinds like this are speeding up. A global project called Ocean Census is trying to identify 100,000 new marine species over the next decade, because most of the deep ocean is still unexplored. Scientists believe the majority of species living down there haven't been named yet.\n\nHow many creatures do you think are still hiding down there? 👇\n\nSource: AFP via Dawn, The Star",
+  "hashtags": [
+    "#octopus",
+    "#deepsea",
+    "#galapagos",
+    "#science",
+    "#newspecies"
+  ]
 }

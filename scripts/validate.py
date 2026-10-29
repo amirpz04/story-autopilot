@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parent.parent
 IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".webp")
 MAX_SLIDE_WORDS = 50
 MAX_HEADLINE_WORDS = 16
+MIN_CAPTION_CHARS = 700
 MAX_CAPTION_CHARS = 2200
 MAX_HASHTAGS = 5
 
@@ -64,6 +65,8 @@ def check_post(path, config):
                 errors.append("slide %d: image needs a credit" % i)
 
     caption = post["caption"] + "\n\n" + " ".join(post.get("hashtags", []))
+    if len(post["caption"]) < MIN_CAPTION_CHARS:
+        errors.append("caption is %d chars; write a detailed one of at least %d" % (len(post["caption"]), MIN_CAPTION_CHARS))
     if len(caption) > MAX_CAPTION_CHARS:
         errors.append("caption + hashtags is %d chars, max %d" % (len(caption), MAX_CAPTION_CHARS))
     if len(post.get("hashtags", [])) > MAX_HASHTAGS:

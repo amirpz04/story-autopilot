@@ -56,7 +56,7 @@
 </style>
 </head>
 <body class="{{classes}}">
-  <img class="photo" src="{{image}}" onerror="this.remove()">
+  <img class="photo" src="{{image}}">
   <div class="topbar"><span>{{handle}}</span><span class="counter">{{counter}}</span></div>
   <div class="content">
     <div class="accentbar"></div>
@@ -64,10 +64,24 @@
   </div>
   <div class="credit">{{credit}}</div>
 <script>
-  // Remove the empty <img> when there is no photo, and only show the accent bar on text-only slides.
-  document.querySelectorAll('img.photo').forEach(function (img) { if (!img.getAttribute('src')) img.remove(); });
-  if (document.body.classList.contains('with-image') || document.body.classList.contains('end')) {
-    document.querySelector('.accentbar').remove();
+  // Called by render.py once the page, photo and font have fully loaded.
+  function prepare() {
+    var body = document.body;
+    // Drop photos that are missing or too small to look sharp; the slide then
+    // falls back to the text-only design. Full-bleed covers need more pixels.
+    document.querySelectorAll('img.photo').forEach(function (img) {
+      var minWidth = body.classList.contains('cover') ? 1000 : 900;
+      if (!img.getAttribute('src') || img.naturalWidth < minWidth) {
+        img.remove();
+        document.querySelector('.credit').textContent = '';
+        body.classList.replace('with-image', 'no-image');
+      }
+    });
+    // Only show the accent bar on text-only slides.
+    if (body.classList.contains('with-image') || body.classList.contains('end')) {
+      document.querySelector('.accentbar').remove();
+    }
+    fitText();
   }
   // Shrink text until it fits inside its box.
   function fitText() {

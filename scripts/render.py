@@ -91,9 +91,9 @@ def render_post(post_dir, out_dir, config=None):
         slides = post["slides"]
         for i, slide in enumerate(slides, 1):
             page.set_content(slide_html(slide, i, len(slides), config), wait_until="load")
-            page.evaluate("document.fonts.ready.then(fitText)")
+            page.evaluate("document.fonts.ready.then(prepare)")
             path = out_dir / ("%s-%02d.jpg" % (post["id"], i))
-            page.screenshot(path=str(path), type="jpeg", quality=88)
+            page.screenshot(path=str(path), type="jpeg", quality=95)
             paths.append(path)
         browser.close()
     return paths
