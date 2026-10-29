@@ -20,7 +20,7 @@ jobs:
           python -m playwright install --with-deps chromium
       - name: Validate and render today's queue
         env:
-          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
         run: |
           day=$(ls -d queue/*/ | sort | tail -1)
           python scripts/validate.py "$day"

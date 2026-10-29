@@ -98,18 +98,17 @@ For each pick, open the original source (not just a summary):
 ## 5. Find images
 
 The post needs real, legally usable images where possible. In order of preference:
-1. Wikimedia Commons (search commons.wikimedia.org; use the direct `upload.wikimedia.org` file URL; record the author and license)
-2. Public domain: NASA, NOAA, USGS, US government, ESA (check its license), Library of Congress
-3. Unsplash or Pexels (free license; credit the photographer); use these for illustrative images, not to pretend they show the actual event
-4. Official press-kit images explicitly offered for media use
+1. Official free images for the actual subject: NASA, ESA, ESO, NOIRLab, NOAA, USGS, US Fish & Wildlife, National Park Service, and university or museum press releases that offer images for media use. These are best for space, nature and science stories.
+2. Wikimedia Commons (search commons.wikimedia.org; use the direct `upload.wikimedia.org` file URL; record the author and license)
+3. Other public domain sources, e.g. Library of Congress
 
 Do not use photos copied from news articles or social media unless their license
 allows it. Every direct image needs a `credit`.
 
 **No real photo? Use a stock photo.** A good story is never dropped for lack of
 images. Instead of a `url`, give a `search` describing a generic scene that fits
-the story's mood, and the renderer finds a sharp stock photo (Pexels, then
-Wikimedia Commons) and writes the credit itself:
+the story's mood, and the renderer finds a sharp stock photo on Pixabay and
+writes the credit itself:
 
 ```json
 "image": {"search": "scientist holding test tubes in a laboratory"}
