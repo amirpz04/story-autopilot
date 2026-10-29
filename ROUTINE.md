@@ -140,7 +140,7 @@ Each post is a carousel of 4–8 slides:
   concrete, a little surprising, plain words, no clickbait lies. Examples:
   "A 92-year-old woman just graduated college alongside her granddaughter",
   "Scientists found a fish that can walk on land, and it's not a mudskipper".
-  Optional `kicker`: 1–3 words above the headline (e.g. "JAPAN", "SCIENCE", "WHOLESOME").
+  Optional `kicker`: 1–3 words above the headline (e.g. "AI", "SPACE", "HEALTH", "NEW TOOL", "JAPAN").
   Use the best image here.
 - **Middle slides:** tell the story one beat per slide, 1–3 short sentences each
   (max ~45 words). The most surprising detail goes on slide 2 so people keep
@@ -180,7 +180,7 @@ Write each post as `queue/<date>/<NN>/post.json`:
   "sources": [{"name": "BBC News", "url": "https://..."}],
   "verification": "What was checked and against which sources",
   "slides": [
-    {"type": "cover", "kicker": "WILDLIFE", "headline": "...", "image": {"url": "https://upload.wikimedia.org/...", "credit": "Photo: Jane Doe / Wikimedia Commons, CC BY-SA 4.0"}},
+    {"type": "cover", "kicker": "SPACE", "headline": "...", "image": {"url": "https://upload.wikimedia.org/...", "credit": "Photo: Jane Doe / Wikimedia Commons, CC BY-SA 4.0"}},
     {"type": "text", "text": "...", "image": {"url": "...", "credit": "..."}},
     {"type": "text", "text": "...", "image": {"search": "rescue dog wrapped in a blanket"}},
     {"type": "text", "text": "..."},
