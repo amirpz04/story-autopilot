@@ -1,0 +1,70 @@
+{
+  "id": "demo-03",
+  "date": "demo",
+  "slot": 3,
+  "title": "Cranberry juice may slow plaque and acid on teeth",
+  "category": "health / science",
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 6,
+    "shareability": 8,
+    "talkability": 8,
+    "no_context": 10,
+    "freshness": 9
+  },
+  "sources": [
+    {
+      "name": "ScienceDaily (University of Illinois Chicago)",
+      "url": "https://www.sciencedaily.com/releases/2026/10/261028232701.htm"
+    },
+    {
+      "name": "Scientific Reports (study)",
+      "url": "https://doi.org/10.1038/s41598-026-56025-3"
+    }
+  ],
+  "verification": "Study design, participants, results and caveats from the UIC release on ScienceDaily (Oct 29, 2026), which cites the Scientific Reports paper. Worded as 'may'/'suggests' because it is a small, short-term study.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "Health",
+      "headline": "A new study suggests cranberry juice might actually be good for your teeth",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Cranberries_in_bowl.jpg/1920px-Cranberries_in_bowl.jpg",
+        "credit": "Photo: Corn cheese / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Researchers had 22 people, 14 kids and 8 adults, swish one of three drinks: pure cranberry juice, a sugary cranberry cocktail, or plain water."
+    },
+    {
+      "type": "text",
+      "text": "Plaque exposed to pure, unsweetened cranberry juice grew back more slowly and produced less acid, the acid that eats away at teeth."
+    },
+    {
+      "type": "text",
+      "text": "\"Most people think of cranberry juice as very sour, very acidic and sugary,\" said lead researcher Christine Wu. \"This study found the opposite.\""
+    },
+    {
+      "type": "text",
+      "text": "The catch: it's a small study, measured just 30 minutes after swishing. And the benefit was seen with pure, unsweetened juice, not sugary cocktails.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Cranberrys_beim_Ernten.jpeg/1920px-Cranberrys_beim_Ernten.jpeg",
+        "credit": "Cranberry harvest. Photo: Keith Weller, USDA-ARS, public domain"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Could you drink pure, unsweetened cranberry juice? Be honest 👇"
+    }
+  ],
+  "caption": "Cranberry juice has a reputation for being sour, acidic and sugary, the opposite of what your dentist wants. A new study suggests the pure stuff might actually help your teeth.\n\nResearchers at the University of Illinois Chicago College of Dentistry tested it on 22 people: 14 children and 8 adults. Each person swished one of three drinks: pure, unsweetened 100% cranberry juice, a cranberry juice cocktail with added sugar, or plain water. The team then compared plaque samples taken before and 30 minutes after.\n\nThe result: plaque exposed to the pure cranberry juice grew back more slowly, and it produced less acid, in both kids and adults. Acid from plaque bacteria is what wears down teeth and leads to cavities.\n\n\"Most people think of cranberry juice as very sour, very acidic and sugary, and therefore may not contribute positively to oral health,\" said lead researcher Christine Wu, a professor of pediatric dentistry. \"This study found the opposite.\"\n\nBefore you stock up, there's a big catch. It's a small study, and it only measured what happened in the 30 minutes after swishing, so it can't say whether drinking cranberry juice regularly actually prevents cavities. Larger, longer studies are needed. And the benefit was seen with pure, unsweetened juice, which is intensely tart. Wu suggests a sugar substitute could make it easier to drink.\n\nCould you drink pure, unsweetened cranberry juice? Be honest 👇\n\nSource: University of Illinois Chicago via ScienceDaily; study published in Scientific Reports",
+  "hashtags": [
+    "#health",
+    "#teeth",
+    "#dentist",
+    "#science",
+    "#cranberry"
+  ]
+}

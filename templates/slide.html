@@ -73,11 +73,12 @@
   // Called by render.py once the page, photo and font have fully loaded.
   function prepare() {
     var body = document.body;
-    // Drop photos that are missing or too small to look sharp; the slide then
-    // falls back to the text-only design. Full-bleed covers need more pixels.
+    // Drop photos that are missing or would have to be enlarged more than 25% to
+    // fill their space (they'd look soft); the slide falls back to the text design.
     document.querySelectorAll('img.photo').forEach(function (img) {
-      var minWidth = body.classList.contains('cover') ? 1000 : 900;
-      if (!img.getAttribute('src') || img.naturalWidth < minWidth) {
+      var box = img.getBoundingClientRect();
+      var enlarge = img.naturalWidth ? Math.max(box.width / img.naturalWidth, box.height / img.naturalHeight) : Infinity;
+      if (!img.getAttribute('src') || enlarge > 1.25) {
         img.remove();
         document.querySelector('.credit').textContent = '';
         body.classList.replace('with-image', 'no-image');

@@ -1,0 +1,74 @@
+{
+  "id": "demo-01",
+  "date": "demo",
+  "slot": 1,
+  "title": "Best friends driving toy cars from Philly to Niagara Falls",
+  "category": "bizarre / wholesome",
+  "scores": {
+    "hook": 9,
+    "surprise": 8,
+    "emotion": 8,
+    "shareability": 9,
+    "talkability": 8,
+    "no_context": 10,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "PhillyVoice",
+      "url": "https://www.phillyvoice.com/guinness-world-record-longest-journey-toy-car/"
+    },
+    {
+      "name": "Billy Penn at WHYY",
+      "url": "https://billypenn.com/"
+    }
+  ],
+  "verification": "Names, ages, distance, vehicles, record rules, charity and quotes from PhillyVoice (Oct 23, 2026); trip also reported by Billy Penn/WHYY, Rome Sentinel and Hoodline.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "Road trip",
+      "headline": "Two best friends are driving 750 miles to Niagara Falls in kids' toy cars",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/Maid_of_the_Mist_VII_approaching_the_Horseshoe_Falls%2C_West_view_20170418_1.jpg/1920px-Maid_of_the_Mist_VII_approaching_the_Horseshoe_Falls%2C_West_view_20170418_1.jpg",
+        "credit": "Niagara Falls. Photo: DXR / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Cassie Aran and Lauren Lee, both 32, have been best friends since kindergarten. As kids, they rode toy Jeeps for fun."
+    },
+    {
+      "type": "text",
+      "text": "Now they're driving two electric toy cars made for children: just under 6 feet long, with a top speed of about 10 mph."
+    },
+    {
+      "type": "text",
+      "text": "They set off from Independence Hall in Philadelphia. A drive that normally takes about 7 hours should take them around two months.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/Exterior_of_the_Independence_Hall%2C_Aug_2019.jpg/1920px-Exterior_of_the_Independence_Hall%2C_Aug_2019.jpg",
+        "credit": "Independence Hall. Photo: Mys 721tx / Wikimedia Commons, CC BY-SA 3.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "They're going for the Guinness World Record for the longest journey by toy car. Every stop needs proof: GPS, receipts and witness signatures, some from police officers who pull them over."
+    },
+    {
+      "type": "text",
+      "text": "And it's for a cause: they're raising money for To Write Love on Her Arms, a nonprofit that helps people struggling with depression."
+    },
+    {
+      "type": "end",
+      "text": "Which friend would you do this with? Tag them 👇"
+    }
+  ],
+  "caption": "Two best friends are attempting to drive 750 miles from Philadelphia to Niagara Falls… in toy cars.\n\nCassie Aran and Lauren Lee, both 32, have been friends since kindergarten. \"Way back when, we used to ride toy Jeeps for fun when we were kids,\" Lee said. \"And what kid doesn't dream about how far you can go with those things?\"\n\nTheir vehicles are 48-volt electric two-seaters made for children, just under 6 feet long, topping out around 10 mph. They set off from Independence Hall and cover roughly 7 to 20 miles a day, sticking to bike lanes, sidewalks and quiet paths. The whole trip should take about two months.\n\nThey're chasing the Guinness World Record for the longest journey by toy car, and the rules are strict: a GPS tracker, photos of every stop longer than five minutes, receipts in a logbook, and witness signatures. Some of those signatures come from police officers who pull them over just to ask what's going on.\n\nThis is their second try. In 2024 they drove about 600 miles from Jacksonville to Key West and raised $17,470 for animal rescue. This time they're raising money for To Write Love on Her Arms, a nonprofit that helps people struggling with depression. \"Mental health for both of us is really important,\" Aran said.\n\nWhich friend would you do this with? Tag them 👇\n\nSource: PhillyVoice, Billy Penn/WHYY",
+  "hashtags": [
+    "#roadtrip",
+    "#bestfriends",
+    "#guinnessworldrecords",
+    "#niagarafalls",
+    "#mentalhealth"
+  ]
+}

@@ -112,7 +112,7 @@ Mix: use the real photo where you have one and stock for the rest.
 
 Use only direct image URLs ending in .jpg, .jpeg, .png or .webp that load without a login.
 Images must be at least 1200 pixels wide (use `iiurlwidth=1600` on Wikimedia). The
-renderer silently drops any photo under ~1000px because it would look blurry.
+renderer drops any photo that would need enlarging by more than 25%, because it would look soft.
 
 An illustrative image must never contradict the story (a red octopus on a post
 about a blue one, the wrong country's flag, a different breed of dog). If the

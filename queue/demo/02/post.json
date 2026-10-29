@@ -1,0 +1,78 @@
+{
+  "id": "demo-02",
+  "date": "demo",
+  "slot": 2,
+  "title": "Rubin Observatory finds possible new dwarf planet beyond Pluto",
+  "category": "space",
+  "scores": {
+    "hook": 9,
+    "surprise": 8,
+    "emotion": 8,
+    "shareability": 7,
+    "talkability": 7,
+    "no_context": 8,
+    "freshness": 6
+  },
+  "sources": [
+    {
+      "name": "Rubin Observatory",
+      "url": "https://rubinobservatory.org/news/rubin-first-dwarf-planet-candidate"
+    },
+    {
+      "name": "U.S. National Science Foundation",
+      "url": "https://nsf.gov/news/new-dwarf-planet-candidate-discovered-nsf-doe-rubin"
+    }
+  ],
+  "verification": "All facts from the official Rubin Observatory release and the NSF release (Oct 27, 2026). Also reported by Reuters, CNN and The New York Times. Size is a preliminary estimate and is described as such.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "Space",
+      "headline": "Astronomers just found a possible new dwarf planet hiding beyond Pluto",
+      "image": {
+        "url": "https://storage.noirlab.edu/media/archives/images/screen/noirlab2626b.jpg",
+        "credit": "Orbit of 2026 ED138. NSF–DOE Vera C. Rubin Observatory/NOIRLab/SLAC/AURA"
+      }
+    },
+    {
+      "type": "text",
+      "text": "It's called 2026 ED138. Early estimates put it somewhere between 600 and 1,500 km wide, possibly one of the largest ever found out there."
+    },
+    {
+      "type": "text",
+      "text": "Why did no one see it before? It sits in front of the Milky Way, in a patch of sky crowded with millions of stars.",
+      "image": {
+        "url": "https://storage.noirlab.edu/media/archives/images/large/noirlab2626f.jpg",
+        "credit": "Discovery images of 2026 ED138. NSF–DOE Vera C. Rubin Observatory/NOIRLab/SLAC/AURA"
+      }
+    },
+    {
+      "type": "text",
+      "text": "On October 13, astronomer Matthew Holman ran new telescope data through his own search code and found it. His first reaction: \"excited disbelief.\""
+    },
+    {
+      "type": "text",
+      "text": "Old images show it was there all along. Scientists traced its path back through more than 10 years of archive data.",
+      "image": {
+        "url": "https://storage.noirlab.edu/media/archives/images/wallpaper3/noirlab2626a.jpg",
+        "credit": "Path of 2026 ED138 across the sky, March to July 2026. NSF–DOE Vera C. Rubin Observatory/NOIRLab/SLAC/AURA"
+      }
+    },
+    {
+      "type": "text",
+      "text": "If confirmed, it would join a tiny club of just five official dwarf planets: Pluto, Ceres, Eris, Haumea and Makemake."
+    },
+    {
+      "type": "end",
+      "text": "It still needs a real name. What would you call it?"
+    }
+  ],
+  "caption": "Our solar system may have just gained a new member, and it was hiding in plain sight.\n\nAstronomers using the brand-new Vera C. Rubin Observatory in Chile have found an icy world orbiting beyond Pluto. It's provisionally called 2026 ED138, and early estimates put it somewhere between 600 and 1,500 kilometers across. If that holds up, it would be among the largest dwarf planet candidates ever found beyond Neptune.\n\nIt was discovered on the evening of October 13, when Matthew Holman of the Harvard & Smithsonian Center for Astrophysics ran Rubin data through a search code he built with a colleague. \"My first reaction was one of excited disbelief,\" he said. The team then found it in 30 Rubin observations from March to July, and in archive images going back to 2016.\n\nSo why did nobody spot it sooner? It sits in front of the plane of the Milky Way, a part of the sky packed with millions of stars, where a faint moving dot easily gets lost.\n\nRight now it's about 46 times farther from the Sun than Earth is, on an orbit tilted almost 25 degrees. Next, astronomers need infrared observations to pin down its size and confirm it's a true dwarf planet. If it is, it joins Pluto, Ceres, Eris, Haumea and Makemake.\n\nIt still needs a real name. What would you call it? 👇\n\nSource: Rubin Observatory, U.S. National Science Foundation",
+  "hashtags": [
+    "#space",
+    "#astronomy",
+    "#dwarfplanet",
+    "#pluto",
+    "#science"
+  ]
+}
