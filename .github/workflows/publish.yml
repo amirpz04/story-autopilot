@@ -1,0 +1,51 @@
+name: Publish
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # every 30 minutes; publishes at most one due post per run
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Is a post due?
+        id: due
+        run: echo "post=$(python scripts/publish.py --check)" >> "$GITHUB_OUTPUT"
+
+      - name: Install renderer
+        if: steps.due.outputs.post != ''
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Publish
+        if: steps.due.outputs.post != ''
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/publish.py
+
+      - name: Save publishing state
+        if: always() && steps.due.outputs.post != ''
+        run: |
+          git config user.name "publisher"
+          git config user.email "publisher@users.noreply.github.com"
+          git add state/posted.json
+          git diff --cached --quiet && exit 0
+          git commit -m "Record publish of ${{ steps.due.outputs.post }}"
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done

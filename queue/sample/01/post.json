@@ -1,0 +1,23 @@
+{
+  "id": "sample-01",
+  "date": "sample",
+  "slot": 1,
+  "title": "New tiny blue deep-sea octopus off the Galapagos",
+  "category": "animals",
+  "scores": {"hook": 8, "surprise": 8, "emotion": 7, "shareability": 7, "talkability": 6, "no_context": 9, "freshness": 6},
+  "sources": [
+    {"name": "Dawn / AFP", "url": "https://www.dawn.com/news/amp/2003109"},
+    {"name": "The Star", "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/05/26/039he039s-tiny-it039s-blue039-scientists-find-new-deep-sea-octopus"}
+  ],
+  "verification": "Species name, scientist, journal and dates matched across two independent outlets.",
+  "slides": [
+    {"type": "cover", "kicker": "New species", "headline": "Scientists found a tiny blue octopus no one had ever seen before", "image": {"url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/MBNMS_--_Benthic_Octopus_%2835991148936%29.jpg/1920px-MBNMS_--_Benthic_Octopus_%2835991148936%29.jpg", "credit": "Illustrative photo of a related deep-sea octopus: NOAA National Marine Sanctuaries, public domain"}},
+    {"type": "text", "text": "It's about the size of a golf ball, and it lives nearly 6,000 feet below the surface off the Galápagos Islands.", "image": {"url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Aerial_photograph_Gal%C3%A1pagos_Islands_02a.JPG/1920px-Aerial_photograph_Gal%C3%A1pagos_Islands_02a.JPG", "credit": "Photo: David Adam Kess / Wikimedia Commons, CC BY-SA 4.0"}},
+    {"type": "text", "text": "A deep-sea camera first filmed it in 2015. The specimen only reached a museum in 2022."},
+    {"type": "text", "text": "When Field Museum curator Janet Voight finally examined it, her reaction was: \"He's tiny! It's blue!\""},
+    {"type": "text", "text": "It's now officially a new species: Microeledone galapagensis, described in the journal Zootaxa."},
+    {"type": "end", "text": "How many creatures do you think are still hiding down there?"}
+  ],
+  "caption": "Scientists have confirmed a brand-new species of octopus living nearly 6,000 feet deep off the Galápagos. It's the size of a golf ball, it's blue, and it took seven years from first sighting to reach a lab.\n\nHow many creatures do you think are still hiding down there?\n\nSource: AFP via Dawn",
+  "hashtags": ["#octopus", "#deepsea", "#galapagos", "#science", "#newspecies"]
+}

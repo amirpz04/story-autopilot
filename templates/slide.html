@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: '{{font}}'; src: url({{fontdata}}) format('truetype'); font-weight: 100 900; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; overflow: hidden; }
+  body {
+    background: {{bg}}; color: {{fg}};
+    font-family: '{{font}}', 'Helvetica Neue', Arial, sans-serif;
+    position: relative;
+  }
+  .photo { position: absolute; left: 0; top: 0; width: 100%; object-fit: cover; }
+  .topbar {
+    position: absolute; top: 44px; left: 60px; right: 60px; z-index: 3;
+    display: flex; justify-content: space-between;
+    font-size: 30px; font-weight: 700; text-shadow: 0 2px 12px rgba(0,0,0,.6);
+  }
+  .counter { opacity: .8; }
+  .content { position: absolute; left: 60px; right: 60px; z-index: 2; }
+  .credit {
+    position: absolute; bottom: 28px; left: 60px; right: 60px; z-index: 3;
+    font-size: 19px; opacity: .6;
+  }
+  .kicker {
+    display: inline-block; background: {{accent}}; color: #000;
+    font-weight: 900; font-size: 30px; letter-spacing: 2px;
+    padding: 8px 18px; margin-bottom: 26px; text-transform: uppercase;
+  }
+  .kicker:empty { display: none; }
+  h1 { font-size: 86px; line-height: 1.08; font-weight: 900; }
+  p { font-size: 54px; line-height: 1.3; font-weight: 700; }
+  .accentbar { width: 120px; height: 12px; background: {{accent}}; margin-bottom: 40px; }
+
+  /* Cover with photo: full-bleed image, headline over a dark gradient */
+  .cover.with-image .photo { height: 100%; }
+  .cover.with-image::after {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to bottom, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,.55) 50%, rgba(0,0,0,.95) 78%);
+  }
+  .cover.with-image .content { bottom: 90px; max-height: 640px; }
+  .cover.no-image .content { top: 300px; max-height: 900px; }
+
+  /* Text slide with photo: photo on top, text below */
+  .text.with-image .photo { height: 640px; }
+  .text.with-image .content { top: 700px; max-height: 560px; }
+  .text.no-image .content { top: 200px; bottom: 120px; display: flex; flex-direction: column; justify-content: center; }
+
+  /* End slide */
+  .end .content { top: 260px; bottom: 140px; display: flex; flex-direction: column; justify-content: center; }
+  .end .photo { height: 100%; opacity: .25; }
+  .question { font-size: 76px; font-weight: 900; line-height: 1.15; margin-bottom: 70px; }
+  .follow { font-size: 40px; font-weight: 500; }
+  .follow b { color: {{accent}}; }
+</style>
+</head>
+<body class="{{classes}}">
+  <img class="photo" src="{{image}}" onerror="this.remove()">
+  <div class="topbar"><span>{{handle}}</span><span class="counter">{{counter}}</span></div>
+  <div class="content">
+    <div class="accentbar"></div>
+    {{body}}
+  </div>
+  <div class="credit">{{credit}}</div>
+<script>
+  // Remove the empty <img> when there is no photo, and only show the accent bar on text-only slides.
+  document.querySelectorAll('img.photo').forEach(function (img) { if (!img.getAttribute('src')) img.remove(); });
+  if (document.body.classList.contains('with-image') || document.body.classList.contains('end')) {
+    document.querySelector('.accentbar').remove();
+  }
+  // Shrink text until it fits inside its box.
+  function fitText() {
+    var box = document.querySelector('.content');
+    var el = document.querySelector('.fit');
+    if (!box || !el) return;
+    var size = parseFloat(getComputedStyle(el).fontSize);
+    var limit = parseFloat(getComputedStyle(box).maxHeight) || box.clientHeight;
+    while (box.scrollHeight > limit && size > 28) {
+      size -= 2;
+      el.style.fontSize = size + 'px';
+    }
+  }
+</script>
+</body>
+</html>

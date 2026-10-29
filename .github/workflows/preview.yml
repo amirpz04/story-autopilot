@@ -1,0 +1,29 @@
+name: Preview
+
+# Renders every newly queued post so you can look at the slides before they go out:
+# open the run in the Actions tab and download the "slides" artifact.
+on:
+  push:
+    paths: ["queue/**"]
+  workflow_dispatch:
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Validate and render today's queue
+        run: |
+          day=$(ls -d queue/*/ | sort | tail -1)
+          python scripts/validate.py "$day"
+          python scripts/render.py "$day"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: slides
+          path: preview/
