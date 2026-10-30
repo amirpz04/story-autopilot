@@ -20,7 +20,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -59,6 +59,32 @@ def instagram_quota_used(config):
         return data["data"][0]["quota_usage"]
     except Exception:
         return None
+
+
+def instagram_gate(config, post):
+    """Safety checks against Instagram's OWN record of what is live, independent of our saved state.
+
+    Returns None if posting is allowed, otherwise a reason string. This stops double posts
+    and bursts even if state/posted.json was lost (for example a failed git push).
+    Fails closed: if Instagram can't be read, we don't post this round.
+    """
+    try:
+        media = graph("GET", os.environ["IG_USER_ID"] + "/media", config, fields="timestamp,caption", limit=25)["data"]
+    except Exception as exc:
+        return "cannot read recent Instagram posts, skipping to be safe (%s)" % str(exc)[:150]
+    now = datetime.now(timezone.utc)
+    live = [(datetime.strptime(m["timestamp"], "%Y-%m-%dT%H:%M:%S%z"), (m.get("caption") or "").strip()) for m in media]
+    hook = post["caption"].strip()[:60]
+    if any(caption.startswith(hook) for _, caption in live):
+        return "already live: this post is already on Instagram"
+    gap = config.get("min_minutes_between_posts", 45)
+    if any(now - t < timedelta(minutes=gap) for t, _ in live):
+        return "too soon: a post went out less than %d minutes ago" % gap
+    cap = config.get("max_posts_per_day", config["posts_per_day"])
+    last_day = sum(1 for t, _ in live if now - t < timedelta(hours=24))
+    if last_day >= cap:
+        return "daily cap: Instagram shows %d posts in the last 24 hours (limit %d)" % (last_day, cap)
+    return None
 
 
 def find_due_post(config, state):
@@ -153,6 +179,14 @@ def main():
         return
     if not post:
         print("Nothing due.")
+        return
+
+    gate = instagram_gate(config, post)
+    if gate:
+        print("Not publishing:", gate)
+        if gate.startswith("already live"):
+            state.setdefault(post["id"], {"attempts": 0}).update(status="posted", note="found live on Instagram")
+            save_state(state)
         return
 
     print("Publishing", post["id"], "-", post["title"])

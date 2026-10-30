@@ -21,5 +21,6 @@
   "max_posts_per_day": 4,
   "ig_quota_stop": 25,
   "unsplash_max_requests_per_day": 100,
-  "paused": false
+  "paused": false,
+  "min_minutes_between_posts": 45
 }
