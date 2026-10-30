@@ -160,7 +160,7 @@ Each post is a carousel of **4–5 slides** (never more; people don't swipe thro
 
 **Caption:** the slides are the quick version; the caption is the full story for
 people who want to know more. Write a detailed, well-researched explanation of
-roughly 180–300 words (900–1,800 characters), in short paragraphs separated by
+about 150–220 words (900–1,300 characters; never more than 1,400), in short paragraphs separated by
 blank lines:
 1. A strong first line that restates the hook (it shows before "more", so it must make people tap).
 2. The full story: who, what, where, when, and how it happened, with the specific details, numbers and quotes from your sources.
