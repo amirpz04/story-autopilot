@@ -1,0 +1,82 @@
+{
+  "id": "2026-10-30-02",
+  "date": "2026-10-30",
+  "slot": 3,
+  "title": "100th US spacewalk installs new ISS solar array",
+  "category": "space",
+  "tags": {
+    "end": "question",
+    "headline": "number"
+  },
+  "scores": {
+    "hook": 7,
+    "surprise": 7,
+    "emotion": 8,
+    "shareability": 6,
+    "talkability": 6,
+    "no_context": 8,
+    "freshness": 9
+  },
+  "sources": [
+    {
+      "name": "NASA",
+      "url": "https://www.nasa.gov/blogs/spacestation/2026/10/29/spacewalkers-install-roll-out-solar-arrays-for-power-generation/"
+    },
+    {
+      "name": "Science Daily / NASA",
+      "url": "https://www.sciencedaily.com/releases/2026/10/261030002931.htm"
+    }
+  ],
+  "verification": "Spacewalk details (duration, astronauts, IROSA count, 160 to 215 kW, Nov 5 final walk) from NASA's release as republished by Science Daily; NASA space station blog covers the same spacewalk on Oct 29.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "SPACE",
+      "headline": "Astronauts just made the 100th US spacewalk to upgrade the space station's power",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/New_and_Old_Solar_Arrays_%28pettit-irosa%29.jpg/1920px-New_and_Old_Solar_Arrays_%28pettit-irosa%29.jpg",
+        "credit": "Photo: NASA/Don Pettit, public domain (earlier ISS solar array photo, illustrative)"
+      }
+    },
+    {
+      "type": "text",
+      "text": "NASA's Anil Menon and Canada's Joshua Kutryk spent 7 hours and 11 minutes outside the International Space Station, finishing at 3:08 p.m. EDT.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/ISS-65_NASA_and_ESA_Astronauts_Continue_Installing_Space_Station_Solar_Arrays.jpg/1920px-ISS-65_NASA_and_ESA_Astronauts_Continue_Installing_Space_Station_Solar_Arrays.jpg",
+        "credit": "Photo: NASA/Akihiko Hoshide, public domain (2021 spacewalk, illustrative)"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Their job: install and deploy a roll-out solar array, the seventh of eight new ones going up on the station."
+    },
+    {
+      "type": "text",
+      "text": "It was the 100th US spacewalk, and the 285th spacewalk overall for building and maintaining the station. For Kutryk, it was his first."
+    },
+    {
+      "type": "text",
+      "text": "The eight new arrays will lift the station's power from 160 kilowatts to about 215 kilowatts, up to 30% more."
+    },
+    {
+      "type": "text",
+      "text": "Part of that extra power is meant to support the station's eventual safe, controlled deorbit."
+    },
+    {
+      "type": "text",
+      "text": "One more spacewalk is planned for Thursday, Nov. 5, to install the eighth and final array."
+    },
+    {
+      "type": "end",
+      "text": "Would you take a spacewalk if you had the chance?"
+    }
+  ],
+  "caption": "Astronauts just completed the 100th US spacewalk to upgrade the International Space Station's power.\n\nNASA astronaut Anil Menon and Canadian Space Agency astronaut Joshua Kutryk worked outside the station for 7 hours and 11 minutes, wrapping up at 3:08 p.m. EDT. It was Menon's fourth spacewalk and Kutryk's first.\n\nTheir main task was to install and deploy a new ISS Roll-Out Solar Array, called IROSA, on the station's 2A power channel. It's the seventh one added. The arrays unroll like a rug, which makes them easier to launch than traditional rigid panels.\n\nThe spacewalk was also the 285th spacewalk for assembling, maintaining and upgrading the station. The astronauts finished several preparation tasks too, so the next job goes smoothly.\n\nThat next job is on Thursday, Nov. 5, when astronauts will install the eighth and final array on the 3B power channel. NASA plans live coverage starting at 6:45 a.m.\n\nOnce it's done, the eight new arrays will raise the station's available power by as much as 30%, from 160 kilowatts to about 215 kilowatts. That power supports the station's essential operations, and NASA says it will also help with the station's eventual safe and controlled deorbit.\n\nWould you take a spacewalk if you had the chance?\n\nSource: NASA, Science Daily\n\n#space #NASA #ISS #astronauts #spacewalk",
+  "hashtags": [
+    "#space",
+    "#NASA",
+    "#ISS",
+    "#astronauts",
+    "#spacewalk"
+  ]
+}

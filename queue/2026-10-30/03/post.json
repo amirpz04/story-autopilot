@@ -1,0 +1,81 @@
+{
+  "id": "2026-10-30-03",
+  "date": "2026-10-30",
+  "slot": 5,
+  "title": "Why crocodiles survived the dinosaur-killing asteroid",
+  "category": "animals",
+  "tags": {
+    "end": "send",
+    "headline": "question"
+  },
+  "scores": {
+    "hook": 9,
+    "surprise": 8,
+    "emotion": 6,
+    "shareability": 8,
+    "talkability": 8,
+    "no_context": 9,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "Science Daily",
+      "url": "https://www.sciencedaily.com/releases/2026/10/261030002922.htm"
+    }
+  ],
+  "verification": "Study details (UCL-led, Science Advances, 7,000+ fossils, 400+ species, 245 million years, Chiarenza quotes) from Science Daily's report of the UCL press release; Phys.org, The Economic Times and The Brighter Side of News also ran headlines on the same study (Google News). Wording kept to 'suggests'.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "NATURE",
+      "headline": "The asteroid killed the dinosaurs. Why did crocodiles survive?",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Nile_crocodile_%28Crocodylus_niloticus%29_and_Egyptian_geese_Serengeti.jpg/1920px-Nile_crocodile_%28Crocodylus_niloticus%29_and_Egyptian_geese_Serengeti.jpg",
+        "credit": "Photo: Charles J. Sharp / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "A new study suggests the answer is simple: crocodiles love warmth. And warmth may have saved them.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Nile_crocodile_head.jpg/1920px-Nile_crocodile_head.jpg",
+        "credit": "Photo: Leigh Bedford / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Scientists led by University College London studied more than 7,000 fossils from over 400 living and extinct species."
+    },
+    {
+      "type": "text",
+      "text": "Across 250 million years, crocodiles and their relatives kept following warm climates. When Earth heated up, they spread out, even reaching Antarctica."
+    },
+    {
+      "type": "text",
+      "text": "After the asteroid hit 66 million years ago, climate models suggest areas near the equator stayed warm enough for them.",
+      "image": {
+        "search": "tropical river at sunrise with mist"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Earlier modeling by the same team found suitable habitats for non-bird dinosaurs shrank much more severely."
+    },
+    {
+      "type": "text",
+      "text": "Lead author Dr. Alfio Alessandro Chiarenza: \"The asteroid did not make the whole planet equally hostile to every group.\""
+    },
+    {
+      "type": "end",
+      "text": "Send this to someone who calls crocodiles living fossils."
+    }
+  ],
+  "caption": "The asteroid wiped out the dinosaurs 66 million years ago. So why did crocodiles make it through? A new study says their love of warm weather may be the answer.\n\nScientists led by University College London analyzed more than 7,000 fossils and records from over 400 living and extinct species. They combined that with computer models that rebuilt Earth's climate and geography across 245 million years. The study was published in Science Advances.\n\nThey found that crocodiles and their ancient relatives spent much of their 250-million-year history following warm climates rather than adapting to very different temperatures. When the planet got hotter, they expanded into new regions, sometimes as far as Antarctica. When it cooled, they moved back toward the tropics.\n\nAfter the asteroid struck, the simulations suggest tropical and subtropical regions stayed suitable for crocodile relatives, even as habitats for many dinosaurs got much worse. Only the most extreme climate simulations wiped out those refuges.\n\nLead author Dr. Alfio Alessandro Chiarenza said crocodiles' long-standing preference for warm places \"may have placed survivors exactly where suitable climates held up best, like around the equator.\" Those refuges could have sheltered populations that later recovered.\n\nThe team also points out that crocodile relatives were far more varied than today's species, from the giant \"super croc\" Sarcosuchus, up to 12 meters long, to small animals with faces like a pug.\n\nWhat do you think is the toughest survivor on Earth?\n\nSource: Science Daily (UCL study, Science Advances)\n\n#nature #crocodile #dinosaurs #science #prehistoric",
+  "hashtags": [
+    "#nature",
+    "#crocodile",
+    "#dinosaurs",
+    "#science",
+    "#prehistoric"
+  ]
+}
