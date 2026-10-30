@@ -1,33 +1,19 @@
 {
-  "id": "2026-10-30-02",
-  "date": "2026-10-30",
-  "slot": 3,
-  "title": "100th US spacewalk installs new ISS solar array",
+  "id": "demo-04",
+  "date": "demo",
+  "slot": 1,
+  "title": "100th US spacewalk (new format sample)",
   "category": "space",
   "tags": {
     "end": "question",
     "headline": "number"
   },
-  "scores": {
-    "hook": 7,
-    "surprise": 7,
-    "emotion": 8,
-    "shareability": 6,
-    "talkability": 6,
-    "no_context": 8,
-    "freshness": 9
-  },
   "sources": [
     {
       "name": "NASA",
       "url": "https://www.nasa.gov/blogs/spacestation/2026/10/29/spacewalkers-install-roll-out-solar-arrays-for-power-generation/"
-    },
-    {
-      "name": "Science Daily / NASA",
-      "url": "https://www.sciencedaily.com/releases/2026/10/261030002931.htm"
     }
   ],
-  "verification": "Spacewalk details (duration, astronauts, IROSA count, 160 to 215 kW, Nov 5 final walk) from NASA's release as republished by Science Daily; NASA space station blog covers the same spacewalk on Oct 29.",
   "slides": [
     {
       "type": "cover",
@@ -40,7 +26,8 @@
     },
     {
       "type": "text",
-      "text": "NASA's Anil Menon and Canada's Joshua Kutryk spent 7 hours and 11 minutes outside the International Space Station, finishing at 3:08 p.m. EDT.",
+      "layout": "split",
+      "text": "NASA's Anil Menon and Canada's Joshua Kutryk spent 7 hours and 11 minutes outside the station.",
       "image": {
         "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/ISS-65_NASA_and_ESA_Astronauts_Continue_Installing_Space_Station_Solar_Arrays.jpg/1920px-ISS-65_NASA_and_ESA_Astronauts_Continue_Installing_Space_Station_Solar_Arrays.jpg",
         "credit": "Photo: NASA/Akihiko Hoshide, public domain (2021 spacewalk, illustrative)"
@@ -48,23 +35,34 @@
     },
     {
       "type": "text",
-      "text": "Their job: install and deploy a roll-out solar array, the seventh of eight new ones going up on the station."
+      "layout": "full",
+      "text": "Their job: install a roll-out solar array, the seventh of eight new ones.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/A_view_peering_down_a_pair_of_the_International_Space_Station%27s_roll-out_solar_arrays_%28iss074e0403068%29.jpg/3840px-A_view_peering_down_a_pair_of_the_International_Space_Station%27s_roll-out_solar_arrays_%28iss074e0403068%29.jpg",
+        "credit": "Roll-out solar arrays on the station. NASA, public domain (illustrative)"
+      }
     },
     {
       "type": "text",
-      "text": "It was the 100th US spacewalk, and the 285th spacewalk overall for building and maintaining the station. For Kutryk, it was his first."
+      "text": "Station power goes from 160 to about 215 kilowatts. Up to 30% more."
     },
     {
       "type": "text",
-      "text": "The eight new arrays will lift the station's power from 160 kilowatts to about 215 kilowatts, up to 30% more."
+      "layout": "split",
+      "text": "It was the 100th US spacewalk. For Kutryk, it was his first.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Moonlit%2C_violet-hued_view_of_the_International_Space_Station%E2%80%99s_main_solar_arrays_%28iss073e0850593%29.jpg/3840px-Moonlit%2C_violet-hued_view_of_the_International_Space_Station%E2%80%99s_main_solar_arrays_%28iss073e0850593%29.jpg",
+        "credit": "The station's solar arrays by moonlight. NASA, public domain (illustrative)"
+      }
     },
     {
       "type": "text",
-      "text": "Part of that extra power is meant to support the station's eventual safe, controlled deorbit."
-    },
-    {
-      "type": "text",
-      "text": "One more spacewalk is planned for Thursday, Nov. 5, to install the eighth and final array."
+      "layout": "full",
+      "text": "One more spacewalk is planned for Nov. 5 to install the eighth and final array.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/NASA_astronaut_Chris_Williams_works_outside_the_International_Space_Station_during_a_spacewalk_%28iss074e0788302%29.jpg/3840px-NASA_astronaut_Chris_Williams_works_outside_the_International_Space_Station_during_a_spacewalk_%28iss074e0788302%29.jpg",
+        "credit": "An earlier spacewalk. NASA, public domain (illustrative)"
+      }
     },
     {
       "type": "end",

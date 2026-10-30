@@ -40,12 +40,7 @@ startup in Japan, an engineer's odd invention. Cover these every run:
 - **"What happened next"** follow-ups to tech and science stories that were big 2–12 weeks ago
 - Reddit as leads only (r/technology, r/science, r/space, r/Futurology, r/artificial, r/gadgets, r/EngineeringPorn, r/natureisfuckinglit, r/Awwducational, r/biology); always trace to the original source
 
-Every day, include one **AI tool spotlight**: a genuinely useful,
-new AI tool or app that ordinary people can try and would want to share with friends ("This free AI tool
-turns any photo into…"). It must be real and available, and you must say clearly
-whether it's free or paid. Never invent features; check its official site. These
-posts show future sponsors what a sponsored post on this account would look like,
-but they are never paid unless a sponsor is named in `config.json`.
+**AI tool spotlight posts are switched off for now.** Do not write them. Regular AI news (something surprising AI did, or a big AI release) is fine.
 
 Web search can lag by a few days, so also read live feeds directly with `curl`:
 - Google News search feeds, e.g. `https://news.google.com/rss/search?q=QUERY+when:2d&hl=en-US&gl=US&ceid=US:en`
@@ -73,10 +68,9 @@ Score each candidate 1–10 on:
 
 A small story with a great hook beats a major headline that's boring or
 everywhere already. Pick the top `posts_per_day` stories and keep 2 backups.
-For the 5 daily posts: one is the AI tool spotlight; the other four are the best
-stories from science, space, nature and animals, health, inventions and robots,
-or other AI news. Vary them from day to day (no more than two from the same category
-in one day), and any major news from these areas always gets a slot. Never more than 4 from one category.
+For the daily posts, choose the best stories from science, space, nature and animals,
+health, inventions and robots, AI news, or major news. Vary them from day to day (no
+more than two from the same category in one day); major news always gets a slot. Never more than 4 from one category.
 
 Hard skips:
 - Unverifiable claims, single anonymous sources, satire sites, content farms
@@ -121,7 +115,7 @@ Good searches are concrete and visual: "rescue dog wrapped in a blanket",
 real people or place: no searches for named people, and avoid scenes that
 suggest something false (e.g. a police car for a story with no police).
 Mix: use the real photo where you have one and stock for the rest. Stock photos
-are limited (about 15 per hour), so use at most 3 stock searches per post and put
+are limited (about 15 per hour), so use at most 4 stock searches per post and put
 them on the slides that matter most (the cover first).
 
 Use only direct image URLs ending in .jpg, .jpeg, .png or .webp that load without a login.
@@ -138,7 +132,7 @@ resized image URLs (`thumburl`) plus author and license for the credit:
 
 ## 6. Write the post
 
-Each post is a carousel of 6–9 slides:
+Each post is a carousel of **5–7 slides** (never more; shorter and punchier is better):
 
 - **Slide 1 (cover):** `headline` of 6–14 words that states the hook directly, Pubity style:
   concrete, a little surprising, plain words, no clickbait lies. Examples:
@@ -146,6 +140,13 @@ Each post is a carousel of 6–9 slides:
   "Scientists found a fish that can walk on land, and it's not a mudskipper".
   Optional `kicker`: 1–3 words above the headline (e.g. "AI", "SPACE", "NATURE", "HEALTH", "NEW TOOL").
   Use the best image here.
+- **Look and rhythm (very important):** the post must look like a magazine spread,
+  never a wall of identical text slides. At least 4 slides need a picture, and never
+  two text-only slides in a row. Set `"layout"` on text slides that have an image:
+  `"split"` (default: photo on top, text below) or `"full"` (the photo fills the whole
+  slide with the text over it). Alternate them and use `"full"` on the 1–2 most
+  striking pictures. Keep each text slide to 1–2 short sentences (about 25 words at
+  most). Change the pace: a punchy line, then a number or quote, then a reveal.
 - **Middle slides:** every slide must make sense alone, because Instagram sometimes re-shows a viewer slide 2 of a carousel they scrolled past, so slide 2 needs its own strong hook. Tell the story one beat per slide, 1–3 short sentences each
   (max ~45 words). The most surprising detail goes on slide 2 so people keep
   swiping. Use concrete numbers, names of places, quotes.

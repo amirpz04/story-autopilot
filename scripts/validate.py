@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".webp")
-MAX_SLIDE_WORDS = 50
+MAX_SLIDE_WORDS = 32
 MAX_HEADLINE_WORDS = 16
 MIN_CAPTION_CHARS = 700
 MAX_CAPTION_CHARS = 2200
@@ -82,8 +82,20 @@ def check_post(path, config):
         errors.append("every source needs a url")
 
     slides = post["slides"]
-    if not 2 <= len(slides) <= 10:
-        errors.append("needs 2-10 slides, has %d" % len(slides))
+    if not 5 <= len(slides) <= 7:
+        errors.append("needs 5-7 slides, has %d" % len(slides))
+    has_pic = [bool(sl.get("image")) for sl in slides]
+    if sum(has_pic) < 4:
+        errors.append("only %d slides have a picture; at least 4 are needed" % sum(has_pic))
+    run = 0
+    for i, (sl, pic) in enumerate(zip(slides, has_pic), 1):
+        run = run + 1 if (not pic and sl.get("type") == "text") else 0
+        if run >= 2:
+            errors.append("slides %d-%d are all text-only; put a picture on at least every second slide" % (i - 1, i))
+            break
+    for i, sl in enumerate(slides, 1):
+        if sl.get("layout") not in (None, "split", "full"):
+            errors.append("slide %d: layout must be 'split' or 'full'" % i)
     if slides and slides[0].get("type") != "cover":
         errors.append("first slide must be type 'cover'")
     if slides and slides[-1].get("type") != "end":

@@ -73,6 +73,8 @@ def slide_html(slide, index, total, config):
         body = '<p class="fit">%s</p>' % esc(slide["text"])
 
     classes = [kind, "with-image" if src else "no-image"]
+    if kind == "text" and slide.get("layout") == "full":
+        classes.append("full")
     return (
         TEMPLATE.replace("{{classes}}", " ".join(classes))
         .replace("{{bg}}", brand["background"])

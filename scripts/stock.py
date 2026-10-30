@@ -67,7 +67,7 @@ def find_photo(query, slide_type, key, budget):
     api_get(dl.path, key, budget, **dict(urllib.parse.parse_qsl(dl.query)))
     ref = "?utm_source=%s&utm_medium=referral" % APP_NAME
     return {
-        "url": photo["urls"]["raw"] + "&w=1600&fm=jpg&q=85",
+        "url": photo["urls"]["raw"] + "&w=2000&fm=jpg&q=85",
         "credit": "Photo by %s on Unsplash" % photo["user"]["name"],
         "search": query,
         "source": photo["links"]["html"] + ref,
@@ -96,7 +96,7 @@ def main():
                 print("Unsplash limit reached; remaining slides use the text design or are fetched in a later run.")
                 break
             try:
-                found = find_photo(image["search"], slide["type"], key, budget)
+                found = find_photo(image["search"], "cover" if slide.get("layout") == "full" else slide["type"], key, budget)
             except Exception as exc:
                 print("  ! Unsplash error for %r: %s" % (image["search"], exc))
                 continue
