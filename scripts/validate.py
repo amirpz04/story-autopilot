@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".webp")
-MAX_SLIDE_WORDS = 32
+MAX_SLIDE_WORDS = 40
 MAX_HEADLINE_WORDS = 16
 MIN_CAPTION_CHARS = 700
 MAX_CAPTION_CHARS = 2200
@@ -82,11 +82,11 @@ def check_post(path, config):
         errors.append("every source needs a url")
 
     slides = post["slides"]
-    if not 5 <= len(slides) <= 7:
-        errors.append("needs 5-7 slides, has %d" % len(slides))
+    if not 4 <= len(slides) <= 5:
+        errors.append("needs 4-5 slides, has %d" % len(slides))
     has_pic = [bool(sl.get("image")) for sl in slides]
-    if sum(has_pic) < 4:
-        errors.append("only %d slides have a picture; at least 4 are needed" % sum(has_pic))
+    if sum(has_pic) < 3:
+        errors.append("only %d slides have a picture; at least 3 are needed" % sum(has_pic))
     run = 0
     for i, (sl, pic) in enumerate(zip(slides, has_pic), 1):
         run = run + 1 if (not pic and sl.get("type") == "text") else 0

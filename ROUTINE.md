@@ -132,7 +132,7 @@ resized image URLs (`thumburl`) plus author and license for the credit:
 
 ## 6. Write the post
 
-Each post is a carousel of **5–7 slides** (never more; shorter and punchier is better):
+Each post is a carousel of **4–5 slides** (never more; people don't swipe through long posts). The slides tell the whole story in brief, and the detailed caption carries the depth:
 
 - **Slide 1 (cover):** `headline` of 6–14 words that states the hook directly, Pubity style:
   concrete, a little surprising, plain words, no clickbait lies. Examples:
@@ -141,16 +141,17 @@ Each post is a carousel of **5–7 slides** (never more; shorter and punchier is
   Optional `kicker`: 1–3 words above the headline (e.g. "AI", "SPACE", "NATURE", "HEALTH", "NEW TOOL").
   Use the best image here.
 - **Look and rhythm (very important):** the post must look like a magazine spread,
-  never a wall of identical text slides. At least 4 slides need a picture, and never
+  never a wall of identical text slides. At least 3 slides need a picture, and never
   two text-only slides in a row. Set `"layout"` on text slides that have an image:
   `"split"` (default: photo on top, text below) or `"full"` (the photo fills the whole
   slide with the text over it). Alternate them and use `"full"` on the 1–2 most
-  striking pictures. Keep each text slide to 1–2 short sentences (about 25 words at
-  most). Change the pace: a punchy line, then a number or quote, then a reveal.
-- **Middle slides:** every slide must make sense alone, because Instagram sometimes re-shows a viewer slide 2 of a carousel they scrolled past, so slide 2 needs its own strong hook. Tell the story one beat per slide, 1–3 short sentences each
-  (max ~45 words). The most surprising detail goes on slide 2 so people keep
-  swiping. Use concrete numbers, names of places, quotes.
-- **Last content slide:** the payoff: what happened next, why it matters, or the twist.
+  striking pictures. Keep each text slide to 1–2 short sentences (about 35 words at
+  most), so every slide carries a real piece of the story. Change the pace: a punchy line, then a number or quote, then a reveal.
+- **Story slides (2–3 of them):** the whole story in three beats: what happened (with
+  the most surprising detail up front, on slide 2), the key detail or number, then why it
+  matters or what happens next. Concrete numbers, place names and short quotes. Every
+  slide must make sense alone, because Instagram sometimes re-shows slide 2 to people who
+  scrolled past, so slide 2 needs its own strong hook.
 - **Final slide (type `end`):** alternate between two styles so we can learn which works:
   a comment question ("Would you have done the same?") or a send prompt ("Send this to
   someone who'd want to know."). The follow line is added automatically. Record which

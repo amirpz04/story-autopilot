@@ -27,7 +27,7 @@
     {
       "type": "text",
       "layout": "split",
-      "text": "NASA's Anil Menon and Canada's Joshua Kutryk spent 7 hours and 11 minutes outside the station.",
+      "text": "NASA's Anil Menon and Canada's Joshua Kutryk spent 7 hours and 11 minutes outside the station to install a new roll-out solar array.",
       "image": {
         "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/ISS-65_NASA_and_ESA_Astronauts_Continue_Installing_Space_Station_Solar_Arrays.jpg/1920px-ISS-65_NASA_and_ESA_Astronauts_Continue_Installing_Space_Station_Solar_Arrays.jpg",
         "credit": "Photo: NASA/Akihiko Hoshide, public domain (2021 spacewalk, illustrative)"
@@ -36,7 +36,7 @@
     {
       "type": "text",
       "layout": "full",
-      "text": "Their job: install a roll-out solar array, the seventh of eight new ones.",
+      "text": "It was the 100th US spacewalk. The new array lifts the station's power from 160 to about 215 kilowatts: up to 30% more.",
       "image": {
         "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/A_view_peering_down_a_pair_of_the_International_Space_Station%27s_roll-out_solar_arrays_%28iss074e0403068%29.jpg/3840px-A_view_peering_down_a_pair_of_the_International_Space_Station%27s_roll-out_solar_arrays_%28iss074e0403068%29.jpg",
         "credit": "Roll-out solar arrays on the station. NASA, public domain (illustrative)"
@@ -44,24 +44,11 @@
     },
     {
       "type": "text",
-      "text": "Station power goes from 160 to about 215 kilowatts. Up to 30% more."
-    },
-    {
-      "type": "text",
       "layout": "split",
-      "text": "It was the 100th US spacewalk. For Kutryk, it was his first.",
+      "text": "One more spacewalk is planned for Nov. 5 to install the eighth and final array. For Kutryk, this was his first.",
       "image": {
         "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Moonlit%2C_violet-hued_view_of_the_International_Space_Station%E2%80%99s_main_solar_arrays_%28iss073e0850593%29.jpg/3840px-Moonlit%2C_violet-hued_view_of_the_International_Space_Station%E2%80%99s_main_solar_arrays_%28iss073e0850593%29.jpg",
         "credit": "The station's solar arrays by moonlight. NASA, public domain (illustrative)"
-      }
-    },
-    {
-      "type": "text",
-      "layout": "full",
-      "text": "One more spacewalk is planned for Nov. 5 to install the eighth and final array.",
-      "image": {
-        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/NASA_astronaut_Chris_Williams_works_outside_the_International_Space_Station_during_a_spacewalk_%28iss074e0788302%29.jpg/3840px-NASA_astronaut_Chris_Williams_works_outside_the_International_Space_Station_during_a_spacewalk_%28iss074e0788302%29.jpg",
-        "credit": "An earlier spacewalk. NASA, public domain (illustrative)"
       }
     },
     {
