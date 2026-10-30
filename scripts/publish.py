@@ -76,7 +76,7 @@ def upload_images(paths):
 
 def graph(method, path, config, **params):
     params["access_token"] = os.environ["IG_ACCESS_TOKEN"]
-    url = "https://graph.instagram.com/%s/%s" % (config["graph_api_version"], path)
+    url = "https://%s/%s/%s" % (config.get("graph_host", "graph.instagram.com"), config["graph_api_version"], path)
     data = urllib.parse.urlencode(params).encode()
     if method == "GET":
         req = urllib.request.Request(url + "?" + data.decode())
