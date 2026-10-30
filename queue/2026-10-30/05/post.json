@@ -1,0 +1,69 @@
+{
+  "id": "2026-10-30-05",
+  "date": "2026-10-30",
+  "slot": 5,
+  "title": "Sea muppets: seahorse lookalikes that are not seahorses",
+  "category": "animals",
+  "tags": {
+    "end": "send",
+    "headline": "statement"
+  },
+  "scores": {
+    "hook": 9,
+    "surprise": 9,
+    "emotion": 7,
+    "shareability": 8,
+    "talkability": 6,
+    "no_context": 8,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "ScienceDaily (The Conversation)",
+      "url": "https://www.sciencedaily.com/releases/2026/10/261029072119.htm"
+    }
+  ],
+  "verification": "Read the ScienceDaily republication of the authors' own article (Graham Short and David Harasti, from The Conversation) on their Journal of Lost Species study. Single secondary source of a primary-author account; wording kept to the authors' claims.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "NATURE",
+      "headline": "Scientists found fish that look exactly like seahorses but aren't",
+      "image": {
+        "search": "seahorse swimming underwater coral reef"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "Meet the \"sea muppets\": three deep-sea fish with a seahorse's head, curled tail and brood pouch. Only seven specimens exist, and nobody has seen one alive.",
+      "image": {
+        "search": "deep dark ocean water with light rays"
+      }
+    },
+    {
+      "type": "text",
+      "text": "They were caught by accident in trawl nets 50 to 125 metres down. One sat misfiled in a museum's invertebrate collection for years."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "CT scans showed no seahorse bone cage or head crown. DNA from one specimen put them on their own branch, so the seahorse look evolved more than once.",
+      "image": {
+        "search": "scientist looking at a scan on a computer screen in a lab"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Send this to someone who loves weird ocean creatures."
+    }
+  ],
+  "caption": "Scientists have found fish that look exactly like seahorses, and they are not seahorses at all.\n\nNicknamed \"sea muppets\", these three deep-sea fish have the horse-shaped head tilted down from the body, the curled and grasping tail, and in males a closed pouch for brooding young. The biggest is no longer than your thumb. A new study in the Journal of Lost Species names the group Australyichthys: the helmethead, bullneck and paradoxical sea muppets.\n\nYou will not meet one while diving. Every known specimen was brought up by accident in trawl nets or dredges between about 50 and 125 metres deep off southern Australia. The whole group is known from just seven specimens collected over about 65 years, scattered across more than 2,500 kilometres of coastline. Nothing has been collected in nearly two decades, and no one has ever seen one alive. One specimen was caught in 2006 on a trip looking for shelled animals, so it was filed with the invertebrates at the South Australian Museum.\n\nThe specimens were too precious to cut open, so the researchers used micro-CT scanning to compare their skeletons with true seahorses. The sea muppets lack the rigid cage of bony plates around the belly and the bony crown on the head. DNA from the one specimen stored in ethanol placed them well outside the seahorse genus, on the branch of their closest relatives.\n\nThe takeaway: the seahorse body plan has evolved at least twice in the same fish family, which also includes pipefish and seadragons.\n\nKnow someone who loves strange sea creatures? Send this to them.\n\nSource: ScienceDaily, The Conversation\n\n#ocean #seahorse #newspecies #nature #marinelife",
+  "hashtags": [
+    "#ocean",
+    "#seahorse",
+    "#newspecies",
+    "#nature",
+    "#marinelife"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "id": "2026-10-30-01",
+  "date": "2026-10-30",
+  "slot": 1,
+  "title": "Jupiter's bow shock is more complex than Earth's",
+  "category": "space",
+  "tags": {
+    "end": "send",
+    "headline": "statement"
+  },
+  "scores": {
+    "hook": 6,
+    "surprise": 6,
+    "emotion": 6,
+    "shareability": 6,
+    "talkability": 5,
+    "no_context": 7,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "ScienceDaily (University of Iowa)",
+      "url": "https://www.sciencedaily.com/releases/2026/10/261028232715.htm"
+    }
+  ],
+  "verification": "Read the ScienceDaily write-up of the University of Iowa release; the study is by Joseph et al. in Nature Communications 2026 using NASA Juno data. Single secondary source, so wording kept to what the researchers report.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "SPACE",
+      "headline": "Jupiter's invisible shield is far more complicated than Earth's",
+      "image": {
+        "search": "planet Jupiter with its stripes in space"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "Every planet with a magnetic field has an invisible barrier where the Sun's particle stream hits it. NASA's Juno spacecraft just mapped Jupiter's in the most detail yet.",
+      "image": {
+        "search": "night sky full of stars and the sun glowing"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Earth's barrier slows incoming solar particles in a fairly simple way. Jupiter uses plasma waves at several frequencies at once, like a chord instead of a single note."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "That richer pattern lets Jupiter slow and heat more of the incoming particles. The findings could also help explain shock waves around exploding stars.",
+      "image": {
+        "search": "northern lights over a dark mountain landscape"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Send this to the space nerd in your life."
+    }
+  ],
+  "caption": "Jupiter's invisible shield turns out to be far more complicated than Earth's.\n\nEvery planet with a magnetic field has a boundary called a bow shock. It is the place where the solar wind, the constant stream of charged particles from the Sun, hits the planet's magnetic bubble and gets slowed and heated.\n\nNow NASA's Juno spacecraft has given scientists the most detailed look yet at Jupiter's version. A team led by the University of Iowa found that Jupiter handles the solar wind with a much more elaborate system of plasma waves and shock regions than Earth does.\n\nThe key difference is in the waves. Jupiter's bow shock uses plasma waves with several frequencies, called harmonics, working together. The researchers compare it to music: several notes played together make a richer sound than one note. That richer pattern lets Jupiter transfer energy to more of the incoming particles, heating them and slowing them down.\n\nWhy does this matter? Earth's bow shock helps protect our atmosphere, so understanding how different planets handle the same solar wind says a lot about what makes a planet livable. The results could also help scientists understand some of the most extreme shock waves in the universe, such as those around exploding stars.\n\nThe study was published in Nature Communications.\n\nWho in your life would geek out over this? Send it to them.\n\nSource: ScienceDaily, University of Iowa, Nature Communications\n\n#space #jupiter #nasa #astronomy #science",
+  "hashtags": [
+    "#space",
+    "#jupiter",
+    "#nasa",
+    "#astronomy",
+    "#science"
+  ]
+}

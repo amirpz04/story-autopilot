@@ -1,0 +1,74 @@
+{
+  "id": "2026-10-30-03",
+  "date": "2026-10-30",
+  "slot": 3,
+  "title": "Crocodiles survived the asteroid because they love warmth",
+  "category": "animals",
+  "tags": {
+    "end": "question",
+    "headline": "question"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 7,
+    "emotion": 6,
+    "shareability": 7,
+    "talkability": 7,
+    "no_context": 8,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "ScienceDaily (UCL)",
+      "url": "https://www.sciencedaily.com/releases/2026/10/261030002922.htm"
+    },
+    {
+      "name": "Science Advances",
+      "url": "https://doi.org/10.1126/sciadv.aeg2217"
+    }
+  ],
+  "verification": "Read the ScienceDaily write-up of the UCL release; study (Chiarenza et al., Science Advances 2026, DOI 10.1126/sciadv.aeg2217) is cited. Claims phrased as 'suggests'/'may have'.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "NATURE",
+      "headline": "Why did crocodiles survive the asteroid that killed the dinosaurs?",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Nile_Crocodile_%2844335259425%29.jpg",
+        "credit": "Illustrative photo: Andy Morffew / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "A new study of more than 7,000 fossils suggests the answer is simple: crocodiles have always followed the heat.",
+      "image": {
+        "search": "hot tropical swamp at sunrise with mist"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Over 250 million years, crocodile relatives spread toward the poles when Earth warmed, even reaching Antarctica, and retreated to the tropics when it cooled."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "After the impact 66 million years ago, climate models show warm areas near the equator stayed habitable for them, while habitats for dinosaurs shrank much more.",
+      "image": {
+        "search": "tropical river with dense green jungle"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Would you rather have been a dinosaur or a crocodile back then?"
+    }
+  ],
+  "caption": "Why did crocodiles survive the asteroid that wiped out the dinosaurs? Scientists think they may have an answer: crocodiles love warmth.\n\nA team led by University College London analysed more than 7,000 fossils and records from over 400 living and extinct species of crocodile relatives. They combined that evidence with computer models that rebuilt Earth's climate and geography across 245 million years.\n\nThe pattern was clear. For most of their 250-million-year history, crocodile relatives followed warm climates instead of adapting to very different temperatures. When Earth heated up, they spread into new regions. About 50 million years ago, in the hot early Eocene, global temperatures were roughly 10°C higher than today and crocodile relatives lived at high latitudes across North America, Europe and even Antarctica. When it cooled, they moved back toward the tropics.\n\nThat habit may have saved them. When the asteroid struck 66 million years ago, the simulations suggest tropical and subtropical areas stayed suitable for crocodile relatives, even as environments for many dinosaurs got much worse. Only the most extreme climate scenarios wiped out those refuges.\n\nLead author Dr. Alfio Alessandro Chiarenza said: \"The asteroid did not make the whole planet equally hostile to every group.\"\n\nThe study was published in Science Advances. It also reminds us that crocodiles are no \"living fossils\": their relatives once included armoured plant eaters and a 12-metre \"super croc\" called Sarcosuchus.\n\nWould you rather have been a dinosaur or a crocodile back then?\n\nSource: ScienceDaily, UCL, Science Advances\n\n#crocodile #dinosaurs #nature #science #wildlife",
+  "hashtags": [
+    "#crocodile",
+    "#dinosaurs",
+    "#nature",
+    "#science",
+    "#wildlife"
+  ]
+}
