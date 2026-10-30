@@ -30,7 +30,11 @@
       "kicker": "SPACE",
       "headline": "Jupiter's invisible shield is far more complicated than Earth's",
       "image": {
-        "search": "planet Jupiter with its stripes in space"
+        "url": "https://images.unsplash.com/photo-1701690774955-7d06cfd3f857?ixid=M3wxMTE3NTMyfDB8MXxzZWFyY2h8MXx8cGxhbmV0JTIwSnVwaXRlciUyMHdpdGglMjBpdHMlMjBzdHJpcGVzJTIwaW4lMjBzcGFjZXxlbnwxfDF8fHwxNzkzMzgzNTM2fDA&ixlib=rb-4.1.0&w=2000&fm=jpg&q=85",
+        "credit": "Photo by BoliviaInteligente on Unsplash",
+        "search": "planet Jupiter with its stripes in space",
+        "source": "https://unsplash.com/photos/a-purple-and-pink-object-floating-in-the-air-Ep6f8t9fYA8?utm_source=story_account&utm_medium=referral",
+        "photographer_url": "https://unsplash.com/@boliviainteligente?utm_source=story_account&utm_medium=referral"
       }
     },
     {
@@ -38,7 +42,11 @@
       "layout": "full",
       "text": "Every planet with a magnetic field has an invisible barrier where the Sun's particle stream hits it. NASA's Juno spacecraft just mapped Jupiter's in the most detail yet.",
       "image": {
-        "search": "night sky full of stars and the sun glowing"
+        "url": "https://images.unsplash.com/photo-1663134327315-18e0fea44f84?ixid=M3wxMTE3NTMyfDB8MXxzZWFyY2h8MXx8bmlnaHQlMjBza3klMjBmdWxsJTIwb2YlMjBzdGFycyUyMGFuZCUyMHRoZSUyMHN1biUyMGdsb3dpbmd8ZW58MXwxfHx8MTc5MzM4MzUzN3ww&ixlib=rb-4.1.0&w=2000&fm=jpg&q=85",
+        "credit": "Photo by damien dufour on Unsplash",
+        "search": "night sky full of stars and the sun glowing",
+        "source": "https://unsplash.com/photos/a-starry-night-sky-over-a-beach-BkjEAPIXeJI?utm_source=story_account&utm_medium=referral",
+        "photographer_url": "https://unsplash.com/@damiendufourphotographie?utm_source=story_account&utm_medium=referral"
       }
     },
     {
@@ -50,7 +58,11 @@
       "layout": "split",
       "text": "That richer pattern lets Jupiter slow and heat more of the incoming particles. The findings could also help explain shock waves around exploding stars.",
       "image": {
-        "search": "northern lights over a dark mountain landscape"
+        "url": "https://images.unsplash.com/photo-1769779672834-737f3372212e?ixid=M3wxMTE3NTMyfDB8MXxzZWFyY2h8MXx8bm9ydGhlcm4lMjBsaWdodHMlMjBvdmVyJTIwYSUyMGRhcmslMjBtb3VudGFpbiUyMGxhbmRzY2FwZXxlbnwxfDB8fHwxNzkzMzgzNTM3fDA&ixlib=rb-4.1.0&w=2000&fm=jpg&q=85",
+        "credit": "Photo by Yunfan Li on Unsplash",
+        "search": "northern lights over a dark mountain landscape",
+        "source": "https://unsplash.com/photos/aurora-borealis-glows-over-silhouetted-mountains-at-night-9eF2AiIK9vs?utm_source=story_account&utm_medium=referral",
+        "photographer_url": "https://unsplash.com/@sakana_yoyo?utm_source=story_account&utm_medium=referral"
       }
     },
     {

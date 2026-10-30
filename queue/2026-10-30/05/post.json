@@ -30,7 +30,11 @@
       "kicker": "NATURE",
       "headline": "Scientists found fish that look exactly like seahorses but aren't",
       "image": {
-        "search": "seahorse swimming underwater coral reef"
+        "url": "https://images.unsplash.com/photo-1759710483886-c585b4bb6523?ixid=M3wxMTE3NTMyfDB8MXxzZWFyY2h8MXx8c2VhaG9yc2UlMjBzd2ltbWluZyUyMHVuZGVyd2F0ZXIlMjBjb3JhbCUyMHJlZWZ8ZW58MXwxfHx8MTc5MzM4MzUzOXww&ixlib=rb-4.1.0&w=2000&fm=jpg&q=85",
+        "credit": "Photo by James Lee on Unsplash",
+        "search": "seahorse swimming underwater coral reef",
+        "source": "https://unsplash.com/photos/two-seahorses-clinging-to-an-orange-coral-H9pBiyeqtQw?utm_source=story_account&utm_medium=referral",
+        "photographer_url": "https://unsplash.com/@picsbyjameslee?utm_source=story_account&utm_medium=referral"
       }
     },
     {
@@ -38,7 +42,11 @@
       "layout": "full",
       "text": "Meet the \"sea muppets\": three deep-sea fish with a seahorse's head, curled tail and brood pouch. Only seven specimens exist, and nobody has seen one alive.",
       "image": {
-        "search": "deep dark ocean water with light rays"
+        "url": "https://images.unsplash.com/photo-1668110648714-1070e851f855?ixid=M3wxMTE3NTMyfDB8MXxzZWFyY2h8MXx8ZGVlcCUyMGRhcmslMjBvY2VhbiUyMHdhdGVyJTIwd2l0aCUyMGxpZ2h0JTIwcmF5c3xlbnwxfDF8fHwxNzkzMzgzNTM5fDA&ixlib=rb-4.1.0&w=2000&fm=jpg&q=85",
+        "credit": "Photo by Janek Valdsalu on Unsplash",
+        "search": "deep dark ocean water with light rays",
+        "source": "https://unsplash.com/photos/sunlight-filtering-through-blue-ocean-pzkzGb9WrrY?utm_source=story_account&utm_medium=referral",
+        "photographer_url": "https://unsplash.com/@janekvaldsalu?utm_source=story_account&utm_medium=referral"
       }
     },
     {
@@ -50,7 +58,11 @@
       "layout": "split",
       "text": "CT scans showed no seahorse bone cage or head crown. DNA from one specimen put them on their own branch, so the seahorse look evolved more than once.",
       "image": {
-        "search": "scientist looking at a scan on a computer screen in a lab"
+        "url": "https://images.unsplash.com/photo-1631816290961-733476b453f3?ixid=M3wxMTE3NTMyfDB8MXxzZWFyY2h8MXx8c2NpZW50aXN0JTIwbG9va2luZyUyMGF0JTIwYSUyMHNjYW4lMjBvbiUyMGElMjBjb21wdXRlciUyMHNjcmVlbiUyMGluJTIwYSUyMGxhYnxlbnwxfDB8fHwxNzkzMzgzNTQwfDA&ixlib=rb-4.1.0&w=2000&fm=jpg&q=85",
+        "credit": "Photo by CDC on Unsplash",
+        "search": "scientist looking at a scan on a computer screen in a lab",
+        "source": "https://unsplash.com/photos/a-woman-sitting-in-front-of-a-computer-monitor-mJoybek8SGU?utm_source=story_account&utm_medium=referral",
+        "photographer_url": "https://unsplash.com/@cdc?utm_source=story_account&utm_medium=referral"
       }
     },
     {
