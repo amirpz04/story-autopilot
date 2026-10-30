@@ -83,7 +83,7 @@ def slide_html(slide, index, total, config):
         .replace("{{image}}", src or "")
         .replace("{{credit}}", esc(credit if src else ""))
         .replace("{{handle}}", esc(config["handle"]))
-        .replace("{{counter}}", "%d/%d" % (index, total))
+        .replace("{{counter}}", "%d/%d" % (index, total) if config.get("show_slide_counter") else "")
         .replace("{{body}}", body)
     )
 

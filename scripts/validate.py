@@ -76,6 +76,8 @@ def check_post(path, config):
 
     if not 1 <= post["slot"] <= len(config["post_times"]):
         errors.append("slot %s has no publishing time in config.json" % post["slot"])
+    if "active_slots" in config and post["slot"] not in config["active_slots"]:
+        errors.append("slot %s is not one of the active slots %s in config.json" % (post["slot"], config["active_slots"]))
     if not post["sources"] or not all(s.get("url", "").startswith("http") for s in post["sources"]):
         errors.append("every source needs a url")
 

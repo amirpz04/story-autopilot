@@ -138,7 +138,7 @@ resized image URLs (`thumburl`) plus author and license for the credit:
 
 ## 6. Write the post
 
-Each post is a carousel of 4–8 slides:
+Each post is a carousel of 6–9 slides:
 
 - **Slide 1 (cover):** `headline` of 6–14 words that states the hook directly, Pubity style:
   concrete, a little surprising, plain words, no clickbait lies. Examples:
@@ -146,12 +146,15 @@ Each post is a carousel of 4–8 slides:
   "Scientists found a fish that can walk on land, and it's not a mudskipper".
   Optional `kicker`: 1–3 words above the headline (e.g. "AI", "SPACE", "NATURE", "HEALTH", "NEW TOOL").
   Use the best image here.
-- **Middle slides:** tell the story one beat per slide, 1–3 short sentences each
+- **Middle slides:** every slide must make sense alone, because Instagram sometimes re-shows a viewer slide 2 of a carousel they scrolled past, so slide 2 needs its own strong hook. Tell the story one beat per slide, 1–3 short sentences each
   (max ~45 words). The most surprising detail goes on slide 2 so people keep
   swiping. Use concrete numbers, names of places, quotes.
 - **Last content slide:** the payoff: what happened next, why it matters, or the twist.
-- **Final slide (type `end`):** one question that invites comments
-  (e.g. "Would you have done the same?"), and the follow line is added automatically.
+- **Final slide (type `end`):** alternate between two styles so we can learn which works:
+  a comment question ("Would you have done the same?") or a send prompt ("Send this to
+  someone who'd want to know."). The follow line is added automatically. Record which
+  one you used in `tags` (see the example below). Instagram's ranking rewards
+  shares and sends most, so wherever it feels natural, write slides people would forward.
 
 **Caption:** the slides are the quick version; the caption is the full story for
 people who want to know more. Write a detailed, well-researched explanation of
@@ -180,6 +183,7 @@ Write each post as `queue/<date>/<NN>/post.json`:
   "slot": 1,
   "title": "Short internal title",
   "category": "animals",
+  "tags": {"end": "question", "headline": "statement"},
   "scores": {"hook": 9, "surprise": 8, "emotion": 8, "shareability": 9, "talkability": 7, "no_context": 9, "freshness": 8},
   "sources": [{"name": "BBC News", "url": "https://..."}],
   "verification": "What was checked and against which sources",
@@ -195,8 +199,11 @@ Write each post as `queue/<date>/<NN>/post.json`:
 }
 ```
 
-`slot` matches the position in `post_times` (slot 1 = first time of the day).
-Put the strongest story in an evening slot and the second strongest at lunch.
+Use only the slot numbers listed in `active_slots` in `config.json` (one post per
+slot; slot numbers match the positions in `post_times`). Put the strongest story in
+the last active slot and the second strongest in the middle one.
+`tags` is for learning: `end` is `question` or `send`; `headline` is `statement`,
+`question` or `number` (how the cover headline is built).
 
 ## 8. Check, record and push
 
@@ -221,3 +228,14 @@ Your usage allowance is limited and shared with the person who owns it, so be ec
   (even 1) rather than rushing; commit and push what is verified. Never publish
   an unverified story just to fill a slot.
 - Only the free sources named in this file; no paid services, no new accounts.
+
+## 10. Learn from results
+
+If `state/report.md` exists, read it before choosing stories (it is rebuilt daily from
+Instagram's real numbers). Use it carefully:
+- Ignore any pattern backed by fewer than 5 posts older than 48 hours. Early numbers are noise.
+- Treat it as a soft hint: lean toward topics, headline styles and ending styles that
+  clearly earn more shares and saves per reach, but keep about 20% of posts exploring
+  something different so we keep learning.
+- Never trade accuracy for numbers: every verification, sourcing and safety rule
+  above still applies, and never write a misleading or exaggerated headline to chase reach.

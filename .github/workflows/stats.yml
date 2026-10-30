@@ -1,0 +1,38 @@
+name: Stats
+
+# Once a day: reads post statistics from Instagram (read-only) and saves
+# state/report.md, which the daily Claude routine uses to learn what works.
+# If this workflow fails, nothing else is affected; posting never depends on it.
+on:
+  schedule:
+    - cron: "15 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repo-writes
+  cancel-in-progress: false
+
+jobs:
+  stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Collect statistics
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: python scripts/stats.py
+      - name: Save results
+        run: |
+          git config user.name "publisher"
+          git config user.email "publisher@users.noreply.github.com"
+          git add state/stats.json state/report.md state/followers.csv
+          git diff --cached --quiet && exit 0
+          git commit -m "Update statistics"
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
