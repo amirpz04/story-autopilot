@@ -27,19 +27,22 @@ COST_PER_PHOTO = 2
 
 
 class Budget:
-    """Rolling one-hour request counter, persisted between runs."""
+    """Rolling request counter (per hour and per day), persisted between runs."""
 
-    def __init__(self, max_per_hour):
-        self.max = max_per_hour
+    def __init__(self, max_per_hour, max_per_day):
+        self.max_hour, self.max_day = max_per_hour, max_per_day
         stamps = json.loads(LOG_FILE.read_text()) if LOG_FILE.exists() else []
-        self.stamps = [t for t in stamps if t > time.time() - 3600]
+        self.stamps = [t for t in stamps if t > time.time() - 86400]
+
+    def used_hour(self):
+        return sum(1 for t in self.stamps if t > time.time() - 3600)
 
     def left(self):
-        return self.max - len(self.stamps)
+        return min(self.max_hour - self.used_hour(), self.max_day - len(self.stamps))
 
     def spend(self):
         if self.left() <= 0:
-            raise RuntimeError("Unsplash hourly budget exhausted")
+            raise RuntimeError("Unsplash budget exhausted")
         self.stamps.append(time.time())
         LOG_FILE.write_text(json.dumps(self.stamps) + "\n")
 
@@ -79,7 +82,7 @@ def main():
         print("No UNSPLASH_ACCESS_KEY set; stock photo slides will use the text design.")
         return
     config = json.loads((ROOT / "config.json").read_text())
-    budget = Budget(config.get("unsplash_max_requests_per_hour", 30))
+    budget = Budget(config.get("unsplash_max_requests_per_hour", 30), config.get("unsplash_max_requests_per_day", 100))
 
     # Earliest posts first, so the next posts to go out get their photos first.
     for path in sorted(day_dir.glob("*/post.json"), key=lambda p: json.loads(p.read_text())["slot"]):
@@ -90,7 +93,7 @@ def main():
             if "url" in image or not image.get("search") or image.get("not_found"):
                 continue
             if budget.left() < COST_PER_PHOTO:
-                print("Hourly budget reached (%d used); the rest will be fetched next run." % len(budget.stamps))
+                print("Unsplash limit reached; remaining slides use the text design or are fetched in a later run.")
                 break
             try:
                 found = find_photo(image["search"], slide["type"], key, budget)
@@ -104,7 +107,7 @@ def main():
             path.write_text(json.dumps(post, indent=2, ensure_ascii=False) + "\n")
         if budget.left() < COST_PER_PHOTO:
             break
-    print("Unsplash requests in the last hour: %d/%d" % (len(budget.stamps), budget.max))
+    print("Unsplash requests: %d/%d this hour, %d/%d today" % (budget.used_hour(), budget.max_hour, len(budget.stamps), budget.max_day))
 
 
 if __name__ == "__main__":

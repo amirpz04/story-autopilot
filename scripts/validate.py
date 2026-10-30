@@ -4,7 +4,9 @@ Usage: python scripts/validate.py queue/2026-10-30
 Exits with status 1 and prints every problem if anything is wrong.
 """
 import json
+import re
 import sys
+from difflib import SequenceMatcher
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -14,6 +16,49 @@ MAX_HEADLINE_WORDS = 16
 MIN_CAPTION_CHARS = 700
 MAX_CAPTION_CHARS = 2200
 MAX_HASHTAGS = 5
+
+
+def norm_url(url):
+    url = url.lower().split("#")[0].split("?")[0]
+    return re.sub(r"^https?://(www\.)?", "", url).rstrip("/")
+
+
+def norm_title(title):
+    return re.sub(r"[^a-z0-9 ]", "", title.lower())
+
+
+def known_stories(this_path):
+    """Every story already used: state/history.jsonl plus all other queued posts."""
+    stories = []
+    history = ROOT / "state" / "history.jsonl"
+    if history.exists():
+        for line in history.read_text().splitlines():
+            if line.strip():
+                h = json.loads(line)
+                stories.append({"id": h.get("id", h.get("title")), "title": h.get("title", ""),
+                                "urls": h.get("urls") or [h.get("url", "")]})
+    for other in (ROOT / "queue").glob("*/*/post.json"):
+        if other.resolve() == this_path.resolve() or other.parent.parent.name in ("sample", "demo"):
+            continue
+        try:
+            o = json.loads(other.read_text())
+            stories.append({"id": o["id"], "title": o["title"], "urls": [x["url"] for x in o["sources"]]})
+        except Exception:
+            pass
+    return stories
+
+
+def check_duplicates(post, this_path):
+    errors = []
+    urls = {norm_url(s["url"]) for s in post["sources"]}
+    for story in known_stories(this_path):
+        if story["id"] == post["id"]:
+            continue
+        if urls & {norm_url(u) for u in story["urls"] if u}:
+            errors.append("duplicate: same source as %s" % story["id"])
+        elif SequenceMatcher(None, norm_title(post["title"]), norm_title(story["title"])).ratio() > 0.7:
+            errors.append("possible duplicate of %s (very similar title): %r" % (story["id"], story["title"]))
+    return errors
 
 
 def check_post(path, config):
@@ -66,6 +111,8 @@ def check_post(path, config):
                 errors.append("slide %d: image url must be a direct image file" % i)
             if not image.get("credit"):
                 errors.append("slide %d: image needs a credit" % i)
+
+    errors += check_duplicates(post, path)
 
     caption = post["caption"] + "\n\n" + " ".join(post.get("hashtags", []))
     if len(post["caption"]) < MIN_CAPTION_CHARS:

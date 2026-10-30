@@ -21,7 +21,7 @@ folder already has posts (for example, this is the midday refresh run), only
 replace posts whose publishing time has not passed yet, and only if you find a
 clearly stronger story.
 
-## 2. Discover candidates (aim for 40+)
+## 2. Discover candidates (aim for about 25)
 
 Search broadly within tech and science. Don't stop at the big headlines; the
 best stories are often small: a university press release, a strange study, a
@@ -72,10 +72,11 @@ Score each candidate 1–10 on:
 | Freshness | Have the big accounts already covered it? (Not yet = high) |
 
 A small story with a great hook beats a major headline that's boring or
-everywhere already. Pick the top `posts_per_day` stories and keep 3 backups.
-For 10 posts, aim for roughly: 2–3 AI (including the tool spotlight), 2 nature/animals,
-1–2 space, 1–2 science, 1 health, 1 invention/robot/weird tech, and any major
-news from these areas (major news always gets a slot). Never more than 4 from one category.
+everywhere already. Pick the top `posts_per_day` stories and keep 2 backups.
+For the 3 daily posts: one is the AI tool spotlight; the other two are the best
+stories from science, space, nature and animals, health, inventions and robots,
+or other AI news. Vary them from day to day (never two from the same category
+in one day), and any major news from these areas always gets a slot. Never more than 4 from one category.
 
 Hard skips:
 - Unverifiable claims, single anonymous sources, satire sites, content farms
@@ -200,9 +201,23 @@ Put the strongest story in an evening slot and the second strongest at lunch.
 ## 8. Check, record and push
 
 1. Run `python3 scripts/validate.py queue/<date>` and fix every error it reports.
-2. Append one line per new post to `state/history.jsonl`:
-   `{"date": "...", "title": "...", "url": "<main source url>"}`
+2. Append one line per new post to `state/history.jsonl`, using the post's `id`
+   and every source url (`validate.py` blocks any later post that reuses a source
+   or has a near-identical title):
+   `{"id": "2026-10-30-01", "date": "2026-10-30", "title": "...", "urls": ["https://...", "https://..."]}`
 3. Commit with the message `Queue posts for <date>` and push to `main`.
 
 Finish with a short summary: the stories picked, their scores, and anything you
 were unsure about.
+
+## 9. Resource limits (hard rules)
+
+Your usage allowance is limited and shared with the person who owns it, so be economical:
+- Do one run per day; never loop or retry a failing step more than twice.
+- At most about 20 web searches and 12 full articles read in total. Stop researching
+  as soon as you have 3 verified posts plus 2 backups.
+- Keep reasoning short; don't draft a story you've already decided to skip.
+- If you are running low on allowance or hit an error, finish with fewer posts
+  (even 1) rather than rushing; commit and push what is verified. Never publish
+  an unverified story just to fill a slot.
+- Only the free sources named in this file; no paid services, no new accounts.

@@ -40,6 +40,27 @@ def save_state(state):
     STATE_FILE.write_text(json.dumps(state, indent=2, sort_keys=True) + "\n")
 
 
+def block_reason(config, state):
+    """Why publishing must not happen right now, or None."""
+    if config.get("paused"):
+        return "publishing is paused in config.json"
+    today = datetime.now(ZoneInfo(config["timezone"])).strftime("%Y-%m-%d")
+    done = sum(1 for pid, r in state.items() if pid.startswith(today) and r.get("status") == "posted")
+    cap = config.get("max_posts_per_day", config["posts_per_day"])
+    if done >= cap:
+        return "daily cap reached (%d of %d posts)" % (done, cap)
+    return None
+
+
+def instagram_quota_used(config):
+    """Instagram's own count of API posts in the last 24h, or None if it can't be read."""
+    try:
+        data = graph("GET", os.environ["IG_USER_ID"] + "/content_publishing_limit", config, fields="quota_usage")
+        return data["data"][0]["quota_usage"]
+    except Exception:
+        return None
+
+
 def find_due_post(config, state):
     now = datetime.now(ZoneInfo(config["timezone"]))
     day_dir = ROOT / "queue" / now.strftime("%Y-%m-%d")
@@ -122,7 +143,10 @@ def publish_to_instagram(image_urls, caption, config):
 def main():
     config = load_config()
     state = load_state()
-    post_dir, post = find_due_post(config, state)
+    reason = block_reason(config, state)
+    if reason:
+        print("Not publishing:", reason, file=sys.stderr)
+    post_dir, post = (None, None) if reason else find_due_post(config, state)
 
     if "--check" in sys.argv:
         print(post_dir.relative_to(ROOT) if post_dir else "")
@@ -135,6 +159,9 @@ def main():
     record = state.setdefault(post["id"], {"attempts": 0})
     record["attempts"] += 1
     try:
+        used = instagram_quota_used(config)
+        if used is not None and used >= config.get("ig_quota_stop", 25):
+            raise RuntimeError("Instagram reports %d API posts in the last 24h; stopping at %d" % (used, config.get("ig_quota_stop", 25)))
         paths = render_post(post_dir, Path(tempfile.mkdtemp()), config)
         urls = upload_images(paths)
         caption = post["caption"] + "\n\n" + " ".join(post.get("hashtags", []))
