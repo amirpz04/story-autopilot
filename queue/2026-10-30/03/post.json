@@ -54,7 +54,11 @@
       "type": "text",
       "text": "After the asteroid hit 66 million years ago, climate models suggest areas near the equator stayed warm enough for them.",
       "image": {
-        "search": "tropical river at sunrise with mist"
+        "url": "https://images.unsplash.com/photo-1628128573898-262b312f707e?ixid=M3wxMTE3NTMyfDB8MXxzZWFyY2h8MXx8dHJvcGljYWwlMjByaXZlciUyMGF0JTIwc3VucmlzZSUyMHdpdGglMjBtaXN0fGVufDF8MHx8fDE3OTMzODIxODh8MA&ixlib=rb-4.1.0&w=1600&fm=jpg&q=85",
+        "credit": "Photo by Parker Hilton on Unsplash",
+        "search": "tropical river at sunrise with mist",
+        "source": "https://unsplash.com/photos/white-and-black-boat-on-sea-during-daytime-7f0u-yaOra4?utm_source=story_account&utm_medium=referral",
+        "photographer_url": "https://unsplash.com/@philton88?utm_source=story_account&utm_medium=referral"
       }
     },
     {

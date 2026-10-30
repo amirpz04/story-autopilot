@@ -34,14 +34,22 @@
       "kicker": "NEW TOOL",
       "headline": "This free AI assistant runs on your Mac without sending your files to the cloud",
       "image": {
-        "search": "laptop on a desk with glowing screen in a dim room"
+        "url": "https://images.unsplash.com/photo-1705293876133-d2948351f258?ixid=M3wxMTE3NTMyfDB8MXxzZWFyY2h8MXx8bGFwdG9wJTIwb24lMjBhJTIwZGVzayUyMHdpdGglMjBnbG93aW5nJTIwc2NyZWVuJTIwaW4lMjBhJTIwZGltJTIwcm9vbXxlbnwxfDF8fHwxNzkzMzgyMTg3fDA&ixlib=rb-4.1.0&w=1600&fm=jpg&q=85",
+        "credit": "Photo by Kreit on Unsplash",
+        "search": "laptop on a desk with glowing screen in a dim room",
+        "source": "https://unsplash.com/photos/a-laptop-computer-sitting-on-top-of-a-wooden-desk-xRuG2k1sjaw?utm_source=story_account&utm_medium=referral",
+        "photographer_url": "https://unsplash.com/@kreit?utm_source=story_account&utm_medium=referral"
       }
     },
     {
       "type": "text",
       "text": "It's called Local Code, and it just launched for free. The whole app is open source.",
       "image": {
-        "search": "person typing on a laptop at home"
+        "url": "https://images.unsplash.com/photo-1758874573150-05c1b6b56407?ixid=M3wxMTE3NTMyfDB8MXxzZWFyY2h8MXx8cGVyc29uJTIwdHlwaW5nJTIwb24lMjBhJTIwbGFwdG9wJTIwYXQlMjBob21lfGVufDF8MHx8fDE3OTMzODIxODd8MA&ixlib=rb-4.1.0&w=1600&fm=jpg&q=85",
+        "credit": "Photo by Vitaly Gariev on Unsplash",
+        "search": "person typing on a laptop at home",
+        "source": "https://unsplash.com/photos/person-typing-on-a-laptop-computer-at-a-desk-LuzrLgzAFco?utm_source=story_account&utm_medium=referral",
+        "photographer_url": "https://unsplash.com/@silverkblack?utm_source=story_account&utm_medium=referral"
       }
     },
     {
