@@ -2,7 +2,7 @@ name: Publish
 
 on:
   schedule:
-    - cron: "*/30 * * * *"   # every 30 minutes; publishes at most one due post per run
+    - cron: "*/10 * * * *"   # every 10 minutes; publishes at most one due post per run
   workflow_dispatch:
 
 permissions:

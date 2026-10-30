@@ -3,11 +3,13 @@
   "handle": "@unclefactss",
   "language": "English",
   "timezone": "America/New_York",
-  "posts_per_day": 3,
+  "posts_per_day": 5,
   "post_times": [
-    "11:00",
-    "15:00",
-    "20:00"
+    "09:00",
+    "11:30",
+    "14:30",
+    "17:30",
+    "20:30"
   ],
   "brand": {
     "background": "#0E0E10",
@@ -18,9 +20,11 @@
   "graph_api_version": "v24.0",
   "unsplash_max_requests_per_hour": 30,
   "graph_host": "graph.facebook.com",
-  "max_posts_per_day": 4,
+  "max_posts_per_day": 6,
   "ig_quota_stop": 25,
   "unsplash_max_requests_per_day": 100,
   "paused": false,
-  "min_minutes_between_posts": 45
+  "min_minutes_between_posts": 45,
+  "time_jitter_minutes": 35,
+  "publish_random_delay_seconds": 240
 }

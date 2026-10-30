@@ -73,9 +73,9 @@ Score each candidate 1–10 on:
 
 A small story with a great hook beats a major headline that's boring or
 everywhere already. Pick the top `posts_per_day` stories and keep 2 backups.
-For the 3 daily posts: one is the AI tool spotlight; the other two are the best
+For the 5 daily posts: one is the AI tool spotlight; the other four are the best
 stories from science, space, nature and animals, health, inventions and robots,
-or other AI news. Vary them from day to day (never two from the same category
+or other AI news. Vary them from day to day (no more than two from the same category
 in one day), and any major news from these areas always gets a slot. Never more than 4 from one category.
 
 Hard skips:
@@ -215,7 +215,7 @@ were unsure about.
 Your usage allowance is limited and shared with the person who owns it, so be economical:
 - Do one run per day; never loop or retry a failing step more than twice.
 - At most about 20 web searches and 12 full articles read in total. Stop researching
-  as soon as you have 3 verified posts plus 2 backups.
+  as soon as you have 5 verified posts plus 2 backups.
 - Keep reasoning short; don't draft a story you've already decided to skip.
 - If you are running low on allowance or hit an error, finish with fewer posts
   (even 1) rather than rushing; commit and push what is verified. Never publish

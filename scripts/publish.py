@@ -12,6 +12,7 @@ Environment: IG_USER_ID, IG_ACCESS_TOKEN, GITHUB_TOKEN, GITHUB_REPOSITORY.
 """
 import json
 import os
+import random
 import shutil
 import subprocess
 import sys
@@ -87,6 +88,16 @@ def instagram_gate(config, post):
     return None
 
 
+def slot_time(config, day, slot):
+    """Today's posting time for a slot: the base time from config.json shifted by a random
+    but repeatable number of minutes (seeded by the date, so every run agrees)."""
+    hour, minute = map(int, config["post_times"][slot - 1].split(":"))
+    jitter = config.get("time_jitter_minutes", 0)
+    offset = random.Random("%s-%d" % (day.isoformat(), slot)).randint(-jitter, jitter)
+    base = datetime(day.year, day.month, day.day, hour, minute, tzinfo=ZoneInfo(config["timezone"]))
+    return base + timedelta(minutes=offset)
+
+
 def find_due_post(config, state):
     now = datetime.now(ZoneInfo(config["timezone"]))
     day_dir = ROOT / "queue" / now.strftime("%Y-%m-%d")
@@ -96,8 +107,7 @@ def find_due_post(config, state):
         record = state.get(post["id"], {})
         if record.get("status") == "posted" or record.get("attempts", 0) >= MAX_ATTEMPTS:
             continue
-        hour, minute = map(int, config["post_times"][post["slot"] - 1].split(":"))
-        if now >= now.replace(hour=hour, minute=minute, second=0, microsecond=0):
+        if now >= slot_time(config, now.date(), post["slot"]):
             due.append((post["slot"], path.parent, post))
     return min(due, key=lambda d: d[0])[1:] if due else (None, None)
 
@@ -189,6 +199,10 @@ def main():
             save_state(state)
         return
 
+    delay = random.randint(0, config.get("publish_random_delay_seconds", 0))
+    if delay:
+        print("Waiting %d seconds so the posting time isn't exact..." % delay)
+        time.sleep(delay)
     print("Publishing", post["id"], "-", post["title"])
     record = state.setdefault(post["id"], {"attempts": 0})
     record["attempts"] += 1
