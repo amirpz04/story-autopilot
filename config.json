@@ -24,5 +24,5 @@
   },
   "graph_api_version": "v24.0",
   "unsplash_max_requests_per_hour": 30,
-  "graph_host": "graph.instagram.com"
+  "graph_host": "graph.facebook.com"
 }

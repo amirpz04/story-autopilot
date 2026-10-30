@@ -8,7 +8,6 @@ Claude Pro plan plus free GitHub services.
 5:00   Claude routine (cloud, your Pro plan)  -> researches, writes queue/<date>/NN/post.json, pushes
 push   GitHub Actions "Preview"               -> renders slides you can download and check
 every 30 min  GitHub Actions "Publish"         -> posts the next due post to Instagram
-1st & 15th    GitHub Actions "Refresh token"   -> keeps the Instagram token alive
 ```
 
 | File | What it is |
@@ -25,7 +24,10 @@ Preview a day locally: `.venv/bin/python scripts/render.py queue/2026-10-30` (sl
 
 ## Setup
 
-### 1. Instagram (about 15 minutes)
+### 1. Instagram (Meta's "unified login" setup)
+New Meta apps use a system-user token that never expires, so no token renewal is needed. In the Meta app: **Use cases → Manage messaging & content on Instagram → Customize → API setup with unified login → Create new configuration** (needs a free business portfolio), then create a **system user** in Business Settings, assign it your Instagram account and the app, and generate a token with `instagram_basic` and `instagram_content_publish`. Save it as `IG_ACCESS_TOKEN` and your Instagram account ID as `IG_USER_ID`. (The older steps below describe the legacy Instagram-login screen.)
+
+#### Legacy steps
 1. In the Instagram app: **Settings → Account type and tools → Switch to professional account** (Creator or Business).
 2. Go to [developers.facebook.com](https://developers.facebook.com), log in, **Create app**, and pick the use case **"Manage messaging & content on Instagram"**.
 3. In the app, open **Instagram → API setup with Instagram login**. Under **Generate access tokens**, click **Add account**, log in with your Instagram account and approve.
@@ -38,7 +40,6 @@ Preview a day locally: `.venv/bin/python scripts/render.py queue/2026-10-30` (sl
    - `IG_USER_ID`: the Instagram user ID
    - `IG_ACCESS_TOKEN`: the token
    - `UNSPLASH_ACCESS_KEY`: the **Access Key** of a free app at [unsplash.com/oauth/applications](https://unsplash.com/oauth/applications). Used for stock photos when a story has no real photo; the system never makes more than 30 Unsplash requests per hour.
-   - `GH_PAT`: a [fine-grained GitHub token](https://github.com/settings/personal-access-tokens/new) for this repo with **Secrets: Read and write** (lets the token refresh itself)
 4. **Settings → Actions → General → Workflow permissions →** "Read and write permissions".
 
 ### 3. Claude routine (about 5 minutes)
