@@ -1,8 +1,11 @@
 {
   "2026-10-30-01": {
-    "attempts": 0,
+    "attempts": 1,
+    "media_id": "18212610040364083",
     "post_now": true,
-    "post_now_requested_at": "2026-10-31T11:58:06.075552+00:00"
+    "post_now_requested_at": "2026-10-31T11:58:06.075552+00:00",
+    "posted_at": "2026-10-31T12:03:42.429976Z",
+    "status": "posted"
   },
   "2026-10-30-03": {
     "attempts": 1,
