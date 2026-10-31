@@ -343,7 +343,9 @@ function showPost(id) {
   const [lvl, txt] = postStatus(p);
   const upcoming = ["Scheduled", "Due now", "Overdue"].includes(txt);
   let buttons = "";
-  if (upcoming) buttons += `<button class="btn primary" onclick="act('post_now','${esc(p.id)}')">Post now</button><button class="btn danger" onclick="if(confirm('Remove this post? It will not be published.')) act('remove','${esc(p.id)}')">Remove</button>`;
+  const canPost = upcoming || txt === "Removed" || txt === "Failed" || txt.startsWith("Not posted") || txt.startsWith("Deleted");
+  if (canPost) buttons += `<button class="btn primary" onclick="if(${upcoming} || confirm('Post this to Instagram now?')) act('post_now','${esc(p.id)}')">Post now</button>`;
+  if (upcoming) buttons += `<button class="btn danger" onclick="if(confirm('Remove this post? It will not be published.')) act('remove','${esc(p.id)}')">Remove</button>`;
   if (txt === "Removed") buttons += `<button class="btn" onclick="act('restore','${esc(p.id)}')">Restore</button>`;
   if (txt === "Live") buttons += (p.permalink ? `<a class="btn" href="${esc(p.permalink)}" target="_blank" rel="noopener">Open on Instagram</a>` : "") +
     `<button class="btn danger" onclick="if(confirm('Delete this post from Instagram? This cannot be undone.')) act('delete_instagram','${esc(p.id)}')">Delete from Instagram</button>`;

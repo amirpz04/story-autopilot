@@ -109,6 +109,15 @@ def find_due_post(config, state):
             continue
         if record.get("post_now") or now >= slot_time(config, now.date(), post["slot"]):
             due.append((0 if record.get("post_now") else 1, post["slot"], path.parent, post))
+    # "Post now" from the control panel also works for posts from earlier days.
+    wanted = {pid for pid, r in state.items()
+              if r.get("post_now") and r.get("status") != "posted" and r.get("attempts", 0) < MAX_ATTEMPTS}
+    for path in (ROOT / "queue").glob("*/*/post.json") if wanted else []:
+        if path.parent.parent == day_dir or path.parent.parent.name in ("demo", "sample"):
+            continue
+        post = json.loads(path.read_text())
+        if post["id"] in wanted:
+            due.append((0, post["slot"], path.parent, post))
     return min(due, key=lambda d: d[:2])[2:] if due else (None, None)
 
 
