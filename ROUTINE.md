@@ -11,8 +11,10 @@ Every run, you find today's best stories on the open web, verify them, and write
 finished Instagram carousel posts. A separate scheduler publishes them; your job ends
 when the posts are committed and pushed.
 
-Read `config.json` first. It sets the account name, handle, language, how many
-posts to make (`posts_per_day`) and the publishing times.
+Read `config.json` first. It sets the account name, handle, language and how many of each format go out:
+`posts_per_day` carousel posts and `reels_per_day` Reels. Write **`stories_per_day` stories** (the larger of
+the two numbers). A Reel is an animated video made automatically from a story's own slides, so you never write
+a separate Reel: every story simply says in which time slots it goes out (see "slots" below).
 
 ## 1. Know what's already been done
 
@@ -223,6 +225,7 @@ Write each post as `queue/<date>/<NN>/post.json`:
   "id": "2026-10-30-01",
   "date": "2026-10-30",
   "slot": 1,
+  "reel_slot": 2,
   "title": "Short internal title",
   "category": "animals",
   "tags": {"end": "question", "headline": "statement", "lane": "news"},
@@ -241,9 +244,14 @@ Write each post as `queue/<date>/<NN>/post.json`:
 }
 ```
 
-Use only the slot numbers listed in `active_slots` in `config.json` (one post per
-slot; slot numbers match the positions in `post_times`). Put the strongest story in
-the last active slot and the second strongest in the middle one.
+**Slots (how a story is scheduled).** Story number `i` (1 = your strongest, in the order you rank them) gets:
+- `"slot"` = the `i`-th number of `active_slots` if `i <= posts_per_day`, otherwise `null` (no carousel);
+- `"reel_slot"` = the `i`-th number of `reel_active_slots` if `i <= reels_per_day`, otherwise `null` (no Reel).
+With 2 posts and 2 Reels, both stories are posted as a carousel and as a Reel; with 1 post and 3 Reels, the
+first story is both and the other two are Reels only (their `slot` is `null`). A story with both `null` must
+not exist. Put the strongest stories on the evening slots (the last numbers). The post and the Reel of one story
+are intentionally far apart in time. Reels are built from the same slides, so every story must still follow all
+the picture and text rules above, even if it only becomes a Reel.
 `tags` is for learning: `lane` is `news` or `evergreen`; `end` is `question` or `send`; `headline` is `statement`,
 `question` or `number` (how the cover headline is built).
 
@@ -252,7 +260,7 @@ the last active slot and the second strongest in the middle one.
 The owner can swap a scheduled post he dislikes for a ready spare with one button, so prepare
 `spares_per_day` extra posts, finished to exactly the same standard (same verification, pictures and
 checks) but never scheduled. Write each as `queue/<date>/s1/post.json`, `s2`, ...:
-- `"spare": true` and `"slot": null`, with `"id": "<date>-s1"` (`-s2`, ...), and an unused story (different
+- `"spare": true`, `"slot": null` and `"reel_slot": null`, with `"id": "<date>-s1"` (`-s2`, ...), and an unused story (different
   topic from the day's posts when possible).
 - Use the same fields, tags and checks as any post; `validate.py` and `check_images.py` cover spares too.
 - Add them to `state/history.jsonl` like the others. If `spares_per_day` is 0 or missing, write none.

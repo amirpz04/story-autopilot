@@ -61,13 +61,19 @@ commit, push to `main` (goes live immediately). For publisher changes set `pause
 
 - **Two lanes (Oct 31 2026):** A = news (tech/science/space/nature/animals/health/AI), B = **evergreen** (any true, interesting story about something humans built or did, any age: how technologies work, company and founder origin stories, books, languages, machines, history; no topic limit, but needs 2 independent sources and a specific surprising hook). Posts are tagged `lane` so the dashboard can compare them.
 
-## Reel system (built Oct 31 2026, NOT yet wired into the daily automation)
+## Reel system (automatic since Nov 1 2026)
 - `scripts/make_reel.py <post_dir> [out.mp4] [music.ogg | auto]` turns a queued post into an animated vertical video using the same photos and text
   (`templates/reel.html`: camera moves on photos, word-by-word text, fades, progress bars). Renders frames in Playwright then encodes with ffmpeg (~1 min, free).
 - Music: `assets/music/*.m4a` (AAC so phones can play them) with `music.json` (title, caption credit line, license, source). Managed from the dashboard's **Music** tab (listen, add by direct link, remove) via control actions `add_music` / `remove_music`. `auto` rotates
   so a song never repeats within the last 5 (`state/music_log.json`). Instagram's own music library cannot be used through the API (Meta docs).
-- Still to do: publish as a Reel (media_type REELS with a public video_url; untested, needs a host Instagram accepts), schedule Reel slots, add a `format` tag
-  and a Reels view to the dashboard, wire rendering into a workflow.
+- **Counts are owner-controlled:** `config.json` `posts_per_day` (carousels, 0-5) and `reels_per_day` (0-5), set from the dashboard Control tab (`posts_per_day` / `reels_per_day` actions).
+  `stories_per_day = max(both)`; each story in post.json has `slot` (carousel slot or null) and `reel_slot` (Reel slot or null; times come from `reel_times`,
+  `reel_active_slots`). Default 2 posts + 2 Reels from the same 2 stories (no extra Claude usage).
+- **Flow:** the routine pushes the queue -> `reel.yml` (push trigger) renders each needed Reel (`reel_job.py`, stored on branch `reels`, `state/reels.json`) ->
+  `publish.py` posts a Reel at its `reel_slot` time (`publish_reel.publish_due_reel`, makes it on the spot if missing; 3 attempts) with the same Instagram safety gate
+  (45 min gap between ANY posts, daily cap = posts + reels + 1). Editing slides or replacing a post re-makes its Reel. Reels stats are tagged `kind: reel`.
+- The owner's "Make Reel" / "Post this Reel" buttons still exist for manual cases but are not needed.
+- First live Reel: not yet published as of writing (the automatic flow is untested live).
 
 ## Control panel v2 (Nov 1 2026)
 Dashboard tabs: Overview (alerts, tiles, today's posts with quick buttons, reach chart, followers), Posts (search, filters, per-post page with slides, caption, sources,

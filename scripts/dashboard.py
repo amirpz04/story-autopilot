@@ -75,7 +75,7 @@ def build(now):
     today_posts = []
     for path in sorted((ROOT / "queue" / today.isoformat()).glob("*/post.json")):
         post = json.loads(path.read_text())
-        if post.get("spare"):
+        if post.get("spare") or post.get("slot") is None:
             continue
         rec = posted.get(post["id"], {})
         today_posts.append({
@@ -100,12 +100,14 @@ def build(now):
         rs = reel_stats.get(post["id"], {})
         all_posts.append({
             "spare": spare, "post_at": rec.get("post_at"), "replaced_by": rec.get("replaced_by"), "parked": "-replaced" in path.parent.name,
-            "reel": ({k: reel.get(k) for k in ("status", "url", "made_at", "music", "permalink", "posted_at")} if reel else None),
+            "reel_slot": post.get("reel_slot"), "has_slot": post.get("slot") is not None,
+            "reel_scheduled_utc": publish.slot_time(config, day, post["reel_slot"], "reel").astimezone(timezone.utc).isoformat() if post.get("reel_slot") is not None and not spare else None,
+            "reel": ({k: reel.get(k) for k in ("status", "url", "made_at", "music", "permalink", "posted_at", "attempts", "error") if k in reel} if reel else None),
             "reel_stats": {k: rs.get(k) for k in ("reach", "likes", "comments", "shares", "saved", "views", "share_rate")} if rs else None,
             "id": post["id"], "date": day.isoformat(), "slot": post["slot"], "title": post["title"],
             "category": post.get("category", ""), "lane": (post.get("tags") or {}).get("lane", ""),
             "status": rec.get("status"), "post_now": bool(rec.get("post_now")), "error": rec.get("error"),
-            "scheduled_utc": None if spare else (rec.get("post_at") or publish.slot_time(config, day, post["slot"]).astimezone(timezone.utc).isoformat()),
+            "scheduled_utc": None if spare or post.get("slot") is None else (rec.get("post_at") or publish.slot_time(config, day, post["slot"]).astimezone(timezone.utc).isoformat()),
             "posted_at": rec.get("posted_at"), "permalink": st.get("permalink"), "media_id": rec.get("media_id") or st.get("media_id"),
             "slides": [{"type": sl.get("type"), "layout": sl.get("layout"), "kicker": sl.get("kicker"),
                         "text": sl.get("headline") or sl.get("text"),
@@ -167,6 +169,12 @@ def build(now):
     if followers and (today - datetime.strptime(followers[-1]["date"], "%Y-%m-%d").date()).days > 2:
         alerts.append({"level": "warning", "text": "Statistics haven't updated since %s." % followers[-1]["date"]})
 
+    for p in all_posts:
+        if p.get("date") == today.isoformat() and p.get("reel_slot") is not None and not p.get("spare") and p.get("status") not in ("removed", "deleted"):
+            r = p.get("reel") or {}
+            due = datetime.fromisoformat(p["reel_scheduled_utc"])
+            if r.get("status") != "posted" and now - due > timedelta(minutes=45):
+                alerts.append({"level": "serious", "text": 'The Reel of "%s" was due at %s UTC and is not live%s.' % (p["title"][:50], due.strftime("%H:%M"), (" (" + r["error"][:60] + ")") if r.get("error") else "")})
     health = read_json(ROOT / "state" / "api_health.json", {})
     if health.get("until") and datetime.fromisoformat(health["until"]) > datetime.now(timezone.utc):
         alerts.append({"level": "warning", "text": "Instagram refused our last request (%s). The system is waiting until %s UTC before trying again, on purpose, so it doesn't pile up requests." % (health.get("reason", "")[:90], health["until"][11:16])})
@@ -185,7 +193,9 @@ def build(now):
         "system": {"paused": bool(config.get("paused")), "posts_per_day": config["posts_per_day"], "slot_times": slot_times,
                    "last_mac_ping_utc": record_mac_ping(now), "history_count": len(history),
                    "unsplash_used": len(unsplash), "unsplash_cap": config.get("unsplash_max_requests_per_day", 100),
-                   "spares_per_day": config.get("spares_per_day", 0),
+                   "spares_per_day": config.get("spares_per_day", 0), "reels_per_day": config.get("reels_per_day", 0),
+                   "stories_per_day": config.get("stories_per_day", config["posts_per_day"]),
+                   "reel_times": [config["reel_times"][i - 1] for i in config.get("reel_active_slots", [])],
                    "spares_ready": sum(1 for p in all_posts if p.get("spare") and p.get("status") not in ("removed", "deleted") and p["date"] >= (today - timedelta(days=2)).isoformat()),
                    "reels_made": sum(1 for r in reels.values() if r.get("status") in ("made", "posted")),
                    "reels_posted": sum(1 for r in reels.values() if r.get("status") == "posted")},

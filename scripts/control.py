@@ -10,7 +10,8 @@ Usage: python scripts/control.py ACTION [TARGET] [TEXT]     (TEXT may also come 
   replace POST_ID [SPARE_ID]     swap a post of today for a ready-made spare post (the newest one, or the spare named in TEXT); the old one is kept as "removed"
   edit_caption POST_ID  TEXT     change the caption of a post that isn't live
   edit_slide POST_ID#N  TEXT     change the text of slide N (1-based) of a post that isn't live
-  posts_per_day N                1-5 posts a day from the next research run on
+  posts_per_day N                0-5 carousel posts a day from the next research run on
+  reels_per_day N                0-5 Reels a day from the next research run on (at least one post or Reel a day)
   spares_per_day N               0-3 extra spare posts the research run prepares each day (uses more Claude usage)
   delete_instagram POST_ID       delete a live post from Instagram (the whole carousel)
   post_reel POST_ID              publish the Reel that was made for this post
@@ -39,7 +40,9 @@ POSTED = ROOT / "state" / "posted.json"
 STATS = ROOT / "state" / "stats.json"
 LOG = ROOT / "state" / "control_log.json"
 MAX_ATTEMPTS = 3
-SLOTS = {1: [3], 2: [1, 5], 3: [1, 3, 5], 4: [1, 2, 4, 5], 5: [1, 2, 3, 4, 5]}
+SLOTS = {0: [], 1: [3], 2: [1, 5], 3: [1, 3, 5], 4: [1, 2, 4, 5], 5: [1, 2, 3, 4, 5]}
+REEL_SLOTS = {0: [], 1: [3], 2: [2, 4], 3: [1, 3, 5], 4: [1, 2, 4, 5], 5: [1, 2, 3, 4, 5]}
+REELS = ROOT / "state" / "reels.json"
 
 
 def load(path, default):
@@ -120,7 +123,7 @@ def replace(target, config, posted, now, wanted_spare=None):
     if not spares:
         return "No spare post is ready. Open the daily research run and press Run now (it prepares spares), or wait for the next run."
     _, spare_id, spare_path, spare = sorted(spares, key=lambda s: (s[0], s[1]), reverse=True)[0]
-    slot, old_dir = post["slot"], path.parent
+    slot, reel_slot, old_dir = post.get("slot"), post.get("reel_slot"), path.parent
     parked = old_dir.with_name(old_dir.name + "-replaced")
     n = 2
     while parked.exists():
@@ -128,14 +131,24 @@ def replace(target, config, posted, now, wanted_spare=None):
         n += 1
     shutil.move(str(old_dir), str(parked))
     shutil.move(str(spare_path.parent), str(old_dir))
-    spare.update(slot=slot, spare=False)
+    spare.update(slot=slot, reel_slot=reel_slot, spare=False)
+    forget_reel(target)
+    forget_reel(spare_id)
     write_post(old_dir / "post.json", spare)
     posted[target] = dict(record, status="removed", attempts=MAX_ATTEMPTS, removed_at=now, replaced_by=spare_id)
     save(POSTED, posted)
     return 'Replaced with "%s". It goes out at this slot\'s time (right away if that time has passed).' % spare["title"][:70]
 
 
-def edit_post(post_id, change, config, posted):
+def forget_reel(post_id):
+    """The slides changed, so a Reel that was made but not posted is out of date: drop it so it is made again."""
+    reels = load(REELS, {})
+    if reels.get(post_id, {}).get("status") in ("made", "failed", "expired"):
+        reels.pop(post_id)
+        save(REELS, reels)
+
+
+def edit_post(post_id, change, config, posted, slides_changed=False):
     path, post = find_post(post_id)
     if not path:
         return "Post not found."
@@ -152,7 +165,9 @@ def edit_post(post_id, change, config, posted):
     if new_errors:
         path.write_text(original)
         return "Not saved: " + "; ".join(new_errors[:3])
-    return "Saved."
+    if slides_changed:
+        forget_reel(post_id)
+    return "Saved." + (" Its Reel will be made again." if slides_changed and post.get("reel_slot") is not None else "")
 
 
 MUSIC = ROOT / "assets" / "music"
@@ -225,13 +240,21 @@ def run(action, target, text):
         save(CONFIG, config)
         return "Publishing %s." % ("paused" if action == "pause" else "resumed")
 
-    if action == "posts_per_day":
+    if action in ("posts_per_day", "reels_per_day"):
         n = int(target)
         if n not in SLOTS:
-            return "Posts per day must be 1 to 5."
-        config.update(posts_per_day=n, active_slots=SLOTS[n], max_posts_per_day=n + 1)
+            return "Pick a number from 0 to 5."
+        if action == "posts_per_day":
+            config.update(posts_per_day=n, active_slots=SLOTS[n])
+        else:
+            config.update(reels_per_day=n, reel_active_slots=REEL_SLOTS[n])
+        if config.get("posts_per_day", 0) + config.get("reels_per_day", 0) == 0:
+            return "That would leave nothing to post. Keep at least one post or Reel a day."
+        config["stories_per_day"] = max(config.get("posts_per_day", 0), config.get("reels_per_day", 0))
+        config["max_posts_per_day"] = config.get("posts_per_day", 0) + config.get("reels_per_day", 0) + 1
         save(CONFIG, config)
-        return "Posts per day set to %d (takes effect from the next research run)." % n
+        return "Now %d carousel post%s and %d Reel%s a day, from %d stories (takes effect from the next research run)." % (
+            config["posts_per_day"], "" if config["posts_per_day"] == 1 else "s", config["reels_per_day"], "" if config["reels_per_day"] == 1 else "s", config["stories_per_day"])
 
     if action == "spares_per_day":
         n = int(target)
@@ -265,7 +288,7 @@ def run(action, target, text):
                 return "That slide doesn't exist."
             key = "headline" if post["slides"][index].get("type") == "cover" else "text"
             post["slides"][index][key] = text.strip()
-        return edit_post(post_id, change, config, posted)
+        return edit_post(post_id, change, config, posted, slides_changed=True)
 
     if action == "edit_caption":
         def change(post):

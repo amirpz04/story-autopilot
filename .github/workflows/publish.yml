@@ -38,6 +38,7 @@ jobs:
       - name: Install renderer
         if: steps.due.outputs.post != ''
         run: |
+          which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
           pip install playwright
           python -m playwright install --with-deps chromium
 

@@ -1,14 +1,18 @@
 name: Reel
-run-name: "Reel: ${{ inputs.post_id }}"
+run-name: "Reel: ${{ inputs.post_id || 'make the day Reels' }}"
 
-# Started by the dashboard's "Make Reel" button. Renders the animated video for one post and stores it on the
-# `reels` branch (newest 12 kept). Posts nothing to Instagram.
+# Makes the animated videos for the day's posts that are scheduled as Reels (and re-makes one if the
+# slides were edited). Runs by itself when the daily research run queues posts, or from the dashboard.
+# The video is stored on the `reels` branch (newest 12 kept). Nothing is posted to Instagram here.
 on:
+  push:
+    paths: ["queue/**"]
   workflow_dispatch:
     inputs:
       post_id:
-        description: "Post id"
-        required: true
+        description: "Post id (leave empty to make every Reel the day still needs)"
+        required: false
+        default: ""
         type: string
 
 permissions:
@@ -21,27 +25,36 @@ concurrency:
 jobs:
   reel:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Is there a Reel to make?
+        id: need
+        run: |
+          if [ -n "${{ inputs.post_id }}" ]; then echo "go=yes" >> "$GITHUB_OUTPUT"; exit 0; fi
+          n=$(python -c "import sys; sys.path.insert(0,'scripts'); import reel_job; print(len(reel_job.posts_needing_reels()))")
+          if [ "$n" -gt 0 ]; then echo "go=yes" >> "$GITHUB_OUTPUT"; else echo "No Reel needed."; fi
       - name: Install video tools
+        if: steps.need.outputs.go == 'yes'
         run: |
           which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
           pip install playwright
           python -m playwright install --with-deps chromium
-      - name: Make the Reel
+      - name: Make the Reels
+        if: steps.need.outputs.go == 'yes'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           POST_ID: ${{ inputs.post_id }}
-        run: python scripts/reel_job.py "$POST_ID"
+        run: python scripts/reel_job.py $POST_ID
       - name: Save the record
+        if: steps.need.outputs.go == 'yes'
         run: |
           git config user.name "publisher"
           git config user.email "publisher@users.noreply.github.com"
           git add state/reels.json state/music_log.json
           git diff --cached --quiet && exit 0
-          git commit -m "Reel made for ${{ inputs.post_id }}"
+          git commit -m "Reels made"
           for i in 1 2 3 4; do git pull --rebase -q && git push -q && break; sleep 6; done

@@ -13,16 +13,35 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import publish  # noqa: E402
 
 REELS = ROOT / "state" / "reels.json"
+MAX_ATTEMPTS = 3
+
+
+def load_reels():
+    try:
+        return json.loads(REELS.read_text())
+    except Exception:
+        return {}
+
+
+def save_reels(reels):
+    REELS.write_text(json.dumps(reels, indent=2, sort_keys=True) + "\n")
+
+
+def publish_due_reel(post_id):
+    """Post a Reel at its time. If it hasn't been made yet (the early rendering failed), make it now."""
+    entry = load_reels().get(post_id)
+    if not entry or entry.get("status") not in ("made",) or not entry.get("raw_url"):
+        import reel_job
+        if not reel_job.make_one(post_id):
+            return "Could not make the Reel (will try again at the next check)."
+    return post_reel(post_id)
 
 
 def post_reel(post_id):
-    try:
-        reels = json.loads(REELS.read_text())
-    except Exception:
-        reels = {}
+    reels = load_reels()
     entry = reels.get(post_id)
     if not entry or not entry.get("raw_url"):
-        return "No Reel has been made for this post yet. Press Make Reel first."
+        return "No Reel has been made for this post yet."
     if entry.get("status") == "posted":
         return "This Reel is already live."
     config = publish.load_config()
@@ -33,7 +52,7 @@ def post_reel(post_id):
     post = json.loads(path.read_text())
     gate = publish.instagram_gate(config, post, check_duplicate=False)
     if gate:
-        return "Not posted: " + gate
+        return "Not posted yet: " + gate
     tags = [t for t in post.get("hashtags", []) if t.lower() not in post["caption"].lower()]
     caption = post["caption"].rstrip() + ("\n\n" + " ".join(tags) if tags else "")
     if entry.get("credit"):
@@ -48,7 +67,10 @@ def post_reel(post_id):
     except Exception as exc:
         if "Instagram API error" in str(exc):
             publish.note_api_failure(exc)
+        entry["attempts"] = entry.get("attempts", 0) + 1
+        entry["error"] = str(exc)[:200]
+        save_reels(reels)
         return "Reel not posted: %s" % str(exc)[:200]
-    entry.update(status="posted", media_id=media_id, permalink=permalink, posted_at=datetime.now(timezone.utc).isoformat())
-    REELS.write_text(json.dumps(reels, indent=2, sort_keys=True) + "\n")
+    entry.update(status="posted", media_id=media_id, permalink=permalink, posted_at=datetime.now(timezone.utc).isoformat(), attempts=0, error="")
+    save_reels(reels)
     return "Reel posted: %s" % (permalink or media_id)

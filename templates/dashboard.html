@@ -179,13 +179,15 @@
         <button class="btn primary" onclick="act('resume')">Resume posting</button></div>
       <p class="muted">Paused means nothing goes to Instagram until you resume. The daily research still runs.</p>
     </div>
-    <h2>Posts per day</h2>
+    <h2>How many posts and Reels per day</h2>
     <div class="card">
-      <div class="row">
-        <select id="ppd"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
-        <button class="btn" onclick="act('posts_per_day', document.getElementById('ppd').value)">Save</button>
-      </div>
-      <p class="muted">Takes effect from the next daily research run. More posts use more of your Claude plan.</p>
+      <div class="row"><label>Carousel posts <select id="ppd"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+        <button class="btn" onclick="act('posts_per_day', document.getElementById('ppd').value)">Save</button></div>
+      <div class="row" style="margin-top:10px"><label>Reels <select id="rpd"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+        <button class="btn" onclick="act('reels_per_day', document.getElementById('rpd').value)">Save</button></div>
+      <p class="muted" id="mixNote"></p>
+      <p class="muted">Takes effect from the next daily research run. Reels are made from the same stories as the carousels, so adding Reels costs no extra Claude usage unless
+        you ask for more Reels than posts. Instagram's guidance is to space posts out and vary formats; 2 + 2 is a good start. Posts and Reels never go out within 45 minutes of each other.</p>
     </div>
     <h2>Spare posts</h2>
     <div class="card">
@@ -245,6 +247,7 @@ function postStatus(p) {
   const s = p.status;
   if (p.parked) return ["neutral", "Replaced by a spare"];
   if (p.spare) return s === "removed" || s === "deleted" ? ["neutral", "Spare (removed)"] : ["neutral", "Spare, ready"];
+  if (p.has_slot === false && s !== "removed" && s !== "deleted") return ["neutral", "Reel only"];
   if (s === "posted") return ["good", "Live"];
   if (s === "deleted") return ["neutral", "Deleted from Instagram"];
   if (s === "removed") return ["neutral", "Removed"];
@@ -255,6 +258,18 @@ function postStatus(p) {
   if (now - t > 40 * 60000) return ["serious", "Overdue"];
   if (t <= now) return ["warning", "Due now"];
   return ["neutral", p.post_at ? "Scheduled (time set by you)" : "Scheduled"];
+}
+// the Reel half of a story: [level, text] or null when the story has no Reel
+function reelStatus(p) {
+  if (p.reel_slot == null || p.spare || p.parked) return null;
+  if (p.status === "removed" || p.status === "deleted") return null;
+  const r = p.reel, t = p.reel_scheduled_utc ? new Date(fixIso(p.reel_scheduled_utc)).getTime() : 0;
+  if (r && r.status === "posted") return ["good", "Reel live"];
+  if (r && r.status === "failed") return ["critical", "Reel failed (" + (r.attempts || 0) + " tries)"];
+  const past = t && t < now, late = t && now - t > 45 * 60000;
+  if (r && r.status === "made") return late ? ["serious", "Reel overdue"] : past ? ["warning", "Reel due now"] : ["neutral", "Reel ready"];
+  if (p.date !== D.today_date && past) return ["neutral", "Reel not made (day passed)"];
+  return late ? ["serious", "Reel not made yet"] : ["neutral", "Reel will be made"];
 }
 const isLive = p => postStatus(p)[1] === "Live";
 const isUpcoming = p => ["Scheduled", "Scheduled (time set by you)", "Due now", "Overdue", "Posting now"].includes(postStatus(p)[1]);
@@ -301,22 +316,28 @@ const withReach = live.filter(p => p.reach != null);
 const avg = a => a.length ? a.reduce((x, y) => x + y, 0) / a.length : null;
 const tile = (label, value, note) => `<div class="card tile"><div class="label">${label}</div><div class="num">${value}</div><div class="muted">${note || ""}</div></div>`;
 const postedToday = D.today.filter(t => t.status === "posted").length;
+$("todayNote").textContent = D.today.length ? "(New York date " + D.today_date + ")" : "";
+const todayFull = D.all_posts.filter(p => p.date === D.today_date && !p.spare && !p.parked);
+const todayRows = [];
+todayFull.forEach(p => {
+  if (p.has_slot !== false) todayRows.push({p, kind: "Post", st: postStatus(p), time: p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc});
+  const rs = reelStatus(p); if (rs) todayRows.push({p, kind: "Reel", st: rs, time: p.reel && p.reel.status === "posted" ? p.reel.posted_at : p.reel_scheduled_utc});
+});
+todayRows.sort((a, b) => new Date(fixIso(a.time) || 0) - new Date(fixIso(b.time) || 0));
+$("today").innerHTML = todayRows.length
+  ? `<tr><th>Status</th><th>Time (your clock)</th><th>Story</th><th></th></tr>` + todayRows.map(({p, kind, st, time}) => {
+      const [lvl, txt] = st, up = kind === "Post" && isUpcoming(p);
+      const quick = up ? `<button class="btn sm primary" onclick="act('post_now','${idq(p.id)}')">Post now</button> <button class="btn sm" onclick="act('replace','${idq(p.id)}')">Replace</button> <button class="btn sm danger" onclick="if(confirm('Remove this story? It will not be posted as a carousel or a Reel.')) act('remove','${idq(p.id)}')">Remove</button>` : "";
+      return `<tr><td><span class="status">${icon(lvl)}${txt}</span></td><td>${when(time)}</td><td><span class="badge${kind === "Reel" ? " reel" : ""}" style="margin:0 6px 0 0">${kind}</span><a href="#post/${encodeURIComponent(p.id)}">${esc(p.title)}</a></td><td>${quick}</td></tr>`;
+    }).join("")
+  : `<tr><td class="muted">Nothing is queued for today yet.</td></tr>`;
+
 $("tiles").innerHTML =
   tile("Posts live", nf(live.length), "all time") +
-  tile("Posted today", postedToday + " of " + D.today.length, D.today.length ? "" : "nothing queued") +
+  tile("Posted today", (postedToday + todayFull.filter(p => p.reel && p.reel.status === "posted").length) + " of " + todayRows.length, todayRows.length ? "posts + Reels" : "nothing queued") +
   tile("Reels", nf(sys.reels_posted), sys.reels_made + " made") +
   tile("Average reach", nf(Math.round(avg(withReach.map(p => p.reach)) ?? NaN) || null), "people per post") +
   tile("Shares per reach", pct(avg(withReach.map(p => p.share_rate).filter(x => x != null))), "sends matter most");
-
-$("todayNote").textContent = D.today.length ? "(New York date " + D.today_date + ")" : "";
-const todayFull = D.all_posts.filter(p => p.date === D.today_date && !p.spare && !p.parked);
-$("today").innerHTML = todayFull.length
-  ? `<tr><th>Status</th><th>Time (your clock)</th><th>Story</th><th></th></tr>` + todayFull.map(p => {
-      const [lvl, txt] = postStatus(p);
-      const quick = isUpcoming(p) ? `<button class="btn sm primary" onclick="act('post_now','${idq(p.id)}')">Post now</button> <button class="btn sm" onclick="act('replace','${idq(p.id)}')">Replace</button> <button class="btn sm danger" onclick="if(confirm('Remove this post? It will not be published.')) act('remove','${idq(p.id)}')">Remove</button>` : "";
-      return `<tr><td><span class="status">${icon(lvl)}${txt}</span></td><td>${when(p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc)}</td><td><a href="#post/${encodeURIComponent(p.id)}">${esc(p.title)}</a></td><td>${quick}</td></tr>`;
-    }).join("")
-  : `<tr><td class="muted">No posts are queued for today yet.</td></tr>`;
 
 // reach per post: one bar per live post, hover for details
 (function reachChart() {
@@ -383,12 +404,13 @@ $("groups").innerHTML = gKeys.length ? gKeys.map(k => `<div class="card scroll" 
 const row = (k, v) => `<div><span class="label">${k}</span><b>${v}</b></div>`;
 $("sys").innerHTML =
   row("Publishing", sys.paused ? "Paused" : "On") +
-  row("Posts per day", sys.posts_per_day) +
+  row("Carousel posts per day", sys.posts_per_day) +
+  row("Reels per day", sys.reels_per_day + (sys.reel_times.length ? " (about " + sys.reel_times.join(", ") + " New York)" : "")) +
   row("Spare posts ready", sys.spares_ready + " (prepares " + sys.spares_per_day + " a day)") +
   row("Posting times (New York)", sys.slot_times.join(", ") + " (shifted a few minutes daily)") +
   row("Mac mini last woke the poster", sys.last_mac_ping_utc ? ago(now - new Date(sys.last_mac_ping_utc).getTime()) : "not recorded yet") +
   row("Daily research run", "about " + new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate(), 9, 15)).toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"}) + " your time") +
-  row("Posts queued for today", D.today.length + " of " + sys.posts_per_day) +
+  row("Stories queued for today", todayFull.length + " of " + sys.stories_per_day) +
   row("Stories used so far", sys.history_count) +
   row("Unsplash requests (24 h)", sys.unsplash_used + " of " + sys.unsplash_cap);
 
@@ -401,7 +423,7 @@ function inFilter(p) {
   if (filter === "live") return txt === "Live";
   if (filter === "upcoming") return isUpcoming(p);
   if (filter === "spares") return p.spare && !p.parked && !txt.includes("removed");
-  if (filter === "reels") return !!p.reel;
+  if (filter === "reels") return p.reel_slot != null || !!p.reel;
   if (filter === "removed") return p.parked || txt === "Removed" || txt.startsWith("Deleted") || txt.includes("(removed)");
   if (filter === "missed") return txt === "Failed" || txt.startsWith("Not posted");
 }
@@ -417,8 +439,9 @@ function drawList() {
     const [lvl, txt] = postStatus(p), cover = p.slides.length && p.slides[0].image;
     const t = p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc;
     html += `<a class="card pitem" href="#post/${encodeURIComponent(p.id)}">${cover ? `<img src="${esc(thumb(cover))}" loading="lazy" alt="">` : `<div class="noimg"></div>`}
-      <div><div class="t">${esc(p.title)}${p.reel ? ` <span class="badge reel">Reel${p.reel.status === "posted" ? " live" : ""}</span>` : ""}${p.spare && !p.parked ? ` <span class="badge">spare</span>` : ""}</div>
-      <div class="muted"><span class="status">${icon(lvl)}${txt}</span>${t ? " &middot; " + when(t) : (p.posted_local ? " &middot; " + esc(p.posted_local) : "")} &middot; ${esc(p.lane || p.category)}</div></div></a>`;
+      <div><div class="t">${esc(p.title)}${p.reel_slot != null || p.reel ? ` <span class="badge reel">Reel${p.reel && p.reel.status === "posted" ? " live" : ""}</span>` : ""}${p.spare && !p.parked ? ` <span class="badge">spare</span>` : ""}</div>
+      <div class="muted"><span class="status">${icon(lvl)}${txt}</span>${t ? " &middot; " + when(t) : (p.posted_local ? " &middot; " + esc(p.posted_local) : "")} &middot; ${esc(p.lane || p.category)}</div>
+      ${reelStatus(p) ? `<div class="muted"><span class="status">${icon(reelStatus(p)[0])}${reelStatus(p)[1]}</span>${p.reel_scheduled_utc ? " &middot; " + when(p.reel && p.reel.status === "posted" ? p.reel.posted_at : p.reel_scheduled_utc) : ""}</div>` : ""}</div></a>`;
   });
   $("plist").innerHTML = html;
 }
@@ -443,10 +466,12 @@ function showPost(id) {
       : `<span class="muted">No scheduled post of today to replace. A spare takes the place of a post you don't want.</span>`;
     if (!removed) btns += `<button class="btn danger" onclick="act('remove','${q}')">Remove spare</button>`;
   } else if (editable) {
-    btns += `<button class="btn primary" onclick="if(${upcoming} || confirm('Post this to Instagram now?')) act('post_now','${q}')">Post now</button>`;
-    btns += `<button class="btn" onclick="toggle('resBox')">Reschedule</button>`;
+    if (p.has_slot !== false) {
+      btns += `<button class="btn primary" onclick="if(${upcoming} || confirm('Post this to Instagram now?')) act('post_now','${q}')">Post now</button>`;
+      btns += `<button class="btn" onclick="toggle('resBox')">Reschedule</button>`;
+    }
     if (p.date === D.today_date && !removed) btns += sys.spares_ready > 0 ? `<button class="btn" onclick="act('replace','${q}')">Replace with a spare (${sys.spares_ready} ready)</button>` : `<button class="btn" disabled title="No spare is ready. Turn spares on in the Control tab.">Replace with a spare (none ready)</button>`;
-    btns += removed ? `<button class="btn" onclick="act('restore','${q}')">Restore</button>` : `<button class="btn danger" onclick="if(confirm('Remove this post? It will not be published.')) act('remove','${q}')">Remove</button>`;
+    btns += removed ? `<button class="btn" onclick="act('restore','${q}')">Restore</button>` : `<button class="btn danger" onclick="if(confirm('Remove this story? It will not be posted as a carousel or a Reel.')) act('remove','${q}')">Remove</button>`;
   }
   const st = p.stats, rs = p.reel_stats;
   const slidesHtml = p.slides.map((s, i) => `<div class="slide">${s.image ? `<img src="${esc(thumb(s.image))}" loading="lazy" alt="">` : ""}
@@ -456,19 +481,15 @@ function showPost(id) {
         <button class="btn sm primary" onclick="act('edit_slide','${q}#${i + 1}', $('sx${i}').value)">Save</button></div></div>` : ""}</div></div>`).join("");
 
   let reelHtml = "";
-  if (!p.spare && p.slides.length) {
-    const r = p.reel;
-    if (!r || r.status === "expired") {
-      reelHtml = `<h2>Reel</h2><div class="card"><p class="muted" style="margin-top:0">${r ? "The old Reel file was cleaned up. " : ""}Make an animated video of this post (about 2 to 3 minutes). It appears here after the page refreshes (up to ~12 minutes).</p>
-        <button class="btn" onclick="makeReel('${q}')">Make Reel</button></div>`;
-    } else {
-      reelHtml = `<h2>Reel <span class="badge reel">${r.status === "posted" ? "live on Instagram" : "made, not posted"}</span></h2><div class="card">
-        ${r.url ? `<video controls playsinline preload="metadata" src="${esc(r.url)}"></video>` : ""}
-        <p class="muted">Made ${when(r.made_at)} &middot; music: ${esc((r.music || "none").replace(".ogg", ""))}</p>
-        <div class="actions">${r.status === "posted" ? (r.permalink ? `<a class="btn" href="${esc(r.permalink)}" target="_blank" rel="noopener">Open Reel on Instagram</a>` : "") :
-          `<button class="btn primary" onclick="if(confirm('Post this Reel to Instagram now?')) act('post_reel','${q}')">Post this Reel</button><button class="btn" onclick="makeReel('${q}')">Make it again</button>`}</div>
-        ${rs ? `<table><tr><th class="n">Views</th><th class="n">Reach</th><th class="n">Likes</th><th class="n">Shares</th><th class="n">Saves</th></tr><tr><td class="n">${nf(rs.views)}</td><td class="n">${nf(rs.reach)}</td><td class="n">${nf(rs.likes)}</td><td class="n">${nf(rs.shares)}</td><td class="n">${nf(rs.saved)}</td></tr></table>` : ""}</div>`;
-    }
+  if (!p.spare && p.slides.length && (p.reel_slot != null || p.reel)) {
+    const r = p.reel, rst = reelStatus(p);
+    reelHtml = `<h2>Reel ${rst ? `<span class="badge reel">${esc(rst[1])}</span>` : ""}</h2><div class="card">
+      <p class="muted" style="margin-top:0">${p.reel_scheduled_utc && !(r && r.status === "posted") ? "Goes out automatically at <b>" + when(p.reel_scheduled_utc) + "</b>. " : ""}The video is made by itself after the daily research run${r && r.music ? "; music: " + esc((r.music || "").replace(".m4a", "").replace(".ogg", "")) : ""}.</p>
+      ${r && r.url ? `<video controls playsinline preload="metadata" src="${esc(r.url)}"></video>` : `<p class="muted">Not made yet. It appears here as soon as it is ready.</p>`}
+      ${r && r.error ? `<p class="muted">Last problem: ${esc(r.error)}</p>` : ""}
+      ${rs ? `<table><tr><th class="n">Views</th><th class="n">Reach</th><th class="n">Likes</th><th class="n">Shares</th><th class="n">Saves</th></tr><tr><td class="n">${nf(rs.views)}</td><td class="n">${nf(rs.reach)}</td><td class="n">${nf(rs.likes)}</td><td class="n">${nf(rs.shares)}</td><td class="n">${nf(rs.saved)}</td></tr></table>` : ""}
+      <div class="actions">${r && r.status === "posted" ? (r.permalink ? `<a class="btn" href="${esc(r.permalink)}" target="_blank" rel="noopener">Open Reel on Instagram</a>` : "") :
+        `${r && r.url ? `<button class="btn" onclick="if(confirm('Post this Reel to Instagram now instead of waiting?')) act('post_reel','${q}')">Post Reel now</button>` : ""}<button class="btn" onclick="makeReel('${q}')">${r ? "Make it again" : "Make it now"}</button>`}</div></div>`;
   }
 
   $("pdetail").innerHTML = `
@@ -562,6 +583,8 @@ async function loadRuns() {
 }
 $("pubstate").textContent = sys.paused ? "Posting is paused." : "Posting is on.";
 $("ppd").value = String(sys.posts_per_day);
+$("rpd").value = String(sys.reels_per_day);
+$("mixNote").textContent = "Now: " + sys.posts_per_day + " carousel post" + (sys.posts_per_day === 1 ? "" : "s") + " + " + sys.reels_per_day + " Reel" + (sys.reels_per_day === 1 ? "" : "s") + " a day, from " + sys.stories_per_day + " stor" + (sys.stories_per_day === 1 ? "y" : "ies") + " (research writes " + sys.stories_per_day + " a day).";
 $("spd").value = String(sys.spares_per_day);
 $("sparesReady").textContent = sys.spares_ready + " spare" + (sys.spares_ready === 1 ? "" : "s") + " ready now";
 $("routineLink").href = D.routine_url;

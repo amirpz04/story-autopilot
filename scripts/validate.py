@@ -89,17 +89,26 @@ def check_post(path, config):
         return ["invalid JSON: %s" % exc]
 
     spare = bool(post.get("spare"))          # a spare has no time slot until it replaces a scheduled post
-    for key in ("id", "date", "slot", "title", "sources", "slides", "caption"):
-        if key not in post and not (spare and key == "slot"):
+    for key in ("id", "date", "title", "sources", "slides", "caption"):
+        if key not in post:
             errors.append("missing '%s'" % key)
     if errors:
         return errors
 
     if not spare:
-        if not 1 <= post["slot"] <= len(config["post_times"]):
-            errors.append("slot %s has no publishing time in config.json" % post["slot"])
-        if "active_slots" in config and post["slot"] not in config["active_slots"]:
-            errors.append("slot %s is not one of the active slots %s in config.json" % (post["slot"], config["active_slots"]))
+        slot, reel_slot = post.get("slot"), post.get("reel_slot")
+        if slot is None and reel_slot is None:
+            errors.append("the post needs a carousel `slot`, a `reel_slot`, or both")
+        if slot is not None:
+            if not 1 <= slot <= len(config["post_times"]):
+                errors.append("slot %s has no publishing time in config.json" % slot)
+            if "active_slots" in config and slot not in config["active_slots"]:
+                errors.append("slot %s is not one of the active slots %s in config.json" % (slot, config["active_slots"]))
+        if reel_slot is not None:
+            if not 1 <= reel_slot <= len(config.get("reel_times", [])):
+                errors.append("reel_slot %s has no time in config.json reel_times" % reel_slot)
+            if "reel_active_slots" in config and reel_slot not in config["reel_active_slots"]:
+                errors.append("reel_slot %s is not one of the active Reel slots %s in config.json" % (reel_slot, config["reel_active_slots"]))
     if not post["sources"] or not all(s.get("url", "").startswith("http") for s in post["sources"]):
         errors.append("every source needs a url")
 

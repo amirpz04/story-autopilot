@@ -117,12 +117,13 @@ def instagram_gate(config, post, check_duplicate=True):
     return None
 
 
-def slot_time(config, day, slot):
+def slot_time(config, day, slot, kind="post"):
     """Today's posting time for a slot: the base time from config.json shifted by a random
-    but repeatable number of minutes (seeded by the date, so every run agrees)."""
-    hour, minute = map(int, config["post_times"][slot - 1].split(":"))
+    but repeatable number of minutes (seeded by the date, so every run agrees). kind is "post" or "reel"."""
+    times = config["reel_times"] if kind == "reel" else config["post_times"]
+    hour, minute = map(int, times[slot - 1].split(":"))
     jitter = config.get("time_jitter_minutes", 0)
-    offset = random.Random("%s-%d" % (day.isoformat(), slot)).randint(-jitter, jitter)
+    offset = random.Random("%s-%s%d" % (day.isoformat(), "R" if kind == "reel" else "", slot)).randint(-jitter, jitter)
     base = datetime(day.year, day.month, day.day, hour, minute, tzinfo=ZoneInfo(config["timezone"]))
     return base + timedelta(minutes=offset)
 
@@ -141,7 +142,7 @@ def find_due_post(config, state):
     for path in sorted(day_dir.glob("*/post.json")):
         post = json.loads(path.read_text())
         record = state.get(post["id"], {})
-        if post.get("spare") or record.get("status") == "posted" or record.get("attempts", 0) >= MAX_ATTEMPTS:
+        if post.get("spare") or post.get("slot") is None or record.get("status") == "posted" or record.get("attempts", 0) >= MAX_ATTEMPTS:
             continue
         if record.get("post_at"):
             is_due = wanted_now(record)
@@ -156,9 +157,30 @@ def find_due_post(config, state):
         if path.parent.parent == day_dir or path.parent.parent.name in ("demo", "sample"):
             continue
         post = json.loads(path.read_text())
-        if post["id"] in wanted and not post.get("spare"):
+        if post["id"] in wanted and not post.get("spare") and post.get("slot") is not None:
             due.append((0, post["slot"] or 0, path.parent, post))
     return min(due, key=lambda d: d[:2])[2:] if due else (None, None)
+
+
+def find_due_reel(config, state):
+    """The earliest Reel of today whose time has come and that isn't live (or given up on) yet."""
+    import publish_reel
+    now = datetime.now(ZoneInfo(config["timezone"]))
+    reels = publish_reel.load_reels()
+    due = []
+    for path in sorted((ROOT / "queue" / now.strftime("%Y-%m-%d")).glob("*/post.json")):
+        post = json.loads(path.read_text())
+        if post.get("spare") or post.get("reel_slot") is None:
+            continue
+        if state.get(post["id"], {}).get("status") in ("removed", "deleted"):
+            continue
+        entry = reels.get(post["id"], {})
+        if entry.get("status") == "posted" or entry.get("attempts", 0) >= MAX_ATTEMPTS:
+            continue
+        when = slot_time(config, now.date(), post["reel_slot"], "reel")
+        if now >= when:
+            due.append((when, path.parent, post))
+    return min(due, key=lambda d: d[0]) if due else (None, None, None)
 
 
 def upload_images(paths):
@@ -232,9 +254,22 @@ def main():
     if reason:
         print("Not publishing:", reason, file=sys.stderr)
     post_dir, post = (None, None) if reason else find_due_post(config, state)
+    reel_when, reel_dir, reel_post = (None, None, None) if reason else find_due_reel(config, state)
+    # one thing per run: the Reel only if it is due earlier than the carousel (or no carousel is due)
+    reel_first = reel_post is not None and (post is None or reel_when < slot_time(config, datetime.now(ZoneInfo(config["timezone"])).date(), post["slot"] or 1))
 
     if "--check" in sys.argv:
-        print(post_dir.relative_to(ROOT) if post_dir else "")
+        chosen = reel_dir if reel_first else post_dir
+        print(chosen.relative_to(ROOT) if chosen else "")
+        return
+    if reel_first:
+        wait = api_backoff()
+        if wait:
+            print("Waiting: Instagram refused requests earlier. Next try after %s UTC." % wait["until"][11:16])
+            return
+        import publish_reel
+        print("Publishing the Reel of", reel_post["id"], "-", reel_post["title"])
+        print(publish_reel.publish_due_reel(reel_post["id"]))
         return
     if not post:
         print("Nothing due.")
