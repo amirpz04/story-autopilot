@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uncle Facts dashboard</title>
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1: #fcfcfb; --surface-2: #f3f2ef; --border: #e2e1dc;
+    --text-primary: #0b0b0b; --text-secondary: #52514e; --text-muted: #6f6e69;
+    --series-1: #2a78d6; --grid: #e8e7e2;
+    --good: #0ca30c; --warning: #fab219; --serious: #ec835a; --critical: #d03b3b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1: #1a1a19; --surface-2: #242422; --border: #36352f;
+      --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #9c9b92;
+      --series-1: #3987e5; --grid: #2e2d2a;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface-1); color: var(--text-primary);
+         font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; }
+  h1 { font-size: 20px; margin: 0; font-weight: 650; }
+  h2 { font-size: 14px; margin: 28px 0 10px; font-weight: 650; color: var(--text-secondary); letter-spacing: .02em; }
+  .muted { color: var(--text-muted); font-size: 13px; }
+  .card { background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .attn { display: grid; gap: 8px; margin-top: 16px; }
+  .attn .card { display: flex; gap: 10px; align-items: flex-start; }
+  .icon { flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
+          font-size: 13px; font-weight: 800; color: #fff; margin-top: 1px; }
+  .i-neutral { background: var(--text-muted); color: var(--surface-1); }
+  .i-good { background: var(--good); } .i-warning { background: var(--warning); color: #111; }
+  .i-serious { background: var(--serious); color: #111; } .i-critical { background: var(--critical); }
+  .hero { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch; }
+  .hero .big { flex: 1 1 240px; }
+  .hero .big .num { font-size: 56px; font-weight: 650; line-height: 1.05; letter-spacing: -.02em; }
+  .tiles { flex: 2 1 360px; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+  .tile .num { font-size: 26px; font-weight: 650; line-height: 1.15; }
+  .label { font-size: 13px; color: var(--text-secondary); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; font-weight: 600; color: var(--text-secondary); font-size: 12.5px; padding: 6px 8px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  td { padding: 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
+  .scroll { overflow-x: auto; }
+  .status { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .status .icon { width: 18px; height: 18px; font-size: 11px; margin: 0; }
+  a { color: var(--series-1); }
+  svg text { fill: var(--text-muted); font-size: 11px; }
+  #tip { position: fixed; pointer-events: none; background: var(--surface-1); border: 1px solid var(--border);
+         border-radius: 6px; padding: 6px 9px; font-size: 13px; display: none; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+  details summary { cursor: pointer; color: var(--text-secondary); font-size: 13px; margin-top: 8px; }
+  .sys { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px 18px; }
+  .sys div b { display: block; font-weight: 600; }
+</style>
+</head>
+<body class="viz-root">
+<main>
+  <header>
+    <h1 id="title">Dashboard</h1>
+    <span class="muted" id="fresh"></span>
+  </header>
+  <div class="attn" id="attn" aria-live="polite"></div>
+
+  <div class="hero">
+    <div class="card big"><div class="label">Followers</div><div class="num" id="followers">-</div><div class="muted" id="fdelta"></div></div>
+    <div class="tiles" id="tiles"></div>
+  </div>
+
+  <h2>Today's posts <span class="muted" id="todayNote"></span></h2>
+  <div class="card scroll"><table id="today"></table></div>
+
+  <h2>Followers over time</h2>
+  <div class="card"><div id="chart"></div>
+    <details><summary>Show as table</summary><table id="ftable"></table></details>
+  </div>
+
+  <h2>Recent posts</h2>
+  <div class="card scroll"><table id="posts"></table></div>
+
+  <h2>What's working <span class="muted" id="gnote"></span></h2>
+  <div id="groups"></div>
+
+  <h2>System</h2>
+  <div class="card"><div class="sys" id="sys"></div></div>
+  <p class="muted">Everything on this page is rebuilt automatically by a script. It uses none of your Claude usage.
+     For Claude usage, open <a href="https://claude.ai/settings/usage">claude.ai/settings/usage</a>.</p>
+</main>
+<div id="tip"></div>
+
+<script>
+const DATA = /*DATA*/{"account": "Uncle Facts @unclefactss", "today_date": "2026-10-31", "today": [{"id": "2026-10-31-01", "title": "ISS gets a new roll-out solar array in 7-hour spacewalk", "category": "space", "slot": 1, "scheduled_utc": "2026-10-31T13:33:00+00:00", "status": null, "error": null, "posted_at": null, "permalink": null}, {"id": "2026-10-31-03", "title": "Fire salamanders glow green under UV light", "category": "animals", "slot": 3, "scheduled_utc": "2026-10-31T18:17:00+00:00", "status": null, "error": null, "posted_at": null, "permalink": null}, {"id": "2026-10-31-05", "title": "Jumping spiders show REM-like sleep", "category": "animals", "slot": 5, "scheduled_utc": "2026-10-31T23:59:00+00:00", "status": null, "error": null, "posted_at": null, "permalink": null}], "posts": [{"title": "Crocodiles survived the asteroid because they love warmth", "posted_local": "2026-10-30 14:11", "permalink": "https://www.instagram.com/p/DfIMeniimN6/", "age_hours": 16.1, "reach": 1, "likes": 0, "comments": 0, "shares": 0, "saved": 0, "share_rate": 0.0, "save_rate": 0.0}, {"title": "Rubin Observatory finds possible new dwarf planet beyond Pluto", "posted_local": "2026-10-30 11:18", "permalink": "https://www.instagram.com/p/DfH4s9mCiSo/", "age_hours": 19.0, "reach": 1, "likes": 0, "comments": 0, "shares": 0, "saved": 0, "share_rate": 0.0, "save_rate": 0.0}], "groups": {}, "mature_count": 0, "followers": [{"date": "2026-10-30", "followers": 0, "media": 1}, {"date": "2026-10-31", "followers": 0, "media": 2}], "alerts": [], "system": {"paused": false, "posts_per_day": 3, "slot_times": ["09:00", "14:30", "20:30"], "last_mac_ping_utc": "2026-10-31T10:14:13Z", "history_count": 7, "unsplash_used": 38, "unsplash_cap": 100}, "generated_at": "2026-10-31T10:16:01.931218+00:00"}/*END*/;
+const $ = id => document.getElementById(id);
+const nf = n => n == null ? "-" : Intl.NumberFormat().format(n);
+const pct = x => x == null ? "-" : (x * 100).toFixed(1) + "%";
+const ago = ms => { const m = Math.round(ms / 60000); if (m < 1) return "just now"; if (m < 90) return m + " min ago";
+  const h = Math.round(m / 60); return h < 36 ? h + " h ago" : Math.round(h / 24) + " days ago"; };
+const when = iso => new Date(iso).toLocaleString([], {weekday: "short", hour: "2-digit", minute: "2-digit"});
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const ICON = {neutral: ["i-neutral", "&hellip;"], good: ["i-good", "&#10003;"], warning: ["i-warning", "!"], serious: ["i-serious", "!"], critical: ["i-critical", "&#10005;"]};
+const icon = lvl => `<span class="icon ${ICON[lvl][0]}" aria-hidden="true">${ICON[lvl][1]}</span>`;
+const now = Date.now();
+const D = DATA;
+
+$("title").textContent = D.account + " dashboard";
+const age = now - new Date(D.generated_at).getTime();
+$("fresh").textContent = "Updated " + ago(age);
+
+// ---- needs attention (static alerts from the build + live ones computed from the current time)
+const alerts = [...D.alerts];
+if (age > 90 * 60000) alerts.push({level: "serious", text: "This page hasn't refreshed for " + ago(age).replace(" ago", "") + ". The posting system may have stopped."});
+if (D.system.last_mac_ping_utc) {
+  const p = now - new Date(D.system.last_mac_ping_utc).getTime();
+  if (p > 30 * 60000) alerts.push({level: "warning", text: "Your Mac mini last woke the poster " + ago(p) + ". It may be asleep, off or offline."});
+} else alerts.push({level: "warning", text: "No wake-up from your Mac mini has been recorded yet."});
+D.today.forEach(t => {
+  if (!t.status && now - new Date(t.scheduled_utc).getTime() > 40 * 60000)
+    alerts.push({level: "serious", text: `"${t.title}" was due ${when(t.scheduled_utc)} and hasn't gone out.`});
+});
+$("attn").innerHTML = alerts.length
+  ? alerts.map(a => `<div class="card">${icon(a.level)}<div><b>${a.level === "critical" ? "Problem" : "Needs attention"}:</b> ${esc(a.text)}</div></div>`).join("")
+  : `<div class="card">${icon("good")}<div><b>Everything is running normally.</b></div></div>`;
+
+// ---- hero + tiles
+$("followers").textContent = nf(D.followers.length ? D.followers.at(-1).followers : null);
+if (D.followers.length > 1) {
+  const d = D.followers.at(-1).followers - D.followers[0].followers;
+  $("fdelta").textContent = (d >= 0 ? "+" : "") + d + " since " + D.followers[0].date;
+}
+const live = D.posts;
+const withReach = live.filter(p => p.reach != null);
+const avg = a => a.length ? a.reduce((x, y) => x + y, 0) / a.length : null;
+const tile = (label, value, note) => `<div class="card tile"><div class="label">${label}</div><div class="num">${value}</div><div class="muted">${note || ""}</div></div>`;
+const postedToday = D.today.filter(t => t.status === "posted").length;
+$("tiles").innerHTML =
+  tile("Posts live", nf(live.length), "all time") +
+  tile("Posted today", postedToday + " of " + D.today.length, D.today.length ? "" : "nothing queued") +
+  tile("Average reach", nf(Math.round(avg(withReach.map(p => p.reach)) ?? NaN) || null), "people per post") +
+  tile("Shares per reach", pct(avg(withReach.map(p => p.share_rate).filter(x => x != null))), "sends matter most");
+
+// ---- today
+const stText = t => t.status === "posted" ? ["good", "Live"] : t.status === "failed" ? ["critical", "Failed"] :
+  t.status === "rejected" ? ["critical", "Not posted"] :
+  (now - new Date(t.scheduled_utc).getTime() > 40 * 60000 ? ["serious", "Overdue"] :
+   (new Date(t.scheduled_utc).getTime() <= now ? ["warning", "Due now"] : ["neutral", "Scheduled"]));
+$("todayNote").textContent = D.today.length ? "(New York date " + D.today_date + ")" : "";
+$("today").innerHTML = D.today.length
+  ? `<tr><th>Status</th><th>Time (your clock)</th><th>Story</th><th>Topic</th></tr>` + D.today.map(t => {
+      const [lvl, txt] = stText(t);
+      const link = t.permalink ? ` <a href="${esc(t.permalink)}">open</a>` : "";
+      return `<tr><td><span class="status">${icon(lvl)}${txt}</span></td><td>${when(t.status === "posted" && t.posted_at ? t.posted_at : t.scheduled_utc)}</td><td>${esc(t.title)}${link}${t.error ? `<div class="muted">${esc(t.error)}</div>` : ""}</td><td>${esc(t.category)}</td></tr>`;
+    }).join("")
+  : `<tr><td class="muted">No posts are queued for today yet.</td></tr>`;
+
+// ---- followers chart (one series: no legend; hover shows values; table view below)
+$("ftable").innerHTML = `<tr><th>Date</th><th class="n">Followers</th><th class="n">Posts</th></tr>` +
+  D.followers.map(f => `<tr><td>${f.date}</td><td class="n">${nf(f.followers)}</td><td class="n">${nf(f.media)}</td></tr>`).join("");
+(function chart() {
+  const pts = D.followers;
+  if (pts.length < 2) { $("chart").innerHTML = `<p class="muted">The chart appears once there are two days of data.</p>`; return; }
+  const W = Math.max(300, Math.round($("chart").clientWidth || 880)), H = 200, L = 40, R = 16, T = 12, B = 26;
+  const ys = pts.map(p => p.followers), lo = Math.min(...ys), hi = Math.max(...ys);
+  const span = Math.max(hi - lo, 1), y0 = lo - span * .15, y1 = hi + span * .15;
+  const x = i => L + (W - L - R) * (pts.length === 1 ? .5 : i / (pts.length - 1));
+  const y = v => T + (H - T - B) * (1 - (v - y0) / (y1 - y0));
+  const ticks = [...new Set([lo, Math.round((lo + hi) / 2), hi])];
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Followers per day">`;
+  ticks.forEach(t => s += `<line x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--grid)"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end">${nf(t)}</text>`);
+  s += `<text x="${L}" y="${H - 6}">${pts[0].date}</text><text x="${W - R}" y="${H - 6}" text-anchor="end">${pts.at(-1).date}</text>`;
+  s += `<polyline fill="none" stroke="var(--series-1)" stroke-width="2" stroke-linejoin="round" points="${pts.map((p, i) => x(i) + "," + y(p.followers)).join(" ")}"/>`;
+  s += `<circle id="dot" r="4.5" fill="var(--series-1)" stroke="var(--surface-2)" stroke-width="2" style="display:none"/>`;
+  s += `<rect id="hit" x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" fill="transparent"/></svg>`;
+  $("chart").innerHTML = s;
+  const svg = $("chart").querySelector("svg"), dot = $("dot"), tip = $("tip");
+  svg.addEventListener("pointermove", e => {
+    const r = svg.getBoundingClientRect(), px = (e.clientX - r.left) / r.width * W;
+    const i = Math.max(0, Math.min(pts.length - 1, Math.round((px - L) / (W - L - R) * (pts.length - 1))));
+    dot.setAttribute("cx", x(i)); dot.setAttribute("cy", y(pts[i].followers)); dot.style.display = "";
+    tip.style.display = "block"; tip.style.left = (e.clientX + 12) + "px"; tip.style.top = (e.clientY - 36) + "px";
+    tip.textContent = pts[i].date + ": " + nf(pts[i].followers) + " followers";
+  });
+  svg.addEventListener("pointerleave", () => { dot.style.display = "none"; tip.style.display = "none"; });
+})();
+
+// ---- recent posts
+$("posts").innerHTML = live.length
+  ? `<tr><th>Posted</th><th>Story</th><th class="n">Reach</th><th class="n">Likes</th><th class="n">Comments</th><th class="n">Shares</th><th class="n">Saves</th><th class="n">Shares/reach</th></tr>` +
+    live.map(p => `<tr><td>${esc(p.posted_local)}</td><td>${esc(p.title)} ${p.permalink ? `<a href="${esc(p.permalink)}">open</a>` : ""}${p.age_hours < 48 ? `<div class="muted">still counting (${Math.round(p.age_hours)} h old)</div>` : ""}</td><td class="n">${nf(p.reach)}</td><td class="n">${nf(p.likes)}</td><td class="n">${nf(p.comments)}</td><td class="n">${nf(p.shares)}</td><td class="n">${nf(p.saved)}</td><td class="n">${pct(p.share_rate)}</td></tr>`).join("")
+  : `<tr><td class="muted">No statistics yet. They appear after the first daily update.</td></tr>`;
+
+// ---- what's working
+$("gnote").textContent = D.mature_count < 15 ? `(only ${D.mature_count} posts older than 48 h so far; treat as noise until about 15)` : "";
+const gKeys = Object.keys(D.groups);
+$("groups").innerHTML = gKeys.length ? gKeys.map(k => `<div class="card scroll" style="margin-bottom:10px"><div class="label">By ${esc(k)}</div><table><tr><th>${esc(k)}</th><th class="n">Posts</th><th class="n">Avg reach</th><th class="n">Shares/reach</th><th class="n">Saves/reach</th></tr>` +
+  D.groups[k].map(g => `<tr><td>${esc(g.key)}</td><td class="n">${g.n}</td><td class="n">${nf(g.reach)}</td><td class="n">${pct(g.share_rate)}</td><td class="n">${pct(g.save_rate)}</td></tr>`).join("") + `</table></div>`).join("")
+  : `<div class="card muted">Not enough posts yet. Comparisons appear once at least 3 posts in a group are older than 48 hours.</div>`;
+
+// ---- system
+const sys = D.system;
+const row = (k, v) => `<div><span class="label">${k}</span><b>${v}</b></div>`;
+$("sys").innerHTML =
+  row("Publishing", sys.paused ? "Paused" : "On") +
+  row("Posts per day", sys.posts_per_day) +
+  row("Posting times (New York)", sys.slot_times.join(", ") + " (shifted a few minutes daily)") +
+  row("Mac mini last woke the poster", sys.last_mac_ping_utc ? ago(now - new Date(sys.last_mac_ping_utc).getTime()) : "not recorded yet") +
+  row("Daily research run", "about " + new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate(), 9, 15)).toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"}) + " your time") +
+  row("Posts queued for today", D.today.length + " of " + sys.posts_per_day) +
+  row("Stories used so far", sys.history_count) +
+  row("Unsplash requests (24 h)", sys.unsplash_used + " of " + sys.unsplash_cap);
+</script>
+</body>
+</html>
