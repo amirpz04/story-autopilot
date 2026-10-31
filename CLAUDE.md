@@ -21,7 +21,12 @@ Public repo: github.com/amirpz04/story-autopilot. Dashboard: https://amirpz04.gi
    branch, publishes through the Instagram API), then `scripts/dashboard.py`, then commits `state/` `queue/` `docs/`.
 4. **Stats workflow** daily (`scripts/stats.py`) writes `state/stats.json`, `state/report.md`, `state/followers.csv`.
    The routine reads `state/report.md` to learn what works. **Watchdog workflow** fails if nothing is queued by morning.
-5. **Preview workflow** renders any pushed queue to an artifact. **Dashboard** = `docs/index.html` (GitHub Pages).
+5. **Preview workflow** renders any pushed queue to an artifact. **Dashboard / control panel** = `docs/index.html`
+   (GitHub Pages; tabs Overview, Posts, Control). Its buttons start the **Control workflow** (`control.yml` ->
+   `scripts/control.py`: pause, resume, remove, restore, post_now, posts_per_day, delete_instagram, refresh_dashboard),
+   using a fine-grained GitHub key (Actions read/write, this repo only) that the owner pastes into the page; it lives
+   only in their browser's localStorage. Actions are logged in `state/control_log.json`. `delete_instagram` uses
+   Meta's DELETE media endpoint and was untested at the time of writing.
 
 ## Where to change things
 | Want to change | Where |

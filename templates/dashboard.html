@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Uncle Facts dashboard</title>
+<title>Uncle Facts control panel</title>
 <style>
   .viz-root {
     color-scheme: light;
@@ -23,20 +23,24 @@
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--surface-1); color: var(--text-primary);
          font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { max-width: 960px; margin: 0 auto; padding: 20px 16px 60px; }
+  main { max-width: 960px; margin: 0 auto; padding: 16px 16px 60px; }
   header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; }
   h1 { font-size: 20px; margin: 0; font-weight: 650; }
-  h2 { font-size: 14px; margin: 28px 0 10px; font-weight: 650; color: var(--text-secondary); letter-spacing: .02em; }
+  h2 { font-size: 14px; margin: 26px 0 10px; font-weight: 650; color: var(--text-secondary); letter-spacing: .02em; }
+  nav { display: flex; gap: 6px; margin: 14px 0 4px; position: sticky; top: 0; background: var(--surface-1); padding: 8px 0; z-index: 5; }
+  nav a { text-decoration: none; color: var(--text-secondary); padding: 7px 14px; border-radius: 999px; border: 1px solid var(--border); font-weight: 600; font-size: 14px; }
+  nav a.on { background: var(--text-primary); color: var(--surface-1); border-color: var(--text-primary); }
+  .view { display: none; } .view.on { display: block; }
   .muted { color: var(--text-muted); font-size: 13px; }
   .card { background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
-  .attn { display: grid; gap: 8px; margin-top: 16px; }
+  .attn { display: grid; gap: 8px; margin-top: 12px; }
   .attn .card { display: flex; gap: 10px; align-items: flex-start; }
   .icon { flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
           font-size: 13px; font-weight: 800; color: #fff; margin-top: 1px; }
   .i-neutral { background: var(--text-muted); color: var(--surface-1); }
   .i-good { background: var(--good); } .i-warning { background: var(--warning); color: #111; }
   .i-serious { background: var(--serious); color: #111; } .i-critical { background: var(--critical); }
-  .hero { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch; }
+  .hero { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch; }
   .hero .big { flex: 1 1 240px; }
   .hero .big .num { font-size: 56px; font-weight: 650; line-height: 1.05; letter-spacing: -.02em; }
   .tiles { flex: 2 1 360px; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
@@ -56,61 +60,170 @@
   details summary { cursor: pointer; color: var(--text-secondary); font-size: 13px; margin-top: 8px; }
   .sys { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px 18px; }
   .sys div b { display: block; font-weight: 600; }
+  /* posts */
+  .filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .filters button { font: inherit; font-size: 13px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-secondary); cursor: pointer; }
+  .filters button.on { background: var(--text-primary); color: var(--surface-1); border-color: var(--text-primary); }
+  .plist { display: grid; gap: 8px; }
+  .pitem { display: flex; gap: 12px; align-items: center; text-decoration: none; color: inherit; }
+  .pitem img, .pitem .noimg { width: 64px; height: 80px; object-fit: cover; border-radius: 6px; flex: none; background: var(--border); }
+  .pitem .t { font-weight: 600; line-height: 1.3; }
+  .slides { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+  .slide { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface-1); font-size: 13px; }
+  .slide img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; background: var(--border); }
+  .slide .txt { padding: 8px; }
+  .slide .k { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+  .cap { white-space: pre-wrap; font-size: 14px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+  .btn { font: inherit; font-weight: 600; font-size: 14px; padding: 9px 14px; border-radius: 8px; cursor: pointer;
+         border: 1px solid var(--border); background: var(--surface-1); color: var(--text-primary); text-decoration: none; display: inline-block; }
+  .btn.primary { background: var(--series-1); border-color: var(--series-1); color: #fff; }
+  .btn.danger { border-color: var(--critical); color: var(--critical); }
+  .btn:disabled { opacity: .5; cursor: default; }
+  #toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); max-width: 92vw; background: var(--text-primary); color: var(--surface-1);
+           padding: 10px 16px; border-radius: 10px; font-size: 14px; display: none; z-index: 20; box-shadow: 0 4px 16px rgba(0,0,0,.25); }
+  input, select { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text-primary); }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 </style>
 </head>
 <body class="viz-root">
 <main>
   <header>
-    <h1 id="title">Dashboard</h1>
+    <h1 id="title">Control panel</h1>
     <span class="muted" id="fresh"></span>
   </header>
-  <div class="attn" id="attn" aria-live="polite"></div>
+  <nav>
+    <a href="#overview" data-v="overview">Overview</a>
+    <a href="#posts" data-v="posts">Posts</a>
+    <a href="#control" data-v="control">Control</a>
+  </nav>
 
-  <div class="hero">
-    <div class="card big"><div class="label">Followers</div><div class="num" id="followers">-</div><div class="muted" id="fdelta"></div></div>
-    <div class="tiles" id="tiles"></div>
-  </div>
+  <!-- ================= OVERVIEW ================= -->
+  <section class="view" id="v-overview">
+    <div class="attn" id="attn" aria-live="polite"></div>
+    <div class="hero">
+      <div class="card big"><div class="label">Followers</div><div class="num" id="followers">-</div><div class="muted" id="fdelta"></div></div>
+      <div class="tiles" id="tiles"></div>
+    </div>
+    <h2>Today's posts <span class="muted" id="todayNote"></span></h2>
+    <div class="card scroll"><table id="today"></table></div>
+    <h2>Followers over time</h2>
+    <div class="card"><div id="chart"></div>
+      <details><summary>Show as table</summary><table id="ftable"></table></details>
+    </div>
+    <h2>Recent posts</h2>
+    <div class="card scroll"><table id="posts"></table></div>
+    <h2>What's working <span class="muted" id="gnote"></span></h2>
+    <div id="groups"></div>
+    <h2>System</h2>
+    <div class="card"><div class="sys" id="sys"></div></div>
+  </section>
 
-  <h2>Today's posts <span class="muted" id="todayNote"></span></h2>
-  <div class="card scroll"><table id="today"></table></div>
+  <!-- ================= POSTS ================= -->
+  <section class="view" id="v-posts">
+    <div class="filters" id="filters"></div>
+    <div class="plist" id="plist"></div>
+  </section>
 
-  <h2>Followers over time</h2>
-  <div class="card"><div id="chart"></div>
-    <details><summary>Show as table</summary><table id="ftable"></table></details>
-  </div>
+  <!-- ================= ONE POST ================= -->
+  <section class="view" id="v-post">
+    <p><a href="#posts">&larr; All posts</a></p>
+    <div id="pdetail"></div>
+  </section>
 
-  <h2>Recent posts</h2>
-  <div class="card scroll"><table id="posts"></table></div>
-
-  <h2>What's working <span class="muted" id="gnote"></span></h2>
-  <div id="groups"></div>
-
-  <h2>System</h2>
-  <div class="card"><div class="sys" id="sys"></div></div>
-  <p class="muted">Everything on this page is rebuilt automatically by a script. It uses none of your Claude usage.
-     For Claude usage, open <a href="https://claude.ai/settings/usage">claude.ai/settings/usage</a>.</p>
+  <!-- ================= CONTROL ================= -->
+  <section class="view" id="v-control">
+    <div class="card" id="keybox"></div>
+    <h2>Publishing</h2>
+    <div class="card">
+      <div class="row"><b id="pubstate"></b>
+        <button class="btn" onclick="act('pause')">Pause all posting</button>
+        <button class="btn primary" onclick="act('resume')">Resume posting</button></div>
+      <p class="muted">Paused means nothing goes to Instagram until you resume. The daily research still runs.</p>
+    </div>
+    <h2>Posts per day</h2>
+    <div class="card">
+      <div class="row">
+        <select id="ppd"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+        <button class="btn" onclick="act('posts_per_day', document.getElementById('ppd').value)">Save</button>
+      </div>
+      <p class="muted">Takes effect from the next daily research run. More posts use more of your Claude plan.</p>
+    </div>
+    <h2>Run something now</h2>
+    <div class="card">
+      <div class="actions">
+        <button class="btn" onclick="runWf('publish.yml', 'Checking for a due post now')">Check for a due post</button>
+        <button class="btn" onclick="runWf('stats.yml', 'Refreshing statistics')">Refresh statistics</button>
+        <button class="btn" onclick="act('refresh_dashboard')">Rebuild this page</button>
+        <button class="btn" onclick="runWf('preview.yml', 'Rendering slide previews')">Render previews</button>
+        <a class="btn" id="routineLink" target="_blank" rel="noopener">Daily research run (Claude)</a>
+      </div>
+      <p class="muted">The daily research run lives in your Claude account: the button opens it, where you can run it now or change its time.
+        <a href="https://claude.ai/settings/usage" target="_blank" rel="noopener">Claude usage</a></p>
+    </div>
+    <h2>Recent jobs <button class="btn" style="padding:3px 10px;font-size:12px" onclick="loadRuns()">refresh</button></h2>
+    <div class="card scroll"><table id="runs"><tr><td class="muted">Loading...</td></tr></table></div>
+    <h2>Your recent actions</h2>
+    <div class="card scroll"><table id="clog"></table></div>
+    <p class="muted">Changes take about a minute to apply. This page itself can take up to 10 minutes to show them (GitHub caches it).</p>
+  </section>
 </main>
 <div id="tip"></div>
+<div id="toast"></div>
 
 <script>
 const DATA = /*DATA*/null/*END*/;
+const D = DATA;
 const $ = id => document.getElementById(id);
 const nf = n => n == null ? "-" : Intl.NumberFormat().format(n);
 const pct = x => x == null ? "-" : (x * 100).toFixed(1) + "%";
 const ago = ms => { const m = Math.round(ms / 60000); if (m < 1) return "just now"; if (m < 90) return m + " min ago";
   const h = Math.round(m / 60); return h < 36 ? h + " h ago" : Math.round(h / 24) + " days ago"; };
-const when = iso => new Date(iso).toLocaleString([], {weekday: "short", hour: "2-digit", minute: "2-digit"});
-const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const when = iso => iso ? new Date(fixIso(iso)).toLocaleString([], {weekday: "short", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"}) : "-";
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 const ICON = {neutral: ["i-neutral", "&hellip;"], good: ["i-good", "&#10003;"], warning: ["i-warning", "!"], serious: ["i-serious", "!"], critical: ["i-critical", "&#10005;"]};
 const icon = lvl => `<span class="icon ${ICON[lvl][0]}" aria-hidden="true">${ICON[lvl][1]}</span>`;
 const now = Date.now();
-const D = DATA;
+const thumb = u => !u ? u : u.replace(/\/(\d{3,4})px-/, "/480px-").replace(/([?&])w=\d+/, "$1w=480");
+const fixIso = s => s && /[+-]\d\d:\d\dZ$/.test(s) ? s.slice(0, -1) : s;
+const REPO = D.repo;
 
-$("title").textContent = D.account + " dashboard";
+function toast(msg, ms) { const t = $("toast"); t.textContent = msg; t.style.display = "block"; clearTimeout(t._h); t._h = setTimeout(() => t.style.display = "none", ms || 6000); }
+
+// ---------- status of a post ----------
+function postStatus(p) {
+  const s = p.status;
+  if (s === "posted") return ["good", "Live"];
+  if (s === "deleted") return ["neutral", "Deleted from Instagram"];
+  if (s === "removed") return ["neutral", "Removed"];
+  if (s === "failed" || s === "rejected") return ["critical", "Failed"];
+  if (p.post_now) return ["warning", "Posting now"];
+  const t = new Date(p.scheduled_utc).getTime();
+  if (p.date !== D.today_date && t < now) return ["neutral", "Not posted (day passed)"];
+  if (now - t > 40 * 60000) return ["serious", "Overdue"];
+  if (t <= now) return ["warning", "Due now"];
+  return ["neutral", "Scheduled"];
+}
+
+// ---------- router ----------
+function route() {
+  const h = location.hash.slice(1) || "overview";
+  const [view, id] = h.split("/");
+  document.querySelectorAll(".view").forEach(v => v.classList.remove("on"));
+  document.querySelectorAll("nav a").forEach(a => a.classList.toggle("on", a.dataset.v === (view === "post" ? "posts" : view)));
+  const el = $("v-" + view) || $("v-overview"); el.classList.add("on");
+  if (view === "post") showPost(decodeURIComponent(id || ""));
+  if (view === "control") loadRuns();
+  window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", route);
+
+// ---------- header ----------
+$("title").textContent = D.account;
 const age = now - new Date(D.generated_at).getTime();
 $("fresh").textContent = "Updated " + ago(age);
 
-// ---- needs attention (static alerts from the build + live ones computed from the current time)
+// ================= OVERVIEW =================
 const alerts = [...D.alerts];
 if (age > 90 * 60000) alerts.push({level: "serious", text: "This page hasn't refreshed for " + ago(age).replace(" ago", "") + ". The posting system may have stopped."});
 if (D.system.last_mac_ping_utc) {
@@ -125,7 +238,6 @@ $("attn").innerHTML = alerts.length
   ? alerts.map(a => `<div class="card">${icon(a.level)}<div><b>${a.level === "critical" ? "Problem" : "Needs attention"}:</b> ${esc(a.text)}</div></div>`).join("")
   : `<div class="card">${icon("good")}<div><b>Everything is running normally.</b></div></div>`;
 
-// ---- hero + tiles
 $("followers").textContent = nf(D.followers.length ? D.followers.at(-1).followers : null);
 if (D.followers.length > 1) {
   const d = D.followers.at(-1).followers - D.followers[0].followers;
@@ -142,30 +254,24 @@ $("tiles").innerHTML =
   tile("Average reach", nf(Math.round(avg(withReach.map(p => p.reach)) ?? NaN) || null), "people per post") +
   tile("Shares per reach", pct(avg(withReach.map(p => p.share_rate).filter(x => x != null))), "sends matter most");
 
-// ---- today
-const stText = t => t.status === "posted" ? ["good", "Live"] : t.status === "failed" ? ["critical", "Failed"] :
-  t.status === "rejected" ? ["critical", "Not posted"] :
-  (now - new Date(t.scheduled_utc).getTime() > 40 * 60000 ? ["serious", "Overdue"] :
-   (new Date(t.scheduled_utc).getTime() <= now ? ["warning", "Due now"] : ["neutral", "Scheduled"]));
 $("todayNote").textContent = D.today.length ? "(New York date " + D.today_date + ")" : "";
-$("today").innerHTML = D.today.length
-  ? `<tr><th>Status</th><th>Time (your clock)</th><th>Story</th><th>Topic</th></tr>` + D.today.map(t => {
-      const [lvl, txt] = stText(t);
-      const link = t.permalink ? ` <a href="${esc(t.permalink)}">open</a>` : "";
-      return `<tr><td><span class="status">${icon(lvl)}${txt}</span></td><td>${when(t.status === "posted" && t.posted_at ? t.posted_at : t.scheduled_utc)}</td><td>${esc(t.title)}${link}${t.error ? `<div class="muted">${esc(t.error)}</div>` : ""}</td><td>${esc(t.category)}</td></tr>`;
+const todayFull = D.all_posts.filter(p => p.date === D.today_date);
+$("today").innerHTML = todayFull.length
+  ? `<tr><th>Status</th><th>Time (your clock)</th><th>Story</th></tr>` + todayFull.map(p => {
+      const [lvl, txt] = postStatus(p);
+      return `<tr><td><span class="status">${icon(lvl)}${txt}</span></td><td>${when(p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc)}</td><td><a href="#post/${encodeURIComponent(p.id)}">${esc(p.title)}</a></td></tr>`;
     }).join("")
   : `<tr><td class="muted">No posts are queued for today yet.</td></tr>`;
 
-// ---- followers chart (one series: no legend; hover shows values; table view below)
 $("ftable").innerHTML = `<tr><th>Date</th><th class="n">Followers</th><th class="n">Posts</th></tr>` +
   D.followers.map(f => `<tr><td>${f.date}</td><td class="n">${nf(f.followers)}</td><td class="n">${nf(f.media)}</td></tr>`).join("");
-(function chart() {
+function drawChart() {
   const pts = D.followers;
   if (pts.length < 2) { $("chart").innerHTML = `<p class="muted">The chart appears once there are two days of data.</p>`; return; }
   const W = Math.max(300, Math.round($("chart").clientWidth || 880)), H = 200, L = 40, R = 16, T = 12, B = 26;
   const ys = pts.map(p => p.followers), lo = Math.min(...ys), hi = Math.max(...ys);
   const span = Math.max(hi - lo, 1), y0 = lo - span * .15, y1 = hi + span * .15;
-  const x = i => L + (W - L - R) * (pts.length === 1 ? .5 : i / (pts.length - 1));
+  const x = i => L + (W - L - R) * (i / (pts.length - 1));
   const y = v => T + (H - T - B) * (1 - (v - y0) / (y1 - y0));
   const ticks = [...new Set([lo, Math.round((lo + hi) / 2), hi])];
   let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Followers per day">`;
@@ -173,7 +279,7 @@ $("ftable").innerHTML = `<tr><th>Date</th><th class="n">Followers</th><th class=
   s += `<text x="${L}" y="${H - 6}">${pts[0].date}</text><text x="${W - R}" y="${H - 6}" text-anchor="end">${pts.at(-1).date}</text>`;
   s += `<polyline fill="none" stroke="var(--series-1)" stroke-width="2" stroke-linejoin="round" points="${pts.map((p, i) => x(i) + "," + y(p.followers)).join(" ")}"/>`;
   s += `<circle id="dot" r="4.5" fill="var(--series-1)" stroke="var(--surface-2)" stroke-width="2" style="display:none"/>`;
-  s += `<rect id="hit" x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" fill="transparent"/></svg>`;
+  s += `<rect x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" fill="transparent"/></svg>`;
   $("chart").innerHTML = s;
   const svg = $("chart").querySelector("svg"), dot = $("dot"), tip = $("tip");
   svg.addEventListener("pointermove", e => {
@@ -184,22 +290,19 @@ $("ftable").innerHTML = `<tr><th>Date</th><th class="n">Followers</th><th class=
     tip.textContent = pts[i].date + ": " + nf(pts[i].followers) + " followers";
   });
   svg.addEventListener("pointerleave", () => { dot.style.display = "none"; tip.style.display = "none"; });
-})();
+}
 
-// ---- recent posts
 $("posts").innerHTML = live.length
   ? `<tr><th>Posted</th><th>Story</th><th class="n">Reach</th><th class="n">Likes</th><th class="n">Comments</th><th class="n">Shares</th><th class="n">Saves</th><th class="n">Shares/reach</th></tr>` +
-    live.map(p => `<tr><td>${esc(p.posted_local)}</td><td>${esc(p.title)} ${p.permalink ? `<a href="${esc(p.permalink)}">open</a>` : ""}${p.age_hours < 48 ? `<div class="muted">still counting (${Math.round(p.age_hours)} h old)</div>` : ""}</td><td class="n">${nf(p.reach)}</td><td class="n">${nf(p.likes)}</td><td class="n">${nf(p.comments)}</td><td class="n">${nf(p.shares)}</td><td class="n">${nf(p.saved)}</td><td class="n">${pct(p.share_rate)}</td></tr>`).join("")
+    live.map(p => `<tr><td>${esc(p.posted_local)}</td><td>${esc(p.title)} ${p.permalink ? `<a href="${esc(p.permalink)}" target="_blank" rel="noopener">open</a>` : ""}${p.age_hours < 48 ? `<div class="muted">still counting (${Math.round(p.age_hours)} h old)</div>` : ""}</td><td class="n">${nf(p.reach)}</td><td class="n">${nf(p.likes)}</td><td class="n">${nf(p.comments)}</td><td class="n">${nf(p.shares)}</td><td class="n">${nf(p.saved)}</td><td class="n">${pct(p.share_rate)}</td></tr>`).join("")
   : `<tr><td class="muted">No statistics yet. They appear after the first daily update.</td></tr>`;
 
-// ---- what's working
 $("gnote").textContent = D.mature_count < 15 ? `(only ${D.mature_count} posts older than 48 h so far; treat as noise until about 15)` : "";
 const gKeys = Object.keys(D.groups);
 $("groups").innerHTML = gKeys.length ? gKeys.map(k => `<div class="card scroll" style="margin-bottom:10px"><div class="label">By ${esc(k)}</div><table><tr><th>${esc(k)}</th><th class="n">Posts</th><th class="n">Avg reach</th><th class="n">Shares/reach</th><th class="n">Saves/reach</th></tr>` +
   D.groups[k].map(g => `<tr><td>${esc(g.key)}</td><td class="n">${g.n}</td><td class="n">${nf(g.reach)}</td><td class="n">${pct(g.share_rate)}</td><td class="n">${pct(g.save_rate)}</td></tr>`).join("") + `</table></div>`).join("")
   : `<div class="card muted">Not enough posts yet. Comparisons appear once at least 3 posts in a group are older than 48 hours.</div>`;
 
-// ---- system
 const sys = D.system;
 const row = (k, v) => `<div><span class="label">${k}</span><b>${v}</b></div>`;
 $("sys").innerHTML =
@@ -211,6 +314,111 @@ $("sys").innerHTML =
   row("Posts queued for today", D.today.length + " of " + sys.posts_per_day) +
   row("Stories used so far", sys.history_count) +
   row("Unsplash requests (24 h)", sys.unsplash_used + " of " + sys.unsplash_cap);
+
+// ================= POSTS =================
+const FILTERS = [["all", "All"], ["upcoming", "Scheduled"], ["live", "Live"], ["removed", "Removed / deleted"], ["missed", "Not posted"]];
+let filter = "all";
+function inFilter(p) {
+  const [, txt] = postStatus(p);
+  if (filter === "all") return true;
+  if (filter === "live") return txt === "Live";
+  if (filter === "upcoming") return ["Scheduled", "Due now", "Overdue", "Posting now"].includes(txt);
+  if (filter === "removed") return txt === "Removed" || txt.startsWith("Deleted");
+  if (filter === "missed") return txt === "Failed" || txt.startsWith("Not posted");
+}
+function drawList() {
+  $("filters").innerHTML = FILTERS.map(([k, l]) => `<button class="${k === filter ? "on" : ""}" onclick="filter='${k}';drawList()">${l}</button>`).join("");
+  const items = D.all_posts.filter(inFilter);
+  $("plist").innerHTML = items.length ? items.map(p => {
+    const [lvl, txt] = postStatus(p), cover = p.slides.length && p.slides[0].image;
+    const t = p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc;
+    return `<a class="card pitem" href="#post/${encodeURIComponent(p.id)}">${cover ? `<img src="${esc(thumb(cover))}" loading="lazy" alt="">` : `<div class="noimg"></div>`}
+      <div><div class="t">${esc(p.title)}</div><div class="muted"><span class="status">${icon(lvl)}${txt}</span> &middot; ${t ? when(t) : esc(p.posted_local || p.date)} &middot; ${esc(p.lane || p.category)}</div></div></a>`;
+  }).join("") : `<div class="card muted">Nothing here.</div>`;
+}
+
+function showPost(id) {
+  const p = D.all_posts.find(x => x.id === id);
+  if (!p) { $("pdetail").innerHTML = `<div class="card muted">Post not found. It may be older than 3 weeks.</div>`; return; }
+  const [lvl, txt] = postStatus(p);
+  const upcoming = ["Scheduled", "Due now", "Overdue"].includes(txt);
+  let buttons = "";
+  if (upcoming) buttons += `<button class="btn primary" onclick="act('post_now','${esc(p.id)}')">Post now</button><button class="btn danger" onclick="if(confirm('Remove this post? It will not be published.')) act('remove','${esc(p.id)}')">Remove</button>`;
+  if (txt === "Removed") buttons += `<button class="btn" onclick="act('restore','${esc(p.id)}')">Restore</button>`;
+  if (txt === "Live") buttons += (p.permalink ? `<a class="btn" href="${esc(p.permalink)}" target="_blank" rel="noopener">Open on Instagram</a>` : "") +
+    `<button class="btn danger" onclick="if(confirm('Delete this post from Instagram? This cannot be undone.')) act('delete_instagram','${esc(p.id)}')">Delete from Instagram</button>`;
+  const st = p.stats;
+  $("pdetail").innerHTML = `
+    <h1 style="font-size:22px;margin:4px 0 6px">${esc(p.title)}</h1>
+    <div class="muted"><span class="status">${icon(lvl)}${txt}</span> &middot; ${p.status === "posted" && p.posted_at ? "posted " + when(p.posted_at) : (p.scheduled_utc ? "time slot " + when(p.scheduled_utc) : esc(p.posted_local || ""))}
+      &middot; ${esc(p.lane || "")} ${esc(p.category || "")} &middot; <span title="post id">${esc(p.id)}</span></div>
+    ${p.error ? `<p class="muted">Problem: ${esc(p.error)}</p>` : ""}
+    <div class="actions">${buttons}</div>
+    ${st ? `<h2>Results</h2><div class="card scroll"><table><tr><th class="n">Reach</th><th class="n">Likes</th><th class="n">Comments</th><th class="n">Shares</th><th class="n">Saves</th><th class="n">Shares/reach</th></tr>
+      <tr><td class="n">${nf(st.reach)}</td><td class="n">${nf(st.likes)}</td><td class="n">${nf(st.comments)}</td><td class="n">${nf(st.shares)}</td><td class="n">${nf(st.saved)}</td><td class="n">${pct(st.share_rate)}</td></tr></table></div>` : ""}
+    ${p.slides.length ? `<h2>Slides (${p.slides.length})</h2><div class="slides">${p.slides.map((s, i) => `<div class="slide">${s.image ? `<img src="${esc(thumb(s.image))}" loading="lazy" alt="">` : ""}
+        <div class="txt"><div class="k">${i + 1}. ${esc(s.type === "cover" ? (s.kicker || "cover") : s.type === "end" ? "ending" : (s.layout || "text"))}</div>${esc(s.text)}${s.credit ? `<div class="muted" style="font-size:11px;margin-top:4px">${esc(s.credit)}</div>` : ""}</div></div>`).join("")}</div>
+      <p class="muted">Pictures are shown here without the text overlay; the real slides add the text and your handle.</p>` : `<p class="muted">The full content of this early post isn't stored.</p>`}
+    ${p.caption ? `<h2>Caption</h2><div class="card cap">${esc(p.caption)}\n\n${esc((p.hashtags || []).join(" "))}</div>` : ""}
+    ${p.sources && p.sources.length ? `<h2>Sources</h2><div class="card">${p.sources.map(s => `<div><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a></div>`).join("")}${p.verification ? `<p class="muted">${esc(p.verification)}</p>` : ""}</div>` : ""}`;
+}
+
+// ================= CONTROL =================
+const KEY = "uf_github_key";
+function drawKey() {
+  const k = localStorage.getItem(KEY);
+  $("keybox").innerHTML = k
+    ? `<div class="row">${icon("good")}<b>Buttons are connected.</b> <button class="btn" style="margin-left:auto" onclick="localStorage.removeItem(KEY);drawKey()">Forget key</button></div>`
+    : `<b>Connect the buttons (one time, on each phone or computer)</b>
+       <ol class="muted" style="padding-left:18px;margin:8px 0">
+         <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
+         <li>Name it "control panel", pick an expiration (for example 1 year).</li>
+         <li>Repository access: <b>Only select repositories</b> &rarr; <b>story-autopilot</b>.</li>
+         <li>Permissions &rarr; Repository permissions &rarr; <b>Actions: Read and write</b>. Nothing else.</li>
+         <li>Generate, copy the key, paste it here.</li></ol>
+       <div class="row"><input id="keyin" type="password" placeholder="github_pat_..." style="flex:1;min-width:200px"><button class="btn primary" onclick="saveKey()">Save</button></div>
+       <p class="muted">The key stays only in this browser. It can only start this project's jobs, nothing else on your account.</p>`;
+}
+function saveKey() { const v = $("keyin").value.trim(); if (!v) return; localStorage.setItem(KEY, v); drawKey(); toast("Saved. The buttons now work on this device."); loadRuns(); }
+async function gh(path, opts) {
+  const k = localStorage.getItem(KEY), headers = {Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"};
+  if (k) headers.Authorization = "Bearer " + k;
+  return fetch("https://api.github.com/repos/" + REPO + path, Object.assign({headers}, opts || {}));
+}
+async function dispatch(workflow, inputs) {
+  if (!localStorage.getItem(KEY)) { location.hash = "#control"; toast("Connect the buttons first (top of the Control page)."); return false; }
+  try {
+    const r = await gh("/actions/workflows/" + workflow + "/dispatches", {method: "POST", body: JSON.stringify(inputs ? {ref: "main", inputs} : {ref: "main"})});
+    if (r.status === 204) return true;
+    toast("GitHub refused (" + r.status + "): " + ((await r.json().catch(() => ({}))).message || "check the key's permissions"), 9000);
+  } catch (e) { toast("Couldn't reach GitHub: " + e.message, 9000); }
+  return false;
+}
+async function act(action, target) {
+  if (await dispatch("control.yml", {action, target: target || ""})) { toast("Done. It applies in about a minute; see Recent jobs on the Control page.", 8000); setTimeout(loadRuns, 4000); }
+}
+async function runWf(file, label) { if (await dispatch(file)) { toast(label + "... it runs in the next minute.", 7000); setTimeout(loadRuns, 4000); } }
+const NAMES = {"publish.yml": "Publish", "stats.yml": "Statistics", "preview.yml": "Preview", "watchdog.yml": "Watchdog", "control.yml": "Control"};
+async function loadRuns() {
+  try {
+    const r = await gh("/actions/runs?per_page=15");
+    const j = await r.json();
+    if (!j.workflow_runs) throw new Error(j.message || "no data");
+    $("runs").innerHTML = `<tr><th>Job</th><th>Started</th><th>Result</th></tr>` + j.workflow_runs.map(w => {
+      const res = w.status !== "completed" ? ["warning", w.status === "queued" ? "Waiting" : "Running"] : w.conclusion === "success" ? ["good", "OK"] : w.conclusion === "skipped" || w.conclusion === "cancelled" ? ["neutral", w.conclusion] : ["critical", "Failed"];
+      const name = w.name === "Control" ? w.display_title : (w.name + (w.event === "workflow_dispatch" ? "" : " (" + w.event + ")"));
+      return `<tr><td><a href="${esc(w.html_url)}" target="_blank" rel="noopener">${esc(name)}</a></td><td>${ago(Date.now() - new Date(w.created_at).getTime())}</td><td><span class="status">${icon(res[0])}${esc(res[1])}</span></td></tr>`;
+    }).join("");
+  } catch (e) { $("runs").innerHTML = `<tr><td class="muted">Couldn't load jobs (${esc(e.message)}).</td></tr>`; }
+}
+$("pubstate").textContent = sys.paused ? "Posting is paused." : "Posting is on.";
+$("ppd").value = String(sys.posts_per_day);
+$("routineLink").href = D.routine_url;
+$("clog").innerHTML = D.control_log.length ? `<tr><th>When</th><th>Action</th><th>Result</th></tr>` + D.control_log.map(c =>
+  `<tr><td>${ago(now - new Date(c.at).getTime())}</td><td>${esc(c.action)} ${esc(c.target)}</td><td>${esc(c.result)}</td></tr>`).join("")
+  : `<tr><td class="muted">No actions yet.</td></tr>`;
+
+drawKey(); drawList(); route(); drawChart();
 </script>
 </body>
 </html>

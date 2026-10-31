@@ -107,9 +107,9 @@ def find_due_post(config, state):
         record = state.get(post["id"], {})
         if record.get("status") == "posted" or record.get("attempts", 0) >= MAX_ATTEMPTS:
             continue
-        if now >= slot_time(config, now.date(), post["slot"]):
-            due.append((post["slot"], path.parent, post))
-    return min(due, key=lambda d: d[0])[1:] if due else (None, None)
+        if record.get("post_now") or now >= slot_time(config, now.date(), post["slot"]):
+            due.append((0 if record.get("post_now") else 1, post["slot"], path.parent, post))
+    return min(due, key=lambda d: d[:2])[2:] if due else (None, None)
 
 
 def upload_images(paths):
@@ -212,7 +212,8 @@ def main():
             raise RuntimeError("Instagram reports %d API posts in the last 24h; stopping at %d" % (used, config.get("ig_quota_stop", 25)))
         paths = render_post(post_dir, Path(tempfile.mkdtemp()), config)
         urls = upload_images(paths)
-        caption = post["caption"] + "\n\n" + " ".join(post.get("hashtags", []))
+        tags = [t for t in post.get("hashtags", []) if t.lower() not in post["caption"].lower()]
+        caption = post["caption"].rstrip() + ("\n\n" + " ".join(tags) if tags else "")
         if "--dry-run" in sys.argv:
             print("Dry run, images at:", *urls, sep="\n  ")
             state.pop(post["id"])

@@ -206,7 +206,8 @@ blank lines:
 3. Background and context that the slides didn't have room for: why it's unusual, how it compares, what led up to it.
 4. What happens next, or why it matters to ordinary people.
 5. The comment question from the end slide.
-6. `Source: <publication name(s)>`, then 3–5 relevant hashtags.
+6. `Source: <publication name(s)>`. Put 3–5 relevant hashtags **only** in the `hashtags` field; they are added
+   automatically, so never write them in the caption text.
 
 Write it like a good storyteller, not a press release: plain words, short
 sentences, no filler. Every fact must come from your sources. Max 2 emoji.

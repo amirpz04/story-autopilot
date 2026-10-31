@@ -13,7 +13,7 @@ import re
 import sys
 import time
 from collections import defaultdict
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -69,6 +69,40 @@ def build(now):
             "permalink": by_id.get(post["id"], {}).get("permalink"),
         })
 
+    # --- every post of the last 3 weeks, with slides and caption, for the Posts page
+    all_posts, cutoff = [], today - timedelta(days=21)
+    for path in sorted((ROOT / "queue").glob("*/*/post.json"), reverse=True):
+        try:
+            day = date.fromisoformat(path.parent.parent.name)
+        except ValueError:
+            continue  # demo / sample folders
+        if day < cutoff:
+            continue
+        post = json.loads(path.read_text())
+        rec, st = posted.get(post["id"], {}), by_id.get(post["id"], {})
+        all_posts.append({
+            "id": post["id"], "date": day.isoformat(), "slot": post["slot"], "title": post["title"],
+            "category": post.get("category", ""), "lane": (post.get("tags") or {}).get("lane", ""),
+            "status": rec.get("status"), "post_now": bool(rec.get("post_now")), "error": rec.get("error"),
+            "scheduled_utc": publish.slot_time(config, day, post["slot"]).astimezone(timezone.utc).isoformat(),
+            "posted_at": rec.get("posted_at"), "permalink": st.get("permalink"), "media_id": rec.get("media_id") or st.get("media_id"),
+            "slides": [{"type": sl.get("type"), "layout": sl.get("layout"), "kicker": sl.get("kicker"),
+                        "text": sl.get("headline") or sl.get("text"),
+                        "image": (sl.get("image") or {}).get("url"), "credit": (sl.get("image") or {}).get("credit")}
+                       for sl in post["slides"]],
+            "caption": post.get("caption", ""), "hashtags": post.get("hashtags", []),
+            "sources": post.get("sources", []), "verification": post.get("verification", ""),
+            "stats": {k: st.get(k) for k in ("reach", "likes", "comments", "shares", "saved", "share_rate", "save_rate")} if st else None,
+        })
+    known = {p["id"] for p in all_posts}
+    for s in stats:  # live posts that aren't in the recent queue (e.g. early test posts)
+        if s.get("id") not in known:
+            all_posts.append({"id": s.get("id") or s.get("media_id"), "date": (s.get("posted_local") or "")[:10], "slot": None,
+                              "title": s.get("title"), "category": s.get("category") or "", "lane": (s.get("tags") or {}).get("lane", ""),
+                              "status": "posted", "posted_local": s.get("posted_local"), "permalink": s.get("permalink"),
+                              "media_id": s.get("media_id"), "slides": [], "caption": "", "hashtags": [], "sources": [],
+                              "stats": {k: s.get(k) for k in ("reach", "likes", "comments", "shares", "saved", "share_rate", "save_rate")}})
+
     # --- posts on Instagram, newest first
     posts = []
     for s in sorted(stats, key=lambda s: s.get("posted_local", ""), reverse=True):
@@ -119,6 +153,9 @@ def build(now):
     return {
         "account": config.get("account_name", "Account") + " " + config.get("handle", ""),
         "today_date": today.isoformat(), "today": today_posts, "posts": posts, "groups": groups,
+        "all_posts": all_posts, "control_log": read_json(ROOT / "state" / "control_log.json", [])[:20],
+        "repo": os.environ.get("GITHUB_REPOSITORY", "amirpz04/story-autopilot"),
+        "routine_url": "https://claude.ai/code/routines/trig_015p8XY87MCPiPaEgKXrXyxf",
         "mature_count": len(mature), "followers": followers, "alerts": alerts,
         "system": {"paused": bool(config.get("paused")), "posts_per_day": config["posts_per_day"], "slot_times": slot_times,
                    "last_mac_ping_utc": record_mac_ping(now), "history_count": len(history),
@@ -140,7 +177,7 @@ def main():
     design_same = OUT.exists() and MARK.sub("", OUT.read_text(), count=1) == MARK.sub("", template, count=1)
     same = design_same and old is not None and {k: v for k, v in old.items() if k != "generated_at"} == data
     fresh = old is not None and now - datetime.fromisoformat(old["generated_at"]) < timedelta(minutes=REFRESH_MINUTES)
-    if same and fresh:
+    if same and fresh and "--force" not in sys.argv:
         print("Dashboard unchanged.")
         return
     data["generated_at"] = now.isoformat()

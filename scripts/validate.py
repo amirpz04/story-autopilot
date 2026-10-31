@@ -140,6 +140,9 @@ def check_post(path, config):
             if not image.get("credit"):
                 errors.append("slide %d: image needs a credit" % i)
 
+    in_caption = [t for t in post.get("hashtags", []) if t.lower() in post["caption"].lower()]
+    if in_caption:
+        errors.append("hashtags %s are written in the caption; keep them only in the hashtags field" % " ".join(in_caption))
     errors += check_duplicates(post, path)
 
     caption = post["caption"] + "\n\n" + " ".join(post.get("hashtags", []))
