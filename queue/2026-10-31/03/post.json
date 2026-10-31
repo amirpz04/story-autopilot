@@ -28,7 +28,11 @@
       "kicker": "NATURE",
       "headline": "Scientists just discovered that toxic fire salamanders secretly glow under UV light",
       "image": {
-        "search": "salamander with yellow and black skin on forest floor"
+        "url": "https://images.unsplash.com/photo-1763652100399-5af1a04e0b7d?ixid=M3wxMTE3NTMyfDB8MXxzZWFyY2h8MXx8c2FsYW1hbmRlciUyMHdpdGglMjB5ZWxsb3clMjBhbmQlMjBibGFjayUyMHNraW4lMjBvbiUyMGZvcmVzdCUyMGZsb29yfGVufDF8MXx8fDE3OTM0MzgyODZ8MA&ixlib=rb-4.1.0&w=2000&fm=jpg&q=85",
+        "credit": "Photo by Yoanna Yordanova on Unsplash",
+        "search": "salamander with yellow and black skin on forest floor",
+        "source": "https://unsplash.com/photos/a-black-and-yellow-salamander-rests-on-autumn-leaves-eNXeBODiiKk?utm_source=story_account&utm_medium=referral",
+        "photographer_url": "https://unsplash.com/@iso_excited?utm_source=story_account&utm_medium=referral"
       }
     },
     {
@@ -36,7 +40,11 @@
       "layout": "full",
       "text": "Under ultraviolet light, the yellow undersides and sides of fire salamanders shine vivid green and cyan.",
       "image": {
-        "search": "glowing green fluorescent light in a dark forest at night"
+        "url": "https://images.unsplash.com/photo-1760772488846-5ed68ebd5d37?ixid=M3wxMTE3NTMyfDB8MXxzZWFyY2h8MXx8Z2xvd2luZyUyMGdyZWVuJTIwZmx1b3Jlc2NlbnQlMjBsaWdodCUyMGluJTIwYSUyMGRhcmslMjBmb3Jlc3QlMjBhdCUyMG5pZ2h0fGVufDF8MXx8fDE3OTM0MzgyODZ8MA&ixlib=rb-4.1.0&w=2000&fm=jpg&q=85",
+        "credit": "Photo by Fethi Benattallah on Unsplash",
+        "search": "glowing green fluorescent light in a dark forest at night",
+        "source": "https://unsplash.com/photos/bright-light-shining-through-foggy-forest-trees-6au7W0urjW8?utm_source=story_account&utm_medium=referral",
+        "photographer_url": "https://unsplash.com/@fethibenattallah?utm_source=story_account&utm_medium=referral"
       }
     },
     {
@@ -48,7 +56,11 @@
       "layout": "split",
       "text": "Why do they glow? Nobody knows yet. It might help them spot each other at night, or make their warning colors stand out to predators.",
       "image": {
-        "search": "moonlit forest at night with mist"
+        "url": "https://images.unsplash.com/photo-1612133344617-e731b9dc2824?ixid=M3wxMTE3NTMyfDB8MXxzZWFyY2h8MXx8bW9vbmxpdCUyMGZvcmVzdCUyMGF0JTIwbmlnaHQlMjB3aXRoJTIwbWlzdHxlbnwxfDB8fHwxNzkzNDM4Mjg2fDA&ixlib=rb-4.1.0&w=2000&fm=jpg&q=85",
+        "credit": "Photo by Roman Datsiuk on Unsplash",
+        "search": "moonlit forest at night with mist",
+        "source": "https://unsplash.com/photos/brown-trees-on-brown-soil-mW_yoqe6pkM?utm_source=story_account&utm_medium=referral",
+        "photographer_url": "https://unsplash.com/@bingex?utm_source=story_account&utm_medium=referral"
       }
     },
     {

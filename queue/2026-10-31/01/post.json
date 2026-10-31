@@ -28,7 +28,11 @@
       "kicker": "SPACE",
       "headline": "Two astronauts just gave the space station a 30% power boost, in a 7-hour spacewalk",
       "image": {
-        "search": "astronaut spacewalk in space above Earth"
+        "url": "https://images.unsplash.com/photo-1764768467248-6ec6b6c5101c?ixid=M3wxMTE3NTMyfDB8MXxzZWFyY2h8MXx8YXN0cm9uYXV0JTIwc3BhY2V3YWxrJTIwaW4lMjBzcGFjZSUyMGFib3ZlJTIwRWFydGh8ZW58MXwxfHx8MTc5MzQzODI4NHww&ixlib=rb-4.1.0&w=2000&fm=jpg&q=85",
+        "credit": "Photo by Kartik on Unsplash",
+        "search": "astronaut spacewalk in space above Earth",
+        "source": "https://unsplash.com/photos/the-earth-from-space-with-continents-visible-6yP6rExNq8s?utm_source=story_account&utm_medium=referral",
+        "photographer_url": "https://unsplash.com/@aartsyfaartsy?utm_source=story_account&utm_medium=referral"
       }
     },
     {
@@ -36,7 +40,8 @@
       "layout": "full",
       "text": "Astronaut Anil Menon rode the Canadarm2 robotic arm, 260 miles above Earth, to help install a giant roll-out solar array.",
       "image": {
-        "search": "solar panels in space orbiting Earth"
+        "search": "solar panels in space orbiting Earth",
+        "not_found": true
       }
     },
     {
@@ -48,7 +53,8 @@
       "layout": "split",
       "text": "One more array goes up on Nov. 5. All eight new arrays together lift power from 160 to about 215 kilowatts: up to 30% more.",
       "image": {
-        "search": "International Space Station glowing over the blue Earth"
+        "search": "International Space Station glowing over the blue Earth",
+        "not_found": true
       }
     },
     {
