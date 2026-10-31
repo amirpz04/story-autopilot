@@ -68,7 +68,7 @@ commit, push to `main` (goes live immediately). For publisher changes set `pause
   so a song never repeats within the last 5 (`state/music_log.json`). Instagram's own music library cannot be used through the API (Meta docs).
 - **Counts are owner-controlled:** `config.json` `posts_per_day` (carousels, 0-5) and `reels_per_day` (0-5), set from the dashboard Control tab (`posts_per_day` / `reels_per_day` actions).
   `stories_per_day = max(both)`; each story in post.json has `slot` (carousel slot or null) and `reel_slot` (Reel slot or null; times come from `reel_times`,
-  `reel_active_slots`). Default (set Nov 1 2026) 3 posts + 3 Reels from the same 3 stories (no extra Claude usage); a story's Reel slot is rotated by one so its carousel and Reel are >= 7 h apart.
+  `reel_active_slots`). Default (set Nov 1 2026) 3 posts + 3 Reels from the same 3 stories (no extra Claude usage); a story's Reel slot is rotated by one so its carousel and Reel are about 6+ h apart.
 - **Flow:** the routine pushes the queue -> `reel.yml` (push trigger) renders each needed Reel (`reel_job.py`, stored on branch `reels`, `state/reels.json`) ->
   `publish.py` posts a Reel at its `reel_slot` time (`publish_reel.publish_due_reel`, makes it on the spot if missing; 3 attempts) with the same Instagram safety gate
   (45 min gap between ANY posts, daily cap = posts + reels + 1). Editing slides or replacing a post re-makes its Reel. Reels stats are tagged `kind: reel`.
