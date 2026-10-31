@@ -27,6 +27,7 @@ from zoneinfo import ZoneInfo
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from render import load_config, render_post  # noqa: E402
+from validate import final_problems  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 STATE_FILE = ROOT / "state" / "posted.json"
@@ -198,6 +199,18 @@ def main():
             state.setdefault(post["id"], {"attempts": 0}).update(status="posted", note="found live on Instagram")
             save_state(state)
         return
+
+    waiting = [1 for sl in post["slides"] if (sl.get("image") or {}).get("search")
+               and not (sl["image"].get("url") or sl["image"].get("not_found"))]
+    if waiting:
+        print("Photos are still being looked up for this post; trying again next run.")
+        return
+    problems = final_problems(post)
+    if problems:
+        print("REJECTED, not publishing %s: %s" % (post["id"], "; ".join(problems)))
+        state.setdefault(post["id"], {"attempts": 0}).update(status="rejected", attempts=MAX_ATTEMPTS, error="; ".join(problems)[:300])
+        save_state(state)
+        sys.exit(1)   # a failed run emails you
 
     delay = random.randint(0, config.get("publish_random_delay_seconds", 0))
     if delay:

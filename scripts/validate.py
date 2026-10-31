@@ -61,6 +61,25 @@ def check_duplicates(post, this_path):
     return errors
 
 
+def final_problems(post):
+    """Checks on the photos that really exist after the stock lookup (not just requested ones)."""
+    problems, urls, run = [], [], 0
+    for i, sl in enumerate(post["slides"], 1):
+        url = (sl.get("image") or {}).get("url")
+        if url:
+            urls.append(url.split("?")[0])
+            run = 0
+        elif sl.get("type") == "text":
+            run += 1
+            if run == 2:
+                problems.append("slides %d-%d have no picture, two plain slides in a row" % (i - 1, i))
+    if len(urls) < 3:
+        problems.append("only %d real pictures after photo lookup; at least 3 are needed" % len(urls))
+    if len(set(urls)) < len(urls):
+        problems.append("the same picture is used on more than one slide")
+    return problems
+
+
 def check_post(path, config):
     errors = []
     try:
@@ -139,7 +158,8 @@ def check_post(path, config):
 
 
 def main():
-    day_dir = Path(sys.argv[1])
+    final = "--final" in sys.argv
+    day_dir = Path([a for a in sys.argv[1:] if not a.startswith("--")][0])
     config = json.loads((ROOT / "config.json").read_text())
     posts = sorted(day_dir.glob("*/post.json"))
     if not posts:
@@ -149,7 +169,7 @@ def main():
     failed = False
     slots = {}
     for path in posts:
-        errors = check_post(path, config)
+        errors = final_problems(json.loads(path.read_text())) if final else check_post(path, config)
         try:
             slot = json.loads(path.read_text()).get("slot")
             if slot in slots:

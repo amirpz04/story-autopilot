@@ -100,6 +100,13 @@ The post needs real, legally usable images where possible. In order of preferenc
 Do not use photos copied from news articles or social media unless their license
 allows it. Every direct image needs a `credit`.
 
+**Real pictures first; stock is only the filler.** After you finish, a final check
+rejects (and never publishes) any post with fewer than 3 real pictures once the
+stock lookup is done, or that uses the same picture twice. Stock lookups often
+find nothing, so don't depend on them: get direct image URLs (agency, Wikimedia
+Commons, the study's or company's own press images) for at least 2 slides, the cover
+first, and use a different subject in every stock search.
+
 **No real photo? Use a stock photo.** A good story is never dropped for lack of
 images. Instead of a `url`, give a `search` describing a generic scene that fits
 the story's mood, and the renderer finds a sharp stock photo on Unsplash and
