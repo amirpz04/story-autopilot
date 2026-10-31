@@ -1,5 +1,11 @@
 [
   {
+    "action": "refresh_dashboard",
+    "at": "2026-10-31T16:15:23.764351+00:00",
+    "result": "Dashboard rebuilt.",
+    "target": ""
+  },
+  {
     "action": "remove_music",
     "at": "2026-10-31T16:11:59.730696+00:00",
     "result": "Removed macleod-anachronist.m4a. 4 songs left.",
