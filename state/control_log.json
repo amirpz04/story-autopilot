@@ -1,5 +1,11 @@
 [
   {
+    "action": "refresh_dashboard",
+    "at": "2026-10-31T16:02:39.283317+00:00",
+    "result": "Dashboard rebuilt.",
+    "target": ""
+  },
+  {
     "action": "post_now",
     "at": "2026-10-31T11:58:06.075855+00:00",
     "result": "2026-10-30-01 will be published at the next check (within a few minutes, unless a post went out in the last 45 minutes).",
