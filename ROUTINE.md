@@ -247,6 +247,16 @@ the last active slot and the second strongest in the middle one.
 `tags` is for learning: `lane` is `news` or `evergreen`; `end` is `question` or `send`; `headline` is `statement`,
 `question` or `number` (how the cover headline is built).
 
+## 7b. Spare posts (only if `spares_per_day` in `config.json` is above 0)
+
+The owner can swap a scheduled post he dislikes for a ready spare with one button, so prepare
+`spares_per_day` extra posts, finished to exactly the same standard (same verification, pictures and
+checks) but never scheduled. Write each as `queue/<date>/s1/post.json`, `s2`, ...:
+- `"spare": true` and `"slot": null`, with `"id": "<date>-s1"` (`-s2`, ...), and an unused story (different
+  topic from the day's posts when possible).
+- Use the same fields, tags and checks as any post; `validate.py` and `check_images.py` cover spares too.
+- Add them to `state/history.jsonl` like the others. If `spares_per_day` is 0 or missing, write none.
+
 ## 8. Check, record and push
 
 1. Run `python3 scripts/check_images.py queue/<date>`, open each saved picture and fix any problem (section 5).

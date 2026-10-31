@@ -55,16 +55,20 @@ def build(now):
     today = datetime.now(tz).date()
     posted = read_json(ROOT / "state" / "posted.json", {})
     stats = read_json(ROOT / "state" / "stats.json", [])
-    by_id = {s["id"]: s for s in stats if s.get("id")}
+    by_id = {s["id"]: s for s in stats if s.get("id") and s.get("kind") != "reel"}
+    reel_stats = {s["id"]: s for s in stats if s.get("id") and s.get("kind") == "reel"}
+    reels = read_json(ROOT / "state" / "reels.json", {})
 
     # --- today's queue
     today_posts = []
     for path in sorted((ROOT / "queue" / today.isoformat()).glob("*/post.json")):
         post = json.loads(path.read_text())
+        if post.get("spare"):
+            continue
         rec = posted.get(post["id"], {})
         today_posts.append({
             "id": post["id"], "title": post["title"], "category": post.get("category", ""), "slot": post["slot"],
-            "scheduled_utc": publish.slot_time(config, today, post["slot"]).astimezone(timezone.utc).isoformat(),
+            "scheduled_utc": rec.get("post_at") or publish.slot_time(config, today, post["slot"]).astimezone(timezone.utc).isoformat(),
             "status": rec.get("status"), "error": rec.get("error"), "posted_at": rec.get("posted_at"),
             "permalink": by_id.get(post["id"], {}).get("permalink"),
         })
@@ -80,11 +84,16 @@ def build(now):
             continue
         post = json.loads(path.read_text())
         rec, st = posted.get(post["id"], {}), by_id.get(post["id"], {})
+        spare, reel = bool(post.get("spare")), reels.get(post["id"])
+        rs = reel_stats.get(post["id"], {})
         all_posts.append({
+            "spare": spare, "post_at": rec.get("post_at"), "replaced_by": rec.get("replaced_by"), "parked": "-replaced" in path.parent.name,
+            "reel": ({k: reel.get(k) for k in ("status", "url", "made_at", "music", "permalink", "posted_at")} if reel else None),
+            "reel_stats": {k: rs.get(k) for k in ("reach", "likes", "comments", "shares", "saved", "views", "share_rate")} if rs else None,
             "id": post["id"], "date": day.isoformat(), "slot": post["slot"], "title": post["title"],
             "category": post.get("category", ""), "lane": (post.get("tags") or {}).get("lane", ""),
             "status": rec.get("status"), "post_now": bool(rec.get("post_now")), "error": rec.get("error"),
-            "scheduled_utc": publish.slot_time(config, day, post["slot"]).astimezone(timezone.utc).isoformat(),
+            "scheduled_utc": None if spare else (rec.get("post_at") or publish.slot_time(config, day, post["slot"]).astimezone(timezone.utc).isoformat()),
             "posted_at": rec.get("posted_at"), "permalink": st.get("permalink"), "media_id": rec.get("media_id") or st.get("media_id"),
             "slides": [{"type": sl.get("type"), "layout": sl.get("layout"), "kicker": sl.get("kicker"),
                         "text": sl.get("headline") or sl.get("text"),
@@ -96,7 +105,7 @@ def build(now):
         })
     known = {p["id"] for p in all_posts}
     for s in stats:  # live posts that aren't in the recent queue (e.g. early test posts)
-        if s.get("id") not in known:
+        if s.get("id") not in known and s.get("kind") != "reel":
             all_posts.append({"id": s.get("id") or s.get("media_id"), "date": (s.get("posted_local") or "")[:10], "slot": None,
                               "title": s.get("title"), "category": s.get("category") or "", "lane": (s.get("tags") or {}).get("lane", ""),
                               "status": "posted", "posted_local": s.get("posted_local"), "permalink": s.get("permalink"),
@@ -163,7 +172,11 @@ def build(now):
         "mature_count": len(mature), "followers": followers, "alerts": alerts,
         "system": {"paused": bool(config.get("paused")), "posts_per_day": config["posts_per_day"], "slot_times": slot_times,
                    "last_mac_ping_utc": record_mac_ping(now), "history_count": len(history),
-                   "unsplash_used": len(unsplash), "unsplash_cap": config.get("unsplash_max_requests_per_day", 100)},
+                   "unsplash_used": len(unsplash), "unsplash_cap": config.get("unsplash_max_requests_per_day", 100),
+                   "spares_per_day": config.get("spares_per_day", 0),
+                   "spares_ready": sum(1 for p in all_posts if p.get("spare") and p.get("status") not in ("removed", "deleted") and p["date"] >= (today - timedelta(days=2)).isoformat()),
+                   "reels_made": sum(1 for r in reels.values() if r.get("status") in ("made", "posted")),
+                   "reels_posted": sum(1 for r in reels.values() if r.get("status") == "posted")},
     }
 
 

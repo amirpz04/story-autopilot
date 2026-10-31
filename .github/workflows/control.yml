@@ -10,9 +10,13 @@ on:
         description: "What to do"
         required: true
         type: choice
-        options: [pause, resume, remove, restore, post_now, posts_per_day, delete_instagram, refresh_dashboard]
+        options: [pause, resume, remove, restore, post_now, reschedule, replace, edit_caption, edit_slide, posts_per_day, spares_per_day, delete_instagram, post_reel, refresh_dashboard]
       target:
-        description: "Post id, or a number for posts_per_day"
+        description: "Post id (POST_ID#N for a slide), or a number for posts_per_day / spares_per_day"
+        required: false
+        default: ""
+      text:
+        description: "New text (edit actions) or a UTC time (reschedule)"
         required: false
         default: ""
 
@@ -38,6 +42,7 @@ jobs:
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           ACTION: ${{ inputs.action }}
           TARGET: ${{ inputs.target }}
+          TEXT: ${{ inputs.text }}
         run: python scripts/control.py "$ACTION" "$TARGET"
       - name: Rebuild dashboard
         continue-on-error: true
@@ -48,12 +53,12 @@ jobs:
         run: |
           git config user.name "publisher"
           git config user.email "publisher@users.noreply.github.com"
-          git add state config.json docs
+          git add state config.json docs queue
           git diff --cached --quiet && exit 0
           git commit -m "Control: $ACTION"
           for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
       - name: Check for a due post right away
-        if: inputs.action == 'post_now' || inputs.action == 'resume'
+        if: contains('post_now resume replace reschedule', inputs.action)
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run publish.yml --ref main -R "$GITHUB_REPOSITORY"

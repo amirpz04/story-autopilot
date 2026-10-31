@@ -1,29 +1,37 @@
 """Carry out one control-panel action. Run by the Control workflow (started from the dashboard).
 
-Usage: python scripts/control.py ACTION [TARGET]
+Usage: python scripts/control.py ACTION [TARGET] [TEXT]     (TEXT may also come from the TEXT environment variable)
 
-  pause / resume              stop or restart all publishing
-  remove POST_ID              never publish this queued post (kept for the record)
-  restore POST_ID             undo "remove"
-  post_now POST_ID            publish this post at the next check, ignoring its time slot
-                              (the 45-minute gap and daily cap still apply)
-  posts_per_day N             1-5 posts a day from the next research run on
-  delete_instagram POST_ID    delete a live post from Instagram (whole carousel)
-  refresh_dashboard           just rebuild the dashboard
+  pause / resume                 stop or restart all publishing
+  remove POST_ID                 never publish this post (any post that isn't live; kept for the record)
+  restore POST_ID                undo "remove"
+  post_now POST_ID               publish at the next check, ignoring its time slot (45-minute gap and daily cap still apply)
+  reschedule POST_ID  TEXT       publish at the time in TEXT (UTC, e.g. 2026-11-02T14:30:00Z); empty TEXT goes back to its normal slot
+  replace POST_ID [SPARE_ID]     swap a post of today for a ready-made spare post (the newest one, or the spare named in TEXT); the old one is kept as "removed"
+  edit_caption POST_ID  TEXT     change the caption of a post that isn't live
+  edit_slide POST_ID#N  TEXT     change the text of slide N (1-based) of a post that isn't live
+  posts_per_day N                1-5 posts a day from the next research run on
+  spares_per_day N               0-3 extra spare posts the research run prepares each day (uses more Claude usage)
+  delete_instagram POST_ID       delete a live post from Instagram (the whole carousel)
+  post_reel POST_ID              publish the Reel that was made for this post
+  refresh_dashboard              just rebuild the dashboard
 
-Every action is written to state/control_log.json, which the dashboard shows. This script
-never exits with an error, so nothing emails anyone; problems show up in the log.
+Every action is written to state/control_log.json, which the dashboard shows. This script never exits with an
+error, so nothing emails anyone; problems show up in the log.
 """
 import json
 import os
+import shutil
 import sys
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT / "scripts"))
 CONFIG = ROOT / "config.json"
 POSTED = ROOT / "state" / "posted.json"
 STATS = ROOT / "state" / "stats.json"
@@ -43,12 +51,30 @@ def save(path, data):
     path.write_text(json.dumps(data, indent=2, sort_keys=True) + "\n")
 
 
+def write_post(path, post):
+    path.write_text(json.dumps(post, indent=2, ensure_ascii=False) + "\n")
+
+
+def post_files():
+    for path in sorted((ROOT / "queue").glob("*/*/post.json")):
+        if path.parent.parent.name not in ("demo", "sample"):
+            yield path
+
+
+def find_post(post_id):
+    for path in post_files():
+        post = load(path, {})
+        if post.get("id") == post_id:
+            return path, post
+    return None, None
+
+
 def find_media_id(post_id, posted):
     if posted.get(post_id, {}).get("media_id"):
         return posted[post_id]["media_id"]
     for s in load(STATS, []):
-        if post_id in (s.get("id"), s.get("media_id")):
-            return s.get("media_id")
+        if post_id in (s.get("id"), s.get("media_id")) and s.get("media_id"):
+            return s["media_id"]
     return None
 
 
@@ -64,7 +90,70 @@ def delete_from_instagram(media_id, config):
         return False, str(exc)[:200]
 
 
-def run(action, target):
+def replace(target, config, posted, now, wanted_spare=None):
+    path, post = find_post(target)
+    if not path:
+        return "Post not found."
+    if post.get("spare"):
+        return "That is a spare. Replace a scheduled post to use it."
+    record = posted.get(target, {})
+    if record.get("status") == "posted":
+        return "That post is already live and can't be replaced."
+    today = datetime.now(ZoneInfo(config["timezone"])).date()
+    if path.parent.parent.name != today.isoformat():
+        return "Only today's posts can be replaced. Use Remove for older ones."
+    spares = []
+    for p in post_files():
+        sp = load(p, {})
+        if not sp.get("spare") or posted.get(sp.get("id"), {}).get("status") in ("removed", "deleted"):
+            continue
+        if wanted_spare and sp.get("id") != wanted_spare:
+            continue
+        try:
+            d = date.fromisoformat(p.parent.parent.name)
+        except ValueError:
+            continue
+        if today - timedelta(days=2) <= d <= today:
+            spares.append((d, sp["id"], p, sp))
+    if not spares:
+        return "No spare post is ready. Open the daily research run and press Run now (it prepares spares), or wait for the next run."
+    _, spare_id, spare_path, spare = sorted(spares, key=lambda s: (s[0], s[1]), reverse=True)[0]
+    slot, old_dir = post["slot"], path.parent
+    parked = old_dir.with_name(old_dir.name + "-replaced")
+    n = 2
+    while parked.exists():
+        parked = old_dir.with_name("%s-replaced%d" % (old_dir.name, n))
+        n += 1
+    shutil.move(str(old_dir), str(parked))
+    shutil.move(str(spare_path.parent), str(old_dir))
+    spare.update(slot=slot, spare=False)
+    write_post(old_dir / "post.json", spare)
+    posted[target] = dict(record, status="removed", attempts=MAX_ATTEMPTS, removed_at=now, replaced_by=spare_id)
+    save(POSTED, posted)
+    return 'Replaced with "%s". It goes out at this slot\'s time (right away if that time has passed).' % spare["title"][:70]
+
+
+def edit_post(post_id, change, config, posted):
+    path, post = find_post(post_id)
+    if not path:
+        return "Post not found."
+    if posted.get(post_id, {}).get("status") == "posted":
+        return "That post is already live; it can't be edited."
+    import validate
+    original = path.read_text()
+    before = set(validate.check_post(path, config))
+    problem = change(post)
+    if problem:
+        return problem
+    write_post(path, post)
+    new_errors = [e for e in validate.check_post(path, config) if e not in before]   # only refuse what the edit itself breaks
+    if new_errors:
+        path.write_text(original)
+        return "Not saved: " + "; ".join(new_errors[:3])
+    return "Saved."
+
+
+def run(action, target, text):
     config = load(CONFIG, {})
     posted = load(POSTED, {})
     now = datetime.now(timezone.utc).isoformat()
@@ -82,8 +171,47 @@ def run(action, target):
         save(CONFIG, config)
         return "Posts per day set to %d (takes effect from the next research run)." % n
 
-    if action in ("remove", "restore", "post_now", "delete_instagram") and not target:
+    if action == "spares_per_day":
+        n = int(target)
+        if not 0 <= n <= 3:
+            return "Spares per day must be 0 to 3."
+        config["spares_per_day"] = n
+        save(CONFIG, config)
+        return "Spare posts per day set to %d (takes effect from the next research run)." % n
+
+    if action == "refresh_dashboard":
+        return "Dashboard rebuilt."
+
+    if action not in ("remove", "restore", "post_now", "reschedule", "replace", "edit_caption", "edit_slide", "delete_instagram", "post_reel"):
+        return "Unknown action %r." % action
+    if not target:
         return "No post was given."
+
+    if action == "edit_slide":
+        post_id, _, number = target.partition("#")
+        try:
+            index = int(number) - 1
+        except ValueError:
+            return "No slide number was given."
+
+        def change(post):
+            if not 0 <= index < len(post["slides"]):
+                return "That slide doesn't exist."
+            key = "headline" if post["slides"][index].get("type") == "cover" else "text"
+            post["slides"][index][key] = text.strip()
+        return edit_post(post_id, change, config, posted)
+
+    if action == "edit_caption":
+        def change(post):
+            post["caption"] = text.strip()
+        return edit_post(target, change, config, posted)
+
+    if action == "replace":
+        return replace(target, config, posted, now, text.strip() or None)
+
+    if action == "post_reel":
+        import publish_reel
+        return publish_reel.post_reel(target)
 
     record = posted.get(target, {})
     if action == "remove":
@@ -98,16 +226,35 @@ def run(action, target):
             return "%s was not removed." % target
         posted.pop(target)
         save(POSTED, posted)
-        return "Restored %s; it will publish at its time if that hasn't passed (or use Post now)." % target
+        return "Restored %s; it publishes at its time (or use Post now)." % target
 
     if action == "post_now":
         if record.get("status") == "posted":
             return "%s is already live." % target
         record.pop("status", None)
         posted[target] = dict(record, attempts=0, post_now=True, post_now_requested_at=now)
+        posted[target].pop("post_at", None)
         save(POSTED, posted)
         return "%s will be published at the next check (within a few minutes, unless a post went out in the last %d minutes)." % (
             target, config.get("min_minutes_between_posts", 45))
+
+    if action == "reschedule":
+        if record.get("status") in ("posted", "removed", "deleted"):
+            return "%s is %s, so it can't be rescheduled." % (target, record["status"])
+        if not text.strip():
+            posted[target] = {k: v for k, v in record.items() if k not in ("post_at", "post_now")}
+            save(POSTED, posted)
+            return "%s goes back to its normal time slot." % target
+        when = datetime.fromisoformat(text.strip().replace("Z", "+00:00"))
+        if when.tzinfo is None:
+            when = when.replace(tzinfo=timezone.utc)
+        if when > datetime.now(timezone.utc) + timedelta(days=7):
+            return "Pick a time within the next 7 days."
+        record.pop("post_now", None)
+        posted[target] = dict(record, attempts=0, post_at=when.astimezone(timezone.utc).isoformat())
+        posted[target].pop("status", None)
+        save(POSTED, posted)
+        return "%s will be published at %s UTC (or the first check after that)." % (target, when.astimezone(timezone.utc).strftime("%b %d %H:%M"))
 
     if action == "delete_instagram":
         media_id = find_media_id(target, posted)
@@ -120,16 +267,13 @@ def run(action, target):
         save(POSTED, posted)
         return "Deleted %s from Instagram." % target
 
-    if action == "refresh_dashboard":
-        return "Dashboard rebuilt."
-    return "Unknown action %r." % action
-
 
 def main():
     action = sys.argv[1] if len(sys.argv) > 1 else ""
     target = (sys.argv[2] if len(sys.argv) > 2 else "").strip()
+    text = sys.argv[3] if len(sys.argv) > 3 else os.environ.get("TEXT", "")
     try:
-        result = run(action, target)
+        result = run(action, target, text)
     except Exception as exc:
         result = "Error: %s" % str(exc)[:200]
     print(result)

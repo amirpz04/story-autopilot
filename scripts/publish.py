@@ -89,7 +89,7 @@ def instagram_quota_used(config):
         return None
 
 
-def instagram_gate(config, post):
+def instagram_gate(config, post, check_duplicate=True):
     """Safety checks against Instagram's OWN record of what is live, independent of our saved state.
 
     Returns None if posting is allowed, otherwise a reason string. This stops double posts
@@ -105,7 +105,7 @@ def instagram_gate(config, post):
     now = datetime.now(timezone.utc)
     live = [(datetime.strptime(m["timestamp"], "%Y-%m-%dT%H:%M:%S%z"), (m.get("caption") or "").strip()) for m in media]
     hook = post["caption"].strip()[:60]
-    if any(caption.startswith(hook) for _, caption in live):
+    if check_duplicate and any(caption.startswith(hook) for _, caption in live):
         return "already live: this post is already on Instagram"
     gap = config.get("min_minutes_between_posts", 45)
     if any(now - t < timedelta(minutes=gap) for t, _ in live):
@@ -130,23 +130,34 @@ def slot_time(config, day, slot):
 def find_due_post(config, state):
     now = datetime.now(ZoneInfo(config["timezone"]))
     day_dir = ROOT / "queue" / now.strftime("%Y-%m-%d")
+
+    def wanted_now(record):
+        """The owner asked for this post to go out now, or at a time that has arrived."""
+        if record.get("post_now"):
+            return True
+        return bool(record.get("post_at")) and datetime.fromisoformat(record["post_at"]) <= now
+
     due = []
     for path in sorted(day_dir.glob("*/post.json")):
         post = json.loads(path.read_text())
         record = state.get(post["id"], {})
-        if record.get("status") == "posted" or record.get("attempts", 0) >= MAX_ATTEMPTS:
+        if post.get("spare") or record.get("status") == "posted" or record.get("attempts", 0) >= MAX_ATTEMPTS:
             continue
-        if record.get("post_now") or now >= slot_time(config, now.date(), post["slot"]):
-            due.append((0 if record.get("post_now") else 1, post["slot"], path.parent, post))
-    # "Post now" from the control panel also works for posts from earlier days.
+        if record.get("post_at"):
+            is_due = wanted_now(record)
+        else:
+            is_due = bool(record.get("post_now")) or now >= slot_time(config, now.date(), post["slot"])
+        if is_due:
+            due.append((0 if wanted_now(record) else 1, post["slot"] or 0, path.parent, post))
+    # Posts of other days that were sent "now" or rescheduled from the control panel.
     wanted = {pid for pid, r in state.items()
-              if r.get("post_now") and r.get("status") != "posted" and r.get("attempts", 0) < MAX_ATTEMPTS}
+              if r.get("status") != "posted" and r.get("attempts", 0) < MAX_ATTEMPTS and wanted_now(r)}
     for path in (ROOT / "queue").glob("*/*/post.json") if wanted else []:
         if path.parent.parent == day_dir or path.parent.parent.name in ("demo", "sample"):
             continue
         post = json.loads(path.read_text())
-        if post["id"] in wanted:
-            due.append((0, post["slot"], path.parent, post))
+        if post["id"] in wanted and not post.get("spare"):
+            due.append((0, post["slot"] or 0, path.parent, post))
     return min(due, key=lambda d: d[:2])[2:] if due else (None, None)
 
 

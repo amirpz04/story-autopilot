@@ -88,16 +88,18 @@ def check_post(path, config):
     except Exception as exc:
         return ["invalid JSON: %s" % exc]
 
+    spare = bool(post.get("spare"))          # a spare has no time slot until it replaces a scheduled post
     for key in ("id", "date", "slot", "title", "sources", "slides", "caption"):
-        if key not in post:
+        if key not in post and not (spare and key == "slot"):
             errors.append("missing '%s'" % key)
     if errors:
         return errors
 
-    if not 1 <= post["slot"] <= len(config["post_times"]):
-        errors.append("slot %s has no publishing time in config.json" % post["slot"])
-    if "active_slots" in config and post["slot"] not in config["active_slots"]:
-        errors.append("slot %s is not one of the active slots %s in config.json" % (post["slot"], config["active_slots"]))
+    if not spare:
+        if not 1 <= post["slot"] <= len(config["post_times"]):
+            errors.append("slot %s has no publishing time in config.json" % post["slot"])
+        if "active_slots" in config and post["slot"] not in config["active_slots"]:
+            errors.append("slot %s is not one of the active slots %s in config.json" % (post["slot"], config["active_slots"]))
     if not post["sources"] or not all(s.get("url", "").startswith("http") for s in post["sources"]):
         errors.append("every source needs a url")
 
@@ -158,7 +160,7 @@ def check_post(path, config):
 def main():
     day_dir = Path(sys.argv[1])
     config = json.loads((ROOT / "config.json").read_text())
-    posts = sorted(day_dir.glob("*/post.json"))
+    posts = sorted(p for p in day_dir.glob("*/post.json") if "-replaced" not in p.parent.name)
     if not posts:
         print("No posts found in", day_dir)
         sys.exit(1)
@@ -169,13 +171,17 @@ def main():
         errors = check_post(path, config)
         try:
             slot = json.loads(path.read_text()).get("slot")
-            if slot in slots:
+            if slot is not None and slot in slots:
                 errors.append("slot %s is also used by %s" % (slot, slots[slot]))
             slots[slot] = path.parent.name
         except Exception:
             pass
         status = "OK" if not errors else "FAIL"
-        print("%s  %s" % (status, path.relative_to(ROOT) if path.is_absolute() else path))
+        try:
+            shown = path.resolve().relative_to(ROOT.resolve())
+        except ValueError:
+            shown = path
+        print("%s  %s" % (status, shown))
         for err in errors:
             print("      -", err)
         failed = failed or bool(errors)

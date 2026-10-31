@@ -23,7 +23,7 @@
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--surface-1); color: var(--text-primary);
          font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { max-width: 960px; margin: 0 auto; padding: 16px 16px 60px; }
+  main { max-width: 960px; margin: 0 auto; padding: 16px 16px 70px; }
   header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; }
   h1 { font-size: 20px; margin: 0; font-weight: 650; }
   h2 { font-size: 14px; margin: 26px 0 10px; font-weight: 650; color: var(--text-secondary); letter-spacing: .02em; }
@@ -35,15 +35,14 @@
   .card { background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
   .attn { display: grid; gap: 8px; margin-top: 12px; }
   .attn .card { display: flex; gap: 10px; align-items: flex-start; }
-  .icon { flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center;
-          font-size: 13px; font-weight: 800; color: #fff; margin-top: 1px; }
+  .icon { flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 800; color: #fff; margin-top: 1px; }
   .i-neutral { background: var(--text-muted); color: var(--surface-1); }
   .i-good { background: var(--good); } .i-warning { background: var(--warning); color: #111; }
   .i-serious { background: var(--serious); color: #111; } .i-critical { background: var(--critical); }
   .hero { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch; }
   .hero .big { flex: 1 1 240px; }
   .hero .big .num { font-size: 56px; font-weight: 650; line-height: 1.05; letter-spacing: -.02em; }
-  .tiles { flex: 2 1 360px; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+  .tiles { flex: 2 1 360px; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
   .tile .num { font-size: 26px; font-weight: 650; line-height: 1.15; }
   .label { font-size: 13px; color: var(--text-secondary); }
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
@@ -56,34 +55,43 @@
   a { color: var(--series-1); }
   svg text { fill: var(--text-muted); font-size: 11px; }
   #tip { position: fixed; pointer-events: none; background: var(--surface-1); border: 1px solid var(--border);
-         border-radius: 6px; padding: 6px 9px; font-size: 13px; display: none; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
+         border-radius: 6px; padding: 6px 9px; font-size: 13px; display: none; box-shadow: 0 2px 8px rgba(0,0,0,.15); z-index: 30; max-width: 260px; }
   details summary { cursor: pointer; color: var(--text-secondary); font-size: 13px; margin-top: 8px; }
   .sys { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px 18px; }
   .sys div b { display: block; font-weight: 600; }
-  /* posts */
+  /* posts list */
   .filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
   .filters button { font: inherit; font-size: 13px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-secondary); cursor: pointer; }
   .filters button.on { background: var(--text-primary); color: var(--surface-1); border-color: var(--text-primary); }
-  .plist { display: grid; gap: 8px; }
-  .pitem { display: flex; gap: 12px; align-items: center; text-decoration: none; color: inherit; }
+  .search { width: 100%; margin-bottom: 10px; }
+  .dayhead { font-size: 13px; font-weight: 650; color: var(--text-secondary); margin: 16px 0 6px; }
+  .pitem { display: flex; gap: 12px; align-items: center; text-decoration: none; color: inherit; margin-bottom: 8px; }
   .pitem img, .pitem .noimg { width: 64px; height: 80px; object-fit: cover; border-radius: 6px; flex: none; background: var(--border); }
   .pitem .t { font-weight: 600; line-height: 1.3; }
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-secondary); margin-left: 6px; vertical-align: 1px; }
+  .badge.reel { border-color: var(--series-1); color: var(--series-1); }
   .slides { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
   .slide { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface-1); font-size: 13px; }
   .slide img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; background: var(--border); }
   .slide .txt { padding: 8px; }
   .slide .k { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
+  .slide textarea { min-height: 110px; margin-top: 6px; }
   .cap { white-space: pre-wrap; font-size: 14px; }
-  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; align-items: center; }
   .btn { font: inherit; font-weight: 600; font-size: 14px; padding: 9px 14px; border-radius: 8px; cursor: pointer;
          border: 1px solid var(--border); background: var(--surface-1); color: var(--text-primary); text-decoration: none; display: inline-block; }
+  .btn.sm { padding: 4px 10px; font-size: 12.5px; }
   .btn.primary { background: var(--series-1); border-color: var(--series-1); color: #fff; }
   .btn.danger { border-color: var(--critical); color: var(--critical); }
   .btn:disabled { opacity: .5; cursor: default; }
+  .linkbtn { background: none; border: 0; padding: 0; font: inherit; font-size: 12.5px; color: var(--series-1); cursor: pointer; text-decoration: underline; }
   #toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); max-width: 92vw; background: var(--text-primary); color: var(--surface-1);
-           padding: 10px 16px; border-radius: 10px; font-size: 14px; display: none; z-index: 20; box-shadow: 0 4px 16px rgba(0,0,0,.25); }
-  input, select { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text-primary); }
+           padding: 10px 16px; border-radius: 10px; font-size: 14px; display: none; z-index: 40; box-shadow: 0 4px 16px rgba(0,0,0,.25); }
+  input, select, textarea { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text-primary); }
+  textarea { width: 100%; }
   .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  video { width: 100%; max-width: 340px; border-radius: 10px; background: #000; display: block; }
+  .panel { margin-top: 10px; }
 </style>
 </head>
 <body class="viz-root">
@@ -107,11 +115,13 @@
     </div>
     <h2>Today's posts <span class="muted" id="todayNote"></span></h2>
     <div class="card scroll"><table id="today"></table></div>
+    <h2>Reach per post</h2>
+    <div class="card"><div id="reach"></div></div>
     <h2>Followers over time</h2>
     <div class="card"><div id="chart"></div>
       <details><summary>Show as table</summary><table id="ftable"></table></details>
     </div>
-    <h2>Recent posts</h2>
+    <h2>Results by post</h2>
     <div class="card scroll"><table id="posts"></table></div>
     <h2>What's working <span class="muted" id="gnote"></span></h2>
     <div id="groups"></div>
@@ -121,8 +131,9 @@
 
   <!-- ================= POSTS ================= -->
   <section class="view" id="v-posts">
+    <input class="search" id="q" type="search" placeholder="Search posts..." oninput="drawList()">
     <div class="filters" id="filters"></div>
-    <div class="plist" id="plist"></div>
+    <div id="plist"></div>
   </section>
 
   <!-- ================= ONE POST ================= -->
@@ -149,6 +160,16 @@
       </div>
       <p class="muted">Takes effect from the next daily research run. More posts use more of your Claude plan.</p>
     </div>
+    <h2>Spare posts</h2>
+    <div class="card">
+      <div class="row">
+        <select id="spd"><option>0</option><option>1</option><option>2</option><option>3</option></select>
+        <button class="btn" onclick="act('spares_per_day', document.getElementById('spd').value)">Save</button>
+        <span class="muted" id="sparesReady"></span>
+      </div>
+      <p class="muted">Spares are finished posts the daily research run prepares in advance. If you don't like a scheduled post, open it and press
+        <b>Replace with a spare</b>. Each spare uses more of your Claude plan, so 1 is a good start.</p>
+    </div>
     <h2>Run something now</h2>
     <div class="card">
       <div class="actions">
@@ -161,7 +182,7 @@
       <p class="muted">The daily research run lives in your Claude account: the button opens it, where you can run it now or change its time.
         <a href="https://claude.ai/settings/usage" target="_blank" rel="noopener">Claude usage</a></p>
     </div>
-    <h2>Recent jobs <button class="btn" style="padding:3px 10px;font-size:12px" onclick="loadRuns()">refresh</button></h2>
+    <h2>Recent jobs <button class="btn sm" onclick="loadRuns()">refresh</button></h2>
     <div class="card scroll"><table id="runs"><tr><td class="muted">Loading...</td></tr></table></div>
     <h2>Your recent actions</h2>
     <div class="card scroll"><table id="clog"></table></div>
@@ -179,31 +200,37 @@ const nf = n => n == null ? "-" : Intl.NumberFormat().format(n);
 const pct = x => x == null ? "-" : (x * 100).toFixed(1) + "%";
 const ago = ms => { const m = Math.round(ms / 60000); if (m < 1) return "just now"; if (m < 90) return m + " min ago";
   const h = Math.round(m / 60); return h < 36 ? h + " h ago" : Math.round(h / 24) + " days ago"; };
+const fixIso = s => s && /[+-]\d\d:\d\dZ$/.test(s) ? s.slice(0, -1) : s;
 const when = iso => iso ? new Date(fixIso(iso)).toLocaleString([], {weekday: "short", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"}) : "-";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+const thumb = u => !u ? u : u.replace(/\/(\d{3,4})px-/, "/500px-").replace(/([?&])w=\d+/, "$1w=500");
 const ICON = {neutral: ["i-neutral", "&hellip;"], good: ["i-good", "&#10003;"], warning: ["i-warning", "!"], serious: ["i-serious", "!"], critical: ["i-critical", "&#10005;"]};
 const icon = lvl => `<span class="icon ${ICON[lvl][0]}" aria-hidden="true">${ICON[lvl][1]}</span>`;
 const now = Date.now();
-const thumb = u => !u ? u : u.replace(/\/(\d{3,4})px-/, "/500px-").replace(/([?&])w=\d+/, "$1w=500");
-const fixIso = s => s && /[+-]\d\d:\d\dZ$/.test(s) ? s.slice(0, -1) : s;
 const REPO = D.repo;
+const sys = D.system;
+const idq = id => esc(id);
 
 function toast(msg, ms) { const t = $("toast"); t.textContent = msg; t.style.display = "block"; clearTimeout(t._h); t._h = setTimeout(() => t.style.display = "none", ms || 6000); }
 
 // ---------- status of a post ----------
 function postStatus(p) {
   const s = p.status;
+  if (p.parked) return ["neutral", "Replaced by a spare"];
+  if (p.spare) return s === "removed" || s === "deleted" ? ["neutral", "Spare (removed)"] : ["neutral", "Spare, ready"];
   if (s === "posted") return ["good", "Live"];
   if (s === "deleted") return ["neutral", "Deleted from Instagram"];
   if (s === "removed") return ["neutral", "Removed"];
   if (s === "failed" || s === "rejected") return ["critical", "Failed"];
   if (p.post_now) return ["warning", "Posting now"];
-  const t = new Date(p.scheduled_utc).getTime();
+  const t = new Date(fixIso(p.scheduled_utc)).getTime();
   if (p.date !== D.today_date && t < now) return ["neutral", "Not posted (day passed)"];
   if (now - t > 40 * 60000) return ["serious", "Overdue"];
   if (t <= now) return ["warning", "Due now"];
-  return ["neutral", "Scheduled"];
+  return ["neutral", p.post_at ? "Scheduled (time set by you)" : "Scheduled"];
 }
+const isLive = p => postStatus(p)[1] === "Live";
+const isUpcoming = p => ["Scheduled", "Scheduled (time set by you)", "Due now", "Overdue", "Posting now"].includes(postStatus(p)[1]);
 
 // ---------- router ----------
 function route() {
@@ -218,7 +245,6 @@ function route() {
 }
 window.addEventListener("hashchange", route);
 
-// ---------- header ----------
 $("title").textContent = D.account;
 const age = now - new Date(D.generated_at).getTime();
 $("fresh").textContent = "Updated " + ago(age);
@@ -226,12 +252,12 @@ $("fresh").textContent = "Updated " + ago(age);
 // ================= OVERVIEW =================
 const alerts = [...D.alerts];
 if (age > 90 * 60000) alerts.push({level: "serious", text: "This page hasn't refreshed for " + ago(age).replace(" ago", "") + ". The posting system may have stopped."});
-if (D.system.last_mac_ping_utc) {
-  const p = now - new Date(D.system.last_mac_ping_utc).getTime();
+if (sys.last_mac_ping_utc) {
+  const p = now - new Date(sys.last_mac_ping_utc).getTime();
   if (p > 30 * 60000) alerts.push({level: "warning", text: "Your Mac mini last woke the poster " + ago(p) + ". It may be asleep, off or offline."});
 } else alerts.push({level: "warning", text: "No wake-up from your Mac mini has been recorded yet."});
 D.today.forEach(t => {
-  if (!t.status && now - new Date(t.scheduled_utc).getTime() > 40 * 60000)
+  if (!t.status && now - new Date(fixIso(t.scheduled_utc)).getTime() > 40 * 60000)
     alerts.push({level: "serious", text: `"${t.title}" was due ${when(t.scheduled_utc)} and hasn't gone out.`});
 });
 $("attn").innerHTML = alerts.length
@@ -251,17 +277,41 @@ const postedToday = D.today.filter(t => t.status === "posted").length;
 $("tiles").innerHTML =
   tile("Posts live", nf(live.length), "all time") +
   tile("Posted today", postedToday + " of " + D.today.length, D.today.length ? "" : "nothing queued") +
+  tile("Reels", nf(sys.reels_posted), sys.reels_made + " made") +
   tile("Average reach", nf(Math.round(avg(withReach.map(p => p.reach)) ?? NaN) || null), "people per post") +
   tile("Shares per reach", pct(avg(withReach.map(p => p.share_rate).filter(x => x != null))), "sends matter most");
 
 $("todayNote").textContent = D.today.length ? "(New York date " + D.today_date + ")" : "";
-const todayFull = D.all_posts.filter(p => p.date === D.today_date);
+const todayFull = D.all_posts.filter(p => p.date === D.today_date && !p.spare && !p.parked);
 $("today").innerHTML = todayFull.length
-  ? `<tr><th>Status</th><th>Time (your clock)</th><th>Story</th></tr>` + todayFull.map(p => {
+  ? `<tr><th>Status</th><th>Time (your clock)</th><th>Story</th><th></th></tr>` + todayFull.map(p => {
       const [lvl, txt] = postStatus(p);
-      return `<tr><td><span class="status">${icon(lvl)}${txt}</span></td><td>${when(p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc)}</td><td><a href="#post/${encodeURIComponent(p.id)}">${esc(p.title)}</a></td></tr>`;
+      const quick = isUpcoming(p) ? `<button class="btn sm primary" onclick="act('post_now','${idq(p.id)}')">Post now</button> <button class="btn sm" onclick="act('replace','${idq(p.id)}')">Replace</button> <button class="btn sm danger" onclick="if(confirm('Remove this post? It will not be published.')) act('remove','${idq(p.id)}')">Remove</button>` : "";
+      return `<tr><td><span class="status">${icon(lvl)}${txt}</span></td><td>${when(p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc)}</td><td><a href="#post/${encodeURIComponent(p.id)}">${esc(p.title)}</a></td><td>${quick}</td></tr>`;
     }).join("")
   : `<tr><td class="muted">No posts are queued for today yet.</td></tr>`;
+
+// reach per post: one bar per live post, hover for details
+(function reachChart() {
+  const pts = [...live].filter(p => p.reach != null).reverse().slice(-14);
+  if (!pts.length) { $("reach").innerHTML = `<p class="muted">Bars appear once Instagram reports reach for your posts.</p>`; return; }
+  const W = Math.max(300, Math.round($("reach").clientWidth || 880)), H = 190, L = 40, R = 10, T = 12, B = 30;
+  const max = Math.max(...pts.map(p => p.reach), 1), bw = (W - L - R) / pts.length;
+  const y = v => T + (H - T - B) * (1 - v / max);
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Reach per post">`;
+  [0, Math.round(max / 2), max].forEach(t => s += `<line x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--grid)"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end">${nf(t)}</text>`);
+  pts.forEach((p, i) => { const x = L + i * bw + bw * .18, w = bw * .64, h = Math.max(2, (H - T - B) - (y(p.reach) - T));
+    s += `<path d="M${x} ${T + (H - T - B)} v${-h + 4} q0 -4 4 -4 h${w - 8} q4 0 4 4 v${h - 4} z" fill="var(--series-1)" data-i="${i}"/>`; });
+  s += `<text x="${L}" y="${H - 8}">${esc((pts[0].posted_local || "").slice(5, 10))}</text><text x="${W - R}" y="${H - 8}" text-anchor="end">${esc((pts.at(-1).posted_local || "").slice(5, 10))}</text></svg>`;
+  $("reach").innerHTML = s;
+  const tip = $("tip");
+  $("reach").querySelectorAll("path").forEach(el => {
+    const p = pts[+el.dataset.i];
+    el.addEventListener("pointermove", e => { tip.style.display = "block"; tip.style.left = Math.min(e.clientX + 12, innerWidth - 270) + "px"; tip.style.top = (e.clientY - 56) + "px";
+      tip.innerHTML = `<b>${esc((p.title || "").slice(0, 60))}</b><br>${nf(p.reach)} reached &middot; ${nf(p.shares)} shares &middot; ${nf(p.saved)} saves`; });
+    el.addEventListener("pointerleave", () => tip.style.display = "none");
+  });
+})();
 
 $("ftable").innerHTML = `<tr><th>Date</th><th class="n">Followers</th><th class="n">Posts</th></tr>` +
   D.followers.map(f => `<tr><td>${f.date}</td><td class="n">${nf(f.followers)}</td><td class="n">${nf(f.media)}</td></tr>`).join("");
@@ -303,11 +353,11 @@ $("groups").innerHTML = gKeys.length ? gKeys.map(k => `<div class="card scroll" 
   D.groups[k].map(g => `<tr><td>${esc(g.key)}</td><td class="n">${g.n}</td><td class="n">${nf(g.reach)}</td><td class="n">${pct(g.share_rate)}</td><td class="n">${pct(g.save_rate)}</td></tr>`).join("") + `</table></div>`).join("")
   : `<div class="card muted">Not enough posts yet. Comparisons appear once at least 3 posts in a group are older than 48 hours.</div>`;
 
-const sys = D.system;
 const row = (k, v) => `<div><span class="label">${k}</span><b>${v}</b></div>`;
 $("sys").innerHTML =
   row("Publishing", sys.paused ? "Paused" : "On") +
   row("Posts per day", sys.posts_per_day) +
+  row("Spare posts ready", sys.spares_ready + " (prepares " + sys.spares_per_day + " a day)") +
   row("Posting times (New York)", sys.slot_times.join(", ") + " (shifted a few minutes daily)") +
   row("Mac mini last woke the poster", sys.last_mac_ping_utc ? ago(now - new Date(sys.last_mac_ping_utc).getTime()) : "not recorded yet") +
   row("Daily research run", "about " + new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate(), 9, 15)).toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"}) + " your time") +
@@ -316,52 +366,102 @@ $("sys").innerHTML =
   row("Unsplash requests (24 h)", sys.unsplash_used + " of " + sys.unsplash_cap);
 
 // ================= POSTS =================
-const FILTERS = [["all", "All"], ["upcoming", "Scheduled"], ["live", "Live"], ["removed", "Removed / deleted"], ["missed", "Not posted"]];
+const FILTERS = [["all", "All"], ["upcoming", "Scheduled"], ["live", "Live"], ["spares", "Spares"], ["reels", "Reels"], ["removed", "Removed"], ["missed", "Not posted"]];
 let filter = "all";
 function inFilter(p) {
   const [, txt] = postStatus(p);
-  if (filter === "all") return true;
+  if (filter === "all") return !p.parked;
   if (filter === "live") return txt === "Live";
-  if (filter === "upcoming") return ["Scheduled", "Due now", "Overdue", "Posting now"].includes(txt);
-  if (filter === "removed") return txt === "Removed" || txt.startsWith("Deleted");
+  if (filter === "upcoming") return isUpcoming(p);
+  if (filter === "spares") return p.spare && !p.parked && !txt.includes("removed");
+  if (filter === "reels") return !!p.reel;
+  if (filter === "removed") return p.parked || txt === "Removed" || txt.startsWith("Deleted") || txt.includes("(removed)");
   if (filter === "missed") return txt === "Failed" || txt.startsWith("Not posted");
 }
 function drawList() {
   $("filters").innerHTML = FILTERS.map(([k, l]) => `<button class="${k === filter ? "on" : ""}" onclick="filter='${k}';drawList()">${l}</button>`).join("");
-  const items = D.all_posts.filter(inFilter);
-  $("plist").innerHTML = items.length ? items.map(p => {
+  const q = ($("q").value || "").toLowerCase();
+  const items = D.all_posts.filter(p => inFilter(p) && (!q || (p.title || "").toLowerCase().includes(q)))
+    .sort((a, b) => (b.date || "").localeCompare(a.date || "") || ((a.spare ? 1 : 0) - (b.spare ? 1 : 0)) || ((a.slot || 9) - (b.slot || 9)));
+  if (!items.length) { $("plist").innerHTML = `<div class="card muted">Nothing here.</div>`; return; }
+  let html = "", last = "";
+  items.forEach(p => {
+    if (p.date !== last) { last = p.date; html += `<div class="dayhead">${p.date === D.today_date ? "Today" : esc(new Date(p.date + "T12:00:00").toLocaleDateString([], {weekday: "long", month: "short", day: "numeric"}))}</div>`; }
     const [lvl, txt] = postStatus(p), cover = p.slides.length && p.slides[0].image;
     const t = p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc;
-    return `<a class="card pitem" href="#post/${encodeURIComponent(p.id)}">${cover ? `<img src="${esc(thumb(cover))}" loading="lazy" alt="">` : `<div class="noimg"></div>`}
-      <div><div class="t">${esc(p.title)}</div><div class="muted"><span class="status">${icon(lvl)}${txt}</span> &middot; ${t ? when(t) : esc(p.posted_local || p.date)} &middot; ${esc(p.lane || p.category)}</div></div></a>`;
-  }).join("") : `<div class="card muted">Nothing here.</div>`;
+    html += `<a class="card pitem" href="#post/${encodeURIComponent(p.id)}">${cover ? `<img src="${esc(thumb(cover))}" loading="lazy" alt="">` : `<div class="noimg"></div>`}
+      <div><div class="t">${esc(p.title)}${p.reel ? ` <span class="badge reel">Reel${p.reel.status === "posted" ? " live" : ""}</span>` : ""}${p.spare && !p.parked ? ` <span class="badge">spare</span>` : ""}</div>
+      <div class="muted"><span class="status">${icon(lvl)}${txt}</span>${t ? " &middot; " + when(t) : (p.posted_local ? " &middot; " + esc(p.posted_local) : "")} &middot; ${esc(p.lane || p.category)}</div></div></a>`;
+  });
+  $("plist").innerHTML = html;
 }
+
+function toggle(id) { const e = $(id); e.style.display = e.style.display === "none" ? "block" : "none"; }
+function localDefault() { const d = new Date(Date.now() + 3600e3); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 16); }
 
 function showPost(id) {
   const p = D.all_posts.find(x => x.id === id);
   if (!p) { $("pdetail").innerHTML = `<div class="card muted">Post not found. It may be older than 3 weeks.</div>`; return; }
-  const [lvl, txt] = postStatus(p);
-  const upcoming = ["Scheduled", "Due now", "Overdue"].includes(txt);
-  let buttons = "";
-  const canPost = upcoming || txt === "Removed" || txt === "Failed" || txt.startsWith("Not posted") || txt.startsWith("Deleted");
-  if (canPost) buttons += `<button class="btn primary" onclick="if(${upcoming} || confirm('Post this to Instagram now?')) act('post_now','${esc(p.id)}')">Post now</button>`;
-  if (upcoming) buttons += `<button class="btn danger" onclick="if(confirm('Remove this post? It will not be published.')) act('remove','${esc(p.id)}')">Remove</button>`;
-  if (txt === "Removed") buttons += `<button class="btn" onclick="act('restore','${esc(p.id)}')">Restore</button>`;
-  if (txt === "Live") buttons += (p.permalink ? `<a class="btn" href="${esc(p.permalink)}" target="_blank" rel="noopener">Open on Instagram</a>` : "") +
-    `<button class="btn danger" onclick="if(confirm('Delete this post from Instagram? This cannot be undone.')) act('delete_instagram','${esc(p.id)}')">Delete from Instagram</button>`;
-  const st = p.stats;
+  const [lvl, txt] = postStatus(p), liveNow = isLive(p), upcoming = isUpcoming(p);
+  const removed = txt === "Removed" || txt.includes("(removed)"), editable = !liveNow && !p.parked;
+  const q = idq(p.id);
+  let btns = "";
+  if (liveNow) {
+    btns += (p.permalink ? `<a class="btn" href="${esc(p.permalink)}" target="_blank" rel="noopener">Open on Instagram</a>` : "") +
+      `<button class="btn danger" onclick="if(confirm('Delete this post from Instagram? This cannot be undone.')) act('delete_instagram','${q}')">Delete from Instagram</button>`;
+  } else if (p.spare && !p.parked) {
+    const slots = D.all_posts.filter(x => x.date === D.today_date && !x.spare && !x.parked && !isLive(x) && postStatus(x)[1] !== "Removed");
+    btns += slots.length ? `<select id="swapTarget">${slots.map(x => `<option value="${esc(x.id)}">${esc((x.title || "").slice(0, 50))}</option>`).join("")}</select>
+      <button class="btn primary" onclick="act('replace', $('swapTarget').value, '${q}')">Use this spare instead of that post</button>`
+      : `<span class="muted">No scheduled post of today to replace. A spare takes the place of a post you don't want.</span>`;
+    if (!removed) btns += `<button class="btn danger" onclick="act('remove','${q}')">Remove spare</button>`;
+  } else if (editable) {
+    btns += `<button class="btn primary" onclick="if(${upcoming} || confirm('Post this to Instagram now?')) act('post_now','${q}')">Post now</button>`;
+    btns += `<button class="btn" onclick="toggle('resBox')">Reschedule</button>`;
+    if (p.date === D.today_date && !removed) btns += sys.spares_ready > 0 ? `<button class="btn" onclick="act('replace','${q}')">Replace with a spare (${sys.spares_ready} ready)</button>` : `<button class="btn" disabled title="No spare is ready. Turn spares on in the Control tab.">Replace with a spare (none ready)</button>`;
+    btns += removed ? `<button class="btn" onclick="act('restore','${q}')">Restore</button>` : `<button class="btn danger" onclick="if(confirm('Remove this post? It will not be published.')) act('remove','${q}')">Remove</button>`;
+  }
+  const st = p.stats, rs = p.reel_stats;
+  const slidesHtml = p.slides.map((s, i) => `<div class="slide">${s.image ? `<img src="${esc(thumb(s.image))}" loading="lazy" alt="">` : ""}
+      <div class="txt"><div class="k">${i + 1}. ${esc(s.type === "cover" ? (s.kicker || "cover") : s.type === "end" ? "ending" : (s.layout || "text"))}</div>
+      <div id="st${i}">${esc(s.text)}</div>${s.credit ? `<div class="muted" style="font-size:11px;margin-top:4px">${esc(s.credit)}</div>` : ""}
+      ${editable ? `<div><button class="linkbtn" onclick="toggle('se${i}')">Edit text</button><div id="se${i}" style="display:none"><textarea id="sx${i}">${esc(s.text)}</textarea>
+        <button class="btn sm primary" onclick="act('edit_slide','${q}#${i + 1}', $('sx${i}').value)">Save</button></div></div>` : ""}</div></div>`).join("");
+
+  let reelHtml = "";
+  if (!p.spare && p.slides.length) {
+    const r = p.reel;
+    if (!r || r.status === "expired") {
+      reelHtml = `<h2>Reel</h2><div class="card"><p class="muted" style="margin-top:0">${r ? "The old Reel file was cleaned up. " : ""}Make an animated video of this post (about 2 to 3 minutes). It appears here after the page refreshes (up to ~12 minutes).</p>
+        <button class="btn" onclick="makeReel('${q}')">Make Reel</button></div>`;
+    } else {
+      reelHtml = `<h2>Reel <span class="badge reel">${r.status === "posted" ? "live on Instagram" : "made, not posted"}</span></h2><div class="card">
+        ${r.url ? `<video controls playsinline preload="metadata" src="${esc(r.url)}"></video>` : ""}
+        <p class="muted">Made ${when(r.made_at)} &middot; music: ${esc((r.music || "none").replace(".ogg", ""))}</p>
+        <div class="actions">${r.status === "posted" ? (r.permalink ? `<a class="btn" href="${esc(r.permalink)}" target="_blank" rel="noopener">Open Reel on Instagram</a>` : "") :
+          `<button class="btn primary" onclick="if(confirm('Post this Reel to Instagram now?')) act('post_reel','${q}')">Post this Reel</button><button class="btn" onclick="makeReel('${q}')">Make it again</button>`}</div>
+        ${rs ? `<table><tr><th class="n">Views</th><th class="n">Reach</th><th class="n">Likes</th><th class="n">Shares</th><th class="n">Saves</th></tr><tr><td class="n">${nf(rs.views)}</td><td class="n">${nf(rs.reach)}</td><td class="n">${nf(rs.likes)}</td><td class="n">${nf(rs.shares)}</td><td class="n">${nf(rs.saved)}</td></tr></table>` : ""}</div>`;
+    }
+  }
+
   $("pdetail").innerHTML = `
     <h1 style="font-size:22px;margin:4px 0 6px">${esc(p.title)}</h1>
-    <div class="muted"><span class="status">${icon(lvl)}${txt}</span> &middot; ${p.status === "posted" && p.posted_at ? "posted " + when(p.posted_at) : (p.scheduled_utc ? "time slot " + when(p.scheduled_utc) : esc(p.posted_local || ""))}
+    <div class="muted"><span class="status">${icon(lvl)}${txt}</span> &middot; ${p.status === "posted" && p.posted_at ? "posted " + when(p.posted_at) : (p.scheduled_utc ? "time " + when(p.scheduled_utc) : esc(p.posted_local || ""))}
       &middot; ${esc(p.lane || "")} ${esc(p.category || "")} &middot; <span title="post id">${esc(p.id)}</span></div>
-    ${p.error ? `<p class="muted">Problem: ${esc(p.error)}</p>` : ""}
-    <div class="actions">${buttons}</div>
+    ${p.error ? `<p class="muted">Problem: ${esc(p.error)}</p>` : ""}${p.replaced_by ? `<p class="muted">Replaced by the spare <a href="#post/${encodeURIComponent(p.replaced_by)}">${esc(p.replaced_by)}</a>.</p>` : ""}
+    <div class="actions">${btns}</div>
+    <div id="resBox" class="card panel" style="display:none"><div class="row"><input type="datetime-local" id="resTime" value="${localDefault()}">
+      <button class="btn primary" onclick="act('reschedule','${q}', new Date($('resTime').value).toISOString())">Set this time</button>
+      <button class="btn" onclick="act('reschedule','${q}','')">Back to normal time</button></div>
+      <p class="muted" style="margin-bottom:0">Your clock. It goes out at the first check after that time (checks run every 10 minutes).</p></div>
     ${st ? `<h2>Results</h2><div class="card scroll"><table><tr><th class="n">Reach</th><th class="n">Likes</th><th class="n">Comments</th><th class="n">Shares</th><th class="n">Saves</th><th class="n">Shares/reach</th></tr>
       <tr><td class="n">${nf(st.reach)}</td><td class="n">${nf(st.likes)}</td><td class="n">${nf(st.comments)}</td><td class="n">${nf(st.shares)}</td><td class="n">${nf(st.saved)}</td><td class="n">${pct(st.share_rate)}</td></tr></table></div>` : ""}
-    ${p.slides.length ? `<h2>Slides (${p.slides.length})</h2><div class="slides">${p.slides.map((s, i) => `<div class="slide">${s.image ? `<img src="${esc(thumb(s.image))}" loading="lazy" alt="">` : ""}
-        <div class="txt"><div class="k">${i + 1}. ${esc(s.type === "cover" ? (s.kicker || "cover") : s.type === "end" ? "ending" : (s.layout || "text"))}</div>${esc(s.text)}${s.credit ? `<div class="muted" style="font-size:11px;margin-top:4px">${esc(s.credit)}</div>` : ""}</div></div>`).join("")}</div>
-      <p class="muted">Pictures are shown here without the text overlay; the real slides add the text and your handle.</p>` : `<p class="muted">The full content of this early post isn't stored.</p>`}
-    ${p.caption ? `<h2>Caption</h2><div class="card cap">${esc(p.caption)}\n\n${esc((p.hashtags || []).join(" "))}</div>` : ""}
+    ${p.slides.length ? `<h2>Slides (${p.slides.length})</h2><div class="slides">${slidesHtml}</div>
+      <p class="muted">Pictures are shown without the text overlay; the real slides add the text and your handle.</p>` : `<p class="muted">The full content of this early post isn't stored.</p>`}
+    ${reelHtml}
+    ${p.caption ? `<h2>Caption</h2><div class="card"><div class="cap" id="capShow">${esc(p.caption)}\n\n${esc((p.hashtags || []).join(" "))}</div>
+      ${editable ? `<div><button class="linkbtn" onclick="toggle('capEditBox')">Edit caption</button><div id="capEditBox" style="display:none"><textarea id="capEdit" rows="12" oninput="$('capCount').textContent=this.value.length">${esc(p.caption)}</textarea>
+        <div class="row"><button class="btn primary" onclick="act('edit_caption','${q}', $('capEdit').value)">Save caption</button><span class="muted"><span id="capCount">${p.caption.length}</span> characters (700 to 1,500 works best)</span></div></div></div>` : ""}</div>` : ""}
     ${p.sources && p.sources.length ? `<h2>Sources</h2><div class="card">${p.sources.map(s => `<div><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a></div>`).join("")}${p.verification ? `<p class="muted">${esc(p.verification)}</p>` : ""}</div>` : ""}`;
 }
 
@@ -373,7 +473,7 @@ function drawKey() {
     ? `<div class="row">${icon("good")}<b>Buttons are connected.</b> <button class="btn" style="margin-left:auto" onclick="localStorage.removeItem(KEY);drawKey()">Forget key</button></div>`
     : `<b>Connect the buttons (one time, on each phone or computer)</b>
        <ol class="muted" style="padding-left:18px;margin:8px 0">
-         <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a>.</li>
+         <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> (logged in as <b>amirpz04</b>).</li>
          <li>Name it "control panel", pick an expiration (for example 1 year).</li>
          <li>Repository access: <b>Only select repositories</b> &rarr; <b>story-autopilot</b>.</li>
          <li>Permissions &rarr; Repository permissions &rarr; <b>Actions: Read and write</b>. Nothing else.</li>
@@ -396,11 +496,11 @@ async function dispatch(workflow, inputs) {
   } catch (e) { toast("Couldn't reach GitHub: " + e.message, 9000); }
   return false;
 }
-async function act(action, target) {
-  if (await dispatch("control.yml", {action, target: target || ""})) { toast("Done. It applies in about a minute; see Recent jobs on the Control page.", 8000); setTimeout(loadRuns, 4000); }
+async function act(action, target, text) {
+  if (await dispatch("control.yml", {action, target: target || "", text: text || ""})) { toast("Sent. It applies in about a minute; see Recent jobs and the action log on the Control page for the result.", 9000); setTimeout(loadRuns, 4000); }
 }
+async function makeReel(id) { if (await dispatch("reel.yml", {post_id: id})) toast("Making the Reel (2 to 3 minutes). It shows up on this page after the next refresh.", 9000); }
 async function runWf(file, label) { if (await dispatch(file)) { toast(label + "... it runs in the next minute.", 7000); setTimeout(loadRuns, 4000); } }
-const NAMES = {"publish.yml": "Publish", "stats.yml": "Statistics", "preview.yml": "Preview", "watchdog.yml": "Watchdog", "control.yml": "Control"};
 async function loadRuns() {
   try {
     const r = await gh("/actions/runs?per_page=15");
@@ -408,13 +508,15 @@ async function loadRuns() {
     if (!j.workflow_runs) throw new Error(j.message || "no data");
     $("runs").innerHTML = `<tr><th>Job</th><th>Started</th><th>Result</th></tr>` + j.workflow_runs.map(w => {
       const res = w.status !== "completed" ? ["warning", w.status === "queued" ? "Waiting" : "Running"] : w.conclusion === "success" ? ["good", "OK"] : w.conclusion === "skipped" || w.conclusion === "cancelled" ? ["neutral", w.conclusion] : ["critical", "Failed"];
-      const name = w.name === "Control" ? w.display_title : (w.name + (w.event === "workflow_dispatch" ? "" : " (" + w.event + ")"));
+      const name = (w.name === "Control" || w.name === "Reel") ? w.display_title : (w.name + (w.event === "workflow_dispatch" ? "" : " (" + w.event + ")"));
       return `<tr><td><a href="${esc(w.html_url)}" target="_blank" rel="noopener">${esc(name)}</a></td><td>${ago(Date.now() - new Date(w.created_at).getTime())}</td><td><span class="status">${icon(res[0])}${esc(res[1])}</span></td></tr>`;
     }).join("");
   } catch (e) { $("runs").innerHTML = `<tr><td class="muted">Couldn't load jobs (${esc(e.message)}).</td></tr>`; }
 }
 $("pubstate").textContent = sys.paused ? "Posting is paused." : "Posting is on.";
 $("ppd").value = String(sys.posts_per_day);
+$("spd").value = String(sys.spares_per_day);
+$("sparesReady").textContent = sys.spares_ready + " spare" + (sys.spares_ready === 1 ? "" : "s") + " ready now";
 $("routineLink").href = D.routine_url;
 $("clog").innerHTML = D.control_log.length ? `<tr><th>When</th><th>Action</th><th>Result</th></tr>` + D.control_log.map(c =>
   `<tr><td>${ago(now - new Date(c.at).getTime())}</td><td>${esc(c.action)} ${esc(c.target)}</td><td>${esc(c.result)}</td></tr>`).join("")

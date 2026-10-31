@@ -69,6 +69,18 @@ commit, push to `main` (goes live immediately). For publisher changes set `pause
 - Still to do: publish as a Reel (media_type REELS with a public video_url; untested, needs a host Instagram accepts), schedule Reel slots, add a `format` tag
   and a Reels view to the dashboard, wire rendering into a workflow.
 
+## Control panel v2 (Nov 1 2026)
+Dashboard tabs: Overview (alerts, tiles, today's posts with quick buttons, reach chart, followers), Posts (search, filters, per-post page with slides, caption, sources,
+results, Reel), Control. Buttons start workflows with a GitHub key in the browser: `control.yml` (`scripts/control.py`: remove/restore any non-live post, post_now,
+reschedule (`post_at` in state/posted.json), replace (swap in a spare; old post parked in folder `NN-replaced`), edit_caption, edit_slide `ID#N`, posts_per_day,
+spares_per_day, delete_instagram, post_reel) and `reel.yml` (`scripts/reel_job.py`: renders a Reel on GitHub, stores it on the orphan `reels` branch, newest 12 kept,
+records `state/reels.json`). Edits are refused only if they add a new `validate.py` error.
+**Spares:** config `spares_per_day` (default 1): the research run writes finished posts to `queue/<date>/s1` with `"spare": true, "slot": null`; the publisher never posts
+spares; `replace` moves one into a scheduled slot. They cost extra Claude usage.
+**Reel hosting (tested Oct 31 with real containers, nothing published):** Instagram fetched and processed an mp4 from both raw.githubusercontent.com and jsDelivr
+(`cdn.jsdelivr.net/gh/<repo>@<sha>/<file>`, video/mp4, 20 MB limit, used for dashboard playback). `post_reel` (REELS container, share_to_feed) is written but has not
+yet published a live Reel. Reels are not yet automatic: owner presses Make Reel and Post this Reel.
+
 ## Request safety (audited Oct 31 2026)
 Only ~2 of ~130 daily Publish runs touch Instagram (only when a post is due). If Instagram refuses a request, `publish.py` backs off (30 min, then 1 h, 2 h, up to 4 h;
 `state/api_health.json`) and the dashboard shows it. `stats.py` skips posts older than 30 days. A temporary "API access blocked" (code 200) from Meta appeared once

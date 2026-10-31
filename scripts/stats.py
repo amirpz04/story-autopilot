@@ -64,14 +64,14 @@ def collect(config):
     now = datetime.now(timezone.utc)
     posts = load_posts()
     media = graph(user + "/media", config, limit=50,
-                  fields="id,caption,timestamp,permalink,media_type,like_count,comments_count")["data"]
+                  fields="id,caption,timestamp,permalink,media_type,media_product_type,like_count,comments_count")["data"]
     entries = []
     for m in media:
         caption = (m.get("caption") or "").strip()
         post = next((p for p in posts if caption.startswith(p["caption"].strip()[:60])), None)
         when = datetime.strptime(m["timestamp"], "%Y-%m-%dT%H:%M:%S%z")
         entry = {
-            "media_id": m["id"], "permalink": m.get("permalink"),
+            "media_id": m["id"], "permalink": m.get("permalink"), "kind": "reel" if m.get("media_product_type") == "REELS" else "post",
             "id": post["id"] if post else None,
             "title": post["title"] if post else caption[:60],
             "category": post.get("category") if post else None,
