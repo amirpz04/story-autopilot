@@ -1,12 +1,6 @@
-# Music for Reels (free to use)
+# Music for Reels
 
-| File | Track | Licence | Credit needed |
-|---|---|---|---|
-| satie-gymnopedie-1.ogg | Erik Satie, Gymnopedie No. 1 (recording by Robin Alciatore) | Public domain | none |
-| macleod-isolated.ogg | Kevin MacLeod, "Isolated" (incompetech.com) | CC BY 3.0 | "Music: Kevin MacLeod (incompetech.com), CC BY 3.0" |
-| macleod-anachronist.ogg | Kevin MacLeod, "Anachronist" (incompetech.com) | CC BY 3.0 | same |
-| macleod-rites.ogg / macleod-narcissus.ogg / macleod-ritual.ogg | Kevin MacLeod, "Rites", "Narcissus", "Ritual" | CC BY 3.0 | same |
-
-To remove a song you dislike, delete its .ogg file. credits.json says which tracks need a credit line.
-Source: Wikimedia Commons. Instagram's own music library can't be used through the API.
-Meta's copyright system can occasionally flag even free tracks; if a Reel is muted or claimed, switch tracks.
+`music.json` lists every track (title, credit line for the caption, license, source). Manage the list from the dashboard's **Music** tab
+(listen, add by link, remove). Files are AAC `.m4a` so they play on every phone. Instagram's own music library can't be used through the API.
+Only add music you are allowed to use (public domain, CC0, or CC BY with the credit line filled in). Meta's copyright system can still flag
+free tracks occasionally; if a Reel is muted or claimed, remove that track.

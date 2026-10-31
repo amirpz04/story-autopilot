@@ -49,6 +49,18 @@ def record_mac_ping(now):
     return ping.get("last_dispatch_utc")
 
 
+def music_list():
+    meta = read_json(ROOT / "assets" / "music" / "music.json", {})
+    out = []
+    for name, m in sorted(meta.items(), key=lambda kv: kv[1].get("added", ""), reverse=True):
+        if (ROOT / "assets" / "music" / name).exists():
+            out.append(dict(m, file=name, url="https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@main/assets/music/" + name))
+    used = read_json(ROOT / "state" / "music_log.json", [])
+    for m in out:
+        m["uses"] = sum(1 for u in used if Path(u).stem == Path(m["file"]).stem)
+    return out
+
+
 def build(now):
     config = publish.load_config()
     tz = ZoneInfo(config["timezone"])
@@ -166,7 +178,7 @@ def build(now):
     return {
         "account": config.get("account_name", "Account") + " " + config.get("handle", ""),
         "today_date": today.isoformat(), "today": today_posts, "posts": posts, "groups": groups,
-        "all_posts": all_posts, "control_log": read_json(ROOT / "state" / "control_log.json", [])[:20],
+        "music": music_list(), "all_posts": all_posts, "control_log": read_json(ROOT / "state" / "control_log.json", [])[:20],
         "repo": os.environ.get("GITHUB_REPOSITORY", "amirpz04/story-autopilot"),
         "routine_url": "https://claude.ai/code/routines/trig_015p8XY87MCPiPaEgKXrXyxf",
         "mature_count": len(mature), "followers": followers, "alerts": alerts,

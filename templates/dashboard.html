@@ -103,6 +103,7 @@
   <nav>
     <a href="#overview" data-v="overview">Overview</a>
     <a href="#posts" data-v="posts">Posts</a>
+    <a href="#music" data-v="music">Music</a>
     <a href="#control" data-v="control">Control</a>
   </nav>
 
@@ -140,6 +141,32 @@
   <section class="view" id="v-post">
     <p><a href="#posts">&larr; All posts</a></p>
     <div id="pdetail"></div>
+  </section>
+
+  <!-- ================= MUSIC ================= -->
+  <section class="view" id="v-music">
+    <p class="muted" style="margin:12px 0 0">Songs the Reel maker picks from. Each new Reel uses a song that wasn't used in the last few Reels.
+      Instagram's own music library can't be used by automation.</p>
+    <h2>Songs <span class="muted" id="musicCount"></span></h2>
+    <div id="mlist"></div>
+    <h2>Add a song</h2>
+    <div class="card">
+      <div class="row" style="flex-direction:column;align-items:stretch">
+        <input id="mUrl" type="url" placeholder="Direct link to an audio file (https://...mp3 / .ogg / .wav / .m4a)">
+        <input id="mTitle" type="text" placeholder="Title (for example: Calm Piano, by Someone)">
+        <input id="mCredit" type="text" placeholder="Credit line for the caption (leave empty if none is needed)">
+        <input id="mLicense" type="text" placeholder="License (for example: CC BY 4.0, public domain, CC0)">
+        <div><button class="btn primary" onclick="addMusic()">Add song</button></div>
+      </div>
+      <p class="muted">The system downloads the file and converts it, which takes about a minute. It appears here after the page refreshes (up to ~12 minutes).</p>
+      <details><summary>Where to find music you're allowed to use</summary>
+        <p class="muted"><b>Only add music you have the right to use.</b> Safe places: <a href="https://commons.wikimedia.org/wiki/Category:Audio_files" target="_blank" rel="noopener">Wikimedia Commons audio</a>
+        (open a file, copy the "Original file" link), <a href="https://incompetech.com/music/royalty-free/music.html" target="_blank" rel="noopener">incompetech.com</a> (Kevin MacLeod, CC BY: credit needed),
+        <a href="https://freemusicarchive.org/" target="_blank" rel="noopener">Free Music Archive</a> (check each song's license) and
+        <a href="https://pixabay.com/music/" target="_blank" rel="noopener">Pixabay Music</a> (no credit needed, but its site blocks automatic downloads, so download the file yourself and host it somewhere with a direct link).
+        If the license says "CC BY", paste the credit line it asks for. If it says "NonCommercial" or "No Derivatives", don't use it.
+        Even free songs are sometimes flagged by Instagram's copyright system; if a Reel gets muted, remove that song.</p></details>
+    </div>
   </section>
 
   <!-- ================= CONTROL ================= -->
@@ -497,7 +524,27 @@ async function dispatch(workflow, inputs) {
   return false;
 }
 async function act(action, target, text) {
-  if (await dispatch("control.yml", {action, target: target || "", text: text || ""})) { toast("Sent. It applies in about a minute; see Recent jobs and the action log on the Control page for the result.", 9000); setTimeout(loadRuns, 4000); }
+  if (await dispatch("control.yml", {action, target: target || "", text: text || ""})) { toast("Sent. It applies in about a minute; see Recent jobs and the action log on the Control page for the result.", 9000); setTimeout(loadRuns, 4000); return true; }
+  return false;
+}
+const mins = s => Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
+function drawMusic() {
+  const list = D.music || [];
+  $("musicCount").textContent = "(" + list.length + ")";
+  $("mlist").innerHTML = list.length ? list.map(m => `<div class="card" style="margin-bottom:8px">
+      <div class="row" style="justify-content:space-between"><div><b>${esc(m.title)}</b><div class="muted">${mins(m.duration)} &middot; ${esc(m.license)} &middot; used in ${m.uses} recent Reel${m.uses === 1 ? "" : "s"}${m.credit ? "" : " &middot; no credit needed"}</div></div>
+        <button class="btn sm danger" onclick="if(confirm('Remove this song? Reels will stop using it.')) act('remove_music','${esc(m.file)}')">Remove</button></div>
+      <audio controls preload="none" src="${esc(m.url)}" style="width:100%;margin-top:8px"></audio>
+      ${m.credit ? `<div class="muted" style="margin-top:6px">Caption credit: ${esc(m.credit)}</div>` : ""}
+      ${m.source ? `<div class="muted"><a href="${esc(m.source)}" target="_blank" rel="noopener">Source</a></div>` : ""}</div>`).join("")
+    : `<div class="card muted">No songs yet. Reels will be silent until you add one.</div>`;
+}
+function addMusic() {
+  const url = $("mUrl").value.trim(), title = $("mTitle").value.trim(), credit = $("mCredit").value.trim(), lic = $("mLicense").value.trim();
+  if (!url) { toast("Paste a link to an audio file first."); return; }
+  if (!title) { toast("Give the song a title."); return; }
+  if (!lic) { toast("Write the license (or 'public domain'). Only add music you may use."); return; }
+  act("add_music", url, [title, credit, lic].join(" | ")).then(() => { $("mUrl").value = ""; $("mTitle").value = ""; $("mCredit").value = ""; $("mLicense").value = ""; });
 }
 async function makeReel(id) { if (await dispatch("reel.yml", {post_id: id})) toast("Making the Reel (2 to 3 minutes). It shows up on this page after the next refresh.", 9000); }
 async function runWf(file, label) { if (await dispatch(file)) { toast(label + "... it runs in the next minute.", 7000); setTimeout(loadRuns, 4000); } }
@@ -522,7 +569,7 @@ $("clog").innerHTML = D.control_log.length ? `<tr><th>When</th><th>Action</th><t
   `<tr><td>${ago(now - new Date(c.at).getTime())}</td><td>${esc(c.action)} ${esc(c.target)}</td><td>${esc(c.result)}</td></tr>`).join("")
   : `<tr><td class="muted">No actions yet.</td></tr>`;
 
-drawKey(); drawList(); route(); drawChart();
+drawKey(); drawList(); drawMusic(); route(); drawChart();
 </script>
 </body>
 </html>

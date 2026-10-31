@@ -32,18 +32,18 @@ def pick_music(log_path=MUSIC_LOG):
 
     Returns (path or None, credit line to put in the caption, or "").
     """
-    tracks = sorted(MUSIC_DIR.glob("*.ogg"))
+    tracks = sorted(t for t in MUSIC_DIR.iterdir() if t.suffix in (".m4a", ".mp3", ".ogg", ".wav"))
     if not tracks:
         return None, ""
     try:
         used = json.loads(Path(log_path).read_text())
     except Exception:
         used = []
-    recent = used[-(len(tracks) - 1):] if len(tracks) > 1 else []
-    choice = random.choice([t for t in tracks if t.name not in recent] or tracks)
+    recent = [Path(u).stem for u in used[-(len(tracks) - 1):]] if len(tracks) > 1 else []
+    choice = random.choice([t for t in tracks if t.stem not in recent] or tracks)
     Path(log_path).write_text(json.dumps((used + [choice.name])[-30:]) + "\n")
     try:
-        credit = json.loads((MUSIC_DIR / "credits.json").read_text()).get(choice.name, "")
+        credit = json.loads((MUSIC_DIR / "music.json").read_text()).get(choice.name, {}).get("credit", "")
     except Exception:
         credit = ""
     return choice, credit

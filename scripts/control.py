@@ -14,6 +14,8 @@ Usage: python scripts/control.py ACTION [TARGET] [TEXT]     (TEXT may also come 
   spares_per_day N               0-3 extra spare posts the research run prepares each day (uses more Claude usage)
   delete_instagram POST_ID       delete a live post from Instagram (the whole carousel)
   post_reel POST_ID              publish the Reel that was made for this post
+  add_music URL  TEXT            add a song from a direct link; TEXT = "title | credit line for the caption (empty if none needed) | license"
+  remove_music FILE              delete a song from the music list
   refresh_dashboard              just rebuild the dashboard
 
 Every action is written to state/control_log.json, which the dashboard shows. This script never exits with an
@@ -153,6 +155,66 @@ def edit_post(post_id, change, config, posted):
     return "Saved."
 
 
+MUSIC = ROOT / "assets" / "music"
+MAX_MUSIC_BYTES = 40_000_000
+
+
+def add_music(url, text):
+    import re
+    import subprocess
+    import tempfile
+    from urllib.parse import urlparse
+    if not url.startswith("https://"):
+        return "The link must start with https:// and point straight to an audio file (.mp3, .ogg, .wav, .m4a)."
+    parts = [p.strip() for p in (text or "").split("|")]
+    title, credit, lic = (parts + ["", "", ""])[:3]
+    stem = Path(urlparse(url).path).stem
+    title = title or re.sub(r"[_\-]+", " ", stem).strip()[:60] or "Untitled"
+    slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")[:40] or "track"
+    out = MUSIC / (slug + ".m4a")
+    if out.exists():
+        return "A song named %s already exists. Pick another title." % out.name
+    tmp = Path(tempfile.mkdtemp()) / "src"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "StoryAccountBot/1.0 (music)"})
+        with urllib.request.urlopen(req, timeout=90) as resp:
+            data = resp.read(MAX_MUSIC_BYTES + 1)
+    except Exception as exc:
+        return "Couldn't download that link: %s" % str(exc)[:120]
+    if len(data) > MAX_MUSIC_BYTES:
+        return "That file is larger than 40 MB."
+    tmp.write_bytes(data)
+    probe = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration:stream=codec_type", "-of", "json", str(tmp)], capture_output=True, text=True)
+    try:
+        info = json.loads(probe.stdout)
+        seconds = float(info["format"]["duration"])
+        assert any(st.get("codec_type") == "audio" for st in info["streams"])
+    except Exception:
+        return "That link isn't an audio file I can read."
+    if seconds < 20:
+        return "That track is only %d seconds; Reels need at least 20." % seconds
+    done = subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(tmp), "-vn", "-c:a", "aac", "-b:a", "128k", str(out)], capture_output=True, text=True)
+    if done.returncode != 0:
+        return "Couldn't convert that file: %s" % done.stderr[-120:]
+    meta = load(MUSIC / "music.json", {})
+    meta[out.name] = {"title": title, "credit": credit, "license": lic or "not stated", "source": url, "duration": round(seconds),
+                      "added": datetime.now(timezone.utc).strftime("%Y-%m-%d")}
+    save(MUSIC / "music.json", meta)
+    return "Added %r (%d s). %s" % (title, seconds, "Its credit line will go in the caption of Reels that use it." if credit else "No credit line needed.")
+
+
+def remove_music(name):
+    meta = load(MUSIC / "music.json", {})
+    path = MUSIC / Path(name).name
+    if path.name not in meta and not path.exists():
+        return "No such song."
+    path.unlink(missing_ok=True)
+    meta.pop(path.name, None)
+    save(MUSIC / "music.json", meta)
+    left = len(meta)
+    return "Removed %s. %d song%s left%s." % (path.name, left, "" if left == 1 else "s", "; Reels will be silent until you add one" if not left else "")
+
+
 def run(action, target, text):
     config = load(CONFIG, {})
     posted = load(POSTED, {})
@@ -181,6 +243,10 @@ def run(action, target, text):
 
     if action == "refresh_dashboard":
         return "Dashboard rebuilt."
+    if action == "add_music":
+        return add_music(target, text)
+    if action == "remove_music":
+        return remove_music(target) if target else "No song was given."
 
     if action not in ("remove", "restore", "post_now", "reschedule", "replace", "edit_caption", "edit_slide", "delete_instagram", "post_reel"):
         return "Unknown action %r." % action

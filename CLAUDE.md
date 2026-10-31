@@ -64,7 +64,7 @@ commit, push to `main` (goes live immediately). For publisher changes set `pause
 ## Reel system (built Oct 31 2026, NOT yet wired into the daily automation)
 - `scripts/make_reel.py <post_dir> [out.mp4] [music.ogg | auto]` turns a queued post into an animated vertical video using the same photos and text
   (`templates/reel.html`: camera moves on photos, word-by-word text, fades, progress bars). Renders frames in Playwright then encodes with ffmpeg (~1 min, free).
-- Music: `assets/music/*.ogg` (public domain + Kevin MacLeod CC BY 3.0; `credits.json` lists the caption credit line a track needs). `auto` rotates
+- Music: `assets/music/*.m4a` (AAC so phones can play them) with `music.json` (title, caption credit line, license, source). Managed from the dashboard's **Music** tab (listen, add by direct link, remove) via control actions `add_music` / `remove_music`. `auto` rotates
   so a song never repeats within the last 5 (`state/music_log.json`). Instagram's own music library cannot be used through the API (Meta docs).
 - Still to do: publish as a Reel (media_type REELS with a public video_url; untested, needs a host Instagram accepts), schedule Reel slots, add a `format` tag
   and a Reels view to the dashboard, wire rendering into a workflow.

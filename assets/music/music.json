@@ -1,0 +1,50 @@
+{
+  "satie-gymnopedie-1.m4a": {
+    "title": "Gymnopedie No. 1 (Erik Satie)",
+    "credit": "",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Erik_Satie_-_gymnopedies_-_la_1_ere._lent_et_douloureux.ogg",
+    "duration": 184,
+    "added": "2026-10-31"
+  },
+  "macleod-isolated.m4a": {
+    "title": "Isolated (Kevin MacLeod)",
+    "credit": "Music: Kevin MacLeod (incompetech.com), CC BY 3.0",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kevin_MacLeod_-_Isolated.ogg",
+    "duration": 64,
+    "added": "2026-10-31"
+  },
+  "macleod-anachronist.m4a": {
+    "title": "Anachronist (Kevin MacLeod)",
+    "credit": "Music: Kevin MacLeod (incompetech.com), CC BY 3.0",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kevin_MacLeod_-_Anachronist.ogg",
+    "duration": 42,
+    "added": "2026-10-31"
+  },
+  "macleod-rites.m4a": {
+    "title": "Rites (Kevin MacLeod)",
+    "credit": "Music: Kevin MacLeod (incompetech.com), CC BY 3.0",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kevin_MacLeod_-_Rites.ogg",
+    "duration": 127,
+    "added": "2026-10-31"
+  },
+  "macleod-narcissus.m4a": {
+    "title": "Narcissus (Kevin MacLeod)",
+    "credit": "Music: Kevin MacLeod (incompetech.com), CC BY 3.0",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kevin_MacLeod_-_Narcissus.ogg",
+    "duration": 127,
+    "added": "2026-10-31"
+  },
+  "macleod-ritual.m4a": {
+    "title": "Ritual (Kevin MacLeod)",
+    "credit": "Music: Kevin MacLeod (incompetech.com), CC BY 3.0",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kevin_MacLeod_-_Ritual.ogg",
+    "duration": 264,
+    "added": "2026-10-31"
+  }
+}
