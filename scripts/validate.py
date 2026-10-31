@@ -74,7 +74,7 @@ def final_problems(post):
             if run == 2:
                 problems.append("slides %d-%d have no picture, two plain slides in a row" % (i - 1, i))
     if len(urls) < 3:
-        problems.append("only %d real pictures after photo lookup; at least 3 are needed" % len(urls))
+        problems.append("only %d slides have a picture (direct image url); at least 3 are needed" % len(urls))
     if len(set(urls)) < len(urls):
         problems.append("the same picture is used on more than one slide")
     return problems
@@ -103,16 +103,10 @@ def check_post(path, config):
     slides = post["slides"]
     if not 4 <= len(slides) <= 5:
         errors.append("needs 4-5 slides, has %d" % len(slides))
-    has_pic = [bool(sl.get("image")) for sl in slides]
-    if sum(has_pic) < 3:
-        errors.append("only %d slides have a picture; at least 3 are needed" % sum(has_pic))
-    run = 0
-    for i, (sl, pic) in enumerate(zip(slides, has_pic), 1):
-        run = run + 1 if (not pic and sl.get("type") == "text") else 0
-        if run >= 2:
-            errors.append("slides %d-%d are all text-only; put a picture on at least every second slide" % (i - 1, i))
-            break
+    errors += final_problems(post)
     for i, sl in enumerate(slides, 1):
+        if (sl.get("image") or {}).get("search") and not sl["image"].get("url"):
+            errors.append("slide %d: stock 'search' pictures are not used any more; give a direct image url" % i)
         if sl.get("layout") not in (None, "split", "full"):
             errors.append("slide %d: layout must be 'split' or 'full'" % i)
     if slides and slides[0].get("type") != "cover":
@@ -158,8 +152,7 @@ def check_post(path, config):
 
 
 def main():
-    final = "--final" in sys.argv
-    day_dir = Path([a for a in sys.argv[1:] if not a.startswith("--")][0])
+    day_dir = Path(sys.argv[1])
     config = json.loads((ROOT / "config.json").read_text())
     posts = sorted(day_dir.glob("*/post.json"))
     if not posts:
@@ -169,7 +162,7 @@ def main():
     failed = False
     slots = {}
     for path in posts:
-        errors = final_problems(json.loads(path.read_text())) if final else check_post(path, config)
+        errors = check_post(path, config)
         try:
             slot = json.loads(path.read_text()).get("slot")
             if slot in slots:

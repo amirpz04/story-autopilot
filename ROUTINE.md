@@ -100,33 +100,24 @@ The post needs real, legally usable images where possible. In order of preferenc
 Do not use photos copied from news articles or social media unless their license
 allows it. Every direct image needs a `credit`.
 
-**Real pictures first; stock is only the filler.** After you finish, a final check
-rejects (and never publishes) any post with fewer than 3 real pictures once the
-stock lookup is done, or that uses the same picture twice. Stock lookups often
-find nothing, so don't depend on them: get direct image URLs (agency, Wikimedia
-Commons, the study's or company's own press images) for at least 2 slides, the cover
-first, and use a different subject in every stock search.
-
-**No real photo? Use a stock photo.** A good story is never dropped for lack of
-images. Instead of a `url`, give a `search` describing a generic scene that fits
-the story's mood, and the renderer finds a sharp stock photo on Unsplash and
-writes the credit itself:
-
-```json
-"image": {"search": "scientist holding test tubes in a laboratory"}
-```
-
-Good searches are concrete and visual: "rescue dog wrapped in a blanket",
-"old man smiling at a graduation ceremony", "night sky full of stars over mountains",
-"hospital corridor", "pile of cash on a table". Stock photos must never pretend to be the
-real people or place: no searches for named people, and avoid scenes that
-suggest something false (e.g. a police car for a story with no police).
-Mix: use the real photo where you have one and stock for the rest. Stock photos
-are limited (about 15 per hour), so use at most 4 stock searches per post and put
-them on the slides that matter most (the cover first).
+**Getting the pictures right is your job, and nothing downstream will fix it.** The
+publisher simply posts what you queue, so a weak picture goes out exactly as you left it.
+- Use only direct image URLs. The old `search` stock lookups are switched off.
+- Every post needs at least 3 real, sharp, relevant pictures (4 if possible), a different
+  picture on every slide, and the cover should show the real subject whenever possible.
+- For stories without official images (animals, plants, places, science), use Wikimedia
+  Commons: it has good free photos of nearly everything. Use the search recipe below and pick
+  images that clearly match what the slide says.
+- Run `python3 scripts/check_images.py queue/<date>`. It downloads every picture, prints its
+  real size, warns about any that are too small or repeated, and saves copies in
+  `/tmp/imgcheck/`. **Then open each saved copy with the Read tool and look at it:** does it match the
+  slide, is it sharp, free of text banners, watermarks and screenshots, and different from the
+  other slides? Replace anything weak.
+- If you can't find 3 good pictures for a story, drop it and choose another. A clean text
+  slide is better than a wrong or murky photo, but never two text slides in a row.
 
 Use only direct image URLs ending in .jpg, .jpeg, .png or .webp that load without a login.
-Images must be at least 1200 pixels wide (use `iiurlwidth=1600` on Wikimedia). The
+Images must be at least 2000 pixels wide for cover and full-photo slides (use `iiurlwidth=2400` on Wikimedia).
 renderer drops any photo that would need enlarging by more than 25%, because it would look soft.
 
 An illustrative image must never contradict the story (a red octopus on a post
@@ -135,7 +126,7 @@ cover image isn't the actual subject, say so in the credit ("Illustrative photo:
 
 To search Wikimedia Commons quickly, fetch this URL (replace `QUERY`). It returns
 resized image URLs (`thumburl`) plus author and license for the credit:
-`https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch=QUERY%20filetype:bitmap&gsrnamespace=6&gsrlimit=8&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=1600&iiextmetadatafilter=Artist|LicenseShortName&format=json`
+`https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch=QUERY%20filetype:bitmap&gsrnamespace=6&gsrlimit=8&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=2400&iiextmetadatafilter=Artist|LicenseShortName&format=json`
 
 ## 6. Write the post
 
@@ -199,7 +190,7 @@ Write each post as `queue/<date>/<NN>/post.json`:
   "slides": [
     {"type": "cover", "kicker": "SPACE", "headline": "...", "image": {"url": "https://upload.wikimedia.org/...", "credit": "Photo: Jane Doe / Wikimedia Commons, CC BY-SA 4.0"}},
     {"type": "text", "text": "...", "image": {"url": "...", "credit": "..."}},
-    {"type": "text", "text": "...", "image": {"search": "rescue dog wrapped in a blanket"}},
+    {"type": "text", "text": "...", "layout": "split", "image": {"url": "https://upload.wikimedia.org/...", "credit": "Photo: Jane Doe / Wikimedia Commons, CC BY 2.0"}},
     {"type": "text", "text": "..."},
     {"type": "end", "text": "Would you have done the same?"}
   ],
@@ -216,12 +207,13 @@ the last active slot and the second strongest in the middle one.
 
 ## 8. Check, record and push
 
-1. Run `python3 scripts/validate.py queue/<date>` and fix every error it reports.
-2. Append one line per new post to `state/history.jsonl`, using the post's `id`
+1. Run `python3 scripts/check_images.py queue/<date>`, open each saved picture and fix any problem (section 5).
+2. Run `python3 scripts/validate.py queue/<date>` and fix every error it reports.
+3. Append one line per new post to `state/history.jsonl`, using the post's `id`
    and every source url (`validate.py` blocks any later post that reuses a source
    or has a near-identical title):
    `{"id": "2026-10-30-01", "date": "2026-10-30", "title": "...", "urls": ["https://...", "https://..."]}`
-3. Commit with the message `Queue posts for <date>` and push to `main`.
+4. Commit with the message `Queue posts for <date>` and push to `main`.
 
 Finish with a short summary: the stories picked, their scores, and anything you
 were unsure about.

@@ -23,7 +23,7 @@
   "max_posts_per_day": 4,
   "ig_quota_stop": 25,
   "unsplash_max_requests_per_day": 100,
-  "paused": true,
+  "paused": false,
   "min_minutes_between_posts": 45,
   "time_jitter_minutes": 35,
   "publish_random_delay_seconds": 240,
