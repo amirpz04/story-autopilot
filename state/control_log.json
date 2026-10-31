@@ -1,5 +1,17 @@
 [
   {
+    "action": "reels_per_day",
+    "at": "2026-10-31T16:19:41.823148+00:00",
+    "result": "Now 3 carousel posts and 3 Reels a day, from 3 stories (takes effect from the next research run).",
+    "target": "3"
+  },
+  {
+    "action": "posts_per_day",
+    "at": "2026-10-31T16:19:41.786297+00:00",
+    "result": "Now 3 carousel posts and 2 Reels a day, from 3 stories (takes effect from the next research run).",
+    "target": "3"
+  },
+  {
     "action": "refresh_dashboard",
     "at": "2026-10-31T16:15:23.764351+00:00",
     "result": "Dashboard rebuilt.",

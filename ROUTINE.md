@@ -246,7 +246,9 @@ Write each post as `queue/<date>/<NN>/post.json`:
 
 **Slots (how a story is scheduled).** Story number `i` (1 = your strongest, in the order you rank them) gets:
 - `"slot"` = the `i`-th number of `active_slots` if `i <= posts_per_day`, otherwise `null` (no carousel);
-- `"reel_slot"` = the `i`-th number of `reel_active_slots` if `i <= reels_per_day`, otherwise `null` (no Reel).
+- `"reel_slot"` = `reel_active_slots[i mod reels_per_day]` (0-based list position) if `i <= reels_per_day`, otherwise `null` (no Reel).
+  This rotates the Reel slots by one on purpose, so the carousel and the Reel of the same story are at least 7 hours apart
+  (for example with 3 + 3: story 1 gets carousel slot 1 and the second Reel slot, story 3 gets the first Reel slot).
 With 2 posts and 2 Reels, both stories are posted as a carousel and as a Reel; with 1 post and 3 Reels, the
 first story is both and the other two are Reels only (their `slot` is `null`). A story with both `null` must
 not exist. Put the strongest stories on the evening slots (the last numbers). The post and the Reel of one story
