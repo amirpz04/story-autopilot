@@ -31,6 +31,7 @@ from render import load_config, render_post  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 STATE_FILE = ROOT / "state" / "posted.json"
 MAX_ATTEMPTS = 3
+HEALTH_FILE = STATE_FILE.parent / "api_health.json"
 
 
 def load_state():
@@ -39,6 +40,32 @@ def load_state():
 
 def save_state(state):
     STATE_FILE.write_text(json.dumps(state, indent=2, sort_keys=True) + "\n")
+
+
+def api_backoff():
+    """If Instagram refused us recently, return when we may try again (so we never keep hammering it)."""
+    try:
+        h = json.loads(HEALTH_FILE.read_text())
+        until = datetime.fromisoformat(h["until"]) if h.get("until") else None
+    except Exception:
+        return None
+    return h if until and until > datetime.now(timezone.utc) else None
+
+
+def note_api_failure(reason):
+    """Wait 30 min after the first refusal, then 1 h, 2 h, up to 4 h between tries."""
+    try:
+        fails = json.loads(HEALTH_FILE.read_text()).get("fails", 0) + 1
+    except Exception:
+        fails = 1
+    minutes = min(240, 30 * 2 ** (fails - 1))
+    HEALTH_FILE.write_text(json.dumps({"fails": fails, "reason": str(reason)[:200],
+                                        "until": (datetime.now(timezone.utc) + timedelta(minutes=minutes)).isoformat()}) + "\n")
+
+
+def note_api_ok():
+    if HEALTH_FILE.exists():
+        HEALTH_FILE.write_text(json.dumps({"fails": 0, "reason": "", "until": None}) + "\n")
 
 
 def block_reason(config, state):
@@ -72,7 +99,9 @@ def instagram_gate(config, post):
     try:
         media = graph("GET", os.environ["IG_USER_ID"] + "/media", config, fields="timestamp,caption", limit=25)["data"]
     except Exception as exc:
+        note_api_failure(exc)
         return "cannot read recent Instagram posts, skipping to be safe (%s)" % str(exc)[:150]
+    note_api_ok()
     now = datetime.now(timezone.utc)
     live = [(datetime.strptime(m["timestamp"], "%Y-%m-%dT%H:%M:%S%z"), (m.get("caption") or "").strip()) for m in media]
     hook = post["caption"].strip()[:60]
@@ -200,6 +229,11 @@ def main():
         print("Nothing due.")
         return
 
+    wait = api_backoff()
+    if wait:
+        print("Waiting: Instagram refused requests earlier (%s). Next try after %s UTC." % (wait.get("reason", "")[:80], wait["until"][11:16]))
+        return
+
     gate = instagram_gate(config, post)
     if gate:
         print("Not publishing:", gate)
@@ -231,6 +265,8 @@ def main():
         record.update(status="posted", media_id=media_id, posted_at=datetime.utcnow().isoformat() + "Z")
         print("Posted, media id", media_id)
     except Exception as exc:
+        if "Instagram API error" in str(exc):
+            note_api_failure(exc)
         record.update(status="failed", error=str(exc)[:500])
         print("FAILED:", exc)
         raise

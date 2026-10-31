@@ -1,11 +1,12 @@
 """Turn a queued post into an animated vertical video (a Reel): the same photos and text as the carousel.
 
-Usage: python scripts/make_reel.py queue/2026-10-31/01 [out.mp4] [music.ogg]
+Usage: python scripts/make_reel.py queue/2026-10-31/01 [out.mp4] [music.ogg | auto]
 
 Draws every frame in the browser (smooth camera moves on photos, word-by-word text, transitions),
 then encodes with ffmpeg. Needs Playwright with Chromium and ffmpeg; no other services, no cost.
 """
 import json
+import random
 import shutil
 import subprocess
 import sys
@@ -20,6 +21,32 @@ from check_images import size_of  # noqa: E402
 FPS = 30
 USER_AGENT = "StoryAccountBot/1.0 (reel renderer)"
 FONT = ROOT / "templates" / "fonts" / "Inter.ttf"
+
+
+MUSIC_DIR = ROOT / "assets" / "music"
+MUSIC_LOG = ROOT / "state" / "music_log.json"
+
+
+def pick_music(log_path=MUSIC_LOG):
+    """Next track: never one of the most recently used, so the same song doesn't repeat.
+
+    Returns (path or None, credit line to put in the caption, or "").
+    """
+    tracks = sorted(MUSIC_DIR.glob("*.ogg"))
+    if not tracks:
+        return None, ""
+    try:
+        used = json.loads(Path(log_path).read_text())
+    except Exception:
+        used = []
+    recent = used[-(len(tracks) - 1):] if len(tracks) > 1 else []
+    choice = random.choice([t for t in tracks if t.name not in recent] or tracks)
+    Path(log_path).write_text(json.dumps((used + [choice.name])[-30:]) + "\n")
+    try:
+        credit = json.loads((MUSIC_DIR / "credits.json").read_text()).get(choice.name, "")
+    except Exception:
+        credit = ""
+    return choice, credit
 
 
 def load_config():
@@ -112,5 +139,8 @@ def make_reel(post_dir, out_path, config=None, music=None):
 if __name__ == "__main__":
     post_dir = sys.argv[1]
     out = sys.argv[2] if len(sys.argv) > 2 else str(ROOT / "preview" / "reel.mp4")
-    music = sys.argv[3] if len(sys.argv) > 3 else None
+    music, credit = (sys.argv[3] if len(sys.argv) > 3 else None), ""
+    if music == "auto":
+        music, credit = pick_music()
+        print("Music:", music.name if music else "none", "| credit line:", credit or "(none needed)")
     print("Wrote", make_reel(post_dir, out, music=music))

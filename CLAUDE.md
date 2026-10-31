@@ -61,6 +61,19 @@ commit, push to `main` (goes live immediately). For publisher changes set `pause
 
 - **Two lanes (Oct 31 2026):** A = news (tech/science/space/nature/animals/health/AI), B = **evergreen** (any true, interesting story about something humans built or did, any age: how technologies work, company and founder origin stories, books, languages, machines, history; no topic limit, but needs 2 independent sources and a specific surprising hook). Posts are tagged `lane` so the dashboard can compare them.
 
+## Reel system (built Oct 31 2026, NOT yet wired into the daily automation)
+- `scripts/make_reel.py <post_dir> [out.mp4] [music.ogg | auto]` turns a queued post into an animated vertical video using the same photos and text
+  (`templates/reel.html`: camera moves on photos, word-by-word text, fades, progress bars). Renders frames in Playwright then encodes with ffmpeg (~1 min, free).
+- Music: `assets/music/*.ogg` (public domain + Kevin MacLeod CC BY 3.0; `credits.json` lists the caption credit line a track needs). `auto` rotates
+  so a song never repeats within the last 5 (`state/music_log.json`). Instagram's own music library cannot be used through the API (Meta docs).
+- Still to do: publish as a Reel (media_type REELS with a public video_url; untested, needs a host Instagram accepts), schedule Reel slots, add a `format` tag
+  and a Reels view to the dashboard, wire rendering into a workflow.
+
+## Request safety (audited Oct 31 2026)
+Only ~2 of ~130 daily Publish runs touch Instagram (only when a post is due). If Instagram refuses a request, `publish.py` backs off (30 min, then 1 h, 2 h, up to 4 h;
+`state/api_health.json`) and the dashboard shows it. `stats.py` skips posts older than 30 days. A temporary "API access blocked" (code 200) from Meta appeared once
+for about an hour on Oct 31 and cleared on its own; the cause is unknown.
+
 ## Known gotchas
 - GitHub's scheduled workflows are unreliable here (2 runs in 18 h); the Mac ping is the real clock. Optional backup: cron-job.org calling `workflow_dispatch`.
 - Posts are published from `queue/<today in New York>`; a folder from an earlier date never posts.

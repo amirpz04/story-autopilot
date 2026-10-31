@@ -146,6 +146,10 @@ def build(now):
     if followers and (today - datetime.strptime(followers[-1]["date"], "%Y-%m-%d").date()).days > 2:
         alerts.append({"level": "warning", "text": "Statistics haven't updated since %s." % followers[-1]["date"]})
 
+    health = read_json(ROOT / "state" / "api_health.json", {})
+    if health.get("until") and datetime.fromisoformat(health["until"]) > datetime.now(timezone.utc):
+        alerts.append({"level": "warning", "text": "Instagram refused our last request (%s). The system is waiting until %s UTC before trying again, on purpose, so it doesn't pile up requests." % (health.get("reason", "")[:90], health["until"][11:16])})
+
     # --- system facts
     unsplash = [t for t in read_json(ROOT / "state" / "unsplash_requests.json", []) if t > time.time() - 86400]
     history = [l for l in (ROOT / "state" / "history.jsonl").read_text().splitlines() if l.strip()] if (ROOT / "state" / "history.jsonl").exists() else []

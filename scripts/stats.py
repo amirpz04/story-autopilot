@@ -83,6 +83,8 @@ def collect(config):
             "age_hours": round((now - when).total_seconds() / 3600, 1),
         }
         try:
+            if entry["age_hours"] > 24 * 30:
+                raise RuntimeError("older than 30 days: numbers no longer change much, not re-read")
             data = graph(m["id"] + "/insights", config, metric=METRICS)["data"]
             entry.update({d["name"]: d["values"][0]["value"] for d in data})
         except Exception as exc:
