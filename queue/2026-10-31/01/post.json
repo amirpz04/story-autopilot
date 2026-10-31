@@ -28,11 +28,8 @@
       "kicker": "SPACE",
       "headline": "Two astronauts just gave the space station a 30% power boost, in a 7-hour spacewalk",
       "image": {
-        "url": "https://images.unsplash.com/photo-1764768467248-6ec6b6c5101c?ixid=M3wxMTE3NTMyfDB8MXxzZWFyY2h8MXx8YXN0cm9uYXV0JTIwc3BhY2V3YWxrJTIwaW4lMjBzcGFjZSUyMGFib3ZlJTIwRWFydGh8ZW58MXwxfHx8MTc5MzQzODI4NHww&ixlib=rb-4.1.0&w=2000&fm=jpg&q=85",
-        "credit": "Photo by Kartik on Unsplash",
-        "search": "astronaut spacewalk in space above Earth",
-        "source": "https://unsplash.com/photos/the-earth-from-space-with-continents-visible-6yP6rExNq8s?utm_source=story_account&utm_medium=referral",
-        "photographer_url": "https://unsplash.com/@aartsyfaartsy?utm_source=story_account&utm_medium=referral"
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/New_and_Old_Solar_Arrays_%28pettit-irosa%29.jpg/1920px-New_and_Old_Solar_Arrays_%28pettit-irosa%29.jpg",
+        "credit": "Photo: NASA/Don Pettit, public domain (earlier ISS solar array photo, illustrative)"
       }
     },
     {
@@ -40,8 +37,8 @@
       "layout": "full",
       "text": "Astronaut Anil Menon rode the Canadarm2 robotic arm, 260 miles above Earth, to help install a giant roll-out solar array.",
       "image": {
-        "search": "solar panels in space orbiting Earth",
-        "not_found": true
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/A_view_peering_down_a_pair_of_the_International_Space_Station%27s_roll-out_solar_arrays_%28iss074e0403068%29.jpg/3840px-A_view_peering_down_a_pair_of_the_International_Space_Station%27s_roll-out_solar_arrays_%28iss074e0403068%29.jpg",
+        "credit": "Roll-out solar arrays on the station. NASA, public domain (illustrative)"
       }
     },
     {
@@ -53,8 +50,8 @@
       "layout": "split",
       "text": "One more array goes up on Nov. 5. All eight new arrays together lift power from 160 to about 215 kilowatts: up to 30% more.",
       "image": {
-        "search": "International Space Station glowing over the blue Earth",
-        "not_found": true
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Moonlit%2C_violet-hued_view_of_the_International_Space_Station%E2%80%99s_main_solar_arrays_%28iss073e0850593%29.jpg/3840px-Moonlit%2C_violet-hued_view_of_the_International_Space_Station%E2%80%99s_main_solar_arrays_%28iss073e0850593%29.jpg",
+        "credit": "The station's solar arrays by moonlight. NASA, public domain (illustrative)"
       }
     },
     {
