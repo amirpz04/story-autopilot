@@ -330,11 +330,13 @@ $("attn").innerHTML = alerts.length
   ? alerts.map(a => `<div class="card">${icon(a.level)}<div><b>${a.level === "critical" ? "Problem" : "Needs attention"}:</b> ${esc(a.text)}</div></div>`).join("")
   : `<div class="card">${icon("good")}<div><b>Everything is running normally.</b></div></div>`;
 
-$("followers").textContent = nf(D.followers.length ? D.followers.at(-1).followers : null);
+const AN = D.account_now || {};
+$("followers").textContent = nf(AN.followers != null ? AN.followers : (D.followers.length ? D.followers.at(-1).followers : null));
 if (D.followers.length > 1) {
   const d = D.followers.at(-1).followers - D.followers[0].followers;
   $("fdelta").textContent = (d >= 0 ? "+" : "") + d + " since " + D.followers[0].date;
 }
+if (AN.fetched_at) $("fdelta").textContent += (D.followers.length > 1 ? " \u00b7 " : "") + "straight from Instagram " + ago(now - new Date(AN.fetched_at).getTime());
 const live = D.posts;
 const withReach = live.filter(p => p.reach != null);
 const avg = a => a.length ? a.reduce((x, y) => x + y, 0) / a.length : null;
@@ -357,7 +359,7 @@ $("today").innerHTML = todayRows.length
   : `<tr><td class="muted">Nothing is queued for today yet.</td></tr>`;
 
 $("tiles").innerHTML =
-  tile("Posts live", nf(live.length), "all time") +
+  tile("On Instagram", nf(AN.media_count != null ? AN.media_count : live.length), "posts + Reels, live count") +
   tile("Posted today", todayRows.filter(r => /live/i.test(r.st[1])).length + " of " + todayRows.length, todayRows.length ? "posts + Reels scheduled today" : "nothing queued") +
   tile("Reels", nf(sys.reels_posted), sys.reels_made + " made") +
   tile("Average reach", nf(Math.round(avg(withReach.map(p => p.reach)) ?? NaN) || null), "people per post") +

@@ -186,7 +186,7 @@ def build(now):
     return {
         "account": config.get("account_name", "Account") + " " + config.get("handle", ""),
         "today_date": today.isoformat(), "today": today_posts, "posts": posts, "groups": groups,
-        "music": music_list(), "all_posts": all_posts, "control_log": read_json(ROOT / "state" / "control_log.json", [])[:20],
+        "account_now": read_json(ROOT / "state" / "account.json", {}), "music": music_list(), "all_posts": all_posts, "control_log": read_json(ROOT / "state" / "control_log.json", [])[:20],
         "repo": os.environ.get("GITHUB_REPOSITORY", "amirpz04/story-autopilot"),
         "routine_url": "https://claude.ai/code/routines/trig_015p8XY87MCPiPaEgKXrXyxf",
         "mature_count": len(mature), "followers": followers, "alerts": alerts,

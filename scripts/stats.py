@@ -14,7 +14,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from collections import defaultdict
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -58,13 +58,14 @@ def pct(x):
     return "-" if x is None else "%.1f%%" % (x * 100)
 
 
-def collect(config):
+def collect(config, previous=None, quick=False):
     user = os.environ["IG_USER_ID"]
     tz = ZoneInfo(config["timezone"])
     now = datetime.now(timezone.utc)
     posts = load_posts()
     media = graph(user + "/media", config, limit=50,
                   fields="id,caption,timestamp,permalink,media_type,media_product_type,like_count,comments_count")["data"]
+    old = {e.get("media_id"): e for e in (previous or [])}
     entries = []
     for m in media:
         caption = (m.get("caption") or "").strip()
@@ -82,6 +83,14 @@ def collect(config):
             "hour": when.astimezone(tz).hour,
             "age_hours": round((now - when).total_seconds() / 3600, 1),
         }
+        prev = old.get(m["id"])
+        if quick and prev and prev.get("reach") is not None and entry["age_hours"] > 48:
+            # older posts change slowly: keep the numbers from the last full read, only refresh the age and likes
+            keep = {k: v for k, v in prev.items() if k not in entry}
+            entry.update(keep)
+            entry["like_count"] = m.get("like_count", prev.get("like_count"))
+            entries.append(entry)
+            continue
         try:
             if entry["age_hours"] > 24 * 30:
                 raise RuntimeError("older than 30 days: numbers no longer change much, not re-read")
@@ -139,23 +148,53 @@ def build_report(entries, followers):
 
 def main():
     config = json.loads((ROOT / "config.json").read_text())
+    quick = "--quick" in sys.argv
+    min_age = 0
+    if "--min-age" in sys.argv:
+        min_age = int(sys.argv[sys.argv.index("--min-age") + 1])
+    account_file = ROOT / "state" / "account.json"
+    now = datetime.now(timezone.utc)
     try:
-        entries = collect(config)
+        last = json.loads(account_file.read_text())
+        if min_age and now - datetime.fromisoformat(last["fetched_at"]) < timedelta(minutes=min_age):
+            print("Numbers are fresh (under %d minutes old); nothing to do." % min_age)
+            return
+    except Exception:
+        pass
+    try:                                              # respect an Instagram back-off: don't add requests while it refuses us
+        h = json.loads((ROOT / "state" / "api_health.json").read_text())
+        if h.get("until") and datetime.fromisoformat(h["until"]) > now:
+            print("Instagram refused requests recently; skipping this refresh.")
+            return
+    except Exception:
+        pass
+    try:
+        previous = json.loads((ROOT / "state" / "stats.json").read_text())
+    except Exception:
+        previous = []
+    try:
+        entries = collect(config, previous, quick)
         account = graph(os.environ["IG_USER_ID"], config, fields="followers_count,media_count")
     except Exception as exc:
         print("Could not read Instagram statistics:", exc)
         sys.exit(1)
 
     (ROOT / "state" / "stats.json").write_text(json.dumps(entries, indent=2) + "\n")
-    (ROOT / "state" / "report.md").write_text(build_report(entries, account.get("followers_count")))
+    account_file.write_text(json.dumps({"followers": account.get("followers_count"), "media_count": account.get("media_count"),
+                                        "fetched_at": now.isoformat()}) + "\n")
+    if not quick:
+        (ROOT / "state" / "report.md").write_text(build_report(entries, account.get("followers_count")))
 
     today = datetime.now(ZoneInfo(config["timezone"])).strftime("%Y-%m-%d")
     log = ROOT / "state" / "followers.csv"
     rows = list(csv.reader(log.open())) if log.exists() else [["date", "followers", "media_count"]]
-    if not any(r[0] == today for r in rows[1:]):
-        rows.append([today, account.get("followers_count"), account.get("media_count")])
-        csv.writer(log.open("w", newline="")).writerows(rows)
-    print("Saved stats for %d posts; followers: %s" % (len(entries), account.get("followers_count")))
+    row = [today, account.get("followers_count"), account.get("media_count")]
+    if any(r[0] == today for r in rows[1:]):
+        rows = [row if r[0] == today else r for r in rows]          # keep today's row current
+    else:
+        rows.append(row)
+    csv.writer(log.open("w", newline="")).writerows(rows)
+    print("%s: %d posts read; Instagram says %s followers, %s posts" % ("Quick refresh" if quick else "Full read", len(entries), account.get("followers_count"), account.get("media_count")))
 
 
 if __name__ == "__main__":

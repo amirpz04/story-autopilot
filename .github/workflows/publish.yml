@@ -50,6 +50,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/publish.py
 
+      - name: Refresh Instagram numbers (at most every 25 minutes)
+        if: always()
+        continue-on-error: true
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: python scripts/stats.py --quick --min-age 25
+
       - name: Update dashboard
         if: always()
         continue-on-error: true
