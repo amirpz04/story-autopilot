@@ -55,6 +55,13 @@ def post_reel(post_id):
         return "Not posted yet: " + gate
     tags = [t for t in post.get("hashtags", []) if t.lower() not in post["caption"].lower()]
     caption = post["caption"].rstrip() + ("\n\n" + " ".join(tags) if tags else "")
+    credits = []
+    for sl in post["slides"]:                      # photo credits live in the caption on Reels (the picture itself stays clean)
+        c = ((sl.get("image") or {}).get("credit") or "").strip()
+        if (sl.get("image") or {}).get("url") and c and c not in credits:
+            credits.append(c)
+    if credits:
+        caption += "\n\nPhotos: " + "; ".join(credits)[:320]
     if entry.get("credit"):
         caption += "\n\n" + entry["credit"]
     user = os.environ["IG_USER_ID"]

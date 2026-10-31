@@ -113,6 +113,7 @@ def make_reel(post_dir, out_path, config=None, music=None):
         page.goto(page_file.as_uri())
         page.evaluate("document.fonts.ready")
         page.evaluate("Promise.all([...document.images].map(i => i.decode().catch(() => null)))")
+        page.evaluate("fitAll()")
         for f in range(count):
             page.evaluate("t => render(t)", f / FPS)
             page.screenshot(path=str(frames / f"f_{f:05d}.jpg"), type="jpeg", quality=93)

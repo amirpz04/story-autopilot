@@ -72,6 +72,10 @@ commit, push to `main` (goes live immediately). For publisher changes set `pause
 - **Flow:** the routine pushes the queue -> `reel.yml` (push trigger) renders each needed Reel (`reel_job.py`, stored on branch `reels`, `state/reels.json`) ->
   `publish.py` posts a Reel at its `reel_slot` time (`publish_reel.publish_due_reel`, makes it on the spot if missing; 3 attempts) with the same Instagram safety gate
   (45 min gap between ANY posts, daily cap = posts + reels + 1). Editing slides or replacing a post re-makes its Reel. Reels stats are tagged `kind: reel`.
+- **Reel layout is tuned for an iPhone 13** (owner's phone): all Reel text stays inside a safe box (x 140-840, y about 460-1220 of the 1080x1920 frame) so it clears the
+  notch/clock and Reels header (top ~12%), the right-hand like/comment/share buttons (right ~13%), and the caption + comment bar (bottom ~28%); iPhone screens crop the
+  sides of a 9:16 video by about 9% each. No progress bars or @handle on Reels (Instagram already shows the account). Long text auto-shrinks (`fitAll()` in
+  `templates/reel.html`). Photo credits go into the Reel caption ("Photos: ..."), not on the video. Do not move text outside the safe box.
 - The owner's "Make Reel" / "Post this Reel" buttons still exist for manual cases but are not needed.
 - First live Reel: not yet published as of writing (the automatic flow is untested live).
 

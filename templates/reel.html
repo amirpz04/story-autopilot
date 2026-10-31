@@ -9,35 +9,28 @@
   .scene { position: absolute; inset: 0; overflow: hidden; opacity: 0; will-change: transform, opacity; }
   .photo { position: absolute; left: 0; top: 0; transform-origin: 50% 50%; will-change: transform; }
   .shade { position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 20%, rgba(0,0,0,0) 36%, rgba(0,0,0,.74) 62%, rgba(0,0,0,.95) 100%); }
+    background: linear-gradient(to bottom, rgba(0,0,0,.18) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,.30) 46%, rgba(0,0,0,.78) 64%, rgba(0,0,0,.9) 100%); }
   .plain { position: absolute; inset: 0;
     background: radial-gradient(900px 900px at var(--gx, 30%) var(--gy, 30%), rgba(255,212,0,.13), rgba(14,14,16,0) 70%), #0E0E10; }
-  .copy { position: absolute; left: 72px; width: 880px; }
-  .copy.low { bottom: 440px; }
-  .copy.mid { top: 50%; transform: translateY(-52%); }
+  /* Safe box: x 140-840 (clear of the right-hand buttons and the cropped screen edges), y 460-1220 (clear of the clock, the Reels header and the caption area) */
+  .copy { position: absolute; left: 140px; width: 700px; }
+  .copy.low { bottom: 700px; }
+  .copy.mid { top: 880px; transform: translateY(-50%); }
   .kicker { display: inline-block; background: #FFD400; color: #000; font-weight: 900; font-size: 34px; letter-spacing: 3px;
             padding: 9px 22px; margin-bottom: 30px; text-transform: uppercase; transform-origin: 0 50%; }
   .bar { width: 130px; height: 12px; background: #FFD400; margin-bottom: 46px; transform-origin: 0 50%; }
   .txt { font-weight: 800; line-height: 1.13; letter-spacing: -.01em; text-shadow: 0 3px 24px rgba(0,0,0,.45); }
-  .txt.head { font-size: 82px; font-weight: 900; line-height: 1.07; }
-  .txt.body { font-size: 60px; }
-  .txt.end { font-size: 78px; font-weight: 900; line-height: 1.1; }
+  .txt.head { font-size: 78px; font-weight: 900; line-height: 1.07; }
+  .txt.body { font-size: 56px; }
+  .txt.end { font-size: 72px; font-weight: 900; line-height: 1.1; }
   .w { display: inline-block; margin-right: .27em; opacity: 0; will-change: transform, opacity; }
   .num { color: #FFD400; }
-  .follow { margin-top: 56px; font-size: 40px; font-weight: 500; opacity: 0; }
+  .follow { margin-top: 48px; font-size: 38px; font-weight: 500; opacity: 0; }
   .follow b { color: #FFD400; font-weight: 800; }
-  .credit { position: absolute; left: 54px; bottom: 372px; width: 860px; font-size: 21px; opacity: .62; text-shadow: 0 1px 6px rgba(0,0,0,.8); }
-  #hud { position: absolute; inset: 0; pointer-events: none; z-index: 10; }
-  #bars { position: absolute; top: 66px; left: 54px; right: 54px; display: flex; gap: 8px; }
-  #bars i { flex: 1; height: 7px; border-radius: 4px; background: rgba(255,255,255,.3); overflow: hidden; }
-  #bars i b { display: block; height: 100%; width: 0; background: #fff; }
-  #handle { position: absolute; top: 104px; left: 54px; font-size: 31px; font-weight: 700; text-shadow: 0 2px 10px rgba(0,0,0,.6); display: flex; align-items: center; gap: 12px; }
-  #handle i { width: 16px; height: 16px; border-radius: 50%; background: #FFD400; display: block; }
 </style>
 </head>
 <body>
 <div id="stage"></div>
-<div id="hud"><div id="bars"></div><div id="handle"><i></i>/*HANDLE*/</div></div>
 <script>
 const S = /*SCENES*/[]/*END*/;
 const TR = 0.42;                                  // overlap of one scene into the next, seconds
@@ -46,7 +39,7 @@ const outCubic = x => 1 - Math.pow(1 - x, 3);
 const inOutCubic = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
 const outBack = x => { const c1 = 1.5, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
 
-const stage = document.getElementById("stage"), bars = document.getElementById("bars");
+const stage = document.getElementById("stage");
 S.forEach((s, i) => {
   const el = document.createElement("div"); el.className = "scene"; s.el = el;
   let html = "";
@@ -64,17 +57,15 @@ S.forEach((s, i) => {
     + `<div class="txt ${cls}">${words}</div>`
     + (s.type === "end" ? `<div class="follow">Follow <b>/*HANDLE*/</b> for more stories like this</div>` : "")
     + `</div>`;
-  if (s.credit && s.photo) html += `<div class="credit">${s.credit.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</div>`;
   el.innerHTML = html; stage.appendChild(el);
   s.photoEl = el.querySelector(".photo"); s.wordEls = [...el.querySelectorAll(".w")];
   s.kickerEl = el.querySelector(".kicker"); s.barEl = el.querySelector(".bar"); s.followEl = el.querySelector(".follow");
-  s.copyEl = el.querySelector(".copy"); s.shadeEl = el.querySelector(".shade");
+  s.txtEl = el.querySelector(".txt"); s.copyEl = el.querySelector(".copy"); s.shadeEl = el.querySelector(".shade");
   if (s.photoEl) {                               // size the photo to cover the 1080x1920 frame
     const ar = s.ar; let w, h;
     if (ar >= 1080 / 1920) { h = 1920; w = h * ar; } else { w = 1080; h = w / ar; }
     s.photoEl.style.width = w + "px"; s.photoEl.style.height = h + "px"; s.pw = w; s.ph = h;
   }
-  const b = document.createElement("i"); b.innerHTML = "<b></b>"; bars.appendChild(b); s.fill = b.firstChild;
 });
 
 function render(t) {
@@ -84,7 +75,6 @@ function render(t) {
     const local = t - s.start, end = s.start + s.dur;
     const visible = local > -0.001 && t < end + TR;
     s.el.style.display = visible ? "block" : "none";
-    s.fill.style.width = (i < current ? 100 : i === current ? clamp(local / s.dur) * 100 : 0) + "%";
     if (!visible) return;
 
     // entrance / exit of the whole scene
@@ -121,6 +111,11 @@ function render(t) {
     if (s.followEl) { const p = outCubic(clamp((local - (w0 + s.wordEls.length * 0.075 + 0.5)) / 0.5)); s.followEl.style.opacity = p; s.followEl.style.transform = `translateY(${(1 - p) * 22}px)`; }
   });
 }
+// shrink any text block that would not fit the safe box (called once, after fonts and pictures have loaded)
+window.fitAll = () => S.forEach(s => {
+  let size = parseFloat(getComputedStyle(s.txtEl).fontSize);
+  while (s.copyEl.offsetHeight > 760 && size > 34) { size -= 2; s.txtEl.style.fontSize = size + "px"; }
+});
 window.render = render;
 window.TOTAL = S.length ? S[S.length - 1].start + S[S.length - 1].dur : 0;
 render(0);
