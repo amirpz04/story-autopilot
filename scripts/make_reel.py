@@ -1,6 +1,6 @@
 """Turn a queued post into an animated vertical video (a Reel): the same photos and text as the carousel.
 
-Usage: python scripts/make_reel.py queue/2026-10-31/01 [out.mp4]
+Usage: python scripts/make_reel.py queue/2026-10-31/01 [out.mp4] [music.ogg]
 
 Draws every frame in the browser (smooth camera moves on photos, word-by-word text, transitions),
 then encodes with ffmpeg. Needs Playwright with Chromium and ffmpeg; no other services, no cost.
@@ -62,7 +62,7 @@ def build_scenes(post, work):
     return scenes
 
 
-def make_reel(post_dir, out_path, config=None):
+def make_reel(post_dir, out_path, config=None, music=None):
     from playwright.sync_api import sync_playwright
 
     config = config or load_config()
@@ -93,10 +93,18 @@ def make_reel(post_dir, out_path, config=None):
 
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    subprocess.run(["ffmpeg", "-y", "-v", "error", "-framerate", str(FPS), "-i", str(frames / "f_%05d.jpg"),
-                    "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo", "-t", "%.2f" % total,
+    if music:   # free music (see assets/music/README.md), looped to length, loudness-matched, faded in and out
+        audio_in = ["-stream_loop", "-1", "-i", str(music)]
+        audio_map = ["-filter_complex",
+                     "[1:a]atrim=0:%.2f,asetpts=N/SR/TB,loudnorm=I=-17:TP=-2:LRA=7,afade=t=in:d=1.2,afade=t=out:st=%.2f:d=2.3[a]" % (total, total - 2.4),
+                     "-map", "0:v", "-map", "[a]"]
+    else:
+        audio_in = ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
+        audio_map = []
+    subprocess.run(["ffmpeg", "-y", "-v", "error", "-framerate", str(FPS), "-i", str(frames / "f_%05d.jpg"), *audio_in,
+                    "-t", "%.2f" % total, *audio_map,
                     "-c:v", "libx264", "-preset", "slow", "-crf", "21", "-maxrate", "8M", "-bufsize", "16M", "-pix_fmt", "yuv420p", "-r", str(FPS),
-                    "-c:a", "aac", "-b:a", "128k", "-shortest", "-movflags", "+faststart", str(out_path)], check=True)
+                    "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", str(out_path)], check=True)
     shutil.rmtree(work, ignore_errors=True)
     return out_path
 
@@ -104,4 +112,5 @@ def make_reel(post_dir, out_path, config=None):
 if __name__ == "__main__":
     post_dir = sys.argv[1]
     out = sys.argv[2] if len(sys.argv) > 2 else str(ROOT / "preview" / "reel.mp4")
-    print("Wrote", make_reel(post_dir, out))
+    music = sys.argv[3] if len(sys.argv) > 3 else None
+    print("Wrote", make_reel(post_dir, out, music=music))
