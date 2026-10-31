@@ -1,0 +1,69 @@
+{
+  "slot": 3,
+  "title": "Fire salamanders glow green under UV light",
+  "category": "animals",
+  "tags": {
+    "end": "question",
+    "headline": "statement"
+  },
+  "scores": {
+    "hook": 7,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 7,
+    "talkability": 6,
+    "no_context": 8,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "ScienceDaily (Max Planck Institute for Chemical Ecology)",
+      "url": "https://www.sciencedaily.com/releases/2026/10/261027063707.htm"
+    }
+  ],
+  "verification": "Read the ScienceDaily write-up of the research release; facts (glow location, green/cyan colour, 24h+ fluorescence of secretions, quotes from Burriel and Kaltenpoth, purpose still unknown) taken directly from it. Single secondary source, so purposes are worded as hypotheses.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "NATURE",
+      "headline": "Scientists just discovered that toxic fire salamanders secretly glow under UV light",
+      "image": {
+        "search": "salamander with yellow and black skin on forest floor"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "Under ultraviolet light, the yellow undersides and sides of fire salamanders shine vivid green and cyan.",
+      "image": {
+        "search": "glowing green fluorescent light in a dark forest at night"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The glow comes from skin glands and the toxic secretions they release, which stayed fluorescent for more than 24 hours after leaving the animal."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Why do they glow? Nobody knows yet. It might help them spot each other at night, or make their warning colors stand out to predators.",
+      "image": {
+        "search": "moonlit forest at night with mist"
+      }
+    },
+    {
+      "type": "end",
+      "text": "If you could see UV light, what else would you want to check for glowing?"
+    }
+  ],
+  "caption": "Fire salamanders have been studied for centuries, yet they still had a secret: they glow.\n\nResearchers found that the yellow underside and sides of fire salamanders fluoresce under ultraviolet light, giving off vivid green and cyan colors. The glow traces mainly to glands in the skin and the substances those glands release. Those secretions kept fluorescing for more than 24 hours after leaving the salamander's body.\n\nThis is biofluorescence: the skin absorbs UV light, which humans can't see, and sends the energy back out as visible light. It is not bioluminescence, where animals like fireflies make their own light. Fluorescence needs an outside light source.\n\nScientists once thought this trick was mostly for marine life. Now more land animals, including reptiles, birds and amphibians, are turning up with it.\n\nWhy do salamanders do it? It's still a guess. It might help them recognize each other in dark, crowded forests, or make their warning colors louder to predators.\n\n\"It is fascinating that such a well-studied species still harbors unknown phenomena like this,\" says researcher Bernat Burriel.\n\nIf you could see UV light, what would you check for glowing first?\n\nSource: ScienceDaily, Max Planck Institute for Chemical Ecology\n\n#nature #salamander #wildlife #biology #science",
+  "id": "2026-10-31-03",
+  "date": "2026-10-31",
+  "hashtags": [
+    "#nature",
+    "#salamander",
+    "#wildlife",
+    "#biology",
+    "#science"
+  ]
+}

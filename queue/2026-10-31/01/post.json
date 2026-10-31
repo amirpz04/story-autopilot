@@ -1,0 +1,69 @@
+{
+  "slot": 1,
+  "title": "ISS gets a new roll-out solar array in 7-hour spacewalk",
+  "category": "space",
+  "tags": {
+    "end": "send",
+    "headline": "statement"
+  },
+  "scores": {
+    "hook": 6,
+    "surprise": 5,
+    "emotion": 6,
+    "shareability": 5,
+    "talkability": 5,
+    "no_context": 7,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "NASA via ScienceDaily",
+      "url": "https://www.sciencedaily.com/releases/2026/10/261030002931.htm"
+    }
+  ],
+  "verification": "Read the full NASA release as republished by ScienceDaily (Oct 30, 2026): spacewalk length, astronauts, array count, power figures and Nov 5 follow-up all taken from it. Single (primary, NASA) source; wording kept to what NASA states.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "SPACE",
+      "headline": "Two astronauts just gave the space station a 30% power boost, in a 7-hour spacewalk",
+      "image": {
+        "search": "astronaut spacewalk in space above Earth"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "Astronaut Anil Menon rode the Canadarm2 robotic arm, 260 miles above Earth, to help install a giant roll-out solar array.",
+      "image": {
+        "search": "solar panels in space orbiting Earth"
+      }
+    },
+    {
+      "type": "text",
+      "text": "With Canada's Joshua Kutryk, on his first spacewalk, he finished a 7-hour, 11-minute job. It was the 285th spacewalk to build or fix the station."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "One more array goes up on Nov. 5. All eight new arrays together lift power from 160 to about 215 kilowatts: up to 30% more.",
+      "image": {
+        "search": "International Space Station glowing over the blue Earth"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Send this to someone who still thinks the space station is old news."
+    }
+  ],
+  "caption": "Two astronauts just gave the International Space Station a major power upgrade, and it took more than seven hours outside.\n\nNASA astronaut Anil Menon and Canadian Space Agency astronaut Joshua Kutryk completed a 7-hour, 11-minute spacewalk to install a new ISS Roll-Out Solar Array, or IROSA, on the station's 2A power channel. Menon rode the Canadarm2 robotic arm about 260 miles above Earth to start the installation. It was Menon's fourth spacewalk and Kutryk's first.\n\nThis is the seventh of eight new arrays. The astronauts also did prep work for another spacewalk on Thursday, Nov. 5, when the eighth and final array will go on the 3B power channel.\n\nOnce that is done, the eight new arrays will raise the station's electricity generation from 160 kilowatts to roughly 215 kilowatts, as much as 30% more. NASA says the extra power supports essential operations and the station's eventual safe, controlled deorbit.\n\nThe spacewalk was designated U.S. spacewalk 100 and was the 285th spacewalk for station assembly, maintenance and upgrades. Nearly three decades in, the station is still being rebuilt while people live on it.\n\nSend this to someone who still thinks the space station is old news.\n\nSource: NASA, ScienceDaily\n\n#space #nasa #iss #astronauts #spacewalk",
+  "id": "2026-10-31-01",
+  "date": "2026-10-31",
+  "hashtags": [
+    "#space",
+    "#nasa",
+    "#iss",
+    "#astronauts",
+    "#spacewalk"
+  ]
+}

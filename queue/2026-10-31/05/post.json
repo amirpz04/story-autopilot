@@ -1,0 +1,69 @@
+{
+  "slot": 5,
+  "title": "Jumping spiders show REM-like sleep",
+  "category": "animals",
+  "tags": {
+    "end": "question",
+    "headline": "question"
+  },
+  "scores": {
+    "hook": 9,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 8,
+    "talkability": 8,
+    "no_context": 9,
+    "freshness": 7
+  },
+  "sources": [
+    {
+      "name": "ScienceDaily (University of Bonn)",
+      "url": "https://www.sciencedaily.com/releases/2026/10/261026225555.htm"
+    }
+  ],
+  "verification": "Read the ScienceDaily write-up of the University of Bonn study on Portia fimbriata; the researchers explicitly say REM-like movements do not show spiders dream, and the slides and caption keep that caveat. Single secondary source.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "NATURE",
+      "headline": "Do spiders dream? Scientists found a surprising clue in a tiny jumping spider",
+      "image": {
+        "search": "jumping spider close-up macro"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "Researchers in Germany watched Australian jumping spiders all night with infrared cameras. They found two distinct stages of sleep.",
+      "image": {
+        "search": "spider on a leaf at night macro"
+      }
+    },
+    {
+      "type": "text",
+      "text": "One stage looks like REM sleep: the spiders' eyes moved and their muscles twitched, just like in people who are deep in dreams."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Careful: the team says this does not prove spiders dream. But it shows their sleep is far more complex than anyone thought.",
+      "image": {
+        "search": "small sleeping spider hanging in a web"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Do you think spiders dream? Tell us in the comments."
+    }
+  ],
+  "caption": "Do spiders dream? A tiny jumping spider just gave scientists a surprising clue.\n\nResearchers at the University of Bonn studied the Australian jumping spider Portia fimbriata, which is only about the size of a one-euro coin. They kept individual spiders in small dishes and watched them for several days and nights, using infrared cameras to see in the dark.\n\nThe spiders turned out to have two clearly different sleep stages. One of them resembles REM sleep, the phase in humans linked with rapid eye movements, muscle activity and vivid dreaming. In that stage the spiders showed characteristic eye movements and muscle twitches. The study is described as the first comprehensive experimental confirmation that spiders have real, regulated sleep, not just stillness.\n\nThe researchers are careful to say that REM-like movements do not show whether spiders dream.\n\nPortia is also a smart choice for this question. It hunts other spiders and can fake the vibrations of a struggling insect to lure web builders toward it. That kind of trickery hints at unusual learning ability, which makes sleep especially interesting.\n\nThe findings also raise a bigger question: how did sleep evolve, and could animals with very different nervous systems share some of its basic features?\n\nDo you think spiders dream? Tell us below.\n\nSource: ScienceDaily, University of Bonn\n\n#spiders #nature #sleep #science #animals",
+  "id": "2026-10-31-05",
+  "date": "2026-10-31",
+  "hashtags": [
+    "#spiders",
+    "#nature",
+    "#sleep",
+    "#science",
+    "#animals"
+  ]
+}
