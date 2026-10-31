@@ -76,6 +76,7 @@ commit, push to `main` (goes live immediately). For publisher changes set `pause
   notch/clock and Reels header (top ~12%), the right-hand like/comment/share buttons (right ~13%), and the caption + comment bar (bottom ~28%); iPhone screens crop the
   sides of a 9:16 video by about 9% each. No progress bars or @handle on Reels (Instagram already shows the account). Long text auto-shrinks (`fitAll()` in
   `templates/reel.html`). Photo credits go into the Reel caption ("Photos: ..."), not on the video. Do not move text outside the safe box.
+- **`reels_mode`** (config; control action `reels_mode`): `same` = Reels reuse the carousel stories (default, no extra research); `different` = Reels get their own stories (stories_per_day = posts + reels, Reel-only stories have `slot: null`). Owner asked whether followers seeing the same story twice is a problem; `same` is the default because at 0 followers nobody sees both.
 - The owner's "Make Reel" / "Post this Reel" buttons still exist for manual cases but are not needed.
 - First live Reel: not yet published as of writing (the automatic flow is untested live).
 

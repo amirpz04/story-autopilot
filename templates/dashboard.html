@@ -185,6 +185,10 @@
         <button class="btn" onclick="act('posts_per_day', document.getElementById('ppd').value)">Save</button></div>
       <div class="row" style="margin-top:10px"><label>Reels <select id="rpd"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
         <button class="btn" onclick="act('reels_per_day', document.getElementById('rpd').value)">Save</button></div>
+      <div class="row" style="margin-top:10px"><label>Reels use <select id="rmode"><option value="same">the same stories as the posts</option><option value="different">their own stories</option></select></label>
+        <button class="btn" onclick="act('reels_mode', document.getElementById('rmode').value)">Save</button></div>
+      <p class="muted" style="margin-bottom:4px"><b>Same stories:</b> no extra research, but a follower can see a story once as a post and once as a Reel (they go out about 6 or more hours apart).
+        <b>Own stories:</b> nobody sees a story twice, but the research writes posts + Reels stories a day, which costs more Claude usage and thins the quality.</p>
       <p class="muted" id="mixNote"></p>
       <p class="muted">Takes effect from the next daily research run. Reels are made from the same stories as the carousels, so adding Reels costs no extra Claude usage unless
         you ask for more Reels than posts. Instagram's guidance is to space posts out and vary formats; 2 + 2 is a good start. Posts and Reels never go out within 45 minutes of each other.</p>
@@ -584,6 +588,7 @@ async function loadRuns() {
 $("pubstate").textContent = sys.paused ? "Posting is paused." : "Posting is on.";
 $("ppd").value = String(sys.posts_per_day);
 $("rpd").value = String(sys.reels_per_day);
+$("rmode").value = sys.reels_mode || "same";
 $("mixNote").textContent = "Now: " + sys.posts_per_day + " carousel post" + (sys.posts_per_day === 1 ? "" : "s") + " + " + sys.reels_per_day + " Reel" + (sys.reels_per_day === 1 ? "" : "s") + " a day, from " + sys.stories_per_day + " stor" + (sys.stories_per_day === 1 ? "y" : "ies") + " (research writes " + sys.stories_per_day + " a day).";
 $("spd").value = String(sys.spares_per_day);
 $("sparesReady").textContent = sys.spares_ready + " spare" + (sys.spares_ready === 1 ? "" : "s") + " ready now";

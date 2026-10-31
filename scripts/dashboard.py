@@ -193,7 +193,7 @@ def build(now):
         "system": {"paused": bool(config.get("paused")), "posts_per_day": config["posts_per_day"], "slot_times": slot_times,
                    "last_mac_ping_utc": record_mac_ping(now), "history_count": len(history),
                    "unsplash_used": len(unsplash), "unsplash_cap": config.get("unsplash_max_requests_per_day", 100),
-                   "spares_per_day": config.get("spares_per_day", 0), "reels_per_day": config.get("reels_per_day", 0),
+                   "spares_per_day": config.get("spares_per_day", 0), "reels_per_day": config.get("reels_per_day", 0), "reels_mode": config.get("reels_mode", "same"),
                    "stories_per_day": config.get("stories_per_day", config["posts_per_day"]),
                    "reel_times": [config["reel_times"][i - 1] for i in config.get("reel_active_slots", [])],
                    "spares_ready": sum(1 for p in all_posts if p.get("spare") and p.get("status") not in ("removed", "deleted") and p["date"] >= (today - timedelta(days=2)).isoformat()),

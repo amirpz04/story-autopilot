@@ -11,6 +11,7 @@ Usage: python scripts/control.py ACTION [TARGET] [TEXT]     (TEXT may also come 
   edit_caption POST_ID  TEXT     change the caption of a post that isn't live
   edit_slide POST_ID#N  TEXT     change the text of slide N (1-based) of a post that isn't live
   posts_per_day N                0-5 carousel posts a day from the next research run on
+  reels_mode same|different      Reels reuse the carousel stories, or get their own (more research, no repeats)
   reels_per_day N                0-5 Reels a day from the next research run on (at least one post or Reel a day)
   spares_per_day N               0-3 extra spare posts the research run prepares each day (uses more Claude usage)
   delete_instagram POST_ID       delete a live post from Instagram (the whole carousel)
@@ -230,6 +231,12 @@ def remove_music(name):
     return "Removed %s. %d song%s left%s." % (path.name, left, "" if left == 1 else "s", "; Reels will be silent until you add one" if not left else "")
 
 
+def stories_needed(config):
+    """Stories the research run must write: Reels reuse the carousel stories ("same") or get their own ("different")."""
+    posts, reels = config.get("posts_per_day", 0), config.get("reels_per_day", 0)
+    return posts + reels if config.get("reels_mode") == "different" else max(posts, reels)
+
+
 def run(action, target, text):
     config = load(CONFIG, {})
     posted = load(POSTED, {})
@@ -250,11 +257,20 @@ def run(action, target, text):
             config.update(reels_per_day=n, reel_active_slots=REEL_SLOTS[n])
         if config.get("posts_per_day", 0) + config.get("reels_per_day", 0) == 0:
             return "That would leave nothing to post. Keep at least one post or Reel a day."
-        config["stories_per_day"] = max(config.get("posts_per_day", 0), config.get("reels_per_day", 0))
+        config["stories_per_day"] = stories_needed(config)
         config["max_posts_per_day"] = config.get("posts_per_day", 0) + config.get("reels_per_day", 0) + 1
         save(CONFIG, config)
         return "Now %d carousel post%s and %d Reel%s a day, from %d stories (takes effect from the next research run)." % (
             config["posts_per_day"], "" if config["posts_per_day"] == 1 else "s", config["reels_per_day"], "" if config["reels_per_day"] == 1 else "s", config["stories_per_day"])
+
+    if action == "reels_mode":
+        if target not in ("same", "different"):
+            return "Pick 'same' or 'different'."
+        config["reels_mode"] = target
+        config["stories_per_day"] = stories_needed(config)
+        save(CONFIG, config)
+        return ("Reels now reuse the carousel stories (no extra research)." if target == "same" else
+                "Reels now get their own stories, so followers never see the same story twice. The research run writes %d stories a day." % config["stories_per_day"])
 
     if action == "spares_per_day":
         n = int(target)

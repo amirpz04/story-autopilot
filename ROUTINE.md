@@ -244,18 +244,19 @@ Write each post as `queue/<date>/<NN>/post.json`:
 }
 ```
 
-**Slots (how a story is scheduled).** Story number `i` (1 = your strongest, in the order you rank them) gets:
-- `"slot"` = the `i`-th number of `active_slots` if `i <= posts_per_day`, otherwise `null` (no carousel);
-- `"reel_slot"` = `reel_active_slots[i mod reels_per_day]` (0-based list position) if `i <= reels_per_day`, otherwise `null` (no Reel).
-  This rotates the Reel slots by one on purpose, so the carousel and the Reel of the same story are about 6 or more hours apart
-  (for example with 3 + 3: story 1 gets carousel slot 1 and the second Reel slot, story 3 gets the first Reel slot).
-With 2 posts and 2 Reels, both stories are posted as a carousel and as a Reel; with 1 post and 3 Reels, the
-first story is both and the other two are Reels only (their `slot` is `null`). A story with both `null` must
-not exist. Put the strongest stories on the evening slots (the last numbers). The post and the Reel of one story
-are intentionally far apart in time. Reels are built from the same slides, so every story must still follow all
-the picture and text rules above, even if it only becomes a Reel.
-`tags` is for learning: `lane` is `news` or `evergreen`; `end` is `question` or `send`; `headline` is `statement`,
-`question` or `number` (how the cover headline is built).
+**Slots (how a story is scheduled).** Rank your stories, strongest first; story number `i` is the `i`-th. What you write depends on
+`reels_mode` in `config.json` (write `stories_per_day` stories):
+
+- **`"same"`** (Reels reuse the carousel stories): story `i` gets `"slot"` = the `i`-th number of `active_slots` if `i <= posts_per_day`,
+  otherwise `null`; and `"reel_slot"` = `reel_active_slots[i mod reels_per_day]` (0-based list position, rotated by one on purpose so the
+  carousel and the Reel of one story are about 6 or more hours apart) if `i <= reels_per_day`, otherwise `null`.
+- **`"different"`** (Reels get their own stories, so nobody sees the same story twice): stories `1 .. posts_per_day` are carousel-only
+  (`"slot"` = the `i`-th number of `active_slots`, `"reel_slot": null`); the next `reels_per_day` stories are Reel-only (`"slot": null`,
+  `"reel_slot"` = the `(i - posts_per_day)`-th number of `reel_active_slots`). Choose the Reel stories for being visual and quick to grasp.
+
+Examples with 3 posts + 3 Reels: `"same"` writes 3 stories (each a carousel and a Reel); `"different"` writes 6 (three carousel-only, three Reel-only).
+A story with both `null` must not exist. Put the strongest stories on the evening slots. Reels are built from a story's own slides, so every story
+must follow all the picture and text rules above, even if it only becomes a Reel.
 
 ## 7b. Spare posts (only if `spares_per_day` in `config.json` is above 0)
 

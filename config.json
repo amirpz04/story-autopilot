@@ -47,5 +47,6 @@
   "time_jitter_minutes": 35,
   "timezone": "America/New_York",
   "unsplash_max_requests_per_day": 100,
-  "unsplash_max_requests_per_hour": 30
+  "unsplash_max_requests_per_hour": 30,
+  "reels_mode": "same"
 }
