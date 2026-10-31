@@ -1,11 +1,16 @@
 {
   "2026-10-31-01": {
+    "attempts": 0,
     "credit": "Music: Kevin MacLeod (incompetech.com), CC BY 3.0",
+    "error": "",
     "file": "20261031-155949-2026-10-31-01.mp4",
     "made_at": "2026-10-31T16:01:48.562873+00:00",
+    "media_id": "18226772371332797",
     "music": "macleod-rites.ogg",
+    "permalink": "https://www.instagram.com/reel/DfKkwwDDJ0G/",
+    "posted_at": "2026-10-31T16:22:21.819588+00:00",
     "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/085172b424bae40c6038669340af68b3116dcd0b/20261031-155949-2026-10-31-01.mp4",
-    "status": "made",
+    "status": "posted",
     "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@085172b424bae40c6038669340af68b3116dcd0b/20261031-155949-2026-10-31-01.mp4"
   }
 }
