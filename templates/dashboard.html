@@ -184,7 +184,7 @@ const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "
 const ICON = {neutral: ["i-neutral", "&hellip;"], good: ["i-good", "&#10003;"], warning: ["i-warning", "!"], serious: ["i-serious", "!"], critical: ["i-critical", "&#10005;"]};
 const icon = lvl => `<span class="icon ${ICON[lvl][0]}" aria-hidden="true">${ICON[lvl][1]}</span>`;
 const now = Date.now();
-const thumb = u => !u ? u : u.replace(/\/(\d{3,4})px-/, "/480px-").replace(/([?&])w=\d+/, "$1w=480");
+const thumb = u => !u ? u : u.replace(/\/(\d{3,4})px-/, "/500px-").replace(/([?&])w=\d+/, "$1w=500");
 const fixIso = s => s && /[+-]\d\d:\d\dZ$/.test(s) ? s.slice(0, -1) : s;
 const REPO = D.repo;
 
