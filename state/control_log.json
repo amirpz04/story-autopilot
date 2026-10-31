@@ -1,5 +1,11 @@
 [
   {
+    "action": "remove_music",
+    "at": "2026-10-31T16:09:40.231812+00:00",
+    "result": "Removed eastminster-kevin-macleod.m4a. 6 songs left.",
+    "target": "eastminster-kevin-macleod.m4a"
+  },
+  {
     "action": "add_music",
     "at": "2026-10-31T16:09:09.969449+00:00",
     "result": "Added 'Eastminster (Kevin MacLeod)' (405 s). Its credit line will go in the caption of Reels that use it.",
