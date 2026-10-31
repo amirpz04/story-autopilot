@@ -78,7 +78,7 @@ def build(now):
     # --- group averages (only posts old enough, only groups big enough)
     mature = [s for s in stats if s.get("age_hours", 0) >= MATURE_HOURS and s.get("reach") is not None and "error" not in s]
     keys = {"topic": lambda s: s.get("category"), "posting hour": lambda s: "%02d:00" % s["hour"] if "hour" in s else None,
-            "slide count": lambda s: s.get("slides"), "ending style": lambda s: (s.get("tags") or {}).get("end"),
+            "lane": lambda s: (s.get("tags") or {}).get("lane"), "slide count": lambda s: s.get("slides"), "ending style": lambda s: (s.get("tags") or {}).get("end"),
             "headline style": lambda s: (s.get("tags") or {}).get("headline")}
     groups = {}
     for name, fn in keys.items():

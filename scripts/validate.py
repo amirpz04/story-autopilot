@@ -73,8 +73,9 @@ def final_problems(post):
             run += 1
             if run == 2:
                 problems.append("slides %d-%d have no picture, two plain slides in a row" % (i - 1, i))
-    if len(urls) < 3:
-        problems.append("only %d slides have a picture (direct image url); at least 3 are needed" % len(urls))
+    need = max(3, (len(post["slides"]) + 1) // 2)
+    if len(urls) < need:
+        problems.append("only %d slides have a picture (direct image url); at least %d are needed for %d slides" % (len(urls), need, len(post["slides"])))
     if len(set(urls)) < len(urls):
         problems.append("the same picture is used on more than one slide")
     return problems
@@ -101,8 +102,8 @@ def check_post(path, config):
         errors.append("every source needs a url")
 
     slides = post["slides"]
-    if not 4 <= len(slides) <= 5:
-        errors.append("needs 4-5 slides, has %d" % len(slides))
+    if not 5 <= len(slides) <= 10:
+        errors.append("needs 5-10 slides, has %d" % len(slides))
     errors += final_problems(post)
     for i, sl in enumerate(slides, 1):
         if (sl.get("image") or {}).get("search") and not sl["image"].get("url"):

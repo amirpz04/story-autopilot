@@ -31,7 +31,7 @@ Public repo: github.com/amirpz04/story-autopilot. Dashboard: https://amirpz04.gi
 | spam protection | `config.json`: `max_posts_per_day`, `min_minutes_between_posts`, `ig_quota_stop` (checked against Instagram itself in `publish.py: instagram_gate`) |
 | Unsplash limits | `config.json`: `unsplash_max_requests_per_hour/day` (legacy; the routine no longer uses stock searches) |
 | what stories, tone, verification, captions, picture rules | `ROUTINE.md` (the routine's full instructions) |
-| hard rules on a post (slides 4-5, pictures, text length, caption 700-1500 chars, duplicates) | `scripts/validate.py` |
+| hard rules on a post (slides 5-10, pictures, text length, caption 700-1500 chars, duplicates) | `scripts/validate.py` |
 | look of slides / brand colours / counter | `templates/slide.html`, `config.json` `brand`, `show_slide_counter` |
 | routine time, model, prompt | the scheduled task (`RemoteTrigger update`, or claude.ai/code) |
 | dashboard | `templates/dashboard.html` + `scripts/dashboard.py` |
@@ -49,10 +49,12 @@ commit, push to `main` (goes live immediately). For publisher changes set `pause
 
 ## Decisions the owner made (and why), do not undo without asking
 - **The publisher only posts.** No content checks, no failure emails that reject posts. All quality checking belongs to the Claude routine (it must run `scripts/check_images.py`, open every saved picture with Read, and fix problems). The owner never reads email: status goes on the dashboard.
-- **4-5 slides per post, picture-rich** (3+ real pictures, never two text-only slides in a row, `layout: full` photo slides). Owner disliked 8 slides and walls of black text slides. No slide counter ("1/7") on images. Detailed caption (~900-1300 chars) under each post.
+- **5-10 slides per post, the story decides** (simple 5-6, rich up to 10; never pad), **picture-rich** (at least half the slides, min 3, have a real picture; never two text-only slides in a row; `layout: full` photo slides). Owner disliked 8 slides and walls of black text slides. No slide counter ("1/7") on images. Detailed caption (~900-1300 chars) under each post.
 - **No AI tool spotlight posts** (switched off for now). Real pictures only; stock `search` images are disabled.
 - Budget is tiny: everything free except the owner's Claude Pro plan. Be careful with Claude usage (the routine runs Opus 5.5; if usage is high switch to Sonnet 5.5 or 2 posts/day).
 - Instagram rules: official API only, no engagement bots, no unofficial login. Post times shift randomly by +-35 min per day.
+
+- **Two lanes (Oct 31 2026):** A = news (tech/science/space/nature/animals/health/AI), B = **evergreen** (any true, interesting story about something humans built or did, any age: how technologies work, company and founder origin stories, books, languages, machines, history; no topic limit, but needs 2 independent sources and a specific surprising hook). Posts are tagged `lane` so the dashboard can compare them.
 
 ## Known gotchas
 - GitHub's scheduled workflows are unreliable here (2 runs in 18 h); the Mac ping is the real clock. Optional backup: cron-job.org calling `workflow_dispatch`.

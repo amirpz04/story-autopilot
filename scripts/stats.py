@@ -128,6 +128,7 @@ def build_report(entries, followers):
     for label, key in (("category", lambda e: e["category"]),
                        ("posting hour", lambda e: "%02d:00" % e["hour"]),
                        ("slide count", lambda e: e["slides"]),
+                       ("lane", lambda e: e["tags"].get("lane")),
                        ("ending style", lambda e: e["tags"].get("end")),
                        ("headline style", lambda e: e["tags"].get("headline"))):
         lines.append(group_table(mature, label, key))
