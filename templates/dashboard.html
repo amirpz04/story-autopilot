@@ -358,7 +358,7 @@ $("today").innerHTML = todayRows.length
 
 $("tiles").innerHTML =
   tile("Posts live", nf(live.length), "all time") +
-  tile("Posted today", (postedToday + todayFull.filter(p => p.reel && p.reel.status === "posted").length) + " of " + todayRows.length, todayRows.length ? "posts + Reels" : "nothing queued") +
+  tile("Posted today", todayRows.filter(r => /live/i.test(r.st[1])).length + " of " + todayRows.length, todayRows.length ? "posts + Reels scheduled today" : "nothing queued") +
   tile("Reels", nf(sys.reels_posted), sys.reels_made + " made") +
   tile("Average reach", nf(Math.round(avg(withReach.map(p => p.reach)) ?? NaN) || null), "people per post") +
   tile("Shares per reach", pct(avg(withReach.map(p => p.share_rate).filter(x => x != null))), "sends matter most");
