@@ -1,0 +1,77 @@
+{
+  "id": "2026-11-01-01",
+  "date": "2026-11-01",
+  "slot": 1,
+  "reel_slot": 3,
+  "title": "Voyager 1 nears one light-day from Earth",
+  "category": "space",
+  "tags": {
+    "end": "send",
+    "headline": "statement",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 7,
+    "emotion": 8,
+    "shareability": 8,
+    "talkability": 6,
+    "no_context": 8,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "NASA Science: Voyager 1",
+      "url": "https://science.nasa.gov/mission/voyager/voyager-1/"
+    }
+  ],
+  "verification": "NASA Voyager 1 mission page (countdown to one light-day on Nov 18 2026; launch, flybys, discoveries, 2012 interstellar entry, April 17 instrument shutdown). 16 billion miles matches news headlines (Fox, Science News) and light speed x 24 h = 16.1 billion miles. Pictures: NASA/JPL.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "SPACE",
+      "headline": "A spacecraft launched in 1977 is about to be one full light-day away from Earth",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA17462/PIA17462~orig.jpg",
+        "credit": "Illustration: NASA/JPL-Caltech"
+      }
+    },
+    {
+      "type": "text",
+      "text": "On Nov. 18, 2026, Voyager 1 will be about 16 billion miles away. A radio signal at light speed needs a full 24 hours to reach it, so ask a question Monday and the answer comes back Wednesday."
+    },
+    {
+      "type": "text",
+      "text": "It launched in 1977 for Jupiter and Saturn. It found a ring around Jupiter and two new moons, then five new moons at Saturn.",
+      "layout": "full",
+      "image": {
+        "url": "https://images-assets.nasa.gov/image/PIA01483/PIA01483~orig.jpg",
+        "credit": "Illustrative: Voyager montage of planets, NASA/JPL"
+      }
+    },
+    {
+      "type": "text",
+      "text": "In 2012 it became the first human-made object in interstellar space. Now its power is fading: on April 17, NASA shut off another instrument. Two science instruments are left."
+    },
+    {
+      "type": "text",
+      "text": "It also carries a golden record of Earth's sounds and images, made in case anyone ever finds it.",
+      "layout": "full",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/56/The_Sounds_of_Earth_Record_Cover_-_GPN-2000-001978.jpg",
+        "credit": "Photo: NASA/JPL-Caltech / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Send this to someone who loves space."
+    }
+  ],
+  "caption": "Voyager 1 is about to be one light-day from Earth. That's the distance light travels in 24 hours.\n\nOn Nov. 18, 2026, NASA says the probe will be about 16 billion miles away. Light itself takes 24 hours to cross that gap, so a command sent from Earth takes a day to arrive and the reply takes another day to come back. Only a few years ago Voyager 1 was 'only' light-hours away.\n\nThe spacecraft launched on Sept. 5, 1977. It flew past Jupiter in 1979 and Saturn in 1980, finding a thin ring around Jupiter, two new Jovian moons and five new moons at Saturn. In 1998 it overtook Pioneer 10 as the most distant human-made object, and in August 2012 it became the first one to enter interstellar space, the region outside the Sun's bubble of particles and magnetic fields.\n\nIt still works, but barely. Its nuclear power source weakens over time, so engineers have been switching off parts of the craft in a planned order. The latest, on April 17, left only two science instruments running.\n\nDo you think we'll ever send something that goes farther? Tell us below.\n\nSource: NASA Science, NASA JPL",
+  "hashtags": [
+    "#space",
+    "#voyager",
+    "#nasa",
+    "#astronomy"
+  ]
+}
