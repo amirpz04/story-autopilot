@@ -175,6 +175,27 @@ def main():
         sys.exit(1)
 
     failed = False
+    day_errors = []
+
+    # The day must be complete. Runs used to stop at one story and report success.
+    wanted = int(config.get("stories_per_day", 0) or 0)
+    scheduled = [p for p in posts if not json.loads(p.read_text()).get("spare")]
+    if wanted and len(scheduled) < wanted:
+        day_errors.append("only %d of %d stories written for this day; %s missing (ROUTINE.md section 9)"
+                          % (len(scheduled), wanted, wanted - len(scheduled)))
+
+    # One story per website per day, so the feed does not become the account.
+    sites = {}
+    for path in scheduled:
+        for src in json.loads(path.read_text()).get("sources", []):
+            host = re.sub(r"^https?://(www\.)?", "", src.get("url", "")).split("/")[0].lower()
+            if not host:
+                continue
+            if host in sites and sites[host] != path.parent.name:
+                day_errors.append("%s and %s both come from %s; use a different source for one"
+                                  % (sites[host], path.parent.name, host))
+            sites.setdefault(host, path.parent.name)
+
     slots = {}
     for path in posts:
         errors = check_post(path, config)
@@ -194,6 +215,11 @@ def main():
         for err in errors:
             print("      -", err)
         failed = failed or bool(errors)
+    if day_errors:
+        print("FAIL  %s (the day as a whole)" % day_dir)
+        for err in day_errors:
+            print("      -", err)
+        failed = True
     print("%d posts checked" % len(posts))
     sys.exit(1 if failed else 0)
 

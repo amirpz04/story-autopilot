@@ -29,9 +29,27 @@ story whose time has passed or that is already live.
 
 ## 2. Discover candidates (aim for about 25)
 
+**Start every run with the plan. This is not optional:**
+
+```
+python3 scripts/plan_day.py
+```
+
+It deals you, at random, a lane and an angle for each story and the places to start looking.
+Follow it. The draw is different every run, which is the whole point: left to habit, earlier runs
+took 7 of the first 9 stories from the same ScienceDaily feed and the account turned into one
+long science-news column. **You are not allowed to decide where to look. The plan decides.**
+
+- Work the entry points the plan gives you, in the order it gives them.
+- **No two stories in a day from the same website.** If two land on one site, drop one and draw again.
+- If a story the plan sends you to turns out thin, take the "if thin" link, then the wildcard, then
+  run `plan_day.py` again for a fresh draw. **Never fall back to a feed you used on a previous day.**
+- The lists below are what each lane can cover. They are a map of the territory, not a reading order:
+  the plan picks your entry point, these tell you what counts as a story.
+
 Search broadly within tech and science. Don't stop at the big headlines; the
 best stories are often small: a university press release, a strange study, a
-startup in Japan, an engineer's odd invention. Cover these every run:
+startup in Japan, an engineer's odd invention. All of these are fair game:
 
 - **AI:** surprising things AI did or can now do, big AI company news, AI in everyday life, AI going wrong (funny or alarming)
 - **Science discoveries:** new studies with a surprising result (EurekAlert, phys.org, ScienceDaily, university newsrooms, Nature/Science news)
@@ -98,10 +116,17 @@ Score each candidate 1–10 on:
 
 A small story with a great hook beats a major headline that's boring or
 everywhere already. Pick the top `stories_per_day` stories and keep 2 backups.
-Choose the best stories from both lanes. Each day's posts should come from at least two different
-topics, and from both lanes unless the news is exceptionally slow (all evergreen is fine then); major
-news always gets a slot. Quality is never lowered to fill a lane: if a lane has nothing strong, take
-more from the other. Tag each post's `lane` (see the output format).
+
+**Small is fine. Say it out loud before you reject anything.** The bar is "true, specific and
+surprising", NOT "groundbreaking". A 1940s vending machine, why a keyboard key is where it is, a
+company that nearly died twice, one strange animal habit: all of these are good posts. Holding out
+for something important is how a run ends with one story and three empty slots. If a story clears
+the bar, take it and move on to the next one.
+
+**The lane mix comes from `plan_day.py`, and at least one story a day is lane B** (evergreen: old,
+historical, a company, a machine, a person, how something works). The account is not a science-news
+feed. If the plan says lane B, you write lane B, even if a big news story is sitting right there:
+the news lane gets the other slots. Tag each post's `lane` (see the output format).
 
 Hard skips:
 - Unverifiable claims, single anonymous sources, satire sites, content farms
@@ -153,8 +178,16 @@ publisher simply posts what you queue, so a weak picture goes out exactly as you
   `/tmp/imgcheck/`. **Then open each saved copy with the Read tool and look at it:** does it match the
   slide, is it sharp, free of text banners, watermarks and screenshots, and different from the
   other slides? Replace anything weak.
-- If you can't find 3 good pictures for a story, drop it and choose another. A clean text
-  slide is better than a wrong or murky photo, but never two text slides in a row.
+- If a story is short of pictures, **work down the source list before you give up on it**: the
+  official source for the subject, then Wikimedia, then Smithsonian Open Access, Library of
+  Congress, the Met, Rijksmuseum, NOAA/USGS/FWS, Internet Archive book scans. Different subjects
+  live in different archives; a Neanderthal story that is thin on Commons may be rich at the
+  Smithsonian, and a 1950s product story is usually in the Archive's scanned catalogues, not
+  Commons. Only after that, drop the story. A clean text slide is better than a wrong or murky
+  photo, but never two text slides in a row.
+- A post may use the same place or object photographed several ways, but **four near-identical
+  frames of one thing is a weak post** (Nov 1's Shanidar post used the same cave four times).
+  Mix picture types: the subject, a person involved, a diagram or map, an object, the place.
 
 Use only direct image URLs ending in .jpg, .jpeg, .png or .webp that load without a login.
 Images must be at least 2000 pixels wide for cover and full-photo slides (use `iiurlwidth=2400` on Wikimedia).
@@ -164,8 +197,19 @@ An illustrative image must never contradict the story (a red octopus on a post
 about a blue one, the wrong country's flag, a different breed of dog). If the
 cover image isn't the actual subject, say so in the credit ("Illustrative photo: …").
 
-**Finding pictures: use the helper, never your own search loops.** Wikimedia throttles (HTTP 429) anyone who sends many
-quick or parallel requests, and that is what cut a run down to one story. Instead run, one command for several queries:
+**Wikimedia is one archive among several, not the default.** Go to the archive that actually owns the
+subject first (NASA/ESA for space, NOAA/USGS/FWS for nature, Smithsonian and the Library of Congress
+for objects and history, the Met and Rijksmuseum for art and period pictures, Internet Archive for
+old books, manuals and catalogues). Those have no throttling and often better pictures. `plan_day.py`
+names one to try first each run; use Wikimedia when it is genuinely the best place for that subject.
+
+**Stock photo sites (Unsplash, and the `UNSPLASH_ACCESS_KEY` secret) stay switched off.** They have no
+picture of Shanidar Cave, Voyager 1 or a 1930s factory; they have a generic cave, a generic starfield
+and a generic factory. The owner's rule is real pictures of the real subject. Do not re-enable them.
+
+**For Wikimedia, use the helper, never your own search loops.** Wikimedia throttles (HTTP 429) anyone who sends many
+quick or parallel requests, and that is what cut a run down to one story. It still throttles even one
+request at a time, so expect waits of up to a minute; that is normal, not a failure. Run one command for several queries:
 
 `python3 scripts/find_images.py "query one" "query two" --min-width 2000 --limit 6`
 
@@ -296,8 +340,18 @@ Your usage allowance is limited and shared with the person who owns it, so be ec
 - At most about 40 web searches and 25 full articles read in total. Stop researching as soon as you have `stories_per_day`
   verified stories plus 2 backups.
 - Keep reasoning short; don't draft a story you've already decided to skip.
-- If you are running low on allowance or hit an error, finish with fewer stories (even 1) rather than rushing; commit and push what is
-  verified. Never publish an unverified story just to fill a slot. (The next run fills any missing stories.)
+- **You finish with `stories_per_day` stories. This is the one hard number in this file.** On Nov 1 two
+  runs in a row stopped at one story each and reported success, because an older version of this rule
+  let them. It does not any more.
+  - A thin feed, a throttled picture search, a story that fell apart on checking: none of these end
+    the run. Draw again (`plan_day.py`), pick an easier story, and keep going.
+  - `validate.py` now fails if the day is short, so a short run is a failed run.
+  - Lower the ambition before you lower the count: a small, quiet, well-sourced story counts in full.
+  - The only two things you must never do to fill a slot are publishing something **unverified** and
+    publishing something with **wrong or missing pictures**. Everything else bends.
+  - If you truly cannot get there (the network is down, you are out of allowance), commit what you have
+    and say in your summary, in one line, exactly which story you could not finish and what stopped you.
+    Do not report success on a short day.
 - Only the free sources named in this file; no paid services, no new accounts.
 
 ## 10. Learn from results
