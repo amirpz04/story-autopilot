@@ -1,34 +1,50 @@
 {
-  "macleod-isolated.m4a": {
-    "added": "2026-10-31",
-    "credit": "Music: Kevin MacLeod (incompetech.com), CC BY 3.0",
-    "duration": 64,
-    "license": "CC BY 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Kevin_MacLeod_-_Isolated.ogg",
-    "title": "Isolated (Kevin MacLeod)"
+  "adrift-among-infinite-stars.m4a": {
+    "added": "2026-11-01",
+    "credit": "Adrift Among Infinite Stars by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "duration": 110,
+    "license": "CC BY 4.0",
+    "source": "https://www.scottbuckley.com.au/library/wp-content/uploads/2022/02/AdriftAmongInfiniteStars.mp3",
+    "title": "Adrift Among Infinite Stars (Scott Buckley)"
   },
-  "macleod-rites.m4a": {
-    "added": "2026-10-31",
-    "credit": "Music: Kevin MacLeod (incompetech.com), CC BY 3.0",
-    "duration": 127,
-    "license": "CC BY 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Kevin_MacLeod_-_Rites.ogg",
-    "title": "Rites (Kevin MacLeod)"
+  "in-search-of-solitude.m4a": {
+    "added": "2026-11-01",
+    "credit": "In Search Of Solitude by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "duration": 110,
+    "license": "CC BY 4.0",
+    "source": "https://www.scottbuckley.com.au/library/wp-content/uploads/2022/05/sb_insearchofsolitude.mp3",
+    "title": "In Search Of Solitude (Scott Buckley)"
   },
-  "macleod-ritual.m4a": {
-    "added": "2026-10-31",
-    "credit": "Music: Kevin MacLeod (incompetech.com), CC BY 3.0",
-    "duration": 264,
-    "license": "CC BY 3.0",
-    "source": "https://commons.wikimedia.org/wiki/File:Kevin_MacLeod_-_Ritual.ogg",
-    "title": "Ritual (Kevin MacLeod)"
+  "life-in-silico.m4a": {
+    "added": "2026-11-01",
+    "credit": "Life In Silico by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "duration": 110,
+    "license": "CC BY 4.0",
+    "source": "https://www.scottbuckley.com.au/library/wp-content/uploads/2021/07/sb_lifeinsilico.mp3",
+    "title": "Life In Silico (Scott Buckley)"
   },
-  "satie-gymnopedie-1.m4a": {
-    "added": "2026-10-31",
-    "credit": "",
-    "duration": 184,
-    "license": "Public domain",
-    "source": "https://commons.wikimedia.org/wiki/File:Erik_Satie_-_gymnopedies_-_la_1_ere._lent_et_douloureux.ogg",
-    "title": "Gymnopedie No. 1 (Erik Satie)"
+  "passage-of-time.m4a": {
+    "added": "2026-11-01",
+    "credit": "Passage Of Time by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "duration": 110,
+    "license": "CC BY 4.0",
+    "source": "https://www.scottbuckley.com.au/library/wp-content/uploads/2022/01/PassageOfTime.mp3",
+    "title": "Passage Of Time (Scott Buckley)"
+  },
+  "permafrost.m4a": {
+    "added": "2026-11-01",
+    "credit": "Permafrost by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "duration": 110,
+    "license": "CC BY 4.0",
+    "source": "https://www.scottbuckley.com.au/library/wp-content/uploads/2022/08/Permafrost.mp3",
+    "title": "Permafrost (Scott Buckley)"
+  },
+  "the-long-dark.m4a": {
+    "added": "2026-11-01",
+    "credit": "The Long Dark by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "duration": 110,
+    "license": "CC BY 4.0",
+    "source": "https://www.scottbuckley.com.au/library/wp-content/uploads/2023/01/TheLongDark.mp3",
+    "title": "The Long Dark (Scott Buckley)"
   }
 }
