@@ -258,7 +258,7 @@ def run(action, target, text):
         if config.get("posts_per_day", 0) + config.get("reels_per_day", 0) == 0:
             return "That would leave nothing to post. Keep at least one post or Reel a day."
         config["stories_per_day"] = stories_needed(config)
-        config["max_posts_per_day"] = config.get("posts_per_day", 0) + config.get("reels_per_day", 0) + 1
+        config["max_posts_per_day"] = config.get("posts_per_day", 0) + config.get("reels_per_day", 0) + 2   # +1 backlog Reel, +1 spare room
         save(CONFIG, config)
         return "Now %d carousel post%s and %d Reel%s a day, from %d stories (takes effect from the next research run)." % (
             config["posts_per_day"], "" if config["posts_per_day"] == 1 else "s", config["reels_per_day"], "" if config["reels_per_day"] == 1 else "s", config["stories_per_day"])
@@ -287,7 +287,7 @@ def run(action, target, text):
     if action == "remove_music":
         return remove_music(target) if target else "No song was given."
 
-    if action not in ("remove", "restore", "post_now", "reschedule", "replace", "edit_caption", "edit_slide", "delete_instagram", "post_reel"):
+    if action not in ("remove", "restore", "post_now", "reschedule", "replace", "edit_caption", "edit_slide", "delete_instagram", "post_reel", "cancel_reel", "reschedule_reel"):
         return "Unknown action %r." % action
     if not target:
         return "No post was given."
@@ -317,6 +317,29 @@ def run(action, target, text):
     if action == "post_reel":
         import publish_reel
         return publish_reel.post_reel(target)
+
+    if action in ("cancel_reel", "reschedule_reel"):
+        reels = load(REELS, {})
+        entry = reels.get(target)
+        if action == "cancel_reel":
+            if entry and entry.get("status") == "posted":
+                return "That Reel is already live."
+            reels[target] = dict(entry or {}, status="cancelled")
+            save(REELS, reels)
+            return "Reel of %s cancelled; it will not be made or posted." % target
+        if not entry or entry.get("status") == "posted":
+            return "No scheduled Reel to move (it is live or was never planned)."
+        when = datetime.fromisoformat(text.strip().replace("Z", "+00:00")) if text.strip() else None
+        if when is None:
+            return "Give a time."
+        if when.tzinfo is None:
+            when = when.replace(tzinfo=timezone.utc)
+        if when > datetime.now(timezone.utc) + timedelta(days=21):
+            return "Pick a time within the next 3 weeks."
+        entry.update(post_at=when.astimezone(timezone.utc).isoformat(), attempts=0, status="made" if entry.get("raw_url") else "pending")
+        reels[target] = entry
+        save(REELS, reels)
+        return "Reel of %s will go out at %s UTC." % (target, when.astimezone(timezone.utc).strftime("%b %d %H:%M"))
 
     record = posted.get(target, {})
     if action == "remove":

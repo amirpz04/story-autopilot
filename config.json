@@ -16,7 +16,7 @@
   "handle": "@unclefactss",
   "ig_quota_stop": 25,
   "language": "English",
-  "max_posts_per_day": 7,
+  "max_posts_per_day": 8,
   "min_minutes_between_posts": 45,
   "paused": false,
   "post_times": [
@@ -48,5 +48,7 @@
   "timezone": "America/New_York",
   "unsplash_max_requests_per_day": 100,
   "unsplash_max_requests_per_hour": 30,
-  "reels_mode": "same"
+  "reels_mode": "same",
+  "backfill_reel_time": "18:15",
+  "backfill_per_day": 1
 }

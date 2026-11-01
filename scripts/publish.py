@@ -163,7 +163,11 @@ def find_due_post(config, state):
 
 
 def find_due_reel(config, state):
-    """The earliest Reel of today whose time has come and that isn't live (or given up on) yet."""
+    """The earliest Reel whose time has come and that isn't live (or given up on) yet.
+
+    Two sources: (1) today's stories that have a `reel_slot`; (2) Reels of older posts that have an explicit
+    `post_at` time in state/reels.json (the backlog: posts that went out before Reels existed).
+    """
     import publish_reel
     now = datetime.now(ZoneInfo(config["timezone"]))
     reels = publish_reel.load_reels()
@@ -175,41 +179,21 @@ def find_due_reel(config, state):
         if state.get(post["id"], {}).get("status") in ("removed", "deleted"):
             continue
         entry = reels.get(post["id"], {})
-        if entry.get("status") == "posted" or entry.get("attempts", 0) >= MAX_ATTEMPTS:
+        if entry.get("status") in ("posted", "cancelled") or entry.get("attempts", 0) >= MAX_ATTEMPTS:
             continue
         when = slot_time(config, now.date(), post["reel_slot"], "reel")
         if now >= when:
             due.append((when, path.parent, post))
-    if due:
-        return min(due, key=lambda d: d[0])
-    return find_backfill_reel(config, state, reels, now)
-
-
-BACKFILL_WINDOW = (7, 9)        # New York hours; quiet, before the day's own schedule starts
-BACKFILL_EVERY_HOURS = 20
-
-
-def find_backfill_reel(config, state, reels, now):
-    """One Reel a day for posts published before the Reel system existed.
-
-    Those posts sit in an old queue folder with no `reel_slot`, so the normal path above can never
-    see them. Their videos are already made and recorded with `backfill: true`; this drains them
-    one per day so they don't crowd out the current schedule or trip the daily cap.
-    """
-    if not BACKFILL_WINDOW[0] <= now.hour < BACKFILL_WINDOW[1]:
-        return (None, None, None)
-    last = max((e["posted_at"] for e in reels.values() if e.get("backfill") and e.get("posted_at")), default=None)
-    if last and now - datetime.fromisoformat(last).astimezone(now.tzinfo) < timedelta(hours=BACKFILL_EVERY_HOURS):
-        return (None, None, None)
-    waiting = sorted(pid for pid, e in reels.items()
-                     if e.get("backfill") and e.get("status") == "made" and e.get("raw_url") and e.get("attempts", 0) < MAX_ATTEMPTS)
-    for pid in waiting:
-        if state.get(pid, {}).get("status") in ("removed", "deleted"):
+    for pid, entry in reels.items():
+        if not entry.get("post_at") or entry.get("status") in ("posted", "cancelled", "failed") or entry.get("attempts", 0) >= MAX_ATTEMPTS:
             continue
-        path = next((p for p in (ROOT / "queue").glob("*/*/post.json") if json.loads(p.read_text()).get("id") == pid), None)
+        when = datetime.fromisoformat(entry["post_at"]).astimezone(now.tzinfo)
+        if when > now:
+            continue
+        path = next((q for q in (ROOT / "queue").glob("*/*/post.json") if json.loads(q.read_text()).get("id") == pid), None)
         if path:
-            return (now, path.parent, json.loads(path.read_text()))
-    return (None, None, None)
+            due.append((when, path.parent, json.loads(path.read_text())))
+    return min(due, key=lambda d: d[0]) if due else (None, None, None)
 
 
 def upload_images(paths):

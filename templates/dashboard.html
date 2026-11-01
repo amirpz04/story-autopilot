@@ -285,14 +285,15 @@ function postStatus(p) {
 }
 // the Reel half of a story: [level, text] or null when the story has no Reel
 function reelStatus(p) {
-  if (p.reel_slot == null || p.spare || p.parked) return null;
+  if ((p.reel_slot == null && !(p.reel && p.reel.post_at)) || p.spare || p.parked) return null;
   if (p.status === "removed" || p.status === "deleted") return null;
   const r = p.reel, t = p.reel_scheduled_utc ? new Date(fixIso(p.reel_scheduled_utc)).getTime() : 0;
   if (r && r.status === "posted") return ["good", "Reel live"];
+  if (r && r.status === "cancelled") return ["neutral", "Reel cancelled"];
   if (r && r.status === "failed") return ["critical", "Reel failed (" + (r.attempts || 0) + " tries)"];
   const past = t && t < now, late = t && now - t > 45 * 60000;
   if (r && r.status === "made") return late ? ["serious", "Reel overdue"] : past ? ["warning", "Reel due now"] : ["neutral", "Reel ready"];
-  if (p.date !== D.today_date && past) return ["neutral", "Reel not made (day passed)"];
+  if ((p.reel_date || p.date) !== D.today_date && past) return ["neutral", "Reel not made (day passed)"];
   return late ? ["serious", "Reel not made yet"] : ["neutral", "Reel will be made"];
 }
 const isLive = p => postStatus(p)[1] === "Live";
@@ -345,9 +346,10 @@ const postedToday = D.today.filter(t => t.status === "posted").length;
 $("todayNote").textContent = D.today.length ? "(New York date " + D.today_date + ")" : "";
 const todayFull = D.all_posts.filter(p => p.date === D.today_date && !p.spare && !p.parked);
 const todayRows = [];
-todayFull.forEach(p => {
-  if (p.has_slot !== false) todayRows.push({p, kind: "Post", st: postStatus(p), time: p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc});
-  const rs = reelStatus(p); if (rs) todayRows.push({p, kind: "Reel", st: rs, time: p.reel && p.reel.status === "posted" ? p.reel.posted_at : p.reel_scheduled_utc});
+D.all_posts.filter(p => !p.spare && !p.parked).forEach(p => {
+  if (p.date === D.today_date && p.has_slot !== false) todayRows.push({p, kind: "Post", st: postStatus(p), time: p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc});
+  const rs = reelStatus(p);
+  if (rs && (p.reel_date || p.date) === D.today_date && rs[1] !== "Reel cancelled") todayRows.push({p, kind: "Reel", st: rs, time: p.reel && p.reel.status === "posted" ? p.reel.posted_at : p.reel_scheduled_utc});
 });
 todayRows.sort((a, b) => new Date(fixIso(a.time) || 0) - new Date(fixIso(b.time) || 0));
 $("today").innerHTML = todayRows.length
@@ -361,7 +363,7 @@ $("today").innerHTML = todayRows.length
 $("tiles").innerHTML =
   tile("On Instagram", nf(AN.media_count != null ? AN.media_count : live.length), "posts + Reels, live count") +
   tile("Posted today", todayRows.filter(r => /live/i.test(r.st[1])).length + " of " + todayRows.length, todayRows.length ? "posts + Reels scheduled today" : "nothing queued") +
-  tile("Reels", nf(sys.reels_posted), sys.reels_made + " made") +
+  tile("Reels", nf(sys.reels_posted), sys.reels_planned + " planned") +
   tile("Average reach", nf(Math.round(avg(withReach.map(p => p.reach)) ?? NaN) || null), "people per post") +
   tile("Shares per reach", pct(avg(withReach.map(p => p.share_rate).filter(x => x != null))), "sends matter most");
 
@@ -446,14 +448,16 @@ $("sys").innerHTML =
   const hhmm = d => d.toLocaleString([], {weekday: "short", hour: "2-digit", minute: "2-digit"});
   const nextRun = new Date(Date.UTC(nowD.getUTCFullYear(), nowD.getUTCMonth(), nowD.getUTCDate(), 9, 15));
   if (nextRun <= nowD) nextRun.setUTCDate(nextRun.getUTCDate() + 1);
-  const upcoming = todayRows.filter(r => r.time && new Date(fixIso(r.time)) > nowD && !/live/i.test(r.st[1]))
+  const later = D.all_posts.filter(p => p.reel && p.reel.post_at && (p.reel_date || p.date) !== D.today_date && reelStatus(p) && !["Reel live", "Reel cancelled"].includes(reelStatus(p)[1]) && p.reel_scheduled_utc && new Date(fixIso(p.reel_scheduled_utc)) > nowD)
+    .map(p => ({p, kind: "Reel", st: reelStatus(p), time: p.reel_scheduled_utc, old: true}));
+  const upcoming = todayRows.filter(r => r.time && new Date(fixIso(r.time)) > nowD && !/live/i.test(r.st[1])).concat(later)
     .sort((a, b) => new Date(fixIso(a.time)) - new Date(fixIso(b.time)));
   const doneP = todayFull.filter(p => p.status === "posted").length, doneR = todayFull.filter(p => p.reel && p.reel.status === "posted").length;
   const ping = sys.last_mac_ping_utc ? Math.round((nowD - new Date(sys.last_mac_ping_utc)) / 60000) : null;
   $("happening").innerHTML = `
     <div class="next"><span class="when">${sys.paused ? "Paused" : "Running"}</span><span>${sys.paused ? "Posting is paused: nothing will go to Instagram until you resume it on the Control tab."
       : "Posting is on. Your Mac mini checks every 10 minutes " + (ping == null ? "" : "(last check " + (ping < 1 ? "just now" : ping + " min ago") + ") ") + "and posts whatever is due."}</span></div>
-    ${upcoming.length ? upcoming.slice(0, 4).map(r => `<div class="next"><span class="when">${hhmm(new Date(fixIso(r.time)))}</span><span>Next ${r.kind === "Reel" ? "Reel" : "post"}: <a href="#post/${encodeURIComponent(r.p.id)}">${esc(r.p.title)}</a>${r.kind === "Reel" && r.st[1] === "Reel will be made" ? ' <span class="muted">(the video is made automatically before it goes out)</span>' : ""}</span></div>`).join("")
+    ${upcoming.length ? upcoming.slice(0, 5).map(r => `<div class="next"><span class="when">${hhmm(new Date(fixIso(r.time)))}</span><span>Next ${r.kind === "Reel" ? (r.old ? "Reel of an earlier post" : "Reel") : "post"}: <a href="#post/${encodeURIComponent(r.p.id)}">${esc(r.p.title)}</a>${r.kind === "Reel" && r.st[1] === "Reel will be made" ? ' <span class="muted">(the video is made automatically before it goes out)</span>' : ""}</span></div>`).join("")
       : `<div class="next"><span class="when">Today</span><span>Nothing else is scheduled for the rest of today (${doneP} post${doneP === 1 ? "" : "s"} and ${doneR} Reel${doneR === 1 ? "" : "s"} went out).</span></div>`}
     <div class="next"><span class="when">${hhmm(nextRun)}</span><span>Next research run: Claude searches the internet, checks the facts, picks pictures and writes <b>${sys.stories_per_day} stor${sys.stories_per_day === 1 ? "y" : "ies"}</b>.
       They go out as <b>${sys.posts_per_day} post${sys.posts_per_day === 1 ? "" : "s"}</b> and <b>${sys.reels_per_day} Reel${sys.reels_per_day === 1 ? "" : "s"}</b> (${sys.reels_mode === "different" ? "Reels get their own stories" : "Reels reuse the same stories"}), and the Reel videos are made automatically.</span></div>
@@ -541,7 +545,8 @@ function showPost(id) {
       ${r && r.error ? `<p class="muted">Last problem: ${esc(r.error)}</p>` : ""}
       ${rs ? `<table><tr><th class="n">Views</th><th class="n">Reach</th><th class="n">Likes</th><th class="n">Shares</th><th class="n">Saves</th></tr><tr><td class="n">${nf(rs.views)}</td><td class="n">${nf(rs.reach)}</td><td class="n">${nf(rs.likes)}</td><td class="n">${nf(rs.shares)}</td><td class="n">${nf(rs.saved)}</td></tr></table>` : ""}
       <div class="actions">${r && r.status === "posted" ? (r.permalink ? `<a class="btn" href="${esc(r.permalink)}" target="_blank" rel="noopener">Open Reel on Instagram</a>` : "") :
-        `${r && r.url ? `<button class="btn" onclick="if(confirm('Post this Reel to Instagram now instead of waiting?')) act('post_reel','${q}')">Post Reel now</button>` : ""}<button class="btn" onclick="makeReel('${q}')">${r ? "Make it again" : "Make it now"}</button>`}</div></div>`;
+        `${r && r.url ? `<button class="btn" onclick="if(confirm('Post this Reel to Instagram now instead of waiting?')) act('post_reel','${q}')">Post Reel now</button>` : ""}<button class="btn" onclick="makeReel('${q}')">${r ? "Make it again" : "Make it now"}</button>${r && r.status !== "cancelled" ? `<button class="btn" onclick="toggle('reelTime')">Change time</button><button class="btn danger" onclick="if(confirm('Cancel this Reel? It will not be made or posted.')) act('cancel_reel','${q}')">Cancel Reel</button>` : ""}`}</div>
+      <div id="reelTime" class="row" style="display:none;margin-top:8px"><input type="datetime-local" id="reelTimeIn" value="${localDefault()}"><button class="btn primary" onclick="act('reschedule_reel','${q}', new Date($('reelTimeIn').value).toISOString())">Set this time</button></div></div>`;
   }
 
   $("pdetail").innerHTML = `

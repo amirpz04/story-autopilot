@@ -10,7 +10,7 @@ on:
         description: "What to do"
         required: true
         type: choice
-        options: [pause, resume, remove, restore, post_now, reschedule, replace, edit_caption, edit_slide, posts_per_day, reels_per_day, reels_mode, spares_per_day, delete_instagram, post_reel, add_music, remove_music, refresh_dashboard]
+        options: [pause, resume, remove, restore, post_now, reschedule, replace, edit_caption, edit_slide, posts_per_day, reels_per_day, reels_mode, spares_per_day, delete_instagram, post_reel, cancel_reel, reschedule_reel, add_music, remove_music, refresh_dashboard]
       target:
         description: "Post id (POST_ID#N for a slide), a number for posts_per_day / spares_per_day, a link (add_music) or file name (remove_music)"
         required: false

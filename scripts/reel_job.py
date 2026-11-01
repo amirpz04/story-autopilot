@@ -50,13 +50,16 @@ def posts_needing_reels():
     config = load(ROOT / "config.json", {})
     today = datetime.now(ZoneInfo(config["timezone"])).strftime("%Y-%m-%d")
     reels, posted, ids = load(REELS, {}), load(POSTED, {}), []
+    for pid, e in sorted(reels.items()):                     # backlog Reels waiting to be rendered
+        if e.get("status") == "pending" and e.get("attempts", 0) < 3:
+            ids.append(pid)
     for path in sorted((ROOT / "queue" / today).glob("*/post.json")):
         post = load(path, {})
         if post.get("spare") or post.get("reel_slot") is None:
             continue
         if posted.get(post["id"], {}).get("status") in ("removed", "deleted"):
             continue
-        if reels.get(post["id"], {}).get("status") in ("made", "posted") or reels.get(post["id"], {}).get("attempts", 0) >= 3:
+        if reels.get(post["id"], {}).get("status") in ("made", "posted", "cancelled") or reels.get(post["id"], {}).get("attempts", 0) >= 3:
             continue
         ids.append(post["id"])
     return ids
@@ -117,7 +120,8 @@ def make_one(post_id):
             entry.pop("url", None)
             entry.pop("raw_url", None)
             entry["status"] = "expired"
-    reels[post_id] = {"file": name, "status": "made", "made_at": datetime.now(timezone.utc).isoformat(), "attempts": 0,
+    keep = {k: v for k, v in reels.get(post_id, {}).items() if k in ("backfill", "post_at")}   # a backlog Reel keeps its scheduled time
+    reels[post_id] = {**keep, "file": name, "status": "made", "made_at": datetime.now(timezone.utc).isoformat(), "attempts": 0,
                       "music": music.name if music else "", "credit": credit,
                       "raw_url": "https://raw.githubusercontent.com/%s/%s/%s" % (repo, sha, name),
                       "url": "https://cdn.jsdelivr.net/gh/%s@%s/%s" % (repo, sha, name)}

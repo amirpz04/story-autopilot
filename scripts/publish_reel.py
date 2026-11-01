@@ -44,6 +44,8 @@ def post_reel(post_id):
         return "No Reel has been made for this post yet."
     if entry.get("status") == "posted":
         return "This Reel is already live."
+    if entry.get("status") == "cancelled":
+        return "This Reel was cancelled."
     config = publish.load_config()
     wait = publish.api_backoff()
     if wait:

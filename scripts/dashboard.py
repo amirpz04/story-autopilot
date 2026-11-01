@@ -49,6 +49,17 @@ def record_mac_ping(now):
     return ping.get("last_dispatch_utc")
 
 
+def reel_time(config, day, post, reel, spare):
+    """When this post's Reel goes out (UTC ISO): its explicit time if it has one, otherwise its Reel slot of that day."""
+    if spare:
+        return None
+    if reel and reel.get("post_at"):
+        return reel["post_at"]
+    if post.get("reel_slot") is not None:
+        return publish.slot_time(config, day, post["reel_slot"], "reel").astimezone(timezone.utc).isoformat()
+    return None
+
+
 def music_list():
     meta = read_json(ROOT / "assets" / "music" / "music.json", {})
     out = []
@@ -91,7 +102,12 @@ def build(now):
         try:
             day = date.fromisoformat(path.parent.parent.name)
         except ValueError:
-            continue  # demo / sample folders
+            # demo / sample folders: only posts that are really live (or have a planned Reel) are shown, on the day they went live
+            pid = (read_json(path, {}) or {}).get("id")
+            live_entry = by_id.get(pid)
+            if not live_entry and pid not in reels:
+                continue
+            day = date.fromisoformat((live_entry or {}).get("posted_local", today.isoformat())[:10])
         if day < cutoff:
             continue
         post = json.loads(path.read_text())
@@ -101,8 +117,9 @@ def build(now):
         all_posts.append({
             "spare": spare, "post_at": rec.get("post_at"), "replaced_by": rec.get("replaced_by"), "parked": "-replaced" in path.parent.name,
             "reel_slot": post.get("reel_slot"), "has_slot": post.get("slot") is not None,
-            "reel_scheduled_utc": publish.slot_time(config, day, post["reel_slot"], "reel").astimezone(timezone.utc).isoformat() if post.get("reel_slot") is not None and not spare else None,
-            "reel": ({k: reel.get(k) for k in ("status", "url", "made_at", "music", "permalink", "posted_at", "attempts", "error") if k in reel} if reel else None),
+            "reel_scheduled_utc": reel_time(config, day, post, reel, spare),
+            "reel_date": (lambda t: datetime.fromisoformat(t).astimezone(ZoneInfo(config["timezone"])).strftime("%Y-%m-%d") if t else None)(reel_time(config, day, post, reel, spare)),
+            "reel": ({k: reel.get(k) for k in ("status", "url", "made_at", "music", "permalink", "posted_at", "attempts", "error", "post_at", "backfill") if k in reel} if reel else None),
             "reel_stats": {k: rs.get(k) for k in ("reach", "likes", "comments", "shares", "saved", "views", "share_rate")} if rs else None,
             "id": post["id"], "date": day.isoformat(), "slot": post["slot"], "title": post["title"],
             "category": post.get("category", ""), "lane": (post.get("tags") or {}).get("lane", ""),
@@ -198,6 +215,7 @@ def build(now):
                    "reel_times": [config["reel_times"][i - 1] for i in config.get("reel_active_slots", [])],
                    "spares_ready": sum(1 for p in all_posts if p.get("spare") and p.get("status") not in ("removed", "deleted") and p["date"] >= (today - timedelta(days=2)).isoformat()),
                    "reels_made": sum(1 for r in reels.values() if r.get("status") in ("made", "posted")),
+                   "reels_planned": sum(1 for r in reels.values() if r.get("status") in ("pending", "made") and r.get("post_at")),
                    "reels_posted": sum(1 for r in reels.values() if r.get("status") == "posted")},
     }
 
