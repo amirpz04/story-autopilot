@@ -103,12 +103,16 @@
     "attempts": 0,
     "backfill": true,
     "credit": "Passage Of Time by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "error": "",
     "file": "20261101-010001-demo-02.mp4",
     "made_at": "2026-11-01T01:01:45.891622+00:00",
+    "media_id": "18135654103707434",
     "music": "passage-of-time.m4a",
+    "permalink": "https://www.instagram.com/reel/DfN4wIxErH7/",
     "post_at": "2026-11-01T23:06:00+00:00",
+    "posted_at": "2026-11-01T23:14:34.636763+00:00",
     "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/ecacc80600a4f3ae277224bc9ba3f1ed693e8124/20261101-010001-demo-02.mp4",
-    "status": "made",
+    "status": "posted",
     "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@ecacc80600a4f3ae277224bc9ba3f1ed693e8124/20261101-010001-demo-02.mp4"
   }
 }
