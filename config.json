@@ -5,6 +5,9 @@
     3,
     5
   ],
+  "audience": "United States, English-speaking. Schedule runs on New York time; see ROUTINE.md section 0.",
+  "backfill_per_day": 1,
+  "backfill_reel_time": "18:15",
   "brand": {
     "accent": "#FFD400",
     "background": "#0E0E10",
@@ -15,7 +18,7 @@
   "graph_host": "graph.facebook.com",
   "handle": "@unclefactss",
   "ig_quota_stop": 25,
-  "language": "English",
+  "language": "English (US)",
   "max_posts_per_day": 8,
   "min_minutes_between_posts": 45,
   "paused": false,
@@ -40,6 +43,7 @@
     "18:30",
     "22:00"
   ],
+  "reels_mode": "same",
   "reels_per_day": 3,
   "show_slide_counter": false,
   "spares_per_day": 1,
@@ -47,8 +51,5 @@
   "time_jitter_minutes": 35,
   "timezone": "America/New_York",
   "unsplash_max_requests_per_day": 100,
-  "unsplash_max_requests_per_hour": 30,
-  "reels_mode": "same",
-  "backfill_reel_time": "18:15",
-  "backfill_per_day": 1
+  "unsplash_max_requests_per_hour": 30
 }

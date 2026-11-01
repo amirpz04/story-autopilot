@@ -7,6 +7,7 @@
 Posts true stories (science, space, nature, animals, health, tech/AI, inventions, history, how companies/things came to be)
 as **image carousels and animated Reels**, fully automatically, to Instagram **@unclefactss** (Creator account, display name
 currently "Tech daddy"; owner may change it). Claude researches and writes; scripts render, post and report.
+**Audience: the United States, in English** - every posting time is a New York time and every post is written in US English (ROUTINE.md section 0). Foreign-language feeds are used to FIND stories, never to change who the post is for.
 Repo (public): github.com/amirpz04/story-autopilot. Dashboard / control panel: https://amirpz04.github.io/story-autopilot/
 
 ## 1. How a day works (end to end)
@@ -57,7 +58,8 @@ A workflow started with the default `GITHUB_TOKEN` push does NOT trigger other w
 | `backfill_reel_time`, `backfill_per_day` | old-post Reel plan (18:15 NY, 1/day) |
 | `graph_host` `graph.facebook.com`, `graph_api_version` | Instagram API access (see section 5) |
 | `brand`, `show_slide_counter` (false), `handle`, `account_name`, `timezone` | look and identity |
-| `language` | language the stories are written in (English) |
+| `language` | language the stories are written in: `English (US)` |
+| `audience` | who the account writes for: US, English-speaking. ROUTINE.md section 0 holds the rules (American spelling, US units, dollars, foreign context explained). The `timezone` above is the same decision: all slot times are New York times |
 | `unsplash_max_requests_per_hour` / `_per_day` | budget for `stock.py` fallback photos (30/hour, 100/day) |
 Prefer changing counts through the dashboard (it also recalculates the dependent settings). A change applies from the NEXT research run (today's queue is already written).
 

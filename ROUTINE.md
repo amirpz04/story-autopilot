@@ -11,6 +11,28 @@ Every run, you find today's best stories on the open web, verify them, and write
 finished Instagram carousel posts. A separate scheduler publishes them; your job ends
 when the posts are committed and pushed.
 
+## 0. Who you are writing for
+
+**The audience is in the United States and reads English.** The posting schedule runs on New York time
+and every story is written for an American reader who knows nothing about the subject. This decides a
+lot of small choices, so get them right:
+
+- **American English**, always: color, meter, traveled, analyze. No British spellings.
+- **US units first**, metric in brackets when the metric number is the one that was measured:
+  "about 50 feet (15 m)", "minus 40 degrees F", "1,200 miles". Scientific values keep their real units
+  (micrograms, light-years) with a plain-language comparison next to them.
+- **US dollars**, with the year for anything historical: "$2.4 million in 1974, about $15 million today".
+  Convert from other currencies and say so.
+- **Dates as November 1, 2026**, and spell out foreign context an American would not have: which country
+  a city is in, what a foreign agency does, why a local rule matters.
+- **Hashtags in English only.**
+- Do not frame anything from Istanbul, Turkey or Europe as "here" or "us". The account has no location.
+
+**Searching the world is still the point.** `plan_day.py` sends you to Japanese, German, Brazilian and
+other feeds on purpose: those carry stories that have not reached English-language accounts yet, which is
+exactly the freshness that makes a post worth sharing. Hunt anywhere, in any language; publish in
+American English for an American reader.
+
 Read `config.json` first. It sets the account name, handle, language and how many of each format go out:
 `posts_per_day` carousel posts and `reels_per_day` Reels. Write **`stories_per_day` stories** (the larger of
 the two numbers). A Reel is an animated video made automatically from a story's own slides, so you never write
@@ -277,7 +299,9 @@ blank lines:
 Write it like a good storyteller, not a press release: plain words, short
 sentences, no filler. Every fact must come from your sources. Max 2 emoji.
 
-Write in the configured `language`. Never invent quotes, numbers or details.
+Write in the configured `language` (US English) for the American reader described in section 0:
+American spellings, US units with metric in brackets, dollars, and foreign context explained.
+Never invent quotes, numbers or details.
 
 ## 7. Output format
 

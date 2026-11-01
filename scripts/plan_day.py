@@ -56,6 +56,8 @@ NEWS_FEEDS = [
 ]
 
 # Google News runs in any language: the story nobody in English has seen yet.
+# These are hunting grounds only. The post is always written in US English for a US reader
+# (ROUTINE.md section 0) - a Japanese feed is a source of stories, never a change of audience.
 NEWS_COUNTRIES = [
     ("Japan", "hl=ja&gl=JP&ceid=JP:ja"),
     ("South Korea", "hl=ko&gl=KR&ceid=KR:ko"),
