@@ -1,55 +1,57 @@
-# Story account autopilot
+# Uncle Facts: an autonomous Instagram story account
 
-Finds stories on the web every morning, fact-checks them, writes Instagram
-carousel posts, and publishes them at fixed times through the day. Runs on your
-Claude Pro plan plus free GitHub services.
+Every day Claude researches true stories on the open web, fact-checks them, picks real photos, and writes finished Instagram
+**carousel posts and animated Reels**. Scripts render them, post them at natural times through the day, collect Instagram's numbers,
+and show everything on a dashboard where you can change anything before it goes out.
+Cost: **$0** on top of a Claude Pro plan (GitHub Actions, GitHub Pages and the Instagram API are free).
 
+Live account: **@unclefactss** · Dashboard: **https://amirpz04.github.io/story-autopilot/**
+(New session? Read `CLAUDE.md` first: it is the full technical handover.)
+
+## How it works
 ```
-5:00   Claude routine (cloud, your Pro plan)  -> researches, writes queue/<date>/NN/post.json, pushes
-push   GitHub Actions "Preview"               -> renders slides you can download and check
-every 30 min  GitHub Actions "Publish"         -> posts the next due post to Instagram
+ 12:15 Istanbul  Claude research run (cloud) ──► queue/<date>/NN/post.json  (3 stories, + spares)
+       │                                              │ push
+       │                                              ▼
+       │                                   GitHub: render Reels (reel.yml), preview
+       ▼
+ every 10 min   Mac mini ──► GitHub "Publish" ──► posts whatever is due (one thing per check)
+                                 │                  ├─ carousel: slides rendered, uploaded, posted via Instagram API
+                                 │                  └─ Reel: animated video + free music, posted via Instagram API
+                                 ├─► refreshes live Instagram numbers and the dashboard
+                                 ▼
+                      Dashboard (GitHub Pages): status, posts, music, controls
 ```
+Defaults: **3 carousel posts + 3 Reels a day** from the same 3 stories (change 0-5 of each on the dashboard's Control tab),
+posting times shifted a few minutes every day, nothing within 45 minutes of anything else.
 
-| File | What it is |
+## What is where
+| Path | What it is |
 |---|---|
-| `ROUTINE.md` | The editor's instructions Claude follows every run (what to look for, how to verify, how to write) |
-| `config.json` | Account name, handle, timezone, posts per day, posting times, colors |
-| `scripts/render.py` | Turns a post into 1080×1350 slides |
-| `scripts/validate.py` | Rejects broken posts before they can go out |
-| `scripts/publish.py` | Posts to Instagram through the official API |
-| `state/history.jsonl` | Every story ever used, so nothing repeats |
-| `state/posted.json` | What has been published |
+| `CLAUDE.md` | Full handover for Claude sessions: architecture, settings, decisions, gotchas, status, open items |
+| `ROUTINE.md` | The daily research run's complete instructions (what to find, how to verify, pictures, writing, slots) |
+| `config.json` | All settings (counts, times, caps, pause switch, brand) |
+| `scripts/` | `publish.py`, `publish_reel.py` (posting) · `render.py`, `make_reel.py`, `reel_job.py` (slides/videos) · `validate.py`, `check_images.py`, `find_images.py` (quality, photos) · `control.py` (dashboard actions) · `stats.py`, `dashboard.py`, `backfill_reels.py`, `watchdog.py`, `stock.py` |
+| `templates/` | `slide.html`, `reel.html`, `dashboard.html` and the bundled font |
+| `queue/<date>/<NN>/post.json` | One story each (slides, caption, sources, slots); `queue/demo/` holds an early live test post |
+| `state/` | Everything the system remembers: posted/Reel records, history of used stories, Instagram stats, live account totals, action log |
+| `assets/music/` | Reel songs (`music.json` has licenses and credit lines) |
+| `docs/index.html` | The generated dashboard (never edit by hand) |
+| `.github/workflows/` | `publish`, `reel`, `control`, `preview`, `stats`, `watchdog` |
 
-Preview a day locally: `.venv/bin/python scripts/render.py queue/2026-10-30` (slides land in `preview/`).
+## Running it day to day
+Open the dashboard. **Overview** tells you in plain words what is happening and what is next; **Posts** lets you open any post (and its Reel) and remove, replace with a spare, edit text, reschedule, post now, or delete;
+**Music** manages Reel songs; **Control** pauses posting and sets how many posts/Reels per day. Buttons need a one-time GitHub key pasted into that browser (the Control tab explains how).
+Look at the posts before they go out for the first weeks; the numbers on the page come straight from Instagram.
 
-## Setup
+## Setting it up from scratch
+1. **Instagram**: switch the account to a Creator/Business (professional) account. In a Meta developer app (use case "Manage messaging & content on Instagram", Meta's *unified login*) create a business portfolio, a **system user** with access to the Instagram account and the app, and generate a never-expiring token with `instagram_basic` and `instagram_content_publish`. (Meta's old Instagram-login token screen is not available to new apps.)
+2. **GitHub**: a public repo (public so Instagram can fetch images/videos and Actions stay free). Secrets: `IG_USER_ID`, `IG_ACCESS_TOKEN`, `UNSPLASH_ACCESS_KEY`. Settings → Actions → General → "Read and write permissions". Settings → Pages → deploy from `main` `/docs`.
+3. **Claude research run**: at claude.ai/code connect GitHub, create a scheduled task on this repo with a cloud environment that has full network access, prompt `follow ROUTINE.md exactly for today's run`, daily at 12:15 Istanbul (09:15 UTC). Make sure it may push to `main`.
+4. **The clock**: GitHub's own timer is unreliable. On an always-on Mac, install a launch agent that runs `gh workflow run publish.yml -R <owner>/<repo> --ref main` every 10 minutes (see `CLAUDE.md` section 5), and set the Mac to never sleep.
+5. **Dashboard buttons**: create a fine-grained GitHub token (this repo only, Actions read+write) and paste it on the dashboard's Control tab.
 
-### 1. Instagram (Meta's "unified login" setup)
-New Meta apps use a system-user token that never expires, so no token renewal is needed. In the Meta app: **Use cases → Manage messaging & content on Instagram → Customize → API setup with unified login → Create new configuration** (needs a free business portfolio), then create a **system user** in Business Settings, assign it your Instagram account and the app, and generate a token with `instagram_basic` and `instagram_content_publish`. Save it as `IG_ACCESS_TOKEN` and your Instagram account ID as `IG_USER_ID`. (The older steps below describe the legacy Instagram-login screen.)
-
-#### Legacy steps
-1. In the Instagram app: **Settings → Account type and tools → Switch to professional account** (Creator or Business).
-2. Go to [developers.facebook.com](https://developers.facebook.com), log in, **Create app**, and pick the use case **"Manage messaging & content on Instagram"**.
-3. In the app, open **Instagram → API setup with Instagram login**. Under **Generate access tokens**, click **Add account**, log in with your Instagram account and approve.
-4. Click **Generate token**. Copy the **token** and the **Instagram user ID** shown next to the account. You don't need app review: your own account can publish while the app is in development mode.
-
-### 2. GitHub (about 10 minutes)
-1. Create a free account at [github.com](https://github.com) and a new **public** repository (public is needed so Instagram can download the images, and it makes GitHub Actions free).
-2. Push this folder to it.
-3. In the repo: **Settings → Secrets and variables → Actions → New repository secret**, add:
-   - `IG_USER_ID`: the Instagram user ID
-   - `IG_ACCESS_TOKEN`: the token
-   - `UNSPLASH_ACCESS_KEY`: the **Access Key** of a free app at [unsplash.com/oauth/applications](https://unsplash.com/oauth/applications). Used for stock photos when a story has no real photo; the system never makes more than 30 Unsplash requests per hour.
-4. **Settings → Actions → General → Workflow permissions →** "Read and write permissions".
-
-### 3. Claude routine (about 5 minutes)
-1. Go to [claude.ai/code](https://claude.ai/code) and connect GitHub.
-2. Create a **routine** on this repository, scheduled daily at 05:00 in your posting timezone, with the prompt:
-   `Follow ROUTINE.md exactly for today's run.`
-3. Allow the routine to push to `main` (in the routine's repository settings).
-4. Optional: a second routine at 13:00 with the prompt
-   `Follow ROUTINE.md. This is the midday refresh: only replace posts that haven't been published yet, and only with clearly stronger, newer stories.`
-
-### 4. Test
-1. Run the routine once manually and check the **Preview** workflow's slides.
-2. In the **Actions** tab, run **Publish** manually to confirm a post goes out.
+## Limits and safety
+Instagram allows 100 API posts per 24 h; this system caps itself far lower and checks Instagram's own record before every post (no duplicates, no bursts).
+If Instagram refuses requests the poster backs off for 30 min, then 1 h, 2 h, up to 4 h. Everything can be stopped instantly with `"paused": true` in `config.json` or the dashboard's Pause button.
+Only music and photos with free licenses are used, and the required credit lines are added to captions automatically.

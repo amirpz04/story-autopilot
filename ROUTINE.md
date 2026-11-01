@@ -97,7 +97,7 @@ Score each candidate 1–10 on:
 | Freshness / unfamiliarity | News: have the big accounts covered it? Evergreen: how few people already know this angle? (Fewer = high) |
 
 A small story with a great hook beats a major headline that's boring or
-everywhere already. Pick the top `posts_per_day` stories and keep 2 backups.
+everywhere already. Pick the top `stories_per_day` stories and keep 2 backups.
 Choose the best stories from both lanes. Each day's posts should come from at least two different
 topics, and from both lanes unless the news is exceptionally slow (all evergreen is fine then); major
 news always gets a slot. Quality is never lowered to fill a lane: if a lane has nothing strong, take
@@ -289,16 +289,15 @@ were unsure about.
 
 ## 9. Resource limits (hard rules)
 
-- **Aim to finish all of today's stories within about 25 minutes.** Research in parallel where you can (several articles at once), but search for pictures one command at a time.
-
 Your usage allowance is limited and shared with the person who owns it, so be economical:
 - Do one run per day; never loop or retry a failing step more than twice.
-- At most about 20 web searches and 12 full articles read in total. Stop researching
-  as soon as you have 5 verified posts plus 2 backups.
+- **Aim to finish all of today's stories within about 25 minutes.** Research in parallel where you can (several articles at once), but search
+  for pictures one command at a time with `find_images.py` (about 12 picture queries in total).
+- At most about 40 web searches and 25 full articles read in total. Stop researching as soon as you have `stories_per_day`
+  verified stories plus 2 backups.
 - Keep reasoning short; don't draft a story you've already decided to skip.
-- If you are running low on allowance or hit an error, finish with fewer posts
-  (even 1) rather than rushing; commit and push what is verified. Never publish
-  an unverified story just to fill a slot.
+- If you are running low on allowance or hit an error, finish with fewer stories (even 1) rather than rushing; commit and push what is
+  verified. Never publish an unverified story just to fill a slot. (The next run fills any missing stories.)
 - Only the free sources named in this file; no paid services, no new accounts.
 
 ## 10. Learn from results
