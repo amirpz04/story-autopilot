@@ -11,6 +11,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import urllib.request
 from pathlib import Path
 
@@ -19,7 +20,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from check_images import size_of  # noqa: E402
 
 FPS = 30
-USER_AGENT = "StoryAccountBot/1.0 (reel renderer)"
+USER_AGENT = "UncleFactsBot/1.0 (+https://github.com/amirpz04/story-autopilot; reel renderer)"
 FONT = ROOT / "templates" / "fonts" / "Inter.ttf"
 
 
@@ -68,17 +69,23 @@ def build_scenes(post, work):
         image = slide.get("image") or {}
         photo, ar = None, None
         if image.get("url"):
-            try:
-                req = urllib.request.Request(image["url"], headers={"User-Agent": USER_AGENT})
-                data = urllib.request.urlopen(req, timeout=90).read()
-                dims = size_of(data)
-                if dims and dims[0] >= 900:
-                    ext = "png" if data[:4] == b"\x89PNG" else "webp" if data[:4] == b"RIFF" else "jpg"
-                    path = work / f"photo{n}.{ext}"
-                    path.write_bytes(data)
-                    photo, ar = path.as_uri(), dims[0] / dims[1]
-            except Exception as exc:
-                print("  ! picture skipped (%s): %s" % (exc, image["url"]))
+            data, last = None, None
+            for attempt in range(1, 5):                        # retry throttled downloads (HTTP 429/503) with a growing pause
+                try:
+                    req = urllib.request.Request(image["url"], headers={"User-Agent": USER_AGENT})
+                    data = urllib.request.urlopen(req, timeout=90).read()
+                    break
+                except Exception as exc:
+                    last = exc
+                    time.sleep(6 * attempt)
+            if data is None:
+                raise RuntimeError("picture could not be downloaded (%s): %s" % (last, image["url"]))   # never make a Reel with a gap
+            dims = size_of(data)
+            if dims and dims[0] >= 900:
+                ext = "png" if data[:4] == b"\x89PNG" else "webp" if data[:4] == b"RIFF" else "jpg"
+                path = work / f"photo{n}.{ext}"
+                path.write_bytes(data)
+                photo, ar = path.as_uri(), dims[0] / dims[1]
         dur = scene_duration(slide)
         scenes.append({
             "type": slide["type"], "kicker": (slide.get("kicker") or "").upper() if slide["type"] == "cover" else "",

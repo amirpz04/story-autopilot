@@ -106,7 +106,8 @@ def make_one(post_id):
         sha = git(site, "rev-parse", "HEAD")
     except Exception as exc:
         reels = load(REELS, {})
-        reels[post_id] = dict(reels.get(post_id, {}), attempts=attempts, status="failed", error=str(exc)[:200])
+        prev = reels.get(post_id, {})
+        reels[post_id] = dict(prev, attempts=attempts, status="pending" if prev.get("backfill") else "failed", error=str(exc)[:200])   # a backlog Reel keeps its place and is tried again
         REELS.write_text(json.dumps(reels, indent=2, sort_keys=True) + "\n")
         print("Reel failed:", exc)
         return False
