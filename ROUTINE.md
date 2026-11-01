@@ -22,10 +22,10 @@ Read `state/history.jsonl` (one JSON object per line: date, title, url). Never
 pick a story that is already in it, or a different article about the same event.
 
 Work out today's date in the configured timezone. Posts go in
-`queue/<YYYY-MM-DD>/<NN>/post.json`, where `NN` is `01`, `02`, … If today's
-folder already has posts (for example, this is the midday refresh run), only
-replace posts whose publishing time has not passed yet, and only if you find a
-clearly stronger story.
+`queue/<YYYY-MM-DD>/<NN>/post.json`, where `NN` is `01`, `02`, ... **Look at what already exists for today first.** If the folder already holds
+some stories (for example an earlier run was cut short), do not touch them: count them, and write only the missing ones
+(`stories_per_day` minus what exists), giving each the free `slot` / `reel_slot` numbers that are not yet used. Never replace a
+story whose time has passed or that is already live.
 
 ## 2. Discover candidates (aim for about 25)
 
@@ -164,9 +164,15 @@ An illustrative image must never contradict the story (a red octopus on a post
 about a blue one, the wrong country's flag, a different breed of dog). If the
 cover image isn't the actual subject, say so in the credit ("Illustrative photo: …").
 
-To search Wikimedia Commons quickly, fetch this URL (replace `QUERY`). It returns
-resized image URLs (`thumburl`) plus author and license for the credit:
-`https://commons.wikimedia.org/w/api.php?action=query&generator=search&gsrsearch=QUERY%20filetype:bitmap&gsrnamespace=6&gsrlimit=8&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=2400&iiextmetadatafilter=Artist|LicenseShortName&format=json`
+**Finding pictures: use the helper, never your own search loops.** Wikimedia throttles (HTTP 429) anyone who sends many
+quick or parallel requests, and that is what cut a run down to one story. Instead run, one command for several queries:
+
+`python3 scripts/find_images.py "query one" "query two" --min-width 2000 --limit 6`
+
+It sends one request at a time, waits when throttled, lists only free licenses at a reliable size, and prints the direct `url`
+and the `credit` line to paste into the slide. Search broadly first ("Shanidar Cave", not "Shanidar A skeleton close-up").
+Budget: about 12 queries per run. If a story still has no good pictures after that, drop it and take a different story: do not
+spend the run waiting.
 
 ## 6. Write the post
 
@@ -282,6 +288,8 @@ Finish with a short summary: the stories picked, their scores, and anything you
 were unsure about.
 
 ## 9. Resource limits (hard rules)
+
+- **Aim to finish all of today's stories within about 25 minutes.** Research in parallel where you can (several articles at once), but search for pictures one command at a time.
 
 Your usage allowance is limited and shared with the person who owns it, so be economical:
 - Do one run per day; never loop or retry a failing step more than twice.
