@@ -1,0 +1,82 @@
+{
+  "id": "2026-11-01-05",
+  "date": "2026-11-01",
+  "slot": 5,
+  "reel_slot": 1,
+  "title": "Shanidar A Neanderthal killed by a spear",
+  "category": "history",
+  "tags": {
+    "end": "send",
+    "headline": "statement",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 7,
+    "talkability": 7,
+    "no_context": 8,
+    "freshness": 9
+  },
+  "sources": [
+    {
+      "name": "ScienceDaily (University of Cambridge)",
+      "url": "https://www.sciencedaily.com/releases/2026/10/261029072126.htm"
+    }
+  ],
+  "verification": "Read the ScienceDaily write-up of the University of Cambridge study (Scientific Reports 2026, Pomeroy et al.). Facts taken directly from it; single secondary source of the release, so the 'heart shot' is worded as possible and the soft-food care as a suggestion. Pictures are illustrative cave photos, not the remains.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "ARCHAEOLOGY",
+      "headline": "A Neanderthal was killed by a spear 75,000 years ago, and scientists just worked out how",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Shanidar_Cave2.jpg/3840px-Shanidar_Cave2.jpg",
+        "credit": "Illustrative photo of Shanidar Cave, Iraqi Kurdistan: Khoshhat / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "A 15 mm round hole in his shoulder blade matches the shape of a wooden spear.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Shanidar_Cave6.jpg/3840px-Shanidar_Cave6.jpg",
+        "credit": "Illustrative photo of Shanidar Cave, Iraqi Kurdistan: Khoshhat / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Researchers think the spear went in at the chest, passed through a lung and major blood vessels, and came out through the shoulder blade."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Years earlier, his front tooth had split and the teeth beside it were pushed in. Tartar shows he lived on for at least a year.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/53/Shanidar_Cave5.jpg/3840px-Shanidar_Cave5.jpg",
+        "credit": "Illustrative photo of Shanidar Cave, Iraqi Kurdistan: Khoshhat / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "Scientists think other Neanderthals may have fed him soft food while he healed. Then he was buried, at about 45, behind a marker boulder.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Shanidar_Cave10.jpg/3840px-Shanidar_Cave10.jpg",
+        "credit": "Illustrative photo of Shanidar Cave, Iraqi Kurdistan: Khoshhat / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Send this to someone who loves ancient history."
+    }
+  ],
+  "caption": "A Neanderthal who died 75,000 years ago was probably killed by a wooden spear, and the same man had once survived a face injury that someone must have helped him through.\n\nThe remains are known as Shanidar A, found in Shanidar Cave in Iraqi Kurdistan. A 15 mm round hole in his left shoulder blade matches the shape of a wooden spear. Researchers at the University of Cambridge think the spear entered the front of his left chest, passed through a lung and major blood vessels, and came out through the shoulder blade. Death would have been quick. It may have been a deliberate shot at the heart, though an accidental hunting injury cannot be ruled out.\n\nYears earlier he had suffered a different injury: a lower front tooth was split and the teeth beside it were pushed inward. Tartar built up on the broken tooth, which suggests he lived at least another year. The team thinks other Neanderthals may have fed him soft food while he healed. He was about 45 when he died.\n\nHis body was found under roughly 7.5 to 8 metres of rock and sediment, at the bottom of a small cluster of five Neanderthal burials, with a large upright boulder as a marker. The researchers call this \"intentional and symbolic funerary behavior\".\n\nWould you want to know how your ancestors lived, even if it was violent?\n\nSource: ScienceDaily (University of Cambridge), Scientific Reports",
+  "hashtags": [
+    "#archaeology",
+    "#neanderthal",
+    "#history",
+    "#science"
+  ]
+}
