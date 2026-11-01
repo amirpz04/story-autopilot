@@ -64,11 +64,15 @@
   "2026-11-01-01": {
     "attempts": 0,
     "credit": "Permafrost by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "error": "",
     "file": "20261101-101743-2026-11-01-01.mp4",
     "made_at": "2026-11-01T10:19:31.126833+00:00",
+    "media_id": "18100781279437184",
     "music": "permafrost.m4a",
+    "permalink": "https://www.instagram.com/reel/DfNtf-PIK6K/",
+    "posted_at": "2026-11-01T21:36:10.629707+00:00",
     "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/ecacc80600a4f3ae277224bc9ba3f1ed693e8124/20261101-101743-2026-11-01-01.mp4",
-    "status": "made",
+    "status": "posted",
     "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@ecacc80600a4f3ae277224bc9ba3f1ed693e8124/20261101-101743-2026-11-01-01.mp4"
   },
   "2026-11-01-03": {
