@@ -5,268 +5,254 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Uncle Facts control panel</title>
 <style>
-  .viz-root {
+  :root {
     color-scheme: light;
-    --surface-1: #fcfcfb; --surface-2: #f3f2ef; --border: #e2e1dc;
-    --text-primary: #0b0b0b; --text-secondary: #52514e; --text-muted: #6f6e69;
-    --series-1: #2a78d6; --grid: #e8e7e2;
-    --good: #0ca30c; --warning: #fab219; --serious: #ec835a; --critical: #d03b3b;
+    --bg: #fbfbfa; --card: #ffffff; --border: #e4e3de;
+    --text: #111110; --dim: #6b6a65;
+    --accent: #1f6fd0;
+    --good: #1a9b45; --warn: #d98a04; --bad: #cf3b3b;
+    --radius: 14px;
   }
   @media (prefers-color-scheme: dark) {
-    :root:where(:not([data-theme="light"])) .viz-root {
+    :root {
       color-scheme: dark;
-      --surface-1: #1a1a19; --surface-2: #242422; --border: #36352f;
-      --text-primary: #f0efec; --text-secondary: #c3c2b7; --text-muted: #9c9b92;
-      --series-1: #3987e5; --grid: #2e2d2a;
+      --bg: #141413; --card: #1d1d1b; --border: #32312e;
+      --text: #f2f1ee; --dim: #a3a29c;
+      --accent: #6aa9f0;
+      --good: #45c46f; --warn: #f0b429; --bad: #f06a6a;
     }
   }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--surface-1); color: var(--text-primary);
-         font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  main { max-width: 960px; margin: 0 auto; padding: 16px 16px 70px; }
-  header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 4px 16px; }
-  h1 { font-size: 20px; margin: 0; font-weight: 650; }
-  h2 { font-size: 14px; margin: 26px 0 10px; font-weight: 650; color: var(--text-secondary); letter-spacing: .02em; }
-  nav { display: flex; gap: 6px; margin: 14px 0 4px; position: sticky; top: 0; background: var(--surface-1); padding: 8px 0; z-index: 5; }
-  nav a { text-decoration: none; color: var(--text-secondary); padding: 7px 14px; border-radius: 999px; border: 1px solid var(--border); font-weight: 600; font-size: 14px; }
-  nav a.on { background: var(--text-primary); color: var(--surface-1); border-color: var(--text-primary); }
-  .view { display: none; } .view.on { display: block; }
-  .muted { color: var(--text-muted); font-size: 13px; }
-  .card { background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
-  .attn { display: grid; gap: 8px; margin-top: 12px; }
-  .attn .card { display: flex; gap: 10px; align-items: flex-start; }
-  .icon { flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: 13px; font-weight: 800; color: #fff; margin-top: 1px; }
-  .i-neutral { background: var(--text-muted); color: var(--surface-1); }
-  .i-good { background: var(--good); } .i-warning { background: var(--warning); color: #111; }
-  .i-serious { background: var(--serious); color: #111; } .i-critical { background: var(--critical); }
-  .hero { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch; }
-  .hero .big { flex: 1 1 240px; }
-  .hero .big .num { font-size: 56px; font-weight: 650; line-height: 1.05; letter-spacing: -.02em; }
-  .tiles { flex: 2 1 360px; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
-  .tile .num { font-size: 26px; font-weight: 650; line-height: 1.15; }
-  .label { font-size: 13px; color: var(--text-secondary); }
-  table { width: 100%; border-collapse: collapse; font-size: 14px; }
-  th { text-align: left; font-weight: 600; color: var(--text-secondary); font-size: 12.5px; padding: 6px 8px; border-bottom: 1px solid var(--border); white-space: nowrap; }
-  td { padding: 8px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; }
-  .scroll { overflow-x: auto; }
-  .status { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
-  .status .icon { width: 18px; height: 18px; font-size: 11px; margin: 0; }
-  a { color: var(--series-1); }
-  svg text { fill: var(--text-muted); font-size: 11px; }
-  #tip { position: fixed; pointer-events: none; background: var(--surface-1); border: 1px solid var(--border);
-         border-radius: 6px; padding: 6px 9px; font-size: 13px; display: none; box-shadow: 0 2px 8px rgba(0,0,0,.15); z-index: 30; max-width: 260px; }
-  details summary { cursor: pointer; color: var(--text-secondary); font-size: 13px; margin-top: 8px; }
-  .sys { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px 18px; }
-  .sys div b { display: block; font-weight: 600; }
-  /* posts list */
-  .filters { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
-  .filters button { font: inherit; font-size: 13px; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-secondary); cursor: pointer; }
-  .filters button.on { background: var(--text-primary); color: var(--surface-1); border-color: var(--text-primary); }
-  .search { width: 100%; margin-bottom: 10px; }
-  .dayhead { font-size: 13px; font-weight: 650; color: var(--text-secondary); margin: 16px 0 6px; }
-  .pitem { display: flex; gap: 12px; align-items: center; text-decoration: none; color: inherit; margin-bottom: 8px; }
-  .pitem img, .pitem .noimg { width: 64px; height: 80px; object-fit: cover; border-radius: 6px; flex: none; background: var(--border); }
-  .pitem .t { font-weight: 600; line-height: 1.3; }
-  .badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-secondary); margin-left: 6px; vertical-align: 1px; }
-  .badge.reel { border-color: var(--series-1); color: var(--series-1); }
-  .slides { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
-  .slide { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; background: var(--surface-1); font-size: 13px; }
-  .slide img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; background: var(--border); }
-  .slide .txt { padding: 8px; }
-  .slide .k { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; }
-  .slide textarea { min-height: 110px; margin-top: 6px; }
+  * { box-sizing: border-box; -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.5 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif; }
+  main { max-width: 780px; margin: 0 auto; padding: 0 14px 90px; }
+  h1 { font-size: 19px; margin: 14px 0 2px; }
+  h2 { font-size: 15px; margin: 22px 0 8px; font-weight: 650; }
+  a { color: var(--accent); }
+  .dim { color: var(--dim); }
+  .sm { font-size: 13px; }
+
+  header { padding-top: 12px; }
+  nav { position: sticky; top: 0; z-index: 20; display: flex; gap: 6px; padding: 10px 0;
+    background: var(--bg); border-bottom: 1px solid var(--border); margin-bottom: 14px; }
+  nav a { flex: 1; text-align: center; padding: 9px 4px; border-radius: 10px; text-decoration: none;
+    color: var(--dim); font-size: 14px; font-weight: 600; border: 1px solid transparent; }
+  nav a.on { background: var(--card); color: var(--text); border-color: var(--border); }
+
+  .view { display: none; }
+  .view.on { display: block; }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 14px; margin-bottom: 10px; }
+  .card.flat { padding: 11px 13px; }
+
+  .chips { display: flex; gap: 8px; margin-bottom: 12px; }
+  .chip { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 11px 10px; text-align: center; }
+  .chip .n { font-size: 21px; font-weight: 680; line-height: 1.2; }
+  .chip .l { font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: .04em; }
+
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 7px;
+    flex: none; background: var(--dim); }
+  .dot.good { background: var(--good); } .dot.warn { background: var(--warn); }
+  .dot.bad { background: var(--bad); } .dot.neutral { background: var(--dim); }
+  .status { display: inline-flex; align-items: center; }
+
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .between { display: flex; gap: 10px; align-items: flex-start; justify-content: space-between; }
+
+  .item { display: flex; gap: 11px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--border); }
+  .item:last-child { border-bottom: 0; }
+  .item .time { font-variant-numeric: tabular-nums; font-size: 13px; font-weight: 650; width: 74px; flex: none; }
+  .body { min-width: 0; flex: 1; }
+  .t { font-size: 14px; font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .t a { color: inherit; text-decoration: none; }
+  .item img { width: 46px; height: 58px; object-fit: cover; border-radius: 8px; flex: none; background: var(--border); }
+
+  .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .05em;
+    text-transform: uppercase; padding: 2px 6px; border-radius: 5px;
+    background: var(--border); color: var(--dim); margin-right: 6px; }
+  .tag.reel { background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent); }
+
+  .btn { font: inherit; font-size: 13px; font-weight: 600; padding: 9px 13px; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--card); color: var(--text); cursor: pointer; }
+  .btn:active { transform: translateY(1px); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.danger { color: var(--bad); }
+  .btn.mini { padding: 6px 10px; font-size: 12px; }
+  .btn:disabled { opacity: .5; }
+  .linkbtn { background: none; border: 0; color: var(--accent); font: inherit; font-size: 13px;
+    padding: 0; cursor: pointer; text-decoration: underline; }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
+
+  input, select, textarea { font: inherit; font-size: 15px; padding: 9px 11px; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--card); color: var(--text); max-width: 100%; }
+  textarea { width: 100%; min-height: 120px; }
+  select { min-width: 92px; }
+
+  .metrics { display: flex; gap: 14px; flex-wrap: wrap; }
+  .metrics div { font-size: 13px; }
+  .metrics b { font-size: 17px; display: block; font-weight: 680; }
+
+  .slides { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .slide { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--card); }
+  .slide img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+  .slide .txt { padding: 8px 9px; font-size: 12px; }
+  .slide .k { font-size: 10px; color: var(--dim); text-transform: uppercase; margin-bottom: 3px; }
+  video { width: 100%; border-radius: 10px; background: #000; }
+  audio { width: 100%; margin-top: 8px; }
+
+  .plist a { display: flex; gap: 11px; padding: 11px; text-decoration: none; color: inherit;
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    margin-bottom: 8px; max-width: 100%; overflow: hidden; }
+  .plist img { width: 46px; height: 58px; object-fit: cover; border-radius: 8px; flex: none; background: var(--border); }
+  .dim.sm { overflow: hidden; text-overflow: ellipsis; }
+  .dayhead { font-size: 12px; font-weight: 700; color: var(--dim); text-transform: uppercase;
+    letter-spacing: .05em; margin: 16px 0 7px; }
+  .filters { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 10px; }
+  .filters button { font: inherit; font-size: 13px; font-weight: 600; white-space: nowrap;
+    padding: 7px 12px; border-radius: 999px; border: 1px solid var(--border);
+    background: var(--card); color: var(--dim); cursor: pointer; }
+  .filters button.on { background: var(--text); color: var(--bg); border-color: var(--text); }
+
   .cap { white-space: pre-wrap; font-size: 14px; }
-  .actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; align-items: center; }
-  .btn { font: inherit; font-weight: 600; font-size: 14px; padding: 9px 14px; border-radius: 8px; cursor: pointer;
-         border: 1px solid var(--border); background: var(--surface-1); color: var(--text-primary); text-decoration: none; display: inline-block; }
-  .btn.sm { padding: 4px 10px; font-size: 12.5px; }
-  .btn.primary { background: var(--series-1); border-color: var(--series-1); color: #fff; }
-  .btn.danger { border-color: var(--critical); color: var(--critical); }
-  .btn:disabled { opacity: .5; cursor: default; }
-  .linkbtn { background: none; border: 0; padding: 0; font: inherit; font-size: 12.5px; color: var(--series-1); cursor: pointer; text-decoration: underline; }
-  #toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); max-width: 92vw; background: var(--text-primary); color: var(--surface-1);
-           padding: 10px 16px; border-radius: 10px; font-size: 14px; display: none; z-index: 40; box-shadow: 0 4px 16px rgba(0,0,0,.25); }
-  input, select, textarea { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text-primary); }
-  textarea { width: 100%; }
-  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-  video { width: 100%; max-width: 340px; border-radius: 10px; background: #000; display: block; }
-  .panel { margin-top: 10px; }
-  /* ----- layout: one column on phones, the full width on big screens ----- */
-  .grid2 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 24px; }
-  .grid2 > .full { grid-column: 1 / -1; }
-  .sec { min-width: 0; }
-  .how li { margin: 4px 0; }
-  .next { display: flex; gap: 10px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid var(--border); }
-  .next:last-child { border-bottom: 0; }
-  .next .when { flex: none; width: 130px; font-weight: 650; }
-  @media (max-width: 600px) { .next { flex-direction: column; gap: 2px; } .next .when { width: auto; } }
-  @media (min-width: 1000px) {
-    main { max-width: 1560px; padding: 20px 36px 80px; }
-    .grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    #plist, #mlist { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 440px), 1fr)); gap: 0 16px; align-items: start; }
-    #plist .dayhead { grid-column: 1 / -1; }
-    .pcols { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 0 28px; align-items: start; }
-    .slides { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
-    .hero .big { flex: 0 0 300px; }
+  details summary { cursor: pointer; font-weight: 600; font-size: 14px; }
+  details[open] summary { margin-bottom: 10px; }
+
+  #toast { position: fixed; left: 12px; right: 12px; bottom: 16px; z-index: 50; display: none;
+    background: var(--text); color: var(--bg); padding: 12px 14px; border-radius: 12px; font-size: 14px; }
+
+  @media (min-width: 720px) {
+    .slides { grid-template-columns: repeat(3, 1fr); }
+    .item .time { width: 84px; }
   }
-  @media (min-width: 1500px) { #plist { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 </style>
 </head>
-<body class="viz-root">
+<body>
 <main>
   <header>
     <h1 id="title">Control panel</h1>
-    <span class="muted" id="fresh"></span>
+    <div class="dim sm" id="fresh"></div>
   </header>
+
   <nav>
-    <a href="#overview" data-v="overview">Overview</a>
+    <a href="#today" data-v="today">Today</a>
     <a href="#posts" data-v="posts">Posts</a>
-    <a href="#music" data-v="music">Music</a>
-    <a href="#control" data-v="control">Control</a>
+    <a href="#settings" data-v="settings">Settings</a>
   </nav>
 
-  <!-- ================= OVERVIEW ================= -->
-  <section class="view" id="v-overview">
-    <div class="attn" id="attn" aria-live="polite"></div>
-    <div class="hero">
-      <div class="card big"><div class="label">Followers</div><div class="num" id="followers">-</div><div class="muted" id="fdelta"></div></div>
-      <div class="tiles" id="tiles"></div>
-    </div>
-    <div class="grid2">
-      <div class="sec full"><h2>What's happening right now</h2><div class="card" id="happening"></div></div>
-      <div class="sec full"><h2>Today's posts <span class="muted" id="todayNote"></span></h2><div class="card scroll"><table id="today"></table></div></div>
-      <div class="sec"><h2>Reach per post</h2><div class="card"><div id="reach"></div></div></div>
-      <div class="sec"><h2>Followers over time</h2><div class="card"><div id="chart"></div>
-        <details><summary>Show as table</summary><table id="ftable"></table></details></div></div>
-      <div class="sec full"><h2>Results by post</h2><div class="card scroll"><table id="posts"></table></div></div>
-      <div class="sec"><h2>What's working <span class="muted" id="gnote"></span></h2><div id="groups"></div></div>
-      <div class="sec"><h2>System</h2><div class="card"><div class="sys" id="sys"></div></div></div>
-    </div>
+  <section class="view" id="v-today">
+    <div id="attn"></div>
+    <div class="chips" id="chips"></div>
+    <h2>Going out today <span class="dim sm" id="todayNote"></span></h2>
+    <div class="card" id="today"></div>
+    <h2>Recent results</h2>
+    <div class="card" id="results"></div>
   </section>
 
-  <!-- ================= POSTS ================= -->
   <section class="view" id="v-posts">
-    <input class="search" id="q" type="search" placeholder="Search posts..." oninput="drawList()">
+    <input id="q" placeholder="Search stories" style="width:100%;margin-bottom:10px" oninput="drawList()">
     <div class="filters" id="filters"></div>
-    <div id="plist"></div>
+    <div class="plist" id="plist"></div>
   </section>
 
-  <!-- ================= ONE POST ================= -->
   <section class="view" id="v-post">
-    <p><a href="#posts">&larr; All posts</a></p>
+    <a href="#posts" class="sm">&larr; All posts</a>
     <div id="pdetail"></div>
   </section>
 
-  <!-- ================= MUSIC ================= -->
-  <section class="view" id="v-music">
-    <p class="muted" style="margin:12px 0 0">Songs the Reel maker picks from. Each new Reel uses a song that wasn't used in the last few Reels.
-      Instagram's own music library can't be used by automation.</p>
-    <h2>Songs <span class="muted" id="musicCount"></span></h2>
-    <div id="mlist"></div>
-    <h2>Add a song</h2>
-    <div class="card">
-      <div class="row" style="flex-direction:column;align-items:stretch">
-        <input id="mUrl" type="url" placeholder="Direct link to an audio file (https://...mp3 / .ogg / .wav / .m4a)">
-        <input id="mTitle" type="text" placeholder="Title (for example: Calm Piano, by Someone)">
-        <input id="mCredit" type="text" placeholder="Credit line for the caption (leave empty if none is needed)">
-        <input id="mLicense" type="text" placeholder="License (for example: CC BY 4.0, public domain, CC0)">
-        <div><button class="btn primary" onclick="addMusic()">Add song</button></div>
-      </div>
-      <p class="muted">The system downloads the file and converts it, which takes about a minute. It appears here after the page refreshes (up to ~12 minutes).</p>
-      <details><summary>Where to find music you're allowed to use</summary>
-        <p class="muted"><b>Only add music you have the right to use.</b> Safe places: <a href="https://commons.wikimedia.org/wiki/Category:Audio_files" target="_blank" rel="noopener">Wikimedia Commons audio</a>
-        (open a file, copy the "Original file" link), <a href="https://incompetech.com/music/royalty-free/music.html" target="_blank" rel="noopener">incompetech.com</a> (Kevin MacLeod, CC BY: credit needed),
-        <a href="https://freemusicarchive.org/" target="_blank" rel="noopener">Free Music Archive</a> (check each song's license) and
-        <a href="https://pixabay.com/music/" target="_blank" rel="noopener">Pixabay Music</a> (no credit needed, but its site blocks automatic downloads, so download the file yourself and host it somewhere with a direct link).
-        If the license says "CC BY", paste the credit line it asks for. If it says "NonCommercial" or "No Derivatives", don't use it.
-        Even free songs are sometimes flagged by Instagram's copyright system; if a Reel gets muted, remove that song.</p></details>
-    </div>
-  </section>
-
-  <!-- ================= CONTROL ================= -->
-  <section class="view" id="v-control">
+  <section class="view" id="v-settings">
     <div class="card" id="keybox"></div>
-    <div class="grid2">
-      <div class="sec"><h2>Publishing</h2>
-        <div class="card">
-          <div class="row"><b id="pubstate"></b>
-            <button class="btn" onclick="act('pause')">Pause all posting</button>
-            <button class="btn primary" onclick="act('resume')">Resume posting</button></div>
-          <p class="muted">Paused means nothing goes to Instagram until you resume. The daily research still runs.</p>
-        </div>
+
+    <h2>Posting</h2>
+    <div class="card">
+      <div class="between">
+        <div><b id="pubstate"></b><div class="dim sm" id="pubnote"></div></div>
+        <button class="btn" id="pausebtn"></button>
       </div>
-      <div class="sec"><h2>Run something now</h2>
-        <div class="card">
-          <div class="actions">
-            <button class="btn" onclick="runWf('publish.yml', 'Checking for a due post now')">Check for a due post</button>
-            <button class="btn" onclick="runWf('stats.yml', 'Refreshing statistics')">Refresh statistics</button>
-            <button class="btn" onclick="act('refresh_dashboard')">Rebuild this page</button>
-            <button class="btn" onclick="runWf('preview.yml', 'Rendering slide previews')">Render previews</button>
-            <a class="btn" id="routineLink" target="_blank" rel="noopener">Daily research run (Claude)</a>
-          </div>
-          <p class="muted">The daily research run lives in your Claude account: the button opens it, where you can run it now or change its time.
-            <a href="https://claude.ai/settings/usage" target="_blank" rel="noopener">Claude usage</a></p>
-        </div>
-      </div>
-      <div class="sec"><h2>How many posts and Reels per day</h2>
-        <div class="card">
-          <div class="row"><label>Carousel posts <select id="ppd"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
-            <button class="btn" onclick="act('posts_per_day', document.getElementById('ppd').value)">Save</button></div>
-          <div class="row" style="margin-top:10px"><label>Reels <select id="rpd"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
-            <button class="btn" onclick="act('reels_per_day', document.getElementById('rpd').value)">Save</button></div>
-          <div class="row" style="margin-top:10px"><label>Reels use <select id="rmode"><option value="same">the same stories as the posts</option><option value="different">their own stories</option></select></label>
-            <button class="btn" onclick="act('reels_mode', document.getElementById('rmode').value)">Save</button></div>
-          <p class="muted" style="margin-bottom:4px"><b>Same stories:</b> no extra research, but a follower can see a story once as a post and once as a Reel (they go out about 6 or more hours apart).
-            <b>Own stories:</b> nobody sees a story twice, but the research writes posts + Reels stories a day, which costs more Claude usage and thins the quality.</p>
-          <p class="muted" id="mixNote"></p>
-          <p class="muted">Takes effect from the next daily research run. Posts and Reels never go out within 45 minutes of each other.</p>
-        </div>
-      </div>
-      <div class="sec"><h2>Spare posts</h2>
-        <div class="card">
-          <div class="row">
-            <select id="spd"><option>0</option><option>1</option><option>2</option><option>3</option></select>
-            <button class="btn" onclick="act('spares_per_day', document.getElementById('spd').value)">Save</button>
-            <span class="muted" id="sparesReady"></span>
-          </div>
-          <p class="muted">Spares are finished posts the daily research run prepares in advance. If you don't like a scheduled post, open it and press
-            <b>Replace with a spare</b>. Each spare uses more of your Claude plan, so 1 is a good start.</p>
-        </div>
-      </div>
-      <div class="sec"><h2>Recent jobs <button class="btn sm" onclick="loadRuns()">refresh</button></h2>
-        <div class="card scroll"><table id="runs"><tr><td class="muted">Loading...</td></tr></table></div></div>
-      <div class="sec"><h2>Your recent actions</h2>
-        <div class="card scroll"><table id="clog"></table></div></div>
     </div>
-    <p class="muted">Changes take about a minute to apply. This page itself can take up to 10 minutes to show them (GitHub caches it).</p>
+
+    <h2>How many per day</h2>
+    <div class="card">
+      <div class="row">
+        <label class="sm">Posts <select id="ppd" onchange="act('posts_per_day', this.value)">
+          <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+        <label class="sm">Reels <select id="rpd" onchange="act('reels_per_day', this.value)">
+          <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+        <label class="sm">Spares <select id="spd" onchange="act('spares_per_day', this.value)">
+          <option>0</option><option>1</option><option>2</option></select></label>
+      </div>
+      <div class="dim sm" style="margin-top:8px" id="mixNote"></div>
+      <div class="row" style="margin-top:10px">
+        <label class="sm">Reel stories
+          <select id="rmode" onchange="act('reels_mode', this.value)">
+            <option value="same">same as posts</option>
+            <option value="different">their own</option>
+          </select></label>
+      </div>
+    </div>
+
+    <h2>Run something now</h2>
+    <div class="card">
+      <div class="actions" style="margin:0">
+        <button class="btn" onclick="runWf('publish.yml','Checking what is due')">Check and post</button>
+        <button class="btn" onclick="runWf('stats.yml','Reading Instagram numbers')">Refresh numbers</button>
+        <button class="btn" onclick="act('refresh_dashboard','')">Rebuild this page</button>
+        <a class="btn" id="routineLink" target="_blank" rel="noopener">Daily research run</a>
+      </div>
+    </div>
+
+    <h2>Music <span class="dim sm" id="musicCount"></span></h2>
+    <div id="mlist"></div>
+    <details class="card">
+      <summary>Add a song</summary>
+      <div class="row" style="flex-direction:column;align-items:stretch">
+        <input id="mUrl" placeholder="Direct link to an audio file">
+        <input id="mTitle" placeholder="Title, e.g. Sunrise (Scott Buckley)">
+        <input id="mCredit" placeholder="Credit line for the caption (optional)">
+        <input id="mLicense" placeholder="License, e.g. CC BY 4.0">
+        <button class="btn primary" onclick="addMusic()">Add song</button>
+      </div>
+      <p class="dim sm">Only add music you are allowed to use. Instagram's own library can't be used through the API.</p>
+    </details>
+
+    <h2>Recent jobs <button class="btn mini" onclick="loadRuns()">refresh</button></h2>
+    <div class="card" id="runs"></div>
+
+    <details class="card">
+      <summary>Your recent actions</summary>
+      <div id="clog"></div>
+    </details>
+
+    <details class="card">
+      <summary>System</summary>
+      <div id="sys" class="sm"></div>
+    </details>
+
+    <p class="dim sm">Changes apply in about a minute. This page can take up to 10 minutes to show them.</p>
   </section>
 </main>
-<div id="tip"></div>
 <div id="toast"></div>
 
 <script>
 const DATA = /*DATA*/null/*END*/;
-const D = DATA;
+const D = DATA, sys = D.system, REPO = D.repo, now = Date.now();
 const $ = id => document.getElementById(id);
 const nf = n => n == null ? "-" : Intl.NumberFormat().format(n);
 const pct = x => x == null ? "-" : (x * 100).toFixed(1) + "%";
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+const fixIso = s => s && /[+-]\d\d:\d\dZ$/.test(s) ? s.slice(0, -1) : s;
 const ago = ms => { const m = Math.round(ms / 60000); if (m < 1) return "just now"; if (m < 90) return m + " min ago";
   const h = Math.round(m / 60); return h < 36 ? h + " h ago" : Math.round(h / 24) + " days ago"; };
-const fixIso = s => s && /[+-]\d\d:\d\dZ$/.test(s) ? s.slice(0, -1) : s;
 const when = iso => iso ? new Date(fixIso(iso)).toLocaleString([], {weekday: "short", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"}) : "-";
-const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+const clock = iso => iso ? new Date(fixIso(iso)).toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"}) : "-";
 const thumb = u => !u ? u : u.replace(/\/(\d{3,4})px-/, "/500px-").replace(/([?&])w=\d+/, "$1w=500");
-const ICON = {neutral: ["i-neutral", "&hellip;"], good: ["i-good", "&#10003;"], warning: ["i-warning", "!"], serious: ["i-serious", "!"], critical: ["i-critical", "&#10005;"]};
-const icon = lvl => `<span class="icon ${ICON[lvl][0]}" aria-hidden="true">${ICON[lvl][1]}</span>`;
-const now = Date.now();
-const REPO = D.repo;
-const sys = D.system;
+const dot = lvl => `<span class="dot ${lvl}"></span>`;
 const idq = id => esc(id);
+function toast(msg, ms) { const t = $("toast"); t.textContent = msg; t.style.display = "block";
+  clearTimeout(t._h); t._h = setTimeout(() => t.style.display = "none", ms || 6000); }
 
-function toast(msg, ms) { const t = $("toast"); t.textContent = msg; t.style.display = "block"; clearTimeout(t._h); t._h = setTimeout(() => t.style.display = "none", ms || 6000); }
-
-// ---------- status of a post ----------
+// ---------- status ----------
 function postStatus(p) {
   const s = p.status;
   if (p.parked) return ["neutral", "Replaced by a spare"];
@@ -275,39 +261,37 @@ function postStatus(p) {
   if (s === "posted") return ["good", "Live"];
   if (s === "deleted") return ["neutral", "Deleted from Instagram"];
   if (s === "removed") return ["neutral", "Removed"];
-  if (s === "failed" || s === "rejected") return ["critical", "Failed"];
-  if (p.post_now) return ["warning", "Posting now"];
+  if (s === "failed" || s === "rejected") return ["bad", "Failed"];
+  if (p.post_now) return ["warn", "Posting now"];
   const t = new Date(fixIso(p.scheduled_utc)).getTime();
   if (p.date !== D.today_date && t < now) return ["neutral", "Not posted (day passed)"];
-  if (now - t > 40 * 60000) return ["serious", "Overdue"];
-  if (t <= now) return ["warning", "Due now"];
-  return ["neutral", p.post_at ? "Scheduled (time set by you)" : "Scheduled"];
+  if (now - t > 40 * 60000) return ["bad", "Overdue"];
+  if (t <= now) return ["warn", "Due now"];
+  return ["neutral", "Scheduled"];
 }
-// the Reel half of a story: [level, text] or null when the story has no Reel
 function reelStatus(p) {
   if ((p.reel_slot == null && !(p.reel && p.reel.post_at)) || p.spare || p.parked) return null;
   if (p.status === "removed" || p.status === "deleted") return null;
   const r = p.reel, t = p.reel_scheduled_utc ? new Date(fixIso(p.reel_scheduled_utc)).getTime() : 0;
   if (r && r.status === "posted") return ["good", "Reel live"];
   if (r && r.status === "cancelled") return ["neutral", "Reel cancelled"];
-  if (r && r.status === "failed") return ["critical", "Reel failed (" + (r.attempts || 0) + " tries)"];
+  if (r && r.status === "failed") return ["bad", "Reel failed"];
   const past = t && t < now, late = t && now - t > 45 * 60000;
-  if (r && r.status === "made") return late ? ["serious", "Reel overdue"] : past ? ["warning", "Reel due now"] : ["neutral", "Reel ready"];
+  if (r && r.status === "made") return late ? ["bad", "Reel overdue"] : past ? ["warn", "Reel due now"] : ["neutral", "Reel ready"];
   if ((p.reel_date || p.date) !== D.today_date && past) return ["neutral", "Reel not made (day passed)"];
-  return late ? ["serious", "Reel not made yet"] : ["neutral", "Reel will be made"];
+  return late ? ["bad", "Reel not made yet"] : ["neutral", "Reel will be made"];
 }
 const isLive = p => postStatus(p)[1] === "Live";
-const isUpcoming = p => ["Scheduled", "Scheduled (time set by you)", "Due now", "Overdue", "Posting now"].includes(postStatus(p)[1]);
+const isUpcoming = p => ["Scheduled", "Due now", "Overdue", "Posting now"].includes(postStatus(p)[1]);
 
 // ---------- router ----------
 function route() {
-  const h = location.hash.slice(1) || "overview";
-  const [view, id] = h.split("/");
+  const [view, id] = (location.hash.slice(1) || "today").split("/");
   document.querySelectorAll(".view").forEach(v => v.classList.remove("on"));
   document.querySelectorAll("nav a").forEach(a => a.classList.toggle("on", a.dataset.v === (view === "post" ? "posts" : view)));
-  const el = $("v-" + view) || $("v-overview"); el.classList.add("on");
+  ($("v-" + view) || $("v-today")).classList.add("on");
   if (view === "post") showPost(decodeURIComponent(id || ""));
-  if (view === "control") loadRuns();
+  if (view === "settings") loadRuns();
   window.scrollTo(0, 0);
 }
 window.addEventListener("hashchange", route);
@@ -316,278 +300,188 @@ $("title").textContent = D.account;
 const age = now - new Date(D.generated_at).getTime();
 $("fresh").textContent = "Updated " + ago(age);
 
-// ================= OVERVIEW =================
+// ================= TODAY =================
 const alerts = [...D.alerts];
 if (age > 90 * 60000) alerts.push({level: "serious", text: "This page hasn't refreshed for " + ago(age).replace(" ago", "") + ". The posting system may have stopped."});
 if (sys.last_mac_ping_utc) {
   const p = now - new Date(sys.last_mac_ping_utc).getTime();
   if (p > 30 * 60000) alerts.push({level: "warning", text: "Your Mac mini last woke the poster " + ago(p) + ". It may be asleep, off or offline."});
 } else alerts.push({level: "warning", text: "No wake-up from your Mac mini has been recorded yet."});
-D.today.forEach(t => {
-  if (!t.status && now - new Date(fixIso(t.scheduled_utc)).getTime() > 40 * 60000)
-    alerts.push({level: "serious", text: `"${t.title}" was due ${when(t.scheduled_utc)} and hasn't gone out.`});
-});
+const LVL = {critical: "bad", serious: "bad", warning: "warn", good: "good", neutral: "neutral"};
 $("attn").innerHTML = alerts.length
-  ? alerts.map(a => `<div class="card">${icon(a.level)}<div><b>${a.level === "critical" ? "Problem" : "Needs attention"}:</b> ${esc(a.text)}</div></div>`).join("")
-  : `<div class="card">${icon("good")}<div><b>Everything is running normally.</b></div></div>`;
+  ? alerts.map(a => `<div class="card flat"><div class="status">${dot(LVL[a.level] || "neutral")}<span>${esc(a.text)}</span></div></div>`).join("")
+  : `<div class="card flat"><div class="status">${dot("good")}<span>Everything is running normally.</span></div></div>`;
 
 const AN = D.account_now || {};
-$("followers").textContent = nf(AN.followers != null ? AN.followers : (D.followers.length ? D.followers.at(-1).followers : null));
-if (D.followers.length > 1) {
-  const d = D.followers.at(-1).followers - D.followers[0].followers;
-  $("fdelta").textContent = (d >= 0 ? "+" : "") + d + " since " + D.followers[0].date;
-}
-if (AN.fetched_at) $("fdelta").textContent += (D.followers.length > 1 ? " \u00b7 " : "") + "straight from Instagram " + ago(now - new Date(AN.fetched_at).getTime());
-const live = D.posts;
-const withReach = live.filter(p => p.reach != null);
-const avg = a => a.length ? a.reduce((x, y) => x + y, 0) / a.length : null;
-const tile = (label, value, note) => `<div class="card tile"><div class="label">${label}</div><div class="num">${value}</div><div class="muted">${note || ""}</div></div>`;
-const postedToday = D.today.filter(t => t.status === "posted").length;
-$("todayNote").textContent = D.today.length ? "(New York date " + D.today_date + ")" : "";
-const todayFull = D.all_posts.filter(p => p.date === D.today_date && !p.spare && !p.parked);
 const todayRows = [];
 D.all_posts.filter(p => !p.spare && !p.parked).forEach(p => {
-  if (p.date === D.today_date && p.has_slot !== false) todayRows.push({p, kind: "Post", st: postStatus(p), time: p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc});
+  if (p.date === D.today_date && p.has_slot !== false)
+    todayRows.push({p, kind: "Post", st: postStatus(p), time: p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc});
   const rs = reelStatus(p);
-  if (rs && (p.reel_date || p.date) === D.today_date && rs[1] !== "Reel cancelled") todayRows.push({p, kind: "Reel", st: rs, time: p.reel && p.reel.status === "posted" ? p.reel.posted_at : p.reel_scheduled_utc});
+  if (rs && (p.reel_date || p.date) === D.today_date && rs[1] !== "Reel cancelled")
+    todayRows.push({p, kind: "Reel", st: rs, time: p.reel && p.reel.status === "posted" ? p.reel.posted_at : p.reel_scheduled_utc});
 });
 todayRows.sort((a, b) => new Date(fixIso(a.time) || 0) - new Date(fixIso(b.time) || 0));
-$("today").innerHTML = todayRows.length
-  ? `<tr><th>Status</th><th>Time (your clock)</th><th>Story</th><th></th></tr>` + todayRows.map(({p, kind, st, time}) => {
-      const [lvl, txt] = st, up = kind === "Post" && isUpcoming(p);
-      const quick = up ? `<button class="btn sm primary" onclick="act('post_now','${idq(p.id)}')">Post now</button> <button class="btn sm" onclick="act('replace','${idq(p.id)}')">Replace</button> <button class="btn sm danger" onclick="if(confirm('Remove this story? It will not be posted as a carousel or a Reel.')) act('remove','${idq(p.id)}')">Remove</button>` : "";
-      return `<tr><td><span class="status">${icon(lvl)}${txt}</span></td><td>${when(time)}</td><td><span class="badge${kind === "Reel" ? " reel" : ""}" style="margin:0 6px 0 0">${kind}</span><a href="#post/${encodeURIComponent(p.id)}">${esc(p.title)}</a></td><td>${quick}</td></tr>`;
-    }).join("")
-  : `<tr><td class="muted">Nothing is queued for today yet.</td></tr>`;
+const doneToday = todayRows.filter(r => /live/i.test(r.st[1])).length;
 
-$("tiles").innerHTML =
-  tile("On Instagram", nf(AN.media_count != null ? AN.media_count : live.length), "posts + Reels, live count") +
-  tile("Posted today", todayRows.filter(r => /live/i.test(r.st[1])).length + " of " + todayRows.length, todayRows.length ? "posts + Reels scheduled today" : "nothing queued") +
-  tile("Reels", nf(sys.reels_posted), sys.reels_planned + " planned") +
-  tile("Average reach", nf(Math.round(avg(withReach.map(p => p.reach)) ?? NaN) || null), "people per post") +
-  tile("Shares per reach", pct(avg(withReach.map(p => p.share_rate).filter(x => x != null))), "sends matter most");
+$("chips").innerHTML =
+  `<div class="chip"><div class="n">${nf(AN.followers)}</div><div class="l">Followers</div></div>` +
+  `<div class="chip"><div class="n">${nf(AN.media_count != null ? AN.media_count : D.posts.length)}</div><div class="l">On Instagram</div></div>` +
+  `<div class="chip"><div class="n">${doneToday}/${todayRows.length}</div><div class="l">Out today</div></div>`;
 
-// reach per post: one bar per live post, hover for details
-(function reachChart() {
-  const pts = [...live].filter(p => p.reach != null).reverse().slice(-14);
-  if (!pts.length) { $("reach").innerHTML = `<p class="muted">Bars appear once Instagram reports reach for your posts.</p>`; return; }
-  const W = Math.max(300, Math.round($("reach").clientWidth || 880)), H = 190, L = 40, R = 10, T = 12, B = 30;
-  const max = Math.max(...pts.map(p => p.reach), 1), bw = (W - L - R) / pts.length;
-  const y = v => T + (H - T - B) * (1 - v / max);
-  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Reach per post">`;
-  [0, Math.round(max / 2), max].forEach(t => s += `<line x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--grid)"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end">${nf(t)}</text>`);
-  pts.forEach((p, i) => { const x = L + i * bw + bw * .18, w = bw * .64, h = Math.max(2, (H - T - B) - (y(p.reach) - T));
-    s += `<path d="M${x} ${T + (H - T - B)} v${-h + 4} q0 -4 4 -4 h${w - 8} q4 0 4 4 v${h - 4} z" fill="var(--series-1)" data-i="${i}"/>`; });
-  s += `<text x="${L}" y="${H - 8}">${esc((pts[0].posted_local || "").slice(5, 10))}</text><text x="${W - R}" y="${H - 8}" text-anchor="end">${esc((pts.at(-1).posted_local || "").slice(5, 10))}</text></svg>`;
-  $("reach").innerHTML = s;
-  const tip = $("tip");
-  $("reach").querySelectorAll("path").forEach(el => {
-    const p = pts[+el.dataset.i];
-    el.addEventListener("pointermove", e => { tip.style.display = "block"; tip.style.left = Math.min(e.clientX + 12, innerWidth - 270) + "px"; tip.style.top = (e.clientY - 56) + "px";
-      tip.innerHTML = `<b>${esc((p.title || "").slice(0, 60))}</b><br>${nf(p.reach)} reached &middot; ${nf(p.shares)} shares &middot; ${nf(p.saved)} saves`; });
-    el.addEventListener("pointerleave", () => tip.style.display = "none");
-  });
-})();
+$("todayNote").textContent = todayRows.length ? "(" + D.today_date + ")" : "";
+$("today").innerHTML = todayRows.length ? todayRows.map(({p, kind, st, time}) => {
+  const up = kind === "Post" && isUpcoming(p);
+  return `<div class="item">
+    <div class="time">${clock(time)}</div>
+    <div class="body">
+      <div class="t"><span class="tag${kind === "Reel" ? " reel" : ""}">${kind}</span><a href="#post/${encodeURIComponent(p.id)}">${esc(p.title)}</a></div>
+      <div class="dim sm status">${dot(st[0])}${esc(st[1])}</div>
+    </div>
+    ${up ? `<button class="btn mini" onclick="act('post_now','${idq(p.id)}')">Post now</button>` : ""}
+  </div>`;
+}).join("") : `<div class="dim">Nothing is queued for today yet.</div>`;
 
-$("ftable").innerHTML = `<tr><th>Date</th><th class="n">Followers</th><th class="n">Posts</th></tr>` +
-  D.followers.map(f => `<tr><td>${f.date}</td><td class="n">${nf(f.followers)}</td><td class="n">${nf(f.media)}</td></tr>`).join("");
-function drawChart() {
-  const pts = D.followers;
-  if (pts.length < 2) { $("chart").innerHTML = `<p class="muted">The chart appears once there are two days of data.</p>`; return; }
-  const W = Math.max(300, Math.round($("chart").clientWidth || 880)), H = 200, L = 40, R = 16, T = 12, B = 26;
-  const ys = pts.map(p => p.followers), lo = Math.min(...ys), hi = Math.max(...ys);
-  const span = Math.max(hi - lo, 1), y0 = lo - span * .15, y1 = hi + span * .15;
-  const x = i => L + (W - L - R) * (i / (pts.length - 1));
-  const y = v => T + (H - T - B) * (1 - (v - y0) / (y1 - y0));
-  const ticks = [...new Set([lo, Math.round((lo + hi) / 2), hi])];
-  let s = `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="Followers per day">`;
-  ticks.forEach(t => s += `<line x1="${L}" x2="${W - R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--grid)"/><text x="${L - 6}" y="${y(t) + 4}" text-anchor="end">${nf(t)}</text>`);
-  s += `<text x="${L}" y="${H - 6}">${pts[0].date}</text><text x="${W - R}" y="${H - 6}" text-anchor="end">${pts.at(-1).date}</text>`;
-  s += `<polyline fill="none" stroke="var(--series-1)" stroke-width="2" stroke-linejoin="round" points="${pts.map((p, i) => x(i) + "," + y(p.followers)).join(" ")}"/>`;
-  s += `<circle id="dot" r="4.5" fill="var(--series-1)" stroke="var(--surface-2)" stroke-width="2" style="display:none"/>`;
-  s += `<rect x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" fill="transparent"/></svg>`;
-  $("chart").innerHTML = s;
-  const svg = $("chart").querySelector("svg"), dot = $("dot"), tip = $("tip");
-  svg.addEventListener("pointermove", e => {
-    const r = svg.getBoundingClientRect(), px = (e.clientX - r.left) / r.width * W;
-    const i = Math.max(0, Math.min(pts.length - 1, Math.round((px - L) / (W - L - R) * (pts.length - 1))));
-    dot.setAttribute("cx", x(i)); dot.setAttribute("cy", y(pts[i].followers)); dot.style.display = "";
-    tip.style.display = "block"; tip.style.left = (e.clientX + 12) + "px"; tip.style.top = (e.clientY - 36) + "px";
-    tip.textContent = pts[i].date + ": " + nf(pts[i].followers) + " followers";
-  });
-  svg.addEventListener("pointerleave", () => { dot.style.display = "none"; tip.style.display = "none"; });
-}
-
-$("posts").innerHTML = live.length
-  ? `<tr><th>Posted</th><th>Story</th><th class="n">Reach</th><th class="n">Likes</th><th class="n">Comments</th><th class="n">Shares</th><th class="n">Saves</th><th class="n">Shares/reach</th></tr>` +
-    live.map(p => `<tr><td>${esc(p.posted_local)}</td><td>${esc(p.title)} ${p.permalink ? `<a href="${esc(p.permalink)}" target="_blank" rel="noopener">open</a>` : ""}${p.age_hours < 48 ? `<div class="muted">still counting (${Math.round(p.age_hours)} h old)</div>` : ""}</td><td class="n">${nf(p.reach)}</td><td class="n">${nf(p.likes)}</td><td class="n">${nf(p.comments)}</td><td class="n">${nf(p.shares)}</td><td class="n">${nf(p.saved)}</td><td class="n">${pct(p.share_rate)}</td></tr>`).join("")
-  : `<tr><td class="muted">No statistics yet. They appear after the first daily update.</td></tr>`;
-
-$("gnote").textContent = D.mature_count < 15 ? `(only ${D.mature_count} posts older than 48 h so far; treat as noise until about 15)` : "";
-const gKeys = Object.keys(D.groups);
-$("groups").innerHTML = gKeys.length ? gKeys.map(k => `<div class="card scroll" style="margin-bottom:10px"><div class="label">By ${esc(k)}</div><table><tr><th>${esc(k)}</th><th class="n">Posts</th><th class="n">Avg reach</th><th class="n">Shares/reach</th><th class="n">Saves/reach</th></tr>` +
-  D.groups[k].map(g => `<tr><td>${esc(g.key)}</td><td class="n">${g.n}</td><td class="n">${nf(g.reach)}</td><td class="n">${pct(g.share_rate)}</td><td class="n">${pct(g.save_rate)}</td></tr>`).join("") + `</table></div>`).join("")
-  : `<div class="card muted">Not enough posts yet. Comparisons appear once at least 3 posts in a group are older than 48 hours.</div>`;
-
-const row = (k, v) => `<div><span class="label">${k}</span><b>${v}</b></div>`;
-$("sys").innerHTML =
-  row("Publishing", sys.paused ? "Paused" : "On") +
-  row("Carousel posts per day", sys.posts_per_day) +
-  row("Reels per day", sys.reels_per_day + (sys.reel_times.length ? " (about " + sys.reel_times.join(", ") + " New York)" : "")) +
-  row("Spare posts ready", sys.spares_ready + " (prepares " + sys.spares_per_day + " a day)") +
-  row("Posting times (New York)", sys.slot_times.join(", ") + " (shifted a few minutes daily)") +
-  row("Mac mini last woke the poster", sys.last_mac_ping_utc ? ago(now - new Date(sys.last_mac_ping_utc).getTime()) : "not recorded yet") +
-  row("Daily research run", "about " + new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate(), 9, 15)).toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"}) + " your time") +
-  row("Stories queued for today", todayFull.length + " of " + sys.stories_per_day) +
-  row("Stories used so far", sys.history_count) +
-  row("Unsplash requests (24 h)", sys.unsplash_used + " of " + sys.unsplash_cap);
-
-// ================= WHAT IS HAPPENING =================
-(function happening() {
-  const nowD = new Date();
-  const hhmm = d => d.toLocaleString([], {weekday: "short", hour: "2-digit", minute: "2-digit"});
-  const nextRun = new Date(Date.UTC(nowD.getUTCFullYear(), nowD.getUTCMonth(), nowD.getUTCDate(), 9, 15));
-  if (nextRun <= nowD) nextRun.setUTCDate(nextRun.getUTCDate() + 1);
-  const later = D.all_posts.filter(p => p.reel && p.reel.post_at && (p.reel_date || p.date) !== D.today_date && reelStatus(p) && !["Reel live", "Reel cancelled"].includes(reelStatus(p)[1]) && p.reel_scheduled_utc && new Date(fixIso(p.reel_scheduled_utc)) > nowD)
-    .map(p => ({p, kind: "Reel", st: reelStatus(p), time: p.reel_scheduled_utc, old: true}));
-  const upcoming = todayRows.filter(r => r.time && new Date(fixIso(r.time)) > nowD && !/live/i.test(r.st[1])).concat(later)
-    .sort((a, b) => new Date(fixIso(a.time)) - new Date(fixIso(b.time)));
-  const doneP = todayFull.filter(p => p.status === "posted").length, doneR = todayFull.filter(p => p.reel && p.reel.status === "posted").length;
-  const ping = sys.last_mac_ping_utc ? Math.round((nowD - new Date(sys.last_mac_ping_utc)) / 60000) : null;
-  $("happening").innerHTML = `
-    <div class="next"><span class="when">${sys.paused ? "Paused" : "Running"}</span><span>${sys.paused ? "Posting is paused: nothing will go to Instagram until you resume it on the Control tab."
-      : "Posting is on. Your Mac mini checks every 10 minutes " + (ping == null ? "" : "(last check " + (ping < 1 ? "just now" : ping + " min ago") + ") ") + "and posts whatever is due."}</span></div>
-    ${upcoming.length ? upcoming.slice(0, 5).map(r => `<div class="next"><span class="when">${hhmm(new Date(fixIso(r.time)))}</span><span>Next ${r.kind === "Reel" ? (r.old ? "Reel of an earlier post" : "Reel") : "post"}: <a href="#post/${encodeURIComponent(r.p.id)}">${esc(r.p.title)}</a>${r.kind === "Reel" && r.st[1] === "Reel will be made" ? ' <span class="muted">(the video is made automatically before it goes out)</span>' : ""}</span></div>`).join("")
-      : `<div class="next"><span class="when">Today</span><span>Nothing else is scheduled for the rest of today (${doneP} post${doneP === 1 ? "" : "s"} and ${doneR} Reel${doneR === 1 ? "" : "s"} went out).</span></div>`}
-    <div class="next"><span class="when">${hhmm(nextRun)}</span><span>Next research run: Claude searches the internet, checks the facts, picks pictures and writes <b>${sys.stories_per_day} stor${sys.stories_per_day === 1 ? "y" : "ies"}</b>.
-      They go out as <b>${sys.posts_per_day} post${sys.posts_per_day === 1 ? "" : "s"}</b> and <b>${sys.reels_per_day} Reel${sys.reels_per_day === 1 ? "" : "s"}</b> (${sys.reels_mode === "different" ? "Reels get their own stories" : "Reels reuse the same stories"}), and the Reel videos are made automatically.</span></div>
-    <details class="how"><summary>How the whole system works</summary><ol class="muted" style="padding-left:20px">
-      <li><b>Once a day, Claude does the research.</b> It finds true stories online, checks them against their sources, chooses real photos and writes the posts.</li>
-      <li><b>Videos are made automatically</b> from those same stories (Reels), with music from the Music tab.</li>
-      <li><b>Your Mac mini is the clock.</b> Every 10 minutes it wakes a small program on GitHub that posts whatever is due. Times shift a few minutes each day so it looks natural, and nothing posts within 45 minutes of anything else.</li>
-      <li><b>Instagram's numbers are collected once a day</b> and shown here. The next research run reads them to learn what works.</li>
-      <li><b>You are in control.</b> Before something goes out you can remove, replace, edit or reschedule it (Posts tab), and the Control tab sets how many posts and Reels you want.</li>
-    </ol></details>`;
-})();
+const live = D.posts.filter(p => p.reach != null);
+$("results").innerHTML = live.length ? live.slice(0, 12).map(p => `<div class="item">
+    <div class="body">
+      <div class="t">${esc(p.title || "")}</div>
+      <div class="dim sm">${esc((p.posted_local || "").slice(5))} &middot; ${nf(p.reach)} reached &middot; ${nf(p.likes)} likes &middot; ${nf(p.shares)} shares</div>
+    </div>
+    ${p.permalink ? `<a class="btn mini" href="${esc(p.permalink)}" target="_blank" rel="noopener">Open</a>` : ""}
+  </div>`).join("") : `<div class="dim">Numbers appear once Instagram reports them.</div>`;
 
 // ================= POSTS =================
-const FILTERS = [["all", "All"], ["upcoming", "Scheduled"], ["live", "Live"], ["spares", "Spares"], ["reels", "Reels"], ["removed", "Removed"], ["missed", "Not posted"]];
+const FILTERS = [["all", "All"], ["upcoming", "Upcoming"], ["live", "Live"], ["reels", "Reels"], ["other", "Other"]];
 let filter = "all";
 function inFilter(p) {
-  const [, txt] = postStatus(p);
-  if (filter === "all") return !p.parked;
-  if (filter === "live") return txt === "Live";
+  const txt = postStatus(p)[1];
+  if (filter === "all") return !p.parked && !(p.spare && txt.includes("removed"));
+  if (filter === "live") return isLive(p);
   if (filter === "upcoming") return isUpcoming(p);
-  if (filter === "spares") return p.spare && !p.parked && !txt.includes("removed");
   if (filter === "reels") return p.reel_slot != null || !!p.reel;
-  if (filter === "removed") return p.parked || txt === "Removed" || txt.startsWith("Deleted") || txt.includes("(removed)");
-  if (filter === "missed") return txt === "Failed" || txt.startsWith("Not posted");
+  if (filter === "other") return p.parked || p.spare || txt === "Removed" || txt.startsWith("Deleted") || txt === "Failed" || txt.startsWith("Not posted");
 }
 function drawList() {
   $("filters").innerHTML = FILTERS.map(([k, l]) => `<button class="${k === filter ? "on" : ""}" onclick="filter='${k}';drawList()">${l}</button>`).join("");
   const q = ($("q").value || "").toLowerCase();
   const items = D.all_posts.filter(p => inFilter(p) && (!q || (p.title || "").toLowerCase().includes(q)))
-    .sort((a, b) => (b.date || "").localeCompare(a.date || "") || ((a.spare ? 1 : 0) - (b.spare ? 1 : 0)) || ((a.slot || 9) - (b.slot || 9)));
-  if (!items.length) { $("plist").innerHTML = `<div class="card muted">Nothing here.</div>`; return; }
+    .sort((a, b) => (b.date || "").localeCompare(a.date || "") || ((a.slot || 9) - (b.slot || 9)));
+  if (!items.length) { $("plist").innerHTML = `<div class="card dim">Nothing here.</div>`; return; }
   let html = "", last = "";
   items.forEach(p => {
-    if (p.date !== last) { last = p.date; html += `<div class="dayhead">${p.date === D.today_date ? "Today" : esc(new Date(p.date + "T12:00:00").toLocaleDateString([], {weekday: "long", month: "short", day: "numeric"}))}</div>`; }
+    if (p.date !== last) {
+      last = p.date;
+      html += `<div class="dayhead">${p.date === D.today_date ? "Today" : esc(new Date(p.date + "T12:00:00").toLocaleDateString([], {weekday: "long", month: "short", day: "numeric"}))}</div>`;
+    }
     const [lvl, txt] = postStatus(p), cover = p.slides.length && p.slides[0].image;
     const t = p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc;
-    html += `<a class="card pitem" href="#post/${encodeURIComponent(p.id)}">${cover ? `<img src="${esc(thumb(cover))}" loading="lazy" alt="">` : `<div class="noimg"></div>`}
-      <div><div class="t">${esc(p.title)}${p.reel_slot != null || p.reel ? ` <span class="badge reel">Reel${p.reel && p.reel.status === "posted" ? " live" : ""}</span>` : ""}${p.spare && !p.parked ? ` <span class="badge">spare</span>` : ""}</div>
-      <div class="muted"><span class="status">${icon(lvl)}${txt}</span>${t ? " &middot; " + when(t) : (p.posted_local ? " &middot; " + esc(p.posted_local) : "")} &middot; ${esc(p.lane || p.category)}</div>
-      ${reelStatus(p) ? `<div class="muted"><span class="status">${icon(reelStatus(p)[0])}${reelStatus(p)[1]}</span>${p.reel_scheduled_utc ? " &middot; " + when(p.reel && p.reel.status === "posted" ? p.reel.posted_at : p.reel_scheduled_utc) : ""}</div>` : ""}</div></a>`;
+    const rs = reelStatus(p), st = p.stats;
+    html += `<a href="#post/${encodeURIComponent(p.id)}">
+      ${cover ? `<img src="${esc(thumb(cover))}" loading="lazy" alt="" onerror="this.style.visibility='hidden'">` : `<div style="width:46px;height:58px;border-radius:8px;background:var(--border);flex:none"></div>`}
+      <div class="body" style="min-width:0;flex:1">
+        <div class="t">${esc(p.title)}</div>
+        <div class="dim sm status">${dot(lvl)}${esc(txt)}${t ? " &middot; " + clock(t) : ""}</div>
+        ${rs ? `<div class="dim sm status">${dot(rs[0])}${esc(rs[1])}</div>` : ""}
+        ${st && st.reach != null ? `<div class="dim sm">${nf(st.reach)} reached &middot; ${nf(st.likes)} likes</div>` : ""}
+      </div></a>`;
   });
   $("plist").innerHTML = html;
 }
-
-function toggle(id) { const e = $(id); e.style.display = e.style.display === "none" ? "block" : "none"; }
 function localDefault() { const d = new Date(Date.now() + 3600e3); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 16); }
+function toggle(id) { const e = $(id); e.style.display = e.style.display === "none" ? "block" : "none"; }
 
 function showPost(id) {
   const p = D.all_posts.find(x => x.id === id);
-  if (!p) { $("pdetail").innerHTML = `<div class="card muted">Post not found. It may be older than 3 weeks.</div>`; return; }
+  if (!p) { $("pdetail").innerHTML = `<div class="card dim">Post not found. It may be older than 3 weeks.</div>`; return; }
   const [lvl, txt] = postStatus(p), liveNow = isLive(p), upcoming = isUpcoming(p);
   const removed = txt === "Removed" || txt.includes("(removed)"), editable = !liveNow && !p.parked;
-  const q = idq(p.id);
+  const q = idq(p.id), st = p.stats, rs = p.reel_stats;
+
   let btns = "";
   if (liveNow) {
     btns += (p.permalink ? `<a class="btn" href="${esc(p.permalink)}" target="_blank" rel="noopener">Open on Instagram</a>` : "") +
       `<button class="btn danger" onclick="if(confirm('Delete this post from Instagram? This cannot be undone.')) act('delete_instagram','${q}')">Delete from Instagram</button>`;
   } else if (p.spare && !p.parked) {
     const slots = D.all_posts.filter(x => x.date === D.today_date && !x.spare && !x.parked && !isLive(x) && postStatus(x)[1] !== "Removed");
-    btns += slots.length ? `<select id="swapTarget">${slots.map(x => `<option value="${esc(x.id)}">${esc((x.title || "").slice(0, 50))}</option>`).join("")}</select>
-      <button class="btn primary" onclick="act('replace', $('swapTarget').value, '${q}')">Use this spare instead of that post</button>`
-      : `<span class="muted">No scheduled post of today to replace. A spare takes the place of a post you don't want.</span>`;
+    btns += slots.length
+      ? `<select id="swapTarget">${slots.map(x => `<option value="${esc(x.id)}">${esc((x.title || "").slice(0, 44))}</option>`).join("")}</select>
+         <button class="btn primary" onclick="act('replace', $('swapTarget').value, '${q}')">Use this spare instead</button>`
+      : `<span class="dim sm">No scheduled post today to replace.</span>`;
     if (!removed) btns += `<button class="btn danger" onclick="act('remove','${q}')">Remove spare</button>`;
   } else if (editable) {
     if (p.has_slot !== false) {
       btns += `<button class="btn primary" onclick="if(${upcoming} || confirm('Post this to Instagram now?')) act('post_now','${q}')">Post now</button>`;
       btns += `<button class="btn" onclick="toggle('resBox')">Reschedule</button>`;
     }
-    if (p.date === D.today_date && !removed) btns += sys.spares_ready > 0 ? `<button class="btn" onclick="act('replace','${q}')">Replace with a spare (${sys.spares_ready} ready)</button>` : `<button class="btn" disabled title="No spare is ready. Turn spares on in the Control tab.">Replace with a spare (none ready)</button>`;
-    btns += removed ? `<button class="btn" onclick="act('restore','${q}')">Restore</button>` : `<button class="btn danger" onclick="if(confirm('Remove this story? It will not be posted as a carousel or a Reel.')) act('remove','${q}')">Remove</button>`;
+    if (p.date === D.today_date && !removed && sys.spares_ready > 0)
+      btns += `<button class="btn" onclick="act('replace','${q}')">Replace with a spare (${sys.spares_ready})</button>`;
+    btns += removed
+      ? `<button class="btn" onclick="act('restore','${q}')">Restore</button>`
+      : `<button class="btn danger" onclick="if(confirm('Remove this story? It will not be posted as a carousel or a Reel.')) act('remove','${q}')">Remove</button>`;
   }
-  const st = p.stats, rs = p.reel_stats;
-  const slidesHtml = p.slides.map((s, i) => `<div class="slide">${s.image ? `<img src="${esc(thumb(s.image))}" loading="lazy" alt="">` : ""}
-      <div class="txt"><div class="k">${i + 1}. ${esc(s.type === "cover" ? (s.kicker || "cover") : s.type === "end" ? "ending" : (s.layout || "text"))}</div>
-      <div id="st${i}">${esc(s.text)}</div>${s.credit ? `<div class="muted" style="font-size:11px;margin-top:4px">${esc(s.credit)}</div>` : ""}
-      ${editable ? `<div><button class="linkbtn" onclick="toggle('se${i}')">Edit text</button><div id="se${i}" style="display:none"><textarea id="sx${i}">${esc(s.text)}</textarea>
-        <button class="btn sm primary" onclick="act('edit_slide','${q}#${i + 1}', $('sx${i}').value)">Save</button></div></div>` : ""}</div></div>`).join("");
 
   let reelHtml = "";
   if (!p.spare && p.slides.length && (p.reel_slot != null || p.reel)) {
     const r = p.reel, rst = reelStatus(p);
-    reelHtml = `<h2>Reel ${rst ? `<span class="badge reel">${esc(rst[1])}</span>` : ""}</h2><div class="card">
-      <p class="muted" style="margin-top:0">${p.reel_scheduled_utc && !(r && r.status === "posted") ? "Goes out automatically at <b>" + when(p.reel_scheduled_utc) + "</b>. " : ""}The video is made by itself after the daily research run${r && r.music ? "; music: " + esc((r.music || "").replace(".m4a", "").replace(".ogg", "")) : ""}.</p>
-      ${r && r.url ? `<video controls playsinline preload="metadata" src="${esc(r.url)}"></video>` : `<p class="muted">Not made yet. It appears here as soon as it is ready.</p>`}
-      ${r && r.error ? `<p class="muted">Last problem: ${esc(r.error)}</p>` : ""}
-      ${rs ? `<table><tr><th class="n">Views</th><th class="n">Reach</th><th class="n">Likes</th><th class="n">Shares</th><th class="n">Saves</th></tr><tr><td class="n">${nf(rs.views)}</td><td class="n">${nf(rs.reach)}</td><td class="n">${nf(rs.likes)}</td><td class="n">${nf(rs.shares)}</td><td class="n">${nf(rs.saved)}</td></tr></table>` : ""}
-      <div class="actions">${r && r.status === "posted" ? (r.permalink ? `<a class="btn" href="${esc(r.permalink)}" target="_blank" rel="noopener">Open Reel on Instagram</a>` : "") :
-        `${r && r.url ? `<button class="btn" onclick="if(confirm('Post this Reel to Instagram now instead of waiting?')) act('post_reel','${q}')">Post Reel now</button>` : ""}<button class="btn" onclick="makeReel('${q}')">${r ? "Make it again" : "Make it now"}</button>${r && r.status !== "cancelled" ? `<button class="btn" onclick="toggle('reelTime')">Change time</button><button class="btn danger" onclick="if(confirm('Cancel this Reel? It will not be made or posted.')) act('cancel_reel','${q}')">Cancel Reel</button>` : ""}`}</div>
-      <div id="reelTime" class="row" style="display:none;margin-top:8px"><input type="datetime-local" id="reelTimeIn" value="${localDefault()}"><button class="btn primary" onclick="act('reschedule_reel','${q}', new Date($('reelTimeIn').value).toISOString())">Set this time</button></div></div>`;
+    reelHtml = `<h2>Reel</h2><div class="card">
+      <div class="dim sm status" style="margin-bottom:8px">${rst ? dot(rst[0]) + esc(rst[1]) : ""}${p.reel_scheduled_utc && !(r && r.status === "posted") ? " &middot; " + when(p.reel_scheduled_utc) : ""}</div>
+      ${r && r.url ? `<video controls playsinline preload="metadata" src="${esc(r.url)}"></video>` : `<div class="dim sm">Not made yet.</div>`}
+      ${r && r.error ? `<div class="dim sm" style="margin-top:6px">Last problem: ${esc(r.error)}</div>` : ""}
+      ${rs ? `<div class="metrics" style="margin-top:10px"><div><b>${nf(rs.views)}</b>views</div><div><b>${nf(rs.reach)}</b>reached</div><div><b>${nf(rs.likes)}</b>likes</div><div><b>${nf(rs.shares)}</b>shares</div><div><b>${nf(rs.saved)}</b>saves</div></div>` : ""}
+      <div class="actions">${r && r.status === "posted"
+        ? (r.permalink ? `<a class="btn" href="${esc(r.permalink)}" target="_blank" rel="noopener">Open Reel</a>` : "")
+        : `${r && r.url ? `<button class="btn" onclick="if(confirm('Post this Reel to Instagram now?')) act('post_reel','${q}')">Post Reel now</button>` : ""}
+           <button class="btn" onclick="makeReel('${q}')">${r ? "Make again" : "Make now"}</button>
+           ${r && r.status !== "cancelled" ? `<button class="btn" onclick="toggle('reelTime')">Change time</button>
+           <button class="btn danger" onclick="if(confirm('Cancel this Reel?')) act('cancel_reel','${q}')">Cancel</button>` : ""}`}</div>
+      <div id="reelTime" class="row" style="display:none">
+        <input type="datetime-local" id="reelTimeIn" value="${localDefault()}">
+        <button class="btn primary" onclick="act('reschedule_reel','${q}', new Date($('reelTimeIn').value).toISOString())">Set</button></div>
+    </div>`;
   }
 
   $("pdetail").innerHTML = `
-    <h1 style="font-size:22px;margin:4px 0 6px">${esc(p.title)}</h1>
-    <div class="muted"><span class="status">${icon(lvl)}${txt}</span> &middot; ${p.status === "posted" && p.posted_at ? "posted " + when(p.posted_at) : (p.scheduled_utc ? "time " + when(p.scheduled_utc) : esc(p.posted_local || ""))}
-      &middot; ${esc(p.lane || "")} ${esc(p.category || "")} &middot; <span title="post id">${esc(p.id)}</span></div>
-    ${p.error ? `<p class="muted">Problem: ${esc(p.error)}</p>` : ""}${p.replaced_by ? `<p class="muted">Replaced by the spare <a href="#post/${encodeURIComponent(p.replaced_by)}">${esc(p.replaced_by)}</a>.</p>` : ""}
+    <h1 style="margin-top:10px">${esc(p.title)}</h1>
+    <div class="dim sm status">${dot(lvl)}${esc(txt)}${p.status === "posted" && p.posted_at ? " &middot; posted " + when(p.posted_at) : (p.scheduled_utc ? " &middot; " + when(p.scheduled_utc) : "")}</div>
+    ${p.error ? `<div class="dim sm">Problem: ${esc(p.error)}</div>` : ""}
     <div class="actions">${btns}</div>
-    <div id="resBox" class="card panel" style="display:none"><div class="row"><input type="datetime-local" id="resTime" value="${localDefault()}">
-      <button class="btn primary" onclick="act('reschedule','${q}', new Date($('resTime').value).toISOString())">Set this time</button>
-      <button class="btn" onclick="act('reschedule','${q}','')">Back to normal time</button></div>
-      <p class="muted" style="margin-bottom:0">Your clock. It goes out at the first check after that time (checks run every 10 minutes).</p></div>
-    <div class="pcols"><div>
-    ${st ? `<h2>Results</h2><div class="card scroll"><table><tr><th class="n">Reach</th><th class="n">Likes</th><th class="n">Comments</th><th class="n">Shares</th><th class="n">Saves</th><th class="n">Shares/reach</th></tr>
-      <tr><td class="n">${nf(st.reach)}</td><td class="n">${nf(st.likes)}</td><td class="n">${nf(st.comments)}</td><td class="n">${nf(st.shares)}</td><td class="n">${nf(st.saved)}</td><td class="n">${pct(st.share_rate)}</td></tr></table></div>` : ""}
-    ${p.slides.length ? `<h2>Slides (${p.slides.length})</h2><div class="slides">${slidesHtml}</div>
-      <p class="muted">Pictures are shown without the text overlay; the real slides add the text and your handle.</p>` : `<p class="muted">The full content of this early post isn't stored.</p>`}
-    </div><div>
+    <div id="resBox" class="card" style="display:none">
+      <div class="row"><input type="datetime-local" id="resTime" value="${localDefault()}">
+      <button class="btn primary" onclick="act('reschedule','${q}', new Date($('resTime').value).toISOString())">Set time</button>
+      <button class="btn" onclick="act('reschedule','${q}','')">Normal time</button></div>
+      <p class="dim sm" style="margin-bottom:0">Your clock. It goes out at the first check after that time.</p></div>
+    ${st ? `<div class="card"><div class="metrics"><div><b>${nf(st.reach)}</b>reached</div><div><b>${nf(st.likes)}</b>likes</div><div><b>${nf(st.comments)}</b>comments</div><div><b>${nf(st.shares)}</b>shares</div><div><b>${nf(st.saved)}</b>saves</div></div></div>` : ""}
     ${reelHtml}
-    ${p.caption ? `<h2>Caption</h2><div class="card"><div class="cap" id="capShow">${esc(p.caption)}\n\n${esc((p.hashtags || []).join(" "))}</div>
-      ${editable ? `<div><button class="linkbtn" onclick="toggle('capEditBox')">Edit caption</button><div id="capEditBox" style="display:none"><textarea id="capEdit" rows="12" oninput="$('capCount').textContent=this.value.length">${esc(p.caption)}</textarea>
-        <div class="row"><button class="btn primary" onclick="act('edit_caption','${q}', $('capEdit').value)">Save caption</button><span class="muted"><span id="capCount">${p.caption.length}</span> characters (700 to 1,500 works best)</span></div></div></div>` : ""}</div>` : ""}
-    ${p.sources && p.sources.length ? `<h2>Sources</h2><div class="card">${p.sources.map(s => `<div><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a></div>`).join("")}${p.verification ? `<p class="muted">${esc(p.verification)}</p>` : ""}</div>` : ""}
-    </div></div>`;
+    ${p.slides.length ? `<h2>Slides (${p.slides.length})</h2><div class="slides">${p.slides.map((s, i) => `
+      <div class="slide">${s.image ? `<img src="${esc(thumb(s.image))}" loading="lazy" alt="" onerror="this.style.display='none'">` : ""}
+        <div class="txt"><div class="k">${i + 1}. ${esc(s.type === "cover" ? (s.kicker || "cover") : s.type === "end" ? "ending" : (s.layout || "text"))}</div>
+        <div>${esc(s.text)}</div>
+        ${editable ? `<button class="linkbtn" style="margin-top:6px" onclick="toggle('se${i}')">Edit</button>
+          <div id="se${i}" style="display:none"><textarea id="sx${i}">${esc(s.text)}</textarea>
+          <button class="btn mini primary" onclick="act('edit_slide','${q}#${i + 1}', $('sx${i}').value)">Save</button></div>` : ""}
+        </div></div>`).join("")}</div>` : ""}
+    ${p.caption ? `<h2>Caption</h2><div class="card"><div class="cap">${esc(p.caption)}\n\n${esc((p.hashtags || []).join(" "))}</div>
+      ${editable ? `<button class="linkbtn" style="margin-top:8px" onclick="toggle('capEditBox')">Edit caption</button>
+        <div id="capEditBox" style="display:none"><textarea id="capEdit" rows="12">${esc(p.caption)}</textarea>
+        <button class="btn primary" onclick="act('edit_caption','${q}', $('capEdit').value)">Save caption</button></div>` : ""}</div>` : ""}
+    ${p.sources && p.sources.length ? `<details class="card"><summary>Sources</summary>
+      ${p.sources.map(s => `<div class="sm"><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a></div>`).join("")}</details>` : ""}`;
 }
 
-// ================= CONTROL =================
+// ================= SETTINGS =================
 const KEY = "uf_github_key";
 function drawKey() {
   const k = localStorage.getItem(KEY);
   $("keybox").innerHTML = k
-    ? `<div class="row">${icon("good")}<b>Buttons are connected.</b> <button class="btn" style="margin-left:auto" onclick="localStorage.removeItem(KEY);drawKey()">Forget key</button></div>`
-    : `<b>Connect the buttons (one time, on each phone or computer)</b>
-       <ol class="muted" style="padding-left:18px;margin:8px 0">
-         <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> (logged in as <b>amirpz04</b>).</li>
-         <li>Name it "control panel", pick an expiration (for example 1 year).</li>
-         <li>Repository access: <b>Only select repositories</b> &rarr; <b>story-autopilot</b>.</li>
-         <li>Permissions &rarr; Repository permissions &rarr; <b>Actions: Read and write</b>. Nothing else.</li>
-         <li>Generate, copy the key, paste it here.</li></ol>
-       <div class="row"><input id="keyin" type="password" placeholder="github_pat_..." style="flex:1;min-width:200px"><button class="btn primary" onclick="saveKey()">Save</button></div>
-       <p class="muted">The key stays only in this browser. It can only start this project's jobs, nothing else on your account.</p>`;
+    ? `<div class="between"><div class="status">${dot("good")}<b>Buttons are connected.</b></div>
+       <button class="btn mini" onclick="localStorage.removeItem(KEY);drawKey()">Forget key</button></div>`
+    : `<b>Connect the buttons</b><p class="dim sm">One time per device. Make a GitHub token with
+       <b>Actions: Read and write</b> on story-autopilot only, then paste it here.</p>
+       <div class="row"><input id="keyin" type="password" placeholder="github_pat_..." style="flex:1;min-width:170px">
+       <button class="btn primary" onclick="saveKey()">Save</button></div>
+       <p class="dim sm"><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Make a token</a>
+       &middot; it stays only in this browser.</p>`;
 }
 function saveKey() { const v = $("keyin").value.trim(); if (!v) return; localStorage.setItem(KEY, v); drawKey(); toast("Saved. The buttons now work on this device."); loadRuns(); }
 async function gh(path, opts) {
@@ -596,64 +490,83 @@ async function gh(path, opts) {
   return fetch("https://api.github.com/repos/" + REPO + path, Object.assign({headers}, opts || {}));
 }
 async function dispatch(workflow, inputs) {
-  if (!localStorage.getItem(KEY)) { location.hash = "#control"; toast("Connect the buttons first (top of the Control page)."); return false; }
+  if (!localStorage.getItem(KEY)) { location.hash = "#settings"; toast("Connect the buttons first (top of Settings)."); return false; }
   try {
     const r = await gh("/actions/workflows/" + workflow + "/dispatches", {method: "POST", body: JSON.stringify(inputs ? {ref: "main", inputs} : {ref: "main"})});
     if (r.status === 204) return true;
-    toast("GitHub refused (" + r.status + "): " + ((await r.json().catch(() => ({}))).message || "check the key's permissions"), 9000);
+    toast("GitHub refused (" + r.status + "): " + ((await r.json().catch(() => ({}))).message || "check the key"), 9000);
   } catch (e) { toast("Couldn't reach GitHub: " + e.message, 9000); }
   return false;
 }
 async function act(action, target, text) {
-  if (await dispatch("control.yml", {action, target: target || "", text: text || ""})) { toast("Sent. It applies in about a minute; see Recent jobs and the action log on the Control page for the result.", 9000); setTimeout(loadRuns, 4000); return true; }
+  if (await dispatch("control.yml", {action, target: target || "", text: text || ""})) {
+    toast("Sent. It applies in about a minute.", 7000); setTimeout(loadRuns, 4000); return true;
+  }
   return false;
 }
+async function makeReel(id) { if (await dispatch("reel.yml", {post_id: id})) toast("Making the Reel (2 to 3 minutes).", 9000); }
+async function runWf(file, label) { if (await dispatch(file)) { toast(label + "...", 6000); setTimeout(loadRuns, 4000); } }
+
 const mins = s => Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
 function drawMusic() {
   const list = D.music || [];
   $("musicCount").textContent = "(" + list.length + ")";
-  $("mlist").innerHTML = list.length ? list.map(m => `<div class="card" style="margin-bottom:8px">
-      <div class="row" style="justify-content:space-between"><div><b>${esc(m.title)}</b><div class="muted">${mins(m.duration)} &middot; ${esc(m.license)} &middot; used in ${m.uses} recent Reel${m.uses === 1 ? "" : "s"}${m.credit ? "" : " &middot; no credit needed"}</div></div>
-        <button class="btn sm danger" onclick="if(confirm('Remove this song? Reels will stop using it.')) act('remove_music','${esc(m.file)}')">Remove</button></div>
-      <audio controls preload="none" src="${esc(m.url)}" style="width:100%;margin-top:8px"></audio>
-      ${m.credit ? `<div class="muted" style="margin-top:6px">Caption credit: ${esc(m.credit)}</div>` : ""}
-      ${m.source ? `<div class="muted"><a href="${esc(m.source)}" target="_blank" rel="noopener">Source</a></div>` : ""}</div>`).join("")
-    : `<div class="card muted">No songs yet. Reels will be silent until you add one.</div>`;
+  $("mlist").innerHTML = list.length ? list.map(m => `<div class="card">
+      <div class="between"><div><b>${esc(m.title)}</b>
+        <div class="dim sm">${mins(m.duration)} &middot; ${esc(m.license)} &middot; ${m.uses} recent Reel${m.uses === 1 ? "" : "s"}</div></div>
+        <button class="btn mini danger" onclick="if(confirm('Remove this song?')) act('remove_music','${esc(m.file)}')">Remove</button></div>
+      <audio controls preload="none" src="${esc(m.url)}"></audio></div>`).join("")
+    : `<div class="card dim">No songs yet. Reels will be silent until you add one.</div>`;
 }
 function addMusic() {
   const url = $("mUrl").value.trim(), title = $("mTitle").value.trim(), credit = $("mCredit").value.trim(), lic = $("mLicense").value.trim();
-  if (!url) { toast("Paste a link to an audio file first."); return; }
-  if (!title) { toast("Give the song a title."); return; }
-  if (!lic) { toast("Write the license (or 'public domain'). Only add music you may use."); return; }
-  act("add_music", url, [title, credit, lic].join(" | ")).then(() => { $("mUrl").value = ""; $("mTitle").value = ""; $("mCredit").value = ""; $("mLicense").value = ""; });
+  if (!url) return toast("Paste a link to an audio file first.");
+  if (!title) return toast("Give the song a title.");
+  if (!lic) return toast("Write the license. Only add music you may use.");
+  act("add_music", url, [title, credit, lic].join(" | ")).then(() => { ["mUrl", "mTitle", "mCredit", "mLicense"].forEach(i => $(i).value = ""); });
 }
-async function makeReel(id) { if (await dispatch("reel.yml", {post_id: id})) toast("Making the Reel (2 to 3 minutes). It shows up on this page after the next refresh.", 9000); }
-async function runWf(file, label) { if (await dispatch(file)) { toast(label + "... it runs in the next minute.", 7000); setTimeout(loadRuns, 4000); } }
 async function loadRuns() {
   try {
-    const r = await gh("/actions/runs?per_page=15");
-    const j = await r.json();
+    const j = await (await gh("/actions/runs?per_page=10")).json();
     if (!j.workflow_runs) throw new Error(j.message || "no data");
-    $("runs").innerHTML = `<tr><th>Job</th><th>Started</th><th>Result</th></tr>` + j.workflow_runs.map(w => {
-      const res = w.status !== "completed" ? ["warning", w.status === "queued" ? "Waiting" : "Running"] : w.conclusion === "success" ? ["good", "OK"] : w.conclusion === "skipped" || w.conclusion === "cancelled" ? ["neutral", w.conclusion] : ["critical", "Failed"];
-      const name = (w.name === "Control" || w.name === "Reel") ? w.display_title : (w.name + (w.event === "workflow_dispatch" ? "" : " (" + w.event + ")"));
-      return `<tr><td><a href="${esc(w.html_url)}" target="_blank" rel="noopener">${esc(name)}</a></td><td>${ago(Date.now() - new Date(w.created_at).getTime())}</td><td><span class="status">${icon(res[0])}${esc(res[1])}</span></td></tr>`;
+    $("runs").innerHTML = j.workflow_runs.map(w => {
+      const res = w.status !== "completed" ? ["warn", w.status === "queued" ? "Waiting" : "Running"]
+        : w.conclusion === "success" ? ["good", "OK"]
+        : (w.conclusion === "skipped" || w.conclusion === "cancelled") ? ["neutral", w.conclusion] : ["bad", "Failed"];
+      const name = (w.name === "Control" || w.name === "Reel") ? w.display_title : w.name;
+      return `<div class="item"><div class="body"><div class="t">${esc(name)}</div>
+        <div class="dim sm">${ago(Date.now() - new Date(w.created_at).getTime())}</div></div>
+        <span class="status sm">${dot(res[0])}${esc(res[1])}</span></div>`;
     }).join("");
-  } catch (e) { $("runs").innerHTML = `<tr><td class="muted">Couldn't load jobs (${esc(e.message)}).</td></tr>`; }
+  } catch (e) { $("runs").innerHTML = `<div class="dim sm">Couldn't load jobs (${esc(e.message)}).</div>`; }
 }
-$("pubstate").textContent = sys.paused ? "Posting is paused." : "Posting is on.";
+
+$("pubstate").textContent = sys.paused ? "Posting is paused" : "Posting is on";
+$("pubnote").textContent = sys.paused ? "Nothing goes out until you resume."
+  : "Posts " + sys.slot_times.join(", ") + " \u00b7 Reels " + sys.reel_times.join(", ") + " (New York time)";
+$("pausebtn").textContent = sys.paused ? "Resume" : "Pause";
+$("pausebtn").className = "btn" + (sys.paused ? " primary" : " danger");
+$("pausebtn").onclick = () => act(sys.paused ? "resume" : "pause", "");
 $("ppd").value = String(sys.posts_per_day);
 $("rpd").value = String(sys.reels_per_day);
-$("rmode").value = sys.reels_mode || "same";
-$("mixNote").textContent = "Now: " + sys.posts_per_day + " carousel post" + (sys.posts_per_day === 1 ? "" : "s") + " + " + sys.reels_per_day + " Reel" + (sys.reels_per_day === 1 ? "" : "s") + " a day, from " + sys.stories_per_day + " stor" + (sys.stories_per_day === 1 ? "y" : "ies") + " (research writes " + sys.stories_per_day + " a day).";
 $("spd").value = String(sys.spares_per_day);
-$("sparesReady").textContent = sys.spares_ready + " spare" + (sys.spares_ready === 1 ? "" : "s") + " ready now";
+$("rmode").value = sys.reels_mode || "same";
+$("mixNote").textContent = sys.posts_per_day + " post" + (sys.posts_per_day === 1 ? "" : "s") + " + " +
+  sys.reels_per_day + " Reel" + (sys.reels_per_day === 1 ? "" : "s") + " a day, from " + sys.stories_per_day +
+  " stor" + (sys.stories_per_day === 1 ? "y" : "ies") + ". " + sys.spares_ready + " spare" + (sys.spares_ready === 1 ? "" : "s") + " ready.";
 $("routineLink").href = D.routine_url;
-$("clog").innerHTML = D.control_log.length ? `<tr><th>When</th><th>Action</th><th>Result</th></tr>` + D.control_log.map(c =>
-  `<tr><td>${ago(now - new Date(c.at).getTime())}</td><td>${esc(c.action)} ${esc(c.target)}</td><td>${esc(c.result)}</td></tr>`).join("")
-  : `<tr><td class="muted">No actions yet.</td></tr>`;
+$("clog").innerHTML = D.control_log.length
+  ? D.control_log.map(c => `<div class="item"><div class="body"><div class="t">${esc(c.action)} ${esc(c.target)}</div>
+      <div class="dim sm">${ago(now - new Date(c.at).getTime())} &middot; ${esc(c.result)}</div></div></div>`).join("")
+  : `<div class="dim sm">No actions yet.</div>`;
+$("sys").innerHTML = [
+  "Reels made: " + sys.reels_made + ", posted: " + sys.reels_posted,
+  "Stories ever used: " + sys.history_count,
+  "Mac mini last woke the poster: " + (sys.last_mac_ping_utc ? ago(now - new Date(sys.last_mac_ping_utc).getTime()) : "never"),
+  "Stock photos used today: " + sys.unsplash_used + " of " + sys.unsplash_cap,
+].map(s => `<div>${esc(s)}</div>`).join("");
 
-drawKey(); drawList(); drawMusic(); route(); drawChart();
+drawKey(); drawList(); drawMusic(); route();
 </script>
 </body>
 </html>
