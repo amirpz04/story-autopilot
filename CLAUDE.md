@@ -92,6 +92,14 @@ spares; `replace` moves one into a scheduled slot. They cost extra Claude usage.
 (`cdn.jsdelivr.net/gh/<repo>@<sha>/<file>`, video/mp4, 20 MB limit, used for dashboard playback). `post_reel` (REELS container, share_to_feed) is written but has not
 yet published a live Reel. Reels are not yet automatic: owner presses Make Reel and Post this Reel.
 
+## Reel backlog (Nov 1 2026)
+Posts that went live before Reels existed get a Reel too, one per day: `scripts/backfill_reels.py` writes pending entries with an explicit `post_at` (about
+18:15 New York + jitter; config `backfill_reel_time`, `backfill_per_day`) into `state/reels.json` (`backfill: true`). `reel.yml` renders pending ones
+(`reel_job.posts_needing_reels`), `publish.find_due_reel` posts any Reel whose `post_at` has arrived (any folder, including `queue/demo/`). Cancel or move one from
+the dashboard (`cancel_reel`, `reschedule_reel`). A failed render keeps a backlog Reel pending (3 tries). The Reel maker retries throttled photo downloads and
+refuses to render with a missing picture. An earlier "07:00-09:00 window" backfill in publish.py (from another session) was replaced by this. Music is six
+Scott Buckley tracks (CC BY 4.0, credit lines in `music.json`) chosen by another session; daily cap is posts + Reels + 2.
+
 ## Request safety (audited Oct 31 2026)
 Only ~2 of ~130 daily Publish runs touch Instagram (only when a post is due). If Instagram refuses a request, `publish.py` backs off (30 min, then 1 h, 2 h, up to 4 h;
 `state/api_health.json`) and the dashboard shows it. `stats.py` skips posts older than 30 days. A temporary "API access blocked" (code 200) from Meta appeared once
