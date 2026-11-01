@@ -56,6 +56,8 @@ A workflow started with the default `GITHUB_TOKEN` push does NOT trigger other w
 | `backfill_reel_time`, `backfill_per_day` | old-post Reel plan (18:15 NY, 1/day) |
 | `graph_host` `graph.facebook.com`, `graph_api_version` | Instagram API access (see section 5) |
 | `brand`, `show_slide_counter` (false), `handle`, `account_name`, `timezone` | look and identity |
+| `language` | language the stories are written in (English) |
+| `unsplash_max_requests_per_hour` / `_per_day` | legacy limits for `stock.py` (stock photo lookups are switched off, so they never matter) |
 Prefer changing counts through the dashboard (it also recalculates the dependent settings). A change applies from the NEXT research run (today's queue is already written).
 
 ## 4. The dashboard (docs/index.html, GitHub Pages)
