@@ -180,7 +180,36 @@ def find_due_reel(config, state):
         when = slot_time(config, now.date(), post["reel_slot"], "reel")
         if now >= when:
             due.append((when, path.parent, post))
-    return min(due, key=lambda d: d[0]) if due else (None, None, None)
+    if due:
+        return min(due, key=lambda d: d[0])
+    return find_backfill_reel(config, state, reels, now)
+
+
+BACKFILL_WINDOW = (7, 9)        # New York hours; quiet, before the day's own schedule starts
+BACKFILL_EVERY_HOURS = 20
+
+
+def find_backfill_reel(config, state, reels, now):
+    """One Reel a day for posts published before the Reel system existed.
+
+    Those posts sit in an old queue folder with no `reel_slot`, so the normal path above can never
+    see them. Their videos are already made and recorded with `backfill: true`; this drains them
+    one per day so they don't crowd out the current schedule or trip the daily cap.
+    """
+    if not BACKFILL_WINDOW[0] <= now.hour < BACKFILL_WINDOW[1]:
+        return (None, None, None)
+    last = max((e["posted_at"] for e in reels.values() if e.get("backfill") and e.get("posted_at")), default=None)
+    if last and now - datetime.fromisoformat(last).astimezone(now.tzinfo) < timedelta(hours=BACKFILL_EVERY_HOURS):
+        return (None, None, None)
+    waiting = sorted(pid for pid, e in reels.items()
+                     if e.get("backfill") and e.get("status") == "made" and e.get("raw_url") and e.get("attempts", 0) < MAX_ATTEMPTS)
+    for pid in waiting:
+        if state.get(pid, {}).get("status") in ("removed", "deleted"):
+            continue
+        path = next((p for p in (ROOT / "queue").glob("*/*/post.json") if json.loads(p.read_text()).get("id") == pid), None)
+        if path:
+            return (now, path.parent, json.loads(path.read_text()))
+    return (None, None, None)
 
 
 def upload_images(paths):
