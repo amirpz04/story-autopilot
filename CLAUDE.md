@@ -34,7 +34,7 @@ The owner is in Istanbul (UTC+3); US clocks changed Nov 1 2026 (NY now UTC-5).
 - `plan_day.py` deals the daily run a RANDOM research plan (lane A/B per story, angle, which feeds/archives to start at, which picture archive to try first) and reseeds every run. The routine must start with it. Added Nov 1 because the run kept returning to one feed: 7 of the first 9 stories came from ScienceDaily.
 - `find_images.py` Wikimedia Commons photo search that obeys rate limits (use it for Commons; own search loops got throttled on Nov 1). Wikimedia throttles even one-at-a-time requests (waits up to ~60 s are normal), so it is no longer the default archive: go to whoever owns the subject first (NASA/ESA, NOAA/USGS/FWS, Smithsonian, Library of Congress, Met, Internet Archive).
 - `control.py` all dashboard actions (below). `backfill_reels.py` plans Reels for live posts without one. `stats.py` Instagram numbers (`--quick --min-age 25` or full daily read), `dashboard.py` builds `docs/index.html`, `watchdog.py` fails if nothing queued (emails only; owner never reads email).
-- `stock.py` legacy Unsplash lookup (still run by publish.yml, harmless; stock `search` images are disabled).
+- `stock.py` Unsplash lookup, re-enabled Nov 1 as a FALLBACK only: a slide with no real picture of the subject may use `{"image": {"search": "..."}}`, which the run resolves with `python3 scripts/stock.py queue/<date>` before validating. Credits must start with `Illustrative photo:`. Budget in config.json (`unsplash_max_requests_per_hour` 30 / `_per_day` 100).
 
 **Workflows (`.github/workflows/`)**: `publish.yml` (driven by the Mac; its own cron is unreliable), `reel.yml`, `control.yml` (dashboard buttons), `preview.yml`, `stats.yml` (daily cron, unreliable; the quick refresh in publish.yml is what keeps numbers fresh), `watchdog.yml`.
 A workflow started with the default `GITHUB_TOKEN` push does NOT trigger other workflows; use `gh workflow run` (workflow_dispatch IS allowed). The routine's pushes (Claude GitHub app) do trigger them.
@@ -58,7 +58,7 @@ A workflow started with the default `GITHUB_TOKEN` push does NOT trigger other w
 | `graph_host` `graph.facebook.com`, `graph_api_version` | Instagram API access (see section 5) |
 | `brand`, `show_slide_counter` (false), `handle`, `account_name`, `timezone` | look and identity |
 | `language` | language the stories are written in (English) |
-| `unsplash_max_requests_per_hour` / `_per_day` | legacy limits for `stock.py` (stock photo lookups are switched off, so they never matter) |
+| `unsplash_max_requests_per_hour` / `_per_day` | budget for `stock.py` fallback photos (30/hour, 100/day) |
 Prefer changing counts through the dashboard (it also recalculates the dependent settings). A change applies from the NEXT research run (today's queue is already written).
 
 ## 4. The dashboard (docs/index.html, GitHub Pages)
@@ -85,7 +85,7 @@ Each story can become a Reel: the same photos and text as the carousel, animated
 
 ## 8. Decisions the owner made (do not undo without asking)
 - **The publisher only posts.** No rejecting, no failing runs, no emails. Quality checking belongs to the Claude research run (it runs `validate.py` + `check_images.py` and LOOKS at every picture). The owner never reads email: status goes on the dashboard.
-- Posts are 5-10 slides, picture-rich, no slide counter, detailed caption; Reels are automatic (he refused "press Make Reel" flows); he chooses the counts (dropdowns 0-5 each). No AI-tool-spotlight posts. Real pictures only.
+- Posts are 5-10 slides, picture-rich, no slide counter, detailed caption; Reels are automatic (he refused "press Make Reel" flows); he chooses the counts (dropdowns 0-5 each). No AI-tool-spotlight posts. Real pictures of the real subject first; **Unsplash stock as a labelled fallback is allowed (owner, Nov 1) rather than losing a slide or a story**.
 - Two story lanes: news (recent) and evergreen (any true, specific, surprising story about something humans built/did, needs 2 independent sources).
 - Same-story Reels by default (cheaper); switchable. Owner asked about posting the carousel and Reel at the same time: advised no (keep >= ~6 h apart), untested.
 - Tiny budget: everything free except the owner's Claude Pro plan; be careful with Claude usage.

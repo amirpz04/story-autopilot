@@ -1,0 +1,67 @@
+{
+  "id": "2026-11-01-03",
+  "date": "2026-11-01",
+  "slot": 3,
+  "reel_slot": 5,
+  "title": "The kilogram was a metal cylinder that kept changing",
+  "category": "science",
+  "tags": {"end": "send", "headline": "statement", "lane": "evergreen"},
+  "scores": {"hook": 9, "surprise": 9, "emotion": 6, "shareability": 8, "talkability": 8, "no_context": 9, "freshness": 8},
+  "sources": [
+    {"name": "NIST (US National Institute of Standards and Technology)", "url": "https://www.nist.gov/si-redefinition/kilogram-present"},
+    {"name": "LNE (Laboratoire national de metrologie et d'essais, France)", "url": "https://www.lne.fr/en/learn-more/international-system-units/kilogram"}
+  ],
+  "verification": "Checked against two independent national metrology institutes. NIST confirms: the IPK was 90% platinum / 10% iridium, it was the last SI unit defined by an artifact, its official copies drifted from it by roughly 50 micrograms over a century (direction uncertain), it was removed for verification only in 1899-1911, 1939-1953 and 1988-1992 plus a 2014 calibration, and the artifact definition ended on 20 May 2019 with the kilogram tied to the Planck constant h = 6.62607015e-34 kg m2/s. LNE independently confirms: housed at the BIPM in Sevres since 1889, kept in a guarded vault under three bell jars, copies cast from the same mould between 1882 and 1889, the ~50 microgram discrepancy, the CIPM recommendation in 2005 and the CGPM decision in November 2018. No claim on the slides rests on a single source. Mass of a fingerprint used as a scale comparison only, not presented as a measured figure.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "SCIENCE",
+      "headline": "For 130 years the kilogram was a metal cylinder in a vault near Paris",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Prototype_kilogram_replica.JPG/1920px-Prototype_kilogram_replica.JPG",
+        "credit": "Photo: Japs 88 / Wikimedia Commons, CC BY-SA 3.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Made in 1889, it is a squat cylinder of 90% platinum and 10% iridium, about the size of a golf ball. The alloy was chosen because it barely corrodes.",
+      "layout": "full",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/MassStandards_005.jpg/3840px-MassStandards_005.jpg",
+        "credit": "Illustrative photo of mass standards: National Institute of Standards and Technology / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "It sits in a guarded vault under three nested bell jars. In over a century it was taken out for verification only three times: 1899, 1939 and 1988."
+    },
+    {
+      "type": "text",
+      "text": "Then it began disagreeing with itself. Copies cast from the same mould were sent worldwide. Brought back and compared, they had drifted about 50 micrograms apart.",
+      "layout": "split",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/MassStandards_024.jpg/3840px-MassStandards_024.jpg",
+        "credit": "Illustrative photo of mass standards: National Institute of Standards and Technology / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Nobody could say whether the copies gained or the original lost. There was nothing more exact to check it against. The kilogram was defining itself."
+    },
+    {
+      "type": "text",
+      "text": "On 20 May 2019 it was retired. The kilogram is now fixed to the Planck constant and measured by this machine, a Kibble balance, which weighs mass against electromagnetic force.",
+      "layout": "split",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/NIST-4_Kibble_balance.jpg/3840px-NIST-4_Kibble_balance.jpg",
+        "credit": "Photo of the NIST-4 Kibble balance: Jennifer Lauren Lee / NIST / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Send this to someone who assumes a kilogram was always a kilogram."
+    }
+  ],
+  "caption": "For 130 years, the entire world's idea of a kilogram was one metal cylinder sitting in a vault outside Paris.\n\nIt was made in 1889: a squat cylinder of 90% platinum and 10% iridium, roughly the size of a golf ball, chosen because the alloy barely corrodes. The International Bureau of Weights and Measures keeps it at the Pavillon de Breteuil in Sevres, under three nested bell jars in a guarded vault. Every other kilogram on Earth traced back to that one object: every scale, every bag of flour, every medicine dose.\n\nThen it started disagreeing with itself. Official copies were cast from the same mould and sent around the world. When they were brought back and compared, the numbers had drifted apart by around 50 micrograms over a century. Nobody could say for certain whether the copies had gained or the original had lost, because there was nothing more exact to check them against. The kilogram was defining itself.\n\nThe fix took decades of work. On 20 May 2019 the kilogram stopped being an object at all. It is now defined by the Planck constant, fixed by international agreement, and measured with a machine called a Kibble balance that weighs mass against electromagnetic force.\n\nThe cylinder is still in its vault. It just isn't in charge any more.\n\nSend this to someone who assumes a kilogram was always a kilogram.\n\nSource: NIST, LNE",
+  "hashtags": ["#science", "#history", "#physics", "#measurement", "#didyouknow"]
+}

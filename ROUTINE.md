@@ -167,7 +167,8 @@ allows it. Every direct image needs a `credit`.
 
 **Getting the pictures right is your job, and nothing downstream will fix it.** The
 publisher simply posts what you queue, so a weak picture goes out exactly as you left it.
-- Use only direct image URLs. The old `search` stock lookups are switched off.
+- Prefer direct image URLs. Stock `search` is allowed as a fallback (see below) and must be resolved
+  by `stock.py` before you commit.
 - Every post needs at least 3 real, sharp, relevant pictures (4 if possible), a different
   picture on every slide, and the cover should show the real subject whenever possible.
 - For stories without official images (animals, plants, places, science), use Wikimedia
@@ -203,9 +204,21 @@ for objects and history, the Met and Rijksmuseum for art and period pictures, In
 old books, manuals and catalogues). Those have no throttling and often better pictures. `plan_day.py`
 names one to try first each run; use Wikimedia when it is genuinely the best place for that subject.
 
-**Stock photo sites (Unsplash, and the `UNSPLASH_ACCESS_KEY` secret) stay switched off.** They have no
-picture of Shanidar Cave, Voyager 1 or a 1930s factory; they have a generic cave, a generic starfield
-and a generic factory. The owner's rule is real pictures of the real subject. Do not re-enable them.
+**Unsplash is back on, as a fallback only** (owner's decision, Nov 1). Stock sites have no picture of
+Shanidar Cave or Voyager 1 specifically, so they can never be your first choice. But a good generic
+photo beats a missing slide, and it beats dropping a story.
+
+- Always try the real subject first, through the archives above. Only when a slide genuinely has no
+  real picture available do you fall back to stock.
+- Write the slide as `{"image": {"search": "night sky long exposure"}}`, then run
+  `python3 scripts/stock.py queue/<date>` before `validate.py`. It resolves each search into a real
+  url and credit within the hourly budget, and `validate.py` rejects any `search` left unresolved.
+- **Every stock picture's credit must start with `Illustrative photo:`** so nobody is told a generic
+  photo is the real thing.
+- A stock photo must never contradict the story: no wrong animal, wrong country, wrong era, wrong
+  machine. Generic and atmospheric is fine (a lab bench, a night sky, an old factory floor); specific
+  and wrong is not.
+- The cover should still show the real subject whenever one exists. A stock cover is a last resort.
 
 **For Wikimedia, use the helper, never your own search loops.** Wikimedia throttles (HTTP 429) anyone who sends many
 quick or parallel requests, and that is what cut a run down to one story. It still throttles even one
