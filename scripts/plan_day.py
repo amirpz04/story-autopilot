@@ -15,7 +15,9 @@ same day explores different ground instead of repeating the first one's dead end
 import argparse
 import json
 import random
+import re
 import time
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -143,6 +145,64 @@ IMAGE_FIRST_STOP = [
 ]
 
 
+def recent_covers(limit=15):
+    """The cover headlines and last slides of the most recent posts, oldest first.
+
+    This is a mirror for the writer (ROUTINE.md section 6b), not a rule: a feed that
+    sounds the same every day stops stopping people, and the run cannot see that
+    from inside one day. Skips replaced and spare posts; never raises.
+    """
+    rows = []
+    for path in (ROOT / "queue").glob("*/*/post.json"):
+        if "-replaced" in path.parent.name:
+            continue
+        try:
+            post = json.loads(path.read_text())
+            if post.get("spare"):
+                continue
+            slides = post.get("slides") or []
+            cover = (slides[0].get("headline") or "").strip() if slides else ""
+            end = (slides[-1].get("text") or "").strip() if slides else ""
+            if cover:
+                rows.append((str(post.get("date", "")), str(post.get("id", "")), cover, end))
+        except Exception:
+            continue
+    rows.sort()
+    return [(cover, end) for _, _, cover, end in rows[-limit:]]
+
+
+def _words(text):
+    return re.findall(r"[a-z0-9']+", text.lower())
+
+
+def print_mirror():
+    covers = recent_covers()
+    if not covers:
+        return
+    print()
+    print("YOUR LAST %d COVERS AND ENDINGS (a mirror, not a rule - ROUTINE.md section 6b)" % len(covers))
+    print("-" * 70)
+    for cover, end in covers:
+        print("  cover: %s" % cover)
+        print("    end: %s" % end)
+    firsts = Counter(w[0] for w in (_words(c) for c, _ in covers) if w)
+    pairs = Counter(" ".join(w[:2]) for w in (_words(c) for c, _ in covers) if len(w) > 1)
+    end_frames = Counter(" ".join(w[:3]) for w in (_words(e) for _, e in covers) if len(w) > 2)
+    questions = sum(1 for c, _ in covers if "?" in c)
+    lengths = [len(_words(c)) for c, _ in covers]
+    print()
+    repeated = ["'%s' x%d" % (w, n) for w, n in firsts.most_common() if n >= 2]
+    repeated += ["'%s...' x%d" % (p, n) for p, n in pairs.most_common() if n >= 2]
+    if repeated:
+        print("  Cover openers that keep coming back: " + ", ".join(repeated[:6]))
+    repeated_ends = ["'%s...' x%d" % (p, n) for p, n in end_frames.most_common() if n >= 2]
+    if repeated_ends:
+        print("  Ending openers that keep coming back: " + ", ".join(repeated_ends[:4]))
+    print("  Questions: %d of %d covers. Average length: %.1f words." % (
+        questions, len(covers), sum(lengths) / float(len(lengths))))
+    print("  Today's covers should not sound like these. Write three candidates per story, keep the strongest.")
+
+
 def deal(stories, seed=None):
     rng = random.Random(seed if seed is not None else "%s-%s-%s" % (
         datetime.now(timezone.utc).isoformat(), time.time(), random.random()))
@@ -214,6 +274,7 @@ def main():
         print("  start at : %s" % p["start"])
         print("  if thin  : %s" % p["then"])
         print("  wildcard : %s" % p["wildcard"])
+    print_mirror()
     print()
     print("=" * 70)
     print("RULES FOR TODAY")
@@ -224,6 +285,8 @@ def main():
     print("    Do not drift back to a feed you have used before.")
     print("  - Pictures: try %s first." % rng.choice(IMAGE_FIRST_STOP))
     print("    Wikimedia is one option among several, not the default.")
+    print("  - Covers: no two stories today share an opening word or shape, and none could sit unnoticed")
+    print("    among the covers above. Hooks and voice: ROUTINE.md section 6b.")
     print("  - You must finish with %d stories. See ROUTINE.md section 9." % stories)
 
 

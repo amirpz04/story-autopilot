@@ -260,11 +260,11 @@ striking fact takes 5–6; a story with a timeline, steps or several turns takes
 to 10. Never pad to reach a number, and stop when the story is told; every slide must add something new.
 The detailed caption carries the depth:
 
-- **Slide 1 (cover):** `headline` of 6–14 words that states the hook directly, Pubity style:
-  concrete, a little surprising, plain words, no clickbait lies. Examples:
-  "A 92-year-old woman just graduated college alongside her granddaughter",
-  "Scientists found a fish that can walk on land, and it's not a mudskipper".
-  Optional `kicker`: 1–3 words above the headline (e.g. "AI", "SPACE", "NATURE", "HEALTH", "NEW TOOL").
+- **Slide 1 (cover):** the `headline` has one job: make a stranger swipe. It is concrete, true, plain
+  words, and it is written fresh for this story using section 6b, not copied from a template or from
+  a headline you have seen on this account. Usually 6–12 words (16 is a ceiling, not a target).
+  Optional `kicker`: 1–3 words above the headline that add something: the category, but also a year,
+  a place, a number or a mood when that does more work than the category.
   Use the best image here.
 - **Look and rhythm (very important):** the post must look like a magazine spread,
   never a wall of identical text slides. At least half the slides (rounded up, minimum 3) need a picture, and never
@@ -277,18 +277,20 @@ The detailed caption carries the depth:
   happened or the surprising fact (the most surprising detail up front, on slide 2), then the key details,
   turning points or numbers, then why it matters or what happens next. Concrete numbers, place names and
   short quotes. Every slide must make sense alone, because Instagram sometimes re-shows slide 2 to people
-  who scrolled past, so slide 2 needs its own strong hook.
-- **Final slide (type `end`):** alternate between two styles so we can learn which works:
-  a comment question ("Would you have done the same?") or a send prompt ("Send this to
-  someone who'd want to know."). The follow line is added automatically. Record which
-  one you used in `tags` (see the example below). Instagram's ranking rewards
-  shares and sends most, so wherever it feels natural, write slides people would forward.
+  who scrolled past, so slide 2 needs its own strong hook. Slide 2 pays off the cover's promise
+  at once with a NEW detail; it never rewords the cover. Where it feels natural, let each slide end
+  on a reason to swipe (a twist coming, a number that needs explaining, a turn).
+- **Final slide (type `end`):** the payoff or the line people would forward, not a stock call to
+  action. Choose what fits this story (details in section 6b). The follow line is added
+  automatically. Record a short label of what you did in `tags` (see the example below).
+  Instagram's ranking rewards sends most, so write the last slide for the one friend it would be sent to.
 
 **Caption:** the slides are the quick version; the caption is the full story for
 people who want to know more. Write a detailed, well-researched explanation of
 about 150–220 words (900–1,300 characters; never more than 1,400), in short paragraphs separated by
 blank lines:
-1. A strong first line that restates the hook (it shows before "more", so it must make people tap).
+1. A strong first line (it shows before "more", so it must make people tap). It adds a new angle or
+   detail instead of repeating the cover headline in other words.
 2. The full story: who, what, where, when, and how it happened, with the specific details, numbers and quotes from your sources.
 3. Background and context that the slides didn't have room for: why it's unusual, how it compares, what led up to it.
 4. What happens next, or why it matters to ordinary people.
@@ -303,6 +305,68 @@ Write in the configured `language` (US English) for the American reader describe
 American spellings, US units with metric in brackets, dollars, and foreign context explained.
 Never invent quotes, numbers or details.
 
+## 6b. Hooks, voice and not sounding the same twice
+
+**Why this section exists.** Early on, most covers were the same press-release shape ("Scientists just
+discovered…", "Astronomers found…") and most endings were "Send this to someone who loves X". Each
+post was fine alone; side by side in the grid they blur, and people stop stopping. A hook works by
+breaking what the viewer expects, so when our own grid starts to expect a pattern, the pattern stops
+working on our own followers. Everything below is a principle to think with. Nothing is banned and
+nothing is a template: if a story needs a plain, boring-looking headline, write that.
+
+**What the research on hooks agrees on**
+1. **The cover has one job: earn the swipe.** It does not summarize the story.
+2. **Open a gap, then pay it off immediately.** Name something specific (an odd number, an object, a
+   person, a place) and hold back the answer. Slide 2 delivers right away. A gap that isn't paid off
+   makes people leave and stop trusting us. So: never lie, never exaggerate, never "you won't believe".
+   The surprise must be real and sitting in the sources.
+3. **Specific beats general.** A real number, name or object beats a topic label every time.
+4. **What gets sent.** Instagram's top signals are watch time, likes per reach and sends per reach, and
+   sends matter most for reaching new people. People send things that make them look smart, make them
+   feel something (awe, delight, outrage, "that's insane"), are useful, or are a story about a person.
+   Write for the friend it would be sent to.
+5. **Short is stronger.** Aim for the fewest words that still hold the surprise, and read the headline as
+   a tiny thumbnail in a grid. Plain words; no hype words that promise without saying anything.
+6. **Surprise the grid, not just the viewer.** Whatever worked last week is what everyone (including us)
+   now expects.
+
+**Voice.** Uncle Facts is the knowing, warm relative who tells you something astonishing across the
+table, a little wry, never a wire service and never a fake-dad act. Humor only when the story is actually
+funny. Write the headline the way you would say it to a friend, then tighten it.
+
+**A toolbox, not a menu.** Different stories want different mechanisms. Mix them, combine them, invent new ones:
+- *The detail that doesn't fit:* lead with the strangest number, object or fact, not the topic.
+- *Reversal:* what was supposed to happen against what did.
+- *Person and decision:* someone chose something, and it cost or made a fortune.
+- *Scale:* a size, speed or age compared to something you can picture.
+- *Myth flip:* the popular version is wrong (only when your sources establish it).
+- *Stakes:* what depended on it, what nearly went wrong.
+- *A plain question nobody can answer from everyday knowledge* (never "Did you know…").
+- *Two beats:* a short setup, then the twist.
+- *Direct address, deadpan understatement, one concrete image.*
+The best headline usually comes from the story itself, not from the toolbox.
+
+**Habits that make the feed sound alike (fix them when you notice them):** the "[Scientists] just
+[found/discovered] that…" frame; a topic label where a surprise should be (what it is about, instead of
+what is strange about it); the same shape on consecutive covers; a headline that only makes sense with
+the caption; a cover that slide 2 merely repeats.
+
+**Process (cheap, and it is the point)**
+1. `plan_day.py` prints your last covers and the openers we keep repeating. It is a mirror, not a rule.
+2. For each story write **three** cover candidates built on different mechanisms, then keep the
+   strongest. Ask: could this sit unnoticed among the last ten covers? If yes, rewrite it.
+3. Across one day's stories, no two covers share the same first word or the same shape.
+4. Make slide 2 the first payoff: a new, concrete detail that answers the cover's gap.
+
+**Endings.** The last slide is the payoff or the sendable line. Choose what fits this story: its most
+quotable line, a callback to the cover, one last twist, a question that really divides people (only when
+it does), or a nudge to send it to the specific kind of person it fits. A frame you used in the last
+several posts ("Send this to someone who…") is spent: find a new one, anchored in this story.
+
+**Labels.** `tags.headline` and `tags.end` are short (1–3 word) labels of the mechanism you used, e.g.
+"reversal", "scale", "callback". Reuse an existing label when it fits so `state/report.md` can learn
+which work; invent a new one when nothing fits.
+
 ## 7. Output format
 
 Write each post as `queue/<date>/<NN>/post.json`:
@@ -315,7 +379,7 @@ Write each post as `queue/<date>/<NN>/post.json`:
   "reel_slot": 2,
   "title": "Short internal title",
   "category": "animals",
-  "tags": {"end": "question", "headline": "statement", "lane": "news"},
+  "tags": {"headline": "<label of the hook mechanism you used>", "end": "<label of the ending you used>", "lane": "news"},
   "scores": {"hook": 9, "surprise": 8, "emotion": 8, "shareability": 9, "talkability": 7, "no_context": 9, "freshness": 8},
   "sources": [{"name": "BBC News", "url": "https://..."}],
   "verification": "What was checked and against which sources",
@@ -396,9 +460,10 @@ Your usage allowance is limited and shared with the person who owns it, so be ec
 If `state/report.md` exists, read it before choosing stories (it is rebuilt daily from
 Instagram's real numbers). Use it carefully:
 - Ignore any pattern backed by fewer than 5 posts older than 48 hours. Early numbers are noise.
-- Treat it as a soft hint: lean toward topics, headline styles and ending styles that
+- Treat it as a soft hint: lean toward topics, headline mechanisms and ending styles that
   clearly earn more shares and saves per reach, but keep about 20% of posts exploring
-  something different so we keep learning.
+  something different so we keep learning. A winning mechanism is something to vary within,
+  never a formula to repeat: the same hook used every day stops working (section 6b).
 - Never trade accuracy for numbers: every verification, sourcing and safety rule
   above still applies, and never write a misleading or exaggerated headline to chase reach.
 
