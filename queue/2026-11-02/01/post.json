@@ -1,0 +1,95 @@
+{
+  "id": "2026-11-02-01",
+  "date": "2026-11-02",
+  "slot": 1,
+  "reel_slot": 3,
+  "title": "Madagascar flying foxes are getting smaller",
+  "category": "animals",
+  "tags": {
+    "end": "question",
+    "headline": "statement",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 6,
+    "shareability": 7,
+    "talkability": 7,
+    "no_context": 8,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "Smithsonian Magazine",
+      "url": "https://www.smithsonianmag.com/smart-news/madagascars-giant-bats-seem-to-be-shrinking-after-measuring-121-specimens-scientists-suggest-hunting-by-humans-is-to-blame-180989782/"
+    },
+    {
+      "name": "Journal of Mammalogy (Ruhs and Goodman)",
+      "url": "https://academic.oup.com/jmammal/advance-article-abstract/doi/10.1093/jmammal/gyag092/9002374"
+    }
+  ],
+  "verification": "Smithsonian report read in full; the journal article page is the primary study. Facts used: 121 specimens, nine museums, about 150 years, 12 skull/tooth features, skulls about 6% longer before the 1980s, population estimates and IUCN vulnerable status, one pup a year. The report stresses hunting is a suspected, unproven cause; wording kept to 'may'.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "ANIMALS",
+      "headline": "Madagascar's giant fruit bats are shrinking, and humans may be the reason",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Pteropus_rufus_ii.jpg/1920px-Pteropus_rufus_ii.jpg",
+        "credit": "Photo: Neil Strickland / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The Malagasy flying fox is one of the biggest fruit bats on Earth, with a wingspan of up to five feet. Scientists just found its skull is getting smaller.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b9/Pteropus_rufus_31221439.jpg/1920px-Pteropus_rufus_31221439.jpg",
+        "credit": "Photo: linkie / Wikimedia Commons, CC BY 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "They measured 121 museum specimens collected over about 150 years. Bats caught before the 1980s had skulls about 6% longer than bats caught after.",
+      "layout": "full",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Madagascan_Flying_Fox_%28Pteropus_rufus%29_%28captive_specimen%29_%289674779460%29.jpg/1920px-Madagascan_Flying_Fox_%28Pteropus_rufus%29_%28captive_specimen%29_%289674779460%29.jpg",
+        "credit": "Photo: Bernard DUPONT / Wikimedia Commons, CC BY-SA 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The timing lines up with the start of commercial hunting, when the bats began showing up in markets and restaurants. The study does not prove hunting is the cause."
+    },
+    {
+      "type": "text",
+      "text": "About 300,000 of these bats lived on Madagascar in the early 2000s. Reports say roughly two-thirds are gone. The species is listed as vulnerable.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Distribuzione_di_Pteropus_rufus.tif/lossy-page1-1920px-Distribuzione_di_Pteropus_rufus.tif.jpg",
+        "credit": "Photo: A proietti / Wikimedia Commons, CC BY-SA 3.0 (range map)"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Hunters tend to take the biggest, mature bats. A female has just one pup a year, so losing them hits hard, and smaller mouths may carry fewer large seeds.",
+      "layout": "full",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Madagascan_Flying_Fox_%28Pteropus_rufus%29_%28captive_specimen%29_%289671552427%29.jpg/1920px-Madagascan_Flying_Fox_%28Pteropus_rufus%29_%28captive_specimen%29_%289671552427%29.jpg",
+        "credit": "Photo: Bernard DUPONT / Wikimedia Commons, CC BY-SA 2.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Did you know hunting could change an animal's body? Tell us below."
+    }
+  ],
+  "caption": "The biggest fruit bats in Madagascar are getting smaller.\n\nThe Malagasy flying fox (Pteropus rufus) has a wingspan of up to five feet. Researchers at the Field Museum in Chicago, Emily Cornelius Ruhs and Steven Goodman, measured 12 features of the skulls and teeth of 121 specimens held by nine museums in the United States and Europe, collected over roughly 150 years. Bats collected before the 1980s had skulls about 6% longer than those collected afterward.\n\nThe drop lines up with the rise of commercial hunting, when the bats became easier to find in markets and restaurants. The authors say that does not prove hunting is the cause, and climate change and forest loss may play a part too. Ruhs says the concern is that hunters are removing sexually mature, reproductively active bats from the population.\n\nThat matters because flying foxes are keystone seed spreaders that help forests regrow, and a female has only one pup a year. An estimated 300,000 lived on the island in the early 2000s, and reports suggest about two-thirds have been lost. Researchers still don't know whether the change is genetic.\n\nShould wildlife laws change if hunting is reshaping animals? Tell us below.\n\nSource: Smithsonian Magazine; Journal of Mammalogy",
+  "hashtags": [
+    "#bats",
+    "#madagascar",
+    "#wildlife",
+    "#nature"
+  ]
+}

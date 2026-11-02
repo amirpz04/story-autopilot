@@ -1,0 +1,103 @@
+{
+  "id": "2026-11-02-05",
+  "date": "2026-11-02",
+  "slot": 5,
+  "reel_slot": 1,
+  "title": "Biosphere 2: the sealed world where the oxygen ran out",
+  "category": "science",
+  "tags": {
+    "end": "send",
+    "headline": "statement",
+    "lane": "evergreen"
+  },
+  "scores": {
+    "hook": 9,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 8,
+    "talkability": 8,
+    "no_context": 8,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "History.com: When Biosphere 2 Became a Grand Experiment in Self-Isolation",
+      "url": "https://www.history.com/articles/biosphere-2-spaceship-earth"
+    },
+    {
+      "name": "Encyclopaedia Britannica: Biosphere 2",
+      "url": "https://www.britannica.com/topic/Biosphere-2"
+    }
+  ],
+  "verification": "History.com read in full (3 acres, $150M, 8 crew, sealed Sept 26 1991, 14,000 ft feeling, ants and cockroaches exploded, weight loss, hummingbirds died, air pumped in later revealed). Britannica via search results: two years, emerged Sept 26 1993, oxygen about 21% to about 14% over roughly 17 months, soil microbes a likely cause, oxygen injected, University of Arizona took over management in 2007 (timeline). Worded 'about'. Not claimed: concrete CO2 explanation.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "SCIENCE",
+      "headline": "Eight people sealed themselves in a glass world for two years, and the air vanished",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Biosphere_2.jpg/3840px-Biosphere_2.jpg",
+        "credit": "Photo: Daniel Oberhaus / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Biosphere 2 was a $150 million, three-acre glass and steel miniature Earth in the Arizona desert. The goal: prove humans could live inside a sealed ecosystem.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/22/Biosphere_2_Architecture.jpg/3840px-Biosphere_2_Architecture.jpg",
+        "credit": "Photo: Daniel Oberhaus / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "On September 26, 1991, four men and four women walked in and the doors were sealed. The plan was two years with no fresh air from outside."
+    },
+    {
+      "type": "text",
+      "text": "But the oxygen kept falling, from about 21% to about 14%. The crew said it felt like living at 14,000 feet.",
+      "layout": "full",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Biosphere_Panorama.jpg/3840px-Biosphere_Panorama.jpg",
+        "credit": "Photo: Daniel Oberhaus / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Ants and cockroaches exploded in number. Hummingbirds died. The crew worked long days on small meals and lost serious weight."
+    },
+    {
+      "type": "text",
+      "text": "The cause puzzled everyone. Later work pointed to microbes in the rich soil eating oxygen, and a cloudy year that slowed plant growth.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/85/Exterior_of_Biosphere_2.jpg/3840px-Exterior_of_Biosphere_2.jpg",
+        "credit": "Photo: Jesuiseduardo / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Outside air was added to keep the crew safe, which drew criticism for a project billed as sealed. They still stayed the full two years, stepping out on September 26, 1993."
+    },
+    {
+      "type": "text",
+      "text": "Today the University of Arizona runs Biosphere 2 as a research center.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Biosphere_2_by_a_rancid_amoeba.jpg/1280px-Biosphere_2_by_a_rancid_amoeba.jpg",
+        "credit": "Photo: a rancid amoeba / Wikimedia Commons, CC BY-SA 2.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Send this to someone who would volunteer for two years under glass."
+    }
+  ],
+  "caption": "Eight people locked themselves inside a glass building in the desert, and then the air started running out.\n\nBiosphere 2, a three-acre, $150 million glass and steel structure near Tucson, Arizona, was built as a miniature Earth to test whether people could live in a sealed ecosystem. On September 26, 1991, four men and four women entered for a planned two-year stay.\n\nThings went differently than planned. Oxygen fell from about 21% to about 14%, which the crew compared to living at 14,000 feet. Ants and cockroaches multiplied, hummingbirds died, and the crew lost weight on long workdays and small meals.\n\nThe cause was a puzzle at first. Later research pointed to microbes in the organic-rich soil using up oxygen, with cloudy weather limiting plant photosynthesis. Outside oxygen was eventually added to keep everyone safe, which drew criticism because the project had been billed as a closed system.\n\nThe crew still finished, walking out on September 26, 1993. The University of Arizona now runs the site as a research center.\n\nCould you last two years in there? Tell us below.\n\nSource: History.com; Encyclopaedia Britannica",
+  "hashtags": [
+    "#biosphere2",
+    "#science",
+    "#experiment",
+    "#history"
+  ]
+}

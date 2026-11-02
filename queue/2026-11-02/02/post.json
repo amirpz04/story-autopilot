@@ -1,0 +1,99 @@
+{
+  "id": "2026-11-02-03",
+  "date": "2026-11-02",
+  "slot": 3,
+  "reel_slot": 5,
+  "title": "Hershey sold his caramel company for $1 million to bet on chocolate",
+  "category": "business",
+  "tags": {
+    "end": "question",
+    "headline": "statement",
+    "lane": "evergreen"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 6,
+    "shareability": 7,
+    "talkability": 8,
+    "no_context": 9,
+    "freshness": 7
+  },
+  "sources": [
+    {
+      "name": "Hershey Community Archives: Selling the Lancaster Caramel Company",
+      "url": "https://hersheyarchives.org/encyclopedia/hersheyarchives30-4-selling-the-lancaster-caramel-company/"
+    },
+    {
+      "name": "Hershey Pennsylvania: Milton S. Hershey",
+      "url": "https://www.hersheypa.com/about-hershey/milton-hershey.php"
+    }
+  ],
+  "verification": "Archives page read in full: sale closed Aug 10, 1900; $1M all cash; offers of 500k/500k, 750k/250k, 900k/100k stock; lawyer John Snyder insisted on cash; Hershey kept chocolate company and rented a wing; 'Caramels are just a fad'; American Caramel faltered by the 1920s. Second source (hersheypa.com via search) confirms $1M sale in 1900 and turn to chocolate; factory groundbreaking March 1903, opened 1905. Inflation figure is an approximation and worded as 'more than $30 million'.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "BUSINESS",
+      "headline": "Milton Hershey sold a $1 million caramel business because he thought caramel was a fad",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/Hershey_Factory.jpg/1920px-Hershey_Factory.jpg",
+        "credit": "Photo: Antarctic96 / Wikimedia Commons, CC BY-SA 3.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "By 1900 his Lancaster Caramel Company was a hit. A rival, American Caramel, wanted it, which would give them about 95% of the U.S. caramel market.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Lancaster_Caramel_Hershsey.jpg/1280px-Lancaster_Caramel_Hershsey.jpg",
+        "credit": "Historic photo: unknown author / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Hershey said no at first. Then he changed his mind, saying: \"Caramels are just a fad.\""
+    },
+    {
+      "type": "text",
+      "text": "The price was $1 million in cash, which is more than $30 million in today's money. He gave up the factory, machinery, formulas and his \"Crystal A\" trademark.",
+      "layout": "full",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/High_Point_Hershey_PA.jpg/1920px-High_Point_Hershey_PA.jpg",
+        "credit": "Illustrative photo: High Point, Milton Hershey's former home in Hershey, PA, by Smallbones / Wikimedia Commons, CC0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The buyers offered half cash and half stock, then 75% cash, then 90%. Hershey's lawyer, John Snyder, turned that down and held out for all cash. He got it."
+    },
+    {
+      "type": "text",
+      "text": "Hershey kept his small chocolate company and rented a wing of the old caramel factory to keep it going. In 1903 he broke ground on a giant factory on farmland near his birthplace.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/62/Hershey_PA_Community_Center.jpg/3840px-Hershey_PA_Community_Center.jpg",
+        "credit": "Photo: Smallbones / Wikimedia Commons, CC0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "It opened in 1905 and grew into the town of Hershey, Pennsylvania. American Caramel faltered by the 1920s and went bankrupt a few years later.",
+      "layout": "full",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Hershey_Pennsylvania_1976.jpg/1920px-Hershey_Pennsylvania_1976.jpg",
+        "credit": "Photo: Antarctic96 / Wikimedia Commons, CC BY-SA 3.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Would you have walked away from a booming business on a hunch?"
+    }
+  ],
+  "caption": "In 1900, Milton Hershey was a successful candy maker, and he walked away from his biggest business.\n\nHis Lancaster Caramel Company was thriving. A rival, American Caramel, formed in 1898 from three smaller firms, wanted to buy it and control about 95% of the U.S. caramel market. Hershey refused a merger, then agreed to sell, because he believed caramels were losing popularity. \"Caramels are just a fad,\" he said.\n\nThe buyers' first offer was $500,000 cash plus $500,000 in stock. They moved to $750,000 cash, then $900,000 cash plus $100,000 in stock. His lawyer, John Snyder, rejected that and insisted on full cash. The sale closed on August 10, 1900, for $1 million. Hershey gave up the factory, machinery, formulas and the \"Crystal A\" trademark, but kept the Hershey Chocolate Company and rented space in the old plant to keep making chocolate.\n\nHe broke ground on a huge chocolate factory in March 1903 near his birthplace in Derry Township, Pennsylvania. It opened in 1905 and the town of Hershey grew around it. American Caramel faltered by the 1920s and went bankrupt a few years later.\n\nWould you have made that bet? Tell us below.\n\nSource: Hershey Community Archives; Hershey, PA",
+  "hashtags": [
+    "#hershey",
+    "#businesshistory",
+    "#chocolate",
+    "#history"
+  ]
+}
