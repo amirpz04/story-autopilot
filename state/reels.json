@@ -21,9 +21,9 @@
     "permalink": "https://www.instagram.com/reel/DfQdV8ngRyp/",
     "post_at": "2026-11-02T23:02:00+00:00",
     "posted_at": "2026-11-02T23:12:47.618126+00:00",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/f78f5ce47ac54ea677407ea13a10dd708ab23ff8/20261102-231003-2026-10-30-03.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261102-231003-2026-10-30-03.mp4",
     "status": "posted",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@f78f5ce47ac54ea677407ea13a10dd708ab23ff8/20261102-231003-2026-10-30-03.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261102-231003-2026-10-30-03.mp4"
   },
   "2026-10-31-01": {
     "attempts": 0,
@@ -111,9 +111,9 @@
     "music": "the-long-dark.m4a",
     "permalink": "https://www.instagram.com/reel/DfQNTsCipSU/",
     "posted_at": "2026-11-02T20:52:35.227934+00:00",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/f78f5ce47ac54ea677407ea13a10dd708ab23ff8/20261102-204902-2026-11-02-01.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261102-204902-2026-11-02-01.mp4",
     "status": "posted",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@f78f5ce47ac54ea677407ea13a10dd708ab23ff8/20261102-204902-2026-11-02-01.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261102-204902-2026-11-02-01.mp4"
   },
   "2026-11-02-03": {
     "attempts": 0,
@@ -125,9 +125,9 @@
     "music": "life-in-silico.m4a",
     "permalink": "https://www.instagram.com/reel/DfQ7IghDHq3/",
     "posted_at": "2026-11-03T03:33:03.110407+00:00",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/f78f5ce47ac54ea677407ea13a10dd708ab23ff8/20261103-033013-2026-11-02-03.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-033013-2026-11-02-03.mp4",
     "status": "posted",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@f78f5ce47ac54ea677407ea13a10dd708ab23ff8/20261103-033013-2026-11-02-03.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-033013-2026-11-02-03.mp4"
   },
   "2026-11-02-05": {
     "attempts": 0,
@@ -139,9 +139,39 @@
     "music": "in-search-of-solitude.m4a",
     "permalink": "https://www.instagram.com/reel/DfPuYuBj7P9/",
     "posted_at": "2026-11-02T16:22:42.403284+00:00",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/f78f5ce47ac54ea677407ea13a10dd708ab23ff8/20261102-161745-2026-11-02-05.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/cc34a145f01139004460cdda94850520fa6a1584/20261102-161745-2026-11-02-05.mp4",
     "status": "posted",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@f78f5ce47ac54ea677407ea13a10dd708ab23ff8/20261102-161745-2026-11-02-05.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@cc34a145f01139004460cdda94850520fa6a1584/20261102-161745-2026-11-02-05.mp4"
+  },
+  "2026-11-03-01": {
+    "attempts": 0,
+    "credit": "Permafrost by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "file": "20261103-120123-2026-11-03-01.mp4",
+    "made_at": "2026-11-03T12:04:23.094733+00:00",
+    "music": "permafrost.m4a",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-120123-2026-11-03-01.mp4",
+    "status": "made",
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-120123-2026-11-03-01.mp4"
+  },
+  "2026-11-03-03": {
+    "attempts": 0,
+    "credit": "Adrift Among Infinite Stars by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "file": "20261103-120423-2026-11-03-03.mp4",
+    "made_at": "2026-11-03T12:07:20.670258+00:00",
+    "music": "adrift-among-infinite-stars.m4a",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-120423-2026-11-03-03.mp4",
+    "status": "made",
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-120423-2026-11-03-03.mp4"
+  },
+  "2026-11-03-05": {
+    "attempts": 0,
+    "credit": "In Search Of Solitude by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "file": "20261103-120720-2026-11-03-05.mp4",
+    "made_at": "2026-11-03T12:09:49.428696+00:00",
+    "music": "in-search-of-solitude.m4a",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-120720-2026-11-03-05.mp4",
+    "status": "made",
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-120720-2026-11-03-05.mp4"
   },
   "demo-02": {
     "attempts": 0,
