@@ -2,12 +2,18 @@
   "2026-10-30-01": {
     "attempts": 0,
     "backfill": true,
-    "credit": "Permafrost by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-    "file": "20261101-005517-2026-10-30-01.mp4",
-    "made_at": "2026-11-01T00:56:26.313142+00:00",
-    "music": "permafrost.m4a",
+    "credit": "The Long Dark by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "error": "",
+    "file": "20261103-234458-2026-10-30-01.mp4",
+    "made_at": "2026-11-03T23:46:22.534865+00:00",
+    "media_id": "18015580754991968",
+    "music": "the-long-dark.m4a",
+    "permalink": "https://www.instagram.com/reel/DfTGD_kDUDp/",
     "post_at": "2026-11-03T23:36:00+00:00",
-    "status": "expired"
+    "posted_at": "2026-11-03T23:47:00.825643+00:00",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/38d50670067a699f70f2b8f7ae906271943a400a/20261103-234458-2026-10-30-01.mp4",
+    "status": "posted",
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@38d50670067a699f70f2b8f7ae906271943a400a/20261103-234458-2026-10-30-01.mp4"
   },
   "2026-10-30-03": {
     "attempts": 0,
@@ -21,9 +27,9 @@
     "permalink": "https://www.instagram.com/reel/DfQdV8ngRyp/",
     "post_at": "2026-11-02T23:02:00+00:00",
     "posted_at": "2026-11-02T23:12:47.618126+00:00",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261102-231003-2026-10-30-03.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/38d50670067a699f70f2b8f7ae906271943a400a/20261102-231003-2026-10-30-03.mp4",
     "status": "posted",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261102-231003-2026-10-30-03.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@38d50670067a699f70f2b8f7ae906271943a400a/20261102-231003-2026-10-30-03.mp4"
   },
   "2026-10-31-01": {
     "attempts": 0,
@@ -125,9 +131,9 @@
     "music": "life-in-silico.m4a",
     "permalink": "https://www.instagram.com/reel/DfQ7IghDHq3/",
     "posted_at": "2026-11-03T03:33:03.110407+00:00",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-033013-2026-11-02-03.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/38d50670067a699f70f2b8f7ae906271943a400a/20261103-033013-2026-11-02-03.mp4",
     "status": "posted",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-033013-2026-11-02-03.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@38d50670067a699f70f2b8f7ae906271943a400a/20261103-033013-2026-11-02-03.mp4"
   },
   "2026-11-02-05": {
     "attempts": 0,
@@ -153,9 +159,9 @@
     "music": "permafrost.m4a",
     "permalink": "https://www.instagram.com/reel/DfS0shFDO3r/",
     "posted_at": "2026-11-03T21:15:20.822806+00:00",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-120123-2026-11-03-01.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/38d50670067a699f70f2b8f7ae906271943a400a/20261103-120123-2026-11-03-01.mp4",
     "status": "posted",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-120123-2026-11-03-01.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@38d50670067a699f70f2b8f7ae906271943a400a/20261103-120123-2026-11-03-01.mp4"
   },
   "2026-11-03-03": {
     "attempts": 0,
@@ -163,9 +169,9 @@
     "file": "20261103-120423-2026-11-03-03.mp4",
     "made_at": "2026-11-03T12:07:20.670258+00:00",
     "music": "adrift-among-infinite-stars.m4a",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-120423-2026-11-03-03.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/38d50670067a699f70f2b8f7ae906271943a400a/20261103-120423-2026-11-03-03.mp4",
     "status": "made",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-120423-2026-11-03-03.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@38d50670067a699f70f2b8f7ae906271943a400a/20261103-120423-2026-11-03-03.mp4"
   },
   "2026-11-03-05": {
     "attempts": 0,
@@ -177,9 +183,9 @@
     "music": "in-search-of-solitude.m4a",
     "permalink": "https://www.instagram.com/reel/DfSSOqDlEsm/",
     "posted_at": "2026-11-03T16:14:04.488574+00:00",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-120720-2026-11-03-05.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/38d50670067a699f70f2b8f7ae906271943a400a/20261103-120720-2026-11-03-05.mp4",
     "status": "posted",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@eb71f55e64022ccba80268c8a1f0d8a8ccfb1da2/20261103-120720-2026-11-03-05.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@38d50670067a699f70f2b8f7ae906271943a400a/20261103-120720-2026-11-03-05.mp4"
   },
   "demo-02": {
     "attempts": 0,
