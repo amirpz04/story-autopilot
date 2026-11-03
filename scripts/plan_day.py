@@ -3,11 +3,14 @@
 Usage: python3 scripts/plan_day.py [--stories 3] [--seed anything]
 
 The daily run must start here. Left to its own habits the run kept going back to the same
-feed (7 of the first 9 stories came from ScienceDaily), which is why the account felt
-repetitive. This script deals the run a hand it did not choose: for each story a lane, an
-angle, and the places to start looking, drawn at random from a wide pool. The run follows
-the plan; if an entry point turns up nothing good, it draws the next one rather than
-falling back to its favourite feed.
+feed (7 of the first 9 stories came from ScienceDaily) and, later, to the same subject (a day
+of three NASA stories). This script deals the run a hand it did not choose: for each story a
+lane, a SUBJECT, an angle, and the places to start looking, drawn at random from a wide pool.
+
+Subjects are drawn with a thumb on the scale: a subject that filled a lot of the recent posts
+comes up rarely, a subject that has been quiet comes up often, and no two stories in a day get
+the same one. It is a steer, not a trap: the plan also deals backup subjects, and a clearly
+better story elsewhere can be taken if the post says why (`variety_exception`, see variety.py).
 
 The draw is reseeded on every run (date + clock + a random number), so a second run on the
 same day explores different ground instead of repeating the first one's dead ends.
@@ -21,7 +24,10 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
+import variety
+
 ROOT = Path(__file__).resolve().parent.parent
+RECENT_POSTS = 12      # how far back "lately" looks, in posts
 
 # --- Lane A: news entry points -------------------------------------------------
 # Live feeds first: web search lags by days. Each entry is a place to START, not a limit.
@@ -56,6 +62,7 @@ NEWS_FEEDS = [
     ("r/biology", "https://www.reddit.com/r/biology/top.json?t=day&limit=25"),
     ("r/todayilearned", "https://www.reddit.com/r/todayilearned/top.json?t=day&limit=25"),
 ]
+FEED_BY_NAME = dict(NEWS_FEEDS)
 
 # Google News runs in any language: the story nobody in English has seen yet.
 # These are hunting grounds only. The post is always written in US English for a US reader
@@ -77,40 +84,81 @@ NEWS_COUNTRIES = [
     ("Mexico", "hl=es-419&gl=MX&ceid=MX:es-419"),
 ]
 
-NEWS_QUERIES = [
-    "new species discovered", "world first robot", "strange discovery", "record broken science",
-    "archaeologists found", "deep sea discovery", "AI surprised researchers", "invention student built",
-    "telescope spotted", "fossil discovery", "rare animal filmed", "engineers built", "experiment result",
-    "scientists puzzled", "oldest ever found", "largest ever recorded", "unexpected finding study",
-]
+# Lane A subjects: what a news story should be ABOUT. Each has a plain description for the run,
+# feeds that actually carry that subject, and Google News queries to try. The keys are the values
+# the run writes into post.json "category" (variety.py folds near-synonyms together).
+NEWS_SUBJECTS = {
+    "space": (
+        "space and astronomy: telescopes, planets, missions, astronauts, sky events",
+        ["EurekAlert space", "NASA news", "ESA news", "r/space", "Phys.org"],
+        ["telescope spotted", "astronomers puzzled", "space mission first"],
+    ),
+    "animals": (
+        "animals and wildlife: strange behavior, new species, rare sightings",
+        ["EurekAlert biology", "r/Awwducational", "r/natureisfuckinglit", "New Scientist", "Smithsonian Magazine"],
+        ["new species discovered", "rare animal filmed", "strange animal behavior study"],
+    ),
+    "nature": (
+        "the living and physical Earth: oceans, plants, weather, geology, ecosystems",
+        ["EurekAlert earth science", "NOAA news", "r/natureisfuckinglit", "Atlas Obscura", "Smithsonian Magazine"],
+        ["deep sea discovery", "oldest tree plant record", "geology surprising discovery"],
+    ),
+    "health": (
+        "the human body and medicine: surprising findings, new treatments",
+        ["EurekAlert medicine", "r/science", "New Scientist", "ScienceDaily top"],
+        ["surprising health study", "new treatment first patients", "human body discovery"],
+    ),
+    "tech": (
+        "technology, AI and robots: what they can do now, what went wrong",
+        ["IEEE Spectrum", "Ars Technica", "Hacker News front page", "r/artificial", "r/technology", "r/Futurology"],
+        ["world first robot", "AI surprised researchers", "software bug outage cause"],
+    ),
+    "inventions": (
+        "inventions and engineering: odd gadgets, records, clever solutions, new materials",
+        ["IEEE Spectrum", "Hackaday", "r/EngineeringPorn", "r/gadgets", "EurekAlert technology"],
+        ["invention student built", "engineers built record", "new material discovered"],
+    ),
+    "science": (
+        "science beyond space and biology: physics, chemistry, the brain, psychology, measurement",
+        ["EurekAlert technology", "Phys.org", "Nature news", "New Scientist", "r/science", "ScienceDaily top"],
+        ["experiment result", "scientists puzzled", "unexpected finding study"],
+    ),
+    "history": (
+        "history and archaeology: what was found, what it changes about the story we know",
+        ["Smithsonian Magazine", "Atlas Obscura", "r/todayilearned", "Phys.org"],
+        ["archaeologists found", "oldest ever found", "historians discover"],
+    ),
+}
 
 # --- Lane B: evergreen angles --------------------------------------------------
 # No news hook needed. Old is fine. The hook is the surprising fact itself.
+# Each angle carries the subject it naturally belongs to, so the subject draw and the angle draw
+# are one decision.
 EVERGREEN_ANGLES = [
-    "the origin of a company everyone knows (the near-failure, the pivot, the real numbers)",
-    "how someone made a fortune from one unlikely decision",
-    "how someone lost a fortune, and what exactly went wrong",
-    "an everyday object with a backstory nobody expects",
-    "an accidental invention: what the inventor was actually trying to do",
-    "a forgotten inventor who got none of the credit",
-    "how a technology people use daily actually works under the hood",
-    "a famous software bug or outage and what it cost",
-    "the story behind a programming language, a file format or a standard",
-    "a machine or building that broke a record, and the problem it had to solve",
-    "a bridge, tunnel, dam or ship with a hard engineering story",
-    "the origin of a game, toy or sport people still play",
-    "a language or writing system with a strange history",
-    "a currency, unit or calendar and why it is the way it is",
-    "an expedition or experiment that went differently than planned",
-    "a person with a documented, genuinely strange life story",
-    "the first version of something familiar, and how bad it was",
-    "a product that failed, then came back and won",
-    "an animal, plant or natural record that still astonishes",
-    "a map, a book or a document that changed something",
-    "a food or drink everyone consumes, and where it actually came from",
-    "a rivalry between two companies or two inventors",
-    "something built for one purpose that is now used for a completely different one",
-    "a law, rule or safety standard written because of one specific disaster",
+    ("business", "the origin of a company everyone knows (the near-failure, the pivot, the real numbers)"),
+    ("business", "how someone made a fortune from one unlikely decision"),
+    ("business", "how someone lost a fortune, and what exactly went wrong"),
+    ("inventions", "an everyday object with a backstory nobody expects"),
+    ("inventions", "an accidental invention: what the inventor was actually trying to do"),
+    ("people", "a forgotten inventor who got none of the credit"),
+    ("tech", "how a technology people use daily actually works under the hood"),
+    ("tech", "a famous software bug or outage and what it cost"),
+    ("tech", "the story behind a programming language, a file format or a standard"),
+    ("inventions", "a machine or building that broke a record, and the problem it had to solve"),
+    ("inventions", "a bridge, tunnel, dam or ship with a hard engineering story"),
+    ("history", "the origin of a game, toy or sport people still play"),
+    ("history", "a language or writing system with a strange history"),
+    ("history", "a currency, unit or calendar and why it is the way it is"),
+    ("science", "an expedition or experiment that went differently than planned"),
+    ("people", "a person with a documented, genuinely strange life story"),
+    ("tech", "the first version of something familiar, and how bad it was"),
+    ("business", "a product that failed, then came back and won"),
+    ("nature", "an animal, plant or natural record that still astonishes"),
+    ("history", "a map, a book or a document that changed something"),
+    ("history", "a food or drink everyone consumes, and where it actually came from"),
+    ("business", "a rivalry between two companies or two inventors"),
+    ("inventions", "something built for one purpose that is now used for a completely different one"),
+    ("history", "a law, rule or safety standard written because of one specific disaster"),
 ]
 
 EVERGREEN_STARTS = [
@@ -130,9 +178,6 @@ EVERGREEN_STARTS = [
     ("Public Domain Review", "https://publicdomainreview.org/"),
 ]
 
-CATEGORIES = ["space", "animals", "nature", "tech", "ai", "science", "health",
-              "inventions", "history", "business", "people"]
-
 IMAGE_FIRST_STOP = [
     "NASA image library (images.nasa.gov) - space, Earth, aviation",
     "ESA / ESO / NOIRLab press images - space and telescopes",
@@ -145,67 +190,33 @@ IMAGE_FIRST_STOP = [
 ]
 
 
-def recent_covers(limit=15):
-    """The cover headlines and last slides of the most recent posts, oldest first.
+def weighted_pick(rng, items, weights):
+    """One item, chosen with probability proportional to its weight."""
+    total = float(sum(weights))
+    point = rng.random() * total
+    running = 0.0
+    for item, weight in zip(items, weights):
+        running += weight
+        if point <= running:
+            return item
+    return items[-1]
 
-    This is a mirror for the writer (ROUTINE.md section 6b), not a rule: a feed that
-    sounds the same every day stops stopping people, and the run cannot see that
-    from inside one day. Skips replaced and spare posts; never raises.
+
+def subject_weights(recent):
+    """How likely each subject is to be dealt: quiet ones often, busy ones rarely.
+
+    A subject that filled 5 of the last 12 posts gets about 1/36 of the weight of one that
+    filled none. Nothing is ever ruled out, so a subject can still come back if it earns it.
     """
-    rows = []
-    for path in (ROOT / "queue").glob("*/*/post.json"):
-        if "-replaced" in path.parent.name:
-            continue
-        try:
-            post = json.loads(path.read_text())
-            if post.get("spare"):
-                continue
-            slides = post.get("slides") or []
-            cover = (slides[0].get("headline") or "").strip() if slides else ""
-            end = (slides[-1].get("text") or "").strip() if slides else ""
-            if cover:
-                rows.append((str(post.get("date", "")), str(post.get("id", "")), cover, end))
-        except Exception:
-            continue
-    rows.sort()
-    return [(cover, end) for _, _, cover, end in rows[-limit:]]
+    counts = Counter(row["category"] for row in recent)
+    return counts, (lambda cat: 1.0 / (1 + counts[cat]) ** 2)
 
 
-def _words(text):
-    return re.findall(r"[a-z0-9']+", text.lower())
-
-
-def print_mirror():
-    covers = recent_covers()
-    if not covers:
-        return
-    print()
-    print("YOUR LAST %d COVERS AND ENDINGS (a mirror, not a rule - ROUTINE.md section 6b)" % len(covers))
-    print("-" * 70)
-    for cover, end in covers:
-        print("  cover: %s" % cover)
-        print("    end: %s" % end)
-    firsts = Counter(w[0] for w in (_words(c) for c, _ in covers) if w)
-    pairs = Counter(" ".join(w[:2]) for w in (_words(c) for c, _ in covers) if len(w) > 1)
-    end_frames = Counter(" ".join(w[:3]) for w in (_words(e) for _, e in covers) if len(w) > 2)
-    questions = sum(1 for c, _ in covers if "?" in c)
-    lengths = [len(_words(c)) for c, _ in covers]
-    print()
-    repeated = ["'%s' x%d" % (w, n) for w, n in firsts.most_common() if n >= 2]
-    repeated += ["'%s...' x%d" % (p, n) for p, n in pairs.most_common() if n >= 2]
-    if repeated:
-        print("  Cover openers that keep coming back: " + ", ".join(repeated[:6]))
-    repeated_ends = ["'%s...' x%d" % (p, n) for p, n in end_frames.most_common() if n >= 2]
-    if repeated_ends:
-        print("  Ending openers that keep coming back: " + ", ".join(repeated_ends[:4]))
-    print("  Questions: %d of %d covers. Average length: %.1f words." % (
-        questions, len(covers), sum(lengths) / float(len(lengths))))
-    print("  Today's covers should not sound like these. Write three candidates per story, keep the strongest.")
-
-
-def deal(stories, seed=None):
+def deal(stories, seed=None, recent=None):
     rng = random.Random(seed if seed is not None else "%s-%s-%s" % (
         datetime.now(timezone.utc).isoformat(), time.time(), random.random()))
+    recent = recent if recent is not None else variety.recent_posts(RECENT_POSTS)
+    counts, weight = subject_weights(recent)
 
     # How many evergreen: never zero, never all, when there is room for a mix.
     if stories <= 1:
@@ -216,38 +227,90 @@ def deal(stories, seed=None):
     lanes = ["B"] * evergreen + ["A"] * (stories - evergreen)
     rng.shuffle(lanes)
 
-    news_feeds = rng.sample(NEWS_FEEDS, min(len(NEWS_FEEDS), stories * 2))
-    angles = rng.sample(EVERGREEN_ANGLES, min(len(EVERGREEN_ANGLES), stories * 2))
     starts = rng.sample(EVERGREEN_STARTS, min(len(EVERGREEN_STARTS), stories * 2))
-    cats = rng.sample(CATEGORIES, min(len(CATEGORIES), stories))
+    angle_pool = list(EVERGREEN_ANGLES)
+    used_subjects, used_feeds = [], set()
 
     plan = []
     for i, lane in enumerate(lanes, 1):
         if lane == "A":
+            options = [c for c in NEWS_SUBJECTS if c not in used_subjects] or list(NEWS_SUBJECTS)
+            subject = weighted_pick(rng, options, [weight(c) for c in options])
+            description, feed_names, queries = NEWS_SUBJECTS[subject]
+            feeds = [(n, FEED_BY_NAME[n]) for n in feed_names if n in FEED_BY_NAME]
+            fresh = [f for f in feeds if f[0] not in used_feeds] or feeds
+            feed = rng.choice(fresh)
+            rest = [f for f in feeds if f != feed]
+            backup = rng.choice(rest) if rest else feed
+            used_feeds.update([feed[0], backup[0]])
             country, params = rng.choice(NEWS_COUNTRIES)
-            query = rng.choice(NEWS_QUERIES)
-            feed = news_feeds.pop()
-            backup = news_feeds.pop() if news_feeds else feed
+            query = rng.choice(queries)
             plan.append({
-                "n": i, "lane": "A (news, last 72 h)",
-                "lean": "lean %s, but take the better story if the feed offers one" % cats[i - 1],
-                "start": "%s  %s" % (feed[0], feed[1]),
-                "then": "%s  %s" % (backup[0], backup[1]),
+                "n": i, "lane": "A (news, last 72 h)", "subject": subject,
+                "lean": description,
+                "start": "%s  %s" % feed,
+                "then": "%s  %s" % backup,
                 "wildcard": "Google News %s: https://news.google.com/rss/search?q=%s+when:2d&%s" % (
                     country, query.replace(" ", "+"), params),
             })
         else:
-            angle = angles.pop()
-            start = starts.pop()
+            options = [a for a in angle_pool if a[0] not in used_subjects] or angle_pool
+            per_subject = Counter(a[0] for a in options)
+            angle = weighted_pick(rng, options, [weight(a[0]) / per_subject[a[0]] for a in options])
+            angle_pool.remove(angle)
+            subject = angle[0]
+            start = starts.pop() if starts else rng.choice(EVERGREEN_STARTS)
             backup = starts.pop() if starts else start
             plan.append({
-                "n": i, "lane": "B (evergreen, any age)",
-                "lean": angle,
-                "start": "%s  %s" % (start[0], start[1]),
-                "then": "%s  %s" % (backup[0], backup[1]),
+                "n": i, "lane": "B (evergreen, any age)", "subject": subject,
+                "lean": angle[1],
+                "start": "%s  %s" % start,
+                "then": "%s  %s" % backup,
                 "wildcard": "or any subject of your own that fits the angle - there is no topic limit",
             })
-    return plan, rng
+        used_subjects.append(subject)
+
+    # Backup subjects: where to turn if an assigned subject has nothing good after a fair look.
+    everything = sorted(set(NEWS_SUBJECTS) | {a[0] for a in EVERGREEN_ANGLES})
+    pool = [c for c in everything if c not in used_subjects]
+    backups = []
+    while pool and len(backups) < 3:
+        pick = weighted_pick(rng, pool, [weight(c) for c in pool])
+        backups.append(pick)
+        pool.remove(pick)
+    return plan, rng, backups, counts
+
+
+def print_mirror(recent, counts):
+    if not recent:
+        return
+    print()
+    print("WHAT THE LAST %d POSTS WERE (a mirror - ROUTINE.md sections 2 and 6b)" % len(recent))
+    print("-" * 70)
+    for row in recent:
+        print("  [%s] cover: %s" % (row["category"] or "?", row["cover"]))
+        print("        end: %s" % row["end"])
+    print()
+    subjects = ", ".join("%s x%d" % (c, n) for c, n in counts.most_common())
+    print("  Subjects lately: %s" % subjects)
+    domains = Counter(d for row in recent for d in row["domains"])
+    print("  Sources lately : %s" % ", ".join("%s x%d" % (d, n) for d, n in domains.most_common(8)))
+
+    words = lambda t: re.findall(r"[a-z0-9']+", t.lower())
+    firsts = Counter(w[0] for w in (words(r["cover"]) for r in recent) if w)
+    pairs = Counter(" ".join(w[:2]) for w in (words(r["cover"]) for r in recent) if len(w) > 1)
+    ends = Counter(" ".join(w[:3]) for w in (words(r["end"]) for r in recent) if len(w) > 2)
+    repeated = ["'%s' x%d" % (w, n) for w, n in firsts.most_common() if n >= 2]
+    repeated += ["'%s...' x%d" % (p, n) for p, n in pairs.most_common() if n >= 2]
+    if repeated:
+        print("  Cover openers that keep coming back: " + ", ".join(repeated[:6]))
+    repeated_ends = ["'%s...' x%d" % (p, n) for p, n in ends.most_common() if n >= 2]
+    if repeated_ends:
+        print("  Ending openers that keep coming back: " + ", ".join(repeated_ends[:4]))
+    lengths = [len(words(r["cover"])) for r in recent]
+    questions = sum(1 for r in recent if "?" in r["cover"])
+    print("  Questions: %d of %d covers. Average length: %.1f words." % (
+        questions, len(recent), sum(lengths) / float(len(lengths))))
 
 
 def main():
@@ -259,10 +322,11 @@ def main():
 
     config = json.loads((ROOT / "config.json").read_text())
     stories = args.stories or int(config.get("stories_per_day", 3))
-    plan, rng = deal(stories, args.seed)
+    recent = variety.recent_posts(RECENT_POSTS)
+    plan, rng, backups, counts = deal(stories, args.seed, recent)
 
     if args.json:
-        print(json.dumps(plan, indent=2))
+        print(json.dumps({"plan": plan, "backup_subjects": backups}, indent=2))
         return
 
     print("TODAY'S RESEARCH PLAN  (%d stories, drawn at random - follow it)" % stories)
@@ -270,23 +334,34 @@ def main():
     for p in plan:
         print()
         print("STORY %d - lane %s" % (p["n"], p["lane"]))
-        print("  angle    : %s" % p["lean"])
+        print("  SUBJECT  : %s" % p["subject"].upper())
+        print("  about    : %s" % p["lean"])
         print("  start at : %s" % p["start"])
         print("  if thin  : %s" % p["then"])
         print("  wildcard : %s" % p["wildcard"])
-    print_mirror()
+    print()
+    print("  Backup subjects (if an assigned one has nothing good after a fair look): %s" % ", ".join(backups))
+    print_mirror(recent, counts)
     print()
     print("=" * 70)
     print("RULES FOR TODAY")
-    print("  - No two stories from the same website. Ever. If two land on one site, redraw one.")
+    print("  - Each story has a SUBJECT above. Find the best story you can in it. The draw favors subjects")
+    print("    that have been quiet lately, so following it is what keeps the account varied.")
+    print("  - It is a steer, not a trap. Nothing good after two entry points? Use a backup subject. A clearly")
+    print("    better story from somewhere else? Take it and say why in `variety_exception` in post.json.")
+    print("    Never publish a weaker story just to fit a subject, and never two stories on one subject today.")
+    print("  - No two stories from the same organization today (nasa.gov counts once, whatever the subdomain).")
+    print("    Same exception rule applies.")
+    print("  - Choose the story first, pictures second. An archive with lots of pictures (NASA's, say) is never a")
+    print("    reason to pick a subject. Thin pictures? Use labelled stock for generic slides or take another story.")
     print("  - Small is fine. A quiet, specific, surprising story beats a big boring one.")
     print("    Do NOT hold out for something groundbreaking; that is how runs end with one story.")
     print("  - If an entry point is thin after a few minutes, move to the next one in this plan.")
     print("    Do not drift back to a feed you have used before.")
+    print("  - Covers: no two stories today share an opening word, a closing pattern, or an ending opener,")
+    print("    and none could sit unnoticed among the covers above. Hooks and voice: ROUTINE.md section 6b.")
     print("  - Pictures: try %s first." % rng.choice(IMAGE_FIRST_STOP))
     print("    Wikimedia is one option among several, not the default.")
-    print("  - Covers: no two stories today share an opening word or shape, and none could sit unnoticed")
-    print("    among the covers above. Hooks and voice: ROUTINE.md section 6b.")
     print("  - You must finish with %d stories. See ROUTINE.md section 9." % stories)
 
 

@@ -57,13 +57,22 @@ story whose time has passed or that is already live.
 python3 scripts/plan_day.py
 ```
 
-It deals you, at random, a lane and an angle for each story and the places to start looking.
+It deals you, at random, a lane, a SUBJECT, an angle and the places to start looking for each story.
 Follow it. The draw is different every run, which is the whole point: left to habit, earlier runs
 took 7 of the first 9 stories from the same ScienceDaily feed and the account turned into one
 long science-news column. **You are not allowed to decide where to look. The plan decides.**
 
 - Work the entry points the plan gives you, in the order it gives them.
-- **No two stories in a day from the same website.** If two land on one site, drop one and draw again.
+- **One subject per story, none repeated in a day.** The draw favors subjects that have been quiet lately,
+  so following it is what keeps the account varied. Find the best story you can inside the assigned subject.
+- **No two stories in a day from the same organization** (nasa.gov counts once, whatever the subdomain).
+- **These limits are soft, never a reason to publish something weak.** If the assigned subject has nothing
+  good after a fair look at two entry points, use one of the plan's backup subjects. If a clearly better
+  story sits elsewhere, take it and write one plain sentence of why in the post's `variety_exception`
+  field (15+ characters). `validate.py` accepts it and prints the reason. Never invent a weak story to
+  avoid writing an exception.
+- **Choose the story first, pictures second.** A big picture archive (NASA's, say) is never a reason to pick
+  a subject. If a story has few pictures, use labelled stock for generic slides or choose another story.
 - If a story the plan sends you to turns out thin, take the "if thin" link, then the wildcard, then
   run `plan_day.py` again for a fresh draw. **Never fall back to a feed you used on a previous day.**
 - The lists below are what each lane can cover. They are a map of the territory, not a reading order:
@@ -294,7 +303,7 @@ blank lines:
 2. The full story: who, what, where, when, and how it happened, with the specific details, numbers and quotes from your sources.
 3. Background and context that the slides didn't have room for: why it's unusual, how it compares, what led up to it.
 4. What happens next, or why it matters to ordinary people.
-5. The comment question from the end slide.
+5. Close with a line that fits this story, in your own words. Do not copy the end slide, and do not add a stock "tell us below" question; ask one only if the story truly splits people.
 6. `Source: <publication name(s)>`. Put 3–5 relevant hashtags **only** in the `hashtags` field; they are added
    automatically, so never write them in the caption text.
 
@@ -365,7 +374,8 @@ several posts ("Send this to someone who…") is spent: find a new one, anchored
 
 **Labels.** `tags.headline` and `tags.end` are short (1–3 word) labels of the mechanism you used, e.g.
 "reversal", "scale", "callback". Reuse an existing label when it fits so `state/report.md` can learn
-which work; invent a new one when nothing fits.
+which work; invent a new one when nothing fits. Labels describe your technique, never copy them from a tool or
+story name, and do not reuse a label on every post.
 
 ## 7. Output format
 
@@ -379,6 +389,7 @@ Write each post as `queue/<date>/<NN>/post.json`:
   "reel_slot": 2,
   "title": "Short internal title",
   "category": "animals",
+  "variety_exception": "optional: one plain sentence, only when a same-day subject/source clash is the best story you found",
   "tags": {"headline": "<label of the hook mechanism you used>", "end": "<label of the ending you used>", "lane": "news"},
   "scores": {"hook": 9, "surprise": 8, "emotion": 8, "shareability": 9, "talkability": 7, "no_context": 9, "freshness": 8},
   "sources": [{"name": "BBC News", "url": "https://..."}],
@@ -415,7 +426,7 @@ The owner can swap a scheduled post he dislikes for a ready spare with one butto
 `spares_per_day` extra posts, finished to exactly the same standard (same verification, pictures and
 checks) but never scheduled. Write each as `queue/<date>/s1/post.json`, `s2`, ...:
 - `"spare": true`, `"slot": null` and `"reel_slot": null`, with `"id": "<date>-s1"` (`-s2`, ...), and an unused story (different
-  topic from the day's posts when possible).
+  subject from the day's posts when possible; it has no `variety_exception` need since it is not scheduled).
 - Use the same fields, tags and checks as any post; `validate.py` and `check_images.py` cover spares too.
 - Add them to `state/history.jsonl` like the others. If `spares_per_day` is 0 or missing, write none.
 

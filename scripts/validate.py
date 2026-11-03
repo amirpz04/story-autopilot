@@ -9,6 +9,8 @@ import sys
 from difflib import SequenceMatcher
 from pathlib import Path
 
+import variety
+
 ROOT = Path(__file__).resolve().parent.parent
 IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".webp")
 MAX_SLIDE_WORDS = 40
@@ -184,17 +186,17 @@ def main():
         day_errors.append("only %d of %d stories written for this day; %s missing (ROUTINE.md section 9)"
                           % (len(scheduled), wanted, wanted - len(scheduled)))
 
-    # One story per website per day, so the feed does not become the account.
-    sites = {}
-    for path in scheduled:
-        for src in json.loads(path.read_text()).get("sources", []):
-            host = re.sub(r"^https?://(www\.)?", "", src.get("url", "")).split("/")[0].lower()
-            if not host:
-                continue
-            if host in sites and sites[host] != path.parent.name:
-                day_errors.append("%s and %s both come from %s; use a different source for one"
-                                  % (sites[host], path.parent.name, host))
-            sites.setdefault(host, path.parent.name)
+    # Variety across the day's stories (sources by organization, subject, openings). Soft: a story
+    # carrying a `variety_exception` waives its clash and the reason is printed. Rules apply from
+    # config "variety_rules_from" so days written before the rules existed are not failed.
+    day_notes = []
+    start = str(config.get("variety_rules_from") or "")
+    if start and day_dir.name >= start:
+        day_posts = [(p.parent.name, json.loads(p.read_text())) for p in scheduled]
+        errs, notes = variety.day_problems(day_posts)
+        day_errors += errs
+        day_notes += notes
+        day_notes += variety.history_notes(day_posts, {day_dir.name})
 
     slots = {}
     for path in posts:
@@ -220,6 +222,8 @@ def main():
         for err in day_errors:
             print("      -", err)
         failed = True
+    for note in day_notes:
+        print("NOTE  " + note)
     print("%d posts checked" % len(posts))
     sys.exit(1 if failed else 0)
 
