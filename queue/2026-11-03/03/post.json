@@ -1,0 +1,91 @@
+{
+ "id": "2026-11-03-05",
+ "date": "2026-11-03",
+ "slot": 5,
+ "reel_slot": 1,
+ "title": "Mars Climate Orbiter lost to a pounds-versus-newtons mix-up",
+ "category": "tech",
+ "tags": {
+  "headline": "detail that doesn't fit",
+  "end": "callback",
+  "lane": "evergreen"
+ },
+ "scores": {
+  "hook": 9,
+  "surprise": 8,
+  "emotion": 6,
+  "shareability": 8,
+  "talkability": 8,
+  "no_context": 8,
+  "freshness": 8
+ },
+ "sources": [
+  {
+   "name": "NASA Mars Climate Orbiter Mishap Investigation Board, Phase I Report (Nov 10, 1999)",
+   "url": "https://llis.nasa.gov/llis_lib/pdf/1009464main1_0641-mr.pdf"
+  },
+  {
+   "name": "NASA Science: Mars Climate Orbiter",
+   "url": "https://science.nasa.gov/mission/mars-climate-orbiter/"
+  }
+ ],
+ "verification": "Read the NASA board's Phase I report in full text: root cause (SM_FORCES ground software file delivered impulse data in lbf-s instead of N-s, a factor of 4.45), 9-month trip, desaturation events 10-14 times more often than expected, discrepancies noted informally but not resolved, planned first periapsis 226 km, minimum survivable 80 km, best after-the-fact estimate 57 km, trajectory about 170 km lower than planned, signal lost 49 seconds early on Sept 23, 1999, MOI burn start 09:00:46 UTC and loss at 09:04:52. NASA Science page confirms launch Dec 11, 1998 and the English-to-metric failure. No cost figure used because it was not verified.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "1999",
+   "headline": "The number 4.45 destroyed a Mars spacecraft",
+   "image": {
+    "url": "https://images-assets.nasa.gov/image/KSC-98pc1816/KSC-98pc1816~orig.jpg",
+    "credit": "NASA"
+   }
+  },
+  {
+   "type": "text",
+   "text": "One ground-software file gave thruster pushes in pound-seconds. NASA's navigation model expected newton-seconds. One pound of force is 4.45 newtons.",
+   "layout": "split",
+   "image": {
+    "url": "https://images-assets.nasa.gov/image/KSC-98pc1079/KSC-98pc1079~orig.jpg",
+    "credit": "NASA"
+   }
+  },
+  {
+   "type": "text",
+   "text": "So every push looked 4.45 times weaker than it really was. Tiny errors, repeated again and again, over nine months of travel."
+  },
+  {
+   "type": "text",
+   "text": "Making it worse, the lopsided solar panel made the thrusters fire 10 to 14 times more often than navigators expected.",
+   "layout": "full",
+   "image": {
+    "url": "https://images-assets.nasa.gov/image/KSC-98pc1352/KSC-98pc1352~orig.jpg",
+    "credit": "NASA"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Odd numbers showed up all summer. Navigators raised them informally, but nobody settled the question before arrival."
+  },
+  {
+   "type": "text",
+   "text": "On September 23, 1999, the orbiter vanished behind Mars 49 seconds early and never came back. It was about 105 miles (170 km) lower than planned.",
+   "layout": "split",
+   "image": {
+    "url": "https://images-assets.nasa.gov/image/PIA07242/PIA07242~orig.jpg",
+    "credit": "Illustrative artist concept of a different Mars orbiter (Mars Reconnaissance Orbiter): NASA/JPL"
+   }
+  },
+  {
+   "type": "end",
+   "text": "Rocket science carried it across space. A units mix-up ended it four minutes into its braking burn."
+  }
+ ],
+ "caption": "Nine months. Hundreds of millions of miles. And the mission was lost to a unit mix-up.\n\nNASA's Mars Climate Orbiter launched on December 11, 1998. On September 23, 1999 it began its braking burn to enter orbit around Mars. About four minutes later it slipped behind the planet, 49 seconds earlier than predicted, and was never heard from again.\n\nNASA's investigation board found the cause in a single ground-software file. It was supposed to report thruster pushes in newton-seconds, the metric unit written into the project's rules. Instead it reported pound-seconds. One pound of force is 4.45 newtons, so the navigators underestimated every push by that factor. Because the spacecraft's lopsided solar array made the thrusters fire 10 to 14 times more often than expected, the small errors piled up.\n\nThe plan was a closest approach of 226 km (140 miles) above Mars. Anything below 80 km (50 miles) was unsurvivable. After the fact, the best estimate was about 57 km (35 miles). The board said the team also missed chances to catch it, since odd navigation numbers had been noticed but never resolved.\n\nHave you ever mixed up units on something that mattered? Tell us below.\n\nSource: NASA Mishap Investigation Board report, NASA Science.",
+ "hashtags": [
+  "#nasa",
+  "#mars",
+  "#space",
+  "#engineering",
+  "#history"
+ ]
+}

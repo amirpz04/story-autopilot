@@ -1,0 +1,104 @@
+{
+ "id": "2026-11-03-03",
+ "date": "2026-11-03",
+ "slot": 3,
+ "reel_slot": 5,
+ "title": "Perseverance breaks Opportunity's record for the longest drive on another world",
+ "category": "space",
+ "tags": {
+  "headline": "scale",
+  "end": "numbers callback",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 8,
+  "emotion": 7,
+  "shareability": 7,
+  "talkability": 7,
+  "no_context": 8,
+  "freshness": 8
+ },
+ "sources": [
+  {
+   "name": "ScienceDaily: NASA's Perseverance Mars rover breaks historic record",
+   "url": "https://www.sciencedaily.com/releases/2026/11/261101010536.htm"
+  },
+  {
+   "name": "Guinness World Records: Perseverance breaks the record for longest road trip on Mars",
+   "url": "https://www.guinnessworldrecords.com/news/2026/10/nasas-perseverance-rover-breaks-the-record-for-longest-road-trip-on-mars"
+  },
+  {
+   "name": "Space.com: Perseverance breaks interplanetary driving record",
+   "url": "https://space.com/space-exploration/mars-rovers/nasas-perseverance-mars-rover-breaks-interplanetary-driving-record-and-its-far-from-done"
+  }
+ ],
+ "verification": "ScienceDaily (NASA text): Sol 2006, Oct 11 2026, total 45.22 km (28.10 mi), AutoNav, Global Localization, 200 m short two months earlier. Guinness: 91.31 m drive on Oct 11, odometer 45.13 to 45.22 km, Opportunity 45.16 km (28.06 mi) over a 14-year mission, Spirit and Opportunity expected to drive no more than 1 km, Curiosity about 38 km, top speeds equal, Vision Compute Element. Space.com and a search of coverage confirm the 28.10 / 28.06 mile figures; AutoNav use over 90% of driving versus about 5% for older rovers (JPL, via search summary of coverage) was worded loosely.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "MARS",
+   "headline": "Built to drive 0.6 miles, a Mars rover went 28. Now another beat it.",
+   "image": {
+    "url": "https://images-assets.nasa.gov/image/PIA24741/PIA24741~orig.jpg",
+    "credit": "NASA/JPL-Caltech"
+   }
+  },
+  {
+   "type": "text",
+   "text": "NASA's Opportunity landed in 2004 and was expected to drive no more than 1 km (0.6 miles). Over 14 years it covered 45.16 km (28.06 miles).",
+   "layout": "split",
+   "image": {
+    "url": "https://images-assets.nasa.gov/image/PIA17759/PIA17759~orig.jpg",
+    "credit": "NASA/JPL-Caltech/Cornell Univ./Arizona State Univ."
+   }
+  },
+  {
+   "type": "text",
+   "text": "On October 11, 2026, Perseverance made a short 300-foot drive. Its odometer hit 28.10 miles (45.22 km): a new record for any vehicle on another world.",
+   "layout": "full",
+   "image": {
+    "url": "https://images-assets.nasa.gov/image/PIA26344/PIA26344~orig.jpg",
+    "credit": "NASA/JPL-Caltech/MSSS"
+   }
+  },
+  {
+   "type": "text",
+   "text": "It needed less than half the time Opportunity took. And it isn't faster: the top speeds are about the same."
+  },
+  {
+   "type": "text",
+   "text": "The difference is the brain. A second computer lets Perseverance spot rocks and plan its route while it drives, like a self-driving car.",
+   "layout": "split",
+   "image": {
+    "url": "https://images-assets.nasa.gov/image/PIA26379/PIA26379~orig.jpg",
+    "credit": "NASA/JPL-Caltech"
+   }
+  },
+  {
+   "type": "text",
+   "text": "It can even work out where it is on Mars by matching its photos to orbit images. Basically GPS on a planet that has none."
+  },
+  {
+   "type": "text",
+   "text": "NASA's Curiosity, which landed in 2012, has driven about 23.6 miles. It was never meant for road trips.",
+   "layout": "full",
+   "image": {
+    "url": "https://images-assets.nasa.gov/image/PIA19808/PIA19808~orig.jpg",
+    "credit": "NASA/JPL-Caltech/MSSS"
+   }
+  },
+  {
+   "type": "end",
+   "text": "Opportunity was built for 0.6 miles. Perseverance already has 28, and the team says it is far from done."
+  }
+ ],
+ "caption": "A Mars rover has just out-driven every vehicle ever sent to another world.\n\nOn October 11, 2026, NASA's Perseverance rover rolled up its odometer to 28.10 miles (45.22 km). The old record belonged to Opportunity, which landed in 2004 as a mission expected to drive no more than about 0.6 miles and kept going for 14 years, covering 28.06 miles (45.16 km). Perseverance broke the record in less than half that time.\n\nIt did not get there by going faster. Its top speed matches Opportunity's. The difference is a dedicated computer for autonomous driving, called AutoNav, which lets the rover spot obstacles and change its route as it moves. NASA's team also loosened some of the rover's safety limits after thousands of simulations, and the rover can now work out its own position by comparing its photos to images from orbit.\n\nThe record could have come two months earlier: Perseverance sat about 200 meters short. But it was parked at a spot full of ancient rock layers, so the team studied those first.\n\nWhat's the longest road trip you've ever done? Tell us below.\n\nSource: ScienceDaily, Guinness World Records, Space.com.",
+ "hashtags": [
+  "#mars",
+  "#nasa",
+  "#perseverance",
+  "#space",
+  "#robotics"
+ ]
+}

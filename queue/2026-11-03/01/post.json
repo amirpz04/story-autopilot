@@ -1,0 +1,109 @@
+{
+ "id": "2026-11-03-01",
+ "date": "2026-11-03",
+ "slot": 1,
+ "reel_slot": 3,
+ "title": "Lunar Receiving Laboratory: the Moon quarantine building that is now a park",
+ "category": "space",
+ "tags": {
+  "headline": "detail that doesn't fit",
+  "end": "callback",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 8,
+  "emotion": 7,
+  "shareability": 8,
+  "talkability": 6,
+  "no_context": 8,
+  "freshness": 8
+ },
+ "sources": [
+  {
+   "name": "NASA: Happy 65 Years: Johnson Space Center Then and Now",
+   "url": "https://www.nasa.gov/centers-and-facilities/johnson/happy-65-years-nasas-johnson-space-center-then-and-now/"
+  },
+  {
+   "name": "NASA History: Building on a Mission, the Lunar Receiving Laboratory",
+   "url": "https://www.nasa.gov/history/building-on-a-mission-the-lunar-receiving-laboratory"
+  },
+  {
+   "name": "collectSPACE: NASA opens Lunar Receiving Park at Johnson Space Center",
+   "url": "https://www.collectspace.com/news/news-032526a-nasa-lunar-receiving-park-johnson-space-center.html"
+  }
+ ],
+ "verification": "Read NASA's Nov 2026 Johnson 65th-anniversary article (Building 37 construction Aug 1966, offices June 1967, Apollo 11/12/14 crews quarantined 3 weeks, site now Lunar Receiving Park dedicated 2026), NASA History's LRL feature (purpose, vacuum system, crew area with dorms, gym, kitchen, glass-walled press room, 21-day quarantine, Collins toured it Sept 1967) and collectSPACE (park opened March 25, 2026; Building 37 razed August 2024; quarantine dropped after Apollo 14 because the Moon was found lifeless). All figures cross-checked between at least two of the three.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "APOLLO",
+   "headline": "Three astronauts were locked in this building for 21 days. Now it's a park.",
+   "image": {
+    "url": "https://images-assets.nasa.gov/image/6900595/6900595~orig.jpg",
+    "credit": "NASA"
+   }
+  },
+  {
+   "type": "text",
+   "text": "In 1969 NASA feared the first Moon crew might bring home lunar microbes. So it built a sealed lab in Houston where air could not escape. Inside: bedrooms, a small gym, a kitchen and a glass-walled press room.",
+   "layout": "full",
+   "image": {
+    "url": "https://images-assets.nasa.gov/image/S69-41360/S69-41360~orig.jpg",
+    "credit": "NASA"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Construction began in August 1966. Ten months later, the first staff moved in.",
+   "layout": "split",
+   "image": {
+    "url": "https://www.nasa.gov/wp-content/uploads/2021/10/building_on_a_mission_lrl_6_lrl_under_construction_dec_3_1966_s66-56323.jpg",
+    "credit": "NASA"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Apollo 11's Armstrong, Aldrin and Collins spent 21 days inside. Collins had toured the unfinished building in 1967, never guessing he would live there.",
+   "layout": "split",
+   "image": {
+    "url": "https://images-assets.nasa.gov/image/KSC-69PC-484/KSC-69PC-484~orig.jpg",
+    "credit": "NASA"
+   }
+  },
+  {
+   "type": "text",
+   "text": "The Moon rocks were quarantined too. Scientists watched how the samples affected living things, including mice and plants.",
+   "layout": "full",
+   "image": {
+    "url": "https://images-assets.nasa.gov/image/S69-40939/S69-40939~orig.jpg",
+    "credit": "NASA"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Nothing harmful turned up. By Apollo 15, scientists had confirmed the Moon was lifeless, and later crews skipped quarantine."
+  },
+  {
+   "type": "text",
+   "text": "Later it housed NASA's life sciences labs. Then, in August 2024, the historic building was torn down.",
+   "layout": "split",
+   "image": {
+    "url": "https://www.nasa.gov/wp-content/uploads/2026/10/jsc2026e408012.jpg",
+    "credit": "NASA / Robert Markowitz"
+   }
+  },
+  {
+   "type": "end",
+   "text": "A park now sits where the first Moon rocks on Earth were kept."
+  }
+ ],
+ "caption": "Before the first Moon landing, NASA had a strange worry: what if the astronauts brought back something alive?\n\nSo it built the Lunar Receiving Laboratory in Houston, known as Building 37. Construction started in August 1966 and the first staff moved in 10 months later. The lab was sealed behind a biological barrier, with a vacuum system that stopped air from escaping. Inside were bedrooms for the crew, a small gym, a kitchen and a glass-walled room for debriefings and press conferences. Astronaut Michael Collins toured it in 1967, never knowing he would soon spend nearly three weeks there.\n\nThe crews of Apollo 11, 12 and 14 each completed a 21-day quarantine in the building, while scientists tested the Moon rocks for anything that might harm living things. Nothing did. By Apollo 15 the Moon was confirmed lifeless and quarantine ended.\n\nThe lab later housed NASA's life sciences teams. After they moved out, Building 37 was torn down in August 2024. In March 2026 NASA opened the Lunar Receiving Park on the site.\n\nWould you have wanted to stay in that building for three weeks? Tell us below.\n\nSource: NASA, NASA History Office, collectSPACE.",
+ "hashtags": [
+  "#apollo",
+  "#nasa",
+  "#space",
+  "#moonlanding",
+  "#spacehistory"
+ ]
+}
