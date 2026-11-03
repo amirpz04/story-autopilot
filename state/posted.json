@@ -64,5 +64,11 @@
     "attempts": 0,
     "note": "found live on Instagram",
     "status": "posted"
+  },
+  "2026-11-03-01": {
+    "attempts": 1,
+    "media_id": "18641210809009114",
+    "posted_at": "2026-11-03T14:14:53.786490Z",
+    "status": "posted"
   }
 }
