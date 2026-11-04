@@ -1,0 +1,1 @@
+{"fails": 1, "reason": "Instagram API error 403 on 17841415004854249/media_publish: {\"error\":{\"message\":\"Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":false,\"code\":4,\"error_subcode\":2207051,\"error", "until": "2026-11-04T14:41:47.469822+00:00"}
