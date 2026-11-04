@@ -1,0 +1,91 @@
+{
+  "id": "2026-11-04-03",
+  "date": "2026-11-04",
+  "slot": 5,
+  "reel_slot": 1,
+  "title": "Henry Box Brown shipped himself to freedom in a crate (1849)",
+  "category": "people",
+  "tags": {
+    "headline": "detail that doesn't fit",
+    "end": "callback",
+    "lane": "evergreen"
+  },
+  "scores": {
+    "hook": 9,
+    "surprise": 9,
+    "emotion": 9,
+    "shareability": 9,
+    "talkability": 7,
+    "no_context": 8,
+    "freshness": 6
+  },
+  "sources": [
+    {
+      "name": "National Park Service, New Bedford Whaling NHP",
+      "url": "https://www.nps.gov/nebe/learn/historyculture/henryboxbrown.htm"
+    },
+    {
+      "name": "Narrative of Henry Box Brown (1849 edition), Internet Archive",
+      "url": "https://archive.org/details/narrativeofhenry00brow"
+    }
+  ],
+  "verification": "Box size (3 ft 1 in x 2 ft x 2 ft 6 in), 27-hour trip, 'this side up' label and being turned upside down checked against the NPS page and Brown's own published Narrative (full text read). Exact calendar date differs between sources, so the post says March 1849 only.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "1849",
+      "headline": "The crate marked \"This Side Up\" had a man inside",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/Boxbrown.jpg/3840px-Boxbrown.jpg",
+        "credit": "Library of Congress, 1850 lithograph by A. Donnelly / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Henry Brown, enslaved in Richmond, Virginia, had a box built to fit him: 3 feet 1 inch long, 2 feet wide, 2½ feet deep. His friend asked if it was for clothes. \"No,\" Brown said. \"To put Henry Brown in.\"",
+      "layout": "split",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/NHBB_D004_Henry_Box_Brown.jpg",
+        "credit": "Portrait of Henry Box Brown, from his 1851 narrative / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "He took a bladder of water to cool his neck and had three small holes for air. Then friends nailed the lid shut and sent him by express: wagon, train, steamboat, wagon, train. Richmond to Philadelphia, 27 hours.",
+      "layout": "full",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Map_of_Richmond%2C_Ellyson%2C_1856.jpg",
+        "credit": "Map of Richmond, Virginia, 1856 / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The label said \"this side up with care.\" He rode upside down anyway: \"my eyes were almost swollen out of their sockets.\" Two men finally set the box upright. One guessed it held the mail."
+    },
+    {
+      "type": "text",
+      "text": "In Philadelphia, a crowd waited around the crate, too nervous to open it. Someone rapped on the lid: \"Is all right within?\" Brown answered, \"All right.\" Then he fainted.",
+      "layout": "full",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/19/Resurrection_of_Henry_Box_Brown.png",
+        "credit": "Engraving from William Still's The Underground Rail Road / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "He had to leave his wife and children behind in slavery. In the North he joined the abolitionist movement, telling his story at anti-slavery meetings across New England, New York and Pennsylvania."
+    },
+    {
+      "type": "end",
+      "text": "Labeled \"this side up with care,\" he was handled like freight for 27 hours. He made it, and spent years telling the story."
+    }
+  ],
+  "caption": "A package labeled \"This side up with care\" left Richmond, Virginia in March 1849. Inside was a man.\n\nHenry Brown was born into slavery in Virginia around 1815. Having built a box just big enough to hold him (3 feet 1 inch by 2 feet by 2 feet 6 inches), he climbed in with a bladder of water and three small holes for air, and a friend shipped him by express to abolitionists in Philadelphia.\n\nThe trip took about 27 hours by wagon, train and steamboat. The label did not help much: in his own published account, he describes being put on his head more than once, with the pressure so bad he thought he was about to die. Two men who stopped to rest finally turned the box over, and one guessed it held the mail.\n\nWhen Philadelphia friends opened the lid, someone asked, \"Is all right within?\" Brown said, \"All right,\" and fainted. He later became known as Henry \"Box\" Brown.\n\nHis wife and children stayed behind. Brown carried the story around anti-slavery meetings in the North, and the 1850 lithograph of his \"resurrection\" at Philadelphia made it famous.\n\nSources: National Park Service; Narrative of Henry Box Brown (1849).",
+  "hashtags": [
+    "#history",
+    "#hiddenhistory",
+    "#blackhistory",
+    "#truestory",
+    "#unclefacts"
+  ]
+}

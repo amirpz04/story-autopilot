@@ -1,0 +1,82 @@
+{
+  "id": "2026-11-04-02",
+  "date": "2026-11-04",
+  "slot": 3,
+  "reel_slot": 5,
+  "title": "Cocoanut Grove fire 1942 and the outward-opening exit door rules",
+  "category": "history",
+  "tags": {
+    "headline": "stakes",
+    "end": "everyday echo",
+    "lane": "evergreen"
+  },
+  "scores": {
+    "hook": 7,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 8,
+    "talkability": 6,
+    "no_context": 8,
+    "freshness": 7
+  },
+  "sources": [
+    {
+      "name": "Fire Fighter Nation, remembering the Cocoanut Grove fire",
+      "url": "https://www.firefighternation.com/?p=30631"
+    },
+    {
+      "name": "NBC Boston, 80 years since the Cocoanut Grove fire",
+      "url": "https://www.nbcboston.com/news/local/monday-marks-80-years-since-bostons-cocoanut-grove-fire/2904829"
+    },
+    {
+      "name": "City of Boston Fire Department, Report concerning the Cocoanut Grove Fire (1943)",
+      "url": "https://archive.org/details/reportconcerning00bost"
+    }
+  ],
+  "verification": "Death toll (492), revolving door, bolted side doors, inward-opening doors, fire officials' testimony (300 lives), and code changes checked across both sources; cause stated as disputed. Capacity figures only in one source, worded loosely. Official 1943 City of Boston fire report (Internet Archive) used for the diagram and floor plan and confirms the revolving main door.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "BOSTON, 1942",
+      "headline": "Most exit doors push outward because of one Boston nightclub",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Cocoanut_Grove_Memorial.jpg",
+        "credit": "Photo: Cocoanut Grove Memorial, Boston / Wikimedia Commons, CC BY-SA 2.5"
+      }
+    },
+    {
+      "type": "text",
+      "text": "On November 28, 1942, fire swept Boston's Cocoanut Grove nightclub. About 1,000 people were inside a club rated for 460. The main exit was one revolving door, and it jammed. 492 died.",
+      "layout": "split",
+      "image": {
+        "url": "https://archive.org/download/reportconcerning00bost/page/n8_w1600.jpg",
+        "credit": "City of Boston Fire Department, Report concerning the Cocoanut Grove Fire (1943) / Internet Archive, public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Side doors were bolted shut. Other exits opened inward, so the crowd pressed them closed. Fire officials later testified that outward-swinging doors could have saved at least 300 lives."
+    },
+    {
+      "type": "text",
+      "text": "Boston rewrote its fire rules and many states followed: exit doors that open outward, exit signs always visible, no flammable decor, and revolving doors flanked by regular doors or able to fold flat.",
+      "layout": "split",
+      "image": {
+        "url": "https://archive.org/download/reportconcerning00bost/page/n33_w1600.jpg",
+        "credit": "First-floor plan, City of Boston Fire Department, Report concerning the Cocoanut Grove Fire (1943) / Internet Archive, public domain"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Next time you push an exit door open without thinking, you're using a rule written in 1942."
+    }
+  ],
+  "caption": "Push an exit door and it swings out. That is not an accident of design.\n\nOn November 28, 1942, a fire tore through the Cocoanut Grove nightclub in Boston. It killed 492 people and remains the deadliest nightclub fire in U.S. history. Around 1,000 guests were inside a club with an official capacity of 460.\n\nThe main entrance was one revolving door, which jammed under the crush of the crowd. Some side doors were bolted shut, a window was boarded up, and other doors opened inward, so the crowd itself held them closed. The club had no sprinklers, and flammable paper palm trees and drapes helped the fire spread. Fire officials testified that outward-swinging doors could have saved at least 300 lives.\n\nIn the years afterward, Boston overhauled its building codes and many states passed laws: no inward-swinging exit doors, exit signs visible at all times, a ban on flammable decorations, sprinklers for places like restaurants and clubs, and revolving doors flanked by normal outward-swinging doors or built to fold flat. Massachusetts also created a statewide fire code.\n\nThe cause is still debated, but the rules came from what trapped people.\n\nSource: Fire Fighter Nation; NBC Boston.",
+  "hashtags": [
+    "#history",
+    "#firesafety",
+    "#boston",
+    "#designhistory",
+    "#unclefacts"
+  ]
+}

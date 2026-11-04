@@ -1,0 +1,95 @@
+{
+  "id": "2026-11-04-01",
+  "date": "2026-11-04",
+  "slot": 1,
+  "reel_slot": 3,
+  "title": "RIKEN: tumor carbon monoxide used to make anticancer drug inside cancer cells",
+  "category": "health",
+  "tags": {
+    "headline": "reversal",
+    "end": "contrast",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 6,
+    "shareability": 7,
+    "talkability": 6,
+    "no_context": 7,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "ScienceDaily (RIKEN press release)",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261101010552.htm"
+    },
+    {
+      "name": "Nature Communications: Harnessing endogenous carbon monoxide for cancer-selective drug synthesis",
+      "url": "https://doi.org/10.1038/s41467-026-77616-8"
+    }
+  ],
+  "verification": "Details read in the RIKEN release as carried by ScienceDaily; paper title, journal and date confirmed via Crossref (Nature Communications, Sept 17, 2026). Early lab (cell culture) study; wording kept to what was tested.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "CANCER LAB",
+      "headline": "Cancer cells leak a poison gas. Now it's the trigger that kills them",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Fluorescence_microscopy_of_the_oral_cancer_cells.jpg/3840px-Fluorescence_microscopy_of_the_oral_cancer_cells.jpg",
+        "credit": "Illustrative photo: Fluorescence microscopy of oral cancer cells / Wikimedia Commons, CC BY 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Many tumor cells make unusually high amounts of carbon monoxide, the same gas in car exhaust. Researchers at RIKEN in Japan saw that as a switch they could flip."
+    },
+    {
+      "type": "text",
+      "text": "They built a compound with palladium metal inside that stays quiet until it meets carbon monoxide. Where the gas is plentiful, it runs a reaction and makes a molecule that is toxic to cells.",
+      "layout": "split",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Fluorescence_microscopy_of_the_DNA_of_the_oral_cancer_cells.jpg/3840px-Fluorescence_microscopy_of_the_DNA_of_the_oral_cancer_cells.jpg",
+        "credit": "Illustrative photo: Fluorescence microscopy of oral cancer cell DNA / Wikimedia Commons, CC BY 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "One problem: chemicals inside cells knock palladium out fast. So the team wrapped it in albumin, a protein your blood already carries.",
+      "layout": "full",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Binding_of_anti-cancer_drug_gemcitabine-squalene_to_human_serum_albumin.png/3840px-Binding_of_anti-cancer_drug_gemcitabine-squalene_to_human_serum_albumin.png",
+        "credit": "Illustrative image: human serum albumin binding a drug / Wikimedia Commons, CC BY 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "In dishes of human liver, cervical, breast and lung cancer cells, the drug formed inside the cells after 48 hours. In a noncancerous cell line, it did not."
+    },
+    {
+      "type": "text",
+      "text": "Blood also contains carbon monoxide, so could the drug form there and hurt blood cells? In tests it did not. The team thinks the gas in blood is mostly stuck to hemoglobin and unavailable for the reaction.",
+      "layout": "split",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/RIKEN_Wako_Campus_P4208301.jpg",
+        "credit": "Photo: RIKEN Wako Campus / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The big caveat: so far this is only cultured cells. Next come animal tests. It is years from being a treatment, if it ever gets there."
+    },
+    {
+      "type": "end",
+      "text": "Chemo sends poison everywhere and hopes. This idea sends something quiet, and lets the tumor build its own weapon."
+    }
+  ],
+  "caption": "What if a tumor's own waste gas could be turned into the thing that kills it?\n\nMany types of cancer cells produce unusually high levels of carbon monoxide, the poisonous gas best known from car exhaust. A team led by Katsunori Tanaka at the RIKEN Pioneering Research Institute in Japan used that as a trigger.\n\nTheir compound contains palladium, which reacts with carbon monoxide to make phenanthridinone, a molecule whose derivatives are toxic to cells and already appear in anticancer drugs. Because palladium is quickly disabled inside cells, they packed it inside albumin, a protein common in blood.\n\nIn lab dishes, the drug formed inside human liver, cervical, breast and lung cancer cells after 48 hours, but not in noncancerous cells. It also did not form in blood, probably because carbon monoxide there is tied up by hemoglobin.\n\nThis is early lab work, published in Nature Communications. Safety in living animals is still unproven, and animal tests are next.\n\nThe appeal is simple: instead of poisoning the whole body, make the drug only where the tumor is.\n\nSource: RIKEN via ScienceDaily; Nature Communications.",
+  "hashtags": [
+    "#cancerresearch",
+    "#medicine",
+    "#science",
+    "#biotech",
+    "#unclefacts"
+  ]
+}
