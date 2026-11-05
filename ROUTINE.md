@@ -159,7 +159,18 @@ Score each candidate 1–10 on:
 | Shareability | Would someone send this to a specific friend or say "you need to see this"? (weight double) |
 | Talkability | Will people argue or share their own opinion in the comments? |
 | No context needed | Does it make sense to someone who knows nothing about it? |
+| Everyday pull | Does it touch money, food, the body, famous brands or people, things everyone uses, or a debate people actually have? (weight double) |
 | Freshness / unfamiliarity | News: have the big accounts covered it? Evergreen: how few people already know this angle? (Fewer = high) |
+
+**The friend test (owner's rule, Nov 5): would a 16-year-old send this to a friend, and would their aunt?**
+If caring about it needs a science background ("bow shock", "carbon monoxide therapy", a new lab method), skip it,
+however important it is. The account had drifted into nerdy, long posts; the owner wants viral, interesting, even
+controversial ones. Good: how a famous brand really makes money, a scam that worked, a law that sounds fake, a myth
+everyone believes, the dark side of something loved, a mistake that cost millions, a debate people split on, a body
+fact that makes people check themselves. **Controversial is welcome when it is true and fair**: a company caught doing
+something, a rule that seems crazy, a popular belief that is wrong, both sides of a real debate. **Never**: partisan
+politics or culture-war bait, mocking religions or groups, health claims against medical consensus, accusing private
+people, using a tragedy for shock, or anything the sources do not clearly support.
 
 A small story with a great hook beats a major headline that's boring or
 everywhere already. Pick the top `stories_per_day` stories and keep 2 backups.
@@ -309,14 +320,20 @@ none. Never mark just to decorate.
 
 ## 6. Write the post
 
-Each post is a carousel of **5 to 10 slides, and the story decides how many**: a simple news story or one
-striking fact takes 5–6; a story with a timeline, steps or several turns takes 7–8; a rich story can use up
-to 10. Never pad to reach a number, and stop when the story is told; every slide must add something new.
-The detailed caption carries the depth:
+**Plain English, short (owner's rule, Nov 5: "too long, too much info, too hard to understand").** Write the way
+you would tell it to a 12-year-old friend: everyday words, sentences under 12 words, one idea per slide. No jargon
+(if a term is unavoidable, explain it in three words). No researcher or institution names unless people know them
+("scientists tracked 1,000 birds", not "Oxford ecologist Patrick Lewin's team analyzed..."). Round numbers unless the
+exact one is the surprise. Cut every detail that is merely true; keep only what makes the story hit. Every slide is
+read aloud by the Reel's narrator, so it must sound natural spoken. If the written text would sound odd read aloud
+(a symbol, a list, a number like 1,045), add `"say"` to the slide with the spoken version.
+
+Each post is a carousel of **5 to 7 slides** (usually 5 or 6). Stop when the story is told; every slide must add
+something new. The caption adds a little depth, not a second article:
 
 - **Slide 1 (cover):** the `headline` has one job: make a stranger swipe. It is concrete, true, plain
   words, and it is written fresh for this story using section 6b, not copied from a template or from
-  a headline you have seen on this account. Usually 6–12 words (16 is a ceiling, not a target).
+  a headline you have seen on this account. Usually 5–9 words (12 is the ceiling).
   Optional `kicker`: 1–3 words above the headline that add something: the category, but also a year,
   a place, a number or a mood when that does more work than the category.
   Use the best image here.
@@ -325,8 +342,8 @@ The detailed caption carries the depth:
   two text-only slides in a row. Set `"layout"` on text slides that have an image:
   `"split"` (default: photo on top, text below) or `"full"` (the photo fills the whole
   slide with the text over it). Alternate them and use `"full"` on the 1–2 most
-  striking pictures. Keep each text slide to 1–2 short sentences (about 35 words at
-  most), so every slide carries a real piece of the story. Change the pace: a punchy line, then a number or quote, then a reveal.
+  striking pictures. Keep each text slide to 1–2 short sentences (20 words at most), so every slide carries
+  one real piece of the story. Change the pace: a punchy line, then a number or quote, then a reveal.
 - **Story slides (everything between the cover and the ending):** tell the whole story in beats: what
   happened or the surprising fact (the most surprising detail up front, on slide 2), then the key details,
   turning points or numbers, then why it matters or what happens next. Concrete numbers, place names and
@@ -339,17 +356,12 @@ The detailed caption carries the depth:
   automatically. Record a short label of what you did in `tags` (see the example below).
   Instagram's ranking rewards sends most, so write the last slide for the one friend it would be sent to.
 
-**Caption:** the slides are the quick version; the caption is the full story for
-people who want to know more. Write a detailed, well-researched explanation of
-about 150–220 words (900–1,300 characters; never more than 1,400), in short paragraphs separated by
-blank lines:
-1. A strong first line (it shows before "more", so it must make people tap). It adds a new angle or
-   detail instead of repeating the cover headline in other words.
-2. The full story: who, what, where, when, and how it happened, with the specific details, numbers and quotes from your sources.
-3. Background and context that the slides didn't have room for: why it's unusual, how it compares, what led up to it.
-4. What happens next, or why it matters to ordinary people.
-5. Close with a line that fits this story, in your own words. Do not copy the end slide, and do not add a stock "tell us below" question; ask one only if the story truly splits people.
-6. `Source: <publication name(s)>`. Put 3–5 relevant hashtags **only** in the `hashtags` field; they are added
+**Caption:** short and easy, 60–120 words (350–750 characters, never more than 900), in 2–4 short paragraphs
+separated by blank lines:
+1. A strong first line (it shows before "more", so it must make people tap). A new angle, not the cover reworded.
+2. One or two short paragraphs with the best extra detail or context the slides had no room for.
+3. If the story really splits people, end with one honest question; otherwise end on a strong line.
+4. `Source: <publication name(s)>`. Put 3–5 relevant hashtags **only** in the `hashtags` field; they are added
    automatically, so never write them in the caption text.
 
 Write it like a good storyteller, not a press release: plain words, short

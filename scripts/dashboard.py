@@ -228,7 +228,7 @@ def build(now):
                    "last_mac_ping_utc": record_mac_ping(now), "history_count": len(history),
                    "api_wait_until": health.get("until") if health.get("until") and datetime.fromisoformat(health["until"]) > datetime.now(timezone.utc) else None,
                    "catch_up_days": publish.CATCH_UP_DAYS, "queued_today": sum(1 for p in all_posts if p.get("date") == today.isoformat() and p.get("status") not in ("removed", "deleted")),
-                   "reels_per_day": config.get("reels_per_day", 0), "reels_mode": config.get("reels_mode", "same"),
+                   "reels_per_day": config.get("reels_per_day", 0), "voice": config.get("voice", "am_michael") if config.get("voiceover") else "off", "reels_mode": config.get("reels_mode", "same"),
                    "stories_per_day": config.get("stories_per_day", config["posts_per_day"]),
                    "reel_times": [config["reel_times"][i - 1] for i in config.get("reel_active_slots", [])],
                    "reels_made": sum(1 for r in reels.values() if r.get("status") in ("made", "posted")),

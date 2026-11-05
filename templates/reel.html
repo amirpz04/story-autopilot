@@ -32,7 +32,7 @@
   .card { position: absolute; will-change: transform; box-shadow: 0 18px 60px rgba(0,0,0,.6); border-radius: 6px; }
   .card img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 6px; }
   .card .mk { position: absolute; inset: 0; }
-  .txt.body.marked { font-size: 48px; }
+  .txt.body.marked { font-size: 56px; }
 </style>
 <script>/*MARKSJS*/</script>
 </head>
@@ -121,12 +121,12 @@ function render(t) {
     const base = i === 0 ? 0.12 : 0.22;
     if (s.kickerEl) { const p = clamp((local - base) / 0.4); s.kickerEl.style.opacity = p; s.kickerEl.style.transform = `scale(${0.82 + 0.18 * outBack(p)})`; }
     if (s.barEl) { const p = outCubic(clamp((local - base) / 0.55)); s.barEl.style.transform = `scaleX(${p})`; }
-    const w0 = base + (s.kickerEl ? 0.28 : 0.08);
+    const w0 = s.wgap ? 0.3 : base + (s.kickerEl ? 0.28 : 0.08), gap = s.wgap || 0.075;   // with a voiceover, words appear as they are spoken
     s.wordEls.forEach((w, j) => {
-      const p = outCubic(clamp((local - (w0 + j * 0.075)) / 0.42));
+      const p = outCubic(clamp((local - (w0 + j * gap)) / 0.42));
       w.style.opacity = p; w.style.transform = `translateY(${(1 - p) * 38}px)`;
     });
-    if (s.followEl) { const p = outCubic(clamp((local - (w0 + s.wordEls.length * 0.075 + 0.5)) / 0.5)); s.followEl.style.opacity = p; s.followEl.style.transform = `translateY(${(1 - p) * 22}px)`; }
+    if (s.followEl) { const p = outCubic(clamp((local - (w0 + s.wordEls.length * gap + 0.5)) / 0.5)); s.followEl.style.opacity = p; s.followEl.style.transform = `translateY(${(1 - p) * 22}px)`; }
   });
 }
 // Called once after fonts and pictures have loaded: shrink any text block that would not fit the safe box, then

@@ -6,6 +6,7 @@ Draws every frame in the browser (smooth camera moves on photos, word-by-word te
 then encodes with ffmpeg. Needs Playwright with Chromium and ffmpeg; no other services, no cost.
 """
 import json
+import os
 import random
 import shutil
 import subprocess
@@ -97,6 +98,42 @@ def build_scenes(post, work):
     return scenes
 
 
+def narration(slide, config):
+    """What the narrator says on a slide: its own `say` line if the story has one, otherwise the slide's text."""
+    if slide.get("say"):
+        return slide["say"]
+    text = slide.get("headline") or slide.get("text") or ""
+    if slide["type"] == "end":
+        text += " Follow %s for more." % config.get("account_name", "us")
+    return text
+
+
+def add_voice(post, scenes, work, config):
+    """Read every slide aloud and stretch each scene to its line. Returns the voice clips [(path, start)] or [] (no voice)."""
+    if not config.get("voiceover"):
+        return []
+    lines = [narration(sl, config) for sl in post["slides"]]
+    (work / "lines.json").write_text(json.dumps(lines))
+    python = os.environ.get("TTS_PYTHON") or sys.executable
+    try:
+        res = subprocess.run([python, str(ROOT / "scripts" / "voice.py"), str(work / "lines.json"), str(work / "voice"),
+                              config.get("voice", "am_michael"), str(config.get("voice_speed", 1.05))],
+                             capture_output=True, text=True, timeout=900, check=True)
+        lengths = json.loads(res.stdout.strip().splitlines()[-1])
+    except Exception as exc:
+        print("Voiceover failed, making the Reel without it:", str(getattr(exc, "stderr", "") or exc)[-400:])
+        return []
+    clips, t = [], 0.0
+    for i, (sc, length) in enumerate(zip(scenes, lengths)):
+        extra = min(2.0, 0.55 * len(sc.get("marks") or []))
+        sc["dur"] = round(max(2.4, 0.25 + length + 0.35) + extra * 0.4, 3)        # the line, a breath after it, a moment for marks
+        sc["start"] = round(t, 3)
+        sc["wgap"] = round(max(0.05, min(0.4, length * 0.88 / max(1, len(sc["text"].split())))), 3)   # words appear as they are spoken
+        clips.append((work / "voice" / ("line_%02d.wav" % i), t + 0.25))
+        t += sc["dur"]
+    return clips
+
+
 def make_reel(post_dir, out_path, config=None, music=None):
     from playwright.sync_api import sync_playwright
 
@@ -106,6 +143,7 @@ def make_reel(post_dir, out_path, config=None, music=None):
     frames = work / "frames"
     frames.mkdir()
     scenes = build_scenes(post, work)
+    voice = add_voice(post, scenes, work, config)
     html = (ROOT / "templates" / "reel.html").read_text()
     html = html.replace("/*MARKSJS*/", (ROOT / "templates" / "marks.js").read_text()).replace("/*FONT*/", FONT.as_uri()).replace("/*HANDLE*/", config["handle"])
     html = html.replace("/*SCENES*/[]/*END*/", json.dumps(scenes))
@@ -129,11 +167,24 @@ def make_reel(post_dir, out_path, config=None, music=None):
 
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    if music:   # free music (see assets/music/README.md), looped to length, loudness-matched, faded in and out
-        audio_in = ["-stream_loop", "-1", "-i", str(music)]
-        audio_map = ["-filter_complex",
-                     "[1:a]atrim=0:%.2f,asetpts=N/SR/TB,loudnorm=I=-17:TP=-2:LRA=7,afade=t=in:d=1.2,afade=t=out:st=%.2f:d=2.3[a]" % (total, total - 2.4),
-                     "-map", "0:v", "-map", "[a]"]
+    if music or voice:
+        # free music (see assets/music/), looped to length and faded; when there is a voiceover the music sits quietly under it
+        audio_in, parts, n = [], [], 1
+        if music:
+            audio_in += ["-stream_loop", "-1", "-i", str(music)]
+            level = "volume=0.16" if voice else "loudnorm=I=-17:TP=-2:LRA=7"
+            parts.append("[1:a]atrim=0:%.2f,asetpts=N/SR/TB,aformat=sample_rates=44100:channel_layouts=stereo,%s,afade=t=in:d=1.2,afade=t=out:st=%.2f:d=2.3[m]" % (total, level, total - 2.4))
+            n = 2
+        for k, (clip, start) in enumerate(voice):
+            audio_in += ["-i", str(clip)]
+            ms = int(start * 1000)
+            parts.append("[%d:a]aformat=sample_rates=44100:channel_layouts=stereo,adelay=%d|%d[v%d]" % (n + k, ms, ms, k))
+        if voice:
+            parts.append("".join("[v%d]" % k for k in range(len(voice))) + "amix=inputs=%d:normalize=0:duration=longest[vo]" % len(voice))
+            parts.append(("[m][vo]amix=inputs=2:normalize=0:duration=first," if music else "[vo]") + "loudnorm=I=-15:TP=-1.5:LRA=9,apad[a]")
+        else:
+            parts.append("[m]anull[a]")
+        audio_map = ["-filter_complex", ";".join(parts), "-map", "0:v", "-map", "[a]"]
     else:
         audio_in = ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
         audio_map = []

@@ -11,6 +11,7 @@ Usage: python scripts/control.py ACTION [TARGET] [TEXT]     (TEXT may also come 
   edit_slide POST_ID#N  TEXT     change the text of slide N (1-based) of a post that isn't live
   posts_per_day N                0-5 carousel posts a day from the next research run on
   reels_mode same|different      Reels reuse the carousel stories, or get their own (more research, no repeats)
+  voice off|NAME                  narrator on Reels (Kokoro voice name, e.g. am_michael) or off
   reels_per_day N                0-5 Reels a day from the next research run on (at least one post or Reel a day)
   delete_instagram POST_ID       delete a live post from Instagram (the whole carousel)
   post_reel POST_ID              publish the Reel that was made for this post
@@ -41,6 +42,7 @@ MAX_ATTEMPTS = 3
 SLOTS = {0: [], 1: [1], 2: [1, 5], 3: [1, 3, 5], 4: [1, 2, 4, 5], 5: [1, 2, 3, 4, 5]}
 REEL_SLOTS = {0: [], 1: [3], 2: [3, 5], 3: [1, 3, 5], 4: [1, 2, 4, 5], 5: [1, 2, 3, 4, 5]}
 REELS = ROOT / "state" / "reels.json"
+VOICES = {"am_michael": "Michael (man)", "am_adam": "Adam (man)", "am_puck": "Puck (man)", "af_heart": "Heart (woman)", "af_bella": "Bella (woman)"}
 
 
 def load(path, default):
@@ -223,6 +225,16 @@ def run(action, target, text):
         save(CONFIG, config)
         return ("Reels now reuse the carousel stories (no extra research)." if target == "same" else
                 "Reels now get their own stories, so followers never see the same story twice. The research run writes %d stories a day." % config["stories_per_day"])
+
+    if action == "voice":                           # "off" or a Kokoro voice name
+        if target == "off":
+            config["voiceover"] = False
+        elif target in VOICES:
+            config.update(voiceover=True, voice=target)
+        else:
+            return "Unknown voice. Pick one of: off, " + ", ".join(VOICES) + "."
+        save(CONFIG, config)
+        return "Reel voice: %s (from the next Reel that is made)." % ("off" if target == "off" else VOICES[target])
 
     if action == "refresh_dashboard":
         return "Dashboard rebuilt."

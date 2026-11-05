@@ -48,5 +48,8 @@
   "timezone": "America/New_York",
   "unsplash_max_requests_per_day": 100,
   "unsplash_max_requests_per_hour": 30,
-  "variety_rules_from": "2026-11-04"
+  "variety_rules_from": "2026-11-04",
+  "voice": "am_michael",
+  "voice_speed": 1.12,
+  "voiceover": true
 }

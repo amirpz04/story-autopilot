@@ -13,10 +13,11 @@ import variety
 
 ROOT = Path(__file__).resolve().parent.parent
 IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".webp")
-MAX_SLIDE_WORDS = 40
-MAX_HEADLINE_WORDS = 16
-MIN_CAPTION_CHARS = 700
-MAX_CAPTION_CHARS = 1500
+MAX_SLIDE_WORDS = 22
+MAX_HEADLINE_WORDS = 12
+MAX_SENTENCE_WORDS = 16          # plain English, read aloud by the Reel narrator
+MIN_CAPTION_CHARS = 300
+MAX_CAPTION_CHARS = 950
 MAX_HASHTAGS = 5
 
 
@@ -147,8 +148,8 @@ def check_post(path, config):
         errors.append("every source needs a url")
 
     slides = post["slides"]
-    if not 5 <= len(slides) <= 10:
-        errors.append("needs 5-10 slides, has %d" % len(slides))
+    if not 5 <= len(slides) <= 7:
+        errors.append("needs 5-7 slides, has %d" % len(slides))
     errors += final_problems(post)
     for i, sl in enumerate(slides, 1):
         if (sl.get("image") or {}).get("search") and not sl["image"].get("url"):
@@ -173,6 +174,10 @@ def check_post(path, config):
         limit = MAX_HEADLINE_WORDS if kind == "cover" else MAX_SLIDE_WORDS
         if words > limit:
             errors.append("slide %d: %d words, max %d" % (i, words, limit))
+        for sentence in re.split(r"(?<=[.!?])\s+", slide.get(field) or ""):
+            if len(sentence.split()) > MAX_SENTENCE_WORDS:
+                errors.append("slide %d: a sentence of %d words is too long to read easily (max %d): %r"
+                              % (i, len(sentence.split()), MAX_SENTENCE_WORDS, sentence[:60]))
         image = slide.get("image")
         if image and "url" not in image:
             if not image.get("search", "").strip():
@@ -193,7 +198,7 @@ def check_post(path, config):
 
     caption = post["caption"] + "\n\n" + " ".join(post.get("hashtags", []))
     if len(post["caption"]) < MIN_CAPTION_CHARS:
-        errors.append("caption is %d chars; write a detailed one of at least %d" % (len(post["caption"]), MIN_CAPTION_CHARS))
+        errors.append("caption is %d chars; write at least %d" % (len(post["caption"]), MIN_CAPTION_CHARS))
     if len(caption) > MAX_CAPTION_CHARS:
         errors.append("caption + hashtags is %d chars, max %d" % (len(caption), MAX_CAPTION_CHARS))
     if len(post.get("hashtags", [])) > MAX_HASHTAGS:

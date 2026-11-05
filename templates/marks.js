@@ -38,8 +38,11 @@ function drawMarks(host, marks, W, H, src, opt) {
       "padding:" + fs * .26 + "px " + fs * .42 + "px;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap;box-shadow:0 4px 18px rgba(0,0,0,.5);opacity:0";
     host.appendChild(d);
     const w = d.offsetWidth, h = d.offsetHeight, g = fs * .55;
-    let lx = side === "r" ? x + g : side === "l" ? x - w - g : x - w / 2;
-    let ly = side === "t" ? y - h - g : side === "b" ? y + g : y - h / 2;
+    const spot = sd => [sd === "r" ? x + g : sd === "l" ? x - w - g : x - w / 2, sd === "t" ? y - h - g : sd === "b" ? y + g : y - h / 2];
+    const fits = ([a, b]) => a >= V.x0 + M && a + w <= V.x1 - M && b >= V.y0 + M && b + h <= V.y1 - M;
+    const opposite = {r: "l", l: "r", t: "b", b: "t"};
+    const order = [side, opposite[side], "t", "b", "r", "l"];    // the asked side first; never slide the tag over its own point
+    let [lx, ly] = spot(order.find(sd => fits(spot(sd))) || side);
     lx = clamp(lx, V.x0 + M, V.x1 - w - M); ly = clamp(ly, V.y0 + M, V.y1 - h - M);
     d.style.left = lx + "px"; d.style.top = ly + "px"; d.style.transformOrigin = (x - lx) + "px " + (y - ly) + "px";
     pop(d);
@@ -50,8 +53,11 @@ function drawMarks(host, marks, W, H, src, opt) {
     return Math.abs(x - cx) / (V.x1 - V.x0) > Math.abs(y - cy) / (V.y1 - V.y0) ? (x < cx ? "r" : "l") : (y < cy ? "b" : "t");
   };
 
+  const inView = a => { const [x, y] = P(a); return x >= V.x0 && x <= V.x1 && y >= V.y0 && y <= V.y1; };
   marks.forEach((m, n) => {
     const kind = m.type;
+    const anchor = m.at || m.to || (m.box && [(m.box[0] + m.box[2]) / 2, (m.box[1] + m.box[3]) / 2]);
+    if (anchor && !inView(anchor)) { console.warn("mark skipped, its point is outside the visible picture:", JSON.stringify(m)); return; }
     if (kind === "circle") {
       const [cx, cy] = P(m.at), r = (m.r || .08) * W;
       const c = el("circle", {cx, cy, r, fill: "none", stroke: Y, "stroke-width": sw, transform: "rotate(-90 " + cx + " " + cy + ")"});

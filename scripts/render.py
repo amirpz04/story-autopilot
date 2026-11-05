@@ -9,6 +9,7 @@ import html
 import json
 import mimetypes
 import sys
+import time
 import urllib.request
 from pathlib import Path
 
@@ -27,17 +28,21 @@ def load_config():
 
 def fetch_image(url):
     """Download an image and return it as a data URI, or None if it fails."""
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            data = resp.read()
-            mime = resp.headers.get_content_type()
-        if not mime.startswith("image/"):
-            mime = mimetypes.guess_type(url)[0] or "image/jpeg"
-        return "data:%s;base64,%s" % (mime, base64.b64encode(data).decode())
-    except Exception as exc:
-        print("  ! image failed (%s): %s" % (exc, url))
-        return None
+    for attempt in range(1, 5):                     # Wikimedia and others throttle bursts (HTTP 429/503): wait and retry
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            with urllib.request.urlopen(req, timeout=30) as resp:
+                data = resp.read()
+                mime = resp.headers.get_content_type()
+            if not mime.startswith("image/"):
+                mime = mimetypes.guess_type(url)[0] or "image/jpeg"
+            return "data:%s;base64,%s" % (mime, base64.b64encode(data).decode())
+        except Exception as exc:
+            if attempt < 4 and getattr(exc, "code", None) in (429, 500, 502, 503, 504):
+                time.sleep(8 * attempt)
+                continue
+            print("  ! image failed (%s): %s" % (exc, url))
+            return None
 
 
 

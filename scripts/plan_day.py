@@ -61,6 +61,12 @@ NEWS_FEEDS = [
     ("r/Awwducational", "https://www.reddit.com/r/Awwducational/top.json?t=day&limit=25"),
     ("r/biology", "https://www.reddit.com/r/biology/top.json?t=day&limit=25"),
     ("r/todayilearned", "https://www.reddit.com/r/todayilearned/top.json?t=day&limit=25"),
+    ("r/nottheonion", "https://www.reddit.com/r/nottheonion/top.json?t=day&limit=25"),
+    ("r/interestingasfuck", "https://www.reddit.com/r/interestingasfuck/top.json?t=day&limit=25"),
+    ("r/Damnthatsinteresting", "https://www.reddit.com/r/Damnthatsinteresting/top.json?t=day&limit=25"),
+    ("r/business", "https://www.reddit.com/r/business/top.json?t=day&limit=25"),
+    ("BBC News", "https://feeds.bbci.co.uk/news/rss.xml"),
+    ("AP News top (via Google News)", "https://news.google.com/rss/search?q=site:apnews.com+when:1d&hl=en-US&gl=US&ceid=US:en"),
 ]
 FEED_BY_NAME = dict(NEWS_FEEDS)
 
@@ -123,6 +129,16 @@ NEWS_SUBJECTS = {
         ["EurekAlert technology", "Phys.org", "Nature news", "New Scientist", "r/science", "ScienceDaily top"],
         ["experiment result", "scientists puzzled", "unexpected finding study"],
     ),
+    "money": (
+        "money, brands and business: prices, scams, lawsuits, strange company decisions, what things really cost",
+        ["r/business", "r/nottheonion", "Hacker News front page", "AP News top (via Google News)", "BBC News"],
+        ["company sued over", "banned product", "scam cost millions", "price secret company", "recall surprising"],
+    ),
+    "weird": (
+        "weird but true: odd laws, bans, records, strange court cases, things that sound fake and are not",
+        ["r/nottheonion", "r/interestingasfuck", "r/Damnthatsinteresting", "BBC News", "Atlas Obscura"],
+        ["strange law", "banned because", "world record broken", "court rules bizarre", "town bans"],
+    ),
     "history": (
         "history and archaeology: what was found, what it changes about the story we know",
         ["Smithsonian Magazine", "Atlas Obscura", "r/todayilearned", "Phys.org"],
@@ -159,6 +175,20 @@ EVERGREEN_ANGLES = [
     ("business", "a rivalry between two companies or two inventors"),
     ("inventions", "something built for one purpose that is now used for a completely different one"),
     ("history", "a law, rule or safety standard written because of one specific disaster"),
+    # the kind of thing people send to a friend or argue about (always true and sourced)
+    ("money", "how a famous company really makes its money (it is not what people think)"),
+    ("money", "a pricing or packaging trick companies use on shoppers"),
+    ("money", "a mistake, typo or bad decision that cost millions"),
+    ("money", "a heist, scam or con that actually worked, and how it was caught"),
+    ("weird", "a law that sounds fake but is real (or was, and why)"),
+    ("weird", "something normal today that was once banned, or banned today that was once normal"),
+    ("weird", "a myth almost everyone believes, and what is actually true"),
+    ("health", "a surprising thing the human body does every day"),
+    ("history", "a cover-up, hoax or famous lie that came out"),
+    ("history", "the dark side of something everyone loves"),
+    ("business", "a feud between two famous brands or founders"),
+    ("people", "an ordinary person who did something nobody believed possible"),
+    ("weird", "a debate people genuinely split on, with the facts on each side"),
 ]
 
 EVERGREEN_STARTS = [
