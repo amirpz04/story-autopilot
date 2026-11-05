@@ -86,11 +86,12 @@ def build_scenes(post, work):
                 path = work / f"photo{n}.{ext}"
                 path.write_bytes(data)
                 photo, ar = path.as_uri(), dims[0] / dims[1]
-        dur = scene_duration(slide)
+        dur = scene_duration(slide) + (min(2.0, 0.55 * len(image.get("marks") or [])) if photo else 0)   # time to see the marks
         scenes.append({
             "type": slide["type"], "kicker": (slide.get("kicker") or "").upper() if slide["type"] == "cover" else "",
             "text": slide.get("headline") or slide.get("text") or "", "photo": photo, "ar": ar,
-            "credit": image.get("credit", "") if photo else "", "start": round(t, 3), "dur": round(dur, 3), "dir": 1 if n % 2 == 0 else -1,
+            "credit": image.get("credit", "") if photo else "", "marks": (image.get("marks") or []) if photo else [],
+            "focus": image.get("focus") if photo else None, "start": round(t, 3), "dur": round(dur, 3), "dir": 1 if n % 2 == 0 else -1,
         })
         t += dur
     return scenes
@@ -106,7 +107,7 @@ def make_reel(post_dir, out_path, config=None, music=None):
     frames.mkdir()
     scenes = build_scenes(post, work)
     html = (ROOT / "templates" / "reel.html").read_text()
-    html = html.replace("/*FONT*/", FONT.as_uri()).replace("/*HANDLE*/", config["handle"])
+    html = html.replace("/*MARKSJS*/", (ROOT / "templates" / "marks.js").read_text()).replace("/*FONT*/", FONT.as_uri()).replace("/*HANDLE*/", config["handle"])
     html = html.replace("/*SCENES*/[]/*END*/", json.dumps(scenes))
     page_file = work / "reel.html"
     page_file.write_text(html)

@@ -13,14 +13,14 @@
   }
   .photo { position: absolute; left: 0; top: 0; width: 100%; object-fit: cover; }
   .topbar {
-    position: absolute; top: 44px; left: 60px; right: 60px; z-index: 3;
+    position: absolute; top: 44px; left: 60px; right: 60px; z-index: 4;
     display: flex; justify-content: space-between;
     font-size: 30px; font-weight: 700; text-shadow: 0 2px 12px rgba(0,0,0,.6);
   }
   .counter { opacity: .8; }
-  .content { position: absolute; left: 60px; right: 60px; z-index: 2; }
+  .content { position: absolute; left: 60px; right: 60px; z-index: 4; }
   .credit {
-    position: absolute; bottom: 28px; left: 60px; right: 60px; z-index: 3;
+    position: absolute; bottom: 28px; left: 60px; right: 60px; z-index: 4;
     font-size: 19px; opacity: .6;
   }
   .kicker {
@@ -77,7 +77,10 @@
     {{body}}
   </div>
   <div class="credit">{{credit}}</div>
+<script>{{marksjs}}</script>
 <script>
+  var MARKS = {{marks}}, FOCUS = marksFocus(MARKS, {{focus}});
+  if (FOCUS) document.querySelector('img.photo').style.objectPosition = (FOCUS[0] * 100) + '% ' + (FOCUS[1] * 100) + '%';
   // Called by render.py once the page, photo and font have fully loaded.
   function prepare() {
     var body = document.body;
@@ -97,6 +100,23 @@
       document.querySelector('.accentbar').remove();
     }
     fitText();
+    placeMarks();
+  }
+  // Draw the slide's marks over the photo, kept clear of the text (see marks.js).
+  function placeMarks() {
+    var img = document.querySelector('img.photo');
+    if (!img || !MARKS.length || !img.naturalWidth) return;
+    var r = img.getBoundingClientRect(), s = Math.max(r.width / img.naturalWidth, r.height / img.naturalHeight);
+    var dw = img.naturalWidth * s, dh = img.naturalHeight * s, f = FOCUS || [.5, .5];
+    var ox = (r.width - dw) * f[0], oy = (r.height - dh) * f[1];
+    var clip = document.createElement('div');
+    clip.style.cssText = 'position:absolute;overflow:hidden;z-index:2;left:' + r.left + 'px;top:' + r.top + 'px;width:' + r.width + 'px;height:' + r.height + 'px';
+    var host = document.createElement('div');
+    host.style.cssText = 'position:absolute;left:' + ox + 'px;top:' + oy + 'px;width:' + dw + 'px;height:' + dh + 'px';
+    clip.appendChild(host); document.body.appendChild(clip);
+    var text = document.querySelector('.content').getBoundingClientRect();
+    var free = Math.min(r.height, text.top > r.top ? text.top - r.top - 20 : r.height);
+    drawMarks(host, MARKS, dw, dh, img.src, {view: {x0: -ox, y0: -oy, x1: -ox + r.width, y1: -oy + free}, fontSize: 34, stroke: 9})(Infinity);
   }
   // Shrink text until it fits inside its box.
   function fitText() {

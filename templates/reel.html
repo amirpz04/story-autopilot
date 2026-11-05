@@ -27,7 +27,14 @@
   .num { color: #FFD400; }
   .follow { margin-top: 48px; font-size: 38px; font-weight: 500; opacity: 0; }
   .follow b { color: #FFD400; font-weight: 800; }
+  /* a slide with marks shows its whole photo as a framed picture above the text, over a blurred copy of itself */
+  .photo.blur { filter: blur(30px) brightness(.42) saturate(1.1); }
+  .card { position: absolute; will-change: transform; box-shadow: 0 18px 60px rgba(0,0,0,.6); border-radius: 6px; }
+  .card img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 6px; }
+  .card .mk { position: absolute; inset: 0; }
+  .txt.body.marked { font-size: 48px; }
 </style>
+<script>/*MARKSJS*/</script>
 </head>
 <body>
 <div id="stage"></div>
@@ -65,6 +72,12 @@ S.forEach((s, i) => {
     const ar = s.ar; let w, h;
     if (ar >= 1080 / 1920) { h = 1920; w = h * ar; } else { w = 1080; h = w / ar; }
     s.photoEl.style.width = w + "px"; s.photoEl.style.height = h + "px"; s.pw = w; s.ph = h;
+    if (s.marks && s.marks.length) {                // framed picture + marks layer (placed in fitAll once the text is measured)
+      s.photoEl.classList.add("blur"); s.txtEl.classList.add("marked");
+      s.cardEl = document.createElement("div"); s.cardEl.className = "card";
+      s.cardEl.innerHTML = `<img src="${s.photo}" alt=""><div class="mk"></div>`;
+      s.shadeEl.after(s.cardEl); s.mkEl = s.cardEl.querySelector(".mk");
+    }
   }
 });
 
@@ -86,7 +99,12 @@ function render(t) {
     s.el.style.transform = `translateY(${ty}px) scale(${sc})`;
 
     // camera move on the photo: pan across wide pictures, push in on tall ones
-    if (s.photoEl) {
+    if (s.cardEl) {                                // framed picture: slow push-in toward the marks, marks draw themselves in
+      const e = inOutCubic(clamp(local / (s.dur + TR)));
+      s.cardEl.style.transform = `scale(${1 + 0.04 * e})`;
+      s.photoEl.style.transform = `translate(${-(s.pw - 1080) / 2}px, ${-(s.ph - 1920) / 2}px) scale(${1.1 + 0.05 * e})`;
+      if (s.show) s.show(local - 0.7);
+    } else if (s.photoEl) {
       const p = clamp(local / (s.dur + TR)), e = inOutCubic(p);
       const zoom = 1.0 + 0.085 * e;
       let tx = 0, ty2 = 0;
@@ -111,11 +129,27 @@ function render(t) {
     if (s.followEl) { const p = outCubic(clamp((local - (w0 + s.wordEls.length * 0.075 + 0.5)) / 0.5)); s.followEl.style.opacity = p; s.followEl.style.transform = `translateY(${(1 - p) * 22}px)`; }
   });
 }
-// shrink any text block that would not fit the safe box (called once, after fonts and pictures have loaded)
-window.fitAll = () => S.forEach(s => {
-  let size = parseFloat(getComputedStyle(s.txtEl).fontSize);
-  while (s.copyEl.offsetHeight > 760 && size > 34) { size -= 2; s.txtEl.style.fontSize = size + "px"; }
-});
+// Called once after fonts and pictures have loaded: shrink any text block that would not fit the safe box, then
+// place each scene's camera and marks. Every scene is shown while it is measured (hidden ones measure as 0).
+window.fitAll = () => {
+  S.forEach(s => {
+    const was = s.el.style.display; s.el.style.display = "block";
+    let size = parseFloat(getComputedStyle(s.txtEl).fontSize);
+    const limit = s.cardEl ? 470 : 760;            // a framed picture needs room above the text
+    while (s.copyEl.offsetHeight > limit && size > 34) { size -= 2; s.txtEl.style.fontSize = size + "px"; }
+    if (s.cardEl) {                                 // fit the whole picture between the Reels header and the text, left of the buttons
+      const top = 250, bottom = s.copyEl.getBoundingClientRect().top - 40, maxW = 900, maxH = Math.max(320, bottom - top);
+      let w = maxW, h = w / s.ar; if (h > maxH) { h = maxH; w = h * s.ar; }
+      const left = Math.max(60, Math.min(1080 - 60 - w, 475 - w / 2));
+      Object.assign(s.cardEl.style, {left: left + "px", top: (top + (maxH - h) / 2) + "px", width: w + "px", height: h + "px"});
+      const f = marksFocus(s.marks, s.focus);
+      s.cardEl.style.transformOrigin = (f[0] * 100) + "% " + (f[1] * 100) + "%";
+      s.show = drawMarks(s.mkEl, s.marks, w, h, s.photo, {fontSize: 34, stroke: 8});
+    }
+    s.el.style.display = was;
+  });
+  render(0);
+};
 window.render = render;
 window.TOTAL = S.length ? S[S.length - 1].start + S[S.length - 1].dur : 0;
 render(0);

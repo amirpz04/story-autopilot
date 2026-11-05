@@ -17,6 +17,7 @@ TEMPLATE = (ROOT / "templates" / "slide.html").read_text()
 FONT_FILE = ROOT / "templates" / "fonts" / "Inter.ttf"
 USER_AGENT = "StoryAccountBot/1.0 (Instagram story renderer)"
 WIDTH, HEIGHT = 1080, 1350
+MARKS_JS = (ROOT / "templates" / "marks.js").read_text()
 FONT_DATA = "data:font/ttf;base64," + base64.b64encode(FONT_FILE.read_bytes()).decode()
 
 
@@ -87,6 +88,9 @@ def slide_html(slide, index, total, config):
         .replace("{{handle}}", esc(config["handle"]))
         .replace("{{counter}}", "%d/%d" % (index, total) if config.get("show_slide_counter") else "")
         .replace("{{body}}", body)
+        .replace("{{marksjs}}", MARKS_JS)
+        .replace("{{marks}}", json.dumps((slide.get("image") or {}).get("marks") or [] if src else []).replace("</", "<\\/"))
+        .replace("{{focus}}", json.dumps((slide.get("image") or {}).get("focus") if src else None))
     )
 
 

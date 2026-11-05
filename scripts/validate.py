@@ -83,6 +83,40 @@ def final_problems(post):
     return problems
 
 
+MARK_KEYS = {"circle": ("at",), "arrow": ("to",), "box": ("box",), "label": ("at", "label"), "spotlight": ("at",), "zoom": ("box",)}
+
+
+def mark_problems(image):
+    """Marks drawn on a picture (templates/marks.js): known types, positions as fractions 0-1, short labels."""
+    marks, out = image.get("marks") or [], []
+    if not marks and image.get("focus") is None:
+        return out
+    if not image.get("url"):
+        return ["marks/focus need a picture url"]
+    pt = lambda v, n: isinstance(v, list) and len(v) == n and all(isinstance(x, (int, float)) and 0 <= x <= 1 for x in v)
+    if image.get("focus") is not None and not pt(image["focus"], 2):
+        out.append("image focus must be [x, y] with numbers from 0 to 1")
+    if len(marks) > 3:
+        out.append("at most 3 marks on one picture (has %d)" % len(marks))
+    for m in marks:
+        kind = m.get("type")
+        if kind not in MARK_KEYS:
+            out.append("unknown mark type %r (use %s)" % (kind, ", ".join(MARK_KEYS)))
+            continue
+        for k in MARK_KEYS[kind]:
+            if k not in m:
+                out.append("%s mark needs '%s'" % (kind, k))
+        for k in ("at", "to", "from"):
+            if k in m and not pt(m[k], 2):
+                out.append("%s mark: '%s' must be [x, y] with numbers from 0 to 1" % (kind, k))
+        if "box" in m and not (pt(m["box"], 4) and m["box"][0] < m["box"][2] and m["box"][1] < m["box"][3]):
+            out.append("%s mark: 'box' must be [x1, y1, x2, y2] from 0 to 1, top-left first" % kind)
+        label = m.get("label") or ""
+        if len(label.split()) > 4 or len(label) > 26:
+            out.append("mark label %r is too long (max 4 words, 26 characters)" % label)
+    return out
+
+
 def check_post(path, config):
     errors = []
     try:
@@ -121,6 +155,7 @@ def check_post(path, config):
             errors.append("slide %d: stock 'search' pictures are not used any more; give a direct image url" % i)
         if sl.get("layout") not in (None, "split", "full"):
             errors.append("slide %d: layout must be 'split' or 'full'" % i)
+        errors += ["slide %d: %s" % (i, e) for e in mark_problems(sl.get("image") or {})]
     if slides and slides[0].get("type") != "cover":
         errors.append("first slide must be type 'cover'")
     if slides and slides[-1].get("type") != "end":

@@ -278,6 +278,35 @@ and the `credit` line to paste into the slide. Search broadly first ("Shanidar C
 Budget: about 12 queries per run. If a story still has no good pictures after that, drop it and take a different story: do not
 spend the run waiting.
 
+## 5b. Point at what matters (marks on pictures)
+
+A slide's picture can carry up to 3 **marks** drawn in the brand yellow: a circle, an arrow, a box, a label (dot +
+tag), a spotlight (darkens the rest) or a zoom (an enlarged copy of a small area). Use them only where pointing makes
+the story clearer: a map (where it happened, where they go), something small in a big photo, the part of a machine or
+animal the text talks about, the one detail that proves the point. Most posts need 1-2 marked slides; many slides need
+none. Never mark just to decorate.
+
+```json
+"image": {"url": "...", "credit": "...",
+  "marks": [{"type": "circle", "at": [0.61, 0.19], "r": 0.05, "label": "They nest here", "side": "r"},
+            {"type": "arrow", "from": [0.58, 0.26], "to": [0.47, 0.72]},
+            {"type": "label", "at": [0.36, 0.62], "label": "White below"}]}
+```
+- Positions are **fractions of the original picture**: `[x, y]`, 0,0 = top-left, 1,1 = bottom-right (`box` =
+  `[x1, y1, x2, y2]`, `r` = fraction of the picture's width). Read them off the copy `check_images.py` saved in
+  `/tmp/imgcheck/` (it prints the real size: x = pixel x / width).
+- Other types: `{"type": "box", "box": [...], "label": "..."}`, `{"type": "spotlight", "at": [...], "r": 0.2}`,
+  `{"type": "zoom", "box": [...], "label": "..."}`. `arrow` without `from` points in from the open side. Optional
+  `"focus": [x, y]` on the image keeps that point in the crop (default: the middle of the marks).
+- Labels: at most 4 words, true, saying what the slide text says. A mark must never add a fact the sources lack.
+- Prefer the `split` layout for a marked slide (picture above the text). On `full` slides and the cover the text covers
+  the bottom half, so only mark things in the upper half there. In the Reel a marked slide automatically becomes a
+  framed whole picture above the text, with the marks drawing themselves in.
+- **Check your work:** `python3 scripts/render.py queue/<date>/<NN>` writes the slides to `preview/`; open every marked
+  slide. Is each mark exactly on its thing, the tag readable, the subject not hidden? Fix the numbers and render again
+  (at most two rounds); if a mark is still off, delete it. A wrong arrow is worse than none. `validate.py` checks the format.
+  If `render.py` cannot run in your environment, keep only marks on big, unmistakable targets and say so in the summary.
+
 ## 6. Write the post
 
 Each post is a carousel of **5 to 10 slides, and the story decides how many**: a simple news story or one
