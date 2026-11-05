@@ -1,0 +1,77 @@
+{
+  "id": "2026-11-05-01",
+  "date": "2026-11-05",
+  "slot": 1,
+  "reel_slot": 3,
+  "title": "Manx shearwaters get jet lag from flying so fast",
+  "category": "animals",
+  "tags": {
+    "headline": "odd comparison",
+    "end": "fixing cost",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 6,
+    "shareability": 7,
+    "talkability": 6,
+    "no_context": 8,
+    "freshness": 9
+  },
+  "sources": [
+    {
+      "name": "Smithsonian Magazine: Some fast-flying birds also get jet lag",
+      "url": "https://www.smithsonianmag.com/smart-news/its-not-just-you-some-fast-flying-birds-also-get-jet-lag-180989811/"
+    },
+    {
+      "name": "Science (Lewin et al., DOI 10.1126/science.adz2542)",
+      "url": "https://doi.org/10.1126/science.adz2542"
+    }
+  ],
+  "verification": "Facts read in Smithsonian's report on the Science paper (published Oct 29, 2026); journal DOI cited there. Numbers (1,045 birds, 3,688 trips, 1,837 homeward trips, up to 15 degrees, 7 degrees = about 3 extra miles) taken as reported. Wording kept to what the study reports; the explanation for why the trait persists is hedged as the authors' suggestion. Only one outlet read in full; paper itself not opened.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "SEABIRDS",
+      "headline": "Some seabirds fly so fast they get jet lag",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Manx_Shearwater.JPG/3840px-Manx_Shearwater.JPG",
+        "credit": "Photo: Martin Reith / Wikimedia Commons, CC BY-SA 3.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Manx shearwaters are black-and-white seabirds that nest on islands off the west coast of the U.K. They regularly fly more than 600 miles west to feed, then turn around and race home.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/Amgueddfa_Cymru_-_Puffinus_puffinus_-_211939.jpeg/3840px-Amgueddfa_Cymru_-_Puffinus_puffinus_-_211939.jpeg",
+        "credit": "Photo: Amgueddfa Cymru (National Museum Wales) / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Heading east at speed, their body clocks fall out of step with local time, the way yours does after a long flight. That scrambles the sun compass they partly steer by."
+    },
+    {
+      "type": "text",
+      "text": "Oxford ecologist Patrick Lewin's team analyzed 20 years of GPS tracks from 1,045 birds. Heading home, the birds drifted clockwise by up to 15 degrees, just as the jet-lag idea predicted.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Puffinus_puffinus_distribution.jpg/3840px-Puffinus_puffinus_distribution.jpg",
+        "credit": "Map: Donkey shot / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Even a 7-degree error over 620 miles adds only about 3 extra miles. Maybe that is why evolution never fixed it."
+    }
+  ],
+  "caption": "Jet lag is not only a human problem. A new study in Science says Manx shearwaters get something very like it.\n\nThese seabirds nest on islands off the west coast of the U.K., and about 80 percent of the world's population returns there each late winter and early spring. From the colonies they commute more than 600 miles west to feed in the Irish Sea and northeast Atlantic, then fly back east.\n\nA team led by Oxford ecologist Patrick Lewin analyzed 20 years of GPS tracking: 1,045 breeding birds making 3,688 trips. They focused on 1,837 eastbound journeys home. Flying that fast, the birds' internal clocks drift out of sync with local time, which throws off their sun compass. On the way home they veered clockwise by as much as 15 degrees. They stayed off course even along coastlines, which suggests they weigh several navigation cues and keep using them when the cues conflict.\n\nThe cost is small: a 7-degree error over about 620 miles adds only around 3 extra miles, which may explain why the quirk survived. The researchers say other fast, long-distance travelers, such as some birds, bats and insects, may be affected too.\n\nSource: Smithsonian Magazine, Science",
+  "hashtags": [
+    "#birds",
+    "#nature",
+    "#wildlife",
+    "#science"
+  ]
+}

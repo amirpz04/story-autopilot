@@ -1,0 +1,91 @@
+{
+  "id": "2026-11-05-02",
+  "date": "2026-11-05",
+  "slot": 3,
+  "reel_slot": 5,
+  "title": "Ketchup began as fermented fish sauce",
+  "category": "history",
+  "tags": {
+    "headline": "origin flip",
+    "end": "name outlived recipe",
+    "lane": "evergreen"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 6,
+    "shareability": 8,
+    "talkability": 7,
+    "no_context": 9,
+    "freshness": 7
+  },
+  "sources": [
+    {
+      "name": "Smithsonian Magazine: The birth of non-alcoholic ketchup",
+      "url": "https://www.smithsonianmag.com/arts-culture/the-birth-of-non-alcoholic-ketchup-104660832/"
+    },
+    {
+      "name": "Food Republic: The early history of ketchup has nothing to do with tomato",
+      "url": "https://www.foodrepublic.com/2016/05/26/the-early-history-of-ketchup-has-nothing-to-do-with-tomato/"
+    }
+  ],
+  "verification": "Read both articles in full. Smithsonian: fish-sauce etymology, Mease 1812 recipe with brandy, sugar causing fermentation/bursting, 1906 Pure Food and Drug Act. Food Republic: Hokkien ke-chiap, late-1600s British contact, 1727 English recipe, Heinz 1876 and 1906 with Harvey Wiley. Etymology path hedged ('probably'); dictionaries note the exact route is uncertain.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "ORIGINS",
+      "headline": "Ketchup began as fish guts fermenting in jars in the sun",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Vietnam_-_Fish_sauce_fermentation_jars.jpg/3840px-Vietnam_-_Fish_sauce_fermentation_jars.jpg",
+        "credit": "Illustrative photo: fish sauce fermentation jars, Vietnam / P. Hughes / Wikimedia Commons, CC BY 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The sauce came from southeastern China, where it was called kê-chiap in the Hokkien language. Fish entrails were salted, sealed in jars and left in the sun for weeks, then strained into a thin, dark liquid."
+    },
+    {
+      "type": "text",
+      "text": "British traders probably met it at trading posts in what is now Indonesia in the late 1600s. The word \"catchup\" entered English around then. Back home, cooks made versions with anchovies, walnuts and mushrooms.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Mushroom_ketchup_%28homemade%29.jpg/3840px-Mushroom_ketchup_%28homemade%29.jpg",
+        "credit": "Illustrative photo: homemade mushroom ketchup / Rex Roof / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The first known printed English recipe, in 1727, used wine, vinegar, anchovies, shallots and horseradish. No tomatoes. In 1812, Philadelphia physician James Mease published one of the first tomato versions, \"love apples\" and brandy included.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Tomato_plant_2026_G1.jpg/3840px-Tomato_plant_2026_G1.jpg",
+        "credit": "Illustrative photo: Tomato plant / George Chernilevsky / Wikimedia Commons, CC BY 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "In the 1800s, sugar replaced alcohol. But sugar sped up fermentation, so bottles soured and sometimes burst. A 1906 law banned chemical preservatives, and the salt, sugar, vinegar and tomato formula won."
+    },
+    {
+      "type": "text",
+      "text": "Henry J. Heinz began making tomato ketchup in 1876. In 1906 his company launched a version made with ripe tomatoes and no artificial preservatives, worked out with chemist Harvey Wiley.",
+      "layout": "full",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Heinz_Tomato_Ketchup%2C_Canada_%28front%29%2C_2026-02-19.jpg",
+        "credit": "Photo: Chris Woodrich / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "end",
+      "text": "The name outlived the recipe by about 300 years. Only the word is left of the original."
+    }
+  ],
+  "caption": "Ketchup is the most American condiment on the table, and almost nothing about it started in America.\n\nMost food historians trace it to a fermented fish sauce made in southeastern China. In the Hokkien language it was called kê-chiap. Fish entrails were rinsed, salted, sealed in jars and fermented in the sun for weeks, and the strained liquid was dark and thin, much like modern fish sauce.\n\nBritish traders probably met it at trading posts in what is now Indonesia in the late 1600s, and the word \"catchup\" entered English. The exact path of the word is still debated. British and Dutch cooks copied the idea with whatever they had: anchovies, walnuts, mushrooms. A 1727 English recipe calls for wine, vinegar, anchovies, shallots and horseradish.\n\nTomatoes arrive late. In 1812, Philadelphia physician James Mease published one of the first tomato ketchup recipes, and it included brandy. Over the 1800s, sugar replaced alcohol, but sugar made bottles ferment and sometimes burst. After a 1906 law banned chemical preservatives, the salt, sugar, vinegar and tomato formula became the standard. Heinz had begun selling tomato ketchup in 1876.\n\nSource: Smithsonian Magazine, Food Republic",
+  "hashtags": [
+    "#foodhistory",
+    "#history",
+    "#ketchup",
+    "#didyouknow"
+  ],
+  "variety_exception": "Smithsonian Magazine carries the best-documented version of this origin story; a second outlet (Food Republic) was read and confirms the core facts."
+}

@@ -1,0 +1,78 @@
+{
+  "id": "2026-11-05-03",
+  "date": "2026-11-05",
+  "slot": 5,
+  "reel_slot": 1,
+  "title": "Bubble Wrap was invented as wallpaper",
+  "category": "inventions",
+  "tags": {
+    "headline": "expectation flip",
+    "end": "idea works elsewhere",
+    "lane": "evergreen"
+  },
+  "scores": {
+    "hook": 9,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 8,
+    "talkability": 7,
+    "no_context": 10,
+    "freshness": 7
+  },
+  "sources": [
+    {
+      "name": "Smithsonian Magazine: The accidental invention of Bubble Wrap",
+      "url": "https://www.smithsonianmag.com/innovation/accidental-invention-bubble-wrap-180971325/"
+    },
+    {
+      "name": "Mental Floss: The original purpose of Bubble Wrap",
+      "url": "https://www.mentalfloss.com/history/original-purpose-bubble-wrap"
+    }
+  ],
+  "verification": "Read both articles. Both agree on 1957, Fielding and Chavannes, two shower curtains heat-sealed, textured-wallpaper goal for the Beat generation. Smithsonian: 400+ uses, greenhouse tested and ineffective, Sealed Air founded 1960, packaging success 1961, IBM 1401, six patents incl. 3,142,599 (1964), quote from Sealed Air's Chad Stephens. Greenhouse-success claims in some blogs deliberately not used.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "1957",
+      "headline": "Bubble Wrap was supposed to be wallpaper",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/Bubble-wrap_closeup.JPG/3840px-Bubble-wrap_closeup.JPG",
+        "credit": "Photo: Juliancolton / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Engineers Alfred Fielding and Marc Chavannes fed two plastic shower curtains through a heat-sealing machine. Air stayed trapped between them in bubbles. They wanted textured wallpaper for the Beat generation.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Square-shaped_bubble_wrap_%28126wiki%29.jpg/3840px-Square-shaped_bubble_wrap_%28126wiki%29.jpg",
+        "credit": "Photo: Easysayg / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "It flopped. They brainstormed more than 400 other uses. Greenhouse insulation was one of them, but in tests it proved ineffective."
+    },
+    {
+      "type": "text",
+      "text": "The break came in 1961, a year after they founded Sealed Air. IBM needed to protect its delicate computers in transit, and the bubbles worked. A Sealed Air executive says it \"was the answer to IBM's problems.\"",
+      "layout": "full",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/IBM_1401_lab.jpg/3840px-IBM_1401_lab.jpg",
+        "credit": "Photo: Marcin Wichary / Wikimedia Commons, CC BY 2.0 (an IBM 1401)"
+      }
+    },
+    {
+      "type": "end",
+      "text": "The idea worked. It just didn't work where they aimed it."
+    }
+  ],
+  "caption": "Bubble Wrap was never meant to protect anything.\n\nIn 1957, engineers Alfred Fielding and Marc Chavannes, a Swiss chemist, ran two plastic shower curtains through a heat-sealing machine. The result was a film with air trapped in little bubbles. They had hoped to make a textured wallpaper that would appeal to the Beat generation and be easy to clean. They were disappointed.\n\nSo they went hunting for another use. They considered more than 400, and greenhouse insulation was one of them, but it was tested and didn't work well. In 1960 they founded Sealed Air, and in 1961 the company finally found its market: packaging. IBM needed a way to ship its fragile computers, and cushioned bubbles were the answer. Sealed Air's innovation chief Chad Stephens put it this way: \"It was the answer to IBM's problems.\"\n\nThe pair received six patents, among them No. 3,142,599 in 1964, where it was described as \"laminated cushioning material.\" The company trademarked the name Bubble Wrap in 1981. By 2017 Sealed Air had about $4.5 billion in sales and customers in 122 countries.\n\nSource: Smithsonian Magazine, Mental Floss",
+  "hashtags": [
+    "#inventions",
+    "#history",
+    "#didyouknow",
+    "#bubblewrap"
+  ],
+  "variety_exception": "Smithsonian Magazine carries the best-documented version of this origin story; a second outlet (Mental Floss) was read and confirms the core facts."
+}
