@@ -64,7 +64,7 @@ def scene_duration(slide):
     return min(6.4, max(2.9, 1.5 + words * 0.31))
 
 
-def build_scenes(post, work):
+def build_scenes(post, work, handle="@unclefactss"):
     scenes, t = [], 0.0
     for n, slide in enumerate(post["slides"]):
         image = slide.get("image") or {}
@@ -90,12 +90,45 @@ def build_scenes(post, work):
         dur = scene_duration(slide) + (min(2.0, 0.55 * len(image.get("marks") or [])) if photo else 0)   # time to see the marks
         scenes.append({
             "type": slide["type"], "kicker": (slide.get("kicker") or "").upper() if slide["type"] == "cover" else "",
-            "text": slide.get("headline") or slide.get("text") or "", "photo": photo, "ar": ar,
+            "text": ((slide.get("headline") or slide.get("text") or "") + (" Follow %s for more" % handle if slide["type"] == "end" else "")),
+            "photo": photo, "ar": ar,
             "credit": image.get("credit", "") if photo else "", "marks": (image.get("marks") or []) if photo else [],
             "focus": image.get("focus") if photo else None, "start": round(t, 3), "dur": round(dur, 3), "dir": 1 if n % 2 == 0 else -1,
         })
+        scenes[-1]["words"] = word_times(scenes[-1]["text"], None, dur - 0.55, 0.2)     # replaced by the real timing when there is a voice
         t += dur
     return scenes
+
+
+def word_times(text, bounds, length, lead):
+    """When each word of the on-screen text is shown: [{"w", "t", "e"}] in seconds from the scene start.
+
+    The spoken words (`bounds`: [start, end, word] from the voice) can differ from the written ones ("40%" is spoken
+    "forty percent"), so both are laid on a 0-1 scale by letters and matched there. Without a voice, the words are
+    spread evenly over `length`.
+    """
+    words = text.split()
+    if not words:
+        return []
+    total, pos, starts, ends = sum(len(w) + 1 for w in words), 0, [], []
+    for w in words:
+        starts.append(pos / total)
+        pos += len(w) + 1
+        ends.append((pos - 1) / total)
+    anchors = [(0.0, 0.05), (1.0, max(0.2, length - 0.05))]
+    if bounds:
+        tot, pos, anchors = sum(len(b[2]) + 1 for b in bounds), 0, []
+        for t0, t1, word in bounds:
+            anchors += [(pos / tot, t0), ((pos + len(word)) / tot, t1)]
+            pos += len(word) + 1
+        anchors = [(0.0, anchors[0][1])] + anchors + [(1.0, bounds[-1][1])]
+
+    def at(f):
+        for (f0, t0), (f1, t1) in zip(anchors, anchors[1:]):
+            if f <= f1:
+                return t0 if f1 <= f0 else t0 + (t1 - t0) * max(0.0, (f - f0)) / (f1 - f0)
+        return anchors[-1][1]
+    return [{"w": w, "t": round(lead + at(a), 3), "e": round(lead + at(b), 3)} for w, a, b in zip(words, starts, ends)]
 
 
 def narration(slide, config):
@@ -119,7 +152,8 @@ def add_voice(post, scenes, work, config):
         res = subprocess.run([python, str(ROOT / "scripts" / "voice.py"), str(work / "lines.json"), str(work / "voice"),
                               config.get("voice", "am_michael"), str(config.get("voice_speed", 1.05))],
                              capture_output=True, text=True, timeout=900, check=True)
-        lengths = json.loads(res.stdout.strip().splitlines()[-1])
+        got = json.loads(res.stdout.strip().splitlines()[-1])
+        lengths, bounds = got["lengths"], got["bounds"]
         print("Voice:", (res.stderr.strip().splitlines() or ["?"])[-1][:120])
     except Exception as exc:
         print("Voiceover failed, making the Reel without it:", str(getattr(exc, "stderr", "") or exc)[-400:])
@@ -129,6 +163,7 @@ def add_voice(post, scenes, work, config):
         extra = min(2.0, 0.55 * len(sc.get("marks") or []))
         sc["dur"] = round(max(2.4, 0.25 + length + 0.35) + extra * 0.4, 3)        # the line, a breath after it, a moment for marks
         sc["start"] = round(t, 3)
+        sc["words"] = word_times(sc["text"], bounds[i], length, 0.25)
         clips.append((work / "voice" / ("line_%02d.wav" % i), t + 0.25))
         t += sc["dur"]
     return clips
@@ -142,7 +177,7 @@ def make_reel(post_dir, out_path, config=None, music=None):
     work = Path(tempfile.mkdtemp(prefix="reel-"))
     frames = work / "frames"
     frames.mkdir()
-    scenes = build_scenes(post, work)
+    scenes = build_scenes(post, work, config.get("handle", "@unclefactss"))
     voice = add_voice(post, scenes, work, config)
     html = (ROOT / "templates" / "reel.html").read_text()
     html = html.replace("/*MARKSJS*/", (ROOT / "templates" / "marks.js").read_text()).replace("/*FONT*/", FONT.as_uri()).replace("/*HANDLE*/", config["handle"])

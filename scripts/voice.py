@@ -1,8 +1,9 @@
 """Read lines aloud for the Reel narrator. Free, no account and no key.
 
 Usage: python scripts/voice.py lines.json out_dir VOICE [SPEED]
-lines.json is a list of strings. Writes out_dir/line_00.wav, ... (24 kHz mono) and prints a JSON list of their
-lengths in seconds. The last line written to stderr says which voice was used.
+lines.json is a list of strings. Writes out_dir/line_00.wav, ... (24 kHz mono) and prints {"lengths": [seconds, ...],
+"bounds": [[[start, end, "word"], ...], ...]} (when each word is spoken; empty for Kokoro, which gives no timings).
+The last line written to stderr says which voice was used.
 
 Voices:
 - names like en-US-AndrewMultilingualNeural: Microsoft's neural voices through the `edge-tts` package (the same service
@@ -44,8 +45,15 @@ def with_edge(lines, out, voice, speed):
         mp3, wav = out / ("line_%02d.mp3" % i), out / ("line_%02d.wav" % i)
         last = None
         for attempt in range(3):
+            bounds = []
             try:
-                await edge_tts.Communicate(speakable(line), voice, rate=rate).save(str(mp3))
+                com = edge_tts.Communicate(speakable(line), voice, rate=rate, boundary="WordBoundary")
+                with open(mp3, "wb") as fh:
+                    async for chunk in com.stream():
+                        if chunk["type"] == "audio":
+                            fh.write(chunk["data"])
+                        elif chunk["type"] == "WordBoundary":
+                            bounds.append([round(chunk["offset"] / 1e7, 3), round((chunk["offset"] + chunk["duration"]) / 1e7, 3), chunk["text"]])
                 if mp3.stat().st_size > 800:
                     break
             except Exception as exc:
@@ -54,11 +62,12 @@ def with_edge(lines, out, voice, speed):
         else:
             raise RuntimeError("edge-tts failed for line %d: %s" % (i, last))
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(mp3), "-ar", "24000", "-ac", "1", str(wav)], check=True)
-        return wav_length(wav)
+        return wav_length(wav), bounds
 
     async def run():
-        return [await one(i, line) if line.strip() else 0.1 for i, line in enumerate(lines)]
-    return asyncio.run(run())
+        return [await one(i, line) if line.strip() else (0.1, []) for i, line in enumerate(lines)]
+    done = asyncio.run(run())
+    return [d[0] for d in done], [d[1] for d in done]
 
 
 def with_kokoro(lines, out, voice, speed):
@@ -72,7 +81,7 @@ def with_kokoro(lines, out, voice, speed):
         audio = np.concatenate(parts) if parts else np.zeros(2400, dtype="float32")
         sf.write(str(out / ("line_%02d.wav" % i)), audio, 24000)
         lengths.append(round(len(audio) / 24000, 3))
-    return lengths
+    return lengths, [[] for _ in lines]
 
 
 def main():
@@ -81,19 +90,19 @@ def main():
     voice = sys.argv[3]
     speed = float(sys.argv[4]) if len(sys.argv) > 4 else 1.05
     out.mkdir(parents=True, exist_ok=True)
-    used, lengths = voice, None
+    used, got = voice, None
     if "-" in voice:                                   # a Microsoft neural voice
         try:
-            lengths = with_edge(lines, out, voice, speed)
+            got = with_edge(lines, out, voice, speed)
         except Exception as exc:
             print("edge voice failed (%s); using Kokoro %s" % (str(exc)[:160], FALLBACK), file=sys.stderr)
             used = FALLBACK
     else:
         used = voice
-    if lengths is None:
-        lengths = with_kokoro(lines, out, used if "-" not in used else FALLBACK, min(speed, 1.1))
+    if got is None:
+        got = with_kokoro(lines, out, used if "-" not in used else FALLBACK, min(speed, 1.1))
     print("used %s" % used, file=sys.stderr)
-    print(json.dumps(lengths))
+    print(json.dumps({"lengths": got[0], "bounds": got[1]}))
 
 
 if __name__ == "__main__":
