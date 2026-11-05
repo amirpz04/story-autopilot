@@ -1,117 +1,129 @@
 # Uncle Facts (@unclefactss): autonomous Instagram story account
 
-> **If you are the daily research run** (the cloud task "Daily stories"), ignore this file and follow `ROUTINE.md` only.
-> This file is for maintenance sessions where the owner asks for changes or fixes. **Read all of it before changing anything**,
-> then `git pull` (other Claude sessions and the publisher bot push to `main` constantly; never trust a stale working tree).
+> **Daily research run** (cloud task "Daily stories"): ignore this file, follow `ROUTINE.md` only.
+> **Maintenance sessions**: read this whole file, then `git pull` and `git log` before changing anything. The publisher bot,
+> the daily run and other Claude sessions push to `main` all the time.
 
-Posts true stories (science, space, nature, animals, health, tech/AI, inventions, history, how companies/things came to be)
-as **image carousels and animated Reels**, fully automatically, to Instagram **@unclefactss** (Creator account, display name
-currently "Tech daddy"; owner may change it). Claude researches and writes; scripts render, post and report.
-**Audience: the United States, in English** - every posting time is a New York time and every post is written in US English (ROUTINE.md section 0). Foreign-language feeds are used to FIND stories, never to change who the post is for.
-Repo (public): github.com/amirpz04/story-autopilot. Dashboard / control panel: https://amirpz04.github.io/story-autopilot/
+True, surprising stories (science, space, nature, animals, health, tech/AI, inventions, history, how things began) posted
+fully automatically to Instagram **@unclefactss** as image carousels and animated Reels. Claude researches and writes;
+scripts render, post and report. **Audience: United States, US English**; all times are New York times.
+Repo (public): github.com/amirpz04/story-autopilot. Dashboard: https://amirpz04.github.io/story-autopilot/
 
-## 1. How a day works (end to end)
-| When (UTC) | What | Code |
+## 1. A day
+| When | What | Code |
 |---|---|---|
-| 09:15 daily (12:15 Istanbul) | **Research run**: Claude (cloud task "Daily stories", id `trig_015p8XY87MCPiPaEgKXrXyxf`, cloud environment "stories" with full network access, prompt "follow ROUTINE.md exactly for today's run") searches the web, verifies, picks real pictures, writes `queue/<New York date>/<NN>/post.json` for `stories_per_day` stories, appends `state/history.jsonl`, runs `validate.py` and `check_images.py`, pushes to `main`. Runs on claude-sonnet-5-5 per the Nov 1 run log (the UI shows "Default . Opus 5.5"; check with `RemoteTrigger get_run_log`). Took 14 min on Nov 1. | `ROUTINE.md` |
-| right after the push | `reel.yml` (push trigger on `queue/**`) renders each story's **Reel** video on GitHub's servers and stores it on branch `reels` + `state/reels.json`. `preview.yml` validates/renders the queue as an artifact. | `reel_job.py`, `make_reel.py` |
-| every 10 min, all day | **The owner's Mac mini** runs `gh workflow run publish.yml` (launch agent). The workflow checks if a carousel or Reel is due, posts at most ONE, refreshes live Instagram numbers (`stats.py --quick`, at most every 25 min), rebuilds the dashboard, commits `state/ queue/ docs/`. | `publish.py`, `publish_reel.py`, `stats.py`, `dashboard.py` |
-| 18:15 NY daily | One **backlog Reel** of an old post (see section 6). | `backfill_reels.py` |
-| ongoing | Owner uses the **dashboard** to remove/edit/reschedule anything, set counts, pause, manage music. | `control.py` |
+| 09:15 UTC | **Research run** (cloud task id `trig_015p8XY87MCPiPaEgKXrXyxf`, environment "stories", prompt "follow ROUTINE.md exactly for today's run"): fixes anything that didn't go out, researches, verifies, picks real pictures, writes `queue/<NY date>/<NN>/post.json`, appends `state/history.jsonl`, runs `validate.py` + `check_images.py`, pushes. | `ROUTINE.md` |
+| after that push | `reel.yml` renders each story's Reel (stored on branch `reels` + `state/reels.json`); `preview.yml` renders a preview artifact. | `reel_job.py`, `make_reel.py` |
+| every 10 min | **Owner's Mac mini** runs `gh workflow run publish.yml`. It posts at most ONE due carousel or Reel, refreshes Instagram numbers (every 25 min), rebuilds the dashboard, commits `state/ queue/ docs/`. | `publish.py`, `publish_reel.py`, `stats.py`, `dashboard.py` |
+| anytime | Owner uses the dashboard: remove, edit, reschedule, post now, counts, pause, music. | `control.py` |
 
-Daily output with current settings (since Nov 5, owner's choice after Instagram spam blocks): **1 carousel + 2 Reels from 2 stories**
-(story 1 = carousel + Reel, story 2 = Reel only). Times (New York base, each shifted randomly +-35 min per day): carousel 09:00
-(slot 1 of `post_times`), Reels 16:00 / 22:00 (slots 3,5 of `reel_times`), a story's Reel slot is rotated by one so its carousel and Reel are far apart.
-**Everything scheduled must go out**: a carousel/Reel of the last 2 days that missed its time is retried automatically (`CATCH_UP_DAYS` in
-`publish.py`, max 3 tries); the dashboard shows each one as an alert with a plain error; the daily run (ROUTINE 1b) fixes content errors.
-**No spares** (removed Nov 5 at the owner's request: no spare posts, no Replace button, only today's content).
-The owner is in Istanbul (UTC+3); US clocks changed Nov 1 2026 (NY now UTC-5).
+**Current plan: 1 carousel + 2 Reels a day from 2 stories** (story 1 = carousel + Reel, story 2 = Reel only). NY times, each
+shifted randomly up to +-35 min a day: carousel 09:00, Reels 16:00 and 22:00. A story's Reel slot is rotated so its carousel and
+Reel are hours apart. Reduced from 3+3 on Nov 5 after Instagram spam blocks.
 
-## 2. Where things live
+**Everything scheduled must go out.** A carousel or Reel of the last 2 days that missed its time is retried automatically
+(`CATCH_UP_DAYS` in `publish.py`, max 3 tries, Instagram is checked first so nothing posts twice). Each miss shows on the dashboard
+as an alert with a plain error. Content errors are fixed by the daily run (ROUTINE section 1b) or by you.
+
+## 2. Files
 **Scripts (`scripts/`)**
-- `publish.py` posts the next due carousel/Reel. Safety: `instagram_gate` reads Instagram's own recent posts (blocks duplicates, <45 min since any post, daily cap),
-  `api_backoff` (30 min -> 4 h after Instagram refuses requests, `state/api_health.json`), random 0-4 min delay, 3 attempts. Reads `paused`. Pure poster: **no content checks here by owner's decision**.
-- `publish_reel.py` posts a Reel (`REELS` container, `share_to_feed`), caption = post caption + hashtags + "Photos: credits" + music credit line; makes the Reel first if missing.
-- `reel_job.py` / `make_reel.py` / `templates/reel.html` render Reels (Playwright frames -> ffmpeg), pick music (`pick_music`: rotates, never repeats within the last 5), refuse to render with a missing picture (retries throttled downloads).
-- `render.py` + `templates/slide.html` render carousel slides (1080x1350 JPEG, Inter font, accent #FFD400, bg #0E0E10, photo layouts `split`/`full`, no slide counter).
-- `validate.py` hard rules for a post (below). `check_images.py` downloads every picture, prints real size, warns small/duplicate, saves copies for the run to LOOK at.
-- `variety.py` shared soft-variety helpers (registered-domain source matching, subject aliases, day-level clash checks, `variety_exception`). `plan_day.py` deals the daily run a RANDOM research plan (lane A/B per story, SUBJECT weighted toward quiet subjects, angle, which feeds/archives to start at, which picture archive to try first) and reseeds every run. The routine must start with it. Added Nov 1 because the run kept returning to one feed: 7 of the first 9 stories came from ScienceDaily.
-- `find_images.py` Wikimedia Commons photo search that obeys rate limits (use it for Commons; own search loops got throttled on Nov 1). Wikimedia throttles even one-at-a-time requests (waits up to ~60 s are normal), so it is no longer the default archive: go to whoever owns the subject first (NASA/ESA, NOAA/USGS/FWS, Smithsonian, Library of Congress, Met, Internet Archive).
-- `control.py` all dashboard actions (below). `backfill_reels.py` plans Reels for live posts without one. `stats.py` Instagram numbers (`--quick --min-age 25` or full daily read), `dashboard.py` builds `docs/index.html`. (`watchdog` was removed Nov 5: it only sent emails.)
-- `stock.py` Unsplash lookup, re-enabled Nov 1 as a FALLBACK only: a slide with no real picture of the subject may use `{"image": {"search": "..."}}`, which the run resolves with `python3 scripts/stock.py queue/<date>` before validating (only the run and `preview.yml` call it; the publisher no longer does). Credits must start with `Illustrative photo:`. Budget in config.json (`unsplash_max_requests_per_hour` 30 / `_per_day` 100).
+- `publish.py`: finds the due item and posts it. Safety: `instagram_gate` reads Instagram's own recent posts (no duplicates,
+  45 min gap, daily cap); `api_backoff` waits 30 min -> 4 h after Instagram refuses (`state/api_health.json`); random 0-4 min delay.
+  Never fails the run on an Instagram refusal (no emails). **No content checks here (owner's decision).**
+- `publish_reel.py`: posts a Reel (`REELS`, `share_to_feed`); caption = post caption + hashtags + photo credits + music credit; re-renders an expired video first.
+- `reel_job.py`, `make_reel.py`, `templates/reel.html`: Reel video (Playwright frames -> ffmpeg), music rotation (no repeat within 5).
+- `render.py`, `templates/slide.html`: carousel slides (1080x1350 JPEG, Inter, accent #FFD400, bg #0E0E10, layouts `split`/`full`).
+- `validate.py`: hard post rules (section 5). `check_images.py`: downloads every picture, real sizes, saves copies to look at.
+- `plan_day.py`: random research plan per run (lane, subject, angle, where to look); `variety.py`: soft variety checks.
+- `find_images.py`: rate-limited Wikimedia Commons search. `stock.py`: labelled Unsplash fallback photos (run by the research run and `preview.yml` only).
+- `control.py`: every dashboard action. `backfill_reels.py`: Reels for old live posts that have none. `stats.py`: Instagram numbers + `state/report.md`. `dashboard.py`: builds `docs/index.html`.
 
-**Workflows (`.github/workflows/`)**: `publish.yml` (driven by the Mac; its own cron is unreliable), `reel.yml`, `control.yml` (dashboard buttons), `preview.yml`, `stats.yml` (daily cron, unreliable; the quick refresh in publish.yml is what keeps numbers fresh). An Instagram refusal no longer fails a publish run (no failure emails); it shows on the dashboard.
-A workflow started with the default `GITHUB_TOKEN` push does NOT trigger other workflows; use `gh workflow run` (workflow_dispatch IS allowed). The routine's pushes (Claude GitHub app) do trigger them.
+**Workflows**: `publish.yml` (Mac-driven; GitHub's own cron barely fires), `reel.yml`, `control.yml` (dashboard buttons), `preview.yml`, `stats.yml`.
+A push with the default `GITHUB_TOKEN` does not trigger other workflows; use `gh workflow run`. The research run's pushes do trigger them.
 
-**State (`state/`)**: `posted.json` (carousel bookkeeping: status posted/removed/deleted/failed, attempts, `post_now`, `post_at`, `media_id`), `reels.json` (Reel records: status pending/made/posted/failed/cancelled/expired, `post_at`, `backfill`, urls, music, attempts), `history.jsonl` (every story ever used; `validate.py` blocks reused sources/near-identical titles), `stats.json` + `report.md` (per-post Instagram numbers; the routine reads the report to learn), `account.json` (live followers + media_count + `fetched_at`), `followers.csv`, `control_log.json` (last 50 dashboard actions), `music_log.json`, `ping.json` (last Mac dispatch time), `api_health.json` (only while backing off), `unsplash_requests.json` (legacy).
-**Other**: `assets/music/*.m4a` + `music.json` (6 Scott Buckley tracks, CC BY 4.0, credit lines per track), `docs/index.html` (GENERATED; never edit by hand; on merge conflicts take either side and rerun `scripts/dashboard.py --force`), `queue/<date>/<NN>/post.json` (NN = 01..; `queue/demo/02` = an early live test post "demo-02" (Rubin dwarf planet) that is still on Instagram), `preview/` (git-ignored local renders), `.venv/` (Python 3.9 + playwright; Mac also has ffmpeg via Homebrew).
-**Git branches**: `main` (everything), `media` (publisher force-pushes the post's slide images here so Instagram can fetch them), `reels` (orphan, force-pushed, newest 12 videos), `claude/tender-archimedes-*` (leftover working branches of routine runs; harmless, can be deleted).
+**State (`state/`)**: `posted.json` (carousels: status posted/removed/deleted/failed, attempts, error, `post_now`, `post_at`, `media_id`),
+`reels.json` (Reels: pending/made/posted/failed/cancelled/expired, `post_at`, `backfill`, urls, music, attempts, error),
+`history.jsonl` (every story used; blocks reuse), `stats.json` + `report.md` (per-post results; the run learns from the report),
+`account.json` (followers, media_count: Instagram's count, which excludes Reels, like the profile counter), `followers.csv`,
+`control_log.json`, `music_log.json`, `ping.json` (last Mac dispatch), `api_health.json`, `unsplash_requests.json`.
 
-## 3. Settings (`config.json`) and how to change them
-| Setting | Meaning |
+**Other**: `config.json` (section 3), `assets/music/` (6 Scott Buckley tracks, CC BY 4.0, credits in `music.json`),
+`docs/index.html` (GENERATED: never hand-edit; on a merge conflict take either side and run `python scripts/dashboard.py --force`),
+`queue/demo/02` (early test post "demo-02", still live), `.venv/` (Python 3.9 + Playwright; ffmpeg via Homebrew).
+**Branches**: `main`; `media` (slide images for Instagram to fetch, force-pushed); `reels` (newest 12 videos, force-pushed).
+
+## 3. Settings (`config.json`)
+Change counts on the dashboard (it recalculates the dependent keys); changes apply from the NEXT research run.
+| Key | Meaning |
 |---|---|
-| `posts_per_day` / `active_slots` | carousels per day (0-5) and which of `post_times` they use |
-| `reels_per_day` / `reel_active_slots` / `reel_times` | Reels per day (0-5) and their New York times |
-| `reels_mode` | `same` (default): Reels reuse the carousel stories (no extra research). `different`: Reels get their own stories (`stories_per_day = posts + reels`; Reel-only stories have `slot: null`) |
-| `stories_per_day` | what the research must write: `max(posts, reels)` in same mode. Set by `control.py`, not by hand |
-| `time_jitter_minutes`, `publish_random_delay_seconds` | natural-looking time variation |
-| `max_posts_per_day` (= posts + reels + 2), `min_minutes_between_posts` 45, `ig_quota_stop` 25 | spam protection, checked against Instagram itself |
-| `paused` | `true` stops all posting instantly |
-| `backfill_reel_time`, `backfill_per_day` | old-post Reel plan (18:15 NY, 1/day) |
-| `graph_host` `graph.facebook.com`, `graph_api_version` | Instagram API access (see section 5) |
-| `brand`, `show_slide_counter` (false), `handle`, `account_name`, `timezone` | look and identity |
-| `language` | language the stories are written in: `English (US)` |
-| `audience` | who the account writes for: US, English-speaking. ROUTINE.md section 0 holds the rules (American spelling, US units, dollars, foreign context explained). The `timezone` above is the same decision: all slot times are New York times |
-| `unsplash_max_requests_per_hour` / `_per_day` | budget for `stock.py` fallback photos (30/hour, 100/day) |
-Prefer changing counts through the dashboard (it also recalculates the dependent settings). A change applies from the NEXT research run (today's queue is already written).
+| `posts_per_day` / `active_slots` / `post_times` | carousels a day (0-5), which slots, NY times |
+| `reels_per_day` / `reel_active_slots` / `reel_times` | same for Reels |
+| `reels_mode` | `same`: Reels reuse carousel stories. `different`: Reels get their own stories |
+| `stories_per_day` | what the run writes (set by `control.py`) |
+| `max_posts_per_day` (posts + reels + 2), `min_minutes_between_posts` 45, `ig_quota_stop` 25 | spam protection, checked against Instagram |
+| `time_jitter_minutes`, `publish_random_delay_seconds` | natural timing |
+| `paused` | `true` stops all posting |
+| `backfill_reel_time`, `backfill_per_day` | Reels for old posts (18:15 NY, 1/day) |
+| `graph_host` (`graph.facebook.com`), `graph_api_version` | Instagram API |
+| `brand`, `handle`, `account_name`, `timezone`, `language`, `audience`, `show_slide_counter` (false) | identity and look |
+| `variety_rules_from` | first date the variety rules apply |
+| `unsplash_max_requests_per_hour` / `_per_day` | stock photo budget (30 / 100) |
 
-## 4. The dashboard (docs/index.html, GitHub Pages)
-Tabs: **Overview** (alerts, live Instagram counters, "What's happening right now" in plain words + how-it-works, today's posts+Reels with quick buttons, reach and follower charts, results table, what's working, system), **Posts** (search, filters, each post: slides, caption, sources, results, its Reel with player, planned time), **Music** (listen/add by link/remove), **Control** (pause/resume, post and Reel counts, same/own stories, run-now buttons, recent jobs, action log).
-Buttons need the owner's fine-grained GitHub key (Actions read+write on this repo only) stored in that browser's localStorage; they start `control.yml` (`control.py` actions: `pause resume remove restore post_now reschedule edit_caption edit_slide posts_per_day reels_per_day reels_mode delete_instagram post_reel cancel_reel reschedule_reel add_music remove_music refresh_dashboard`), `reel.yml`, `publish.yml`, `stats.yml`, `preview.yml`. Results land in `state/control_log.json`. Edits (`edit_slide`, `edit_caption`) are refused only if they add a NEW `validate.py` error. Page lags up to ~10 min (GitHub Pages cache); layout is one column on phones and full-width two-column on desktops. Counters come from `state/account.json` (live from Instagram), "Posted today" from our schedule.
-Build it: `python scripts/dashboard.py --force`. The publish workflow rebuilds it automatically.
+## 4. Dashboard
+Tabs: **Overview** (alerts, live counters, what's happening now, today's items, charts, what's working), **Posts** (every post
+and its Reel, with buttons), **Music**, **Control** (pause, counts, same/own stories, run-now, action log).
+Buttons use the owner's GitHub key in that browser's localStorage and start `control.yml` (actions: `pause resume remove restore
+post_now reschedule edit_caption edit_slide posts_per_day reels_per_day reels_mode delete_instagram post_reel cancel_reel
+reschedule_reel add_music remove_music refresh_dashboard`). Results go to `state/control_log.json`. Edits are refused only if
+they add a new `validate.py` error. GitHub Pages lags up to ~10 min.
 
-## 5. Accounts and secrets (values NOT in the repo)
-- Instagram `@unclefactss`, user id `17841415004854249`. Meta developer app `1110649915216695`, business portfolio "Unclefactss", Meta's "unified login": a **system-user token that never expires**, used on `graph.facebook.com`. Instagram-login tokens (`graph.instagram.com`) are not available to new apps. Content publishing limit 100 API posts/24 h (we cap far lower).
-- GitHub Actions secrets: `IG_USER_ID`, `IG_ACCESS_TOKEN`, `UNSPLASH_ACCESS_KEY`. Never write tokens into files, commits or chat replies. **The Instagram token was pasted into the early chat history; it should be regenerated and the secret updated (open item).**
-- GitHub account `amirpz04` (Claude GitHub app installed for it); `gh` is logged in on the Mac with scopes repo, workflow. Another GitHub account (`amirarsalan-pajouhi`) exists; do not use it.
-- **Mac mini launch agent** `com.storyautopilot.ping` (`~/Library/LaunchAgents/com.storyautopilot.ping.plist`, every 600 s, runs `gh workflow run publish.yml -R amirpz04/story-autopilot --ref main`). Log `~/Library/Logs/story-autopilot-ping.log`. Stop: `launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.storyautopilot.ping.plist`. **The Mac must stay awake and online** (it is the clock). `pmset` showed `sleep 1` kept awake only by other processes (caffeinate/coreaudiod) on Nov 1; the owner should run `sudo pmset -a sleep 0 autorestart 1` (Claude cannot sudo; unverified whether done).
+## 5. Post rules (`validate.py`)
+5-10 slides; slide text <= 40 words; cover headline <= 16 words; at least half the slides (min 3) with a real picture; never two
+text-only slides in a row; layouts `split`/`full`; caption 700-1500 chars; up to 5 hashtags, only in `hashtags`; every source has
+a URL; no reused source or near-duplicate title; `slot` in `active_slots` and/or `reel_slot` in `reel_active_slots`. Per day:
+exactly `stories_per_day` stories; soft variety (no shared source organization, subject or opening words, unless the post carries
+a `variety_exception` reason).
 
 ## 6. Reels
-Each story can become a Reel: the same photos and text as the carousel, animated (camera moves, word-by-word text, fades), 1080x1920 30 fps, ~25-40 s, with a free song.
-- **Layout is tuned for the owner's iPhone 13** (checked against his screenshot): Instagram covers the top ~11% (clock/Reels header), the right ~13% (like/comment/share/save column), and the bottom ~27% (caption, tab bar); iPhones also crop ~9% off each side of a 9:16 video. All Reel text stays inside the safe box (x 140-810, y ~460-1220 of 1920, auto-shrinks via `fitAll()`). No progress bars, no @handle on the video (Instagram shows the account). Photo credits go in the Reel caption. Do not move text out of the safe box.
-- Music: `assets/music/music.json`; Instagram's own music library cannot be used through the API. Owner dislikes the old tracks (Kevin MacLeod, Satie) and likes the current six.
-- **Backlog**: posts that went live before Reels existed (demo-02 Rubin, 2026-10-30-03 crocodile, 2026-10-30-01 Jupiter, 2026-10-31-03 salamanders, 2026-10-31-05 spiders) got Reels rendered and scheduled one per day at ~18:15 NY (Nov 1-5 NY dates; Istanbul ~02:00 next day). `find_due_reel` posts any Reel whose `post_at` arrived, in any queue folder. Cancel/move from the dashboard. A failed render keeps a backlog Reel pending (3 tries).
-- The very first live Reel (ISS, 2026-10-31-01) was posted with the OLD layout (top bars, credit on video) and an old song; the owner has not decided whether to replace it (deleting is permanent: ask first).
-- Hosting: Instagram fetches the mp4 from `raw.githubusercontent.com/.../reels` (works); the dashboard plays it via jsDelivr.
+Same photos and text as the carousel, animated, 1080x1920, 30 fps, ~25-40 s, with music.
+- **Safe box for the owner's iPhone 13**: all text inside x 140-810, y ~460-1220 (Instagram covers the top 11%, right 13%,
+  bottom 27%; iPhones crop ~9% per side). No progress bars, no @handle on the video; photo credits go in the caption. Do not move text out of the box.
+- Music: Instagram's own library is not available through the API. Owner likes the current six tracks, dislikes Kevin MacLeod and Satie.
+- Hosting: Instagram fetches the mp4 from `raw.githubusercontent.com` (branch `reels`); the dashboard plays it via jsDelivr.
 
-## 7. Rules enforced by `validate.py` (the run must satisfy them)
-5-10 slides (story decides), slide text <= 40 words, cover headline <= 16 words, at least half the slides (min 3) with a real picture URL, never two text-only slides in a row, layout `split`/`full` only, caption 700-1500 chars, up to 5 hashtags, only in the `hashtags` field, every source has a URL, no reused source/near-duplicate title vs `history.jsonl` and the queue, `slot` in `active_slots` and/or `reel_slot` in `reel_active_slots` (at least one), no stock `search` images. Two whole-day rules (added Nov 1): the day must hold `stories_per_day` non-spare posts, and no two posts in a day may share a source ORGANIZATION (registered domain, so nasa.gov once), subject, cover opening word or ending opening word. These variety rules are SOFT: a post with a `variety_exception` (15+ chars) waives its clash and validate prints it as a NOTE. Rules apply to days from `variety_rules_from` (2026-11-04) on; history heavy-subject notes never fail. The publisher itself does not validate (owner's decision).
+## 7. Accounts and secrets (never in files, commits or chat)
+- Instagram user id `17841415004854249`; Meta app `1110649915216695`, business portfolio "Unclefactss"; system-user token that never
+  expires, on `graph.facebook.com`. Publishing limit 100 API posts/24 h (we post 3). Instagram's spam filter (error code 4 / 2207051,
+  "action is blocked") is the real limit for a new account; sometimes the post still goes live.
+- GitHub secrets: `IG_USER_ID`, `IG_ACCESS_TOKEN`, `UNSPLASH_ACCESS_KEY`.
+- GitHub account `amirpz04` (`gh` logged in on the Mac). Do not use the other account `amirarsalan-pajouhi`.
+- **Mac launch agent** `com.storyautopilot.ping` (`~/Library/LaunchAgents/com.storyautopilot.ping.plist`, every 600 s; log
+  `~/Library/Logs/story-autopilot-ping.log`). The Mac is the clock: it must stay awake and online.
 
-## 8. Decisions the owner made (do not undo without asking)
-- **The publisher only posts.** No rejecting, no failing runs, no emails. Quality checking belongs to the Claude research run (it runs `validate.py` + `check_images.py` and LOOKS at every picture). The owner never reads email: status goes on the dashboard.
-- Posts are 5-10 slides, picture-rich, no slide counter, detailed caption; Reels are automatic (he refused "press Make Reel" flows); he chooses the counts (dropdowns 0-5 each). No AI-tool-spotlight posts. Real pictures of the real subject first; **Unsplash stock as a labelled fallback is allowed (owner, Nov 1) rather than losing a slide or a story**.
-- Two story lanes: news (recent) and evergreen (any true, specific, surprising story about something humans built/did, needs 2 independent sources).
-- Same-story Reels by default (cheaper); switchable. Owner asked about posting the carousel and Reel at the same time: advised no (keep >= ~6 h apart), untested.
-- Tiny budget: everything free except the owner's Claude Pro plan; be careful with Claude usage.
-- Instagram: official API only, no engagement bots, no password logins. Never publish or delete anything public without the owner's say unless it is the normal automatic flow.
+## 8. Owner decisions (do not undo without asking)
+- **The publisher only posts**: no content checks, no failing runs, no emails. Quality belongs to the research run. Status goes on the dashboard (he never reads email).
+- Picture-rich 5-10 slide posts, no slide counter, detailed caption. Real pictures of the subject first; labelled Unsplash fallback allowed.
+- Reels are automatic. He picks the counts. No spare posts (removed Nov 5). No AI-tool-spotlight posts.
+- Two lanes: news and evergreen (evergreen needs 2 independent sources).
+- Keep a story's carousel and Reel hours apart.
+- Tiny budget: only his Claude Pro plan costs money; keep Claude usage low.
+- Official Instagram API only; no bots, no password logins. Never publish or delete anything public outside the normal flow without asking.
 
-## 9. Known gotchas
-- GitHub's own scheduled workflows barely fire here; the Mac is the clock. Optional backup: cron-job.org calling `workflow_dispatch`.
-- Carousels are published only from `queue/<today in New York>`; an unposted post from an earlier day never posts by itself (use the dashboard's Post now / Reschedule).
-- Wikimedia throttles bursts (HTTP 429): always use `find_images.py`; thumbnails must use standard widths (the API's `thumburl` is right).
-- Photos too small for a slot are dropped by the renderer; `check_images.py` warns. Reels refuse to render with a missing picture.
-- macOS zsh: unquoted `$var` is not word-split, and `python3 -c` scripts in loops can misbehave; use scripts. Reddit/Instagram block automated browsing.
-- Daylight saving shifts every posting time by an hour in Istanbul terms (NY schedule is fixed).
-- Another Claude session (claude.ai chat, cloud, owner's phone) may edit this repo; on Nov 1 one built a partial backfill (replaced by section 6's design). Always `git pull`, check `git log` first.
-- Early on, the Instagram API returned "API access blocked" (code 200) for about an hour with 0% usage; it cleared by itself, cause unknown.
+## 9. Gotchas
+- Wikimedia throttles (HTTP 429): use `find_images.py`, standard thumbnail widths; prefer the subject's own archive (NASA, NOAA, Smithsonian, LoC, ...).
+- Photos too small are dropped by the renderer; Reels refuse to render with a missing picture.
+- macOS zsh: unquoted `$var` is not word-split; put multi-line Python in scripts, not `python3 -c` loops.
+- Reddit and Instagram block automated browsing.
 
-## 10. Status (updated Nov 3 2026)
-**Nov 3: hook/voice rewrite (owner asked for punchier, less repetitive covers; the pictures are liked, do not touch them).** ROUTINE.md got a new section 6b ("Hooks, voice and not sounding the same twice"), and the cover, slide 2, final slide, caption first line and `tags` rules in section 6 were rewritten around it. Principles only, no bans and no fixed headline templates or example headlines (examples get copied; that was the original problem: 5 of the first 11 covers opened "Scientists/Astronomers found...", 6 endings were "Send this to someone who..."). `plan_day.py` now also prints the last 15 covers/endings and the openers that keep recurring, as a mirror. `tags.headline` / `tags.end` are now free short labels of the mechanism used (before: always "statement"/"question", which taught `report.md` nothing). `validate.py` is unchanged on purpose (owner: do not cap the AI). The research behind it: cover = earn the swipe; open a specific gap and pay it off on slide 2; sends per reach is Instagram's key signal for new viewers; hooks wear out when a niche reuses a template. **Not yet observed**: whether the next run's covers actually vary; check the queue and `report.md` first.
-Live and posting. On Instagram: 6 carousels + 1 Reel (7 posts); 1 follower (probably the owner's other account); reach is tiny so far (new account). Dashboard counters verified equal to Instagram's.
-**Nov 1: two runs in a row queued 1 story each** (09:15 automatic, 10:02 manual; both reported SUCCEEDED, the second used only 14 of its 25 minutes). Causes found: (a) ROUTINE.md section 9 explicitly allowed finishing with "even 1" story and promised the next run would fill the gap, so every run took that exit; (b) Wikimedia throttling (429s with 30-60 s waits) even through `find_images.py`; (c) source monoculture: 7 of the first 9 stories came from the ScienceDaily top feed, and lane B (evergreen) was never used at all. **All three addressed Nov 1**: `plan_day.py` (random lane/angle/source draw each run), ROUTINE sections 2, 3, 5 and 9 rewritten (hard floor on the count, "small is fine", at least one lane-B story a day, Wikimedia demoted to one archive among several), and `validate.py` now fails a short day or two posts from one website. Day stands at 2 of 3 (slot 3 still empty); **not yet observed whether the next run actually produces 3** — check this first.
-**Open items**: (1) measure Claude usage of one daily run (owner: claude.ai/settings/usage before/after), (2) regenerate the Instagram token and update the `IG_ACCESS_TOKEN` secret, (3) owner to run the `pmset` command above, (4) decide about replacing the old-layout ISS Reel, (5) optional: change the Instagram display name from "Tech daddy", delete the old Rubin test post's "1/7" counter look, (6) after ~a week/15 posts compare what works (dashboard "What's working"), then consider more or fewer posts, and `reels_mode: different`, (7) watch the first backlog Reels and the first automatic daily Reels (not yet observed posting automatically except the ISS test).
-
-**Nov 3 (later): topic/source variety system.** Cause of the all-NASA/space day: plan only hinted a lane, the one-site rule compared exact hostnames (science.nasa.gov vs llis.nasa.gov slipped through), NASA pictures are the easiest to get. Fix: `plan_day.py` assigns a subject per story (weighted by recent posts, none repeated in a day, backup subjects), ROUTINE says pictures follow the story, validate enforces domain/subject/opening clashes softly via `variety_exception`. Also: caption rule no longer copies the end-slide question; labels must not be copied. Nov 3 batch is grandfathered. Apollo post text corrected before it posted. **Not yet observed**: Nov 4 run's subjects, and whether exceptions get overused (grep `variety_exception` in queue).
+## 10. Open items
+1. Regenerate the Instagram token (it was pasted in an early chat) and update `IG_ACCESS_TOKEN`.
+2. Owner to run `sudo pmset -a sleep 0 autorestart 1` on the Mac (unverified).
+3. Measure Claude usage of one daily run.
+4. Old-layout ISS Reel (2026-10-31-01): replace or keep? Deleting is permanent; ask.
+5. After ~2 weeks on 1+2 with no spam blocks, review results ("What's working") before raising counts.
 
 ## 11. Working with the owner
-Not a developer; Istanbul, iPhone 13 and a Mac mini M4; often on his phone. Wants short plain answers, the "how" and not a verdict on his ideas, and results over explanations. He decides taste (looks, counts); you decide technical details. Confirm before anything public or irreversible. He gets frustrated by stale or wrong numbers, repeated asks, and being made to press buttons: automate, verify against live data before claiming something, and say plainly when something failed.
+Not a developer; Istanbul (UTC+3), iPhone 13, Mac mini M4, often on his phone. Wants short plain answers and results, not
+explanations or verdicts on his ideas. He decides taste (looks, counts); you decide technical details. Confirm before anything
+public or irreversible. Automate rather than asking him to press buttons; verify against live data before stating numbers; say
+plainly when something failed.

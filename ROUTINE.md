@@ -432,7 +432,7 @@ Write each post as `queue/<date>/<NN>/post.json`:
   (`"slot"` = the `i`-th number of `active_slots`, `"reel_slot": null`); the next `reels_per_day` stories are Reel-only (`"slot": null`,
   `"reel_slot"` = the `(i - posts_per_day)`-th number of `reel_active_slots`). Choose the Reel stories for being visual and quick to grasp.
 
-Examples with 3 posts + 3 Reels: `"same"` writes 3 stories (each a carousel and a Reel); `"different"` writes 6 (three carousel-only, three Reel-only).
+Example with 1 post + 2 Reels: `"same"` writes 2 stories (story 1 is a carousel and a Reel, story 2 is a Reel only); `"different"` writes 3 (one carousel-only, two Reel-only).
 A story with both `null` must not exist. Put the strongest stories on the evening slots. Reels are built from a story's own slides, so every story
 must follow all the picture and text rules above, even if it only becomes a Reel.
 
