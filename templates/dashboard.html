@@ -2,482 +2,763 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Uncle Facts control panel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#141416">
+<title>Uncle Facts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    color-scheme: light;
-    --bg: #fbfbfa; --card: #ffffff; --border: #e4e3de;
-    --text: #111110; --dim: #6b6a65;
-    --accent: #1f6fd0;
-    --good: #1a9b45; --warn: #d98a04; --bad: #cf3b3b;
-    --radius: 14px;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      color-scheme: dark;
-      --bg: #141413; --card: #1d1d1b; --border: #32312e;
-      --text: #f2f1ee; --dim: #a3a29c;
-      --accent: #6aa9f0;
-      --good: #45c46f; --warn: #f0b429; --bad: #f06a6a;
-    }
+    color-scheme: dark;
+    --page: #141416; --frame: #0f0f11; --tile: #1c1c1f; --tile2: #232327; --line: #2c2c31;
+    --text: #e8e7e3; --dim: #8b8a86; --faint: #5d5c59;
+    --accent: #5b6c92; --accent-hi: #7586ad; --light: #b9b8b0; --on-light: #17171a;
+    --good: #86b48f; --warn: #d6b56b; --bad: #d97b70;
+    --r: 4px;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
   }
   * { box-sizing: border-box; -webkit-text-size-adjust: 100%; }
-  body { margin: 0; background: var(--bg); color: var(--text);
-    font: 16px/1.5 ui-sans-serif, -apple-system, "Segoe UI", system-ui, sans-serif; }
-  main { max-width: 780px; margin: 0 auto; padding: 0 14px 90px; }
-  h1 { font-size: 19px; margin: 14px 0 2px; }
-  h2 { font-size: 15px; margin: 22px 0 8px; font-weight: 650; }
-  a { color: var(--accent); }
-  .dim { color: var(--dim); }
-  .sm { font-size: 13px; }
+  html, body { margin: 0; background: var(--page); color: var(--text); }
+  body { font: 13px/1.45 var(--mono); letter-spacing: .01em; padding-bottom: env(safe-area-inset-bottom); }
+  a { color: inherit; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  .dim { color: var(--dim); } .faint { color: var(--faint); }
+  .up { text-transform: uppercase; letter-spacing: .08em; }
+  .lbl { font-size: 11px; text-transform: uppercase; letter-spacing: .1em; color: var(--dim); }
+  .num { font-weight: 300; font-variant-numeric: tabular-nums; line-height: 1; letter-spacing: -.02em; }
+  .big { font-size: 44px; } .mid { font-size: 28px; } .of { font-size: 13px; color: var(--dim); margin-left: 6px; }
 
-  header { padding-top: 12px; }
-  nav { position: sticky; top: 0; z-index: 20; display: flex; gap: 6px; padding: 10px 0;
-    background: var(--bg); border-bottom: 1px solid var(--border); margin-bottom: 14px; }
-  nav a { flex: 1; text-align: center; padding: 9px 4px; border-radius: 10px; text-decoration: none;
-    color: var(--dim); font-size: 14px; font-weight: 600; border: 1px solid transparent; }
-  nav a.on { background: var(--card); color: var(--text); border-color: var(--border); }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 14px; }
+  .frame { background: var(--frame); border-radius: 6px; padding: 10px; }
 
-  .view { display: none; }
-  .view.on { display: block; }
+  /* top ticker */
+  .ticker { display: flex; align-items: center; gap: 0; overflow-x: auto; scrollbar-width: none; padding: 6px 4px 12px; }
+  .ticker::-webkit-scrollbar { display: none; }
+  .logo { display: grid; grid-template-columns: repeat(3, 4px); gap: 3px; margin-right: 18px; flex: none; }
+  .logo i { width: 4px; height: 4px; background: var(--text); border-radius: 1px; }
+  .tk { flex: none; padding: 0 16px; border-left: 1px solid var(--line); }
+  .tk:first-of-type { border-left: 0; padding-left: 0; }
+  .tk .lbl { font-size: 9.5px; }
+  .tk b { display: block; font-weight: 500; font-size: 12px; margin-top: 2px; white-space: nowrap; }
+  .who { margin-left: auto; padding-left: 16px; display: flex; align-items: center; gap: 9px; flex: none; }
+  .who .av { width: 26px; height: 26px; border-radius: 50%; background: var(--accent); display: grid; place-items: center; font-size: 11px; font-weight: 700; }
 
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 14px; margin-bottom: 10px; }
-  .card.flat { padding: 11px 13px; }
+  /* tabs */
+  nav { display: flex; gap: 4px; margin: 2px 0 10px; position: sticky; top: 0; z-index: 30; background: var(--frame); padding: 6px 0; }
+  nav a { padding: 7px 12px; text-decoration: none; color: var(--dim); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; border-radius: var(--r); }
+  nav a.on { background: var(--tile2); color: var(--text); }
+  nav .sp { flex: 1; }
 
-  .chips { display: flex; gap: 8px; margin-bottom: 12px; }
-  .chip { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 11px 10px; text-align: center; }
-  .chip .n { font-size: 21px; font-weight: 680; line-height: 1.2; }
-  .chip .l { font-size: 11px; color: var(--dim); text-transform: uppercase; letter-spacing: .04em; }
-
-  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 7px;
-    flex: none; background: var(--dim); }
-  .dot.good { background: var(--good); } .dot.warn { background: var(--warn); }
-  .dot.bad { background: var(--bad); } .dot.neutral { background: var(--dim); }
-  .status { display: inline-flex; align-items: center; }
-
-  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-  .between { display: flex; gap: 10px; align-items: flex-start; justify-content: space-between; }
-
-  .item { display: flex; gap: 11px; align-items: center; padding: 11px 0; border-bottom: 1px solid var(--border); }
-  .item:last-child { border-bottom: 0; }
-  .item .time { font-variant-numeric: tabular-nums; font-size: 13px; font-weight: 650; width: 74px; flex: none; }
-  .body { min-width: 0; flex: 1; }
-  .t { font-size: 14px; font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .t a { color: inherit; text-decoration: none; }
-  .item img { width: 46px; height: 58px; object-fit: cover; border-radius: 8px; flex: none; background: var(--border); }
-
-  .tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .05em;
-    text-transform: uppercase; padding: 2px 6px; border-radius: 5px;
-    background: var(--border); color: var(--dim); margin-right: 6px; }
-  .tag.reel { background: color-mix(in srgb, var(--accent) 18%, transparent); color: var(--accent); }
-
-  .btn { font: inherit; font-size: 13px; font-weight: 600; padding: 9px 13px; border-radius: 10px;
-    border: 1px solid var(--border); background: var(--card); color: var(--text); cursor: pointer; }
-  .btn:active { transform: translateY(1px); }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .btn.danger { color: var(--bad); }
-  .btn.mini { padding: 6px 10px; font-size: 12px; }
-  .btn:disabled { opacity: .5; }
-  .linkbtn { background: none; border: 0; color: var(--accent); font: inherit; font-size: 13px;
-    padding: 0; cursor: pointer; text-decoration: underline; }
-  .actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
-
-  input, select, textarea { font: inherit; font-size: 15px; padding: 9px 11px; border-radius: 10px;
-    border: 1px solid var(--border); background: var(--card); color: var(--text); max-width: 100%; }
-  textarea { width: 100%; min-height: 120px; }
-  select { min-width: 92px; }
-
-  .metrics { display: flex; gap: 14px; flex-wrap: wrap; }
-  .metrics div { font-size: 13px; }
-  .metrics b { font-size: 17px; display: block; font-weight: 680; }
-
-  .slides { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-  .slide { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--card); }
-  .slide img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
-  .slide .txt { padding: 8px 9px; font-size: 12px; }
-  .slide .k { font-size: 10px; color: var(--dim); text-transform: uppercase; margin-bottom: 3px; }
-  video { width: 100%; border-radius: 10px; background: #000; }
-  audio { width: 100%; margin-top: 8px; }
-
-  .plist a { display: flex; gap: 11px; padding: 11px; text-decoration: none; color: inherit;
-    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-    margin-bottom: 8px; max-width: 100%; overflow: hidden; }
-  .plist img { width: 46px; height: 58px; object-fit: cover; border-radius: 8px; flex: none; background: var(--border); }
-  .dim.sm { overflow: hidden; text-overflow: ellipsis; }
-  .dayhead { font-size: 12px; font-weight: 700; color: var(--dim); text-transform: uppercase;
-    letter-spacing: .05em; margin: 16px 0 7px; }
-  .filters { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 10px; }
-  .filters button { font: inherit; font-size: 13px; font-weight: 600; white-space: nowrap;
-    padding: 7px 12px; border-radius: 999px; border: 1px solid var(--border);
-    background: var(--card); color: var(--dim); cursor: pointer; }
-  .filters button.on { background: var(--text); color: var(--bg); border-color: var(--text); }
-
-  .cap { white-space: pre-wrap; font-size: 14px; }
-  details summary { cursor: pointer; font-weight: 600; font-size: 14px; }
-  details[open] summary { margin-bottom: 10px; }
-
-  #toast { position: fixed; left: 12px; right: 12px; bottom: 16px; z-index: 50; display: none;
-    background: var(--text); color: var(--bg); padding: 12px 14px; border-radius: 12px; font-size: 14px; }
-
-  @media (min-width: 720px) {
-    .slides { grid-template-columns: repeat(3, 1fr); }
-    .item .time { width: 84px; }
+  /* grid + tiles */
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .tile { background: var(--tile); border-radius: var(--r); padding: 14px; min-width: 0; position: relative; display: flex; flex-direction: column; }
+  .tile.accent { background: var(--accent); }
+  .tile.accent .lbl, .tile.accent .dim { color: #d5dbea; }
+  .tile.light { background: var(--light); color: var(--on-light); }
+  .tile.light .lbl, .tile.light .dim { color: #4a4a48; }
+  .s2 { grid-column: span 2; } .full { grid-column: 1 / -1; }
+  .head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .push { margin-top: auto; }
+  .rule { border-top: 1px solid var(--line); margin: 10px 0 8px; }
+  .tile.accent .rule { border-color: rgba(255,255,255,.18); }
+  .row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .between { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .kv { display: flex; justify-content: space-between; gap: 10px; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: 12px; }
+  .kv:last-child { border-bottom: 0; }
+  .kv span:last-child { text-align: right; }
+  .pf { grid-column: span 2; }
+  .hm { }
+  @media (max-width: 899px) {
+    .wrap { padding: 6px; } .frame { padding: 8px; }
+    .hm { display: none; }
+    .ring { width: 118px; height: 118px; } .ring .mid { font-size: 22px; }
+    td.ell { max-width: 150px !important; }
   }
+  @media (min-width: 900px) {
+    .pf { grid-column: span 1; }
+    .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .wrap { padding: 28px; }
+    .frame { padding: 16px; }
+    .tall { grid-row: span 2; }
+  }
+
+  /* bits */
+  .seg { display: inline-flex; gap: 2px; }
+  .seg button { background: none; border: 0; padding: 3px 7px; font-size: 10.5px; letter-spacing: .08em; color: var(--dim); border-radius: 3px; cursor: pointer; text-transform: uppercase; }
+  .seg button.on { background: var(--tile2); color: var(--text); }
+  .tile.accent .seg button.on { background: rgba(255,255,255,.18); }
+  .arrow { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; text-decoration: none; flex: none; background: var(--text); color: var(--frame); font-size: 13px; }
+  .tile.light .arrow { background: var(--on-light); color: var(--light); }
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--faint); flex: none; }
+  .dot.good { background: var(--good); } .dot.warn { background: var(--warn); } .dot.bad { background: var(--bad); }
+  .tag { font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; padding: 2px 5px; border-radius: 2px; background: var(--tile2); color: var(--dim); flex: none; }
+  .tag.reel { background: var(--accent); color: #e6eaf4; }
+  .bar { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--accent-hi); }
+
+  .chart { display: flex; align-items: flex-end; gap: 4px; height: 120px; }
+  .chart .c { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; min-width: 0; position: relative; }
+  .chart .c i { display: block; width: 100%; background: var(--light); border-radius: 1px; min-height: 1px; }
+  .chart .c.hi i { background: var(--accent-hi); }
+  .chart .c em { position: absolute; font-style: normal; font-size: 10px; color: var(--text); white-space: nowrap; transform: translateY(-4px); }
+  .axis { display: flex; justify-content: space-between; font-size: 10px; color: var(--faint); margin-top: 6px; }
+
+  .ring { width: 150px; height: 150px; margin: 4px auto 0; position: relative; }
+  .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .ring .in { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; }
+
+  .list .it { display: flex; gap: 10px; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+  .tile.accent .list .it { border-color: rgba(255,255,255,.15); }
+  .list .it:last-child { border-bottom: 0; }
+  .it .tm { width: 46px; flex: none; font-variant-numeric: tabular-nums; }
+  .ell { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; flex: 1; }
+  .ell a { text-decoration: none; }
+
+  .thumbs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+  .thumbs a { position: relative; aspect-ratio: 1; background: var(--tile2); border-radius: 2px; overflow: hidden; display: block; }
+  .thumbs img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); transition: filter .2s; }
+  .thumbs a:hover img { filter: none; }
+  .thumbs span { position: absolute; left: 4px; bottom: 3px; font-size: 10px; background: rgba(0,0,0,.65); padding: 0 4px; border-radius: 2px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  td, th { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th { font-weight: 400; color: var(--dim); font-size: 10.5px; text-transform: uppercase; letter-spacing: .08em; }
+  td.r, th.r { text-align: right; }
+  .scroll { overflow-x: auto; }
+
+  .alert { display: flex; gap: 10px; align-items: flex-start; padding: 7px 0; border-bottom: 1px solid var(--line); }
+  .alert:last-child { border-bottom: 0; }
+  .alert .dot { margin-top: 5px; }
+
+  .btn { background: var(--tile2); border: 1px solid var(--line); padding: 8px 12px; border-radius: var(--r); cursor: pointer; font-size: 11px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; display: inline-block; }
+  .btn:hover { border-color: var(--faint); }
+  .btn.pri { background: var(--accent); border-color: var(--accent); }
+  .btn.bad { color: var(--bad); }
+  .btn.mini { padding: 5px 8px; font-size: 10px; }
+  .btns { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  input, select, textarea { background: var(--tile2); border: 1px solid var(--line); border-radius: var(--r); padding: 8px 10px; font-size: 12px; max-width: 100%; }
+  textarea { width: 100%; min-height: 110px; }
+  label.f { display: flex; flex-direction: column; gap: 5px; }
+
+  .view { display: none; } .view.on { display: block; }
+
+  /* posts */
+  .tools { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 8px; align-items: center; }
+  .tools input { flex: 1; min-width: 160px; }
+  .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  @media (min-width: 900px) { .cards { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  .card { background: var(--tile); border-radius: var(--r); overflow: hidden; text-decoration: none; display: flex; flex-direction: column; }
+  .card .im { aspect-ratio: 4/5; background: var(--tile2); position: relative; overflow: hidden; }
+  .card .im img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .card .im .tag { position: absolute; left: 6px; top: 6px; }
+  .card .b { padding: 9px 10px 11px; display: flex; flex-direction: column; gap: 5px; flex: 1; }
+  .card .ti { font-size: 12px; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .card .st { font-size: 10.5px; display: flex; gap: 6px; align-items: center; color: var(--dim); }
+  .card .mx { font-size: 10.5px; color: var(--dim); margin-top: auto; }
+
+  .slides { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  @media (min-width: 900px) { .slides { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  .slide { background: var(--tile2); border-radius: 3px; overflow: hidden; }
+  .slide img { width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block; }
+  .slide .tx { padding: 7px 8px; font-size: 11px; }
+  video { width: 100%; max-height: 70vh; background: #000; border-radius: 3px; }
+  audio { width: 100%; height: 34px; margin-top: 6px; }
+  .cap { white-space: pre-wrap; font-size: 12px; }
+  details summary { cursor: pointer; list-style: none; } details summary::-webkit-details-marker { display: none; }
+
+  #toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 18px; z-index: 50; display: none; max-width: 92vw;
+    background: var(--light); color: var(--on-light); padding: 10px 14px; border-radius: var(--r); font-size: 12px; }
+  .foot { text-align: center; color: var(--faint); font-size: 18px; letter-spacing: .25em; margin: 26px 0 8px; text-transform: uppercase; }
 </style>
 </head>
 <body>
-<main>
-  <header>
-    <h1 id="title">Control panel</h1>
-    <div class="dim sm" id="fresh"></div>
-  </header>
+<div class="wrap"><div class="frame">
 
+  <div class="ticker" id="ticker"></div>
   <nav>
-    <a href="#today" data-v="today">Today</a>
+    <a href="#overview" data-v="overview">Overview</a>
     <a href="#posts" data-v="posts">Posts</a>
-    <a href="#settings" data-v="settings">Settings</a>
+    <a href="#control" data-v="control">Control</a>
+    <span class="sp"></span>
+    <span class="lbl" id="fresh" style="align-self:center;white-space:nowrap;font-size:9.5px"></span>
   </nav>
 
-  <section class="view" id="v-today">
-    <div id="attn"></div>
-    <div class="chips" id="chips"></div>
-    <h2>Going out today <span class="dim sm" id="todayNote"></span></h2>
-    <div class="card" id="today"></div>
-    <h2>Recent results</h2>
-    <div class="card" id="results"></div>
+  <!-- ================= OVERVIEW ================= -->
+  <section class="view" id="v-overview">
+    <div class="grid">
+      <div class="tile full" id="alerts"></div>
+
+      <div class="tile accent pf">
+        <div class="head"><span class="lbl">Today</span><span class="lbl" id="todayDate"></span></div>
+        <div><span class="num big" id="todayN"></span><span class="of" id="todayOf"></span></div>
+        <div class="rule"></div>
+        <div class="list" id="todayList"></div>
+      </div>
+
+      <div class="tile pf">
+        <div class="head"><span class="lbl">Next up</span><span id="nextKind"></span></div>
+        <div class="num mid" id="nextIn"></div>
+        <div class="dim" style="margin-top:6px" id="nextAt"></div>
+        <div class="push" style="padding-top:12px"><div class="ell" id="nextTitle"></div><div class="btns" id="nextBtns"></div></div>
+      </div>
+
+      <div class="tile s2">
+        <div class="head">
+          <span class="lbl" id="chartLbl"></span>
+          <span class="row" style="gap:10px"><span class="seg" id="segKind"></span><span class="seg" id="segRange"></span></span>
+        </div>
+        <div class="between" style="align-items:flex-end;gap:16px">
+          <div style="flex:none">
+            <div class="num big" id="chartTotal"></div>
+            <div class="seg" id="segMetric" style="margin-top:10px"></div>
+          </div>
+          <div style="flex:1;min-width:0"><div class="chart" id="chart"></div><div class="axis" id="axis"></div></div>
+        </div>
+      </div>
+
+      <div class="tile">
+        <div class="head"><span class="lbl">Followers</span><span class="lbl" id="folDelta"></span></div>
+        <div class="num big" id="folN"></div>
+        <div class="push" style="padding-top:14px"><svg id="folSpark" viewBox="0 0 200 40" preserveAspectRatio="none" style="width:100%;height:40px"></svg></div>
+      </div>
+
+      <div class="tile">
+        <div class="head"><span class="lbl">Avg reach</span><span class="lbl" id="avgRange"></span></div>
+        <div class="between"><span class="lbl">Reel</span><span class="num mid" id="avgReel"></span></div>
+        <div class="bar" style="margin:8px 0 14px"><i id="avgReelBar"></i></div>
+        <div class="between"><span class="lbl">Carousel</span><span class="num mid" id="avgPost"></span></div>
+        <div class="bar" style="margin-top:8px"><i id="avgPostBar"></i></div>
+      </div>
+
+      <div class="tile">
+        <div class="head"><span class="lbl">Delivered</span><span class="lbl">7 days</span></div>
+        <div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="var(--line)" stroke-width="5"/>
+          <circle id="ringArc" cx="60" cy="60" r="52" fill="none" stroke="var(--accent-hi)" stroke-width="5" stroke-linecap="round" stroke-dasharray="0 999"/></svg>
+          <div class="in"><div><div class="num mid" id="ringN"></div><div class="lbl" style="margin-top:6px;font-size:9px" id="ringSub"></div></div></div></div>
+      </div>
+
+      <div class="tile">
+        <div class="head"><span class="lbl">Engagement</span><span class="lbl" id="engRange"></span></div>
+        <div id="eng"></div>
+      </div>
+
+      <div class="tile tall pf">
+        <div class="head"><span class="lbl">Latest on Instagram</span><a class="arrow" href="https://www.instagram.com/unclefactss/" target="_blank" rel="noopener">&#8599;</a></div>
+        <div class="thumbs" id="thumbs"></div>
+        <div class="rule"></div>
+        <div class="dim" style="font-size:11px">Number = reach. Tap to open.</div>
+      </div>
+
+      <div class="tile light s2" id="topTile">
+        <div class="head"><span class="lbl">Top post</span><a class="arrow" id="topLink" target="_blank" rel="noopener">&#8599;</a></div>
+        <div class="row" style="align-items:flex-end;gap:16px;flex-wrap:nowrap;margin-top:auto">
+          <div style="min-width:0;flex:1">
+            <div class="up" style="font-size:20px;line-height:1.2;font-weight:500" id="topTitle"></div>
+            <div style="margin-top:10px;font-size:11px" class="up" id="topMeta"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tile pf">
+        <div class="head"><span class="lbl">System</span><span id="sysDot"></span></div>
+        <div id="sysList"></div>
+      </div>
+
+      <div class="tile s2" id="workTile">
+        <div class="head"><span class="lbl">What's working</span><span class="seg" id="segWork"></span></div>
+        <div class="scroll" id="work"></div>
+      </div>
+
+      <div class="tile full">
+        <div class="head"><span class="lbl">Results</span><span class="lbl" id="resRange"></span></div>
+        <div class="scroll" id="results"></div>
+        <div id="resMore"></div>
+      </div>
+    </div>
   </section>
 
+  <!-- ================= POSTS ================= -->
   <section class="view" id="v-posts">
-    <input id="q" placeholder="Search stories" style="width:100%;margin-bottom:10px" oninput="drawList()">
-    <div class="filters" id="filters"></div>
-    <div class="plist" id="plist"></div>
+    <div class="tools">
+      <input id="q" placeholder="Search" oninput="drawList()">
+      <select id="sort" onchange="setPref('sort', this.value); drawList()">
+        <option value="new">Newest</option><option value="reach">Most reach</option>
+        <option value="views">Most views</option><option value="shares">Most shares</option></select>
+    </div>
+    <div class="tools"><span class="seg" id="filters"></span></div>
+    <div class="cards" id="plist"></div>
   </section>
 
   <section class="view" id="v-post">
-    <a href="#posts" class="sm">&larr; All posts</a>
-    <div id="pdetail"></div>
+    <a href="#posts" class="lbl" style="text-decoration:none">&larr; All posts</a>
+    <div id="pdetail" style="margin-top:10px"></div>
   </section>
 
-  <section class="view" id="v-settings">
-    <div class="card" id="keybox"></div>
+  <!-- ================= CONTROL ================= -->
+  <section class="view" id="v-control">
+    <div class="grid">
+      <div class="tile s2" id="keybox"></div>
 
-    <h2>Posting</h2>
-    <div class="card">
-      <div class="between">
-        <div><b id="pubstate"></b><div class="dim sm" id="pubnote"></div></div>
-        <button class="btn" id="pausebtn"></button>
+      <div class="tile s2" id="pubTile">
+        <div class="head"><span class="lbl">Posting</span><span id="pubDot"></span></div>
+        <div class="between"><div><div class="num mid" id="pubState"></div><div class="dim" style="margin-top:8px" id="pubNote"></div></div>
+          <button class="btn" id="pausebtn"></button></div>
+      </div>
+
+      <div class="tile s2">
+        <div class="head"><span class="lbl">Per day</span></div>
+        <div class="row" style="gap:14px">
+          <label class="f lbl">Carousels <select id="ppd" onchange="act('posts_per_day', this.value)"></select></label>
+          <label class="f lbl">Reels <select id="rpd" onchange="act('reels_per_day', this.value)"></select></label>
+          <label class="f lbl">Reel stories <select id="rmode" onchange="act('reels_mode', this.value)">
+            <option value="same">Same as carousels</option><option value="different">Their own</option></select></label>
+        </div>
+        <div class="dim" style="margin-top:12px" id="mixNote"></div>
+      </div>
+
+      <div class="tile s2">
+        <div class="head"><span class="lbl">Run now</span></div>
+        <div class="btns" style="margin:0">
+          <button class="btn" onclick="runWf('publish.yml','Checking what is due')">Check &amp; post</button>
+          <button class="btn" onclick="runWf('stats.yml','Reading Instagram numbers')">Refresh numbers</button>
+          <button class="btn" onclick="runWf('reel.yml','Making missing Reels')">Make missing Reels</button>
+          <button class="btn" onclick="act('refresh_dashboard','')">Rebuild page</button>
+          <a class="btn" id="routineLink" target="_blank" rel="noopener">Research run &#8599;</a>
+        </div>
+        <div class="dim" style="margin-top:10px;font-size:11px">"Refresh numbers" reads every post once. Normal refresh happens by itself every 25 min.</div>
+      </div>
+
+      <div class="tile s2">
+        <div class="head"><span class="lbl">This page</span></div>
+        <div class="kv"><span>Times shown in</span><span class="seg" id="segTz"></span></div>
+        <div class="kv"><span>Default chart range</span><span class="seg" id="segDefRange"></span></div>
+        <div class="kv"><span>Chart counts</span><span class="seg" id="segDefMetric"></span></div>
+        <div class="kv"><span>Reload page every 5 min</span><span class="seg" id="segAuto"></span></div>
+        <div class="kv"><span>Color pictures</span><span class="seg" id="segColor"></span></div>
+      </div>
+
+      <div class="tile s2">
+        <div class="head"><span class="lbl">Recent jobs</span><button class="btn mini" onclick="loadRuns()">Reload</button></div>
+        <div class="list" id="runs"></div>
+      </div>
+
+      <div class="tile s2">
+        <div class="head"><span class="lbl">Music</span><span class="lbl" id="musicCount"></span></div>
+        <div id="mlist"></div>
+        <details style="margin-top:10px"><summary class="btn mini">+ Add a song</summary>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
+            <input id="mUrl" placeholder="Direct link to an audio file">
+            <input id="mTitle" placeholder="Title, e.g. Sunrise (Scott Buckley)">
+            <input id="mCredit" placeholder="Credit line for the caption (optional)">
+            <input id="mLicense" placeholder="License, e.g. CC BY 4.0">
+            <button class="btn pri" onclick="addMusic()">Add song</button>
+            <div class="dim" style="font-size:11px">Only music you may use. Instagram's own library can't be used through the API.</div>
+          </div></details>
+      </div>
+
+      <div class="tile s2">
+        <div class="head"><span class="lbl">Your recent actions</span></div>
+        <div class="list" id="clog"></div>
       </div>
     </div>
-
-    <h2>How many per day</h2>
-    <div class="card">
-      <div class="row">
-        <label class="sm">Posts <select id="ppd" onchange="act('posts_per_day', this.value)">
-          <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
-        <label class="sm">Reels <select id="rpd" onchange="act('reels_per_day', this.value)">
-          <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
-      </div>
-      <div class="dim sm" style="margin-top:8px" id="mixNote"></div>
-      <div class="row" style="margin-top:10px">
-        <label class="sm">Reel stories
-          <select id="rmode" onchange="act('reels_mode', this.value)">
-            <option value="same">same as posts</option>
-            <option value="different">their own</option>
-          </select></label>
-      </div>
-    </div>
-
-    <h2>Run something now</h2>
-    <div class="card">
-      <div class="actions" style="margin:0">
-        <button class="btn" onclick="runWf('publish.yml','Checking what is due')">Check and post</button>
-        <button class="btn" onclick="runWf('stats.yml','Reading Instagram numbers')">Refresh numbers</button>
-        <button class="btn" onclick="act('refresh_dashboard','')">Rebuild this page</button>
-        <a class="btn" id="routineLink" target="_blank" rel="noopener">Daily research run</a>
-      </div>
-    </div>
-
-    <h2>Music <span class="dim sm" id="musicCount"></span></h2>
-    <div id="mlist"></div>
-    <details class="card">
-      <summary>Add a song</summary>
-      <div class="row" style="flex-direction:column;align-items:stretch">
-        <input id="mUrl" placeholder="Direct link to an audio file">
-        <input id="mTitle" placeholder="Title, e.g. Sunrise (Scott Buckley)">
-        <input id="mCredit" placeholder="Credit line for the caption (optional)">
-        <input id="mLicense" placeholder="License, e.g. CC BY 4.0">
-        <button class="btn primary" onclick="addMusic()">Add song</button>
-      </div>
-      <p class="dim sm">Only add music you are allowed to use. Instagram's own library can't be used through the API.</p>
-    </details>
-
-    <h2>Recent jobs <button class="btn mini" onclick="loadRuns()">refresh</button></h2>
-    <div class="card" id="runs"></div>
-
-    <details class="card">
-      <summary>Your recent actions</summary>
-      <div id="clog"></div>
-    </details>
-
-    <details class="card">
-      <summary>System</summary>
-      <div id="sys" class="sm"></div>
-    </details>
-
-    <p class="dim sm">Changes apply in about a minute. This page can take up to 10 minutes to show them.</p>
   </section>
-</main>
+
+  <div class="foot">Uncle Facts</div>
+</div></div>
 <div id="toast"></div>
 
 <script>
 const DATA = /*DATA*/null/*END*/;
-const D = DATA, sys = D.system, REPO = D.repo, now = Date.now();
+const D = DATA, sys = D.system, REPO = D.repo, now = Date.now(), NY = "America/New_York";
 const $ = id => document.getElementById(id);
-const nf = n => n == null ? "-" : Intl.NumberFormat().format(n);
-const pct = x => x == null ? "-" : (x * 100).toFixed(1) + "%";
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+const nf = n => n == null ? "-" : Intl.NumberFormat("en-US").format(Math.round(n));
+const short = n => n == null ? "-" : n >= 1e6 ? (n / 1e6).toFixed(1) + "M" : n >= 1e4 ? (n / 1e3).toFixed(1) + "K" : nf(n);
 const fixIso = s => s && /[+-]\d\d:\d\dZ$/.test(s) ? s.slice(0, -1) : s;
+const T = iso => iso ? new Date(fixIso(iso)).getTime() : 0;
 const ago = ms => { const m = Math.round(ms / 60000); if (m < 1) return "just now"; if (m < 90) return m + " min ago";
-  const h = Math.round(m / 60); return h < 36 ? h + " h ago" : Math.round(h / 24) + " days ago"; };
-const when = iso => iso ? new Date(fixIso(iso)).toLocaleString([], {weekday: "short", month: "short", day: "numeric", hour: "2-digit", minute: "2-digit"}) : "-";
-const clock = iso => iso ? new Date(fixIso(iso)).toLocaleTimeString([], {hour: "2-digit", minute: "2-digit"}) : "-";
+  const h = Math.round(m / 60); return h < 36 ? h + " h ago" : Math.round(h / 24) + " d ago"; };
 const thumb = u => !u ? u : u.replace(/\/(\d{3,4})px-/, "/500px-").replace(/([?&])w=\d+/, "$1w=500");
-const dot = lvl => `<span class="dot ${lvl}"></span>`;
-const idq = id => esc(id);
-function toast(msg, ms) { const t = $("toast"); t.textContent = msg; t.style.display = "block";
-  clearTimeout(t._h); t._h = setTimeout(() => t.style.display = "none", ms || 6000); }
+const dot = l => `<span class="dot ${l || ""}"></span>`;
+function toast(m, ms) { const t = $("toast"); t.textContent = m; t.style.display = "block"; clearTimeout(t._h); t._h = setTimeout(() => t.style.display = "none", ms || 6000); }
 
-// ---------- status ----------
+// ---------- page preferences (this browser only) ----------
+const PREF = Object.assign({tz: "local", range: "7D", metric: "reach", kind: "all", auto: "on", color: "off", sort: "new", work: ""}, JSON.parse(localStorage.getItem("uf_prefs") || "{}"));
+function setPref(k, v) { PREF[k] = v; localStorage.setItem("uf_prefs", JSON.stringify(PREF)); }
+const tzOpt = () => PREF.tz === "ny" ? {timeZone: NY} : {};
+const clock = iso => iso ? new Date(fixIso(iso)).toLocaleTimeString("en-GB", Object.assign({hour: "2-digit", minute: "2-digit"}, tzOpt())) : "-";
+const when = iso => iso ? new Date(fixIso(iso)).toLocaleString("en-GB", Object.assign({weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit"}, tzOpt())) : "-";
+const tzName = () => PREF.tz === "ny" ? "New York" : "your time";
+function seg(id, options, cur, onpick) {
+  $(id).innerHTML = options.map(([v, l]) => `<button class="${v === cur ? "on" : ""}" data-v="${esc(v)}">${esc(l)}</button>`).join("");
+  $(id).querySelectorAll("button").forEach(b => b.onclick = () => onpick(b.dataset.v));
+}
+if (PREF.color === "on") document.head.insertAdjacentHTML("beforeend", "<style>.thumbs img{filter:none!important}</style>");
+
+// ---------- statuses ----------
 function postStatus(p) {
   const s = p.status;
-  if (p.has_slot === false && s !== "removed" && s !== "deleted") return ["neutral", "Reel only"];
+  if (p.has_slot === false && s !== "removed" && s !== "deleted") return ["", "Reel only"];
   if (s === "posted") return ["good", "Live"];
-  if (s === "deleted") return ["neutral", "Deleted from Instagram"];
-  if (s === "removed") return ["neutral", "Removed"];
-  if (s === "failed" || s === "rejected") return ["bad", "Failed"];
+  if (s === "deleted") return ["", "Deleted"];
+  if (s === "removed") return ["", "Removed"];
+  if (s === "failed") return ["bad", "Not posted yet"];
   if (p.post_now) return ["warn", "Posting now"];
-  const t = new Date(fixIso(p.scheduled_utc)).getTime();
-  if (p.date !== D.today_date && t < now) return ["neutral", "Not posted (day passed)"];
-  if (now - t > 40 * 60000) return ["bad", "Overdue"];
+  if (p.date && p.date < (() => { const d = new Date(D.today_date + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() - (sys.catch_up_days || 2)); return d.toISOString().slice(0, 10); })()) return ["bad", "Never posted"];
+  const t = T(p.scheduled_utc);
+  if (now - t > 45 * 60000) return ["bad", "Overdue"];
   if (t <= now) return ["warn", "Due now"];
-  return ["neutral", "Scheduled"];
+  return ["", "Scheduled"];
 }
 function reelStatus(p) {
   if (p.reel_slot == null && !(p.reel && p.reel.post_at)) return null;
   if (p.status === "removed" || p.status === "deleted") return null;
-  const r = p.reel, t = p.reel_scheduled_utc ? new Date(fixIso(p.reel_scheduled_utc)).getTime() : 0;
+  const r = p.reel, t = T(p.reel_scheduled_utc);
   if (r && r.status === "posted") return ["good", "Reel live"];
-  if (r && r.status === "cancelled") return ["neutral", "Reel cancelled"];
-  if (r && r.status === "failed") return ["bad", "Reel failed"];
-  const past = t && t < now, late = t && now - t > 45 * 60000;
-  if (r && r.status === "made") return late ? ["bad", "Reel overdue"] : past ? ["warn", "Reel due now"] : ["neutral", "Reel ready"];
-  if ((p.reel_date || p.date) !== D.today_date && past) return ["neutral", "Reel not made (day passed)"];
-  return late ? ["bad", "Reel not made yet"] : ["neutral", "Reel will be made"];
+  if (r && r.status === "cancelled") return ["", "Reel cancelled"];
+  const late = t && now - t > 45 * 60000, past = t && t <= now;
+  if (r && r.status === "failed") return ["bad", "Reel not posted yet"];
+  if (r && (r.status === "made" || r.status === "expired")) return late ? ["bad", "Reel overdue"] : past ? ["warn", "Reel due now"] : ["", "Reel ready"];
+  return late ? ["bad", "Reel not made"] : ["", "Reel being made"];
 }
-const isLive = p => postStatus(p)[1] === "Live";
-const isUpcoming = p => ["Scheduled", "Due now", "Overdue", "Posting now"].includes(postStatus(p)[1]);
+const isLive = p => p.status === "posted";
+const isUpcoming = p => ["Scheduled", "Due now", "Overdue", "Posting now", "Not posted yet"].includes(postStatus(p)[1]);
+const byId = Object.fromEntries(D.all_posts.map(p => [p.id, p]));
+const coverOf = id => { const p = byId[id]; return p && p.slides && p.slides.length ? (p.slides.find(s => s.image) || {}).image : null; };
 
 // ---------- router ----------
 function route() {
-  const [view, id] = (location.hash.slice(1) || "today").split("/");
+  let [view, id] = (location.hash.slice(1) || "overview").split("/");
+  if (view === "today") view = "overview"; if (view === "settings") view = "control";
   document.querySelectorAll(".view").forEach(v => v.classList.remove("on"));
   document.querySelectorAll("nav a").forEach(a => a.classList.toggle("on", a.dataset.v === (view === "post" ? "posts" : view)));
-  ($("v-" + view) || $("v-today")).classList.add("on");
+  ($("v-" + view) || $("v-overview")).classList.add("on");
   if (view === "post") showPost(decodeURIComponent(id || ""));
-  if (view === "settings") loadRuns();
+  if (view === "control") loadRuns();
   window.scrollTo(0, 0);
 }
 window.addEventListener("hashchange", route);
 
-$("title").textContent = D.account;
-const age = now - new Date(D.generated_at).getTime();
-$("fresh").textContent = "Updated " + ago(age);
+// ---------- shared numbers ----------
+const age = now - T(D.generated_at), AN = D.account_now || {};
+const LIVE = D.posts.filter(p => p.posted_local);
+const dayStr = d => d.toISOString().slice(0, 10);
+const dayMinus = n => { const d = new Date(D.today_date + "T12:00:00Z"); d.setUTCDate(d.getUTCDate() - n); return dayStr(d); };
+const RANGE_DAYS = {"7D": 7, "30D": 30, "ALL": 0};
+const firstDay = LIVE.length ? LIVE.map(p => p.posted_local.slice(0, 10)).sort()[0] : D.today_date;
+const rangeStart = r => RANGE_DAYS[r] ? dayMinus(RANGE_DAYS[r] - 1) : firstDay;
+const inRange = (p, r) => p.posted_local.slice(0, 10) >= rangeStart(r);
+const kindOk = p => PREF.kind === "all" || (PREF.kind === "reel" ? p.kind === "reel" : p.kind !== "reel");
+const METRIC = {reach: ["Reach", p => p.reach], views: ["Views", p => p.views], eng: ["Interactions", p => p.total_interactions]};
+const sum = (arr, f) => arr.reduce((a, p) => a + (f(p) || 0), 0);
+const avg = arr => arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : null;
 
-// ================= TODAY =================
-const alerts = [...D.alerts];
-if (age > 90 * 60000) alerts.push({level: "serious", text: "This page hasn't refreshed for " + ago(age).replace(" ago", "") + ". The posting system may have stopped."});
-if (sys.last_mac_ping_utc) {
-  const p = now - new Date(sys.last_mac_ping_utc).getTime();
-  if (p > 30 * 60000) alerts.push({level: "warning", text: "Your Mac mini last woke the poster " + ago(p) + ". It may be asleep, off or offline."});
-} else alerts.push({level: "warning", text: "No wake-up from your Mac mini has been recorded yet."});
-const LVL = {critical: "bad", serious: "bad", warning: "warn", good: "good", neutral: "neutral"};
-$("attn").innerHTML = alerts.length
-  ? alerts.map(a => `<div class="card flat"><div class="status">${dot(LVL[a.level] || "neutral")}<span>${esc(a.text)}</span></div></div>`).join("")
-  : `<div class="card flat"><div class="status">${dot("good")}<span>Everything is running normally.</span></div></div>`;
-
-const AN = D.account_now || {};
+// today's rows (carousels + Reels whose time falls today)
 const todayRows = [];
 D.all_posts.forEach(p => {
-  if (p.date === D.today_date && p.has_slot !== false)
-    todayRows.push({p, kind: "Post", st: postStatus(p), time: p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc});
+  if (p.date === D.today_date && p.has_slot !== false && p.scheduled_utc)
+    todayRows.push({p, kind: "Post", st: postStatus(p), time: isLive(p) && p.posted_at ? p.posted_at : p.scheduled_utc});
   const rs = reelStatus(p);
   if (rs && (p.reel_date || p.date) === D.today_date && rs[1] !== "Reel cancelled")
-    todayRows.push({p, kind: "Reel", st: rs, time: p.reel && p.reel.status === "posted" ? p.reel.posted_at : p.reel_scheduled_utc});
+    todayRows.push({p, kind: "Reel", st: rs, time: p.reel && p.reel.status === "posted" && p.reel.posted_at ? p.reel.posted_at : p.reel_scheduled_utc});
 });
-todayRows.sort((a, b) => new Date(fixIso(a.time) || 0) - new Date(fixIso(b.time) || 0));
-const doneToday = todayRows.filter(r => /live/i.test(r.st[1])).length;
+todayRows.sort((a, b) => T(a.time) - T(b.time));
+const doneToday = todayRows.filter(r => r.st[0] === "good").length;
+const next = todayRows.find(r => r.st[0] !== "good" && !/cancel|Removed/.test(r.st[1]));
 
-$("chips").innerHTML =
-  `<div class="chip"><div class="n">${nf(AN.followers)}</div><div class="l">Followers</div></div>` +
-  `<div class="chip"><div class="n">${nf(AN.media_count != null ? AN.media_count : D.posts.length)}</div><div class="l">On Instagram</div></div>` +
-  `<div class="chip"><div class="n">${doneToday}/${todayRows.length}</div><div class="l">Out today</div></div>`;
+// ================= TICKER =================
+function drawTicker() {
+  const r7 = LIVE.filter(p => inRange(p, "7D"));
+  const reels = LIVE.filter(p => p.kind === "reel").length;
+  const macAge = sys.last_mac_ping_utc ? now - T(sys.last_mac_ping_utc) : Infinity;
+  const ok = !sys.paused && macAge < 30 * 60000 && !sys.api_wait_until && age < 90 * 60000;
+  const tk = [
+    ["Followers", nf(AN.followers)],
+    ["Live", nf(LIVE.length) + ` <span class="faint">(${reels} reels)</span>`],
+    ["Reach 7d", short(sum(r7, p => p.reach))],
+    ["Views 7d", short(sum(r7, p => p.views))],
+    ["Today", doneToday + " / " + todayRows.length],
+    ["Next", next ? clock(next.time) : "-"],
+    ["Status", `<span class="row" style="gap:6px;display:inline-flex">${dot(sys.paused ? "warn" : ok ? "good" : "bad")}${sys.paused ? "Paused" : ok ? "Running" : "Check alerts"}</span>`],
+  ];
+  $("ticker").innerHTML = `<div class="logo">${"<i></i>".repeat(9)}</div>` +
+    tk.map(([l, v]) => `<div class="tk"><div class="lbl">${l}</div><b>${v}</b></div>`).join("") +
+    `<div class="who"><div><div style="font-size:11px;font-weight:500">${esc((D.account || "").split(" @")[0])}</div><div class="faint" style="font-size:10px">@unclefactss</div></div><div class="av">UF</div></div>`;
+  $("fresh").textContent = "Updated " + ago(age);
+}
 
-$("todayNote").textContent = todayRows.length ? "(" + D.today_date + ")" : "";
-$("today").innerHTML = todayRows.length ? todayRows.map(({p, kind, st, time}) => {
-  const up = kind === "Post" && isUpcoming(p);
-  return `<div class="item">
-    <div class="time">${clock(time)}</div>
-    <div class="body">
-      <div class="t"><span class="tag${kind === "Reel" ? " reel" : ""}">${kind}</span><a href="#post/${encodeURIComponent(p.id)}">${esc(p.title)}</a></div>
-      <div class="dim sm status">${dot(st[0])}${esc(st[1])}</div>
-    </div>
-    ${up ? `<button class="btn mini" onclick="act('post_now','${idq(p.id)}')">Post now</button>` : ""}
-  </div>`;
-}).join("") : `<div class="dim">Nothing is queued for today yet.</div>`;
+// ================= OVERVIEW =================
+function drawAlerts() {
+  const a = [...D.alerts];
+  if (age > 90 * 60000) a.push({level: "serious", text: "This page hasn't refreshed for " + ago(age).replace(" ago", "") + ". The posting system may have stopped."});
+  if (sys.last_mac_ping_utc) { const p = now - T(sys.last_mac_ping_utc);
+    if (p > 30 * 60000) a.push({level: "warning", text: "Your Mac mini last woke the poster " + ago(p) + ". It may be asleep, off or offline."});
+  } else a.push({level: "warning", text: "No wake-up from your Mac mini has been recorded yet."});
+  const L = {critical: "bad", serious: "bad", warning: "warn"};
+  $("alerts").style.display = a.length ? "" : "none";
+  $("alerts").innerHTML = `<div class="head" style="margin-bottom:6px"><span class="lbl">Needs attention</span><span class="lbl">${a.length}</span></div>` +
+    a.map(x => `<div class="alert">${dot(L[x.level] || "")}<span>${esc(x.text)}</span></div>`).join("");
+}
 
-const live = D.posts.filter(p => p.reach != null);
-$("results").innerHTML = live.length ? live.slice(0, 12).map(p => `<div class="item">
-    <div class="body">
-      <div class="t">${esc(p.title || "")}</div>
-      <div class="dim sm">${esc((p.posted_local || "").slice(5))} &middot; ${nf(p.reach)} reached &middot; ${nf(p.likes)} likes &middot; ${nf(p.shares)} shares</div>
-    </div>
-    ${p.permalink ? `<a class="btn mini" href="${esc(p.permalink)}" target="_blank" rel="noopener">Open</a>` : ""}
-  </div>`).join("") : `<div class="dim">Numbers appear once Instagram reports them.</div>`;
+function drawToday() {
+  $("todayDate").textContent = new Date(D.today_date + "T12:00:00Z").toLocaleDateString("en-GB", {day: "numeric", month: "short", timeZone: "UTC"});
+  $("todayN").textContent = doneToday;
+  $("todayOf").textContent = "/ " + todayRows.length + " out";
+  $("todayList").innerHTML = todayRows.length ? todayRows.map(r => `<div class="it">
+      <span class="tm">${clock(r.time)}</span><span class="tag${r.kind === "Reel" ? " reel" : ""}" style="${r.kind === "Reel" ? "background:rgba(255,255,255,.2)" : "background:rgba(0,0,0,.18);color:#e6eaf4"}">${r.kind}</span>
+      <span class="ell"><a href="#post/${encodeURIComponent(r.p.id)}">${esc(r.p.title)}</a></span>${dot(r.st[0])}</div>`).join("")
+    : `<div class="dim">Nothing queued yet. The research run writes today's stories around 12:15 Istanbul.</div>`;
+
+  if (next) {
+    const t = T(next.time), d = t - now;
+    $("nextIn").textContent = d > 0 ? (d >= 3600e3 ? Math.floor(d / 3600e3) + "h " : "") + Math.round((d % 3600e3) / 60000) + "m" : "due";
+    $("nextAt").textContent = clock(next.time) + " " + tzName() + " · " + next.st[1];
+    $("nextKind").innerHTML = `<span class="tag${next.kind === "Reel" ? " reel" : ""}">${next.kind}</span>`;
+    $("nextTitle").innerHTML = `<a href="#post/${encodeURIComponent(next.p.id)}" style="text-decoration:none">${esc(next.p.title)}</a>`;
+    const q = esc(next.p.id);
+    $("nextBtns").innerHTML = next.kind === "Post"
+      ? `<button class="btn mini" onclick="if(confirm('Post this carousel now?')) act('post_now','${q}')">Post now</button>`
+      : (next.p.reel && next.p.reel.url ? `<button class="btn mini" onclick="if(confirm('Post this Reel now?')) act('post_reel','${q}')">Post now</button>` : "");
+  } else {
+    $("nextIn").textContent = "-"; $("nextAt").textContent = "All of today's items are done."; $("nextTitle").textContent = ""; $("nextBtns").innerHTML = "";
+  }
+}
+
+function drawChart() {
+  seg("segRange", [["7D", "7D"], ["30D", "30D"], ["ALL", "All"]], PREF.range, v => { setPref("range", v); drawStats(); });
+  seg("segKind", [["all", "All"], ["reel", "Reels"], ["post", "Posts"]], PREF.kind, v => { setPref("kind", v); drawStats(); });
+  seg("segMetric", [["reach", "Reach"], ["views", "Views"], ["eng", "Interact."]], PREF.metric, v => { setPref("metric", v); drawStats(); });
+  const [mName, f] = METRIC[PREF.metric], start = rangeStart(PREF.range);
+  const items = LIVE.filter(p => kindOk(p) && p.posted_local.slice(0, 10) >= start);
+  const days = []; for (let d = start; d <= D.today_date; ) { days.push(d); const x = new Date(d + "T12:00:00Z"); x.setUTCDate(x.getUTCDate() + 1); d = dayStr(x); }
+  const vals = days.map(d => sum(items.filter(p => p.posted_local.startsWith(d)), f));
+  const max = Math.max(1, ...vals), hi = vals.indexOf(Math.max(...vals));
+  $("chartLbl").textContent = mName + " by day posted";
+  $("chartTotal").textContent = short(sum(items, f));
+  $("chart").innerHTML = vals.map((v, i) => `<div class="c${i === hi && v ? " hi" : ""}" title="${days[i]}: ${nf(v)}">
+      ${i === hi && v ? `<em style="bottom:${v / max * 100}%">${short(v)}</em>` : ""}<i style="height:${v / max * 100}%"></i></div>`).join("");
+  const fmt = d => new Date(d + "T12:00:00Z").toLocaleDateString("en-GB", {day: "numeric", month: "short", timeZone: "UTC"});
+  $("axis").innerHTML = `<span>${fmt(days[0])}</span><span>${fmt(days[days.length - 1])}</span>`;
+}
+
+function drawFollowers() {
+  const f = D.followers || [];
+  $("folN").textContent = nf(AN.followers);
+  const wk = f.filter(x => x.date >= dayMinus(7));
+  const delta = wk.length ? (AN.followers || 0) - wk[0].followers : null;
+  $("folDelta").textContent = delta == null ? "" : (delta >= 0 ? "+" : "") + delta + " 7d";
+  if (f.length > 1) {
+    const vs = f.map(x => x.followers), mx = Math.max(1, ...vs), mn = Math.min(...vs);
+    const pts = vs.map((v, i) => `${(i / (vs.length - 1) * 200).toFixed(1)},${(38 - (v - mn) / Math.max(1, mx - mn) * 34).toFixed(1)}`).join(" ");
+    $("folSpark").innerHTML = `<polyline points="${pts}" fill="none" stroke="var(--accent-hi)" stroke-width="2" vector-effect="non-scaling-stroke"/>`;
+  }
+}
+
+function drawAvg() {
+  const items = LIVE.filter(p => inRange(p, PREF.range) && p.reach != null && (p.age_hours || 0) >= 24);
+  const r = avg(items.filter(p => p.kind === "reel").map(p => p.reach)), c = avg(items.filter(p => p.kind !== "reel").map(p => p.reach));
+  const mx = Math.max(1, r || 0, c || 0);
+  $("avgRange").textContent = PREF.range + " · 24h+ old";
+  $("avgReel").textContent = r == null ? "-" : nf(r); $("avgPost").textContent = c == null ? "-" : nf(c);
+  $("avgReelBar").style.width = (r || 0) / mx * 100 + "%"; $("avgPostBar").style.width = (c || 0) / mx * 100 + "%";
+}
+
+function drawRing() {
+  const due = [];
+  D.all_posts.forEach(p => {
+    if (p.status === "removed" || p.status === "deleted") return;
+    const lo = now - 7 * 864e5, hi = now - 45 * 60000;
+    if (p.has_slot !== false && p.scheduled_utc) { const t = T(p.scheduled_utc); if (t > lo && t < hi) due.push(p.status === "posted"); }
+    if (p.reel_scheduled_utc && !(p.reel && p.reel.status === "cancelled")) { const t = T(p.reel_scheduled_utc); if (t > lo && t < hi) due.push(!!(p.reel && p.reel.status === "posted")); }
+  });
+  const ok = due.filter(Boolean).length, n = due.length, frac = n ? ok / n : 1, C = 2 * Math.PI * 52;
+  $("ringArc").setAttribute("stroke-dasharray", (frac * C).toFixed(1) + " " + C.toFixed(1));
+  $("ringArc").setAttribute("stroke", frac >= .95 ? "var(--accent-hi)" : frac >= .8 ? "var(--warn)" : "var(--bad)");
+  $("ringN").textContent = n ? Math.round(frac * 100) + "%" : "-";
+  $("ringSub").textContent = n ? ok + " of " + n + " went out" : "nothing due yet";
+}
+
+function drawEng() {
+  const items = LIVE.filter(p => inRange(p, PREF.range) && kindOk(p));
+  const reach = sum(items, p => p.reach);
+  const row = (l, v, rate) => `<div class="kv"><span class="lbl">${l}</span><span>${nf(v)}${rate != null ? ` <span class="faint">${rate}</span>` : ""}</span></div>`;
+  const per = v => reach ? (v / reach * 100).toFixed(1) + "%" : null;
+  $("engRange").textContent = PREF.range;
+  const sh = sum(items, p => p.shares), sv = sum(items, p => p.saved);
+  $("eng").innerHTML = row("Likes", sum(items, p => p.likes)) + row("Comments", sum(items, p => p.comments)) +
+    row("Shares", sh, per(sh)) + row("Saves", sv, per(sv)) + row("Posts", items.length);
+}
+
+function drawThumbs() {
+  $("thumbs").innerHTML = LIVE.slice(0, 9).map(p => { const c = coverOf(p.id);
+    return `<a href="${esc(p.permalink || "#")}" target="_blank" rel="noopener" title="${esc(p.title)}">${c ? `<img src="${esc(thumb(c))}" loading="lazy" alt="" onerror="this.remove()">` : ""}
+      <span>${p.kind === "reel" ? "▶ " : ""}${short(p.reach)}</span></a>`; }).join("") || `<div class="dim">Nothing live yet.</div>`;
+}
+
+function drawTop() {
+  const items = LIVE.filter(p => inRange(p, PREF.range) && kindOk(p) && p.reach != null);
+  const f = METRIC[PREF.metric][1], top = items.sort((a, b) => (f(b) || 0) - (f(a) || 0))[0];
+  if (!top) { $("topTile").style.display = "none"; return; }
+  $("topTile").style.display = "";
+  $("topTitle").textContent = top.title || "";
+  $("topLink").href = top.permalink || "#";
+  $("topMeta").innerHTML = `${top.kind === "reel" ? "Reel" : "Carousel"} · ${nf(top.reach)} reach · ${nf(top.views)} views · ${nf(top.shares)} shares · ${esc((top.posted_local || "").slice(5, 10))}`;
+}
+
+function drawSystem() {
+  const mac = sys.last_mac_ping_utc ? now - T(sys.last_mac_ping_utc) : null;
+  const numAge = AN.fetched_at ? now - T(AN.fetched_at) : null;
+  const rows = [
+    ["Mac mini", mac == null ? ["bad", "never"] : [mac < 30 * 60000 ? "good" : "bad", ago(mac)]],
+    ["Instagram", sys.api_wait_until ? ["warn", "waiting until " + clock(sys.api_wait_until)] : ["good", "OK"]],
+    ["Numbers", numAge == null ? ["", "-"] : [numAge < 60 * 60000 ? "good" : "warn", ago(numAge)]],
+    ["Today's stories", [sys.queued_today >= sys.stories_per_day ? "good" : "bad", sys.queued_today + " / " + sys.stories_per_day]],
+    ["Posting", [sys.paused ? "warn" : "good", sys.paused ? "paused" : "on"]],
+  ];
+  $("sysList").innerHTML = rows.map(([l, [lv, v]]) => `<div class="kv"><span class="lbl">${l}</span><span class="row" style="gap:6px">${esc(v)} ${dot(lv)}</span></div>`).join("");
+  const bad = rows.some(r => r[1][0] === "bad");
+  $("sysDot").innerHTML = dot(bad ? "bad" : rows.some(r => r[1][0] === "warn") ? "warn" : "good");
+}
+
+function drawWork() {
+  const keys = Object.keys(D.groups || {});
+  if (!keys.length) { $("workTile").style.display = "none"; return; }
+  if (!keys.includes(PREF.work)) PREF.work = keys[0];
+  seg("segWork", keys.map(k => [k, k.replace(" style", "").replace("posting ", "")]), PREF.work, v => { setPref("work", v); drawWork(); });
+  const rows = D.groups[PREF.work], mx = Math.max(1, ...rows.map(r => r.reach || 0));
+  $("work").innerHTML = `<table><tr><th>${esc(PREF.work)}</th><th class="r">Posts</th><th class="r">Avg reach</th><th class="r">Share rate</th><th style="width:30%"></th></tr>` +
+    rows.map(r => `<tr><td>${esc(r.key)}</td><td class="r">${r.n}</td><td class="r">${nf(r.reach)}</td><td class="r">${r.share_rate == null ? "-" : (r.share_rate * 100).toFixed(1) + "%"}</td>
+      <td><div class="bar"><i style="width:${(r.reach || 0) / mx * 100}%"></i></div></td></tr>`).join("") + `</table>
+    <div class="dim" style="font-size:11px;margin-top:8px">Posts 48h+ old, groups of ${3}+ only. ${D.mature_count} posts counted.</div>`;
+}
+
+let showAllResults = false;
+function drawResults() {
+  const all = LIVE.filter(p => inRange(p, PREF.range) && kindOk(p)), items = showAllResults ? all : all.slice(0, 10);
+  $("resMore").innerHTML = all.length > 10 ? `<button class="btn mini" style="margin-top:10px" onclick="showAllResults=!showAllResults;drawResults()">${showAllResults ? "Show less" : "Show all " + all.length}</button>` : "";
+  $("resRange").textContent = PREF.range + " · " + all.length;
+  $("results").innerHTML = items.length ? `<table><tr><th>Posted</th><th>Story</th><th class="r">Reach</th><th class="r">Views</th><th class="r hm">Likes</th><th class="r">Shares</th><th class="r hm">Saves</th></tr>` +
+    items.map(p => `<tr><td class="dim">${esc((p.posted_local || "").slice(5, 16))}</td>
+      <td style="max-width:280px" class="ell"><span class="tag${p.kind === "reel" ? " reel" : ""}" style="margin-right:6px">${p.kind === "reel" ? "Reel" : "Post"}</span>${p.permalink ? `<a href="${esc(p.permalink)}" target="_blank" rel="noopener" style="text-decoration:none">${esc(p.title)}</a>` : esc(p.title)}</td>
+      <td class="r">${nf(p.reach)}</td><td class="r">${nf(p.views)}</td><td class="r hm">${nf(p.likes)}</td><td class="r">${nf(p.shares)}</td><td class="r hm">${nf(p.saved)}</td></tr>`).join("") + `</table>`
+    : `<div class="dim">No live posts in this range.</div>`;
+}
+
+function drawStats() { drawChart(); drawAvg(); drawEng(); drawTop(); drawResults(); }
 
 // ================= POSTS =================
-const FILTERS = [["all", "All"], ["upcoming", "Upcoming"], ["live", "Live"], ["reels", "Reels"], ["other", "Other"]];
+const FILTERS = [["all", "All"], ["upcoming", "Upcoming"], ["live", "Live"], ["reels", "Reels"], ["problems", "Problems"], ["removed", "Removed"]];
 let filter = "all";
 function inFilter(p) {
-  const txt = postStatus(p)[1];
+  const txt = postStatus(p)[1], rs = reelStatus(p);
   if (filter === "all") return true;
-  if (filter === "live") return isLive(p);
-  if (filter === "upcoming") return isUpcoming(p);
+  if (filter === "live") return isLive(p) || (rs && rs[0] === "good");
+  if (filter === "upcoming") return isUpcoming(p) || (rs && !/live|cancel/.test(rs[1]));
   if (filter === "reels") return p.reel_slot != null || !!p.reel;
-  if (filter === "other") return txt === "Removed" || txt.startsWith("Deleted") || txt === "Failed" || txt.startsWith("Not posted");
+  if (filter === "problems") return postStatus(p)[0] === "bad" || (rs && rs[0] === "bad");
+  if (filter === "removed") return txt === "Removed" || txt === "Deleted";
 }
 function drawList() {
-  $("filters").innerHTML = FILTERS.map(([k, l]) => `<button class="${k === filter ? "on" : ""}" onclick="filter='${k}';drawList()">${l}</button>`).join("");
-  const q = ($("q").value || "").toLowerCase();
+  seg("filters", FILTERS, filter, v => { filter = v; drawList(); });
+  $("sort").value = PREF.sort;
+  const q = ($("q").value || "").toLowerCase(), st = p => p.stats || {}, rst = p => p.reel_stats || {};
+  const metric = {reach: p => (st(p).reach || 0) + (rst(p).reach || 0), views: p => rst(p).views || 0, shares: p => (st(p).shares || 0) + (rst(p).shares || 0)}[PREF.sort];
   const items = D.all_posts.filter(p => inFilter(p) && (!q || (p.title || "").toLowerCase().includes(q)))
-    .sort((a, b) => (b.date || "").localeCompare(a.date || "") || ((a.slot || 9) - (b.slot || 9)));
-  if (!items.length) { $("plist").innerHTML = `<div class="card dim">Nothing here.</div>`; return; }
-  let html = "", last = "";
-  items.forEach(p => {
-    if (p.date !== last) {
-      last = p.date;
-      html += `<div class="dayhead">${p.date === D.today_date ? "Today" : esc(new Date(p.date + "T12:00:00").toLocaleDateString([], {weekday: "long", month: "short", day: "numeric"}))}</div>`;
-    }
-    const [lvl, txt] = postStatus(p), cover = p.slides.length && p.slides[0].image;
-    const t = p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc;
-    const rs = reelStatus(p), st = p.stats;
-    html += `<a href="#post/${encodeURIComponent(p.id)}">
-      ${cover ? `<img src="${esc(thumb(cover))}" loading="lazy" alt="" onerror="this.style.visibility='hidden'">` : `<div style="width:46px;height:58px;border-radius:8px;background:var(--border);flex:none"></div>`}
-      <div class="body" style="min-width:0;flex:1">
-        <div class="t">${esc(p.title)}</div>
-        <div class="dim sm status">${dot(lvl)}${esc(txt)}${t ? " &middot; " + clock(t) : ""}</div>
-        ${rs ? `<div class="dim sm status">${dot(rs[0])}${esc(rs[1])}</div>` : ""}
-        ${st && st.reach != null ? `<div class="dim sm">${nf(st.reach)} reached &middot; ${nf(st.likes)} likes</div>` : ""}
-      </div></a>`;
-  });
-  $("plist").innerHTML = html;
+    .sort((a, b) => metric ? metric(b) - metric(a) : (b.date || "").localeCompare(a.date || "") || ((a.slot || 9) - (b.slot || 9)));
+  $("plist").innerHTML = items.length ? items.map(p => {
+    const [lv, txt] = postStatus(p), rs = reelStatus(p), c = coverOf(p.id), s = p.stats, r = p.reel_stats;
+    return `<a class="card" href="#post/${encodeURIComponent(p.id)}">
+      <div class="im">${c ? `<img src="${esc(thumb(c))}" loading="lazy" alt="" onerror="this.remove()">` : ""}${p.reel_slot != null || p.reel ? `<span class="tag reel">Reel</span>` : ""}</div>
+      <div class="b"><div class="faint" style="font-size:10px">${esc(p.date)}</div><div class="ti">${esc(p.title)}</div>
+        ${p.has_slot !== false ? `<div class="st">${dot(lv)}${esc(txt)}</div>` : ""}
+        ${rs ? `<div class="st">${dot(rs[0])}${esc(rs[1])}</div>` : ""}
+        <div class="mx">${s && s.reach != null ? "Post " + nf(s.reach) + " reach" : ""}${s && r ? " · " : ""}${r && r.reach != null ? "Reel " + nf(r.views) + " views" : ""}</div></div></a>`;
+  }).join("") : `<div class="dim">Nothing here.</div>`;
 }
 function localDefault() { const d = new Date(Date.now() + 3600e3); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 16); }
-function toggle(id) { const e = $(id); e.style.display = e.style.display === "none" ? "block" : "none"; }
+function toggle(id) { const e = $(id); e.style.display = e.style.display === "none" ? "" : "none"; }
+const metricsHtml = (o, keys) => `<div class="row" style="gap:18px">${keys.map(([k, l]) => `<div><div class="num mid">${nf(o[k])}</div><div class="lbl" style="margin-top:4px">${l}</div></div>`).join("")}</div>`;
 
 function showPost(id) {
-  const p = D.all_posts.find(x => x.id === id);
-  if (!p) { $("pdetail").innerHTML = `<div class="card dim">Post not found. It may be older than 3 weeks.</div>`; return; }
-  const [lvl, txt] = postStatus(p), liveNow = isLive(p), upcoming = isUpcoming(p);
-  const removed = txt === "Removed", editable = !liveNow;
-  const q = idq(p.id), st = p.stats, rs = p.reel_stats;
-
+  const p = byId[id];
+  if (!p) { $("pdetail").innerHTML = `<div class="tile dim">Post not found. Only the last 3 weeks are kept here.</div>`; return; }
+  const [lv, txt] = postStatus(p), live = isLive(p), up = isUpcoming(p), removed = txt === "Removed", editable = !live, q = esc(p.id);
   let btns = "";
-  if (liveNow) {
-    btns += (p.permalink ? `<a class="btn" href="${esc(p.permalink)}" target="_blank" rel="noopener">Open on Instagram</a>` : "") +
-      `<button class="btn danger" onclick="if(confirm('Delete this post from Instagram? This cannot be undone.')) act('delete_instagram','${q}')">Delete from Instagram</button>`;
-  } else if (editable) {
-    if (p.has_slot !== false) {
-      btns += `<button class="btn primary" onclick="if(${upcoming} || confirm('Post this to Instagram now?')) act('post_now','${q}')">Post now</button>`;
-      btns += `<button class="btn" onclick="toggle('resBox')">Reschedule</button>`;
-    }
-    btns += removed
-      ? `<button class="btn" onclick="act('restore','${q}')">Restore</button>`
-      : `<button class="btn danger" onclick="if(confirm('Remove this story? It will not be posted as a carousel or a Reel.')) act('remove','${q}')">Remove</button>`;
+  if (live) btns += (p.permalink ? `<a class="btn" href="${esc(p.permalink)}" target="_blank" rel="noopener">Open on Instagram &#8599;</a>` : "") +
+    `<button class="btn bad" onclick="if(confirm('Delete this post from Instagram? This cannot be undone.')) act('delete_instagram','${q}')">Delete from Instagram</button>`;
+  else {
+    if (p.has_slot !== false) btns += `<button class="btn pri" onclick="if(${up} || confirm('Post this to Instagram now?')) act('post_now','${q}')">Post now</button>
+      <button class="btn" onclick="toggle('resBox')">Reschedule</button>`;
+    btns += removed ? `<button class="btn" onclick="act('restore','${q}')">Restore</button>`
+      : `<button class="btn bad" onclick="if(confirm('Remove this story? It will not be posted as a carousel or a Reel.')) act('remove','${q}')">Remove</button>`;
   }
-
-  let reelHtml = "";
+  let reel = "";
   if (p.slides.length && (p.reel_slot != null || p.reel)) {
-    const r = p.reel, rst = reelStatus(p);
-    reelHtml = `<h2>Reel</h2><div class="card">
-      <div class="dim sm status" style="margin-bottom:8px">${rst ? dot(rst[0]) + esc(rst[1]) : ""}${p.reel_scheduled_utc && !(r && r.status === "posted") ? " &middot; " + when(p.reel_scheduled_utc) : ""}</div>
-      ${r && r.url ? `<video controls playsinline preload="metadata" src="${esc(r.url)}"></video>` : `<div class="dim sm">Not made yet.</div>`}
-      ${r && r.error ? `<div class="dim sm" style="margin-top:6px">Last problem: ${esc(r.error)}</div>` : ""}
-      ${rs ? `<div class="metrics" style="margin-top:10px"><div><b>${nf(rs.views)}</b>views</div><div><b>${nf(rs.reach)}</b>reached</div><div><b>${nf(rs.likes)}</b>likes</div><div><b>${nf(rs.shares)}</b>shares</div><div><b>${nf(rs.saved)}</b>saves</div></div>` : ""}
-      <div class="actions">${r && r.status === "posted"
-        ? (r.permalink ? `<a class="btn" href="${esc(r.permalink)}" target="_blank" rel="noopener">Open Reel</a>` : "")
-        : `${r && r.url ? `<button class="btn" onclick="if(confirm('Post this Reel to Instagram now?')) act('post_reel','${q}')">Post Reel now</button>` : ""}
+    const r = p.reel, rs = reelStatus(p), rst = p.reel_stats;
+    reel = `<div class="tile s2"><div class="head"><span class="lbl">Reel</span><span class="row" style="gap:6px">${rs ? dot(rs[0]) + esc(rs[1]) : ""}</span></div>
+      ${r && r.url ? `<video controls playsinline preload="metadata" src="${esc(r.url)}"></video>` : `<div class="dim">Not made yet.</div>`}
+      <div class="dim" style="margin-top:8px">${p.reel_scheduled_utc && !(r && r.status === "posted") ? "Goes out " + when(p.reel_scheduled_utc) : r && r.posted_at ? "Posted " + when(r.posted_at) : ""}</div>
+      ${r && r.error ? `<div class="dim" style="margin-top:6px">Last problem: ${esc(r.error)}</div>` : ""}
+      ${rst ? `<div class="rule"></div>` + metricsHtml(rst, [["views", "Views"], ["reach", "Reach"], ["likes", "Likes"], ["shares", "Shares"], ["saved", "Saves"]]) : ""}
+      <div class="btns">${r && r.status === "posted" ? (r.permalink ? `<a class="btn" href="${esc(r.permalink)}" target="_blank" rel="noopener">Open Reel &#8599;</a>` : "")
+        : `${r && r.url ? `<button class="btn" onclick="if(confirm('Post this Reel now?')) act('post_reel','${q}')">Post Reel now</button>` : ""}
            <button class="btn" onclick="makeReel('${q}')">${r ? "Make again" : "Make now"}</button>
            ${r && r.status !== "cancelled" ? `<button class="btn" onclick="toggle('reelTime')">Change time</button>
-           <button class="btn danger" onclick="if(confirm('Cancel this Reel?')) act('cancel_reel','${q}')">Cancel</button>` : ""}`}</div>
-      <div id="reelTime" class="row" style="display:none">
-        <input type="datetime-local" id="reelTimeIn" value="${localDefault()}">
-        <button class="btn primary" onclick="act('reschedule_reel','${q}', new Date($('reelTimeIn').value).toISOString())">Set</button></div>
-    </div>`;
+             <button class="btn bad" onclick="if(confirm('Cancel this Reel?')) act('cancel_reel','${q}')">Cancel</button>` : ""}`}</div>
+      <div id="reelTime" class="row" style="display:none;margin-top:8px"><input type="datetime-local" id="reelTimeIn" value="${localDefault()}">
+        <button class="btn pri" onclick="act('reschedule_reel','${q}', new Date($('reelTimeIn').value).toISOString())">Set</button></div></div>`;
   }
-
-  $("pdetail").innerHTML = `
-    <h1 style="margin-top:10px">${esc(p.title)}</h1>
-    <div class="dim sm status">${dot(lvl)}${esc(txt)}${p.status === "posted" && p.posted_at ? " &middot; posted " + when(p.posted_at) : (p.scheduled_utc ? " &middot; " + when(p.scheduled_utc) : "")}</div>
-    ${p.error ? `<div class="dim sm">Problem: ${esc(p.error)}</div>` : ""}
-    <div class="actions">${btns}</div>
-    <div id="resBox" class="card" style="display:none">
-      <div class="row"><input type="datetime-local" id="resTime" value="${localDefault()}">
-      <button class="btn primary" onclick="act('reschedule','${q}', new Date($('resTime').value).toISOString())">Set time</button>
-      <button class="btn" onclick="act('reschedule','${q}','')">Normal time</button></div>
-      <p class="dim sm" style="margin-bottom:0">Your clock. It goes out at the first check after that time.</p></div>
-    ${st ? `<div class="card"><div class="metrics"><div><b>${nf(st.reach)}</b>reached</div><div><b>${nf(st.likes)}</b>likes</div><div><b>${nf(st.comments)}</b>comments</div><div><b>${nf(st.shares)}</b>shares</div><div><b>${nf(st.saved)}</b>saves</div></div></div>` : ""}
-    ${reelHtml}
-    ${p.slides.length ? `<h2>Slides (${p.slides.length})</h2><div class="slides">${p.slides.map((s, i) => `
-      <div class="slide">${s.image ? `<img src="${esc(thumb(s.image))}" loading="lazy" alt="" onerror="this.style.display='none'">` : ""}
-        <div class="txt"><div class="k">${i + 1}. ${esc(s.type === "cover" ? (s.kicker || "cover") : s.type === "end" ? "ending" : (s.layout || "text"))}</div>
-        <div>${esc(s.text)}</div>
-        ${editable ? `<button class="linkbtn" style="margin-top:6px" onclick="toggle('se${i}')">Edit</button>
-          <div id="se${i}" style="display:none"><textarea id="sx${i}">${esc(s.text)}</textarea>
-          <button class="btn mini primary" onclick="act('edit_slide','${q}#${i + 1}', $('sx${i}').value)">Save</button></div>` : ""}
-        </div></div>`).join("")}</div>` : ""}
-    ${p.caption ? `<h2>Caption</h2><div class="card"><div class="cap">${esc(p.caption)}\n\n${esc((p.hashtags || []).join(" "))}</div>
-      ${editable ? `<button class="linkbtn" style="margin-top:8px" onclick="toggle('capEditBox')">Edit caption</button>
-        <div id="capEditBox" style="display:none"><textarea id="capEdit" rows="12">${esc(p.caption)}</textarea>
-        <button class="btn primary" onclick="act('edit_caption','${q}', $('capEdit').value)">Save caption</button></div>` : ""}</div>` : ""}
-    ${p.sources && p.sources.length ? `<details class="card"><summary>Sources</summary>
-      ${p.sources.map(s => `<div class="sm"><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a></div>`).join("")}</details>` : ""}`;
+  $("pdetail").innerHTML = `<div class="grid">
+    <div class="tile ${p.slides.length && (p.reel_slot != null || p.reel) ? "s2" : "full"}">
+      <div class="head"><span class="lbl">${esc(p.date)} · ${esc(p.category || "")}</span><span class="row" style="gap:6px">${p.has_slot !== false ? dot(lv) + esc(txt) : "Reel only"}</span></div>
+      <div class="up" style="font-size:20px;line-height:1.25;font-weight:500">${esc(p.title)}</div>
+      <div class="dim" style="margin-top:8px">${live && p.posted_at ? "Posted " + when(p.posted_at) : p.scheduled_utc ? "Goes out " + when(p.scheduled_utc) : ""}</div>
+      ${p.error ? `<div style="margin-top:8px;color:var(--bad)">${esc(p.error.slice(0, 220))}</div>` : ""}
+      ${p.stats ? `<div class="rule"></div>` + metricsHtml(p.stats, [["reach", "Reach"], ["likes", "Likes"], ["comments", "Comments"], ["shares", "Shares"], ["saved", "Saves"]]) : ""}
+      <div class="btns">${btns}</div>
+      <div id="resBox" style="display:none;margin-top:10px"><div class="row"><input type="datetime-local" id="resTime" value="${localDefault()}">
+        <button class="btn pri" onclick="act('reschedule','${q}', new Date($('resTime').value).toISOString())">Set time</button>
+        <button class="btn" onclick="act('reschedule','${q}','')">Normal time</button></div>
+        <div class="dim" style="font-size:11px;margin-top:6px">Your device's clock. It goes out at the first check after that time.</div></div>
+    </div>
+    ${reel}
+    ${p.slides.length ? `<div class="tile full"><div class="head"><span class="lbl">Slides</span><span class="lbl">${p.slides.length}</span></div><div class="slides">${p.slides.map((s, i) => `
+      <div class="slide">${s.image ? `<img src="${esc(thumb(s.image))}" loading="lazy" alt="" onerror="this.remove()">` : ""}
+        <div class="tx"><div class="lbl" style="font-size:9.5px;margin-bottom:3px">${i + 1} · ${esc(s.type === "cover" ? "cover" : s.type === "end" ? "ending" : (s.layout || "text"))}</div>${esc(s.text)}
+        ${editable ? `<div><button class="btn mini" style="margin-top:6px" onclick="toggle('se${i}')">Edit</button></div>
+          <div id="se${i}" style="display:none;margin-top:6px"><textarea id="sx${i}">${esc(s.text)}</textarea>
+          <button class="btn mini pri" onclick="act('edit_slide','${q}#${i + 1}', $('sx${i}').value)">Save</button></div>` : ""}</div></div>`).join("")}</div></div>` : ""}
+    ${p.caption ? `<div class="tile s2"><div class="head"><span class="lbl">Caption</span>${editable ? `<button class="btn mini" onclick="toggle('capBox')">Edit</button>` : ""}</div>
+      <div class="cap">${esc(p.caption)}\n\n${esc((p.hashtags || []).join(" "))}</div>
+      <div id="capBox" style="display:none;margin-top:8px"><textarea id="capEdit" rows="12">${esc(p.caption)}</textarea>
+        <button class="btn pri" onclick="act('edit_caption','${q}', $('capEdit').value)">Save caption</button></div></div>` : ""}
+    ${p.sources && p.sources.length ? `<div class="tile s2"><div class="head"><span class="lbl">Sources</span></div>
+      ${p.sources.map(s => `<div class="kv"><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name || s.url)}</a><span>&#8599;</span></div>`).join("")}</div>` : ""}
+  </div>`;
 }
 
-// ================= SETTINGS =================
+// ================= CONTROL =================
 const KEY = "uf_github_key";
 function drawKey() {
   const k = localStorage.getItem(KEY);
   $("keybox").innerHTML = k
-    ? `<div class="between"><div class="status">${dot("good")}<b>Buttons are connected.</b></div>
+    ? `<div class="head"><span class="lbl">Buttons</span>${dot("good")}</div><div class="between"><span>Connected on this device.</span>
        <button class="btn mini" onclick="localStorage.removeItem(KEY);drawKey()">Forget key</button></div>`
-    : `<b>Connect the buttons</b><p class="dim sm">One time per device. Make a GitHub token with
-       <b>Actions: Read and write</b> on story-autopilot only, then paste it here.</p>
-       <div class="row"><input id="keyin" type="password" placeholder="github_pat_..." style="flex:1;min-width:170px">
-       <button class="btn primary" onclick="saveKey()">Save</button></div>
-       <p class="dim sm"><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Make a token</a>
-       &middot; it stays only in this browser.</p>`;
+    : `<div class="head"><span class="lbl">Connect the buttons</span>${dot("warn")}</div>
+       <div class="dim">Once per device: make a GitHub token with <b>Actions: read and write</b> on story-autopilot only, paste it here.</div>
+       <div class="row" style="margin-top:10px"><input id="keyin" type="password" placeholder="github_pat_..." style="flex:1;min-width:170px">
+       <button class="btn pri" onclick="saveKey()">Save</button></div>
+       <div class="dim" style="font-size:11px;margin-top:8px"><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Make a token</a> · it stays only in this browser.</div>`;
 }
-function saveKey() { const v = $("keyin").value.trim(); if (!v) return; localStorage.setItem(KEY, v); drawKey(); toast("Saved. The buttons now work on this device."); loadRuns(); }
+function saveKey() { const v = $("keyin").value.trim(); if (!v) return; localStorage.setItem(KEY, v); drawKey(); toast("Saved. The buttons work on this device."); loadRuns(); }
 async function gh(path, opts) {
   const k = localStorage.getItem(KEY), headers = {Accept: "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"};
   if (k) headers.Authorization = "Bearer " + k;
   return fetch("https://api.github.com/repos/" + REPO + path, Object.assign({headers}, opts || {}));
 }
 async function dispatch(workflow, inputs) {
-  if (!localStorage.getItem(KEY)) { location.hash = "#settings"; toast("Connect the buttons first (top of Settings)."); return false; }
+  if (!localStorage.getItem(KEY)) { location.hash = "#control"; toast("Connect the buttons first (top of Control)."); return false; }
   try {
     const r = await gh("/actions/workflows/" + workflow + "/dispatches", {method: "POST", body: JSON.stringify(inputs ? {ref: "main", inputs} : {ref: "main"})});
     if (r.status === 204) return true;
@@ -486,73 +767,76 @@ async function dispatch(workflow, inputs) {
   return false;
 }
 async function act(action, target, text) {
-  if (await dispatch("control.yml", {action, target: target || "", text: text || ""})) {
-    toast("Sent. It applies in about a minute.", 7000); setTimeout(loadRuns, 4000); return true;
-  }
+  if (await dispatch("control.yml", {action, target: target || "", text: text || ""})) { toast("Sent. Applies in about a minute.", 7000); setTimeout(loadRuns, 4000); return true; }
   return false;
 }
-async function makeReel(id) { if (await dispatch("reel.yml", {post_id: id})) toast("Making the Reel (2 to 3 minutes).", 9000); }
+async function makeReel(id) { if (await dispatch("reel.yml", {post_id: id})) toast("Making the Reel (2-3 minutes).", 9000); }
 async function runWf(file, label) { if (await dispatch(file)) { toast(label + "...", 6000); setTimeout(loadRuns, 4000); } }
 
-const mins = s => Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
+const mins = s => Math.floor(s / 60) + ":" + String(Math.round(s % 60)).padStart(2, "0");
 function drawMusic() {
   const list = D.music || [];
-  $("musicCount").textContent = "(" + list.length + ")";
-  $("mlist").innerHTML = list.length ? list.map(m => `<div class="card">
-      <div class="between"><div><b>${esc(m.title)}</b>
-        <div class="dim sm">${mins(m.duration)} &middot; ${esc(m.license)} &middot; ${m.uses} recent Reel${m.uses === 1 ? "" : "s"}</div></div>
-        <button class="btn mini danger" onclick="if(confirm('Remove this song?')) act('remove_music','${esc(m.file)}')">Remove</button></div>
-      <audio controls preload="none" src="${esc(m.url)}"></audio></div>`).join("")
-    : `<div class="card dim">No songs yet. Reels will be silent until you add one.</div>`;
+  $("musicCount").textContent = list.length + " songs";
+  $("mlist").innerHTML = list.length ? list.map(m => `<div style="padding:8px 0;border-bottom:1px solid var(--line)">
+      <div class="between"><div class="ell"><div>${esc(m.title)}</div><div class="faint" style="font-size:11px">${mins(m.duration || 0)} · ${esc(m.license)} · used ${m.uses}x recently</div></div>
+      <button class="btn mini bad" onclick="if(confirm('Remove this song?')) act('remove_music','${esc(m.file)}')">Remove</button></div>
+      <audio controls preload="none" src="${esc(m.url)}"></audio></div>`).join("") : `<div class="dim">No songs. Reels will be silent until you add one.</div>`;
 }
 function addMusic() {
   const url = $("mUrl").value.trim(), title = $("mTitle").value.trim(), credit = $("mCredit").value.trim(), lic = $("mLicense").value.trim();
   if (!url) return toast("Paste a link to an audio file first.");
   if (!title) return toast("Give the song a title.");
   if (!lic) return toast("Write the license. Only add music you may use.");
-  act("add_music", url, [title, credit, lic].join(" | ")).then(() => { ["mUrl", "mTitle", "mCredit", "mLicense"].forEach(i => $(i).value = ""); });
+  act("add_music", url, [title, credit, lic].join(" | ")).then(ok => { if (ok) ["mUrl", "mTitle", "mCredit", "mLicense"].forEach(i => $(i).value = ""); });
 }
 async function loadRuns() {
   try {
-    const j = await (await gh("/actions/runs?per_page=10")).json();
+    const j = await (await gh("/actions/runs?per_page=30")).json();
     if (!j.workflow_runs) throw new Error(j.message || "no data");
-    $("runs").innerHTML = j.workflow_runs.map(w => {
-      const res = w.status !== "completed" ? ["warn", w.status === "queued" ? "Waiting" : "Running"]
-        : w.conclusion === "success" ? ["good", "OK"]
-        : (w.conclusion === "skipped" || w.conclusion === "cancelled") ? ["neutral", w.conclusion] : ["bad", "Failed"];
+    $("runs").innerHTML = j.workflow_runs.filter(w => !/pages build/i.test(w.name)).slice(0, 10).map(w => {
+      const res = w.status !== "completed" ? ["warn", w.status === "queued" ? "waiting" : "running"]
+        : w.conclusion === "success" ? ["good", "ok"] : (w.conclusion === "skipped" || w.conclusion === "cancelled") ? ["", w.conclusion] : ["bad", "failed"];
       const name = (w.name === "Control" || w.name === "Reel") ? w.display_title : w.name;
-      return `<div class="item"><div class="body"><div class="t">${esc(name)}</div>
-        <div class="dim sm">${ago(Date.now() - new Date(w.created_at).getTime())}</div></div>
-        <span class="status sm">${dot(res[0])}${esc(res[1])}</span></div>`;
+      return `<div class="it"><span class="ell">${esc(name)}</span><span class="faint" style="font-size:11px">${ago(Date.now() - T(w.created_at))}</span>
+        <span class="row" style="gap:6px;width:76px;justify-content:flex-end">${esc(res[1])} ${dot(res[0])}</span></div>`;
     }).join("");
-  } catch (e) { $("runs").innerHTML = `<div class="dim sm">Couldn't load jobs (${esc(e.message)}).</div>`; }
+  } catch (e) { $("runs").innerHTML = `<div class="dim">Couldn't load jobs (${esc(e.message)}).</div>`; }
 }
 
-$("pubstate").textContent = sys.paused ? "Posting is paused" : "Posting is on";
-$("pubnote").textContent = sys.paused ? "Nothing goes out until you resume."
-  : "Posts " + sys.slot_times.join(", ") + " \u00b7 Reels " + sys.reel_times.join(", ") + " (New York time)";
-$("pausebtn").textContent = sys.paused ? "Resume" : "Pause";
-$("pausebtn").className = "btn" + (sys.paused ? " primary" : " danger");
-$("pausebtn").onclick = () => act(sys.paused ? "resume" : "pause", "");
-$("ppd").value = String(sys.posts_per_day);
-$("rpd").value = String(sys.reels_per_day);
-$("rmode").value = sys.reels_mode || "same";
-$("mixNote").textContent = sys.posts_per_day + " post" + (sys.posts_per_day === 1 ? "" : "s") + " + " +
-  sys.reels_per_day + " Reel" + (sys.reels_per_day === 1 ? "" : "s") + " a day, from " + sys.stories_per_day +
-  " stor" + (sys.stories_per_day === 1 ? "y" : "ies") + ".";
-$("routineLink").href = D.routine_url;
-$("clog").innerHTML = D.control_log.length
-  ? D.control_log.map(c => `<div class="item"><div class="body"><div class="t">${esc(c.action)} ${esc(c.target)}</div>
-      <div class="dim sm">${ago(now - new Date(c.at).getTime())} &middot; ${esc(c.result)}</div></div></div>`).join("")
-  : `<div class="dim sm">No actions yet.</div>`;
-$("sys").innerHTML = [
-  "Reels made: " + sys.reels_made + ", posted: " + sys.reels_posted,
-  "Stories ever used: " + sys.history_count,
-  "Mac mini last woke the poster: " + (sys.last_mac_ping_utc ? ago(now - new Date(sys.last_mac_ping_utc).getTime()) : "never"),
-  "Stock photos used today: " + sys.unsplash_used + " of " + sys.unsplash_cap,
-].map(s => `<div>${esc(s)}</div>`).join("");
+function drawControl() {
+  const plural = (n, w) => n + " " + w + (n === 1 ? "" : "s");
+  $("pubState").textContent = sys.paused ? "Paused" : "On";
+  $("pubDot").innerHTML = dot(sys.paused ? "warn" : "good");
+  $("pubNote").textContent = sys.paused ? "Nothing goes out until you resume."
+    : "Carousels " + (sys.slot_times.join(", ") || "none") + " · Reels " + (sys.reel_times.join(", ") || "none") + " (New York, ±35 min)";
+  $("pausebtn").textContent = sys.paused ? "Resume" : "Pause";
+  $("pausebtn").className = "btn " + (sys.paused ? "pri" : "bad");
+  $("pausebtn").onclick = () => { if (sys.paused || confirm("Pause all posting?")) act(sys.paused ? "resume" : "pause", ""); };
+  $("ppd").value = String(sys.posts_per_day); $("rpd").value = String(sys.reels_per_day); $("rmode").value = sys.reels_mode || "same";
+  $("mixNote").textContent = plural(sys.posts_per_day, "carousel") + " + " + plural(sys.reels_per_day, "Reel") + " a day from " + plural(sys.stories_per_day, "story").replace("storys", "stories") + ". Changes apply from the next research run.";
+  $("routineLink").href = D.routine_url;
+  $("clog").innerHTML = D.control_log.length ? D.control_log.slice(0, 12).map(c => `<div class="it"><span class="ell">${esc(c.action)} ${esc(c.target)}<div class="faint" style="font-size:11px;white-space:normal">${esc(c.result)}</div></span>
+      <span class="faint" style="font-size:11px">${ago(now - T(c.at))}</span></div>`).join("") : `<div class="dim">No actions yet.</div>`;
+  seg("segTz", [["local", "Mine"], ["ny", "New York"]], PREF.tz, v => { setPref("tz", v); location.reload(); });
+  seg("segDefRange", [["7D", "7D"], ["30D", "30D"], ["ALL", "All"]], PREF.range, v => { setPref("range", v); drawStats(); drawControl(); });
+  seg("segDefMetric", [["reach", "Reach"], ["views", "Views"], ["eng", "Interact."]], PREF.metric, v => { setPref("metric", v); drawStats(); drawControl(); });
+  seg("segAuto", [["on", "On"], ["off", "Off"]], PREF.auto, v => { setPref("auto", v); drawControl(); });
+  seg("segColor", [["off", "Gray"], ["on", "Color"]], PREF.color, v => { setPref("color", v); location.reload(); });
+}
+const OPTS_HTML = [0, 1, 2, 3, 4, 5].map(n => `<option>${n}</option>`).join("");
+$("ppd").innerHTML = OPTS_HTML; $("rpd").innerHTML = OPTS_HTML;
 
-drawKey(); drawList(); drawMusic(); route();
+// auto reload (skipped while you are typing or watching a video)
+setInterval(() => {
+  if (PREF.auto !== "on" || document.hidden) return;
+  const a = document.activeElement;
+  if (a && /INPUT|TEXTAREA|SELECT/.test(a.tagName)) return;
+  if ([...document.querySelectorAll("video,audio")].some(m => !m.paused)) return;
+  location.reload();
+}, 5 * 60000);
+
+drawTicker(); drawAlerts(); drawToday(); drawFollowers(); drawRing(); drawThumbs(); drawSystem(); drawWork(); drawStats();
+drawKey(); drawMusic(); drawControl(); drawList(); route();
 </script>
 </body>
 </html>

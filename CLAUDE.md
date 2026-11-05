@@ -70,12 +70,17 @@ Change counts on the dashboard (it recalculates the dependent keys); changes app
 | `unsplash_max_requests_per_hour` / `_per_day` | stock photo budget (30 / 100) |
 
 ## 4. Dashboard
-Tabs: **Overview** (alerts, live counters, what's happening now, today's items, charts, what's working), **Posts** (every post
-and its Reel, with buttons), **Music**, **Control** (pause, counts, same/own stories, run-now, action log).
-Buttons use the owner's GitHub key in that browser's localStorage and start `control.yml` (actions: `pause resume remove restore
-post_now reschedule edit_caption edit_slide posts_per_day reels_per_day reels_mode delete_instagram post_reel cancel_reel
-reschedule_reel add_music remove_music refresh_dashboard`). Results go to `state/control_log.json`. Edits are refused only if
-they add a new `validate.py` error. GitHub Pages lags up to ~10 min.
+Dark "bento" design (owner's reference, Nov 5): mono font (JetBrains Mono), slate-blue accent #5b6c92, light tile #b9b8b0.
+Uses only data already in the repo (no extra Instagram requests). Top ticker (followers, live count, 7-day reach/views, today, next, status).
+**Overview**: alerts, Today, Next up (countdown, post now), chart by day posted (7D/30D/All, all/reels/posts, reach/views/interactions),
+followers, average reach Reel vs carousel (24h+ old), Delivered ring (7 days, due vs went out), engagement, latest 9 on Instagram,
+top post, system (Mac, Instagram wait, numbers age, today's stories, posting), what's working (from `groups`), results table.
+**Posts**: search, sort, filters (upcoming/live/reels/problems/removed), detail page with all actions. **Control**: GitHub key, pause,
+counts, run-now, page options (time zone, default range/metric, 5-min auto reload, gray/color pictures; stored in localStorage
+`uf_prefs`), recent jobs, music, action log. Buttons use the owner's GitHub key in that browser and start `control.yml` (actions:
+`pause resume remove restore post_now reschedule edit_caption edit_slide posts_per_day reels_per_day reels_mode delete_instagram
+post_reel cancel_reel reschedule_reel add_music remove_music refresh_dashboard`). Results go to `state/control_log.json`.
+Template `templates/dashboard.html`, data `scripts/dashboard.py`. GitHub Pages lags up to ~10 min.
 
 ## 5. Post rules (`validate.py`)
 5-10 slides; slide text <= 40 words; cover headline <= 16 words; at least half the slides (min 3) with a real picture; never two

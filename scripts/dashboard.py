@@ -11,7 +11,6 @@ import json
 import os
 import re
 import sys
-import time
 from collections import defaultdict
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
@@ -121,7 +120,7 @@ def build(now):
             "reel_stats": {k: rs.get(k) for k in ("reach", "likes", "comments", "shares", "saved", "views", "share_rate")} if rs else None,
             "id": post["id"], "date": day.isoformat(), "slot": post["slot"], "title": post["title"],
             "category": post.get("category", ""), "lane": (post.get("tags") or {}).get("lane", ""),
-            "status": rec.get("status"), "post_now": bool(rec.get("post_now")), "error": rec.get("error"),
+            "status": rec.get("status") or ("posted" if st else None), "post_now": bool(rec.get("post_now")), "error": rec.get("error"),
             "scheduled_utc": None if post.get("slot") is None else (rec.get("post_at") or publish.slot_time(config, day, post["slot"]).astimezone(timezone.utc).isoformat()),
             "posted_at": rec.get("posted_at"), "permalink": st.get("permalink"), "media_id": rec.get("media_id") or st.get("media_id"),
             "slides": [{"type": sl.get("type"), "layout": sl.get("layout"), "kicker": sl.get("kicker"),
@@ -144,8 +143,8 @@ def build(now):
     # --- posts on Instagram, newest first
     posts = []
     for s in sorted(stats, key=lambda s: s.get("posted_local", ""), reverse=True):
-        posts.append({k: s.get(k) for k in ("title", "posted_local", "permalink", "age_hours", "reach", "likes",
-                                            "comments", "shares", "saved", "share_rate", "save_rate")})
+        posts.append({k: s.get(k) for k in ("id", "kind", "title", "category", "posted_local", "hour", "permalink", "age_hours", "reach",
+                                            "views", "likes", "comments", "shares", "saved", "total_interactions", "share_rate", "save_rate")})
 
     # --- group averages (only posts old enough, only groups big enough)
     mature = [s for s in stats if s.get("age_hours", 0) >= MATURE_HOURS and s.get("reach") is not None and "error" not in s]
@@ -216,7 +215,6 @@ def build(now):
         alerts.append({"level": "warning", "text": "Instagram refused our last request (%s). The system is waiting until %s UTC before trying again, on purpose, so it doesn't pile up requests." % (health.get("reason", "")[:90], health["until"][11:16])})
 
     # --- system facts
-    unsplash = [t for t in read_json(ROOT / "state" / "unsplash_requests.json", []) if t > time.time() - 86400]
     history = [l for l in (ROOT / "state" / "history.jsonl").read_text().splitlines() if l.strip()] if (ROOT / "state" / "history.jsonl").exists() else []
     slot_times = [config["post_times"][s - 1] for s in config.get("active_slots", [])]
     return {
@@ -228,7 +226,8 @@ def build(now):
         "mature_count": len(mature), "followers": followers, "alerts": alerts,
         "system": {"paused": bool(config.get("paused")), "posts_per_day": config["posts_per_day"], "slot_times": slot_times,
                    "last_mac_ping_utc": record_mac_ping(now), "history_count": len(history),
-                   "unsplash_used": len(unsplash), "unsplash_cap": config.get("unsplash_max_requests_per_day", 100),
+                   "api_wait_until": health.get("until") if health.get("until") and datetime.fromisoformat(health["until"]) > datetime.now(timezone.utc) else None,
+                   "catch_up_days": publish.CATCH_UP_DAYS, "queued_today": sum(1 for p in all_posts if p.get("date") == today.isoformat() and p.get("status") not in ("removed", "deleted")),
                    "reels_per_day": config.get("reels_per_day", 0), "reels_mode": config.get("reels_mode", "same"),
                    "stories_per_day": config.get("stories_per_day", config["posts_per_day"]),
                    "reel_times": [config["reel_times"][i - 1] for i in config.get("reel_active_slots", [])],
