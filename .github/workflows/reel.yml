@@ -43,14 +43,8 @@ jobs:
           which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
           pip install playwright
           python -m playwright install --with-deps chromium
-          pip install torch --index-url https://download.pytorch.org/whl/cpu
-          pip install kokoro soundfile edge-tts
-      - name: Keep the voice model between runs
-        if: steps.need.outputs.go == 'yes'
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/huggingface
-          key: kokoro-82m-v1
+          pip install edge-tts
+
       - name: Make the Reels
         if: steps.need.outputs.go == 'yes'
         env:

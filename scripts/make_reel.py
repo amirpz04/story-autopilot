@@ -169,6 +169,24 @@ def add_voice(post, scenes, work, config):
     return clips
 
 
+def _render_frames(job):
+    """Draw frames [start, stop) in its own browser (run in a separate process so several can work at once)."""
+    page_file, frames_dir, start, stop = job
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page(viewport={"width": 1080, "height": 1920})
+        page.goto(page_file)
+        page.evaluate("document.fonts.ready")
+        page.evaluate("Promise.all([...document.images].map(i => i.decode().catch(() => null)))")
+        page.evaluate("fitAll()")
+        for f in range(start, stop):
+            page.evaluate("t => render(t)", f / FPS)
+            page.screenshot(path=str(Path(frames_dir) / f"f_{f:05d}.jpg"), type="jpeg", quality=93)
+        browser.close()
+    return stop - start
+
+
 def make_reel(post_dir, out_path, config=None, music=None):
     from playwright.sync_api import sync_playwright
 
@@ -188,18 +206,19 @@ def make_reel(post_dir, out_path, config=None, music=None):
     total = scenes[-1]["start"] + scenes[-1]["dur"] + 0.3
     count = int(total * FPS)
     print("%d scenes, %.1f s, %d frames" % (len(scenes), total, count))
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
-        page = browser.new_page(viewport={"width": 1080, "height": 1920})
-        page.goto(page_file.as_uri())
-        page.evaluate("document.fonts.ready")
-        page.evaluate("Promise.all([...document.images].map(i => i.decode().catch(() => null)))")
-        page.evaluate("fitAll()")
-        for f in range(count):
-            page.evaluate("t => render(t)", f / FPS)
-            page.screenshot(path=str(frames / f"f_{f:05d}.jpg"), type="jpeg", quality=93)
-        browser.close()
+    t0 = time.time()
+    workers = max(1, min(4, os.cpu_count() or 1))          # frames are drawn by several browsers at once
+    per = -(-count // workers)
+    jobs = [(page_file.as_uri(), str(frames), k * per, min(count, (k + 1) * per)) for k in range(workers) if k * per < count]
+    if len(jobs) == 1:
+        _render_frames(jobs[0])
+    else:
+        import multiprocessing
+        with multiprocessing.get_context("spawn").Pool(len(jobs)) as pool:
+            pool.map(_render_frames, jobs)
 
+    print("Frames drawn in %.0f s (%d workers)" % (time.time() - t0, len(jobs)))
+    t1 = time.time()
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     if music or voice:
@@ -225,8 +244,9 @@ def make_reel(post_dir, out_path, config=None, music=None):
         audio_map = []
     subprocess.run(["ffmpeg", "-y", "-v", "error", "-framerate", str(FPS), "-i", str(frames / "f_%05d.jpg"), *audio_in,
                     "-t", "%.2f" % total, *audio_map,
-                    "-c:v", "libx264", "-preset", "slow", "-crf", "21", "-maxrate", "8M", "-bufsize", "16M", "-pix_fmt", "yuv420p", "-r", str(FPS),
+                    "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-maxrate", "8M", "-bufsize", "16M", "-pix_fmt", "yuv420p", "-r", str(FPS),
                     "-c:a", "aac", "-b:a", "160k", "-shortest", "-movflags", "+faststart", str(out_path)], check=True)
+    print("Encoded in %.0f s" % (time.time() - t1))
     shutil.rmtree(work, ignore_errors=True)
     return out_path
 
