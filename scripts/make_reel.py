@@ -120,6 +120,7 @@ def add_voice(post, scenes, work, config):
                               config.get("voice", "am_michael"), str(config.get("voice_speed", 1.05))],
                              capture_output=True, text=True, timeout=900, check=True)
         lengths = json.loads(res.stdout.strip().splitlines()[-1])
+        print("Voice:", (res.stderr.strip().splitlines() or ["?"])[-1][:120])
     except Exception as exc:
         print("Voiceover failed, making the Reel without it:", str(getattr(exc, "stderr", "") or exc)[-400:])
         return []
@@ -128,7 +129,6 @@ def add_voice(post, scenes, work, config):
         extra = min(2.0, 0.55 * len(sc.get("marks") or []))
         sc["dur"] = round(max(2.4, 0.25 + length + 0.35) + extra * 0.4, 3)        # the line, a breath after it, a moment for marks
         sc["start"] = round(t, 3)
-        sc["wgap"] = round(max(0.05, min(0.4, length * 0.88 / max(1, len(sc["text"].split())))), 3)   # words appear as they are spoken
         clips.append((work / "voice" / ("line_%02d.wav" % i), t + 0.25))
         t += sc["dur"]
     return clips

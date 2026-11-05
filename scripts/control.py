@@ -11,7 +11,7 @@ Usage: python scripts/control.py ACTION [TARGET] [TEXT]     (TEXT may also come 
   edit_slide POST_ID#N  TEXT     change the text of slide N (1-based) of a post that isn't live
   posts_per_day N                0-5 carousel posts a day from the next research run on
   reels_mode same|different      Reels reuse the carousel stories, or get their own (more research, no repeats)
-  voice off|NAME                  narrator on Reels (Kokoro voice name, e.g. am_michael) or off
+  voice off|NAME                  narrator on Reels (a name from VOICES, e.g. en-US-AndrewMultilingualNeural) or off
   reels_per_day N                0-5 Reels a day from the next research run on (at least one post or Reel a day)
   delete_instagram POST_ID       delete a live post from Instagram (the whole carousel)
   post_reel POST_ID              publish the Reel that was made for this post
@@ -42,7 +42,9 @@ MAX_ATTEMPTS = 3
 SLOTS = {0: [], 1: [1], 2: [1, 5], 3: [1, 3, 5], 4: [1, 2, 4, 5], 5: [1, 2, 3, 4, 5]}
 REEL_SLOTS = {0: [], 1: [3], 2: [3, 5], 3: [1, 3, 5], 4: [1, 2, 4, 5], 5: [1, 2, 3, 4, 5]}
 REELS = ROOT / "state" / "reels.json"
-VOICES = {"am_michael": "Michael (man)", "am_adam": "Adam (man)", "am_puck": "Puck (man)", "af_heart": "Heart (woman)", "af_bella": "Bella (woman)"}
+VOICES = {"en-US-AndrewMultilingualNeural": "Andrew (man, natural)", "en-US-BrianMultilingualNeural": "Brian (man, natural)",
+          "en-US-AvaMultilingualNeural": "Ava (woman, natural)", "en-US-EmmaMultilingualNeural": "Emma (woman, natural)",
+          "am_michael": "Michael (man, offline)", "af_heart": "Heart (woman, offline)"}
 
 
 def load(path, default):

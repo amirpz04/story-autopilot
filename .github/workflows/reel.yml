@@ -44,7 +44,7 @@ jobs:
           pip install playwright
           python -m playwright install --with-deps chromium
           pip install torch --index-url https://download.pytorch.org/whl/cpu
-          pip install kokoro soundfile
+          pip install kokoro soundfile edge-tts
       - name: Keep the voice model between runs
         if: steps.need.outputs.go == 'yes'
         uses: actions/cache@v4

@@ -23,7 +23,8 @@
   .txt.head { font-size: 78px; font-weight: 900; line-height: 1.07; }
   .txt.body { font-size: 56px; }
   .txt.end { font-size: 72px; font-weight: 900; line-height: 1.1; }
-  .w { display: inline-block; margin-right: .27em; opacity: 0; will-change: transform, opacity; }
+  .w { display: inline-block; margin-right: .27em; }
+  .txt { will-change: transform, opacity; }
   .num { color: #FFD400; }
   .follow { margin-top: 48px; font-size: 38px; font-weight: 500; opacity: 0; }
   .follow b { color: #FFD400; font-weight: 800; }
@@ -117,16 +118,13 @@ function render(t) {
       s.el.querySelector(".plain").style.transform = `translate(${Math.sin(local * .5 + i) * 26}px, ${Math.cos(local * .4 + i) * 26}px) scale(1.12)`;
     }
 
-    // text: kicker pops, words rise in one by one
+    // text: kicker pops, then the whole text block eases in together (one soft fade and rise, no word-by-word)
     const base = i === 0 ? 0.12 : 0.22;
     if (s.kickerEl) { const p = clamp((local - base) / 0.4); s.kickerEl.style.opacity = p; s.kickerEl.style.transform = `scale(${0.82 + 0.18 * outBack(p)})`; }
     if (s.barEl) { const p = outCubic(clamp((local - base) / 0.55)); s.barEl.style.transform = `scaleX(${p})`; }
-    const w0 = s.wgap ? 0.3 : base + (s.kickerEl ? 0.28 : 0.08), gap = s.wgap || 0.075;   // with a voiceover, words appear as they are spoken
-    s.wordEls.forEach((w, j) => {
-      const p = outCubic(clamp((local - (w0 + j * gap)) / 0.42));
-      w.style.opacity = p; w.style.transform = `translateY(${(1 - p) * 38}px)`;
-    });
-    if (s.followEl) { const p = outCubic(clamp((local - (w0 + s.wordEls.length * gap + 0.5)) / 0.5)); s.followEl.style.opacity = p; s.followEl.style.transform = `translateY(${(1 - p) * 22}px)`; }
+    const w0 = base + (s.kickerEl ? 0.2 : 0.02);
+    { const p = outCubic(clamp((local - w0) / 0.6)); s.txtEl.style.opacity = p; s.txtEl.style.transform = `translateY(${(1 - p) * 26}px)`; }
+    if (s.followEl) { const p = outCubic(clamp((local - (w0 + 0.9)) / 0.5)); s.followEl.style.opacity = p; s.followEl.style.transform = `translateY(${(1 - p) * 22}px)`; }
   });
 }
 // Called once after fonts and pictures have loaded: shrink any text block that would not fit the safe box, then
