@@ -85,7 +85,7 @@ def main():
     budget = Budget(config.get("unsplash_max_requests_per_hour", 30), config.get("unsplash_max_requests_per_day", 100))
 
     # Earliest posts first, so the next posts to go out get their photos first.
-    for path in sorted(day_dir.glob("*/post.json"), key=lambda p: json.loads(p.read_text())["slot"]):
+    for path in sorted(day_dir.glob("*/post.json"), key=lambda p: json.loads(p.read_text()).get("slot") or 99):
         post = json.loads(path.read_text())
         changed = False
         for slide in post["slides"]:

@@ -25,6 +25,7 @@ jobs:
           python-version: "3.12"
 
       - name: Fetch stock photos (max 30 Unsplash requests per hour)
+        continue-on-error: true   # a photo lookup problem must never stop posting
         env:
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
         run: |
