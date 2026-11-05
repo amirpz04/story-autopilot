@@ -327,8 +327,8 @@ def main():
         if "Instagram API error" in str(exc):
             note_api_failure(exc)
         record.update(status="failed", error=str(exc)[:500])
+        # The failure is saved in state (dashboard shows it); the run itself succeeds so GitHub sends no failure emails.
         print("FAILED:", exc)
-        raise
     finally:
         save_state(state)
 
