@@ -31,6 +31,8 @@ from render import load_config, render_post  # noqa: E402
 ROOT = Path(__file__).resolve().parent.parent
 STATE_FILE = ROOT / "state" / "posted.json"
 MAX_ATTEMPTS = 3
+CATCH_UP_DAYS = 2          # unposted posts/Reels of this many past days are retried automatically
+DONE = ("posted", "removed", "deleted")
 HEALTH_FILE = STATE_FILE.parent / "api_health.json"
 
 
@@ -142,7 +144,7 @@ def find_due_post(config, state):
     for path in sorted(day_dir.glob("*/post.json")):
         post = json.loads(path.read_text())
         record = state.get(post["id"], {})
-        if post.get("spare") or post.get("slot") is None or record.get("status") == "posted" or record.get("attempts", 0) >= MAX_ATTEMPTS:
+        if post.get("slot") is None or record.get("status") in DONE or record.get("attempts", 0) >= MAX_ATTEMPTS:
             continue
         if record.get("post_at"):
             is_due = wanted_now(record)
@@ -150,14 +152,22 @@ def find_due_post(config, state):
             is_due = bool(record.get("post_now")) or now >= slot_time(config, now.date(), post["slot"])
         if is_due:
             due.append((0 if wanted_now(record) else 1, post["slot"] or 0, path.parent, post))
+    # Catch-up: a post of the last CATCH_UP_DAYS days that never went out (missed or refused) is tried again.
+    for back in range(1, CATCH_UP_DAYS + 1):
+        for path in sorted((ROOT / "queue" / (now.date() - timedelta(days=back)).isoformat()).glob("*/post.json")):
+            post = json.loads(path.read_text())
+            record = state.get(post["id"], {})
+            if post.get("slot") is None or record.get("status") in DONE or record.get("attempts", 0) >= MAX_ATTEMPTS or record.get("post_at"):
+                continue
+            due.append((2, back, path.parent, post))
     # Posts of other days that were sent "now" or rescheduled from the control panel.
     wanted = {pid for pid, r in state.items()
-              if r.get("status") != "posted" and r.get("attempts", 0) < MAX_ATTEMPTS and wanted_now(r)}
+              if r.get("status") not in DONE and r.get("attempts", 0) < MAX_ATTEMPTS and wanted_now(r)}
     for path in (ROOT / "queue").glob("*/*/post.json") if wanted else []:
         if path.parent.parent == day_dir or path.parent.parent.name in ("demo", "sample"):
             continue
         post = json.loads(path.read_text())
-        if post["id"] in wanted and not post.get("spare") and post.get("slot") is not None:
+        if post["id"] in wanted and post.get("slot") is not None:
             due.append((0, post["slot"] or 0, path.parent, post))
     return min(due, key=lambda d: d[:2])[2:] if due else (None, None)
 
@@ -165,25 +175,27 @@ def find_due_post(config, state):
 def find_due_reel(config, state):
     """The earliest Reel whose time has come and that isn't live (or given up on) yet.
 
-    Two sources: (1) today's stories that have a `reel_slot`; (2) Reels of older posts that have an explicit
+    Two sources: (1) stories of today and the last CATCH_UP_DAYS days that have a `reel_slot`; (2) Reels of older posts that have an explicit
     `post_at` time in state/reels.json (the backlog: posts that went out before Reels existed).
     """
     import publish_reel
     now = datetime.now(ZoneInfo(config["timezone"]))
     reels = publish_reel.load_reels()
     due = []
-    for path in sorted((ROOT / "queue" / now.strftime("%Y-%m-%d")).glob("*/post.json")):
-        post = json.loads(path.read_text())
-        if post.get("spare") or post.get("reel_slot") is None:
-            continue
-        if state.get(post["id"], {}).get("status") in ("removed", "deleted"):
-            continue
-        entry = reels.get(post["id"], {})
-        if entry.get("status") in ("posted", "cancelled") or entry.get("attempts", 0) >= MAX_ATTEMPTS:
-            continue
-        when = slot_time(config, now.date(), post["reel_slot"], "reel")
-        if now >= when:
-            due.append((when, path.parent, post))
+    for back in range(CATCH_UP_DAYS + 1):          # today, then missed Reels of the last days
+        day = now.date() - timedelta(days=back)
+        for path in sorted((ROOT / "queue" / day.isoformat()).glob("*/post.json")):
+            post = json.loads(path.read_text())
+            if post.get("reel_slot") is None:
+                continue
+            if state.get(post["id"], {}).get("status") in ("removed", "deleted"):
+                continue
+            entry = reels.get(post["id"], {})
+            if entry.get("status") in ("posted", "cancelled") or entry.get("attempts", 0) >= MAX_ATTEMPTS or entry.get("post_at"):
+                continue
+            when = slot_time(config, day, post["reel_slot"], "reel")
+            if now >= when:
+                due.append((when, path.parent, post))
     for pid, entry in reels.items():
         if not entry.get("post_at") or entry.get("status") in ("posted", "cancelled", "failed") or entry.get("attempts", 0) >= MAX_ATTEMPTS:
             continue

@@ -259,16 +259,6 @@
     "status": "made",
     "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@b3dd91b4dff96c90dca44da03b0b6dacec48de7d/20261105-092916-2026-11-05-02.mp4"
   },
-  "2026-11-05-03": {
-    "attempts": 0,
-    "credit": "Passage Of Time by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-    "file": "20261105-093143-2026-11-05-03.mp4",
-    "made_at": "2026-11-05T09:33:33.816914+00:00",
-    "music": "passage-of-time.m4a",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/b3dd91b4dff96c90dca44da03b0b6dacec48de7d/20261105-093143-2026-11-05-03.mp4",
-    "status": "made",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@b3dd91b4dff96c90dca44da03b0b6dacec48de7d/20261105-093143-2026-11-05-03.mp4"
-  },
   "demo-02": {
     "attempts": 0,
     "backfill": true,

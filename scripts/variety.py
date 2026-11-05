@@ -91,16 +91,16 @@ def exception_of(post):
 
 
 def recent_posts(limit=12, exclude_dates=()):
-    """The newest non-spare posts in queue/, oldest first, as small summaries."""
+    """The newest posts in queue/, oldest first, as small summaries."""
     rows = []
     for path in (ROOT / "queue").glob("*/*/post.json"):
-        if "-replaced" in path.parent.name or path.parent.parent.name in ("sample", "demo"):
+        if path.parent.parent.name in ("sample", "demo"):
             continue
         try:
             post = json.loads(path.read_text())
         except Exception:
             continue
-        if post.get("spare") or str(post.get("date", "")) in exclude_dates:
+        if str(post.get("date", "")) in exclude_dates:
             continue
         rows.append({
             "date": str(post.get("date", "")), "id": str(post.get("id", "")),
@@ -114,7 +114,7 @@ def recent_posts(limit=12, exclude_dates=()):
 def day_problems(day_posts):
     """Compare the stories of ONE day with each other.
 
-    day_posts: list of (folder_name, post_dict) for the day's scheduled (non-spare) stories.
+    day_posts: list of (folder_name, post_dict) for the day's stories.
     Returns (errors, notes). A clash is waived when either story carries a variety_exception.
     """
     errors, notes = [], []

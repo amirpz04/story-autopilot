@@ -10,9 +10,9 @@ on:
         description: "What to do"
         required: true
         type: choice
-        options: [pause, resume, remove, restore, post_now, reschedule, replace, edit_caption, edit_slide, posts_per_day, reels_per_day, reels_mode, spares_per_day, delete_instagram, post_reel, cancel_reel, reschedule_reel, add_music, remove_music, refresh_dashboard]
+        options: [pause, resume, remove, restore, post_now, reschedule, edit_caption, edit_slide, posts_per_day, reels_per_day, reels_mode, delete_instagram, post_reel, cancel_reel, reschedule_reel, add_music, remove_music, refresh_dashboard]
       target:
-        description: "Post id (POST_ID#N for a slide), a number for posts_per_day / spares_per_day, a link (add_music) or file name (remove_music)"
+        description: "Post id (POST_ID#N for a slide), a number for posts_per_day / reels_per_day, a link (add_music) or file name (remove_music)"
         required: false
         default: ""
       text:
@@ -61,12 +61,12 @@ jobs:
           git commit -m "Control: $ACTION"
           for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
       - name: Make any Reel that is now missing
-        if: contains('replace edit_slide', inputs.action)
+        if: inputs.action == 'edit_slide'
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run reel.yml --ref main -R "$GITHUB_REPOSITORY"
       - name: Check for a due post right away
-        if: contains('post_now resume replace reschedule', inputs.action)
+        if: contains('post_now resume reschedule', inputs.action)
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run publish.yml --ref main -R "$GITHUB_REPOSITORY"

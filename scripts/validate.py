@@ -90,27 +90,25 @@ def check_post(path, config):
     except Exception as exc:
         return ["invalid JSON: %s" % exc]
 
-    spare = bool(post.get("spare"))          # a spare has no time slot until it replaces a scheduled post
     for key in ("id", "date", "title", "sources", "slides", "caption"):
         if key not in post:
             errors.append("missing '%s'" % key)
     if errors:
         return errors
 
-    if not spare:
-        slot, reel_slot = post.get("slot"), post.get("reel_slot")
-        if slot is None and reel_slot is None:
-            errors.append("the post needs a carousel `slot`, a `reel_slot`, or both")
-        if slot is not None:
-            if not 1 <= slot <= len(config["post_times"]):
-                errors.append("slot %s has no publishing time in config.json" % slot)
-            if "active_slots" in config and slot not in config["active_slots"]:
-                errors.append("slot %s is not one of the active slots %s in config.json" % (slot, config["active_slots"]))
-        if reel_slot is not None:
-            if not 1 <= reel_slot <= len(config.get("reel_times", [])):
-                errors.append("reel_slot %s has no time in config.json reel_times" % reel_slot)
-            if "reel_active_slots" in config and reel_slot not in config["reel_active_slots"]:
-                errors.append("reel_slot %s is not one of the active Reel slots %s in config.json" % (reel_slot, config["reel_active_slots"]))
+    slot, reel_slot = post.get("slot"), post.get("reel_slot")
+    if slot is None and reel_slot is None:
+        errors.append("the post needs a carousel `slot`, a `reel_slot`, or both")
+    if slot is not None:
+        if not 1 <= slot <= len(config["post_times"]):
+            errors.append("slot %s has no publishing time in config.json" % slot)
+        if "active_slots" in config and slot not in config["active_slots"]:
+            errors.append("slot %s is not one of the active slots %s in config.json" % (slot, config["active_slots"]))
+    if reel_slot is not None:
+        if not 1 <= reel_slot <= len(config.get("reel_times", [])):
+            errors.append("reel_slot %s has no time in config.json reel_times" % reel_slot)
+        if "reel_active_slots" in config and reel_slot not in config["reel_active_slots"]:
+            errors.append("reel_slot %s is not one of the active Reel slots %s in config.json" % (reel_slot, config["reel_active_slots"]))
     if not post["sources"] or not all(s.get("url", "").startswith("http") for s in post["sources"]):
         errors.append("every source needs a url")
 
@@ -171,7 +169,7 @@ def check_post(path, config):
 def main():
     day_dir = Path(sys.argv[1])
     config = json.loads((ROOT / "config.json").read_text())
-    posts = sorted(p for p in day_dir.glob("*/post.json") if "-replaced" not in p.parent.name)
+    posts = sorted(day_dir.glob("*/post.json"))
     if not posts:
         print("No posts found in", day_dir)
         sys.exit(1)
@@ -181,7 +179,7 @@ def main():
 
     # The day must be complete. Runs used to stop at one story and report success.
     wanted = int(config.get("stories_per_day", 0) or 0)
-    scheduled = [p for p in posts if not json.loads(p.read_text()).get("spare")]
+    scheduled = posts
     if wanted and len(scheduled) < wanted:
         day_errors.append("only %d of %d stories written for this day; %s missing (ROUTINE.md section 9)"
                           % (len(scheduled), wanted, wanted - len(scheduled)))

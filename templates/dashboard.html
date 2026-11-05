@@ -179,8 +179,6 @@
           <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
         <label class="sm">Reels <select id="rpd" onchange="act('reels_per_day', this.value)">
           <option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
-        <label class="sm">Spares <select id="spd" onchange="act('spares_per_day', this.value)">
-          <option>0</option><option>1</option><option>2</option></select></label>
       </div>
       <div class="dim sm" style="margin-top:8px" id="mixNote"></div>
       <div class="row" style="margin-top:10px">
@@ -255,8 +253,6 @@ function toast(msg, ms) { const t = $("toast"); t.textContent = msg; t.style.dis
 // ---------- status ----------
 function postStatus(p) {
   const s = p.status;
-  if (p.parked) return ["neutral", "Replaced by a spare"];
-  if (p.spare) return s === "removed" || s === "deleted" ? ["neutral", "Spare (removed)"] : ["neutral", "Spare, ready"];
   if (p.has_slot === false && s !== "removed" && s !== "deleted") return ["neutral", "Reel only"];
   if (s === "posted") return ["good", "Live"];
   if (s === "deleted") return ["neutral", "Deleted from Instagram"];
@@ -270,7 +266,7 @@ function postStatus(p) {
   return ["neutral", "Scheduled"];
 }
 function reelStatus(p) {
-  if ((p.reel_slot == null && !(p.reel && p.reel.post_at)) || p.spare || p.parked) return null;
+  if (p.reel_slot == null && !(p.reel && p.reel.post_at)) return null;
   if (p.status === "removed" || p.status === "deleted") return null;
   const r = p.reel, t = p.reel_scheduled_utc ? new Date(fixIso(p.reel_scheduled_utc)).getTime() : 0;
   if (r && r.status === "posted") return ["good", "Reel live"];
@@ -314,7 +310,7 @@ $("attn").innerHTML = alerts.length
 
 const AN = D.account_now || {};
 const todayRows = [];
-D.all_posts.filter(p => !p.spare && !p.parked).forEach(p => {
+D.all_posts.forEach(p => {
   if (p.date === D.today_date && p.has_slot !== false)
     todayRows.push({p, kind: "Post", st: postStatus(p), time: p.status === "posted" && p.posted_at ? p.posted_at : p.scheduled_utc});
   const rs = reelStatus(p);
@@ -356,11 +352,11 @@ const FILTERS = [["all", "All"], ["upcoming", "Upcoming"], ["live", "Live"], ["r
 let filter = "all";
 function inFilter(p) {
   const txt = postStatus(p)[1];
-  if (filter === "all") return !p.parked && !(p.spare && txt.includes("removed"));
+  if (filter === "all") return true;
   if (filter === "live") return isLive(p);
   if (filter === "upcoming") return isUpcoming(p);
   if (filter === "reels") return p.reel_slot != null || !!p.reel;
-  if (filter === "other") return p.parked || p.spare || txt === "Removed" || txt.startsWith("Deleted") || txt === "Failed" || txt.startsWith("Not posted");
+  if (filter === "other") return txt === "Removed" || txt.startsWith("Deleted") || txt === "Failed" || txt.startsWith("Not posted");
 }
 function drawList() {
   $("filters").innerHTML = FILTERS.map(([k, l]) => `<button class="${k === filter ? "on" : ""}" onclick="filter='${k}';drawList()">${l}</button>`).join("");
@@ -395,34 +391,25 @@ function showPost(id) {
   const p = D.all_posts.find(x => x.id === id);
   if (!p) { $("pdetail").innerHTML = `<div class="card dim">Post not found. It may be older than 3 weeks.</div>`; return; }
   const [lvl, txt] = postStatus(p), liveNow = isLive(p), upcoming = isUpcoming(p);
-  const removed = txt === "Removed" || txt.includes("(removed)"), editable = !liveNow && !p.parked;
+  const removed = txt === "Removed", editable = !liveNow;
   const q = idq(p.id), st = p.stats, rs = p.reel_stats;
 
   let btns = "";
   if (liveNow) {
     btns += (p.permalink ? `<a class="btn" href="${esc(p.permalink)}" target="_blank" rel="noopener">Open on Instagram</a>` : "") +
       `<button class="btn danger" onclick="if(confirm('Delete this post from Instagram? This cannot be undone.')) act('delete_instagram','${q}')">Delete from Instagram</button>`;
-  } else if (p.spare && !p.parked) {
-    const slots = D.all_posts.filter(x => x.date === D.today_date && !x.spare && !x.parked && !isLive(x) && postStatus(x)[1] !== "Removed");
-    btns += slots.length
-      ? `<select id="swapTarget">${slots.map(x => `<option value="${esc(x.id)}">${esc((x.title || "").slice(0, 44))}</option>`).join("")}</select>
-         <button class="btn primary" onclick="act('replace', $('swapTarget').value, '${q}')">Use this spare instead</button>`
-      : `<span class="dim sm">No scheduled post today to replace.</span>`;
-    if (!removed) btns += `<button class="btn danger" onclick="act('remove','${q}')">Remove spare</button>`;
   } else if (editable) {
     if (p.has_slot !== false) {
       btns += `<button class="btn primary" onclick="if(${upcoming} || confirm('Post this to Instagram now?')) act('post_now','${q}')">Post now</button>`;
       btns += `<button class="btn" onclick="toggle('resBox')">Reschedule</button>`;
     }
-    if (p.date === D.today_date && !removed && sys.spares_ready > 0)
-      btns += `<button class="btn" onclick="act('replace','${q}')">Replace with a spare (${sys.spares_ready})</button>`;
     btns += removed
       ? `<button class="btn" onclick="act('restore','${q}')">Restore</button>`
       : `<button class="btn danger" onclick="if(confirm('Remove this story? It will not be posted as a carousel or a Reel.')) act('remove','${q}')">Remove</button>`;
   }
 
   let reelHtml = "";
-  if (!p.spare && p.slides.length && (p.reel_slot != null || p.reel)) {
+  if (p.slides.length && (p.reel_slot != null || p.reel)) {
     const r = p.reel, rst = reelStatus(p);
     reelHtml = `<h2>Reel</h2><div class="card">
       <div class="dim sm status" style="margin-bottom:8px">${rst ? dot(rst[0]) + esc(rst[1]) : ""}${p.reel_scheduled_utc && !(r && r.status === "posted") ? " &middot; " + when(p.reel_scheduled_utc) : ""}</div>
@@ -549,11 +536,10 @@ $("pausebtn").className = "btn" + (sys.paused ? " primary" : " danger");
 $("pausebtn").onclick = () => act(sys.paused ? "resume" : "pause", "");
 $("ppd").value = String(sys.posts_per_day);
 $("rpd").value = String(sys.reels_per_day);
-$("spd").value = String(sys.spares_per_day);
 $("rmode").value = sys.reels_mode || "same";
 $("mixNote").textContent = sys.posts_per_day + " post" + (sys.posts_per_day === 1 ? "" : "s") + " + " +
   sys.reels_per_day + " Reel" + (sys.reels_per_day === 1 ? "" : "s") + " a day, from " + sys.stories_per_day +
-  " stor" + (sys.stories_per_day === 1 ? "y" : "ies") + ". " + sys.spares_ready + " spare" + (sys.spares_ready === 1 ? "" : "s") + " ready.";
+  " stor" + (sys.stories_per_day === 1 ? "y" : "ies") + ".";
 $("routineLink").href = D.routine_url;
 $("clog").innerHTML = D.control_log.length
   ? D.control_log.map(c => `<div class="item"><div class="body"><div class="t">${esc(c.action)} ${esc(c.target)}</div>

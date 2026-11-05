@@ -49,6 +49,22 @@ some stories (for example an earlier run was cut short), do not touch them: coun
 (`stories_per_day` minus what exists), giving each the free `slot` / `reel_slot` numbers that are not yet used. Never replace a
 story whose time has passed or that is already live.
 
+## 1b. Fix anything that did not go out
+
+Everything that is scheduled must get published. Before researching, open `state/posted.json` (carousels) and
+`state/reels.json` (Reels) and look at the stories in `queue/` of the last 2 days (New York dates). For each carousel
+(`slot` set) or Reel (`reel_slot` set) whose time has passed and that is not `posted` (and not `removed`, `deleted`
+or `cancelled`), read its `error`:
+- **Instagram refused or blocked the request** (`Instagram API error`, `action is blocked`, `request limit`):
+  do not touch it. The publisher waits and retries by itself for 2 days, and checks Instagram first so it never
+  posts twice.
+- **Anything in the post itself** (a picture that fails to download or render, a Reel that would not render, an
+  image Instagram could not fetch, a caption Instagram rejected): fix the post's files so the problem is gone, run
+  `validate.py` on that day, then in the record set `"attempts": 0` and remove `"status"` and `"error"` so the publisher
+  tries again. Commit this with your queue push.
+- Never re-create, re-date or duplicate a story to get it out; never touch anything that is live.
+List every item you found, and what you did about it, at the top of your final summary.
+
 ## 2. Discover candidates (aim for about 25)
 
 **Start every run with the plan. This is not optional:**
@@ -420,16 +436,6 @@ Examples with 3 posts + 3 Reels: `"same"` writes 3 stories (each a carousel and 
 A story with both `null` must not exist. Put the strongest stories on the evening slots. Reels are built from a story's own slides, so every story
 must follow all the picture and text rules above, even if it only becomes a Reel.
 
-## 7b. Spare posts (only if `spares_per_day` in `config.json` is above 0)
-
-The owner can swap a scheduled post he dislikes for a ready spare with one button, so prepare
-`spares_per_day` extra posts, finished to exactly the same standard (same verification, pictures and
-checks) but never scheduled. Write each as `queue/<date>/s1/post.json`, `s2`, ...:
-- `"spare": true`, `"slot": null` and `"reel_slot": null`, with `"id": "<date>-s1"` (`-s2`, ...), and an unused story (different
-  subject from the day's posts when possible; it has no `variety_exception` need since it is not scheduled).
-- Use the same fields, tags and checks as any post; `validate.py` and `check_images.py` cover spares too.
-- Add them to `state/history.jsonl` like the others. If `spares_per_day` is 0 or missing, write none.
-
 ## 8. Check, record and push
 
 1. Run `python3 scripts/check_images.py queue/<date>`, open each saved picture and fix any problem (section 5).
@@ -440,8 +446,8 @@ checks) but never scheduled. Write each as `queue/<date>/s1/post.json`, `s2`, ..
    `{"id": "2026-10-30-01", "date": "2026-10-30", "title": "...", "urls": ["https://...", "https://..."]}`
 4. Commit with the message `Queue posts for <date>` and push to `main`.
 
-Finish with a short summary: the stories picked, their scores, and anything you
-were unsure about.
+Finish with a short summary: anything from section 1b first, then the stories picked, their scores,
+and anything you were unsure about.
 
 ## 9. Resource limits (hard rules)
 

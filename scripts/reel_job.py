@@ -55,7 +55,7 @@ def posts_needing_reels():
             ids.append(pid)
     for path in sorted((ROOT / "queue" / today).glob("*/post.json")):
         post = load(path, {})
-        if post.get("spare") or post.get("reel_slot") is None:
+        if post.get("reel_slot") is None:
             continue
         if posted.get(post["id"], {}).get("status") in ("removed", "deleted"):
             continue

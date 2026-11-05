@@ -10,7 +10,7 @@ Live account: **@unclefactss** · Dashboard: **https://amirpz04.github.io/story-
 
 ## How it works
 ```
- 12:15 Istanbul  Claude research run (cloud) ──► queue/<date>/NN/post.json  (3 stories, + spares)
+ 12:15 Istanbul  Claude research run (cloud) ──► queue/<date>/NN/post.json  (2 stories)
        │                                              │ push
        │                                              ▼
        │                                   GitHub: render Reels (reel.yml), preview
@@ -22,7 +22,7 @@ Live account: **@unclefactss** · Dashboard: **https://amirpz04.github.io/story-
                                  ▼
                       Dashboard (GitHub Pages): status, posts, music, controls
 ```
-Defaults: **3 carousel posts + 3 Reels a day** from the same 3 stories (change 0-5 of each on the dashboard's Control tab),
+Defaults: **1 carousel post + 2 Reels a day** from 2 stories (change 0-5 of each on the dashboard's Control tab),
 posting times shifted a few minutes every day, nothing within 45 minutes of anything else.
 
 ## What is where
@@ -31,16 +31,16 @@ posting times shifted a few minutes every day, nothing within 45 minutes of anyt
 | `CLAUDE.md` | Full handover for Claude sessions: architecture, settings, decisions, gotchas, status, open items |
 | `ROUTINE.md` | The daily research run's complete instructions (what to find, how to verify, pictures, writing, slots) |
 | `config.json` | All settings (counts, times, caps, pause switch, brand) |
-| `scripts/` | `publish.py`, `publish_reel.py` (posting) · `render.py`, `make_reel.py`, `reel_job.py` (slides/videos) · `validate.py`, `check_images.py`, `find_images.py` (quality, photos) · `control.py` (dashboard actions) · `stats.py`, `dashboard.py`, `backfill_reels.py`, `watchdog.py`, `stock.py` |
+| `scripts/` | `publish.py`, `publish_reel.py` (posting) · `render.py`, `make_reel.py`, `reel_job.py` (slides/videos) · `validate.py`, `check_images.py`, `find_images.py` (quality, photos) · `control.py` (dashboard actions) · `stats.py`, `dashboard.py`, `backfill_reels.py`, `stock.py` |
 | `templates/` | `slide.html`, `reel.html`, `dashboard.html` and the bundled font |
 | `queue/<date>/<NN>/post.json` | One story each (slides, caption, sources, slots); `queue/demo/` holds an early live test post |
 | `state/` | Everything the system remembers: posted/Reel records, history of used stories, Instagram stats, live account totals, action log |
 | `assets/music/` | Reel songs (`music.json` has licenses and credit lines) |
 | `docs/index.html` | The generated dashboard (never edit by hand) |
-| `.github/workflows/` | `publish`, `reel`, `control`, `preview`, `stats`, `watchdog` |
+| `.github/workflows/` | `publish`, `reel`, `control`, `preview`, `stats` |
 
 ## Running it day to day
-Open the dashboard. **Overview** tells you in plain words what is happening and what is next; **Posts** lets you open any post (and its Reel) and remove, replace with a spare, edit text, reschedule, post now, or delete;
+Open the dashboard. **Overview** tells you in plain words what is happening and what is next; **Posts** lets you open any post (and its Reel) and remove, edit text, reschedule, post now, or delete;
 **Music** manages Reel songs; **Control** pauses posting and sets how many posts/Reels per day. Buttons need a one-time GitHub key pasted into that browser (the Control tab explains how).
 Look at the posts before they go out for the first weeks; the numbers on the page come straight from Instagram.
 

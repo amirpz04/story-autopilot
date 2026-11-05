@@ -40,7 +40,7 @@ def main():
         if e.get("id") and e.get("kind") != "reel":
             live.setdefault(e["id"], e.get("posted_local") or "")
     todo = [pid for pid in sorted(live, key=lambda p: live[p])
-            if pid in posts and not posts[pid].get("spare") and posts[pid].get("reel_slot") is None and pid not in reels]
+            if pid in posts and posts[pid].get("reel_slot") is None and pid not in reels]
     if not todo:
         print("Every live post already has a Reel or a plan.")
         return
