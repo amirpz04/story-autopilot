@@ -42,11 +42,11 @@
     },
     {
       "type": "text",
-      "text": "The sauce came from southeastern China, where it was called kê-chiap in the Hokkien language. Fish entrails were salted, sealed in jars and left in the sun for weeks, then strained into a thin, dark liquid."
+      "text": "It came from southern China. Fish guts were salted, sealed in jars and left in the sun for weeks."
     },
     {
       "type": "text",
-      "text": "British traders probably met it at trading posts in what is now Indonesia in the late 1600s. The word \"catchup\" entered English around then. Back home, cooks made versions with anchovies, walnuts and mushrooms.",
+      "text": "British traders probably found it in Asia in the late 1600s. Back home, they made it with anchovies and mushrooms.",
       "layout": "split",
       "image": {
         "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Mushroom_ketchup_%28homemade%29.jpg/3840px-Mushroom_ketchup_%28homemade%29.jpg",
@@ -55,7 +55,7 @@
     },
     {
       "type": "text",
-      "text": "The first known printed English recipe, in 1727, used wine, vinegar, anchovies, shallots and horseradish. No tomatoes. In 1812, Philadelphia physician James Mease published one of the first tomato versions, \"love apples\" and brandy included.",
+      "text": "The first English recipe, from 1727, used wine, anchovies and horseradish. No tomatoes at all.",
       "layout": "split",
       "image": {
         "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Tomato_plant_2026_G1.jpg/3840px-Tomato_plant_2026_G1.jpg",
@@ -64,11 +64,7 @@
     },
     {
       "type": "text",
-      "text": "In the 1800s, sugar replaced alcohol. But sugar sped up fermentation, so bottles soured and sometimes burst. A 1906 law banned chemical preservatives, and the salt, sugar, vinegar and tomato formula won."
-    },
-    {
-      "type": "text",
-      "text": "Henry J. Heinz began making tomato ketchup in 1876. In 1906 his company launched a version made with ripe tomatoes and no artificial preservatives, worked out with chemist Harvey Wiley.",
+      "text": "Tomatoes came much later. Henry Heinz started bottling tomato ketchup in 1876.",
       "layout": "full",
       "image": {
         "url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Heinz_Tomato_Ketchup%2C_Canada_%28front%29%2C_2026-02-19.jpg",
@@ -77,10 +73,10 @@
     },
     {
       "type": "end",
-      "text": "The name outlived the recipe by about 300 years. Only the word is left of the original."
+      "text": "The name outlived the original recipe by about 300 years. Only the word is left."
     }
   ],
-  "caption": "Ketchup is the most American condiment on the table, and almost nothing about it started in America.\n\nMost food historians trace it to a fermented fish sauce made in southeastern China. In the Hokkien language it was called kê-chiap. Fish entrails were rinsed, salted, sealed in jars and fermented in the sun for weeks, and the strained liquid was dark and thin, much like modern fish sauce.\n\nBritish traders probably met it at trading posts in what is now Indonesia in the late 1600s, and the word \"catchup\" entered English. The exact path of the word is still debated. British and Dutch cooks copied the idea with whatever they had: anchovies, walnuts, mushrooms. A 1727 English recipe calls for wine, vinegar, anchovies, shallots and horseradish.\n\nTomatoes arrive late. In 1812, Philadelphia physician James Mease published one of the first tomato ketchup recipes, and it included brandy. Over the 1800s, sugar replaced alcohol, but sugar made bottles ferment and sometimes burst. After a 1906 law banned chemical preservatives, the salt, sugar, vinegar and tomato formula became the standard. Heinz had begun selling tomato ketchup in 1876.\n\nSource: Smithsonian Magazine, Food Republic",
+  "caption": "America's favorite sauce didn't start in America, and it didn't start with tomatoes.\n\nFood historians trace ketchup to a fish sauce from southern China, called kê-chiap. Fish guts were salted and left in jars in the sun for weeks.\n\nBritish traders brought the idea home in the late 1600s and made it with anchovies, walnuts and mushrooms. Tomato versions showed up in the early 1800s, and Heinz started selling tomato ketchup in 1876.\n\nSource: Smithsonian Magazine, Food Republic",
   "hashtags": [
     "#foodhistory",
     "#history",
