@@ -1,0 +1,86 @@
+{
+  "id": "2026-11-06-02",
+  "date": "2026-11-06",
+  "slot": null,
+  "reel_slot": 3,
+  "category": "science",
+  "title": "Stanford prison experiment guards were coached, researcher finds",
+  "format": "CALL_OUT",
+  "take": "The most famous proof that good people turn cruel had a script. The guards were coached.",
+  "mood": "tense",
+  "tags": {
+    "lane": "evergreen",
+    "headline": "myth flip",
+    "end": "callback"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 8,
+    "talkability": 8,
+    "no_context": 7,
+    "freshness": 6
+  },
+  "sources": [
+    {
+      "name": "The Conversation",
+      "url": "https://theconversation.com/the-infamous-stanford-prison-experiment-was-flawed-so-why-is-it-still-so-influential-today-246881"
+    },
+    {
+      "name": "Le Texier, American Psychologist (2019)",
+      "url": "https://gwern.net/doc/psychology/2019-letexier.pdf"
+    }
+  ],
+  "verification": "The Conversation (summary of Le Texier's archival research) and Le Texier's American Psychologist paper 'Debunking the Stanford Prison Experiment' (2019): guards coached by the research team with rules aimed at dehumanising prisoners, staff reprimanded lenient guards, prisoners could not simply leave, three not five released for distress and at least one faked. Zimbardo disputed the critique.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "PSYCH 101",
+      "headline": "Your psych class got the Stanford prison experiment wrong",
+      "say": "Your psych class taught you the Stanford prison experiment. It left out the part where the guards got coached.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/18/Jordan_Hall%2C_Stanford_University.jpg",
+        "credit": "Photo: Emma Pease / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "1971: students play guards and prisoners in a Stanford basement. The guards turn cruel. It ends after six days.",
+      "say": "In 1971, students played guards and prisoners in a Stanford basement. The guards turned cruel. It ended after six days.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Interior_of_old_prison_cell_at_Hotel_Katajanokka.jpg/3840px-Interior_of_old_prison_cell_at_Hotel_Katajanokka.jpg",
+        "credit": "Illustrative photo: JIP / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The lesson taught for decades: put good people in a bad setup, and they turn cruel.",
+      "say": "The lesson taught for decades? Put good people in a bad setup. They turn cruel."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Archives show guards were coached to break prisoners down. Prisoners couldn't really quit. At least one breakdown was faked.",
+      "say": "But the archives say the guards were coached. Prisoners couldn't really quit. And at least one breakdown was faked.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Philip_Zimbardo.jpg/3840px-Philip_Zimbardo.jpg",
+        "credit": "Photo: Elekes Andor / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "It's still in textbooks. Next time someone says anyone would turn cruel, ask who wrote the script.",
+      "say": "It's still in textbooks. Next time someone says anyone would turn cruel, ask who wrote the script."
+    }
+  ],
+  "caption": "The most famous psychology study ever run may have been a performance.\n\nIn 1971, Stanford's Philip Zimbardo put students in a mock prison. The guards turned harsh, and the story became proof that ordinary people turn cruel in the wrong system.\n\nBut French researcher Thibault Le Texier dug through archives, recordings and interviews. He found the guards were coached on how to act, staff pushed them to be tougher, prisoners could not simply leave, and at least one breakdown was faked. Some guards were kind. One quit. Zimbardo defended his methods.\n\nThe study is still taught. Should it be?\n\nSource: The Conversation, American Psychologist (Le Texier, 2019)",
+  "hashtags": [
+    "#psychology",
+    "#science",
+    "#history",
+    "#mythbusting",
+    "#funfacts"
+  ]
+}

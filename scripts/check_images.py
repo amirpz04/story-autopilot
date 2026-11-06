@@ -7,9 +7,11 @@ Usage: python3 scripts/check_images.py queue/2026-10-31
 Copies are saved to /tmp/imgcheck/<post-id>-slide<N>.<ext>. Needs no extra packages.
 """
 import hashlib
+import time
 import json
 import struct
 import sys
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -66,9 +68,17 @@ def main():
                 print("  slide %d: no picture%s" % (n, " (stock 'search' is not used any more; give a url)" if image.get("search") else ""))
                 continue
             try:
-                req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-                with urllib.request.urlopen(req, timeout=60) as resp:
-                    data = resp.read(MAX_BYTES)
+                for attempt in range(4):
+                    try:
+                        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+                        with urllib.request.urlopen(req, timeout=60) as resp:
+                            data = resp.read(MAX_BYTES)
+                        break
+                    except urllib.error.HTTPError as exc:
+                        if exc.code not in (429, 503) or attempt == 3:
+                            raise
+                        time.sleep(30)  # Wikimedia throttles: wait and retry
+                time.sleep(3)
             except Exception as exc:
                 print("  slide %d: CANNOT DOWNLOAD (%s): %s" % (n, exc, url))
                 problems += 1
