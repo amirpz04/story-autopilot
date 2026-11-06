@@ -85,7 +85,7 @@ post_reel cancel_reel reschedule_reel add_music remove_music refresh_dashboard`)
 Template `templates/dashboard.html`, data `scripts/dashboard.py`. GitHub Pages lags up to ~10 min.
 
 ## 5. Post rules (`validate.py`)
-5-7 slides; slide text <= 22 words, no sentence over 16 words; cover headline <= 12 words; at least half the slides (min 3) with a real picture; never two
+5-7 slides; every slide has a spoken `say` (<= 28 words, sentences <= 14); post has `format`, `take`, `mood`; slide text <= 22 words, no sentence over 16 words; cover headline <= 12 words; at least half the slides (min 3) with a real picture; never two
 text-only slides in a row; layouts `split`/`full`; caption 300-950 chars; up to 5 hashtags, only in `hashtags`; every source has
 a URL; no reused source or near-duplicate title; `slot` in `active_slots` and/or `reel_slot` in `reel_active_slots`. Per day:
 exactly `stories_per_day` stories; soft variety (no shared source organization, subject or opening words, unless the post carries
@@ -111,6 +111,7 @@ Same photos and text as the carousel, animated, 1080x1920, 30 fps, ~25-40 s, wit
 - **The publisher only posts**: no content checks, no failing runs, no emails. Quality belongs to the research run. Status goes on the dashboard (he never reads email).
 - **Short, plain, viral (Nov 5):** 5-7 slides, plain English a 12-year-old gets, short caption; stories that pass the "friend test" (money, brands, scams, myths, odd laws, the body, debates; controversial is fine when true and fair; no partisan politics, no health misinformation). Rules in ROUTINE sections 3 and 6. No slide counter. Real pictures of the subject first; labelled Unsplash fallback allowed.
 - Reels are automatic. He picks the counts. No spare posts (removed Nov 5). No AI-tool-spotlight posts.
+- **Every post is a TAKE, not a report (Nov 6)**: a format (BIG_NEWS, CALL_OUT, DISCOVERY, MYTH), a one-sentence `take`, a spoken `say` script per slide (the Reel's captions and narration), and the "who cares?" test (ROUTINE 0a). The owner called a correct power-bank-rules post "page 26 of the airplane booklet". Criticize companies/products/ideas, never private people, groups or partisan politics. (The older "no AI-tool-spotlight posts" rule is unclear against DISCOVERY posts: ask before featuring AI tools.)
 - Two lanes: news and evergreen (evergreen needs 2 independent sources).
 - Keep a story's carousel and Reel hours apart.
 - Tiny budget: only his Claude Pro plan costs money; keep Claude usage low.

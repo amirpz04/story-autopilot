@@ -220,6 +220,15 @@ IMAGE_FIRST_STOP = [
 ]
 
 
+# What the post DOES (ROUTINE.md 0a). Dealt at random so the account is not all "big news" or all "call-outs".
+FORMATS = [
+    ("BIG_NEWS", 3, "something big just happened: say what it really means for the viewer, with a take"),
+    ("CALL_OUT", 3, "criticize something that deserves it (a product, company, rule, trend or popular belief), with evidence"),
+    ("DISCOVERY", 2, "introduce or recommend something worth knowing (a tool, trick, product, hidden feature): who it is for and why"),
+    ("MYTH", 2, "what everyone believes or does that is wrong or risky, and what to do instead"),
+]
+
+
 def weighted_pick(rng, items, weights):
     """One item, chosen with probability proportional to its weight."""
     total = float(sum(weights))
@@ -263,6 +272,7 @@ def deal(stories, seed=None, recent=None):
 
     plan = []
     for i, lane in enumerate(lanes, 1):
+        fmt = weighted_pick(rng, FORMATS, [f[1] for f in FORMATS])
         if lane == "A":
             options = [c for c in NEWS_SUBJECTS if c not in used_subjects] or list(NEWS_SUBJECTS)
             subject = weighted_pick(rng, options, [weight(c) for c in options])
@@ -276,7 +286,7 @@ def deal(stories, seed=None, recent=None):
             country, params = rng.choice(NEWS_COUNTRIES)
             query = rng.choice(queries)
             plan.append({
-                "n": i, "lane": "A (news, last 72 h)", "subject": subject,
+                "n": i, "format": fmt, "lane": "A (news, last 72 h)", "subject": subject,
                 "lean": description,
                 "start": "%s  %s" % feed,
                 "then": "%s  %s" % backup,
@@ -292,7 +302,7 @@ def deal(stories, seed=None, recent=None):
             start = starts.pop() if starts else rng.choice(EVERGREEN_STARTS)
             backup = starts.pop() if starts else start
             plan.append({
-                "n": i, "lane": "B (evergreen, any age)", "subject": subject,
+                "n": i, "format": fmt, "lane": "B (evergreen, any age)", "subject": subject,
                 "lean": angle[1],
                 "start": "%s  %s" % start,
                 "then": "%s  %s" % backup,
@@ -364,6 +374,7 @@ def main():
     for p in plan:
         print()
         print("STORY %d - lane %s" % (p["n"], p["lane"]))
+        print("  FORMAT   : %s - %s" % (p["format"][0], p["format"][2]))
         print("  SUBJECT  : %s" % p["subject"].upper())
         print("  about    : %s" % p["lean"])
         print("  start at : %s" % p["start"])
@@ -375,6 +386,9 @@ def main():
     print()
     print("=" * 70)
     print("RULES FOR TODAY")
+    print("  - EVERY POST IS A TAKE (ROUTINE.md 0a). Before writing, answer: who cares (name them), what is at stake")
+    print("    for them, what is your one-sentence take. If the honest answer to 'who cares?' is nobody, drop the story.")
+    print("  - Write the Reel script (`say`) as a person talking, not a newspaper. The FORMAT above says what the post does.")
     print("  - Each story has a SUBJECT above. Find the best story you can in it. The draw favors subjects")
     print("    that have been quiet lately, so following it is what keeps the account varied.")
     print("  - It is a steer, not a trap. Nothing good after two entry points? Use a backup subject. A clearly")

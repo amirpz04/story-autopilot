@@ -118,7 +118,7 @@ def build_scenes(post, work, handle="@unclefactss"):
         dur = scene_duration(slide) + (min(2.0, 0.55 * len(image.get("marks") or [])) if photo else 0)   # time to see the marks
         scenes.append({
             "type": slide["type"], "kicker": (slide.get("kicker") or "").upper() if slide["type"] == "cover" else "",
-            "text": ((slide.get("headline") or slide.get("text") or "") + (" Follow %s for more" % handle if slide["type"] == "end" else "")),
+            "text": ((slide.get("say") or slide.get("headline") or slide.get("text") or "") + (" Follow %s for more" % handle if slide["type"] == "end" else "")),
             "photo": photo, "ar": ar,
             "credit": image.get("credit", "") if photo else "", "marks": (image.get("marks") or []) if photo else [],
             "focus": image.get("focus") if photo else None, "start": round(t, 3), "dur": round(dur, 3), "dir": 1 if n % 2 == 0 else -1,
@@ -160,10 +160,8 @@ def word_times(text, bounds, length, lead):
 
 
 def narration(slide, config):
-    """What the narrator says on a slide: its own `say` line if the story has one, otherwise the slide's text."""
-    if slide.get("say"):
-        return slide["say"]
-    text = slide.get("headline") or slide.get("text") or ""
+    """What the narrator says (and the captions show) on a slide: its `say` script, else its text."""
+    text = slide.get("say") or slide.get("headline") or slide.get("text") or ""
     if slide["type"] == "end":
         text += " Follow %s for more." % config.get("account_name", "us")
     return text
