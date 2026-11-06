@@ -63,6 +63,8 @@ def music_list():
     for name, m in sorted(meta.items(), key=lambda kv: kv[1].get("added", ""), reverse=True):
         if (ROOT / "assets" / "music" / name).exists():
             out.append(dict(m, file=name, url="https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@main/assets/music/" + name))
+        elif m.get("remote"):
+            out.append(dict(m, file=name, url=m["source"]))
     used = read_json(ROOT / "state" / "music_log.json", [])
     for m in out:
         m["uses"] = sum(1 for u in used if Path(u).stem == Path(m["file"]).stem)

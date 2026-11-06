@@ -75,7 +75,8 @@ def make_one(post_id):
     reels = load(REELS, {})
     attempts = reels.get(post_id, {}).get("attempts", 0) + 1
     try:
-        music, credit = make_reel.pick_music()
+        post_meta = json.loads((post_dir / "post.json").read_text())
+        music, credit = make_reel.pick_music(post_meta.get("mood")) if load_config_music() else (None, "")
         work = Path(tempfile.mkdtemp())
         name = "%s-%s.mp4" % (datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S"), post_id)
         out = work / name
@@ -129,6 +130,13 @@ def make_one(post_id):
     REELS.write_text(json.dumps(reels, indent=2, sort_keys=True) + "\n")
     print("Stored on the reels branch:", sha[:10])
     return True
+
+
+def load_config_music():
+    try:
+        return bool(json.loads((ROOT / "config.json").read_text()).get("music", True))
+    except Exception:
+        return True
 
 
 def main():

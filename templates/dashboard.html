@@ -782,7 +782,7 @@ function drawMusic() {
   const list = D.music || [];
   $("musicCount").textContent = list.length + " songs";
   $("mlist").innerHTML = list.length ? list.map(m => `<div style="padding:8px 0;border-bottom:1px solid var(--line)">
-      <div class="between"><div class="ell"><div>${esc(m.title)}</div><div class="faint" style="font-size:11px">${mins(m.duration || 0)} · ${esc(m.license)} · used ${m.uses}x recently</div></div>
+      <div class="between"><div class="ell"><div>${esc(m.title)}</div><div class="faint" style="font-size:11px">${mins(m.duration || 0)} · ${esc((m.mood || []).join(", ") || "no mood")} · used ${m.uses}x recently</div></div>
       <button class="btn mini bad" onclick="if(confirm('Remove this song?')) act('remove_music','${esc(m.file)}')">Remove</button></div>
       <audio controls preload="none" src="${esc(m.url)}"></audio></div>`).join("") : `<div class="dim">No songs. Reels will be silent until you add one.</div>`;
 }

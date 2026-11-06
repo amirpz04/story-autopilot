@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parent.parent
 IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".webp")
 MAX_SLIDE_WORDS = 22
 MAX_HEADLINE_WORDS = 12
+MOODS = ("hype", "playful", "tense", "mysterious", "inspiring", "chill")
 MAX_SENTENCE_WORDS = 16          # plain English, read aloud by the Reel narrator
 MIN_CAPTION_CHARS = 300
 MAX_CAPTION_CHARS = 950
@@ -131,6 +132,8 @@ def check_post(path, config):
     if errors:
         return errors
 
+    if post.get("mood") not in MOODS:
+        errors.append("needs a `mood` for the Reel's song: one of %s (ROUTINE.md 5c)" % ", ".join(MOODS))
     slot, reel_slot = post.get("slot"), post.get("reel_slot")
     if slot is None and reel_slot is None:
         errors.append("the post needs a carousel `slot`, a `reel_slot`, or both")

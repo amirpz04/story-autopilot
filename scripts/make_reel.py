@@ -22,7 +22,8 @@ from check_images import size_of  # noqa: E402
 
 FPS = 30
 USER_AGENT = "UncleFactsBot/1.0 (+https://github.com/amirpz04/story-autopilot; reel renderer)"
-FONT = ROOT / "templates" / "fonts" / "Sora.ttf"
+FONT = ROOT / "templates" / "fonts" / "Bricolage.ttf"
+FONT_DISPLAY = ROOT / "templates" / "fonts" / "Unbounded.ttf"
 FONT_MONO = ROOT / "templates" / "fonts" / "JetBrainsMono.ttf"
 
 
@@ -30,26 +31,52 @@ MUSIC_DIR = ROOT / "assets" / "music"
 MUSIC_LOG = ROOT / "state" / "music_log.json"
 
 
-def pick_music(log_path=MUSIC_LOG):
-    """Next track: never one of the most recently used, so the same song doesn't repeat.
+def _cached(url, name):
+    """Remote tracks (free-to-use libraries we only link to) are fetched when a Reel is made."""
+    import tempfile
+    cache = Path(tempfile.gettempdir()) / "uf-music"
+    cache.mkdir(exist_ok=True)
+    path = cache / name
+    if path.exists() and path.stat().st_size > 50000:
+        return path
+    last = None
+    for attempt in range(1, 4):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+            path.write_bytes(urllib.request.urlopen(req, timeout=60).read())
+            return path
+        except Exception as exc:
+            last = exc
+            time.sleep(3 * attempt)
+    raise RuntimeError("song could not be downloaded (%s): %s" % (last, url))
 
+
+def pick_music(mood=None, log_path=MUSIC_LOG):
+    """A song that fits the story's mood (hype, playful, tense, mysterious, inspiring, chill), rotating so it doesn't repeat.
+
+    With no mood any song is fine. With a mood nothing in the library fits, the Reel has no music (the voice alone
+    beats a song that clashes); the daily run is told to add a fitting one (ROUTINE.md section 7).
     Returns (path or None, credit line to put in the caption, or "").
     """
-    tracks = sorted(t for t in MUSIC_DIR.iterdir() if t.suffix in (".m4a", ".mp3", ".ogg", ".wav"))
-    if not tracks:
+    try:
+        meta = json.loads((MUSIC_DIR / "music.json").read_text())
+    except Exception:
+        return None, ""
+    cands = [n for n, m in meta.items() if (MUSIC_DIR / n).exists() or m.get("remote")]
+    if mood:
+        cands = [n for n in cands if mood in (meta[n].get("mood") or [])]
+    if not cands:
         return None, ""
     try:
         used = json.loads(Path(log_path).read_text())
     except Exception:
         used = []
-    recent = [Path(u).stem for u in used[-(len(tracks) - 1):]] if len(tracks) > 1 else []
-    choice = random.choice([t for t in tracks if t.stem not in recent] or tracks)
-    Path(log_path).write_text(json.dumps((used + [choice.name])[-30:]) + "\n")
-    try:
-        credit = json.loads((MUSIC_DIR / "music.json").read_text()).get(choice.name, {}).get("credit", "")
-    except Exception:
-        credit = ""
-    return choice, credit
+    recent = used[-(len(cands) - 1):] if len(cands) > 1 else []
+    name = random.choice([n for n in cands if n not in recent] or cands)
+    Path(log_path).write_text(json.dumps((used + [name])[-30:]) + "\n")
+    m = meta[name]
+    path = _cached(m["source"], name) if m.get("remote") else MUSIC_DIR / name
+    return path, m.get("credit", "")
 
 
 def load_config():
@@ -199,7 +226,7 @@ def make_reel(post_dir, out_path, config=None, music=None):
     scenes = build_scenes(post, work, config.get("handle", "@unclefactss"))
     voice = add_voice(post, scenes, work, config)
     html = (ROOT / "templates" / "reel.html").read_text()
-    html = html.replace("/*MARKSJS*/", (ROOT / "templates" / "marks.js").read_text()).replace("/*FONT*/", FONT.as_uri()).replace("/*FONTMONO*/", FONT_MONO.as_uri()).replace("/*HANDLE*/", config["handle"])
+    html = html.replace("/*MARKSJS*/", (ROOT / "templates" / "marks.js").read_text()).replace("/*FONT*/", FONT.as_uri()).replace("/*FONTMONO*/", FONT_MONO.as_uri()).replace("/*FONTDISPLAY*/", FONT_DISPLAY.as_uri()).replace("/*HANDLE*/", config["handle"])
     html = html.replace("/*SCENES*/[]/*END*/", json.dumps(scenes))
     page_file = work / "reel.html"
     page_file.write_text(html)
@@ -257,6 +284,6 @@ if __name__ == "__main__":
     out = sys.argv[2] if len(sys.argv) > 2 else str(ROOT / "preview" / "reel.mp4")
     music, credit = (sys.argv[3] if len(sys.argv) > 3 else None), ""
     if music == "auto":
-        music, credit = pick_music()
+        music, credit = pick_music(json.loads((Path(post_dir) / "post.json").read_text()).get("mood"))
         print("Music:", music.name if music else "none", "| credit line:", credit or "(none needed)")
     print("Wrote", make_reel(post_dir, out, music=music))

@@ -309,7 +309,7 @@ none. Never mark just to decorate.
 - Other types: `{"type": "box", "box": [...], "label": "..."}`, `{"type": "spotlight", "at": [...], "r": 0.2}`,
   `{"type": "zoom", "box": [...], "label": "..."}`. `arrow` without `from` points in from the open side. Optional
   `"focus": [x, y]` on the image keeps that point in the crop (default: the middle of the marks).
-- Labels: at most 4 words, true, saying what the slide text says. A mark must never add a fact the sources lack.
+- Labels: at most 4 words, true, saying what the slide text says. In the Reel a landscape picture is shown whole as a card over a blurred copy of itself, so nothing important gets cropped away; tall pictures fill the screen. A mark must never add a fact the sources lack.
 - Prefer the `split` layout for a marked slide (picture above the text). On `full` slides and the cover the text covers
   the bottom half, so only mark things in the upper half there. In the Reel a marked slide automatically becomes a
   framed whole picture above the text, with the marks drawing themselves in.
@@ -317,6 +317,17 @@ none. Never mark just to decorate.
   slide. Is each mark exactly on its thing, the tag readable, the subject not hidden? Fix the numbers and render again
   (at most two rounds); if a mark is still off, delete it. A wrong arrow is worse than none. `validate.py` checks the format.
   If `render.py` cannot run in your environment, keep only marks on big, unmistakable targets and say so in the summary.
+
+## 5c. Pick the song's mood
+
+Every story gets `"mood"`: how the story FEELS, one of `hype` (fast, trendy beat: money, scams, brands, viral oddities, rules and bans),
+`playful` (light, funny, quirky), `tense` (danger, fire, crashes, secrets), `mysterious` (space, the unsolved, the deep), `inspiring`
+(big achievements, comebacks) or `chill` (calm, cozy, gentle). Choose by the feeling, not the topic. The Reel plays a song from
+`assets/music/music.json` tagged with that mood (rotating, so songs do not repeat); a nature-documentary track under a viral story is the
+exact mismatch the owner hates. If the library has fewer than 3 songs for the mood you need, add one:
+`python3 scripts/find_music.py <mood>` lists free Mixkit songs and prints the ready command (the song is linked, not copied). You cannot
+hear it, so go by genre: hype = hip-hop, trap, electronic; playful = quirky, happy; tense = dark; mysterious = ambient, cinematic. With no
+song for a mood the Reel simply has no music. The owner can remove or change songs on the dashboard.
 
 ## 6. Write the post
 
