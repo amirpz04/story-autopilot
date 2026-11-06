@@ -262,11 +262,15 @@
   "2026-11-05-02": {
     "attempts": 0,
     "credit": "",
+    "error": "",
     "file": "20261106-004426-2026-11-05-02.mp4",
     "made_at": "2026-11-06T00:45:17.081071+00:00",
+    "media_id": "18133045480818600",
     "music": "mixkit-407.mp3",
+    "permalink": "https://www.instagram.com/reel/DfYn2EGkpzf/",
+    "posted_at": "2026-11-06T03:18:25.859267+00:00",
     "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/5de0d5e3eca4a15acbb042cbe156d12feb9e50ab/20261106-004426-2026-11-05-02.mp4",
-    "status": "made",
+    "status": "posted",
     "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@5de0d5e3eca4a15acbb042cbe156d12feb9e50ab/20261106-004426-2026-11-05-02.mp4"
   },
   "demo-02": {
