@@ -69,9 +69,9 @@
     "made_at": "2026-11-06T00:26:04.525984+00:00",
     "music": "life-in-silico.m4a",
     "post_at": "2026-11-05T23:27:00+00:00",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/934a859deed93347324c4ad633a8367db958dd46/20261106-002509-2026-10-31-05.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/5de0d5e3eca4a15acbb042cbe156d12feb9e50ab/20261106-002509-2026-10-31-05.mp4",
     "status": "made",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@934a859deed93347324c4ad633a8367db958dd46/20261106-002509-2026-10-31-05.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@5de0d5e3eca4a15acbb042cbe156d12feb9e50ab/20261106-002509-2026-10-31-05.mp4"
   },
   "2026-11-01-01": {
     "attempts": 0,
@@ -257,13 +257,13 @@
   },
   "2026-11-05-02": {
     "attempts": 0,
-    "credit": "Passage Of Time by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-    "file": "20261106-001126-2026-11-05-02.mp4",
-    "made_at": "2026-11-06T00:12:20.863731+00:00",
-    "music": "passage-of-time.m4a",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/934a859deed93347324c4ad633a8367db958dd46/20261106-001126-2026-11-05-02.mp4",
+    "credit": "",
+    "file": "20261106-004426-2026-11-05-02.mp4",
+    "made_at": "2026-11-06T00:45:17.081071+00:00",
+    "music": "mixkit-407.mp3",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/5de0d5e3eca4a15acbb042cbe156d12feb9e50ab/20261106-004426-2026-11-05-02.mp4",
     "status": "made",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@934a859deed93347324c4ad633a8367db958dd46/20261106-001126-2026-11-05-02.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@5de0d5e3eca4a15acbb042cbe156d12feb9e50ab/20261106-004426-2026-11-05-02.mp4"
   },
   "demo-02": {
     "attempts": 0,
