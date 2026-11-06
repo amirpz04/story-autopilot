@@ -57,9 +57,9 @@
     "permalink": "https://www.instagram.com/reel/DfVoOQ7jvLc/",
     "post_at": "2026-11-04T23:14:00+00:00",
     "posted_at": "2026-11-04T23:23:55.584041+00:00",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/df87eeca5806bac6db8e2dd7addd75a559198005/20261104-232059-2026-10-31-03.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/d597ae7d3ddfc68ff580ecaa19fe1951585c0f69/20261104-232059-2026-10-31-03.mp4",
     "status": "posted",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@df87eeca5806bac6db8e2dd7addd75a559198005/20261104-232059-2026-10-31-03.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@d597ae7d3ddfc68ff580ecaa19fe1951585c0f69/20261104-232059-2026-10-31-03.mp4"
   },
   "2026-10-31-05": {
     "attempts": 0,
@@ -221,9 +221,9 @@
     "music": "life-in-silico.m4a",
     "permalink": "https://www.instagram.com/reel/DfWCfliAlE6/",
     "posted_at": "2026-11-05T03:13:33.966967+00:00",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/df87eeca5806bac6db8e2dd7addd75a559198005/20261104-100724-2026-11-04-02.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/d597ae7d3ddfc68ff580ecaa19fe1951585c0f69/20261104-100724-2026-11-04-02.mp4",
     "status": "posted",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@df87eeca5806bac6db8e2dd7addd75a559198005/20261104-100724-2026-11-04-02.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@d597ae7d3ddfc68ff580ecaa19fe1951585c0f69/20261104-100724-2026-11-04-02.mp4"
   },
   "2026-11-04-03": {
     "attempts": 0,
@@ -235,9 +235,9 @@
     "music": "permafrost.m4a",
     "permalink": "https://www.instagram.com/reel/DfU3Xd2lQlX/",
     "posted_at": "2026-11-04T16:17:23.237996+00:00",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/df87eeca5806bac6db8e2dd7addd75a559198005/20261104-100908-2026-11-04-03.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/d597ae7d3ddfc68ff580ecaa19fe1951585c0f69/20261104-100908-2026-11-04-03.mp4",
     "status": "posted",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@df87eeca5806bac6db8e2dd7addd75a559198005/20261104-100908-2026-11-04-03.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@d597ae7d3ddfc68ff580ecaa19fe1951585c0f69/20261104-100908-2026-11-04-03.mp4"
   },
   "2026-11-05-01": {
     "attempts": 0,
@@ -249,9 +249,19 @@
     "music": "in-search-of-solitude.m4a",
     "permalink": "https://www.instagram.com/reel/DfX8PC9lQf_/",
     "posted_at": "2026-11-05T20:57:20.054644+00:00",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/df87eeca5806bac6db8e2dd7addd75a559198005/20261105-092730-2026-11-05-01.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/d597ae7d3ddfc68ff580ecaa19fe1951585c0f69/20261105-092730-2026-11-05-01.mp4",
     "status": "posted",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@df87eeca5806bac6db8e2dd7addd75a559198005/20261105-092730-2026-11-05-01.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@d597ae7d3ddfc68ff580ecaa19fe1951585c0f69/20261105-092730-2026-11-05-01.mp4"
+  },
+  "2026-11-05-02": {
+    "attempts": 0,
+    "credit": "Passage Of Time by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "file": "20261106-001126-2026-11-05-02.mp4",
+    "made_at": "2026-11-06T00:12:20.863731+00:00",
+    "music": "passage-of-time.m4a",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/d597ae7d3ddfc68ff580ecaa19fe1951585c0f69/20261106-001126-2026-11-05-02.mp4",
+    "status": "made",
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@d597ae7d3ddfc68ff580ecaa19fe1951585c0f69/20261106-001126-2026-11-05-02.mp4"
   },
   "demo-02": {
     "attempts": 0,
