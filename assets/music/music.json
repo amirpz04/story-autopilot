@@ -4,10 +4,6 @@
     "credit": "Adrift Among Infinite Stars by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
     "duration": 110,
     "license": "CC BY 4.0",
-    "mood": [
-      "mysterious",
-      "inspiring"
-    ],
     "source": "https://www.scottbuckley.com.au/library/wp-content/uploads/2022/02/AdriftAmongInfiniteStars.mp3",
     "title": "Adrift Among Infinite Stars (Scott Buckley)"
   },
@@ -16,10 +12,6 @@
     "credit": "In Search Of Solitude by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
     "duration": 110,
     "license": "CC BY 4.0",
-    "mood": [
-      "chill",
-      "mysterious"
-    ],
     "source": "https://www.scottbuckley.com.au/library/wp-content/uploads/2022/05/sb_insearchofsolitude.mp3",
     "title": "In Search Of Solitude (Scott Buckley)"
   },
@@ -28,286 +20,14 @@
     "credit": "Life In Silico by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
     "duration": 110,
     "license": "CC BY 4.0",
-    "mood": [
-      "mysterious",
-      "tense"
-    ],
     "source": "https://www.scottbuckley.com.au/library/wp-content/uploads/2021/07/sb_lifeinsilico.mp3",
     "title": "Life In Silico (Scott Buckley)"
-  },
-  "mixkit-101.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "playful"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/101/101.mp3",
-    "title": "Smooth Grooves (Ahjay Stelino)"
-  },
-  "mixkit-103.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "hype"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/103/103.mp3",
-    "title": "Sweatin' It (Ahjay Stelino)"
-  },
-  "mixkit-107.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "mysterious"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/107/107.mp3",
-    "title": "Atoms in Peace (Alejandro Magaña (A. M.))"
-  },
-  "mixkit-1254.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "playful"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/1254/1254.mp3",
-    "title": "Party Robot (Michael Ramir C.)"
-  },
-  "mixkit-126.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "hype"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/126/126.mp3",
-    "title": "Trap Electro Vibes (Alejandro Magaña (A. M.))"
-  },
-  "mixkit-140.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "tense"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/140/140.mp3",
-    "title": "Cyberpunk City (Alejandro Magaña (A. M.))"
-  },
-  "mixkit-143.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "chill"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/143/143.mp3",
-    "title": "Silk (Alejandro Magaña (A. M.))"
-  },
-  "mixkit-167.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "hype"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/167/167.mp3",
-    "title": "Brainiac (Alejandro Magaña (A. M.))"
-  },
-  "mixkit-175.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "chill"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/175/175.mp3",
-    "title": "Digital Clouds (Alejandro Magaña (A. M.))"
-  },
-  "mixkit-244.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "playful"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/244/244.mp3",
-    "title": "Tom (Arulo)"
-  },
-  "mixkit-283.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "tense"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/283/283.mp3",
-    "title": "Trapanomics (Arulo)"
-  },
-  "mixkit-357.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "playful"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/357/357.mp3",
-    "title": "Head Bang (Arulo)"
-  },
-  "mixkit-370.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "hype"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/370/370.mp3",
-    "title": "Sparta (Arulo)"
-  },
-  "mixkit-399.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "tense"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/399/399.mp3",
-    "title": "Billy the Kid (Arulo)"
-  },
-  "mixkit-407.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "playful"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/407/407.mp3",
-    "title": "K. K. (Arulo)"
-  },
-  "mixkit-410.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "hype"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/410/410.mp3",
-    "title": "Lil Pump Type (Arulo)"
-  },
-  "mixkit-464.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "mysterious"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/464/464.mp3",
-    "title": "Sci-Fi Score (Arulo)"
-  },
-  "mixkit-465.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "hype"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/465/465.mp3",
-    "title": "Watch Me Breezy (Arulo)"
-  },
-  "mixkit-73.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "tense"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/73/73.mp3",
-    "title": "Torn Threads (Ahjay Stelino)"
-  },
-  "mixkit-741.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "chill"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/741/741.mp3",
-    "title": "Hip Hop 04 (Lily J)"
-  },
-  "mixkit-764.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "chill"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/764/764.mp3",
-    "title": "Lo-Fi 02 (Lily J)"
-  },
-  "mixkit-841.mp3": {
-    "added": "2026-11-06",
-    "credit": "",
-    "duration": 0,
-    "license": "Mixkit Free License",
-    "mood": [
-      "playful"
-    ],
-    "remote": true,
-    "source": "https://assets.mixkit.co/music/841/841.mp3",
-    "title": "Tonight (Michael Ramir C.)"
   },
   "passage-of-time.m4a": {
     "added": "2026-11-01",
     "credit": "Passage Of Time by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
     "duration": 110,
     "license": "CC BY 4.0",
-    "mood": [
-      "inspiring",
-      "chill"
-    ],
     "source": "https://www.scottbuckley.com.au/library/wp-content/uploads/2022/01/PassageOfTime.mp3",
     "title": "Passage Of Time (Scott Buckley)"
   },
@@ -316,10 +36,6 @@
     "credit": "Permafrost by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
     "duration": 110,
     "license": "CC BY 4.0",
-    "mood": [
-      "tense",
-      "mysterious"
-    ],
     "source": "https://www.scottbuckley.com.au/library/wp-content/uploads/2022/08/Permafrost.mp3",
     "title": "Permafrost (Scott Buckley)"
   },
@@ -328,9 +44,6 @@
     "credit": "The Long Dark by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
     "duration": 110,
     "license": "CC BY 4.0",
-    "mood": [
-      "tense"
-    ],
     "source": "https://www.scottbuckley.com.au/library/wp-content/uploads/2023/01/TheLongDark.mp3",
     "title": "The Long Dark (Scott Buckley)"
   }

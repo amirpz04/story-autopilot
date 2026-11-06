@@ -43,8 +43,6 @@ jobs:
           which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
           pip install playwright
           python -m playwright install --with-deps chromium
-          pip install edge-tts
-
       - name: Make the Reels
         if: steps.need.outputs.go == 'yes'
         env:

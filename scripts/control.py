@@ -11,12 +11,10 @@ Usage: python scripts/control.py ACTION [TARGET] [TEXT]     (TEXT may also come 
   edit_slide POST_ID#N  TEXT     change the text of slide N (1-based) of a post that isn't live
   posts_per_day N                0-5 carousel posts a day from the next research run on
   reels_mode same|different      Reels reuse the carousel stories, or get their own (more research, no repeats)
-  voice off|NAME                  narrator on Reels (a name from VOICES, e.g. en-US-AndrewMultilingualNeural) or off
   reels_per_day N                0-5 Reels a day from the next research run on (at least one post or Reel a day)
   delete_instagram POST_ID       delete a live post from Instagram (the whole carousel)
   post_reel POST_ID              publish the Reel that was made for this post
-  add_music URL  TEXT            add a song from a direct link; TEXT = "title | credit line for the caption (empty if none needed) | license | moods"
-                                 (moods = hype, playful, tense, mysterious, inspiring, chill; Mixkit links are kept as links)
+  add_music URL  TEXT            add a song from a direct link; TEXT = "title | credit line for the caption (empty if none needed) | license"
   remove_music FILE              delete a song from the music list
   refresh_dashboard              just rebuild the dashboard
 
@@ -43,9 +41,6 @@ MAX_ATTEMPTS = 3
 SLOTS = {0: [], 1: [1], 2: [1, 5], 3: [1, 3, 5], 4: [1, 2, 4, 5], 5: [1, 2, 3, 4, 5]}
 REEL_SLOTS = {0: [], 1: [3], 2: [3, 5], 3: [1, 3, 5], 4: [1, 2, 4, 5], 5: [1, 2, 3, 4, 5]}
 REELS = ROOT / "state" / "reels.json"
-VOICES = {"en-US-AndrewMultilingualNeural": "Andrew (man, natural)", "en-US-BrianMultilingualNeural": "Brian (man, natural)",
-          "en-US-AvaMultilingualNeural": "Ava (woman, natural)", "en-US-EmmaMultilingualNeural": "Emma (woman, natural)",
-          "am_michael": "Michael (man, offline)", "af_heart": "Heart (woman, offline)"}
 
 
 def load(path, default):
@@ -140,27 +135,13 @@ def add_music(url, text):
     if not url.startswith("https://"):
         return "The link must start with https:// and point straight to an audio file (.mp3, .ogg, .wav, .m4a)."
     parts = [p.strip() for p in (text or "").split("|")]
-    title, credit, lic, moods = (parts + ["", "", "", ""])[:4]
-    moods = [m.strip().lower() for m in moods.replace(";", ",").split(",") if m.strip()]
+    title, credit, lic = (parts + ["", "", ""])[:3]
     stem = Path(urlparse(url).path).stem
     title = title or re.sub(r"[_\-]+", " ", stem).strip()[:60] or "Untitled"
     slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")[:40] or "track"
-    remote = urlparse(url).netloc == "assets.mixkit.co"       # Mixkit's licence allows use in videos but not re-sharing the files: link, don't copy
-    out = MUSIC / (slug + (".mp3" if remote else ".m4a"))
-    if out.exists() or (remote and out.name in load(MUSIC / "music.json", {})):
+    out = MUSIC / (slug + ".m4a")
+    if out.exists():
         return "A song named %s already exists. Pick another title." % out.name
-    if remote:
-        import subprocess
-        probe = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", url], capture_output=True, text=True)
-        try:
-            seconds = float(probe.stdout.strip())
-        except Exception:
-            return "That link isn't an audio file I can read."
-        meta = load(MUSIC / "music.json", {})
-        meta[out.name] = {"title": title, "credit": credit, "license": lic or "Mixkit Free License", "source": url, "remote": True, "duration": round(seconds),
-                          "mood": moods, "added": datetime.now(timezone.utc).strftime("%Y-%m-%d")}
-        save(MUSIC / "music.json", meta)
-        return "Added %r (%d s, linked, not copied). Moods: %s." % (title, seconds, ", ".join(moods) or "none")
     tmp = Path(tempfile.mkdtemp()) / "src"
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "StoryAccountBot/1.0 (music)"})
@@ -185,7 +166,7 @@ def add_music(url, text):
         return "Couldn't convert that file: %s" % done.stderr[-120:]
     meta = load(MUSIC / "music.json", {})
     meta[out.name] = {"title": title, "credit": credit, "license": lic or "not stated", "source": url, "duration": round(seconds),
-                      "mood": moods, "added": datetime.now(timezone.utc).strftime("%Y-%m-%d")}
+                      "added": datetime.now(timezone.utc).strftime("%Y-%m-%d")}
     save(MUSIC / "music.json", meta)
     return "Added %r (%d s). %s" % (title, seconds, "Its credit line will go in the caption of Reels that use it." if credit else "No credit line needed.")
 
@@ -242,16 +223,6 @@ def run(action, target, text):
         save(CONFIG, config)
         return ("Reels now reuse the carousel stories (no extra research)." if target == "same" else
                 "Reels now get their own stories, so followers never see the same story twice. The research run writes %d stories a day." % config["stories_per_day"])
-
-    if action == "voice":                           # "off" or a Kokoro voice name
-        if target == "off":
-            config["voiceover"] = False
-        elif target in VOICES:
-            config.update(voiceover=True, voice=target)
-        else:
-            return "Unknown voice. Pick one of: off, " + ", ".join(VOICES) + "."
-        save(CONFIG, config)
-        return "Reel voice: %s (from the next Reel that is made)." % ("off" if target == "off" else VOICES[target])
 
     if action == "refresh_dashboard":
         return "Dashboard rebuilt."

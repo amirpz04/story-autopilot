@@ -61,12 +61,6 @@ NEWS_FEEDS = [
     ("r/Awwducational", "https://www.reddit.com/r/Awwducational/top.json?t=day&limit=25"),
     ("r/biology", "https://www.reddit.com/r/biology/top.json?t=day&limit=25"),
     ("r/todayilearned", "https://www.reddit.com/r/todayilearned/top.json?t=day&limit=25"),
-    ("r/nottheonion", "https://www.reddit.com/r/nottheonion/top.json?t=day&limit=25"),
-    ("r/interestingasfuck", "https://www.reddit.com/r/interestingasfuck/top.json?t=day&limit=25"),
-    ("r/Damnthatsinteresting", "https://www.reddit.com/r/Damnthatsinteresting/top.json?t=day&limit=25"),
-    ("r/business", "https://www.reddit.com/r/business/top.json?t=day&limit=25"),
-    ("BBC News", "https://feeds.bbci.co.uk/news/rss.xml"),
-    ("AP News top (via Google News)", "https://news.google.com/rss/search?q=site:apnews.com+when:1d&hl=en-US&gl=US&ceid=US:en"),
 ]
 FEED_BY_NAME = dict(NEWS_FEEDS)
 
@@ -129,16 +123,6 @@ NEWS_SUBJECTS = {
         ["EurekAlert technology", "Phys.org", "Nature news", "New Scientist", "r/science", "ScienceDaily top"],
         ["experiment result", "scientists puzzled", "unexpected finding study"],
     ),
-    "money": (
-        "money, brands and business: prices, scams, lawsuits, strange company decisions, what things really cost",
-        ["r/business", "r/nottheonion", "Hacker News front page", "AP News top (via Google News)", "BBC News"],
-        ["company sued over", "banned product", "scam cost millions", "price secret company", "recall surprising"],
-    ),
-    "weird": (
-        "weird but true: odd laws, bans, records, strange court cases, things that sound fake and are not",
-        ["r/nottheonion", "r/interestingasfuck", "r/Damnthatsinteresting", "BBC News", "Atlas Obscura"],
-        ["strange law", "banned because", "world record broken", "court rules bizarre", "town bans"],
-    ),
     "history": (
         "history and archaeology: what was found, what it changes about the story we know",
         ["Smithsonian Magazine", "Atlas Obscura", "r/todayilearned", "Phys.org"],
@@ -175,20 +159,6 @@ EVERGREEN_ANGLES = [
     ("business", "a rivalry between two companies or two inventors"),
     ("inventions", "something built for one purpose that is now used for a completely different one"),
     ("history", "a law, rule or safety standard written because of one specific disaster"),
-    # the kind of thing people send to a friend or argue about (always true and sourced)
-    ("money", "how a famous company really makes its money (it is not what people think)"),
-    ("money", "a pricing or packaging trick companies use on shoppers"),
-    ("money", "a mistake, typo or bad decision that cost millions"),
-    ("money", "a heist, scam or con that actually worked, and how it was caught"),
-    ("weird", "a law that sounds fake but is real (or was, and why)"),
-    ("weird", "something normal today that was once banned, or banned today that was once normal"),
-    ("weird", "a myth almost everyone believes, and what is actually true"),
-    ("health", "a surprising thing the human body does every day"),
-    ("history", "a cover-up, hoax or famous lie that came out"),
-    ("history", "the dark side of something everyone loves"),
-    ("business", "a feud between two famous brands or founders"),
-    ("people", "an ordinary person who did something nobody believed possible"),
-    ("weird", "a debate people genuinely split on, with the facts on each side"),
 ]
 
 EVERGREEN_STARTS = [
@@ -217,15 +187,6 @@ IMAGE_FIRST_STOP = [
     "The Met Open Access / Rijksmuseum - art, objects, period pictures",
     "NOAA / USGS / US Fish & Wildlife - nature, weather, geology, animals",
     "Internet Archive book scans - diagrams and old illustrations",
-]
-
-
-# What the post DOES (ROUTINE.md 0a). Dealt at random so the account is not all "big news" or all "call-outs".
-FORMATS = [
-    ("BIG_NEWS", 3, "something big just happened: say what it really means for the viewer, with a take"),
-    ("CALL_OUT", 3, "criticize something that deserves it (a product, company, rule, trend or popular belief), with evidence"),
-    ("DISCOVERY", 2, "introduce or recommend something worth knowing (a tool, trick, product, hidden feature): who it is for and why"),
-    ("MYTH", 2, "what everyone believes or does that is wrong or risky, and what to do instead"),
 ]
 
 
@@ -272,7 +233,6 @@ def deal(stories, seed=None, recent=None):
 
     plan = []
     for i, lane in enumerate(lanes, 1):
-        fmt = weighted_pick(rng, FORMATS, [f[1] for f in FORMATS])
         if lane == "A":
             options = [c for c in NEWS_SUBJECTS if c not in used_subjects] or list(NEWS_SUBJECTS)
             subject = weighted_pick(rng, options, [weight(c) for c in options])
@@ -286,7 +246,7 @@ def deal(stories, seed=None, recent=None):
             country, params = rng.choice(NEWS_COUNTRIES)
             query = rng.choice(queries)
             plan.append({
-                "n": i, "format": fmt, "lane": "A (news, last 72 h)", "subject": subject,
+                "n": i, "lane": "A (news, last 72 h)", "subject": subject,
                 "lean": description,
                 "start": "%s  %s" % feed,
                 "then": "%s  %s" % backup,
@@ -302,7 +262,7 @@ def deal(stories, seed=None, recent=None):
             start = starts.pop() if starts else rng.choice(EVERGREEN_STARTS)
             backup = starts.pop() if starts else start
             plan.append({
-                "n": i, "format": fmt, "lane": "B (evergreen, any age)", "subject": subject,
+                "n": i, "lane": "B (evergreen, any age)", "subject": subject,
                 "lean": angle[1],
                 "start": "%s  %s" % start,
                 "then": "%s  %s" % backup,
@@ -374,7 +334,6 @@ def main():
     for p in plan:
         print()
         print("STORY %d - lane %s" % (p["n"], p["lane"]))
-        print("  FORMAT   : %s - %s" % (p["format"][0], p["format"][2]))
         print("  SUBJECT  : %s" % p["subject"].upper())
         print("  about    : %s" % p["lean"])
         print("  start at : %s" % p["start"])
@@ -386,9 +345,6 @@ def main():
     print()
     print("=" * 70)
     print("RULES FOR TODAY")
-    print("  - EVERY POST IS A TAKE (ROUTINE.md 0a). Before writing, answer: who cares (name them), what is at stake")
-    print("    for them, what is your one-sentence take. If the honest answer to 'who cares?' is nobody, drop the story.")
-    print("  - Write the Reel script (`say`) as a person talking, not a newspaper. The FORMAT above says what the post does.")
     print("  - Each story has a SUBJECT above. Find the best story you can in it. The draw favors subjects")
     print("    that have been quiet lately, so following it is what keeps the account varied.")
     print("  - It is a steer, not a trap. Nothing good after two entry points? Use a backup subject. A clearly")

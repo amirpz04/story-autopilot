@@ -3,41 +3,36 @@
 <head>
 <meta charset="utf-8">
 <style>
-  @font-face { font-family: 'UFSans'; src: url('/*FONT*/'); font-weight: 100 900; }
-  @font-face { font-family: 'UFDisplay'; src: url('/*FONTDISPLAY*/'); font-weight: 200 900; }
-  @font-face { font-family: 'UFMono'; src: url('/*FONTMONO*/'); font-weight: 100 900; }
-  :root { --cream: #F4EFE6; --ink: #16130F; --acc: #E4571F; }
+  @font-face { font-family: 'Inter'; src: url('/*FONT*/'); font-weight: 100 900; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { width: 1080px; height: 1920px; overflow: hidden; background: var(--cream); font-family: 'UFSans', system-ui, sans-serif; color: var(--ink); }
-  .scene { position: absolute; inset: 0; overflow: hidden; opacity: 0; will-change: opacity; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0E0E10; font-family: 'Inter', system-ui, sans-serif; color: #fff; }
+  .scene { position: absolute; inset: 0; overflow: hidden; opacity: 0; will-change: transform, opacity; }
   .photo { position: absolute; left: 0; top: 0; transform-origin: 50% 50%; will-change: transform; }
-  /* soft shade only where the words sit, so the picture stays bright */
   .shade { position: absolute; inset: 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,.40) 0%, rgba(0,0,0,.12) 24%, rgba(0,0,0,.38) 46%, rgba(0,0,0,.66) 66%, rgba(0,0,0,.8) 100%); }
-  /* cream scenes: flat warm paper with a faint glow that drifts */
-  .bg { position: absolute; inset: 0; background: var(--cream); overflow: hidden; }
-  .sun { position: absolute; width: 560px; height: 560px; border-radius: 50%; right: -190px; top: -150px; background: var(--acc); will-change: transform; }
-  .ringd { position: absolute; width: 760px; height: 760px; border-radius: 50%; left: -330px; bottom: -150px; border: 3px solid var(--ink); opacity: .85; will-change: transform; }
-  .glow { position: absolute; width: 1300px; height: 1300px; border-radius: 50%; left: -100px; top: 100px;
-          background: radial-gradient(closest-side, rgba(228,87,31,.10), rgba(228,87,31,0)); will-change: transform; }
-
+    background: linear-gradient(to bottom, rgba(0,0,0,.18) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,.30) 46%, rgba(0,0,0,.78) 64%, rgba(0,0,0,.9) 100%); }
+  .plain { position: absolute; inset: 0;
+    background: radial-gradient(900px 900px at var(--gx, 30%) var(--gy, 30%), rgba(255,212,0,.13), rgba(14,14,16,0) 70%), #0E0E10; }
   /* Safe box: x 140-810 (clear of the right-hand buttons and the cropped screen edges), y 460-1220 (clear of the clock, the Reels header and the caption area) */
-  .chunk { position: absolute; left: 170px; width: 740px; text-align: center; display: none; font-weight: 700; letter-spacing: -.02em;
-           line-height: 1.12; text-wrap: balance; will-change: transform, opacity; }
-  .photoscene .chunk { color: #fff; text-shadow: 0 2px 6px rgba(0,0,0,.35), 0 4px 30px rgba(0,0,0,.55); }
-  .w { white-space: nowrap; }
-  .em { background: var(--acc); color: #fff; border-radius: .2em; padding: .01em .2em .07em; -webkit-box-decoration-break: clone; box-decoration-break: clone; text-shadow: none; }
-  .tagl { position: absolute; left: 170px; width: 740px; text-align: center; font-family: 'UFMono', monospace; font-weight: 500; font-size: 30px; letter-spacing: .16em;
-          text-transform: uppercase; will-change: opacity; }
-  .photoscene .tagl { color: #fff; text-shadow: 0 2px 8px rgba(0,0,0,.5), 0 2px 22px rgba(0,0,0,.6); }
-  .chunk.disp { font-family: 'UFDisplay', 'UFSans', sans-serif; font-weight: 700; letter-spacing: -.035em; line-height: 1.14; }
-  .hero { position: absolute; left: 40px; width: 1000px; text-align: center; font-family: 'UFDisplay', 'UFSans', sans-serif; font-weight: 800; color: var(--ink); white-space: nowrap;
-          line-height: 1; letter-spacing: -.045em; will-change: transform, opacity; opacity: 0; }
-
-  /* a slide with marks: the whole picture as a card on paper */
-  .card { position: absolute; will-change: transform; box-shadow: 0 34px 90px rgba(22,19,15,.22); border-radius: 14px; }
-  .card img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 14px; }
+  .copy { position: absolute; left: 140px; width: 670px; }
+  .copy.low { bottom: 700px; }
+  .copy.mid { top: 880px; transform: translateY(-50%); }
+  .kicker { display: inline-block; background: #FFD400; color: #000; font-weight: 900; font-size: 34px; letter-spacing: 3px;
+            padding: 9px 22px; margin-bottom: 30px; text-transform: uppercase; transform-origin: 0 50%; }
+  .bar { width: 130px; height: 12px; background: #FFD400; margin-bottom: 46px; transform-origin: 0 50%; }
+  .txt { font-weight: 800; line-height: 1.13; letter-spacing: -.01em; text-shadow: 0 3px 24px rgba(0,0,0,.45); }
+  .txt.head { font-size: 78px; font-weight: 900; line-height: 1.07; }
+  .txt.body { font-size: 56px; }
+  .txt.end { font-size: 72px; font-weight: 900; line-height: 1.1; }
+  .w { display: inline-block; margin-right: .27em; opacity: 0; will-change: transform, opacity; }
+  .num { color: #FFD400; }
+  .follow { margin-top: 48px; font-size: 38px; font-weight: 500; opacity: 0; }
+  .follow b { color: #FFD400; font-weight: 800; }
+  /* a slide with marks shows its whole photo as a framed picture above the text, over a blurred copy of itself */
+  .photo.blur { filter: blur(30px) brightness(.42) saturate(1.1); }
+  .card { position: absolute; will-change: transform; box-shadow: 0 18px 60px rgba(0,0,0,.6); border-radius: 6px; }
+  .card img { position: absolute; inset: 0; width: 100%; height: 100%; border-radius: 6px; }
   .card .mk { position: absolute; inset: 0; }
+  .txt.body.marked { font-size: 48px; }
 </style>
 <script>/*MARKSJS*/</script>
 </head>
@@ -45,159 +40,112 @@
 <div id="stage"></div>
 <script>
 const S = /*SCENES*/[]/*END*/;
-const TR = 0.35;                                  // gentle cross-fade between slides, seconds
-const ACC = "#E4571F";
+const TR = 0.42;                                  // overlap of one scene into the next, seconds
 const clamp = x => Math.max(0, Math.min(1, x));
 const outCubic = x => 1 - Math.pow(1 - x, 3);
 const inOutCubic = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-const isNum = w => /[\d$%]/.test(w);
-const STOP = new Set("a an the of to in on at for and or but is are was were it its as by with so no not this that they their them then than from into have has had been being which what when where while who whom whose will would could should about only over just also more most very much such".split(" "));
-
-// Group a scene's words into calm lines of up to 5 words, cut at punctuation, never ending on "the", "of"...
-function chunkify(words) {
-  const out = []; let cur = [];
-  words.forEach((w, i) => {
-    cur.push(w);
-    const chars = cur.reduce((a, x) => a + x.w.length + 1, 0), last = i === words.length - 1;
-    const endsPhrase = /[.!?,;:—–]$/.test(w.w), stop = STOP.has(w.w.toLowerCase().replace(/[^a-z]/g, ""));
-    if (last || (endsPhrase && cur.length >= 2) || cur.length >= 5 || (chars >= 26 && !stop) || chars >= 34 || /[.!?]$/.test(w.w)) { out.push(cur); cur = []; }
-  });
-  if (cur.length) out.push(cur);
-  // a lone short word after a break reads badly: glue it to the previous line when that stays short
-  for (let k = out.length - 1; k > 0; k--) if (out[k].length === 1 && out[k - 1].length < 5 && !/[.!?]$/.test(out[k - 1][out[k - 1].length - 1].w)) { out[k - 1] = out[k - 1].concat(out[k]); out.splice(k, 1); }
-  return out;
-}
-const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const outBack = x => { const c1 = 1.5, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
 
 const stage = document.getElementById("stage");
 S.forEach((s, i) => {
-  const marked = s.marks && s.marks.length;
-  const asCard = s.photo && !marked && s.ar > 0.8;       // landscape/square pictures: show the whole picture as a card over a blurred copy, not a hard crop
-  const el = document.createElement("div"); el.className = "scene" + (s.photo && !marked ? " photoscene" : ""); s.el = el;
+  const el = document.createElement("div"); el.className = "scene"; s.el = el;
   let html = "";
-  if (s.photo && !marked) html += `<img class="photo${asCard ? " blur" : ""}" src="${s.photo}" alt=""><div class="shade"></div>`;
-  else html += `<div class="bg"><div class="glow"></div><div class="sun"></div><div class="ringd"></div></div>`;
+  if (s.photo) {
+    html += `<img class="photo" src="${s.photo}" alt=""><div class="shade"></div>`;
+  } else {
+    html += `<div class="plain" style="--gx:${i % 2 ? 72 : 24}%;--gy:${i % 3 ? 78 : 22}%"></div>`;
+  }
+  const words = s.text.split(/\s+/).map(w => `<span class="w${/^[$€£]?\d/.test(w) ? " num" : ""}">${w.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</span>`).join("");
+  const cls = s.type === "cover" ? "head" : s.type === "end" ? "end" : "body";
+  const pos = s.photo || s.type === "cover" ? "low" : "mid";
+  html += `<div class="copy ${pos}">`
+    + (s.kicker ? `<div class="kicker">${s.kicker}</div>` : "")
+    + (!s.photo && s.type === "text" ? `<div class="bar"></div>` : "")
+    + `<div class="txt ${cls}">${words}</div>`
+    + (s.type === "end" ? `<div class="follow">Follow <b>/*HANDLE*/</b> for more stories like this</div>` : "")
+    + `</div>`;
   el.innerHTML = html; stage.appendChild(el);
-  s.photoEl = el.querySelector(".photo"); s.shadeEl = el.querySelector(".shade"); s.glow = el.querySelector(".glow"); s.sun = el.querySelector(".sun"); s.ringd = el.querySelector(".ringd");
+  s.photoEl = el.querySelector(".photo"); s.wordEls = [...el.querySelectorAll(".w")];
+  s.kickerEl = el.querySelector(".kicker"); s.barEl = el.querySelector(".bar"); s.followEl = el.querySelector(".follow");
+  s.txtEl = el.querySelector(".txt"); s.copyEl = el.querySelector(".copy"); s.shadeEl = el.querySelector(".shade");
   if (s.photoEl) {                               // size the photo to cover the 1080x1920 frame
     const ar = s.ar; let w, h;
     if (ar >= 1080 / 1920) { h = 1920; w = h * ar; } else { w = 1080; h = w / ar; }
     s.photoEl.style.width = w + "px"; s.photoEl.style.height = h + "px"; s.pw = w; s.ph = h;
-  }
-  if (asCard || (!s.photoEl && s.photo)) {       // framed picture (+ marks layer), placed in fitAll
-    s.cardEl = document.createElement("div"); s.cardEl.className = "card";
-    s.cardEl.innerHTML = `<img src="${s.photo}" alt=""><div class="mk"></div>`;
-    el.appendChild(s.cardEl); s.mkEl = s.cardEl.querySelector(".mk");
-  }
-
-  // the captions: short lines, each shown while it is being said; one key word per few lines gets the colour block
-  s.chunks = chunkify(s.words || []).map(cw => {
-    const el2 = document.createElement("div"); el2.className = "chunk" + (s.type === "cover" ? " disp" : "");
-    cw.forEach((x, q) => {
-      const sp = document.createElement("span"); sp.className = "w"; sp.textContent = x.w; x.el = sp; x.num = isNum(x.w); x.tag = x.w[0] === "@";
-      if (q) el2.appendChild(document.createTextNode(" "));
-      el2.appendChild(sp);
-    });
-    el.appendChild(el2);
-    return {words: cw, el: el2, start: Math.max(0.1, cw[0].t - 0.06), y: 900};
-  });
-  s.chunks.forEach((c, k) => { if (k) c.start = Math.max(c.start, s.chunks[k - 1].start + 0.2); });
-  s.chunks.forEach((c, k) => {                   // emphasis: numbers and @handles always, else the longest real word of every third line
-    let best = null;
-    c.words.forEach(x => { if (x.num || x.tag) x.em = true; const l = x.w.replace(/[^a-z]/gi, ""); if (!STOP.has(l.toLowerCase()) && l.length >= 6 && (!best || l.length > best.l)) best = {x, l: l.length}; });
-    if (best && k % 3 === 1 && !c.words.some(x => x.em)) best.x.em = true;
-    c.words.forEach(x => { if (x.em) x.el.classList.add("em"); });
-  });
-
-  // a number on its own, big, on cream slides; a small label on the cover
-  if (!s.photo && s.type === "text") {
-    const m = (s.text || "").match(/\$?\d(?:[\d,]*\d)?(?:\.\d+)?(?:\s?(?:%|percent|million|billion|trillion|years?|miles?|feet|days|hours|degrees|times))?/i);
-    if (m) {
-      const idx = s.words.findIndex(w => w.w.includes(m[0].split(/\s/)[0]));
-      s.hero = document.createElement("div"); s.hero.className = "hero"; s.hero.innerHTML = "<span style=\"display:inline-block\">" + esc(m[0].trim()) + "</span>";
-      s.heroT = idx >= 0 ? s.words[idx].t : 0.4; el.appendChild(s.hero);
+    if (s.marks && s.marks.length) {                // framed picture + marks layer (placed in fitAll once the text is measured)
+      s.photoEl.classList.add("blur"); s.txtEl.classList.add("marked");
+      s.cardEl = document.createElement("div"); s.cardEl.className = "card";
+      s.cardEl.innerHTML = `<img src="${s.photo}" alt=""><div class="mk"></div>`;
+      s.shadeEl.after(s.cardEl); s.mkEl = s.cardEl.querySelector(".mk");
     }
   }
-  if (s.kicker) { s.kickEl = document.createElement("div"); s.kickEl.className = "tagl"; s.kickEl.textContent = "— " + s.kicker; el.appendChild(s.kickEl); }
 });
 
 function render(t) {
+  let current = 0;
+  S.forEach((s, i) => { if (t >= s.start) current = i; });
   S.forEach((s, i) => {
-    const lt = t - s.start, end = s.start + s.dur;
-    const visible = lt > -0.001 && t < end + TR;
+    const local = t - s.start, end = s.start + s.dur;
+    const visible = local > -0.001 && t < end + TR;
     s.el.style.display = visible ? "block" : "none";
     if (!visible) return;
 
-    // soft cross-fade
-    let op = 1;
-    if (i > 0 && lt < TR) op = outCubic(clamp(lt / TR));
-    if (t > end) op = Math.min(op, 1 - clamp((t - end) / TR));
+    // entrance / exit of the whole scene
+    let op = 1, sc = 1, ty = 0;
+    if (local < TR && i > 0) { const p = outCubic(clamp(local / TR)); op = p; sc = 1.07 - 0.07 * p; ty = 46 * (1 - p); }
+    if (t > end) { const p = inOutCubic(clamp((t - end) / TR)); op = Math.min(op, 1 - p); sc *= 1 - 0.035 * p; }
     s.el.style.opacity = op;
+    if (s.copyEl) s.copyEl.style.opacity = t > end ? 1 - clamp((t - end) / 0.16) : 1;   // text clears before the next scene arrives
+    s.el.style.transform = `translateY(${ty}px) scale(${sc})`;
 
-    // picture camera: a slow, steady push
-    const e = inOutCubic(clamp(lt / (s.dur + TR)));
-    if (s.photoEl && s.cardEl) s.photoEl.style.transform = `translate(${-(s.pw - 1080) / 2}px, ${-(s.ph - 1920) / 2}px) scale(${1.12 + 0.06 * e})`;
-    if (s.cardEl) {
-      s.cardEl.style.transform = `scale(${1 + 0.035 * e})`;
-      if (s.show) s.show(lt - 0.6);
+    // camera move on the photo: pan across wide pictures, push in on tall ones
+    if (s.cardEl) {                                // framed picture: slow push-in toward the marks, marks draw themselves in
+      const e = inOutCubic(clamp(local / (s.dur + TR)));
+      s.cardEl.style.transform = `scale(${1 + 0.04 * e})`;
+      s.photoEl.style.transform = `translate(${-(s.pw - 1080) / 2}px, ${-(s.ph - 1920) / 2}px) scale(${1.1 + 0.05 * e})`;
+      if (s.show) s.show(local - 0.7);
     } else if (s.photoEl) {
-      const zoom = 1.0 + 0.09 * e;
+      const p = clamp(local / (s.dur + TR)), e = inOutCubic(p);
+      const zoom = 1.0 + 0.085 * e;
+      let tx = 0, ty2 = 0;
       const slackX = s.pw - 1080, slackY = s.ph - 1920;
-      let tx, ty;
-      if (slackX > 60) { const a = s.dir > 0 ? 0.14 : 0.86, z = s.dir > 0 ? 0.86 : 0.14; tx = -slackX * (a + (z - a) * e); } else tx = -slackX / 2;
-      if (slackY > 60) ty = -slackY * (0.5 + 0.18 * (s.dir > 0 ? e : -e)); else ty = -slackY / 2;
-      s.photoEl.style.transform = `translate(${tx}px, ${ty}px) scale(${zoom})`;
-    }
-    if (s.sun) { s.sun.style.transform = `translate(${Math.sin(lt * .5 + i) * 26}px, ${Math.cos(lt * .4 + i) * 26}px) scale(${1 + 0.04 * Math.sin(lt * .8)})`; s.ringd.style.transform = `translate(${Math.cos(lt * .3 + i) * 30}px, ${Math.sin(lt * .35 + i) * 22}px) rotate(${lt * 4}deg)`; }
-    if (s.glow) s.glow.style.transform = `translate(${Math.sin(lt * .35 + i) * 160}px, ${Math.cos(lt * .28 + i) * 140}px)`;
-
-    if (s.kickEl) { const p = clamp((lt - 0.15) / 0.5); s.kickEl.style.opacity = p; }
-
-    if (s.hero) {                                  // the number rises in the moment it is said
-      const a = lt - s.heroT;
-      if (a < 0) s.hero.style.opacity = 0;
-      else { const p = outCubic(clamp(a / 0.6)); s.hero.style.opacity = p; s.hero.style.transform = `translateY(${(1 - p) * 40}px) scale(${0.94 + 0.06 * p})`; }
+      if (slackX > 60) { const a = s.dir > 0 ? 0.14 : 0.86, z = s.dir > 0 ? 0.86 : 0.14; tx = -slackX * (a + (z - a) * e); }
+      else tx = -slackX / 2;
+      if (slackY > 60) ty2 = -slackY * (0.5 + 0.18 * (s.dir > 0 ? e : -e)); else ty2 = -slackY / 2;
+      s.photoEl.style.transform = `translate(${tx}px, ${ty2}px) scale(${zoom})`;
+    } else {
+      s.el.querySelector(".plain").style.transform = `translate(${Math.sin(local * .5 + i) * 26}px, ${Math.cos(local * .4 + i) * 26}px) scale(1.12)`;
     }
 
-    // captions
-    let ci = -1;
-    s.chunks.forEach((c, k) => { if (lt >= c.start) ci = k; });
-    s.chunks.forEach((c, k) => {
-      if (k !== ci) { c.el.style.display = "none"; return; }
-      const p = outCubic(clamp((lt - c.start) / 0.22));
-      c.el.style.display = "block"; c.el.style.opacity = p;
-      c.el.style.transform = `translateY(-50%) translateY(${(1 - p) * 18}px)`;
+    // text: kicker pops, words rise in one by one
+    const base = i === 0 ? 0.12 : 0.22;
+    if (s.kickerEl) { const p = clamp((local - base) / 0.4); s.kickerEl.style.opacity = p; s.kickerEl.style.transform = `scale(${0.82 + 0.18 * outBack(p)})`; }
+    if (s.barEl) { const p = outCubic(clamp((local - base) / 0.55)); s.barEl.style.transform = `scaleX(${p})`; }
+    const w0 = base + (s.kickerEl ? 0.28 : 0.08);
+    s.wordEls.forEach((w, j) => {
+      const p = outCubic(clamp((local - (w0 + j * 0.075)) / 0.42));
+      w.style.opacity = p; w.style.transform = `translateY(${(1 - p) * 38}px)`;
     });
+    if (s.followEl) { const p = outCubic(clamp((local - (w0 + s.wordEls.length * 0.075 + 0.5)) / 0.5)); s.followEl.style.opacity = p; s.followEl.style.transform = `translateY(${(1 - p) * 22}px)`; }
   });
 }
-
-// Called once after fonts and pictures have loaded: size every caption to fit the safe box, place the framed
-// pictures and the big numbers. Every scene is shown while it is measured (hidden ones measure as 0).
+// Called once after fonts and pictures have loaded: shrink any text block that would not fit the safe box, then
+// place each scene's camera and marks. Every scene is shown while it is measured (hidden ones measure as 0).
 window.fitAll = () => {
   S.forEach(s => {
     const was = s.el.style.display; s.el.style.display = "block";
-    let capY = 1000, maxFont = 92, zoneH = 440;
-    if (s.cardEl) {                                 // whole picture as a card on top, words below it
-      const top = 330, bottom = 980, maxW = 940, maxH = bottom - top;
+    let size = parseFloat(getComputedStyle(s.txtEl).fontSize);
+    const limit = s.cardEl ? 470 : 760;            // a framed picture needs room above the text
+    while (s.copyEl.offsetHeight > limit && size > 34) { size -= 2; s.txtEl.style.fontSize = size + "px"; }
+    if (s.cardEl) {                                 // fit the whole picture between the Reels header and the text, left of the buttons
+      const top = 250, bottom = s.copyEl.getBoundingClientRect().top - 40, maxW = 900, maxH = Math.max(320, bottom - top);
       let w = maxW, h = w / s.ar; if (h > maxH) { h = maxH; w = h * s.ar; }
-      const left = (1080 - w) / 2;
+      const left = Math.max(60, Math.min(1080 - 60 - w, 475 - w / 2));
       Object.assign(s.cardEl.style, {left: left + "px", top: (top + (maxH - h) / 2) + "px", width: w + "px", height: h + "px"});
-      const f = marksFocus(s.marks, s.focus) || [0.5, 0.5];
+      const f = marksFocus(s.marks, s.focus);
       s.cardEl.style.transformOrigin = (f[0] * 100) + "% " + (f[1] * 100) + "%";
-      s.show = drawMarks(s.mkEl, s.marks, w, h, s.photo, {fontSize: 32, stroke: 7, color: ACC, ink: "#fff", caps: false, weight: 600});
-      capY = 1150; maxFont = 84; zoneH = 300; if (s.kickEl) s.kickEl.style.top = "262px";
-    } else if (s.hero) {                            // big number above, words below
-      let size = 300; s.hero.style.fontSize = size + "px"; s.hero.style.top = "470px";
-      while (s.hero.firstChild.offsetWidth > 880 && size > 90) { size -= 8; s.hero.style.fontSize = size + "px"; }
-      capY = 1080; maxFont = 84; zoneH = 360;
-    } else if (!s.photo) { capY = 860; maxFont = 118; zoneH = 760; }
-    else if (s.type === "cover") { capY = 900; maxFont = 82; zoneH = 520; if (s.kickEl) s.kickEl.style.top = "540px"; }
-    s.chunks.forEach(c => {
-      c.y = capY; c.el.style.top = capY + "px"; c.el.style.display = "block";
-      let size = maxFont; c.el.style.fontSize = size + "px";
-      while ((c.el.offsetHeight > zoneH || c.el.scrollWidth > c.el.clientWidth + 1) && size > 40) { size -= 2; c.el.style.fontSize = size + "px"; }
-      c.el.style.display = "none";
-    });
+      s.show = drawMarks(s.mkEl, s.marks, w, h, s.photo, {fontSize: 34, stroke: 8});
+    }
     s.el.style.display = was;
   });
   render(0);

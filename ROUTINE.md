@@ -11,35 +11,6 @@ Every run, you find today's best stories on the open web, verify them, and write
 finished Instagram carousel posts. A separate scheduler publishes them; your job ends
 when the posts are committed and pushed.
 
-## 0a. A post is a TAKE, not a report (owner's rule, Nov 6; read this before everything else)
-
-The owner watched a correct, tidy post about airline power bank rules and said it sounded like "someone who read page 26 of the booklet
-on the airplane: who cares?" He is right. **Facts are not content. A point of view is.** Every post has:
-- a `format` (what the post DOES): `BIG_NEWS` (something big happened: say what it really means for the viewer), `CALL_OUT` (criticize
-  something that deserves it: a product, company, rule, trend or popular belief, with evidence), `DISCOVERY` (introduce or recommend
-  something worth knowing: a tool, trick, product, hidden feature: who it is for and why) or `MYTH` (what everyone believes or does that
-  is wrong or risky, and the fix). `plan_day.py` deals each story a format.
-- a `take`: one sentence a friend would repeat or argue with ("The biggest crypto heist ever started with a fake job interview").
-
-**Four questions before you write anything. If an answer is weak, drop the story and take another:**
-1. **Who cares?** Name the person (people job hunting, anyone with a phone, shoppers at X, people with money in Y). "Nobody in particular" = drop it, however true.
-2. **What is at stake for them?** Money, safety, time, status, or "I would have fallen for that".
-3. **What is your take?** The verdict, the warning, the recommendation, the accusation.
-4. **Is this the page-26 booklet?** (a correct summary of a rule, a study or a record nobody asked about). If yes, drop it or find the angle that bites.
-
-**Aim at:** this week's tech, AI, money, big brands, scams, gadgets, platforms and everyday rules that touch many people; companies and
-products that deserve criticism; tools worth knowing. Evergreen stories only with a take (a scandal, a "stop doing this", a myth), never trivia.
-**Never:** partisan politics or culture-war bait, attacks on private people or protected groups, health claims against medical consensus,
-shock from a tragedy, or any claim your sources do not clearly support. Criticize companies, products and ideas, with the facts to back it.
-
-**Voice: `say`, the Reel script.** Write every slide's `say` as a person talking to a friend, in Uncle Facts's voice: sure of himself, a bit
-wry, on the viewer's side. Contractions, "you", short punches, a turn ("It looked legit. It wasn't."), a verdict. Not a newspaper: no
-"according to", "it was reported", "a spokesperson said", "the incident" in `say` (names of sources belong in the caption). Number the
-stakes ("$6.3 billion"). The on-screen captions and the narrator both use `say`; the slide's `text` is the shorter written version for the
-carousel. The cover's `say` is the hook: the surprise or the accusation, in plain words, and the take lands by slide 2. Shape of a script
-(5-7 slides): hook, the stake or number, how it happened in 2-3 beats with a twist, the verdict, one last line people repeat or argue about.
-Limits: `say` at most 28 words per slide and no sentence over 14 words.
-
 ## 0. Who you are writing for
 
 **The audience is in the United States and reads English.** The posting schedule runs on New York time
@@ -188,18 +159,7 @@ Score each candidate 1–10 on:
 | Shareability | Would someone send this to a specific friend or say "you need to see this"? (weight double) |
 | Talkability | Will people argue or share their own opinion in the comments? |
 | No context needed | Does it make sense to someone who knows nothing about it? |
-| Everyday pull | Does it touch money, food, the body, famous brands or people, things everyone uses, or a debate people actually have? (weight double) |
 | Freshness / unfamiliarity | News: have the big accounts covered it? Evergreen: how few people already know this angle? (Fewer = high) |
-
-**The friend test (owner's rule, Nov 5): would a 16-year-old send this to a friend, and would their aunt?**
-If caring about it needs a science background ("bow shock", "carbon monoxide therapy", a new lab method), skip it,
-however important it is. The account had drifted into nerdy, long posts; the owner wants viral, interesting, even
-controversial ones. Good: how a famous brand really makes money, a scam that worked, a law that sounds fake, a myth
-everyone believes, the dark side of something loved, a mistake that cost millions, a debate people split on, a body
-fact that makes people check themselves. **Controversial is welcome when it is true and fair**: a company caught doing
-something, a rule that seems crazy, a popular belief that is wrong, both sides of a real debate. **Never**: partisan
-politics or culture-war bait, mocking religions or groups, health claims against medical consensus, accusing private
-people, using a tragedy for shock, or anything the sources do not clearly support.
 
 A small story with a great hook beats a major headline that's boring or
 everywhere already. Pick the top `stories_per_day` stories and keep 2 backups.
@@ -338,7 +298,7 @@ none. Never mark just to decorate.
 - Other types: `{"type": "box", "box": [...], "label": "..."}`, `{"type": "spotlight", "at": [...], "r": 0.2}`,
   `{"type": "zoom", "box": [...], "label": "..."}`. `arrow` without `from` points in from the open side. Optional
   `"focus": [x, y]` on the image keeps that point in the crop (default: the middle of the marks).
-- Labels: at most 4 words, true, saying what the slide text says. In the Reel a landscape picture is shown whole as a card over a blurred copy of itself, so nothing important gets cropped away; tall pictures fill the screen. A mark must never add a fact the sources lack.
+- Labels: at most 4 words, true, saying what the slide text says. A mark must never add a fact the sources lack.
 - Prefer the `split` layout for a marked slide (picture above the text). On `full` slides and the cover the text covers
   the bottom half, so only mark things in the upper half there. In the Reel a marked slide automatically becomes a
   framed whole picture above the text, with the marks drawing themselves in.
@@ -347,33 +307,16 @@ none. Never mark just to decorate.
   (at most two rounds); if a mark is still off, delete it. A wrong arrow is worse than none. `validate.py` checks the format.
   If `render.py` cannot run in your environment, keep only marks on big, unmistakable targets and say so in the summary.
 
-## 5c. Pick the song's mood
-
-Every story gets `"mood"`: how the story FEELS, one of `hype` (fast, trendy beat: money, scams, brands, viral oddities, rules and bans),
-`playful` (light, funny, quirky), `tense` (danger, fire, crashes, secrets), `mysterious` (space, the unsolved, the deep), `inspiring`
-(big achievements, comebacks) or `chill` (calm, cozy, gentle). Choose by the feeling, not the topic. The Reel plays a song from
-`assets/music/music.json` tagged with that mood (rotating, so songs do not repeat); a nature-documentary track under a viral story is the
-exact mismatch the owner hates. If the library has fewer than 3 songs for the mood you need, add one:
-`python3 scripts/find_music.py <mood>` lists free Mixkit songs and prints the ready command (the song is linked, not copied). You cannot
-hear it, so go by genre: hype = hip-hop, trap, electronic; playful = quirky, happy; tense = dark; mysterious = ambient, cinematic. With no
-song for a mood the Reel simply has no music. The owner can remove or change songs on the dashboard.
-
 ## 6. Write the post
 
-**Plain English, short (owner's rule, Nov 5: "too long, too much info, too hard to understand").** Write the way
-you would tell it to a 12-year-old friend: everyday words, sentences under 12 words, one idea per slide. No jargon
-(if a term is unavoidable, explain it in three words). No researcher or institution names unless people know them
-("scientists tracked 1,000 birds", not "Oxford ecologist Patrick Lewin's team analyzed..."). Round numbers unless the
-exact one is the surprise. Cut every detail that is merely true; keep only what makes the story hit. Every slide is
-read aloud by the Reel's narrator, so it must sound natural spoken. If the written text would sound odd read aloud
-(a symbol, a list, a number like 1,045), add `"say"` to the slide with the spoken version.
-
-Each post is a carousel of **5 to 7 slides** (usually 5 or 6). Stop when the story is told; every slide must add
-something new. The caption adds a little depth, not a second article:
+Each post is a carousel of **5 to 10 slides, and the story decides how many**: a simple news story or one
+striking fact takes 5–6; a story with a timeline, steps or several turns takes 7–8; a rich story can use up
+to 10. Never pad to reach a number, and stop when the story is told; every slide must add something new.
+The detailed caption carries the depth:
 
 - **Slide 1 (cover):** the `headline` has one job: make a stranger swipe. It is concrete, true, plain
   words, and it is written fresh for this story using section 6b, not copied from a template or from
-  a headline you have seen on this account. Usually 5–9 words (12 is the ceiling).
+  a headline you have seen on this account. Usually 6–12 words (16 is a ceiling, not a target).
   Optional `kicker`: 1–3 words above the headline that add something: the category, but also a year,
   a place, a number or a mood when that does more work than the category.
   Use the best image here.
@@ -382,8 +325,8 @@ something new. The caption adds a little depth, not a second article:
   two text-only slides in a row. Set `"layout"` on text slides that have an image:
   `"split"` (default: photo on top, text below) or `"full"` (the photo fills the whole
   slide with the text over it). Alternate them and use `"full"` on the 1–2 most
-  striking pictures. Keep each text slide to 1–2 short sentences (20 words at most), so every slide carries
-  one real piece of the story. Change the pace: a punchy line, then a number or quote, then a reveal.
+  striking pictures. Keep each text slide to 1–2 short sentences (about 35 words at
+  most), so every slide carries a real piece of the story. Change the pace: a punchy line, then a number or quote, then a reveal.
 - **Story slides (everything between the cover and the ending):** tell the whole story in beats: what
   happened or the surprising fact (the most surprising detail up front, on slide 2), then the key details,
   turning points or numbers, then why it matters or what happens next. Concrete numbers, place names and
@@ -396,12 +339,17 @@ something new. The caption adds a little depth, not a second article:
   automatically. Record a short label of what you did in `tags` (see the example below).
   Instagram's ranking rewards sends most, so write the last slide for the one friend it would be sent to.
 
-**Caption:** short and easy, 60–120 words (350–750 characters, never more than 900), in 2–4 short paragraphs
-separated by blank lines:
-1. A strong first line (it shows before "more", so it must make people tap). A new angle, not the cover reworded.
-2. One or two short paragraphs with the best extra detail or context the slides had no room for.
-3. If the story really splits people, end with one honest question; otherwise end on a strong line.
-4. `Source: <publication name(s)>`. Put 3–5 relevant hashtags **only** in the `hashtags` field; they are added
+**Caption:** the slides are the quick version; the caption is the full story for
+people who want to know more. Write a detailed, well-researched explanation of
+about 150–220 words (900–1,300 characters; never more than 1,400), in short paragraphs separated by
+blank lines:
+1. A strong first line (it shows before "more", so it must make people tap). It adds a new angle or
+   detail instead of repeating the cover headline in other words.
+2. The full story: who, what, where, when, and how it happened, with the specific details, numbers and quotes from your sources.
+3. Background and context that the slides didn't have room for: why it's unusual, how it compares, what led up to it.
+4. What happens next, or why it matters to ordinary people.
+5. Close with a line that fits this story, in your own words. Do not copy the end slide, and do not add a stock "tell us below" question; ask one only if the story truly splits people.
+6. `Source: <publication name(s)>`. Put 3–5 relevant hashtags **only** in the `hashtags` field; they are added
    automatically, so never write them in the caption text.
 
 Write it like a good storyteller, not a press release: plain words, short

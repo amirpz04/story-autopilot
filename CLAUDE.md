@@ -31,8 +31,7 @@ as an alert with a plain error. Content errors are fixed by the daily run (ROUTI
   45 min gap, daily cap); `api_backoff` waits 30 min -> 4 h after Instagram refuses (`state/api_health.json`); random 0-4 min delay.
   Never fails the run on an Instagram refusal (no emails). **No content checks here (owner's decision).**
 - `publish_reel.py`: posts a Reel (`REELS`, `share_to_feed`); caption = post caption + hashtags + photo credits + music credit; re-renders an expired video first.
-- `reel_job.py`, `make_reel.py`, `templates/reel.html`: Reel video (Playwright frames -> ffmpeg), music rotation (no repeat within 5). **Look (Nov 6, modelled on the owner's reference Short): calm and minimal**: cream paper, near-black ink, one orange accent (#E4571F); captions in Bricolage Grotesque, big numbers and the cover headline in Unbounded, tiny labels in JetBrains Mono (all free fonts in `templates/fonts/`); 3-5 word captions that fade in as the narrator says them, with an orange block behind a key word; a huge number on plain slides; landscape pictures as a card over a blurred copy, tall ones full-screen; slow camera push, soft cross-fades, no shaking or flashes. Word times come from the voice (`voice.py`; Kokoro fallback and no-voice Reels use even estimates).
-- `voice.py`: **Reel narrator** (Kokoro-82M, free and offline; installed in `reel.yml` with CPU torch, model cached). Reads each slide (or its `say` line); each scene lasts as long as its line, words appear as spoken, music drops under the voice. Config `voiceover`, `voice` (am_michael default; dashboard select), `voice_speed` 1.12. If the voice fails, the Reel is made without it. Locally: `TTS_PYTHON` points at a Python 3.10+ with kokoro (the repo .venv is 3.9).
+- `reel_job.py`, `make_reel.py`, `templates/reel.html`: Reel video (Playwright frames -> ffmpeg), music rotation (no repeat within 5).
 - `render.py`, `templates/slide.html`: carousel slides (1080x1350 JPEG, Inter, accent #FFD400, bg #0E0E10, layouts `split`/`full`).
 - `templates/marks.js`: **marks** drawn on pictures (circle, arrow, box, label, spotlight, zoom; positions = fractions of the picture, in `image.marks`, optional `image.focus`). Used by slides (still) and Reels (a marked slide becomes a framed picture above the text over a blurred copy; marks draw in). Rules: ROUTINE 5b; format checked by `validate.py`. Added Nov 5 (owner asked for per-post pointing/drawing).
 - `validate.py`: hard post rules (section 5). `check_images.py`: downloads every picture, real sizes, saves copies to look at.
@@ -85,17 +84,17 @@ post_reel cancel_reel reschedule_reel add_music remove_music refresh_dashboard`)
 Template `templates/dashboard.html`, data `scripts/dashboard.py`. GitHub Pages lags up to ~10 min.
 
 ## 5. Post rules (`validate.py`)
-5-7 slides; every slide has a spoken `say` (<= 28 words, sentences <= 14); post has `format`, `take`, `mood`; slide text <= 22 words, no sentence over 16 words; cover headline <= 12 words; at least half the slides (min 3) with a real picture; never two
-text-only slides in a row; layouts `split`/`full`; caption 300-950 chars; up to 5 hashtags, only in `hashtags`; every source has
+5-10 slides; slide text <= 40 words; cover headline <= 16 words; at least half the slides (min 3) with a real picture; never two
+text-only slides in a row; layouts `split`/`full`; caption 700-1500 chars; up to 5 hashtags, only in `hashtags`; every source has
 a URL; no reused source or near-duplicate title; `slot` in `active_slots` and/or `reel_slot` in `reel_active_slots`. Per day:
 exactly `stories_per_day` stories; soft variety (no shared source organization, subject or opening words, unless the post carries
 a `variety_exception` reason).
 
 ## 6. Reels
 Same photos and text as the carousel, animated, 1080x1920, 30 fps, ~25-40 s, with music.
-- **Safe area for the owner's iPhone 13** (centred on the screen): captions inside x 170-910, y ~380-1300 (Instagram covers the top 11%, right 13%, bottom 27%; iPhones crop ~9% per side). No progress bars, no @handle on the video; photo credits go in the caption. Keep text inside it.
+- **Safe box for the owner's iPhone 13**: all text inside x 140-810, y ~460-1220 (Instagram covers the top 11%, right 13%,
   bottom 27%; iPhones crop ~9% per side). No progress bars, no @handle on the video; photo credits go in the caption. Do not move text out of the box.
-- **Music by mood** (Nov 6): each story has `mood` (hype/playful/tense/mysterious/inspiring/chill, ROUTINE 5c); `make_reel.pick_music(mood)` picks a matching song from `assets/music/music.json` (28 songs: 6 Scott Buckley, 22 Mixkit links that are fetched when a Reel is made, not stored in the repo); no match = no music. Add songs with `scripts/find_music.py` + `control.py add_music`. Config `music: false` turns music off. Instagram's own library is not available through the API. Owner dislikes Kevin MacLeod and Satie, and nature-documentary music under viral stories.
+- Music: Instagram's own library is not available through the API. Owner likes the current six tracks, dislikes Kevin MacLeod and Satie.
 - Hosting: Instagram fetches the mp4 from `raw.githubusercontent.com` (branch `reels`); the dashboard plays it via jsDelivr.
 
 ## 7. Accounts and secrets (never in files, commits or chat)
@@ -109,9 +108,8 @@ Same photos and text as the carousel, animated, 1080x1920, 30 fps, ~25-40 s, wit
 
 ## 8. Owner decisions (do not undo without asking)
 - **The publisher only posts**: no content checks, no failing runs, no emails. Quality belongs to the research run. Status goes on the dashboard (he never reads email).
-- **Short, plain, viral (Nov 5):** 5-7 slides, plain English a 12-year-old gets, short caption; stories that pass the "friend test" (money, brands, scams, myths, odd laws, the body, debates; controversial is fine when true and fair; no partisan politics, no health misinformation). Rules in ROUTINE sections 3 and 6. No slide counter. Real pictures of the subject first; labelled Unsplash fallback allowed.
+- Picture-rich 5-10 slide posts, no slide counter, detailed caption. Real pictures of the subject first; labelled Unsplash fallback allowed.
 - Reels are automatic. He picks the counts. No spare posts (removed Nov 5). No AI-tool-spotlight posts.
-- **Every post is a TAKE, not a report (Nov 6)**: a format (BIG_NEWS, CALL_OUT, DISCOVERY, MYTH), a one-sentence `take`, a spoken `say` script per slide (the Reel's captions and narration), and the "who cares?" test (ROUTINE 0a). The owner called a correct power-bank-rules post "page 26 of the airplane booklet". Criticize companies/products/ideas, never private people, groups or partisan politics. (The older "no AI-tool-spotlight posts" rule is unclear against DISCOVERY posts: ask before featuring AI tools.)
 - Two lanes: news and evergreen (evergreen needs 2 independent sources).
 - Keep a story's carousel and Reel hours apart.
 - Tiny budget: only his Claude Pro plan costs money; keep Claude usage low.
@@ -129,6 +127,7 @@ Same photos and text as the carousel, animated, 1080x1920, 30 fps, ~25-40 s, wit
 3. Measure Claude usage of one daily run.
 4. Old-layout ISS Reel (2026-10-31-01): replace or keep? Deleting is permanent; ask.
 5. After ~2 weeks on 1+2 with no spam blocks, review results ("What's working") before raising counts.
+6. **Nov 6 revert.** The owner tried and then rejected a night of changes (narrator voice + short plain posts, kinetic captions, cream/Sora look, mood-matched songs, take-first rules) and asked to go "back to yesterday". Code is back to the Nov 5 19:45 state (commit d00d5f4) except the faster parallel Reel rendering and the picture-retry/label fixes. Everything is saved: `git checkout nov6-experiments -- <files>` brings any piece back (voice + short posts = commit 0ab3ed0 and 992f987; look = 6ef5c48..605ea0d; take rules = 19e45fc). Do not re-apply without the owner asking.
 
 ## 11. Working with the owner
 Not a developer; Istanbul (UTC+3), iPhone 13, Mac mini M4, often on his phone. Wants short plain answers and results, not

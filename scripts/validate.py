@@ -13,14 +13,10 @@ import variety
 
 ROOT = Path(__file__).resolve().parent.parent
 IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".webp")
-MAX_SLIDE_WORDS = 22
-MAX_HEADLINE_WORDS = 12
-FORMATS = ("BIG_NEWS", "CALL_OUT", "DISCOVERY", "MYTH")
-MAX_SAY_WORDS, MAX_SAY_SENTENCE = 28, 14
-MOODS = ("hype", "playful", "tense", "mysterious", "inspiring", "chill")
-MAX_SENTENCE_WORDS = 16          # plain English, read aloud by the Reel narrator
-MIN_CAPTION_CHARS = 300
-MAX_CAPTION_CHARS = 950
+MAX_SLIDE_WORDS = 40
+MAX_HEADLINE_WORDS = 16
+MIN_CAPTION_CHARS = 700
+MAX_CAPTION_CHARS = 1500
 MAX_HASHTAGS = 5
 
 
@@ -134,12 +130,6 @@ def check_post(path, config):
     if errors:
         return errors
 
-    if post.get("format") not in FORMATS:
-        errors.append("needs a `format`: one of %s (ROUTINE.md 0a)" % ", ".join(FORMATS))
-    if not 20 <= len((post.get("take") or "").strip()) <= 200:
-        errors.append("needs a `take`: one sentence (20-200 characters) a friend would repeat or argue with (ROUTINE.md 0a)")
-    if post.get("mood") not in MOODS:
-        errors.append("needs a `mood` for the Reel's song: one of %s (ROUTINE.md 5c)" % ", ".join(MOODS))
     slot, reel_slot = post.get("slot"), post.get("reel_slot")
     if slot is None and reel_slot is None:
         errors.append("the post needs a carousel `slot`, a `reel_slot`, or both")
@@ -157,8 +147,8 @@ def check_post(path, config):
         errors.append("every source needs a url")
 
     slides = post["slides"]
-    if not 5 <= len(slides) <= 7:
-        errors.append("needs 5-7 slides, has %d" % len(slides))
+    if not 5 <= len(slides) <= 10:
+        errors.append("needs 5-10 slides, has %d" % len(slides))
     errors += final_problems(post)
     for i, sl in enumerate(slides, 1):
         if (sl.get("image") or {}).get("search") and not sl["image"].get("url"):
@@ -183,19 +173,6 @@ def check_post(path, config):
         limit = MAX_HEADLINE_WORDS if kind == "cover" else MAX_SLIDE_WORDS
         if words > limit:
             errors.append("slide %d: %d words, max %d" % (i, words, limit))
-        say = (slide.get("say") or "").strip()
-        if not say:
-            errors.append("slide %d: needs `say`, the spoken script of the Reel (ROUTINE.md 0a)" % i)
-        else:
-            if len(say.split()) > MAX_SAY_WORDS:
-                errors.append("slide %d: `say` is %d words, max %d" % (i, len(say.split()), MAX_SAY_WORDS))
-            for sentence in re.split(r"(?<=[.!?])\s+", say):
-                if len(sentence.split()) > MAX_SAY_SENTENCE:
-                    errors.append("slide %d: a spoken sentence of %d words is too long (max %d): %r" % (i, len(sentence.split()), MAX_SAY_SENTENCE, sentence[:50]))
-        for sentence in re.split(r"(?<=[.!?])\s+", slide.get(field) or ""):
-            if len(sentence.split()) > MAX_SENTENCE_WORDS:
-                errors.append("slide %d: a sentence of %d words is too long to read easily (max %d): %r"
-                              % (i, len(sentence.split()), MAX_SENTENCE_WORDS, sentence[:60]))
         image = slide.get("image")
         if image and "url" not in image:
             if not image.get("search", "").strip():
@@ -216,7 +193,7 @@ def check_post(path, config):
 
     caption = post["caption"] + "\n\n" + " ".join(post.get("hashtags", []))
     if len(post["caption"]) < MIN_CAPTION_CHARS:
-        errors.append("caption is %d chars; write at least %d" % (len(post["caption"]), MIN_CAPTION_CHARS))
+        errors.append("caption is %d chars; write a detailed one of at least %d" % (len(post["caption"]), MIN_CAPTION_CHARS))
     if len(caption) > MAX_CAPTION_CHARS:
         errors.append("caption + hashtags is %d chars, max %d" % (len(caption), MAX_CAPTION_CHARS))
     if len(post.get("hashtags", [])) > MAX_HASHTAGS:
