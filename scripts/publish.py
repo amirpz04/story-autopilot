@@ -54,13 +54,22 @@ def api_backoff():
     return h if until and until > datetime.now(timezone.utc) else None
 
 
+def is_block(reason):
+    """Instagram's anti-spam flag ("action is blocked", subcode 2207051), as opposed to an ordinary hiccup."""
+    r = str(reason)
+    return "2207051" in r or "action is blocked" in r or "restrict certain activity" in r
+
+
 def note_api_failure(reason):
-    """Wait 30 min after the first refusal, then 1 h, 2 h, up to 4 h between tries."""
+    """Wait 30 min after the first refusal, then 1 h, 2 h, up to 4 h between tries.
+    A spam block is different: every further attempt makes the flag worse, so rest 12 h, then 24 h if it repeats."""
     try:
         fails = json.loads(HEALTH_FILE.read_text()).get("fails", 0) + 1
     except Exception:
         fails = 1
     minutes = min(240, 30 * 2 ** (fails - 1))
+    if is_block(reason):
+        minutes = 12 * 60 if fails <= 1 else 24 * 60
     HEALTH_FILE.write_text(json.dumps({"fails": fails, "reason": str(reason)[:200],
                                         "until": (datetime.now(timezone.utc) + timedelta(minutes=minutes)).isoformat()}) + "\n")
 
@@ -91,7 +100,7 @@ def instagram_quota_used(config):
         return None
 
 
-def instagram_gate(config, post, check_duplicate=True):
+def instagram_gate(config, post, check_duplicate=True, kind="post"):
     """Safety checks against Instagram's OWN record of what is live, independent of our saved state.
 
     Returns None if posting is allowed, otherwise a reason string. This stops double posts
@@ -99,16 +108,18 @@ def instagram_gate(config, post, check_duplicate=True):
     Fails closed: if Instagram can't be read, we don't post this round.
     """
     try:
-        media = graph("GET", os.environ["IG_USER_ID"] + "/media", config, fields="timestamp,caption", limit=25)["data"]
+        media = graph("GET", os.environ["IG_USER_ID"] + "/media", config, fields="timestamp,caption,media_product_type", limit=25)["data"]
     except Exception as exc:
         note_api_failure(exc)
         return "cannot read recent Instagram posts, skipping to be safe (%s)" % str(exc)[:150]
-    note_api_ok()
+    # (a successful READ proves nothing about being allowed to PUBLISH, so the failure counter is only reset after a real publish)
     now = datetime.now(timezone.utc)
     live = [(datetime.strptime(m["timestamp"], "%Y-%m-%dT%H:%M:%S%z"), (m.get("caption") or "").strip()) for m in media]
     hook = post["caption"].strip()[:60]
-    if check_duplicate and any(caption.startswith(hook) for _, caption in live):
-        return "already live: this post is already on Instagram"
+    # a Reel shares its caption with the carousel, so it only counts as a duplicate of another Reel
+    same_kind = [(t, c) for (t, c), m in zip(live, media) if (m.get("media_product_type") == "REELS") == (kind == "reel")]
+    if check_duplicate and any(caption.startswith(hook) for _, caption in same_kind):
+        return "already live: this %s is already on Instagram" % ("Reel" if kind == "reel" else "post")
     gap = config.get("min_minutes_between_posts", 45)
     if any(now - t < timedelta(minutes=gap) for t, _ in live):
         return "too soon: a post went out less than %d minutes ago" % gap
@@ -334,11 +345,23 @@ def main():
             return
         media_id = publish_to_instagram(urls, caption, config)
         record.update(status="posted", media_id=media_id, posted_at=datetime.utcnow().isoformat() + "Z")
+        note_api_ok()
         print("Posted, media id", media_id)
     except Exception as exc:
         if "Instagram API error" in str(exc):
             note_api_failure(exc)
         record.update(status="failed", error=str(exc)[:500])
+        if is_block(exc) and "/media_publish" in str(exc):
+            # Instagram often publishes anyway and still returns the block error: find it and record it so nothing is re-made
+            time.sleep(20)
+            try:
+                hook = post["caption"].strip()[:60]
+                for m in graph("GET", os.environ["IG_USER_ID"] + "/media", config, fields="id,caption,media_product_type", limit=10)["data"]:
+                    if m.get("media_product_type") != "REELS" and (m.get("caption") or "").strip().startswith(hook):
+                        record.update(status="posted", media_id=m["id"], posted_at=datetime.utcnow().isoformat() + "Z", note="live despite block error")
+                        break
+            except Exception:
+                pass
         # The failure is saved in state (dashboard shows it); the run itself succeeds so GitHub sends no failure emails.
         print("FAILED:", exc)
     finally:

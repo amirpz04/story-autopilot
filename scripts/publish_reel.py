@@ -52,7 +52,10 @@ def post_reel(post_id):
         return "Instagram refused requests recently; waiting until %s UTC before trying again." % wait["until"][11:16]
     path = next((p for p in (ROOT / "queue").glob("*/*/post.json") if json.loads(p.read_text()).get("id") == post_id), None)
     post = json.loads(path.read_text())
-    gate = publish.instagram_gate(config, post, check_duplicate=False)
+    gate = publish.instagram_gate(config, post, kind="reel")
+    if gate and gate.startswith("already live"):
+        entry.update(status="posted", note="found live on Instagram")
+        save_reels(reels)
     if gate:
         return "Not posted yet: " + gate
     tags = [t for t in post.get("hashtags", []) if t.lower() not in post["caption"].lower()]
@@ -76,10 +79,14 @@ def post_reel(post_id):
     except Exception as exc:
         if "Instagram API error" in str(exc):
             publish.note_api_failure(exc)
-        entry["attempts"] = entry.get("attempts", 0) + 1
+        if publish.is_block(exc) and "/media_publish" in str(exc):
+            entry["attempts"] = MAX_ATTEMPTS      # the Reel is probably live already; never create a second one
+        else:
+            entry["attempts"] = entry.get("attempts", 0) + 1
         entry["error"] = str(exc)[:200]
         save_reels(reels)
         return "Reel not posted: %s" % str(exc)[:200]
+    publish.note_api_ok()
     entry.update(status="posted", media_id=media_id, permalink=permalink, posted_at=datetime.now(timezone.utc).isoformat(), attempts=0, error="")
     save_reels(reels)
     return "Reel posted: %s" % (permalink or media_id)
