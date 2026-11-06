@@ -23,6 +23,8 @@ CATEGORY_ALIASES = {
     "animal": "animals", "wildlife": "animals",
     "earth": "nature", "oceans": "nature", "environment": "nature",
     "medicine": "health", "archaeology": "history",
+    "money": "business", "finance": "business", "economics": "business", "companies": "business",
+    "space exploration": "space",
 }
 
 # Hosts that are a shared service, not one publisher: two stories citing doi.org are not

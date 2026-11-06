@@ -216,7 +216,7 @@ def main():
     wanted = int(config.get("stories_per_day", 0) or 0)
     scheduled = posts
     if wanted and len(scheduled) < wanted:
-        day_errors.append("only %d of %d stories written for this day; %s missing (ROUTINE.md section 9)"
+        day_errors.append("only %d of %d stories written for this day; %s missing (ROUTINE.md section 12)"
                           % (len(scheduled), wanted, wanted - len(scheduled)))
 
     # Variety across the day's stories (sources by organization, subject, openings). Soft: a story

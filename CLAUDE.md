@@ -23,7 +23,7 @@ Reel are hours apart. Reduced from 3+3 on Nov 5 after Instagram spam blocks.
 
 **Everything scheduled must go out.** A carousel or Reel of the last 2 days that missed its time is retried automatically
 (`CATCH_UP_DAYS` in `publish.py`, max 3 tries, Instagram is checked first so nothing posts twice). Each miss shows on the dashboard
-as an alert with a plain error. Content errors are fixed by the daily run (ROUTINE section 1b) or by you.
+as an alert with a plain error. Content errors are fixed by the daily run (ROUTINE section 3) or by you.
 
 ## 2. Files
 **Scripts (`scripts/`)**
@@ -33,7 +33,7 @@ as an alert with a plain error. Content errors are fixed by the daily run (ROUTI
 - `publish_reel.py`: posts a Reel (`REELS`, `share_to_feed`); caption = post caption + hashtags + photo credits + music credit; re-renders an expired video first.
 - `reel_job.py`, `make_reel.py`, `templates/reel.html`: Reel video (Playwright frames -> ffmpeg), music rotation (no repeat within 5).
 - `render.py`, `templates/slide.html`: carousel slides (1080x1350 JPEG, Inter, accent #FFD400, bg #0E0E10, layouts `split`/`full`).
-- `templates/marks.js`: **marks** drawn on pictures (circle, arrow, box, label, spotlight, zoom; positions = fractions of the picture, in `image.marks`, optional `image.focus`). Used by slides (still) and Reels (a marked slide becomes a framed picture above the text over a blurred copy; marks draw in). Rules: ROUTINE 5b; format checked by `validate.py`. Added Nov 5 (owner asked for per-post pointing/drawing).
+- `templates/marks.js`: **marks** drawn on pictures (circle, arrow, box, label, spotlight, zoom; positions = fractions of the picture, in `image.marks`, optional `image.focus`). Used by slides (still) and Reels (a marked slide becomes a framed picture above the text over a blurred copy; marks draw in). Rules: ROUTINE 8; format checked by `validate.py`. Added Nov 5 (owner asked for per-post pointing/drawing).
 - `validate.py`: hard post rules (section 5). `check_images.py`: downloads every picture, real sizes, saves copies to look at.
 - `plan_day.py`: random research plan per run (lane, subject, angle, where to look); `variety.py`: soft variety checks.
 - `find_images.py`: rate-limited Wikimedia Commons search. `stock.py`: labelled Unsplash fallback photos (run by the research run and `preview.yml` only).

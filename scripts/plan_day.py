@@ -66,7 +66,7 @@ FEED_BY_NAME = dict(NEWS_FEEDS)
 
 # Google News runs in any language: the story nobody in English has seen yet.
 # These are hunting grounds only. The post is always written in US English for a US reader
-# (ROUTINE.md section 0) - a Japanese feed is a source of stories, never a change of audience.
+# (ROUTINE.md section 1) - a Japanese feed is a source of stories, never a change of audience.
 NEWS_COUNTRIES = [
     ("Japan", "hl=ja&gl=JP&ceid=JP:ja"),
     ("South Korea", "hl=ko&gl=KR&ceid=KR:ko"),
@@ -158,7 +158,19 @@ EVERGREEN_ANGLES = [
     ("history", "a food or drink everyone consumes, and where it actually came from"),
     ("business", "a rivalry between two companies or two inventors"),
     ("inventions", "something built for one purpose that is now used for a completely different one"),
-    ("history", "a law, rule or safety standard written because of one specific disaster"),
+    ("history", "a law, rule or safety standard and the documented chain from one disaster to the rule (not 'only because of')"),
+    ("business", "a decision that looked like a mistake and made millions, with the real figures"),
+    ("people", "someone who survived or solved something against the odds, told from documented accounts"),
+    ("tech", "a number, standard or default everyone uses and the person who chose it"),
+    ("health", "a medical discovery made by accident, and the named people involved"),
+    ("health", "an odd fact about the human body that doctors can explain and most people never learned"),
+    ("space", "a space mission that nearly failed and the improvised fix that saved it"),
+    ("space", "a strange fact about the Moon, Mars, the Sun or Earth's orbit that still astonishes"),
+    ("animals", "an animal with a documented extreme ability, and how scientists found out"),
+    ("history", "a heist, hoax or forgery and the one detail that exposed it"),
+    ("inventions", "an engineering failure and the documented changes it forced"),
+    ("nature", "a natural place or event that looks impossible, and how it actually works"),
+    ("science", "something everyone was taught that later turned out different (only with strong sources)"),
 ]
 
 EVERGREEN_STARTS = [
@@ -285,7 +297,7 @@ def print_mirror(recent, counts):
     if not recent:
         return
     print()
-    print("WHAT THE LAST %d POSTS WERE (a mirror - ROUTINE.md sections 2 and 6b)" % len(recent))
+    print("WHAT THE LAST %d POSTS WERE (a mirror - ROUTINE.md sections 4 and 9.3)" % len(recent))
     print("-" * 70)
     for row in recent:
         print("  [%s] cover: %s" % (row["category"] or "?", row["cover"]))
@@ -354,15 +366,17 @@ def main():
     print("    Same exception rule applies.")
     print("  - Choose the story first, pictures second. An archive with lots of pictures (NASA's, say) is never a")
     print("    reason to pick a subject. Thin pictures? Use labelled stock for generic slides or take another story.")
+    print("  - Story test (ROUTINE.md 5.1): one-sentence surprise, friend test, 5+ beats, true, 3+ pictures. Fail one = drop it.")
+    print("  - Claim check (ROUTINE.md 6): every 'because', 'first', 'only', count and order of events needs a source that says so.")
     print("  - Small is fine. A quiet, specific, surprising story beats a big boring one.")
     print("    Do NOT hold out for something groundbreaking; that is how runs end with one story.")
     print("  - If an entry point is thin after a few minutes, move to the next one in this plan.")
     print("    Do not drift back to a feed you have used before.")
     print("  - Covers: no two stories today share an opening word, a closing pattern, or an ending opener,")
-    print("    and none could sit unnoticed among the covers above. Hooks and voice: ROUTINE.md section 6b.")
+    print("    and none could sit unnoticed among the covers above. Hooks and voice: ROUTINE.md section 9.3.")
     print("  - Pictures: try %s first." % rng.choice(IMAGE_FIRST_STOP))
     print("    Wikimedia is one option among several, not the default.")
-    print("  - You must finish with %d stories. See ROUTINE.md section 9." % stories)
+    print("  - You must finish with %d stories. See ROUTINE.md section 12." % stories)
 
 
 if __name__ == "__main__":
