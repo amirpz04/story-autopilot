@@ -11,7 +11,7 @@
 // opt.view = {x0, y0, x1, y1}: the part of host that is actually visible and free of text; labels and insets stay inside it.
 function drawMarks(host, marks, W, H, src, opt) {
   opt = opt || {};
-  const Y = opt.color || "#FFD400", fs = opt.fontSize || 34, sw = opt.stroke || 9;
+  const Y = opt.color || "#FFD400", INK = opt.ink || "#000", CAPS = opt.caps !== false, WT = opt.weight || 900, fs = opt.fontSize || 34, sw = opt.stroke || 9;
   const V = opt.view || {x0: 0, y0: 0, x1: W, y1: H}, M = 16;
   const NS = "http://www.w3.org/2000/svg";
   const P = a => [a[0] * W, a[1] * H];
@@ -34,8 +34,8 @@ function drawMarks(host, marks, W, H, src, opt) {
   function tag(text, x, y, side) {                     // yellow tag next to point (x, y); side r/l/t/b, kept inside the view
     const d = document.createElement("div");
     d.textContent = text;
-    d.style.cssText = "position:absolute;left:0;top:0;background:" + Y + ";color:#000;font-weight:900;font-size:" + fs + "px;line-height:1.05;" +
-      "padding:" + fs * .26 + "px " + fs * .42 + "px;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap;box-shadow:0 4px 18px rgba(0,0,0,.5);opacity:0";
+    d.style.cssText = "position:absolute;left:0;top:0;background:" + Y + ";color:" + INK + ";font-weight:" + WT + ";font-size:" + fs + "px;line-height:1.05;" +
+      "padding:" + fs * .26 + "px " + fs * .42 + "px;text-transform:" + (CAPS ? "uppercase" : "none") + ";letter-spacing:" + (CAPS ? ".02em" : "-.01em") + ";border-radius:" + (CAPS ? 0 : fs * .3) + "px;white-space:nowrap;box-shadow:0 4px 18px rgba(0,0,0,.35);opacity:0";
     host.appendChild(d);
     const w = d.offsetWidth, h = d.offsetHeight, g = fs * .55;
     const spot = sd => [sd === "r" ? x + g : sd === "l" ? x - w - g : x - w / 2, sd === "t" ? y - h - g : sd === "b" ? y + g : y - h / 2];

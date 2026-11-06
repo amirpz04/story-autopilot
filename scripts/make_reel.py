@@ -22,7 +22,8 @@ from check_images import size_of  # noqa: E402
 
 FPS = 30
 USER_AGENT = "UncleFactsBot/1.0 (+https://github.com/amirpz04/story-autopilot; reel renderer)"
-FONT = ROOT / "templates" / "fonts" / "Inter.ttf"
+FONT = ROOT / "templates" / "fonts" / "Sora.ttf"
+FONT_MONO = ROOT / "templates" / "fonts" / "JetBrainsMono.ttf"
 
 
 MUSIC_DIR = ROOT / "assets" / "music"
@@ -198,7 +199,7 @@ def make_reel(post_dir, out_path, config=None, music=None):
     scenes = build_scenes(post, work, config.get("handle", "@unclefactss"))
     voice = add_voice(post, scenes, work, config)
     html = (ROOT / "templates" / "reel.html").read_text()
-    html = html.replace("/*MARKSJS*/", (ROOT / "templates" / "marks.js").read_text()).replace("/*FONT*/", FONT.as_uri()).replace("/*HANDLE*/", config["handle"])
+    html = html.replace("/*MARKSJS*/", (ROOT / "templates" / "marks.js").read_text()).replace("/*FONT*/", FONT.as_uri()).replace("/*FONTMONO*/", FONT_MONO.as_uri()).replace("/*HANDLE*/", config["handle"])
     html = html.replace("/*SCENES*/[]/*END*/", json.dumps(scenes))
     page_file = work / "reel.html"
     page_file.write_text(html)

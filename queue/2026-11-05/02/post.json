@@ -3,85 +3,129 @@
   "date": "2026-11-05",
   "slot": null,
   "reel_slot": 5,
-  "title": "Ketchup began as fermented fish sauce",
-  "category": "history",
+  "category": "money",
+  "title": "Pringles' maker argued in court that Pringles aren't potato chips",
   "tags": {
-    "headline": "origin flip",
-    "end": "name outlived recipe",
-    "lane": "evergreen"
+    "lane": "B",
+    "headline": "reversal",
+    "end": "split question"
   },
-  "scores": {
-    "hook": 8,
-    "surprise": 8,
-    "emotion": 6,
-    "shareability": 8,
-    "talkability": 7,
-    "no_context": 9,
-    "freshness": 7
-  },
-  "sources": [
-    {
-      "name": "Smithsonian Magazine: The birth of non-alcoholic ketchup",
-      "url": "https://www.smithsonianmag.com/arts-culture/the-birth-of-non-alcoholic-ketchup-104660832/"
-    },
-    {
-      "name": "Food Republic: The early history of ketchup has nothing to do with tomato",
-      "url": "https://www.foodrepublic.com/2016/05/26/the-early-history-of-ketchup-has-nothing-to-do-with-tomato/"
-    }
-  ],
-  "verification": "Read both articles in full. Smithsonian: fish-sauce etymology, Mease 1812 recipe with brandy, sugar causing fermentation/bursting, 1906 Pure Food and Drug Act. Food Republic: Hokkien ke-chiap, late-1600s British contact, 1727 English recipe, Heinz 1876 and 1906 with Harvey Wiley. Etymology path hedged ('probably'); dictionaries note the exact route is uncertain.",
   "slides": [
     {
       "type": "cover",
-      "kicker": "ORIGINS",
-      "headline": "Ketchup began as fish guts fermenting in jars in the sun",
+      "kicker": "Tax fight",
+      "headline": "Pringles' maker told a judge Pringles aren't potato chips",
       "image": {
-        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Vietnam_-_Fish_sauce_fermentation_jars.jpg/3840px-Vietnam_-_Fish_sauce_fermentation_jars.jpg",
-        "credit": "Illustrative photo: fish sauce fermentation jars, Vietnam / P. Hughes / Wikimedia Commons, CC BY 4.0"
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Stand_Pringles%2C_Leclerc_Bellerive-sur-Allier.jpg/1920px-Stand_Pringles%2C_Leclerc_Bellerive-sur-Allier.jpg",
+        "credit": "Photo: TCY / Wikimedia Commons, CC BY-SA 4.0"
       }
     },
     {
       "type": "text",
-      "text": "It came from southern China. Fish guts were salted, sealed in jars and left in the sun for weeks."
-    },
-    {
-      "type": "text",
-      "text": "British traders probably found it in Asia in the late 1600s. Back home, they made it with anchovies and mushrooms.",
       "layout": "split",
+      "text": "In Britain, most food has no sales tax. But potato chips do.",
       "image": {
-        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/Mushroom_ketchup_%28homemade%29.jpg/3840px-Mushroom_ketchup_%28homemade%29.jpg",
-        "credit": "Illustrative photo: homemade mushroom ketchup / Rex Roof / Wikimedia Commons, CC BY 2.0"
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Pringles-165g-to-134g.jpg/3840px-Pringles-165g-to-134g.jpg",
+        "credit": "Photo: DiamondIIIXX / Wikimedia Commons, CC0",
+        "marks": [
+          {
+            "type": "circle",
+            "at": [
+              0.385,
+              0.192
+            ],
+            "r": 0.07,
+            "label": "Priced in pounds",
+            "side": "b"
+          }
+        ]
       }
     },
     {
       "type": "text",
-      "text": "The first English recipe, from 1727, used wine, anchovies and horseradish. No tomatoes at all.",
       "layout": "split",
+      "text": "So the company said Pringles are different. They're only about 40% potato.",
+      "say": "So the company said Pringles are different. They're only about forty percent potato.",
       "image": {
-        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Tomato_plant_2026_G1.jpg/3840px-Tomato_plant_2026_G1.jpg",
-        "credit": "Illustrative photo: Tomato plant / George Chernilevsky / Wikimedia Commons, CC BY 4.0"
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/The_Pringles_Salt_%26_Vinegar_chips.jpg",
+        "credit": "Photo: Doctorine Dark / Wikimedia Commons, CC BY-SA 4.0",
+        "focus": [
+          0.5,
+          0.45
+        ],
+        "marks": [
+          {
+            "type": "label",
+            "at": [
+              0.5,
+              0.33
+            ],
+            "label": "About 40% potato",
+            "side": "r"
+          },
+          {
+            "type": "label",
+            "at": [
+              0.6,
+              0.6
+            ],
+            "label": "Factory-made shape",
+            "side": "r"
+          }
+        ]
       }
     },
     {
       "type": "text",
-      "text": "Tomatoes came much later. Henry Heinz started bottling tomato ketchup in 1876.",
+      "text": "In 2008, a judge agreed. Not chips, so no tax."
+    },
+    {
+      "type": "text",
       "layout": "full",
+      "text": "Then a higher court said no. Enough potato to count. The company lost a refund worth over $150 million.",
+      "say": "Then a higher court said no. Enough potato to count. The company lost a refund worth over a hundred and fifty million dollars.",
       "image": {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Heinz_Tomato_Ketchup%2C_Canada_%28front%29%2C_2026-02-19.jpg",
-        "credit": "Photo: Chris Woodrich / Wikimedia Commons, Public domain"
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Royal_Courts_of_Justice_2019.jpg/3840px-Royal_Courts_of_Justice_2019.jpg",
+        "credit": "Photo: David Castor / Wikimedia Commons, CC0",
+        "marks": [
+          {
+            "type": "label",
+            "at": [
+              0.503,
+              0.555
+            ],
+            "label": "Court of Appeal",
+            "side": "t"
+          }
+        ]
       }
     },
     {
       "type": "end",
-      "text": "The name outlived the original recipe by about 300 years. Only the word is left."
+      "text": "The company that sells them fought to prove they're not chips. So, are they?"
     }
   ],
-  "caption": "America's favorite sauce didn't start in America, and it didn't start with tomatoes.\n\nFood historians trace ketchup to a fish sauce from southern China, called kê-chiap. Fish guts were salted and left in jars in the sun for weeks.\n\nBritish traders brought the idea home in the late 1600s and made it with anchovies, walnuts and mushrooms. Tomato versions showed up in the early 1800s, and Heinz started selling tomato ketchup in 1876.\n\nSource: Smithsonian Magazine, Food Republic",
+  "caption": "Pringles' maker once spent years arguing its own snack isn't a potato chip.\n\nIn Britain, most food has no VAT, a sales tax. Potato chips (\"crisps\" there) do. In 2008, Procter & Gamble said Pringles were too different to count: only about 40% potato, with a factory-made shape. A High Court judge agreed.\n\nIn 2009 the Court of Appeal reversed it, saying there was \"more than enough potato.\" The company missed a refund of about £100 million (over $150 million).\n\nSo: chip or not?\n\nSource: NBC News, Marketing Week, CMS Law",
   "hashtags": [
-    "#foodhistory",
-    "#history",
-    "#ketchup",
-    "#didyouknow"
+    "#pringles",
+    "#snacks",
+    "#weirdlaws",
+    "#funfacts",
+    "#food"
   ],
-  "variety_exception": "Smithsonian Magazine carries the best-documented version of this origin story; a second outlet (Food Republic) was read and confirms the core facts."
+  "sources": [
+    {
+      "name": "NBC News",
+      "url": "https://www.nbcnews.com/id/wbna30850499"
+    },
+    {
+      "name": "Marketing Week",
+      "url": "https://www.marketingweek.com/court-of-appeal-rules-pringles-is-a-potato-crisp/"
+    },
+    {
+      "name": "CMS Law",
+      "url": "https://cms.law/en/gbr/legal-updates/are-pringles-crisps-the-court-of-appeal-decides"
+    }
+  ],
+  "verification": "High Court July 2008 sided with P&G; Court of Appeal 20 May 2009 reversed ('more than enough potato'); potato content about 40-42%; about £100m rebate at stake (NBC News, Marketing Week, CMS)."
 }
