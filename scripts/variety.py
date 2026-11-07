@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # The run labels posts with free text. Fold the obvious synonyms together so "ai" and "tech"
 # count as one subject when looking at what was published lately.
 CATEGORY_ALIASES = {
-    "ai": "tech", "robots": "tech", "technology": "tech", "computing": "tech",
+    "robots": "ai", "artificial intelligence": "ai", "technology": "tech", "computing": "tech",
     "invention": "inventions", "engineering": "inventions",
     "animal": "animals", "wildlife": "animals",
     "earth": "nature", "oceans": "nature", "environment": "nature",

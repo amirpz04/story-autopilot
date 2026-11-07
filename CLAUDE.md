@@ -35,7 +35,7 @@ as an alert with a plain error. Content errors are fixed by the daily run (ROUTI
 - `render.py`, `templates/slide.html`: carousel slides (1080x1350 JPEG, Inter, accent #FFD400, bg #0E0E10, layouts `split`/`full`).
 - `templates/marks.js`: **marks** drawn on pictures (circle, arrow, box, label, spotlight, zoom; positions = fractions of the picture, in `image.marks`, optional `image.focus`). Used by slides (still) and Reels (a marked slide becomes a framed picture above the text over a blurred copy; marks draw in). Rules: ROUTINE 8; format checked by `validate.py`. Added Nov 5 (owner asked for per-post pointing/drawing).
 - `validate.py`: hard post rules (section 5). `check_images.py`: downloads every picture, real sizes, saves copies to look at.
-- `plan_day.py`: random research plan per run (lane, subject, angle, where to look); `variety.py`: soft variety checks.
+- `plan_day.py`: random research plan per run (news first: subject, entry points, a widen step and one evergreen fallback; where to look); `variety.py`: soft variety checks.
 - `find_images.py`: rate-limited Wikimedia Commons search. `stock.py`: labelled Unsplash fallback photos (run by the research run and `preview.yml` only).
 - `control.py`: every dashboard action. `backfill_reels.py`: Reels for old live posts that have none. `stats.py`: Instagram numbers + `state/report.md`. `dashboard.py`: builds `docs/index.html`.
 
@@ -84,7 +84,7 @@ post_reel cancel_reel reschedule_reel add_music remove_music refresh_dashboard`)
 Template `templates/dashboard.html`, data `scripts/dashboard.py`. GitHub Pages lags up to ~10 min.
 
 ## 5. Post rules (`validate.py`)
-5-10 slides; slide text <= 40 words; cover headline <= 16 words; at least half the slides (min 3) with a real picture; never two
+5-7 slides; slide text <= 40 words; cover headline <= 16 words; at least half the slides (min 3) with a real picture; never two
 text-only slides in a row; layouts `split`/`full`; caption 700-1500 chars; up to 5 hashtags, only in `hashtags`; every source has
 a URL; no reused source or near-duplicate title; `slot` in `active_slots` and/or `reel_slot` in `reel_active_slots`. Per day:
 exactly `stories_per_day` stories; soft variety (no shared source organization, subject or opening words, unless the post carries
@@ -108,7 +108,8 @@ Same photos and text as the carousel, animated, 1080x1920, 30 fps, ~25-40 s, wit
 
 ## 8. Owner decisions (do not undo without asking)
 - **The publisher only posts**: no content checks, no failing runs, no emails. Quality belongs to the research run. Status goes on the dashboard (he never reads email).
-- Picture-rich 5-10 slide posts, no slide counter, detailed caption. Real pictures of the subject first; labelled Unsplash fallback allowed.
+- Picture-rich 5-7 slide posts (owner: 8 pages is too long, Nov 7), no slide counter, detailed caption. Every sentence on its own line.
+- **News first (owner, Nov 7):** the account is about new discoveries and news in each subject. Order: last 72 h, then last 14 days, then evergreen as a last resort. No evergreen quota. Real pictures of the subject first; labelled Unsplash fallback allowed.
 - Reels are automatic. He picks the counts. No spare posts (removed Nov 5). No AI-tool-spotlight posts.
 - Two lanes: news and evergreen (evergreen needs 2 independent sources).
 - Keep a story's carousel and Reel hours apart.

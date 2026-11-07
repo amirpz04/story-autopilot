@@ -25,6 +25,7 @@
   .txt.end { font-size: 72px; font-weight: 900; line-height: 1.1; }
   .w { display: inline-block; margin-right: .27em; opacity: 0; will-change: transform, opacity; }
   .num { color: #FFD400; }
+  .gap { display: block; height: .5em; }          /* a clear gap between sentences */
   .follow { margin-top: 48px; font-size: 38px; font-weight: 500; opacity: 0; }
   .follow b { color: #FFD400; font-weight: 800; }
   /* a slide with marks shows its whole photo as a framed picture above the text, over a blurred copy of itself */
@@ -55,7 +56,13 @@ S.forEach((s, i) => {
   } else {
     html += `<div class="plain" style="--gx:${i % 2 ? 72 : 24}%;--gy:${i % 3 ? 78 : 22}%"></div>`;
   }
-  const words = s.text.split(/\s+/).map(w => `<span class="w${/^[$€£]?\d/.test(w) ? " num" : ""}">${w.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</span>`).join("");
+  const ABBR = new Set(["u.s.","u.k.","u.n.","e.u.","dr.","mr.","mrs.","ms.","st.","vs.","etc.","e.g.","i.e.","no.","inc.","jr.","sr.","a.m.","p.m.","approx.","mt.","co.","ltd."]);
+  const toks = s.text.split(/\s+/);
+  const words = toks.map((w, k) => {
+    const nxt = toks[k + 1] || "";
+    const endsSentence = /[.!?]["'”)]*$/.test(w) && nxt && /^["'“(]?[A-Z0-9]/.test(nxt) && !ABBR.has(w.toLowerCase().replace(/["'”)]+$/, "")) && !/^[A-Z]\.$/.test(w);
+    return `<span class="w${/^[$€£]?\d/.test(w) ? " num" : ""}">${w.replace(/&/g, "&amp;").replace(/</g, "&lt;")}</span>` + (endsSentence ? '<span class="gap"></span>' : "");
+  }).join("");
   const cls = s.type === "cover" ? "head" : s.type === "end" ? "end" : "body";
   const pos = s.photo || s.type === "cover" ? "low" : "mid";
   html += `<div class="copy ${pos}">`

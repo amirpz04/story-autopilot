@@ -7,6 +7,7 @@ Usage:
 import base64
 import html
 import json
+import re
 import mimetypes
 import sys
 import time
@@ -57,6 +58,29 @@ def resolve_image(image):
     return None, ""
 
 
+ABBREVIATIONS = {"u.s.", "u.k.", "u.n.", "e.u.", "dr.", "mr.", "mrs.", "ms.", "st.", "vs.", "etc.", "e.g.", "i.e.", "no.", "inc.", "jr.", "sr.", "a.m.", "p.m.", "approx.", "mt.", "co.", "ltd."}
+
+
+def split_sentences(text):
+    """Split slide text into sentences so each can sit on its own line. A full stop only ends a sentence when the next word
+    starts with a capital letter, digit or quote, and it is not an abbreviation (U.S., Dr.) or an initial (J. Smith)."""
+    words, out, cur = (text or "").split(), [], []
+    for i, w in enumerate(words):
+        cur.append(w)
+        nxt = words[i + 1] if i + 1 < len(words) else ""
+        ends = re.search(r"[.!?][\"'\u201d)]*$", w) is not None
+        if (ends and nxt and re.match(r"[\"'\u201c(]?[A-Z0-9]", nxt) and w.lower().strip("\"'\u201d)") not in ABBREVIATIONS
+                and not re.fullmatch(r"[A-Z]\.", w)):
+            out.append(" ".join(cur)); cur = []
+    if cur:
+        out.append(" ".join(cur))
+    return out
+
+
+def sentence_blocks(text, esc):
+    return "".join('<span class="s">%s</span>' % esc(x) for x in split_sentences(text))
+
+
 def slide_html(slide, index, total, config):
     brand = config["brand"]
     kind = slide["type"]
@@ -73,10 +97,10 @@ def slide_html(slide, index, total, config):
         body = (
             '<p class="question fit">%s</p>'
             '<div class="follow">Follow <b>%s</b> for more stories like this</div>'
-            % (esc(slide["text"]), esc(config["handle"]))
+            % (sentence_blocks(slide["text"], esc), esc(config["handle"]))
         )
     else:
-        body = '<p class="fit">%s</p>' % esc(slide["text"])
+        body = '<p class="fit">%s</p>' % sentence_blocks(slide["text"], esc)
 
     classes = [kind, "with-image" if src else "no-image"]
     if kind == "text" and slide.get("layout") == "full":

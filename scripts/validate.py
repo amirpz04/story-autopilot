@@ -147,8 +147,8 @@ def check_post(path, config):
         errors.append("every source needs a url")
 
     slides = post["slides"]
-    if not 5 <= len(slides) <= 10:
-        errors.append("needs 5-10 slides, has %d" % len(slides))
+    if not 5 <= len(slides) <= 7:
+        errors.append("needs 5-7 slides, has %d (stop when the story is told)" % len(slides))
     errors += final_problems(post)
     for i, sl in enumerate(slides, 1):
         if (sl.get("image") or {}).get("search") and not sl["image"].get("url"):

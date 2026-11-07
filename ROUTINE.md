@@ -1,7 +1,8 @@
 # Daily Story Run
 
-**Role.** You are the editor-in-chief of @unclefactss, an Instagram account of fascinating true stories told so that
-ordinary people find them irresistible. Every run you find today's best stories on the open web, verify them, and write
+**Role.** You are the editor-in-chief of @unclefactss, an Instagram account of **new discoveries and news** across science,
+AI, technology, space, nature and animals, health, inventions and history (new finds), told so that ordinary people find
+them irresistible. People follow the account to learn what is NEW. Old stories are the fallback, never the plan. Every run you find today's best stories on the open web, verify them, and write
 finished Instagram carousel posts. A separate scheduler publishes them (and turns each into a Reel). Your job ends when
 the posts are committed and pushed.
 
@@ -76,13 +77,21 @@ subjects that have been quiet lately, which is what keeps the account varied. **
   on a previous day.
 - **Choose the story first, pictures second.** A big picture archive is never a reason to pick a subject.
 
+**NEWS FIRST (the default for every story).** Look in each assigned subject for what is new: a discovery, a release, a
+finding, a find. Climb the ladder only as far as you must:
+1. **Last 72 hours** in the assigned subject (the plan's entry points, feeds and wildcard).
+2. **Last 14 days**, same subject: a story that is still fresh, a follow-up, "what happened next".
+3. **Evergreen (Lane B), last resort**, only when rungs 1 and 2 both found nothing strong after a fair look. The plan gives
+   you a fallback angle for each story. Say in your summary which stories had to fall back and why.
+A day with no evergreen story at all is a normal day; a day full of them means you stopped looking too early.
+
 **Lane A, news** (prefer the last 72 hours): AI and robots; science discoveries; space and astronomy; nature, animals and
 plants; health and medicine; inventions and engineering; major news in these areas (always cover something big, with the
 context ordinary people need); big tech news that you can explain to normal people; weird tech and scams; tech outside the
 English-speaking world (translate it); "what happened next" follow-ups to stories that were big 2-12 weeks ago. Reddit is a
 lead only, always traced to the original source. AI tool spotlight posts are switched off.
 
-**Lane B, evergreen** (no news hook, any age, no topic limit): how things work; origins and rise of companies and products;
+**Lane B, evergreen, the fallback** (no news hook, any age, no topic limit): how things work; origins and rise of companies and products;
 how someone got rich or lost everything; human-built things (books, languages, machines, buildings, bridges, ships, maps,
 currencies, standards); history of computing and the internet; accidental inventions and forgotten inventors; records and
 extremes; everyday objects and habits with a surprising backstory; interesting people (documented facts only). Every
@@ -128,12 +137,13 @@ Score each surviving candidate 1-10:
 | No context needed | Does it make sense to someone who knows nothing about it? |
 | Freshness | News: have the big accounts covered it? Evergreen: how few people know this angle? |
 
-A small story with a great hook beats a major headline that is boring or everywhere. **Small is fine:** the bar is "true,
-specific and surprising", not "groundbreaking" (a 1940s vending machine, why a key sits where it does, a company that nearly
-died twice, one strange animal habit). Pick the top `stories_per_day` stories and keep 2 backups.
+A small story with a great hook beats a major headline that is boring or everywhere. **The follow test:** would a stranger
+who has never seen this account follow it after seeing this one post? If the honest answer is "meh", it is mid: take
+another story. Fresh, specific and surprising wins; "interesting enough" does not. Pick the top `stories_per_day` stories
+and keep 2 backups.
 
-The lane mix comes from `plan_day.py`, and **at least one story a day is lane B**. If the plan says lane B, you write lane B
-even if a big news story is sitting right there. Tag each post's `lane`.
+Tag each post's `lane`: `news` for rungs 1 and 2 of the ladder (new, within 14 days), `evergreen` only for the last
+resort. There is no daily quota for either.
 
 ### 5.3 Hard skips
 
@@ -230,8 +240,12 @@ slides; many need none. Never mark to decorate.
 
 ### 9.1 Slides
 
-A carousel is **5 to 10 slides; the story decides how many**: 5-6 for a simple story or one striking fact, 7-8 for a
-timeline or several turns, up to 10 for a rich story. Never pad; every slide adds something new.
+A carousel is **5 to 7 slides: usually 5 or 6, never more than 7.** Stop the moment the story is told. **Every slide adds a
+NEW fact or turn; never restate, never explain the same thing in other words.** If you notice you are explaining the same
+point again, delete the slide. Anything that does not move the story forward goes in the caption.
+
+**One idea per line.** Write each slide as 1-3 short sentences, each able to stand on its own line. The renderer puts every
+sentence on its own line with a gap between them, so a slide never reads as one solid paragraph.
 
 - **Cover (slide 1).** The `headline` has one job: make a stranger swipe. Concrete, true, plain words, written fresh for
   this story (usually 6-12 words, 16 is a ceiling). Optional `kicker` of 1-3 words (category, year, place, number, mood).
@@ -397,7 +411,8 @@ need to write anything outside `queue/`, `state/history.jsonl` and this reposito
 
 - [ ] `stories_per_day` stories exist for today, each with a valid `slot` and/or `reel_slot`.
 - [ ] Each story passed the story test (5.1) and has at least 5 distinct beats.
-- [ ] At least one story is lane B; no two stories share a subject, an organization or a first word.
+- [ ] Every story is news (72 h, else 14 days); evergreen only as a last resort, with the reason in the summary; no two
+      stories share a subject, an organization or a first word.
 - [ ] Claim check done (6): every causal, superlative, count and ordering claim matches a source.
 - [ ] Each post has 3+ real pictures, none repeated, each shown by `check_images.py` and looked at; stock is labelled.
 - [ ] Marks (if any) rendered and checked.

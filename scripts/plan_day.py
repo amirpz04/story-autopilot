@@ -108,10 +108,15 @@ NEWS_SUBJECTS = {
         ["EurekAlert medicine", "r/science", "New Scientist", "ScienceDaily top"],
         ["surprising health study", "new treatment first patients", "human body discovery"],
     ),
+    "ai": (
+        "AI and robots: what AI can do now, new models and releases, AI surprising or failing, robots doing new things",
+        ["Ars Technica", "IEEE Spectrum", "Hacker News front page", "r/artificial", "r/Futurology", "r/technology"],
+        ["AI model new ability", "AI surprised researchers", "robot world first"],
+    ),
     "tech": (
-        "technology, AI and robots: what they can do now, what went wrong",
-        ["IEEE Spectrum", "Ars Technica", "Hacker News front page", "r/artificial", "r/technology", "r/Futurology"],
-        ["world first robot", "AI surprised researchers", "software bug outage cause"],
+        "technology: gadgets, software, chips, the internet, security, big launches, things that broke",
+        ["IEEE Spectrum", "Ars Technica", "Hacker News front page", "r/technology", "r/gadgets", "Hackaday"],
+        ["new chip record", "software bug outage cause", "hackers found flaw"],
     ),
     "inventions": (
         "inventions and engineering: odd gadgets, records, clever solutions, new materials",
@@ -125,8 +130,8 @@ NEWS_SUBJECTS = {
     ),
     "history": (
         "history and archaeology: what was found, what it changes about the story we know",
-        ["Smithsonian Magazine", "Atlas Obscura", "r/todayilearned", "Phys.org"],
-        ["archaeologists found", "oldest ever found", "historians discover"],
+        ["Smithsonian Magazine", "Atlas Obscura", "Phys.org", "EurekAlert earth science", "New Scientist"],
+        ["archaeologists found", "oldest ever found", "ancient DNA study rewrites history"],
     ),
 }
 
@@ -230,14 +235,10 @@ def deal(stories, seed=None, recent=None):
     recent = recent if recent is not None else variety.recent_posts(RECENT_POSTS)
     counts, weight = subject_weights(recent)
 
-    # How many evergreen: never zero, never all, when there is room for a mix.
-    if stories <= 1:
-        evergreen = rng.choice([0, 1])
-    else:
-        evergreen = rng.randint(1, max(1, stories - 1))
-
-    lanes = ["B"] * evergreen + ["A"] * (stories - evergreen)
-    rng.shuffle(lanes)
+    # NEWS FIRST. The account is about new discoveries and news in each subject. Every story starts as news; evergreen
+    # is the LAST rung of a ladder (72 hours -> 14 days -> evergreen), so each story also gets one evergreen angle as its
+    # fallback, used only when the news rungs turn up nothing strong.
+    lanes = ["A"] * stories
 
     starts = rng.sample(EVERGREEN_STARTS, min(len(EVERGREEN_STARTS), stories * 2))
     angle_pool = list(EVERGREEN_ANGLES)
@@ -257,8 +258,12 @@ def deal(stories, seed=None, recent=None):
             used_feeds.update([feed[0], backup[0]])
             country, params = rng.choice(NEWS_COUNTRIES)
             query = rng.choice(queries)
+            same = [a for a in angle_pool if a[0] == ("tech" if subject == "ai" else subject)]
+            fb = rng.choice(same or angle_pool)
+            angle_pool.remove(fb)
             plan.append({
-                "n": i, "lane": "A (news, last 72 h)", "subject": subject,
+                "n": i, "lane": "A (NEWS FIRST: last 72 h, then 14 days)", "subject": subject,
+                "fallback": "evergreen, only if nothing recent is strong: %s (subject %s)" % (fb[1], fb[0]),
                 "lean": description,
                 "start": "%s  %s" % feed,
                 "then": "%s  %s" % backup,
@@ -351,12 +356,17 @@ def main():
         print("  start at : %s" % p["start"])
         print("  if thin  : %s" % p["then"])
         print("  wildcard : %s" % p["wildcard"])
+        if p.get("fallback"):
+            print("  widen    : nothing strong in 72 h? take the best of the last 14 days in this same subject (a follow-up, 'what happened next')")
+            print("  last resort (only if both fail): %s" % p["fallback"])
     print()
     print("  Backup subjects (if an assigned one has nothing good after a fair look): %s" % ", ".join(backups))
     print_mirror(recent, counts)
     print()
     print("=" * 70)
     print("RULES FOR TODAY")
+    print("  - NEWS FIRST: new discoveries, news and releases in the subject. Old stories are the LAST resort, not a quota.")
+    print("    Ladder: last 72 h -> last 14 days -> evergreen. A day with no evergreen story at all is a normal day.")
     print("  - Each story has a SUBJECT above. Find the best story you can in it. The draw favors subjects")
     print("    that have been quiet lately, so following it is what keeps the account varied.")
     print("  - It is a steer, not a trap. Nothing good after two entry points? Use a backup subject. A clearly")
