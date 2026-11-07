@@ -1,0 +1,87 @@
+{
+  "id": "2026-11-08-02",
+  "date": "2026-11-08",
+  "slot": null,
+  "reel_slot": 3,
+  "title": "Traces of blood found in a 115-million-year-old dinosaur bone (Aratasaurus)",
+  "category": "science",
+  "tags": {
+    "headline": "claim and caveat",
+    "end": "skeptic",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 9,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 8,
+    "talkability": 8,
+    "no_context": 8,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "ScienceDaily (Curtin University release): dinosaur blood survived 115 million years",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261105224542.htm"
+    },
+    {
+      "name": "Live Science: Traces of ancient blood found in 115-million-year-old dinosaur fossil",
+      "url": "https://www.livescience.com/animals/dinosaurs/traces-of-ancient-blood-found-in-115-million-year-old-dinosaur-fossil-new-study-claims"
+    },
+    {
+      "name": "Popular Science: Dinosaur blood found in fossils for the first time",
+      "url": "https://www.popsci.com/science/first-dinosaur-blood-fossil-discovery/"
+    }
+  ],
+  "verification": "News, rung 1 (PNAS paper published Nov 2, 2026). ScienceDaily/Curtin release: Aratasaurus museunacionali, Early Cretaceous Brazil, mineralized red blood cells in vascular canals, heme molecules, collagen amino acids, hausmannite as preserving mineral, Grice 'landmark discovery' quote. Live Science (independent reporting): same findings plus outside skeptic Mary Schweitzer (NC State, not involved) who is not convinced the shapes are red blood cells (too small, no nuclear bulge) while agreeing molecules can persist over geological time; Grice on early mineralization. Popular Science and CTV coverage agree the claim is 'strongest evidence yet'. Wording avoids 'dinosaur blood' as intact blood: slides and caption say traces / chemical trace. No pronouns used for named people.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "NEW DISCOVERY",
+      "headline": "Scientists say they found traces of blood in a 115-million-year-old dinosaur bone.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Aratasaurus_museunacionali_holotype.jpg",
+        "credit": "Photo: Juliana Manso Sayão, Antônio Álamo Feitosa Saraiva / Wikimedia Commons, CC BY 4.0 (Aratasaurus holotype)"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "The bone is a leg from Aratasaurus, a meat-eating dinosaur that lived in what is now Brazil. A team led by Curtin University in Australia studied it.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Theropod_Skeleton_%2836094776020%29.jpg/1280px-Theropod_Skeleton_%2836094776020%29.jpg",
+        "credit": "Illustrative photo: a theropod dinosaur skeleton / Gary Todd, Wikimedia Commons, CC0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Inside tiny channels in the bone, they found shapes that look like red blood cells. Chemical tests found heme, a molecule that helps blood carry oxygen.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Red_blood_cells_by_darkfield_microscopy.jpg/1920px-Red_blood_cells_by_darkfield_microscopy.jpg",
+        "credit": "Illustrative photo: modern red blood cells under a microscope / Dr Graham Beards, Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "A manganese mineral called hausmannite may have locked those structures in place before they decayed. This is not liquid blood. It's a chemical trace of it, and it lasted far longer than scientists expected.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Hausmannite_%28GeoDIL_number_-_349%29.jpg/1920px-Hausmannite_%28GeoDIL_number_-_349%29.jpg",
+        "credit": "Photo: Nessa Eull / Wikimedia Commons, CC0 (a hausmannite mineral sample)"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Not everyone is convinced. Mary Schweitzer, an expert on dinosaur soft tissue, isn't sure the shapes are red blood cells."
+    }
+  ],
+  "caption": "Scientists say they found traces of blood in a dinosaur that died 115 million years ago, and the debate over it is as interesting as the find.\n\nA team led by Curtin University in Australia studied a leg bone from Aratasaurus museunacionali, a meat-eating dinosaur from Early Cretaceous Brazil. Inside the bone's tiny vessel channels, they found oval structures that look like red blood cells. Chemical tests detected heme, part of the molecule that helps blood carry oxygen, along with amino acids linked to collagen. The study was published November 2, 2026 in PNAS.\n\nThe team thinks a manganese mineral called hausmannite, plus fast burial in a low-oxygen place, helped preserve the material. Lead researcher Kliti Grice called it \"a landmark discovery.\" The authors do not claim that intact blood survived, only that chemical traces of it did.\n\nNot everyone agrees. Mary Schweitzer, a molecular paleontologist at North Carolina State University who was not part of the study, said the structures are not convincing as red blood cells: they look smaller than expected and lack the bulge where a bird or reptile cell holds its nucleus. Schweitzer does agree that some original molecules can survive over deep time.\n\nSource: Curtin University (via ScienceDaily), Live Science",
+  "hashtags": [
+    "#dinosaurs",
+    "#paleontology",
+    "#science",
+    "#fossils",
+    "#news"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "2026-11-08-01",
+  "date": "2026-11-08",
+  "slot": 1,
+  "reel_slot": 5,
+  "title": "Pompeii cupboard sealed for nearly 2,000 years opened: childhood charms and coins",
+  "category": "history",
+  "tags": {
+    "headline": "detail that doesn't fit",
+    "end": "unanswered question",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 9,
+    "shareability": 8,
+    "talkability": 6,
+    "no_context": 9,
+    "freshness": 7
+  },
+  "sources": [
+    {
+      "name": "Reuters via The Star: Pompeii cupboard opens window onto life before Vesuvius erupted",
+      "url": "https://www.thestar.com.my/news/world/2026/10/29/pompeii-cupboard-opens-window-onto-life-before-vesuvius-erupted"
+    },
+    {
+      "name": "Archaeology Magazine: Pompeii wardrobe found untouched since 79 CE",
+      "url": "https://archaeologymag.com/2026/10/pompeii-wardrobe-found-untouched-since-79-ce/"
+    }
+  ],
+  "verification": "News, rung 2 (announced Oct 29, 2026, 10 days before posting). Reuters (via The Star) and Archaeology Magazine agree on: cupboard sealed since 79 CE in a house on Via dell'Abbondanza; tweezers, perfume bottle, incense burner, coins, cooking pots, lead weights; necklace of at least 24 charms (Bes, Mercury, hands, feet, pine cones, grapes) identified as crepundia (children's amulets and rattles, sometimes kept into adulthood); owners likely had no time to retrieve belongings; Zuchtriegel quote. Archaeology Magazine only: pestle for makeup, 38 bronze coins in a basket, scholars once took such objects for magic tools. Owner's identity unknown (stated as such); no gender or name claimed. Left out: mice, the tentative 'House of Cornelius Maximus' name.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "POMPEII",
+      "headline": "Nobody opened this Pompeii cupboard for nearly 2,000 years.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Via_dell%27Abbondanza._Pompeii_01.jpg/3840px-Via_dell%27Abbondanza._Pompeii_01.jpg",
+        "credit": "Photo: Adam Harangozó / Wikimedia Commons, CC BY-SA 4.0 (Via dell'Abbondanza, Pompeii)"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Archaeologists just did. Inside were makeup tools, a glass perfume bottle, 38 bronze coins, and a necklace of childhood charms.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Glass_perfume_bottle_MET_DP205627.jpg/1920px-Glass_perfume_bottle_MET_DP205627.jpg",
+        "credit": "Illustrative photo: a Roman glass perfume bottle (Metropolitan Museum of Art) / Wikimedia Commons, CC0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The necklace has at least 24 tiny charms. Gods Bes and Mercury, little hands and feet, pine cones, bunches of grapes."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Romans hung charms like these on their kids to ward off harm, and the jingle told parents where the child was. Scholars once mistook them for tools of magic. They were baby rattles.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Frescoed_wall_of_a_house_next_to_the_Basilica_in_Pompeii_by_Wilhelm_Zahn.jpg/1920px-Frescoed_wall_of_a_house_next_to_the_Basilica_in_Pompeii_by_Wilhelm_Zahn.jpg",
+        "credit": "Illustrative image: a painted wall from a Pompeii house, illustration by Wilhelm Zahn / Wikimedia Commons, public domain"
+      }
+    },
+    {
+      "type": "end",
+      "text": "The coins and the keepsakes were still there when Vesuvius buried the city in 79 CE. We don't know the owner's name. We only know nobody came back for them."
+    }
+  ],
+  "caption": "Nobody opened this cupboard for nearly 2,000 years. Inside was one Pompeii resident's whole life.\n\nArchaeologists pieced together a wooden cupboard from a house on Via dell'Abbondanza, one of the busiest streets in ancient Pompeii. It was announced on October 29, 2026. Inside were tweezers, a small pestle for mixing makeup, a glass perfume bottle, an incense burner, a bronze lamp, cooking pots and 38 bronze coins in a small basket. Lead weights in a wooden box suggest someone in the house traded goods.\n\nThe most personal find was a necklace of at least 24 tiny charms made of bone, glass paste and rock crystal, showing the gods Bes and Mercury, hands, feet, pine cones and grapes. Scholars once took objects like these for magic tools, but they are crepundia, Roman children's amulets that also worked as rattles. Adults often kept them for life.\n\nThe coins and keepsakes were left behind, which suggests the owners had no time to retrieve them when Vesuvius erupted in 79 CE. Site director Gabriel Zuchtriegel said: \"We cannot reconstruct with certainty the identity of whoever lived in the house, but these fragments bring us closer to their daily life.\"\n\nSource: Reuters, Archaeology Magazine",
+  "hashtags": [
+    "#pompeii",
+    "#archaeology",
+    "#history",
+    "#ancientrome",
+    "#news"
+  ]
+}
