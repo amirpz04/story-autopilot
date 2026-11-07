@@ -1,0 +1,91 @@
+{
+  "id": "2026-11-07-02",
+  "date": "2026-11-07",
+  "slot": null,
+  "reel_slot": 3,
+  "title": "Play-Doh began as a wallpaper cleaner",
+  "category": "inventions",
+  "tags": {
+    "headline": "reversal",
+    "end": "callback",
+    "lane": "evergreen"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 6,
+    "shareability": 8,
+    "talkability": 6,
+    "no_context": 9,
+    "freshness": 6
+  },
+  "sources": [
+    {
+      "name": "The Strong National Museum of Play",
+      "url": "https://www.museumofplay.org/blog/the-history-of-play-doh-good-clean-fun/"
+    },
+    {
+      "name": "Fox TV Stations (Cincinnati)",
+      "url": "https://www.fox9.com/news/brief-history-play-doh"
+    }
+  ],
+  "verification": "Museum of Play and Fox TV Stations (Dec 13, 2024, drawing on the Strong museum and Tim Walsh's Timeless Toys) agree on: Kutol Products of Cincinnati, 1933 Kroger wallpaper-cleaner contract, coal soot, water/salt/flour, sales drop after WWII as homes left coal, sister-in-law schoolteacher (named Kay Zufall by the Museum of Play), Rainbow Crafts 1956, Captain Kangaroo (Bob Keeshan), over 1 million cans a year by 1964, 2+ billion cans since 1955, National Toy Hall of Fame 1998. Sources differ on whether Kay's idea dated 1954 or 1955 and on who first made the dough (Noah vs Cleo), so those details are left out.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "INVENTIONS",
+      "headline": "Play-Doh was invented to scrub soot off wallpaper",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Play-doh_%283757135606%29.jpg/3840px-Play-doh_%283757135606%29.jpg",
+        "credit": "Photo: Betsy Weber / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Coal furnaces left a sooty film on American walls. In 1933, grocery chain Kroger signed a deal with Kutol, a struggling Cincinnati soap company, for ready-made wallpaper cleaner.",
+      "layout": "split",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Coal_furnaces_in_the_Library_of_Congress_LCCN2005694710.jpg",
+        "credit": "Photo: Library of Congress / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The cleaner was a soft dough of water, salt and flour. It sold for about 20 years. Then homes switched from coal to oil and gas, and the soot, and the sales, faded."
+    },
+    {
+      "type": "text",
+      "text": "Joe McVicker, whose family ran Kutol, heard from his sister-in-law Kay Zufall, a teacher, that kids found regular modeling clay too stiff. The dough was softer. Kids loved it.",
+      "layout": "full",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Play-Doh.jpg",
+        "credit": "Photo: Letstown / Wikimedia Commons, CC0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "In 1956 he started Rainbow Crafts, gave the dough a new name, Play-Doh, and sold it to schools. Soon it came in red, yellow and blue."
+    },
+    {
+      "type": "text",
+      "text": "Then Bob Keeshan, TV's Captain Kangaroo, used it on his show, and sales took off. By 1964 more than a million cans a year were shipping.",
+      "layout": "split",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/95/Bob_keeshan_captain_kangaroo_1977.JPG",
+        "credit": "Photo: CBS Television / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Wallpaper got cleaner, and the cleaner lost its job. Two billion cans later, it's in the National Toy Hall of Fame."
+    }
+  ],
+  "caption": "The most famous modeling dough in America started life scrubbing walls.\n\nIn the 1930s, coal heat left a sooty film on wallpaper. Kutol Products, a Cincinnati soap company close to going under, landed a 1933 deal with Kroger to make ready-made wallpaper cleaner. The recipe was a soft, non-toxic dough of flour, salt and water.\n\nIt sold for roughly 20 years. After World War II, families moved from coal furnaces to oil and gas, and with less soot, demand for the cleaner dropped in the early 1950s.\n\nThen came the twist. Joe McVicker, who had taken over the family business, heard from his sister-in-law Kay Zufall, a schoolteacher, that children found regular modeling clay hard to work with. This soft dough was easier, and kids loved it. In 1956 McVicker founded Rainbow Crafts, and the product was renamed Play-Doh.\n\nIt went to schools first. Then Bob Keeshan, the TV star Captain Kangaroo, began using it on his show, and sales jumped. By 1964 the company was shipping more than a million cans a year. An estimated two billion cans have sold since, and Play-Doh joined the National Toy Hall of Fame in 1998.\n\nWhat other everyday thing do you think started out as something totally different?\n\nSource: The Strong National Museum of Play, Fox TV Stations",
+  "hashtags": [
+    "#playdoh",
+    "#history",
+    "#inventions",
+    "#nostalgia",
+    "#funfacts"
+  ]
+}

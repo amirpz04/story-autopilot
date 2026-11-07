@@ -1,0 +1,96 @@
+{
+  "id": "2026-11-07-01",
+  "date": "2026-11-07",
+  "slot": 1,
+  "reel_slot": 5,
+  "title": "Arctic polar vortex forecast to collapse earlier than ever recorded",
+  "category": "nature",
+  "tags": {
+    "headline": "gap",
+    "end": "tug of war",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 6,
+    "shareability": 7,
+    "talkability": 8,
+    "no_context": 6,
+    "freshness": 9
+  },
+  "sources": [
+    {
+      "name": "Smithsonian Magazine",
+      "url": "https://www.smithsonianmag.com/smart-news/the-arctic-polar-vortex-is-collapsing-earlier-in-the-season-than-ever-documented-but-we-dont-know-how-itll-affect-global-weather-180989818/"
+    },
+    {
+      "name": "Fox Weather",
+      "url": "https://www.foxweather.com/extreme-weather/historic-polar-vortex-disruption-earlier-winter.amp"
+    }
+  ],
+  "verification": "Smithsonian Magazine (Nov 6, 2026, citing Bloomberg, USA Today, Scientific American, Guardian, Newsweek): forecasts say the vortex could collapse within about a week; vortex winds sit roughly 10-30 miles up; records since 1958; NOAA's Laura Ciasto says only two other SSWs documented in November; previous earliest Nov 28, 1968; 2021 disruption contributed to Great Texas Freeze (200+ deaths, 4.5M homes and businesses without power); record 'super' El Nino; researchers unsure of interaction. Fox Weather (Oct 27, 2026): MIT's Judah Cohen calls it the largest, earliest disruption on record in forecasts; timing, strength and impacts highly uncertain. Worded as forecast, not as an event that has happened.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "ARCTIC",
+      "headline": "Something 20 miles up is forecast to break weeks earlier than ever recorded",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/A_Series_of_Rare_Disturbances_in_the_Stratosphere_%28153258_-_vorticity_mra2_20240805_lrg%29.jpg",
+        "credit": "Photo: NASA Earth Observatory / Wikimedia Commons, Public domain. Illustrative image of a past vortex disturbance"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Above the North Pole, a ring of winds roughly 10 to 30 miles up normally keeps the coldest air bottled in. It is called the polar vortex.",
+      "layout": "split",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/02/Stable_vs_Disrupted_Polar_Vortex.png",
+        "credit": "Diagram: NOAA / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Sometimes the air up there heats sharply within days. The winds can weaken, reverse or split, and Arctic cold can spill south.",
+      "layout": "full",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c0/Satellite_Image_Shows_Entry_of_the_Polar_Vortex_into_the_Northern_U.S._%2811802088476%29.jpg",
+        "credit": "Photo: NASA Goddard Space Flight Center / Wikimedia Commons, Public domain. Illustrative image of an earlier cold outbreak"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Records go back to 1958. Only two of these events were ever documented in November. The earliest was November 28, 1968. Forecasters now expect this one within about a week."
+    },
+    {
+      "type": "text",
+      "text": "The last big one, in 2021, helped feed the Great Texas Freeze: over 200 deaths and 4.5 million homes and businesses without power.",
+      "layout": "split",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Winter_Storm_Uri_February_15_2021.jpg",
+        "credit": "Photo: NOAA / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "But this winter has a rival. A record-strength \"super\" El Niño usually brings milder weather to North America. Scientists don't know which force wins.",
+      "layout": "full",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/44/El_Ni%C3%B1o_2026-_Sea_Surface_Temperature_Anomaly_%282025_vs_2026%29_%E2%80%93_Updated_Daily_%28SVS5688%29.jpg",
+        "credit": "Photo: NASA's Scientific Visualization Studio / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Two record-breaking forces, pulling winter in opposite directions. Even the experts say they don't know who wins."
+    }
+  ],
+  "caption": "Twenty miles above the North Pole, something is about to break, and it is forecast to happen earlier in the year than anything on record.\n\nEvery winter a ring of fast winds called the polar vortex circles the Arctic, roughly 10 to 30 miles up, and keeps the coldest air near the pole. When the stratosphere suddenly heats up over a few days, those winds can weaken, reverse or even split in two. Cold air that is normally locked in can then slide south.\n\nReliable records of these events go back to 1958. NOAA meteorologist Laura Ciasto says only two have ever been documented in November, and the earliest was November 28, 1968. Forecasts now point to one within about a week of November 6, 2026. MIT climatologist Judah Cohen has called it the largest, earliest disruption on record in the forecasts.\n\nWhy care? A disruption in 2021 helped feed the Great Texas Freeze, which killed more than 200 people and left 4.5 million homes and businesses without power. This time a record \"super\" El Niño is pulling the other way, since El Niño usually means a milder winter for much of North America.\n\nNobody knows how those two will interact. Forecasters stress that timing, strength and impacts are still uncertain, and this is a forecast, not a done deal.\n\nSo is a cold winter coming, or a warm one? Honestly, the experts are still arguing.\n\nSource: Smithsonian Magazine, Fox Weather",
+  "hashtags": [
+    "#weather",
+    "#polarvortex",
+    "#science",
+    "#climate",
+    "#winter"
+  ]
+}
