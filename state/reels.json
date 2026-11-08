@@ -313,11 +313,15 @@
   "2026-11-07-02": {
     "attempts": 0,
     "credit": "Life In Silico by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "error": "",
     "file": "20261107-120452-2026-11-07-02.mp4",
     "made_at": "2026-11-07T12:06:00.849026+00:00",
+    "media_id": "18067556750780840",
     "music": "life-in-silico.m4a",
+    "permalink": "https://www.instagram.com/reel/DfduFpdjW_B/",
+    "posted_at": "2026-11-08T02:49:10.640306+00:00",
     "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/bc890f73bb7311f4556c839520b0421ba92e4d2b/20261107-120452-2026-11-07-02.mp4",
-    "status": "made",
+    "status": "posted",
     "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@bc890f73bb7311f4556c839520b0421ba92e4d2b/20261107-120452-2026-11-07-02.mp4"
   },
   "demo-02": {
