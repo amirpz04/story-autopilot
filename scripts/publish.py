@@ -79,6 +79,12 @@ def note_api_ok():
         HEALTH_FILE.write_text(json.dumps({"fails": 0, "reason": "", "until": None}) + "\n")
 
 
+def soft_rest(minutes, reason):
+    """A short pause that does not count as a failure (used when Instagram returned its block error but the post went live)."""
+    HEALTH_FILE.write_text(json.dumps({"fails": 0, "reason": str(reason)[:200],
+                                        "until": (datetime.now(timezone.utc) + timedelta(minutes=minutes)).isoformat()}) + "\n")
+
+
 def block_reason(config, state):
     """Why publishing must not happen right now, or None."""
     if config.get("paused"):
@@ -360,6 +366,9 @@ def main():
                     if m.get("media_product_type") != "REELS" and (m.get("caption") or "").strip().startswith(hook):
                         record.update(status="posted", media_id=m["id"], posted_at=datetime.utcnow().isoformat() + "Z", note="live despite block error")
                         record.pop("error", None)      # it is live: no stale error on the dashboard
+                        # It went out, so this was a warning, not a failure: a short pause (over the 45 minute gap) instead of 12 h,
+                        # otherwise every day's carousel froze the afternoon Reel until night.
+                        soft_rest(60, "post went live despite the block error")
                         break
             except Exception:
                 pass

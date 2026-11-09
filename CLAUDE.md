@@ -28,7 +28,7 @@ as an alert with a plain error. Content errors are fixed by the daily run (ROUTI
 ## 2. Files
 **Scripts (`scripts/`)**
 - `publish.py`: finds the due item and posts it. Safety: `instagram_gate` reads Instagram's own recent posts (no duplicates,
-  45 min gap, daily cap); `api_backoff` waits 30 min -> 4 h after Instagram refuses, but 12 h (then 24 h) after a spam block (`is_block`, error 2207051); the counter resets only after a real publish, not after a read (`state/api_health.json`). After a block error the post is looked up and marked posted if it went live anyway; a Reel is only a duplicate of another Reel; random 0-4 min delay.
+  45 min gap, daily cap); `api_backoff` waits 30 min -> 4 h after Instagram refuses, but 12 h (then 24 h) after a spam block (`is_block`, error 2207051); the counter resets only after a real publish, not after a read (`state/api_health.json`). After a block error the post is looked up and marked posted if it went live anyway (then only a 60 min pause, not the 12 h rest, because the post got out); a Reel is only a duplicate of another Reel; random 0-4 min delay.
   Never fails the run on an Instagram refusal (no emails). **No content checks here (owner's decision).**
 - `publish_reel.py`: posts a Reel (`REELS`, `share_to_feed`); caption = post caption + hashtags + photo credits + music credit; re-renders an expired video first.
 - `reel_job.py`, `make_reel.py`, `templates/reel.html`: Reel video (Playwright frames -> ffmpeg), music rotation (no repeat within 5).
