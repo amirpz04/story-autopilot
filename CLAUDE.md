@@ -91,7 +91,7 @@ exactly `stories_per_day` stories; soft variety (no shared source organization, 
 a `variety_exception` reason).
 
 ## 6. Reels
-Same photos and text as the carousel, animated, 1080x1920, 30 fps, ~25-40 s, with music.
+Same photos and text as the carousel, animated, 1080x1920, 30 fps, each slide stays as long as its text needs (about 170 words a minute, set in make_reel.py), usually 45-75 s, with music.
 - **Safe box for the owner's iPhone 13**: all text inside x 140-810, y ~460-1220 (Instagram covers the top 11%, right 13%,
   bottom 27%; iPhones crop ~9% per side). No progress bars, no @handle on the video; photo credits go in the caption. Do not move text out of the box.
 - Music: Instagram's own library is not available through the API. Owner likes the current six tracks, dislikes Kevin MacLeod and Satie.

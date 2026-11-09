@@ -55,17 +55,22 @@ def load_config():
     return json.loads((ROOT / "config.json").read_text())
 
 
-def scene_duration(slide):
+SECONDS_PER_WORD = 0.35   # about 170 words a minute, versus about 280 before: slower for readers whose first language is not English
+BASE_SECONDS = 1.5        # fade-in and a moment to look at the picture before reading starts
+MAX_REEL_SECONDS = 88     # Instagram Reels limit is 90 s; slow everything down only as far as this allows
+
+
+def scene_duration(slide, pace=1.0):
+    """How long a slide stays on screen, from the amount of text on it (every slide, automatically)."""
     words = len((slide.get("headline") or slide.get("text") or "").split())
-    if slide["type"] == "cover":
-        return min(5.0, max(3.4, 2.1 + words * 0.26))
-    if slide["type"] == "end":
-        return 3.6
-    return min(6.4, max(2.9, 1.5 + words * 0.31))
+    floor = 4.5 if slide["type"] == "cover" else 4.0
+    return min(16.0, max(floor, BASE_SECONDS + words * SECONDS_PER_WORD)) * pace
 
 
 def build_scenes(post, work):
     scenes, t = [], 0.0
+    est = sum(scene_duration(s) for s in post["slides"])
+    pace = min(1.0, (MAX_REEL_SECONDS - 6) / est) if est else 1.0   # only very long posts get squeezed, never below the limit
     for n, slide in enumerate(post["slides"]):
         image = slide.get("image") or {}
         photo, ar = None, None
@@ -87,7 +92,7 @@ def build_scenes(post, work):
                 path = work / f"photo{n}.{ext}"
                 path.write_bytes(data)
                 photo, ar = path.as_uri(), dims[0] / dims[1]
-        dur = scene_duration(slide) + (min(2.0, 0.55 * len(image.get("marks") or [])) if photo else 0)   # time to see the marks
+        dur = scene_duration(slide, pace) + (min(2.0, 0.55 * len(image.get("marks") or [])) if photo else 0)   # time to see the marks
         scenes.append({
             "type": slide["type"], "kicker": (slide.get("kicker") or "").upper() if slide["type"] == "cover" else "",
             "text": slide.get("headline") or slide.get("text") or "", "photo": photo, "ar": ar,
