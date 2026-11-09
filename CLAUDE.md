@@ -17,7 +17,7 @@ Repo (public): github.com/amirpz04/story-autopilot. Dashboard: https://amirpz04.
 | every 10 min | **Owner's Mac mini** runs `gh workflow run publish.yml`. It posts at most ONE due carousel or Reel, refreshes Instagram numbers (every 25 min), rebuilds the dashboard, commits `state/ queue/ docs/`. | `publish.py`, `publish_reel.py`, `stats.py`, `dashboard.py` |
 | anytime | Owner uses the dashboard: remove, edit, reschedule, post now, counts, pause, music. | `control.py` |
 
-**Current plan: 1 carousel + 2 Reels a day from 2 stories** (story 1 = carousel + Reel, story 2 = Reel only). NY times, each
+**Current plan (owner, Nov 9): 0 carousels + 3 Reels a day from 3 stories** (carousels stopped: every carousel publish returns Instagram's 2207051 block error while Reels never do; Reels at 11:00, 16:00, 22:00 NY). Before: 1 carousel + 2 Reels from 2 stories (story 1 = carousel + Reel, story 2 = Reel only). NY times, each
 shifted randomly up to +-35 min a day: carousel 09:00, Reels 16:00 and 22:00. A story's Reel slot is rotated so its carousel and
 Reel are hours apart. Reduced from 3+3 on Nov 5 after Instagram spam blocks.
 

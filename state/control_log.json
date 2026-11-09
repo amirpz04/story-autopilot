@@ -1,5 +1,17 @@
 [
   {
+    "action": "posts_per_day",
+    "at": "2026-11-09T15:22:21.447088+00:00",
+    "result": "Now 0 carousel posts and 3 Reels a day, from 3 stories (takes effect from the next research run).",
+    "target": "0"
+  },
+  {
+    "action": "reels_per_day",
+    "at": "2026-11-09T15:22:21.371719+00:00",
+    "result": "Now 1 carousel post and 3 Reels a day, from 3 stories (takes effect from the next research run).",
+    "target": "3"
+  },
+  {
     "action": "post_reel",
     "at": "2026-10-31T16:22:21.820136+00:00",
     "result": "Reel posted: https://www.instagram.com/reel/DfKkwwDDJ0G/",
