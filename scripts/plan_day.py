@@ -50,11 +50,20 @@ NEWS_FEEDS = [
     ("Smithsonian Magazine", "https://www.smithsonianmag.com/rss/latest_articles/"),
     ("Atlas Obscura", "https://www.atlasobscura.com/feeds/latest"),
     ("Hackaday", "https://hackaday.com/feed/"),
+    ("TechCrunch", "https://techcrunch.com/feed/"),
+    ("The Verge", "https://www.theverge.com/rss/index.xml"),
+    ("Engadget", "https://www.engadget.com/rss.xml"),
+    ("STAT News (medicine, drugs, biotech)", "https://www.statnews.com/feed/"),
+    ("Phys.org chemistry", "https://phys.org/rss-feed/chemistry-news/"),
+    ("Phys.org materials", "https://phys.org/rss-feed/nanotech-news/"),
     ("r/science", "https://www.reddit.com/r/science/top.json?t=day&limit=25"),
     ("r/space", "https://www.reddit.com/r/space/top.json?t=day&limit=25"),
     ("r/technology", "https://www.reddit.com/r/technology/top.json?t=day&limit=25"),
     ("r/Futurology", "https://www.reddit.com/r/Futurology/top.json?t=day&limit=25"),
     ("r/artificial", "https://www.reddit.com/r/artificial/top.json?t=day&limit=25"),
+    ("r/stocks", "https://www.reddit.com/r/stocks/top.json?t=day&limit=25"),
+    ("r/apple", "https://www.reddit.com/r/apple/top.json?t=day&limit=25"),
+    ("r/youtube", "https://www.reddit.com/r/youtube/top.json?t=day&limit=25"),
     ("r/gadgets", "https://www.reddit.com/r/gadgets/top.json?t=day&limit=25"),
     ("r/EngineeringPorn", "https://www.reddit.com/r/EngineeringPorn/top.json?t=day&limit=25"),
     ("r/natureisfuckinglit", "https://www.reddit.com/r/natureisfuckinglit/top.json?t=day&limit=25"),
@@ -104,9 +113,9 @@ NEWS_SUBJECTS = {
         ["deep sea discovery", "oldest tree plant record", "geology surprising discovery"],
     ),
     "health": (
-        "the human body and medicine: surprising findings, new treatments",
-        ["EurekAlert medicine", "r/science", "New Scientist", "ScienceDaily top"],
-        ["surprising health study", "new treatment first patients", "human body discovery"],
+        "the human body, medicine, drugs and biotech: surprising findings, new treatments, new drug approvals, gene and cell therapies",
+        ["STAT News (medicine, drugs, biotech)", "EurekAlert medicine", "r/science", "New Scientist", "ScienceDaily top"],
+        ["new drug approved first", "new treatment first patients", "gene therapy breakthrough"],
     ),
     "ai": (
         "AI and robots: what AI can do now, new models and releases, AI surprising or failing, robots doing new things",
@@ -115,8 +124,25 @@ NEWS_SUBJECTS = {
     ),
     "tech": (
         "technology: gadgets, software, chips, the internet, security, big launches, things that broke",
-        ["IEEE Spectrum", "Ars Technica", "Hacker News front page", "r/technology", "r/gadgets", "Hackaday"],
+        ["IEEE Spectrum", "Ars Technica", "Hacker News front page", "r/technology", "r/gadgets", "The Verge", "Engadget"],
         ["new chip record", "software bug outage cause", "hackers found flaw"],
+    ),
+    "business": (
+        "companies, money and investments in tech: Nvidia, Apple, Microsoft, Google, Amazon, Tesla, big deals, funding rounds, "
+        "stock moves, earnings, lawsuits, products that launch or flop",
+        ["TechCrunch", "The Verge", "Ars Technica", "r/stocks", "r/technology", "Hacker News front page"],
+        ["Nvidia Apple Microsoft deal billion", "startup raises funding record", "tech company earnings surprise"],
+    ),
+    "apps": (
+        "apps and platforms people use every day: Instagram, YouTube, Meta, TikTok, WhatsApp, X, Netflix, Spotify, Google, "
+        "new features, policy changes, outages, what changes for ordinary users",
+        ["The Verge", "TechCrunch", "Engadget", "r/youtube", "r/apple", "r/technology"],
+        ["Instagram YouTube Meta new feature", "app update changes users", "TikTok WhatsApp new rule"],
+    ),
+    "materials": (
+        "chemistry and materials: new materials, batteries, plastics, fabrics and textiles, medicines being made, chemical surprises, manufacturing",
+        ["Phys.org chemistry", "Phys.org materials", "EurekAlert technology", "IEEE Spectrum", "New Scientist", "r/EngineeringPorn"],
+        ["new material scientists created", "fabric textile new technology", "chemists discovered reaction"],
     ),
     "inventions": (
         "inventions and engineering: odd gadgets, records, clever solutions, new materials",
@@ -219,6 +245,17 @@ def weighted_pick(rng, items, weights):
     return items[-1]
 
 
+# What the owner wants first (Nov 9): new things in AI, technology, companies and apps come first; then the wider
+# world of technology and science; then space, animals and nature; history only when nothing newer is strong.
+# These are base weights; the "quiet lately" factor below still keeps a day varied.
+SUBJECT_TIER_WEIGHT = {
+    "ai": 6, "tech": 6, "business": 6, "apps": 6,                          # tier 1: fresh tech and company news
+    "materials": 3, "inventions": 3, "health": 3, "science": 3,            # tier 2: all the other sides of technology
+    "space": 1.5, "animals": 1, "nature": 1,                               # tier 3: space and the living world
+    "history": 0.25, "people": 0.25,                                       # tier 4: old facts, last resort
+}
+
+
 def subject_weights(recent):
     """How likely each subject is to be dealt: quiet ones often, busy ones rarely.
 
@@ -226,7 +263,7 @@ def subject_weights(recent):
     filled none. Nothing is ever ruled out, so a subject can still come back if it earns it.
     """
     counts = Counter(row["category"] for row in recent)
-    return counts, (lambda cat: 1.0 / (1 + counts[cat]) ** 2)
+    return counts, (lambda cat: SUBJECT_TIER_WEIGHT.get(cat, 1.0) / (1 + counts[cat]) ** 2)
 
 
 def deal(stories, seed=None, recent=None):
@@ -258,7 +295,7 @@ def deal(stories, seed=None, recent=None):
             used_feeds.update([feed[0], backup[0]])
             country, params = rng.choice(NEWS_COUNTRIES)
             query = rng.choice(queries)
-            same = [a for a in angle_pool if a[0] == ("tech" if subject == "ai" else subject)]
+            same = [a for a in angle_pool if a[0] == ("tech" if subject in ("ai", "apps") else "business" if subject == "business" else "inventions" if subject == "materials" else subject)]
             fb = rng.choice(same or angle_pool)
             angle_pool.remove(fb)
             plan.append({
@@ -367,6 +404,10 @@ def main():
     print("RULES FOR TODAY")
     print("  - NEWS FIRST: new discoveries, news and releases in the subject. Old stories are the LAST resort, not a quota.")
     print("    Ladder: last 72 h -> last 14 days -> evergreen. A day with no evergreen story at all is a normal day.")
+    print("  - PRIORITY OF SUBJECTS (owner): 1) fresh AI, tech, company/investment and app news (Nvidia, Apple, Meta, Instagram,")
+    print("    YouTube...); 2) every other side of technology: materials, chemistry, fabrics, drugs, medicine, inventions, science;")
+    print("    3) space, animals, nature; 4) history and old discoveries ONLY if nothing newer is strong. If your assigned")
+    print("    subject has nothing new, move DOWN this list, never straight to history.")
     print("  - Each story has a SUBJECT above. Find the best story you can in it. The draw favors subjects")
     print("    that have been quiet lately, so following it is what keeps the account varied.")
     print("  - It is a steer, not a trap. Nothing good after two entry points? Use a backup subject. A clearly")

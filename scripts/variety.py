@@ -23,7 +23,8 @@ CATEGORY_ALIASES = {
     "animal": "animals", "wildlife": "animals",
     "earth": "nature", "oceans": "nature", "environment": "nature",
     "medicine": "health", "archaeology": "history",
-    "money": "business", "finance": "business", "economics": "business", "companies": "business",
+    "money": "business", "finance": "business", "economics": "business", "companies": "business", "investments": "business",
+    "platforms": "apps", "social media": "apps", "chemistry": "materials", "textiles": "materials", "fabrics": "materials", "drugs": "health", "biotech": "health",
     "space exploration": "space",
 }
 

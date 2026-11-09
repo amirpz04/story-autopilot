@@ -110,6 +110,7 @@ Same photos and text as the carousel, animated, 1080x1920, 30 fps, each slide st
 - **The publisher only posts**: no content checks, no failing runs, no emails. Quality belongs to the research run. Status goes on the dashboard (he never reads email).
 - Picture-rich 5-7 slide posts (owner: 8 pages is too long, Nov 7), no slide counter, detailed caption. Every sentence on its own line.
 - **News first (owner, Nov 7):** the account is about new discoveries and news in each subject. Order: last 72 h, then last 14 days, then evergreen as a last resort. No evergreen quota. Real pictures of the subject first; labelled Unsplash fallback allowed.
+- **Subject priority (owner, Nov 9):** 1) fresh AI, tech, company/investment and app news (Nvidia, Apple, Meta, Instagram, YouTube); 2) all other sides of technology (chemistry, materials, fabrics, drugs, medicine, inventions, science); 3) space, animals, nature; 4) history/old discoveries only if nothing newer is strong. Implemented as tier weights in `plan_day.py` (`SUBJECT_TIER_WEIGHT`) plus ROUTINE section 4.
 - Reels are automatic. He picks the counts. No spare posts (removed Nov 5). No AI-tool-spotlight posts.
 - Two lanes: news and evergreen (evergreen needs 2 independent sources).
 - Keep a story's carousel and Reel hours apart.

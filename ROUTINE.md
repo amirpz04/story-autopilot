@@ -85,8 +85,19 @@ finding, a find. Climb the ladder only as far as you must:
    you a fallback angle for each story. Say in your summary which stories had to fall back and why.
 A day with no evergreen story at all is a normal day; a day full of them means you stopped looking too early.
 
-**Lane A, news** (prefer the last 72 hours): AI and robots; science discoveries; space and astronomy; nature, animals and
-plants; health and medicine; inventions and engineering; major news in these areas (always cover something big, with the
+**Subject priority (owner, Nov 9). This decides where you look and what you drop first:**
+1. **Fresh AI, technology, companies and apps**: new models and robots; Nvidia, Apple, Microsoft, Google, Meta, Amazon, Tesla;
+   investments, funding, earnings, deals, launches and flops; Instagram, YouTube, TikTok, WhatsApp and other apps people use.
+2. **Every other side of technology and science**: chemistry and materials, fabrics and textiles, batteries, drugs and
+   biotech, medicine, inventions and engineering, physics and the brain.
+3. **Space, animals and nature.**
+4. **History and old discoveries**: only when nothing newer is strong enough.
+`plan_day.py` draws the subjects with this priority. If an assigned subject has nothing new, move DOWN this list (1 to 2 to 3),
+never straight to history. Nothing is excluded: a great story in any subject beats a weak one in a higher tier.
+
+**Lane A, news** (prefer the last 72 hours): AI and robots; tech, companies, investments and apps; chemistry, materials and
+fabrics; science discoveries; space and astronomy; nature, animals and plants; health, drugs and medicine; inventions and
+engineering; major news in these areas (always cover something big, with the
 context ordinary people need); big tech news that you can explain to normal people; weird tech and scams; tech outside the
 English-speaking world (translate it); "what happened next" follow-ups to stories that were big 2-12 weeks ago. Reddit is a
 lead only, always traced to the original source. AI tool spotlight posts are switched off.
@@ -343,8 +354,8 @@ Write each post as `queue/<date>/<NN>/post.json`:
 }
 ```
 
-`category` is one of the plan's subject words (space, animals, nature, health, tech, inventions, science, history, business,
-people). Do not add fields that are not shown here.
+`category` is one of the plan's subject words (ai, tech, business, apps, materials, inventions, health, science, space, animals,
+nature, history, people). Do not add fields that are not shown here.
 
 **Slots.** Rank the stories, strongest first; story `i` is the `i`-th. `reels_mode` in `config.json` decides (write
 `stories_per_day` stories):
