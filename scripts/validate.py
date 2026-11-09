@@ -136,12 +136,12 @@ def check_post(path, config):
     if slot is not None:
         if not 1 <= slot <= len(config["post_times"]):
             errors.append("slot %s has no publishing time in config.json" % slot)
-        if "active_slots" in config and slot not in config["active_slots"]:
+        if "active_slots" in config and slot not in config["active_slots"] and str(post.get("date", "")) >= config.get("stories_count_from", ""):
             errors.append("slot %s is not one of the active slots %s in config.json" % (slot, config["active_slots"]))
     if reel_slot is not None:
         if not 1 <= reel_slot <= len(config.get("reel_times", [])):
             errors.append("reel_slot %s has no time in config.json reel_times" % reel_slot)
-        if "reel_active_slots" in config and reel_slot not in config["reel_active_slots"]:
+        if "reel_active_slots" in config and reel_slot not in config["reel_active_slots"] and str(post.get("date", "")) >= config.get("stories_count_from", ""):
             errors.append("reel_slot %s is not one of the active Reel slots %s in config.json" % (reel_slot, config["reel_active_slots"]))
     if not post["sources"] or not all(s.get("url", "").startswith("http") for s in post["sources"]):
         errors.append("every source needs a url")
@@ -214,6 +214,8 @@ def main():
 
     # The day must be complete. Runs used to stop at one story and report success.
     wanted = int(config.get("stories_per_day", 0) or 0)
+    if day_dir.name < config.get("stories_count_from", ""):        # days written under the previous daily count
+        wanted = int(config.get("stories_per_day_before", wanted))
     scheduled = posts
     if wanted and len(scheduled) < wanted:
         day_errors.append("only %d of %d stories written for this day; %s missing (ROUTINE.md section 12)"
