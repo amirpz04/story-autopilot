@@ -1,0 +1,86 @@
+{
+ "id": "2026-11-09-01",
+ "date": "2026-11-09",
+ "slot": 1,
+ "reel_slot": 5,
+ "title": "NASA's Swift telescope, built for two years, falls to Earth after 22",
+ "category": "space",
+ "tags": {
+  "headline": "expectation versus result",
+  "end": "callback",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 8,
+  "emotion": 8,
+  "shareability": 8,
+  "talkability": 7,
+  "no_context": 8,
+  "freshness": 9
+ },
+ "sources": [
+  {
+   "name": "ABC7: A 3,200-pound NASA observatory plunged back to Earth",
+   "url": "https://abc7news.com/story/nasas-neil-gehrels-swift-observatory-is-careening-back-earth-heres-what-know/20015487/"
+  },
+  {
+   "name": "ScienceDaily: Swift telescope falls to Earth after nearly 22 years in space",
+   "url": "https://www.sciencedaily.com/releases/2026/11/261105224545.htm"
+  }
+ ],
+ "verification": "News, rung 1 (re-entry Nov 4, 2026). ScienceDaily: launched 2004, three telescopes, gamma-ray bursts from collapsing massive stars or merging neutron stars, originally planned for two years (more than ten times longer than planned), U.S. Space Force: re-entry 7:39 a.m. EST over North Sumatra, Indonesia, most of it expected to burn up but some parts might have survived. ABC7: sun's 2024 cycle peak, flares and ejections expanded the atmosphere and added drag, Swift dropped to about 171 miles; Katalyst Space LINK built in about nine months, launched in July, spun out of control before reaching Swift; final shutdown command Oct 20 (Penn State team); NASA earlier harm estimate about 1 in 2,100. Debris outcome not confirmed in sources; slides say 'expected' only. Search summary of other outlets agreed on date, location and failed rescue.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "SPACE",
+   "headline": "NASA planned two years for this telescope. It gave 22.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Swift_Observatory_spacecraft_model.png",
+    "credit": "Illustration: NASA E/PO, Sonoma State University / Aurore Simonnet / Wikimedia Commons, Public domain (Swift spacecraft model)"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Swift carried three telescopes that saw different kinds of light. Its job was chasing gamma-ray bursts, flashes of energy from collapsing giant stars and crashing neutron stars.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Artist%E2%80%99s_impression_of_a_gamma-ray_burst_shining_through_two_young_galaxies_in_the_early_Universe.jpg",
+    "credit": "Illustration (artist's impression of a gamma-ray burst): ESO / L. Calçada / Wikimedia Commons, CC BY 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Then the Sun got in the way. It hit the peak of its 11-year cycle in 2024. Flares and eruptions puffed up Earth's upper atmosphere, adding drag, until Swift sank to about 171 miles (275 km) up."
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "In July, a startup launched a spacecraft, built in about nine months, to grab Swift and lift its orbit. Weeks later it spun out of control before it reached the telescope.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Swift_Spacecraft_Animations-_2025_%28SVS14786_-_Swift_1%29.png",
+    "credit": "Illustration: NASA's Scientific Visualization Studio / Wikimedia Commons, Public domain (Swift)"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Swift got its final shutdown command on October 20. On November 4 at 7:39 a.m. ET it fell into the atmosphere over Sumatra, Indonesia. NASA had put the chance of harm to anyone at about 1 in 2,100.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Swift_Spacecraft_Animations-_2025_%28SVS14786_-_Swift_2%29.png",
+    "credit": "Illustration: NASA's Scientific Visualization Studio / Wikimedia Commons, Public domain (Swift)"
+   }
+  },
+  {
+   "type": "end",
+   "text": "Built for two years, it worked for nearly 22. The universe is still flashing, and one more telescope that watched it is gone."
+  }
+ ],
+ "caption": "NASA built the Swift telescope to work for two years. It worked for nearly 22, and on November 4, 2026 it fell back to Earth.\n\nSwift launched in 2004 with three telescopes that saw different kinds of light. Its specialty was gamma-ray bursts, flashes of high-energy radiation linked to collapsing massive stars and merging neutron stars. When it spotted one, scientists could quickly turn more instruments toward it.\n\nWhat brought it down was the Sun. Solar activity peaked in 2024, and flares and eruptions expanded Earth's upper atmosphere. The extra drag pulled Swift down to about 171 miles up, too low for it to keep working.\n\nIn July, Arizona-based Katalyst Space launched a spacecraft, built in about nine months, to grab Swift and push it higher. Weeks later that spacecraft spun out of control before reaching it. The team sent Swift its final shutdown command on October 20.\n\nThe U.S. Space Force says Swift re-entered at 7:39 a.m. Eastern on November 4 over North Sumatra, Indonesia. NASA expected most of its 3,200 pounds to burn up, though some pieces might have survived. Before re-entry, NASA estimated the chance of harm to anyone at about 1 in 2,100.\n\nSource: ABC7, ScienceDaily",
+ "hashtags": [
+  "#space",
+  "#nasa",
+  "#astronomy",
+  "#swift"
+ ]
+}

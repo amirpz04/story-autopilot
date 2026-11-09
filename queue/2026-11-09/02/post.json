@@ -1,0 +1,96 @@
+{
+ "id": "2026-11-09-02",
+ "date": "2026-11-09",
+ "slot": null,
+ "reel_slot": 3,
+ "title": "Great Unconformity: the Grand Canyon's missing 1.2 billion years and a mantle explanation",
+ "category": "science",
+ "variety_exception": "The assigned AI subject had no strong recent story with legally usable pictures; this fresh Nature paper is far better, and it is Earth science, not space.",
+ "tags": {
+  "headline": "question",
+  "end": "callback",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 8,
+  "emotion": 7,
+  "shareability": 7,
+  "talkability": 7,
+  "no_context": 8,
+  "freshness": 8
+ },
+ "sources": [
+  {
+   "name": "University of Wollongong: Earth's geological record is missing hundreds of millions of years",
+   "url": "https://www.uow.edu.au/media/2026/earths-geological-record-is-missing-hundreds-of-millions-of-years-uow-scientists-think-they-know-why.php"
+  },
+  {
+   "name": "Gizmodo: The Grand Canyon is missing 1.2 billion years of Earth history",
+   "url": "https://gizmodo.com/the-grand-canyon-is-missing-1-2-billion-years-of-earth-history-scientists-figured-out-why-2000834872"
+  }
+ ],
+ "verification": "News, rung 1 (Nature paper Nov 4-5, 2026, Dhungana and Flament, University of Wollongong). UOW release: Cambrian rocks (about 540 million years old) sit on crystalline rock such as granite; gap 200 million to well over a billion years depending on place; Grand Canyon prominent example; mantle convection raised continental cores in the Neoproterozoic (about 1 billion to 540 million years ago) and they sank in the Phanerozoic; modelling based, 'may have solved'; Dhungana quote. Gizmodo: about 1.2 billion years missing at the Grand Canyon, Powell first identified it, similar gaps in Europe, Australia, Africa, Asia, many earlier explanations exist. Wording is hedged (model, not measurement). Slide 4 says erosion stripped the surface per UOW (no specific agent named).",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "EARTH",
+   "headline": "Where did 1.2 billion years of Grand Canyon rock go?",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Great_Unconformity_Tapeats_Sandstone_over_Vishnu_Schist_from_Hopi_Point.jpg",
+    "credit": "Photo: Mikenorton / Wikimedia Commons, CC BY-SA 4.0 (the Great Unconformity at the Grand Canyon)"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Look at a canyon wall and you can find a line. Above it are layers from the Cambrian period, which began 540 million years ago. Directly below is much older crystalline rock.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Detail_of_Great_Unconformity_-_Flickr_-_brewbooks.jpg",
+    "credit": "Photo: brewbooks / Wikimedia Commons, CC BY-SA 2.0 (detail of the Great Unconformity)"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Nothing sits between them. Researchers estimate about 1.2 billion years of record are missing there. Geologists call it the Great Unconformity, and similar gaps show up in Europe, Australia, Africa and Asia."
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "A new study in Nature blames the planet's mantle. Models suggest slow currents of hot rock raised the continents between about 1 billion and 540 million years ago, and erosion stripped the surface away.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Grand_Canyon_Vincent_Bloch.jpg",
+    "credit": "Photo: Vincent Bloch / Wikimedia Commons, Public domain (Grand Canyon)"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Then the land sank. Over the last 540 million years, seas and sediment buried the worn-down surface. That buried surface is the line you can see today.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/90/Grand_Canyon_National_Park_Tonto_Trail_0191_%286051830012%29.jpg",
+    "credit": "Photo: Grand Canyon National Park / Wikimedia Commons, CC BY 2.0 (Tonto Trail)"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "It is a computer model, not a direct measurement. The authors say they \"may have solved\" the puzzle, and other explanations are still in play.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fd/Grand_Canyon_Stratigraphic_Units.tif/lossy-page1-1920px-Grand_Canyon_Stratigraphic_Units.tif.jpg",
+    "credit": "Diagram: Wade Greenberg-Brand / Paleontological Research Institution / Wikimedia Commons, CC BY-SA 4.0 (Grand Canyon rock layers)"
+   }
+  },
+  {
+   "type": "end",
+   "text": "On a Grand Canyon trail, a line of rock marks where a billion years simply stop. Earth's own slow churning may have been the eraser."
+  }
+ ],
+ "caption": "A billion-year gap in Earth's rock record may finally have an explanation, and it comes from deep inside the planet.\n\nAt the Grand Canyon, layers from the Cambrian period, which began about 540 million years ago, sit directly on much older crystalline rock such as granite. Researchers estimate about 1.2 billion years of record are missing there. Geologists call the gap the Great Unconformity, and John Wesley Powell was the first to identify it at the canyon. Similar gaps show up in Europe, Australia, Africa and Asia.\n\nA study published in Nature in early November 2026, by Santosh Dhungana and Nicolas Flament of the University of Wollongong in Australia, models the mantle, the slow-moving hot rock under the crust. In their model, a long period of uplift between about 1 billion and 540 million years ago raised the continents and let erosion strip the surface. Then, over the last 540 million years, the land sank and was buried under seas and sediment.\n\n\"Our research suggests these pages weren't lost by chance,\" Dhungana said.\n\nIt is still a computer model, not a direct measurement. Many explanations have been proposed over the years, and few had been tested against how Earth actually behaves over time. This one is the latest.\n\nSource: University of Wollongong, Gizmodo",
+ "hashtags": [
+  "#geology",
+  "#grandcanyon",
+  "#earthscience",
+  "#science"
+ ]
+}
