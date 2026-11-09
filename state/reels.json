@@ -368,13 +368,13 @@
   },
   "2026-11-09-02": {
     "attempts": 0,
-    "credit": "Permafrost by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-    "file": "20261109-153410-2026-11-09-02.mp4",
-    "made_at": "2026-11-09T15:37:27+00:00",
-    "music": "permafrost.m4a",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/626698f9011d13de770545594cdaa4784e5239ac/20261109-153410-2026-11-09-02.mp4",
+    "credit": "Life In Silico by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "file": "20261109-155115-2026-11-09-02.mp4",
+    "made_at": "2026-11-09T15:53:35.927176+00:00",
+    "music": "life-in-silico.m4a",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/c3edd1737d1db9f0c267e75b018a269e3d8d0959/20261109-155115-2026-11-09-02.mp4",
     "status": "made",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@626698f9011d13de770545594cdaa4784e5239ac/20261109-153410-2026-11-09-02.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@c3edd1737d1db9f0c267e75b018a269e3d8d0959/20261109-155115-2026-11-09-02.mp4"
   },
   "demo-02": {
     "attempts": 0,
