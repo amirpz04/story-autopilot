@@ -84,13 +84,11 @@
   },
   "2026-11-04-01": {
     "attempts": 1,
-    "error": "Instagram API error 403 on 17841415004854249/media_publish: {\"error\":{\"message\":\"Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":false,\"code\":4,\"error_subcode\":2207051,\"error_user_title\":\"action is blocked\",\"error_user_msg\":\"We restrict certain activity to protect our community. Tell us if you think we made a mistake.\",\"fbtrace_id\":\"APqfXwOBdkRRAhDQ0mbkza-\"}}",
     "note": "found live on Instagram",
     "status": "posted"
   },
   "2026-11-04-02": {
     "attempts": 1,
-    "error": "Instagram API error 403 on 17841415004854249/media_publish: {\"error\":{\"message\":\"Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":false,\"code\":4,\"error_subcode\":2207051,\"error_user_title\":\"action is blocked\",\"error_user_msg\":\"We restrict certain activity to protect our community. Tell us if you think we made a mistake.\",\"fbtrace_id\":\"AiUPkjnv8H9HUtr77JdgdZ2\"}}",
     "note": "found live on Instagram",
     "status": "posted"
   },
@@ -101,19 +99,16 @@
   },
   "2026-11-05-01": {
     "attempts": 1,
-    "error": "Instagram API error 403 on 17841415004854249/media_publish: {\"error\":{\"message\":\"Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":false,\"code\":4,\"error_subcode\":2207051,\"error_user_title\":\"action is blocked\",\"error_user_msg\":\"We restrict certain activity to protect our community. Tell us if you think we made a mistake.\",\"fbtrace_id\":\"AhYOxhR6TKyN6fl9dwmLwlR\"}}",
     "note": "found live on Instagram",
     "status": "posted"
   },
   "2026-11-06-01": {
     "attempts": 1,
-    "error": "Instagram API error 403 on 17841415004854249/media_publish: {\"error\":{\"message\":\"Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":false,\"code\":4,\"error_subcode\":2207051,\"error_user_title\":\"action is blocked\",\"error_user_msg\":\"We restrict certain activity to protect our community. Tell us if you think we made a mistake.\",\"fbtrace_id\":\"ARCq2XX7fZfo5cK_cHe-Py2\"}}",
     "note": "found live on Instagram",
     "status": "posted"
   },
   "2026-11-07-01": {
     "attempts": 1,
-    "error": "Instagram API error 403 on 17841415004854249/media_publish: {\"error\":{\"message\":\"Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":false,\"code\":4,\"error_subcode\":2207051,\"error_user_title\":\"action is blocked\",\"error_user_msg\":\"We restrict certain activity to protect our community. Tell us if you think we made a mistake.\",\"fbtrace_id\":\"Ac7AsqitVWEwCH1RzAl2osL\"}}",
     "media_id": "18153977233553584",
     "note": "live despite block error",
     "posted_at": "2026-11-07T14:40:17.227602Z",
@@ -121,7 +116,6 @@
   },
   "2026-11-08-01": {
     "attempts": 1,
-    "error": "Instagram API error 403 on 17841415004854249/media_publish: {\"error\":{\"message\":\"Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":false,\"code\":4,\"error_subcode\":2207051,\"error_user_title\":\"action is blocked\",\"error_user_msg\":\"We restrict certain activity to protect our community. Tell us if you think we made a mistake.\",\"fbtrace_id\":\"Ar_R5WraTA1uupXODOU3K_d\"}}",
     "media_id": "18135899092779274",
     "note": "live despite block error",
     "posted_at": "2026-11-08T14:44:49.256455Z",
@@ -129,7 +123,6 @@
   },
   "2026-11-09-01": {
     "attempts": 1,
-    "error": "Instagram API error 403 on 17841415004854249/media_publish: {\"error\":{\"message\":\"Application request limit reached\",\"type\":\"OAuthException\",\"is_transient\":false,\"code\":4,\"error_subcode\":2207051,\"error_user_title\":\"action is blocked\",\"error_user_msg\":\"We restrict certain activity to protect our community. Tell us if you think we made a mistake.\",\"fbtrace_id\":\"Aksd0DsFHuPUxCsKVh6ViYY\"}}",
     "media_id": "17904331527671425",
     "note": "live despite block error",
     "posted_at": "2026-11-09T15:10:53.862328Z",

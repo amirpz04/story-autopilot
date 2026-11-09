@@ -359,6 +359,7 @@ def main():
                 for m in graph("GET", os.environ["IG_USER_ID"] + "/media", config, fields="id,caption,media_product_type", limit=10)["data"]:
                     if m.get("media_product_type") != "REELS" and (m.get("caption") or "").strip().startswith(hook):
                         record.update(status="posted", media_id=m["id"], posted_at=datetime.utcnow().isoformat() + "Z", note="live despite block error")
+                        record.pop("error", None)      # it is live: no stale error on the dashboard
                         break
             except Exception:
                 pass

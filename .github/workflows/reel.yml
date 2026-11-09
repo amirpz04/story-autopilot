@@ -56,5 +56,24 @@ jobs:
           git config user.email "publisher@users.noreply.github.com"
           git add state/reels.json state/music_log.json
           git diff --cached --quiet && exit 0
+          cp state/reels.json "$RUNNER_TEMP/mine_reels.json"
+          cp state/music_log.json "$RUNNER_TEMP/mine_music.json"
           git commit -m "Reels made"
-          for i in 1 2 3 4; do git pull --rebase -q && git push -q && break; sleep 6; done
+          for i in 1 2 3 4 5 6; do
+            git fetch -q origin main
+            if git rebase -q origin/main 2>/dev/null; then
+              git push -q origin HEAD:main && exit 0
+            else
+              # collided with another commit on state/reels.json: start from the newest main and re-apply our results
+              git rebase --abort 2>/dev/null || true
+              git reset -q --hard origin/main
+              python scripts/merge_reel_state.py "$RUNNER_TEMP/mine_reels.json" "$RUNNER_TEMP/mine_music.json"
+              git add state/reels.json state/music_log.json
+              git diff --cached --quiet && exit 0
+              git commit -q -m "Reels made"
+              git push -q origin HEAD:main && exit 0
+            fi
+            sleep 6
+          done
+          echo "::error::Could not save the Reel record after 6 tries"
+          exit 1
