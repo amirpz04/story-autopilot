@@ -1,73 +1,73 @@
 {
- "id": "2026-11-10-03",
- "date": "2026-11-10",
- "slot": null,
- "reel_slot": 1,
- "title": "Ant Group's Robbyant open-sources LingBot-Touch tactile model for robot hands",
- "category": "ai",
- "tags": {
-  "headline": "scope of release",
-  "end": "callback",
-  "lane": "news"
- },
- "scores": {
-  "hook": 7,
-  "surprise": 7,
-  "emotion": 6,
-  "shareability": 6,
-  "talkability": 6,
-  "no_context": 7,
-  "freshness": 10
- },
- "sources": [
-  {
-   "name": "TechNode: Ant Group's Robbyant open-sources tactile AI model for robot hands",
-   "url": "https://technode.com/2026/11/10/ant-groups-robbyant-open-sources-tactile-ai-model-for-robot-hands/"
-  }
- ],
- "verification": "News, rung 1 (Nov 10, 2026). TechNode article read: model LingBot-Touch; Robbyant is Ant Group's robotics unit; helps robot hands use touch to handle objects; trained on nearly 5,000 hours of recordings from three types of tactile sensors so it works across hardware; tested on 26 real-world tasks with two robotic hands incl. fragile objects and two-hand coordination; weights and inference code released. Single outlet (thin news day for second source); no claims beyond TechNode. Pictures are illustrative robot hands, labelled as such.",
- "slides": [
-  {
-   "type": "cover",
-   "kicker": "ROBOTS",
-   "headline": "A Chinese robotics lab just gave away a sense of touch for robot hands",
-   "image": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Shadow_Hand_Bulb_large.jpg",
-    "credit": "Illustrative photo: Richard Greenhill and Hugo Elias / Wikimedia Commons, CC BY-SA 3.0 (a robotic hand, not the Robbyant system)"
-   }
+  "id": "2026-11-10-03",
+  "date": "2026-11-10",
+  "slot": null,
+  "reel_slot": 1,
+  "title": "Ant Group's Robbyant open-sources LingBot-Touch tactile model for robot hands",
+  "category": "ai",
+  "tags": {
+    "headline": "scope of release",
+    "end": "callback",
+    "lane": "news"
   },
-  {
-   "type": "text",
-   "layout": "split",
-   "text": "It is called LingBot-Touch, from Robbyant, the robotics unit of Ant Group. Released November 10, it is a model meant to help robot hands use touch to handle objects.",
-   "image": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Robotic_hand_design.jpg",
-    "credit": "Illustrative photo: GustavoCasan1973 / Wikimedia Commons, CC BY-SA 4.0 (robotic hand design)"
-   }
+  "scores": {
+    "hook": 7,
+    "surprise": 7,
+    "emotion": 6,
+    "shareability": 6,
+    "talkability": 6,
+    "no_context": 7,
+    "freshness": 10
   },
-  {
-   "type": "text",
-   "text": "It learned from nearly 5,000 hours of recordings from three different types of touch sensors. The mix is on purpose: the goal is a model that works across different hardware."
-  },
-  {
-   "type": "text",
-   "layout": "full",
-   "text": "Robbyant tested it on 26 real-world tasks using two robotic hands. They included handling fragile objects and coordinating both hands at once.",
-   "image": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Shadow_hands_%285098939600%29.jpg",
-    "credit": "Illustrative photo: Iouri Goussev / Wikimedia Commons, CC BY-SA 2.0 (robotic hands, not the Robbyant system)"
-   }
-  },
-  {
-   "type": "end",
-   "text": "The company also released the model weights and the code to run it. Anyone building robot hands can now download a sense of touch and try it."
-  }
- ],
- "caption": "Robots have cameras to see. Now one lab is releasing a model to help robot hands feel.\n\nOn November 10, 2026, Robbyant, the robotics unit of China's Ant Group, open-sourced LingBot-Touch, a tactile AI model designed to help robot hands use touch to handle objects.\n\nThe training data is the interesting part. The model learned from nearly 5,000 hours of recordings from three different types of tactile sensors. Mixing sensor types matters because robot hands are built many different ways, and a model tied to one sensor would work on only one kind of hand.\n\nRobbyant tested the model on 26 real-world tasks using two robotic hands. The tasks included handling fragile objects, where too much force breaks something, and coordinating both hands together.\n\nThe company released the model weights and the inference code, which means other robotics teams can download the model and run it on their own hardware instead of waiting for a product.\n\nThe pictures here show other robot hands for illustration only. They are not the Robbyant system.\n\nWould you trust a robot hand to hold something fragile?\n\nSource: TechNode",
- "hashtags": [
-  "#robots",
-  "#ai",
-  "#robotics",
-  "#tech"
- ]
+  "sources": [
+    {
+      "name": "TechNode: Ant Group's Robbyant open-sources tactile AI model for robot hands",
+      "url": "https://technode.com/2026/11/10/ant-groups-robbyant-open-sources-tactile-ai-model-for-robot-hands/"
+    }
+  ],
+  "verification": "News, rung 1 (Nov 10, 2026). TechNode article read: model LingBot-Touch; Robbyant is Ant Group's robotics unit; helps robot hands use touch to handle objects; trained on nearly 5,000 hours of recordings from three types of tactile sensors so it works across hardware; tested on 26 real-world tasks with two robotic hands incl. fragile objects and two-hand coordination; weights and inference code released. Single outlet (thin news day for second source); no claims beyond TechNode. Pictures are illustrative robot hands, labelled as such.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "ROBOTS",
+      "headline": "Robot hands just got a free sense of touch.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Shadow_Hand_Bulb_large.jpg",
+        "credit": "Illustrative photo: Richard Greenhill and Hugo Elias / Wikimedia Commons, CC BY-SA 3.0 (a robotic hand, not the Robbyant system)"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "It is called LingBot-Touch, from Robbyant, the robotics unit of Ant Group. Released November 10, it is a model meant to help robot hands use touch to handle objects.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Robotic_hand_design.jpg",
+        "credit": "Illustrative photo: GustavoCasan1973 / Wikimedia Commons, CC BY-SA 4.0 (robotic hand design)"
+      }
+    },
+    {
+      "type": "text",
+      "text": "It learned from nearly 5,000 hours of recordings from three different types of touch sensors. The mix is on purpose: the goal is a model that works across different hardware."
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "Robbyant tested it on 26 real-world tasks using two robotic hands. They included handling fragile objects and coordinating both hands at once.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Shadow_hands_%285098939600%29.jpg",
+        "credit": "Illustrative photo: Iouri Goussev / Wikimedia Commons, CC BY-SA 2.0 (robotic hands, not the Robbyant system)"
+      }
+    },
+    {
+      "type": "end",
+      "text": "The company also released the model weights and the code to run it. Anyone building robot hands can now download a sense of touch and try it."
+    }
+  ],
+  "caption": "Robots have cameras to see. Now one lab is releasing a model to help robot hands feel.\n\nOn November 10, 2026, Robbyant, the robotics unit of China's Ant Group, open-sourced LingBot-Touch, a tactile AI model designed to help robot hands use touch to handle objects.\n\nThe training data is the interesting part. The model learned from nearly 5,000 hours of recordings from three different types of tactile sensors. Mixing sensor types matters because robot hands are built many different ways, and a model tied to one sensor would work on only one kind of hand.\n\nRobbyant tested the model on 26 real-world tasks using two robotic hands. The tasks included handling fragile objects, where too much force breaks something, and coordinating both hands together.\n\nThe company released the model weights and the inference code, which means other robotics teams can download the model and run it on their own hardware instead of waiting for a product.\n\nThe pictures here show other robot hands for illustration only. They are not the Robbyant system.\n\nWould you trust a robot hand to hold something fragile?\n\nSource: TechNode",
+  "hashtags": [
+    "#robots",
+    "#ai",
+    "#robotics",
+    "#tech"
+  ]
 }

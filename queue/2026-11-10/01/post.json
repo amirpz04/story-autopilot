@@ -1,90 +1,90 @@
 {
- "id": "2026-11-10-01",
- "date": "2026-11-10",
- "slot": null,
- "reel_slot": 3,
- "title": "Two-drug combo before surgery leaves 45% of bladder cancer patients with no detectable cancer (VOLGA trial)",
- "category": "health",
- "tags": {
-  "headline": "number contrast",
-  "end": "quote",
-  "lane": "news"
- },
- "scores": {
-  "hook": 8,
-  "surprise": 8,
-  "emotion": 7,
-  "shareability": 7,
-  "talkability": 6,
-  "no_context": 7,
-  "freshness": 10
- },
- "sources": [
-  {
-   "name": "EurekAlert: New drug combination improves survival in patients with muscle-invasive bladder cancer (UCLA Health, Nov 9, 2026)",
-   "url": "https://www.eurekalert.org/news-releases/1151128"
+  "id": "2026-11-10-01",
+  "date": "2026-11-10",
+  "slot": null,
+  "reel_slot": 3,
+  "title": "Two-drug combo before surgery leaves 45% of bladder cancer patients with no detectable cancer (VOLGA trial)",
+  "category": "health",
+  "tags": {
+    "headline": "number contrast",
+    "end": "quote",
+    "lane": "news"
   },
-  {
-   "name": "Medical Xpress: New drug combination improves survival in patients with muscle-invasive bladder cancer",
-   "url": "https://medicalxpress.com/news/2026-11-drug-combination-survival-patients-muscle.html"
-  }
- ],
- "verification": "News, rung 1 (news release Nov 9, 2026). EurekAlert/UCLA Health release read in full: VOLGA phase 3, 695 patients, 229 centers, 25 countries, all unable or unwilling to take cisplatin; durvalumab + enfortumab vedotin before surgery then durvalumab after, vs surgery alone: 42% lower risk of death, 49% lower risk of recurrence/progression/events, 2-year survival 78.4% vs 69.4%, event-free 63.5% vs 45.1%, no detectable cancer in tissue 45.1% vs 9.6%; published in NEJM; funded by AstraZeneca; more severe side effects with combos; 3-drug arm not significant for overall survival yet; Dr. Alexandra Drakaki quote. Second outlet (Medical Xpress) and a search summary of the AstraZeneca release agree on 695 patients, 42% and 49%. Journal/AZ pages blocked from this sandbox so not opened directly.",
- "slides": [
-  {
-   "type": "cover",
-   "kicker": "BLADDER CANCER",
-   "headline": "Two drugs before surgery: 45% had no cancer left to find. Surgery alone: 10%.",
-   "image": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Cystoscopy_system.jpg",
-    "credit": "Illustrative photo: Sarang / Wikimedia Commons, Public domain (cystoscopy system)"
-   }
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 7,
+    "talkability": 6,
+    "no_context": 7,
+    "freshness": 10
   },
-  {
-   "type": "text",
-   "layout": "split",
-   "text": "The trial is called VOLGA. It followed 695 people with muscle-invasive bladder cancer, a tumor that has grown into the bladder wall. None of them could, or would, take the standard chemotherapy, cisplatin.",
-   "image": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/1/19/Position_of_the_urinary_bladder_1.png",
-    "credit": "Diagram: Wikimedia Commons, CC BY-SA 4.0 (position of the urinary bladder)"
-   }
-  },
-  {
-   "type": "text",
-   "text": "One group got two drugs before surgery. Durvalumab is an immunotherapy. Enfortumab vedotin delivers chemotherapy to cancer cells. Durvalumab continued after surgery."
-  },
-  {
-   "type": "text",
-   "layout": "full",
-   "text": "After surgery, pathologists checked the removed tissue. No detectable cancer in 45.1% of the two-drug group. In the surgery-only group: 9.6%.",
-   "image": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/2605_The_Bladder-es.png",
-    "credit": "Diagram: OpenStax College / Wikimedia Commons, CC BY 4.0 (the bladder)"
-   }
-  },
-  {
-   "type": "text",
-   "text": "Two years in, 78.4% of the two-drug group were alive, against 69.4% with surgery alone. That works out to a 42% lower risk of death."
-  },
-  {
-   "type": "text",
-   "layout": "split",
-   "text": "It is not a clean sweep. Severe side effects were more common with the drugs. A third arm that added a second immunotherapy has not yet shown a survival gain.",
-   "image": {
-    "url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Oral_surgery_operating_room.jpg",
-    "credit": "Illustrative photo: Ptrump16 / Wikimedia Commons, CC BY-SA 4.0 (operating room)"
-   }
-  },
-  {
-   "type": "end",
-   "text": "Dr. Alexandra Drakaki of UCLA calls the findings \"encouraging\" for patients who cannot take cisplatin. For them, the other group's path was surgery alone."
-  }
- ],
- "caption": "Before surgeons removed the bladder, one group of patients got two drugs. In the removed tissue, pathologists found no detectable cancer in 45% of them.\n\nWith surgery alone, it was about 10%.\n\nThat is the headline from VOLGA, a large phase 3 trial reported on November 9, 2026 and published in the New England Journal of Medicine. It enrolled 695 people with muscle-invasive bladder cancer at 229 centers in 25 countries. All of them were unable to take, or refused, cisplatin-based chemotherapy, the usual choice before surgery.\n\nThe two-drug group received durvalumab plus enfortumab vedotin before surgery, then durvalumab afterward. Compared with surgery alone, researchers reported a 42% lower risk of death and a 49% lower risk of recurrence, progression or other cancer-related events. Two-year survival was 78.4% versus 69.4%.\n\nThere are caveats. Severe side effects were more common with the drug combinations, and a three-drug version has not yet shown a significant survival benefit. The study was funded by AstraZeneca.\n\nSenior author Dr. Alexandra Drakaki of UCLA Health called the results \"encouraging\" and said they could give patients who cannot take cisplatin \"an opportunity to offer these patients an effective treatment before surgery.\"\n\nSource: UCLA Health via EurekAlert; Medical Xpress",
- "hashtags": [
-  "#health",
-  "#cancer",
-  "#medicine",
-  "#science"
- ]
+  "sources": [
+    {
+      "name": "EurekAlert: New drug combination improves survival in patients with muscle-invasive bladder cancer (UCLA Health, Nov 9, 2026)",
+      "url": "https://www.eurekalert.org/news-releases/1151128"
+    },
+    {
+      "name": "Medical Xpress: New drug combination improves survival in patients with muscle-invasive bladder cancer",
+      "url": "https://medicalxpress.com/news/2026-11-drug-combination-survival-patients-muscle.html"
+    }
+  ],
+  "verification": "News, rung 1 (news release Nov 9, 2026). EurekAlert/UCLA Health release read in full: VOLGA phase 3, 695 patients, 229 centers, 25 countries, all unable or unwilling to take cisplatin; durvalumab + enfortumab vedotin before surgery then durvalumab after, vs surgery alone: 42% lower risk of death, 49% lower risk of recurrence/progression/events, 2-year survival 78.4% vs 69.4%, event-free 63.5% vs 45.1%, no detectable cancer in tissue 45.1% vs 9.6%; published in NEJM; funded by AstraZeneca; more severe side effects with combos; 3-drug arm not significant for overall survival yet; Dr. Alexandra Drakaki quote. Second outlet (Medical Xpress) and a search summary of the AstraZeneca release agree on 695 patients, 42% and 49%. Journal/AZ pages blocked from this sandbox so not opened directly.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "BLADDER CANCER",
+      "headline": "Two drugs left 45% with no detectable cancer.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Cystoscopy_system.jpg",
+        "credit": "Illustrative photo: Sarang / Wikimedia Commons, Public domain (cystoscopy system)"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "The trial is called VOLGA. It followed 695 people with muscle-invasive bladder cancer, a tumor that has grown into the bladder wall. None of them could, or would, take the standard chemotherapy, cisplatin.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/19/Position_of_the_urinary_bladder_1.png",
+        "credit": "Diagram: Wikimedia Commons, CC BY-SA 4.0 (position of the urinary bladder)"
+      }
+    },
+    {
+      "type": "text",
+      "text": "One group got two drugs before surgery. Durvalumab is an immunotherapy. Enfortumab vedotin delivers chemotherapy to cancer cells. Durvalumab continued after surgery."
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "After surgery, pathologists checked the removed tissue. No detectable cancer in 45.1% of the two-drug group. In the surgery-only group: 9.6%.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/2605_The_Bladder-es.png",
+        "credit": "Diagram: OpenStax College / Wikimedia Commons, CC BY 4.0 (the bladder)"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Two years in, 78.4% of the two-drug group were alive, against 69.4% with surgery alone. That works out to a 42% lower risk of death."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "It is not a clean sweep. Severe side effects were more common with the drugs. A third arm that added a second immunotherapy has not yet shown a survival gain.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Oral_surgery_operating_room.jpg",
+        "credit": "Illustrative photo: Ptrump16 / Wikimedia Commons, CC BY-SA 4.0 (operating room)"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Dr. Alexandra Drakaki of UCLA calls the findings \"encouraging\" for patients who cannot take cisplatin. For them, the other group's path was surgery alone."
+    }
+  ],
+  "caption": "Before surgeons removed the bladder, one group of patients got two drugs. In the removed tissue, pathologists found no detectable cancer in 45% of them.\n\nWith surgery alone, it was about 10%.\n\nThat is the headline from VOLGA, a large phase 3 trial reported on November 9, 2026 and published in the New England Journal of Medicine. It enrolled 695 people with muscle-invasive bladder cancer at 229 centers in 25 countries. All of them were unable to take, or refused, cisplatin-based chemotherapy, the usual choice before surgery.\n\nThe two-drug group received durvalumab plus enfortumab vedotin before surgery, then durvalumab afterward. Compared with surgery alone, researchers reported a 42% lower risk of death and a 49% lower risk of recurrence, progression or other cancer-related events. Two-year survival was 78.4% versus 69.4%.\n\nThere are caveats. Severe side effects were more common with the drug combinations, and a three-drug version has not yet shown a significant survival benefit. The study was funded by AstraZeneca.\n\nSenior author Dr. Alexandra Drakaki of UCLA Health called the results \"encouraging\" and said they could give patients who cannot take cisplatin \"an opportunity to offer these patients an effective treatment before surgery.\"\n\nSource: UCLA Health via EurekAlert; Medical Xpress",
+  "hashtags": [
+    "#health",
+    "#cancer",
+    "#medicine",
+    "#science"
+  ]
 }
