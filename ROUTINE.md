@@ -258,9 +258,16 @@ point again, delete the slide. Anything that does not move the story forward goe
 **One idea per line.** Write each slide as 1-3 short sentences, each able to stand on its own line. The renderer puts every
 sentence on its own line with a gap between them, so a slide never reads as one solid paragraph.
 
-- **Cover (slide 1).** The `headline` has one job: make a stranger swipe. Concrete, true, plain words, written fresh for
-  this story (usually 6-12 words, 16 is a ceiling). Optional `kicker` of 1-3 words (category, year, place, number, mood).
-  Best image here.
+- **Cover (slide 1): the hook.** The `headline` has one job: make a stranger stop and swipe. **Short: aim for 5-8 words
+  (hard limit 12).** Lead with the single most shocking fact, number or consequence, not with who did it: drop company, lab
+  and product names unless the name itself is the hook. Make it as big as the sources honestly allow (a real number, a real
+  "first", a before/after, a scale comparison) and then stop. **Bold but true:** an unsupported "first", "only", "biggest",
+  "secret" or "nobody knew" is a hard no, and so is any promise the story does not pay off by slide 2. Examples of the shape:
+  "A Chinese robotics lab just gave away a sense of touch for robot hands" (14 words, who-first) becomes "Robot hands just got
+  a sense of touch. It's free to download."; "NASA planned two years for this telescope. It gave 22." works because the number
+  is the hook. Write three candidates and keep the shortest one that is still fully true. Optional `kicker` of 1-3 words
+  (category, year, place, number, mood). Best image here. The Reel's grid thumbnail is the frame at 2.2 seconds, where the
+  headline is fully shown, so the cover text and picture must look good together.
 - **Story slides.** Tell the whole story in beats, most surprising detail up front on slide 2 (it pays off the cover with a
   NEW detail and never rewords it), then the key details, turning points and numbers, then why it matters or what comes
   next. Concrete numbers, place names, short quotes, events in true order. Every slide makes sense alone (Instagram re-shows

@@ -14,7 +14,7 @@ import variety
 ROOT = Path(__file__).resolve().parent.parent
 IMAGE_EXTS = (".jpg", ".jpeg", ".png", ".webp")
 MAX_SLIDE_WORDS = 40
-MAX_HEADLINE_WORDS = 16
+MAX_HEADLINE_WORDS = 12
 MIN_CAPTION_CHARS = 700
 MAX_CAPTION_CHARS = 1500
 MAX_HASHTAGS = 5

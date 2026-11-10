@@ -30,7 +30,7 @@ as an alert with a plain error. Content errors are fixed by the daily run (ROUTI
 - `publish.py`: finds the due item and posts it. Safety: `instagram_gate` reads Instagram's own recent posts (no duplicates,
   45 min gap, daily cap); `api_backoff` waits 30 min -> 4 h after Instagram refuses, but 12 h (then 24 h) after a spam block (`is_block`, error 2207051); the counter resets only after a real publish, not after a read (`state/api_health.json`). After a block error the post is looked up and marked posted if it went live anyway (then only a 60 min pause, not the 12 h rest, because the post got out); a Reel is only a duplicate of another Reel; random 0-4 min delay.
   Never fails the run on an Instagram refusal (no emails). **No content checks here (owner's decision).**
-- `publish_reel.py`: posts a Reel (`REELS`, `share_to_feed`); caption = post caption + hashtags + photo credits + music credit; re-renders an expired video first.
+- `publish_reel.py`: posts a Reel (`REELS`, `share_to_feed`, `thumb_offset` 2200 ms so the profile-grid thumbnail is the frame where the headline is readable; retried without it if Instagram rejects the setting; Reels already live keep their old thumbnails); caption = post caption + hashtags + photo credits + music credit; re-renders an expired video first.
 - `reel_job.py`, `make_reel.py`, `templates/reel.html`: Reel video (Playwright frames -> ffmpeg), music rotation (no repeat within 5).
 - `render.py`, `templates/slide.html`: carousel slides (1080x1350 JPEG, Inter, accent #FFD400, bg #0E0E10, layouts `split`/`full`).
 - `templates/marks.js`: **marks** drawn on pictures (circle, arrow, box, label, spotlight, zoom; positions = fractions of the picture, in `image.marks`, optional `image.focus`). Used by slides (still) and Reels (a marked slide becomes a framed picture above the text over a blurred copy; marks draw in). Rules: ROUTINE 8; format checked by `validate.py`. Added Nov 5 (owner asked for per-post pointing/drawing).
@@ -84,7 +84,7 @@ post_reel cancel_reel reschedule_reel add_music remove_music refresh_dashboard`)
 Template `templates/dashboard.html`, data `scripts/dashboard.py`. GitHub Pages lags up to ~10 min.
 
 ## 5. Post rules (`validate.py`)
-5-7 slides; slide text <= 40 words; cover headline <= 16 words; at least half the slides (min 3) with a real picture; never two
+5-7 slides; slide text <= 40 words; cover headline <= 12 words (aim 5-8, bold but true); at least half the slides (min 3) with a real picture; never two
 text-only slides in a row; layouts `split`/`full`; caption 700-1500 chars; up to 5 hashtags, only in `hashtags`; every source has
 a URL; no reused source or near-duplicate title; `slot` in `active_slots` and/or `reel_slot` in `reel_active_slots`. Per day:
 exactly `stories_per_day` stories; soft variety (no shared source organization, subject or opening words, unless the post carries
