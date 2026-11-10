@@ -37,14 +37,14 @@ as an alert with a plain error. Content errors are fixed by the daily run (ROUTI
 - `validate.py`: hard post rules (section 5). `check_images.py`: downloads every picture, real sizes, saves copies to look at.
 - `plan_day.py`: random research plan per run (news first: subject, entry points, a widen step and one evergreen fallback; where to look); `variety.py`: soft variety checks.
 - `find_images.py`: rate-limited Wikimedia Commons search. `stock.py`: labelled Unsplash fallback photos (run by the research run and `preview.yml` only).
-- `control.py`: every dashboard action. `backfill_reels.py`: Reels for old live posts that have none. `stats.py`: Instagram numbers + `state/report.md`. `dashboard.py`: builds `docs/index.html`.
+- `control.py`: every dashboard action. `backfill_reels.py`: Reels for old live posts that have none. `stats.py`: Instagram numbers for the dashboard. `dashboard.py`: builds `docs/index.html`.
 
 **Workflows**: `publish.yml` (Mac-driven; GitHub's own cron barely fires), `reel.yml`, `control.yml` (dashboard buttons), `preview.yml`, `stats.yml`.
 A push with the default `GITHUB_TOKEN` does not trigger other workflows; use `gh workflow run`. The research run's pushes do trigger them.
 
 **State (`state/`)**: `posted.json` (carousels: status posted/removed/deleted/failed, attempts, error, `post_now`, `post_at`, `media_id`),
 `reels.json` (Reels: pending/made/posted/failed/cancelled/expired, `post_at`, `backfill`, urls, music, attempts, error),
-`history.jsonl` (every story used; blocks reuse), `stats.json` + `report.md` (per-post results; the run learns from the report),
+`history.jsonl` (every story used; blocks reuse), `stats.json` (per-post results, shown on the dashboard; the daily run does not use them),
 `account.json` (followers, media_count: Instagram's count, which excludes Reels, like the profile counter), `followers.csv`,
 `control_log.json`, `music_log.json`, `ping.json` (last Mac dispatch), `api_health.json`, `unsplash_requests.json`.
 
@@ -130,6 +130,8 @@ Same photos and text as the carousel, animated, 1080x1920, 30 fps, each slide st
 4. Old-layout ISS Reel (2026-10-31-01): replace or keep? Deleting is permanent; ask.
 5. After ~2 weeks on 1+2 with no spam blocks, review results ("What's working") before raising counts.
 6. **Nov 6 revert.** The owner tried and then rejected a night of changes (narrator voice + short plain posts, kinetic captions, cream/Sora look, mood-matched songs, take-first rules) and asked to go "back to yesterday". Code is back to the Nov 5 19:45 state (commit d00d5f4) except the faster parallel Reel rendering and the picture-retry/label fixes. Everything is saved: `git checkout nov6-experiments -- <files>` brings any piece back (voice + short posts = commit 0ab3ed0 and 992f987; look = 6ef5c48..605ea0d; take rules = 19e45fc). Do not re-apply without the owner asking.
+
+8. **Nov 10: no learning step (owner: keep it simple).** ROUTINE no longer has "Learn from results"; the run does not read `state/report.md`. Stats still feed the dashboard only.
 
 ## 11. Working with the owner
 Not a developer; Istanbul (UTC+3), iPhone 13, Mac mini M4, often on his phone. Wants short plain answers and results, not
