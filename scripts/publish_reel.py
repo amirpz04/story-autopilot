@@ -37,6 +37,23 @@ def publish_due_reel(post_id):
     return post_reel(post_id)
 
 
+COVER_MS = 2200     # the grid thumbnail is a frame of the video: at 0 s there is only a bare picture, by 2.2 s the headline is fully shown
+
+
+def create_container(user, config, video_url, caption):
+    """Start the Reel upload with the cover frame set to the moment the headline is readable. If Instagram rejects that
+    one setting, try once more without it so the Reel itself is never held back; any other error is raised as before."""
+    params = dict(media_type="REELS", video_url=video_url, caption=caption, share_to_feed="true", thumb_offset=str(COVER_MS))
+    try:
+        return publish.graph("POST", user + "/media", config, **params)["id"]
+    except RuntimeError as exc:
+        text = str(exc)
+        if "thumb_offset" in text or '"code":100' in text or "Invalid parameter" in text:
+            params.pop("thumb_offset")
+            return publish.graph("POST", user + "/media", config, **params)["id"]
+        raise
+
+
 def post_reel(post_id):
     reels = load_reels()
     entry = reels.get(post_id)
@@ -71,8 +88,7 @@ def post_reel(post_id):
         caption += "\n\n" + entry["credit"]
     user = os.environ["IG_USER_ID"]
     try:
-        container = publish.graph("POST", user + "/media", config, media_type="REELS", video_url=entry["raw_url"],
-                                  caption=caption, share_to_feed="true")["id"]
+        container = create_container(user, config, entry["raw_url"], caption)
         publish.wait_until_ready(container, config)
         media_id = publish.graph("POST", user + "/media_publish", config, creation_id=container)["id"]
         permalink = publish.graph("GET", media_id, config, fields="permalink").get("permalink")
