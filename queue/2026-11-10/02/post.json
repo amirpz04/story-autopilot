@@ -1,0 +1,86 @@
+{
+ "id": "2026-11-10-02",
+ "date": "2026-11-10",
+ "slot": null,
+ "reel_slot": 5,
+ "title": "Instagram rolls out AI that spots teens using adult birthdays",
+ "category": "apps",
+ "tags": {
+  "headline": "direct challenge",
+  "end": "reversal",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 7,
+  "emotion": 6,
+  "shareability": 8,
+  "talkability": 9,
+  "no_context": 9,
+  "freshness": 10
+ },
+ "sources": [
+  {
+   "name": "Al Jazeera: Meta rolls out automated age checks for teens globally",
+   "url": "https://www.aljazeera.com/economy/2026/11/9/meta-rolls-out-automated-age-checks-for-teens-globally"
+  },
+  {
+   "name": "Android Central: Instagram's AI now detects and protects teens, even if their profile says they're adults",
+   "url": "https://www.androidcentral.com/apps-software/meta/instagrams-ai-now-detects-and-protects-teens-even-if-their-profile-says-theyre-adults"
+  }
+ ],
+ "verification": "News, rung 1 (announced Mon Nov 9, 2026). Al Jazeera (read via fetch): Meta quote 'We use AI technology to find people we suspect to be teens, even if they use an adult birthday'; rollout starts this month on Instagram, Facebook and Threads later in the year; tested in US, UK, Canada, Australia; US parents who set up teen Instagram notified this month; state attorneys general suing Meta over ages/addiction; Meta urged TikTok and YouTube to adopt similar measures. Android Central/other search results (April 2025 origin): signals like who users follow and content engaged with; adults flagged by mistake can change settings. Headlines from Phandroid, BetaNews, PPC Land, India Today agree on global AI age check for adult birthdays. Specific signals only attributed to the 2025 coverage.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "INSTAGRAM",
+   "headline": "Lie about your birthday on Instagram, and its AI may call your bluff",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Italy_-_birthday_cake_with_candles_5.jpg",
+    "credit": "Illustrative photo: Francesca Cesa Bianchi / Wikimedia Commons, CC BY-SA 3.0 it (birthday cake)"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Meta announced on Monday, November 9, that Instagram is rolling out AI that estimates whether a user is a teen, even when the birthday on the account says adult.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Social_Media_App_Icons_On_The_Screen_of_A_Smartphone.jpg",
+    "credit": "Illustrative photo: mikemacmarketing / Wikimedia Commons, CC BY 2.0 (apps on a phone)"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Meta's own words: \"We use AI technology to find people we suspect to be teens, even if they use an adult birthday.\""
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "Suspected teens are moved into Teen Account protections. The AI was tested first in the US, UK, Canada and Australia.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Samsung_Focus_and_Google_Nexus_S.jpg",
+    "credit": "Illustrative photo: Beth Kanter / Wikimedia Commons, CC BY 2.0 (smartphones)"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "The rollout starts this month on Instagram. Facebook and Threads follow later. US parents who set up Instagram for their teens will be notified. Meta faces state lawsuits over age checks.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Periscope_app_streaming_a_guided_tour_in_St%C3%A4del_museum%2C_Frankfurt-3308.jpg",
+    "credit": "Illustrative photo: Raimond Spekking / Wikimedia Commons, CC BY-SA 4.0 (an app on a phone)"
+   }
+  },
+  {
+   "type": "end",
+   "text": "The birthday you typed years ago may not be the one that counts anymore. Now the app is making its own guess."
+  }
+ ],
+ "caption": "The birthday you typed into Instagram may no longer be the last word on how old you are.\n\nMeta announced on Monday, November 9, 2026 that Instagram is rolling out AI that estimates whether a user is a teenager, even if the account lists an adult birthday. \"We use AI technology to find people we suspect to be teens, even if they use an adult birthday,\" the company said.\n\nAccounts the AI suspects belong to teens are moved into Teen Account settings, the more restricted version of the app. Meta tested the approach in the US, UK, Canada and Australia first. Earlier coverage of the tool said it looks at signals such as who an account follows and what content it engages with, and that adults flagged by mistake can change their settings back.\n\nThe rollout begins this month on Instagram, with Facebook and Threads planned later in the year. In the US, parents who set up Instagram for their teens will be notified.\n\nThe timing is not an accident. US state attorneys general are suing Meta, alleging its platforms fail to verify ages and expose minors to harm, and Meta has urged TikTok and YouTube to adopt similar measures.\n\nWould you want an app guessing your age from how you use it?\n\nSource: Al Jazeera; Android Central",
+ "hashtags": [
+  "#instagram",
+  "#meta",
+  "#tech",
+  "#teens"
+ ]
+}
