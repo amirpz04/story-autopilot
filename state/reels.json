@@ -366,9 +366,9 @@
     "music": "passage-of-time.m4a",
     "permalink": "https://www.instagram.com/reel/Dfi9HaoiVdl/",
     "posted_at": "2026-11-10T03:36:54.665301+00:00",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/0944e9841523507bb91ce5b627c000871946a610/20261109-155431-2026-11-09-01.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/5eef9871f63ecae9793f632d04d94d68f8bfca63/20261109-155431-2026-11-09-01.mp4",
     "status": "posted",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@0944e9841523507bb91ce5b627c000871946a610/20261109-155431-2026-11-09-01.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@5eef9871f63ecae9793f632d04d94d68f8bfca63/20261109-155431-2026-11-09-01.mp4"
   },
   "2026-11-09-02": {
     "attempts": 0,
@@ -380,9 +380,39 @@
     "music": "the-long-dark.m4a",
     "permalink": "https://www.instagram.com/reel/DfifkwUjsVY/",
     "posted_at": "2026-11-09T23:18:45.713418+00:00",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/0944e9841523507bb91ce5b627c000871946a610/20261109-161113-2026-11-09-02.mp4",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/5eef9871f63ecae9793f632d04d94d68f8bfca63/20261109-161113-2026-11-09-02.mp4",
     "status": "posted",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@0944e9841523507bb91ce5b627c000871946a610/20261109-161113-2026-11-09-02.mp4"
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@5eef9871f63ecae9793f632d04d94d68f8bfca63/20261109-161113-2026-11-09-02.mp4"
+  },
+  "2026-11-10-01": {
+    "attempts": 0,
+    "credit": "Life In Silico by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "file": "20261110-110247-2026-11-10-01.mp4",
+    "made_at": "2026-11-10T11:04:33.358404+00:00",
+    "music": "life-in-silico.m4a",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/5eef9871f63ecae9793f632d04d94d68f8bfca63/20261110-110247-2026-11-10-01.mp4",
+    "status": "made",
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@5eef9871f63ecae9793f632d04d94d68f8bfca63/20261110-110247-2026-11-10-01.mp4"
+  },
+  "2026-11-10-02": {
+    "attempts": 0,
+    "credit": "Passage Of Time by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "file": "20261110-110433-2026-11-10-02.mp4",
+    "made_at": "2026-11-10T11:06:03.329711+00:00",
+    "music": "passage-of-time.m4a",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/5eef9871f63ecae9793f632d04d94d68f8bfca63/20261110-110433-2026-11-10-02.mp4",
+    "status": "made",
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@5eef9871f63ecae9793f632d04d94d68f8bfca63/20261110-110433-2026-11-10-02.mp4"
+  },
+  "2026-11-10-03": {
+    "attempts": 0,
+    "credit": "The Long Dark by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "file": "20261110-110603-2026-11-10-03.mp4",
+    "made_at": "2026-11-10T11:07:27.423794+00:00",
+    "music": "the-long-dark.m4a",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/5eef9871f63ecae9793f632d04d94d68f8bfca63/20261110-110603-2026-11-10-03.mp4",
+    "status": "made",
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@5eef9871f63ecae9793f632d04d94d68f8bfca63/20261110-110603-2026-11-10-03.mp4"
   },
   "demo-02": {
     "attempts": 0,
