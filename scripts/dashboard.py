@@ -175,7 +175,8 @@ def build(now):
     alerts = []
     if config.get("paused"):
         alerts.append({"level": "warning", "text": "Publishing is paused (config.json). Nothing will be posted."})
-    if datetime.now(tz).hour >= 7 and not today_posts:
+    # Reel-only stories have no carousel slot, so check for ANY story queued today (with 0 carousels a day this always fired)
+    if datetime.now(tz).hour >= 7 and not any((ROOT / "queue" / today.isoformat()).glob("*/post.json")):
         alerts.append({"level": "critical", "text": "No posts were queued today. The daily research run did not deliver."})
     if followers and (today - datetime.strptime(followers[-1]["date"], "%Y-%m-%d").date()).days > 2:
         alerts.append({"level": "warning", "text": "Statistics haven't updated since %s." % followers[-1]["date"]})
