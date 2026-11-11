@@ -129,7 +129,7 @@ Same photos and text as the carousel, animated, 1080x1920, 30 fps, each slide st
 3. Measure Claude usage of one daily run.
 4. Old-layout ISS Reel (2026-10-31-01): replace or keep? Deleting is permanent; ask.
 5. After ~2 weeks on 1+2 with no spam blocks, review results ("What's working") before raising counts.
-6. **Nov 6 revert.** The owner tried and then rejected a night of changes (narrator voice + short plain posts, kinetic captions, cream/Sora look, mood-matched songs, take-first rules) and asked to go "back to yesterday". Code is back to the Nov 5 19:45 state (commit d00d5f4) except the faster parallel Reel rendering and the picture-retry/label fixes. Everything is saved: `git checkout nov6-experiments -- <files>` brings any piece back (voice + short posts = commit 0ab3ed0 and 992f987; look = 6ef5c48..605ea0d; take rules = 19e45fc). Do not re-apply without the owner asking.
+6. **Nov 6 revert.** The owner tried and then rejected a night of changes (narrator voice + short plain posts, kinetic captions, cream/Sora look, mood-matched songs, take-first rules) and asked to go "back to yesterday". Code is back to the Nov 5 19:45 state (commit d00d5f4) except the faster parallel Reel rendering and the picture-retry/label fixes. The experiment branch was deleted on Nov 11; do not re-apply without the owner asking.
 
 8. **Nov 10: no learning step (owner: keep it simple).** ROUTINE no longer has "Learn from results"; the run does not read `state/report.md`. Stats still feed the dashboard only.
 

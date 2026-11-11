@@ -1,9 +1,9 @@
-"""Collect Instagram statistics for our posts and write a short learning report.
+"""Collect Instagram statistics for our posts (they feed the dashboard).
 
 Read-only: this script never posts, deletes or changes anything on Instagram, and
 never touches the queue. A failure here cannot affect publishing.
 
-Writes: state/stats.json (per post), state/report.md (summary), state/followers.csv (daily).
+Writes: state/stats.json (per post), state/followers.csv (daily).
 Environment: IG_USER_ID, IG_ACCESS_TOKEN
 """
 import csv
@@ -110,46 +110,6 @@ def collect(config, previous=None, quick=False):
     return entries
 
 
-def group_table(entries, label, key):
-    groups = defaultdict(list)
-    for e in entries:
-        k = key(e)
-        if k is not None:
-            groups[k].append(e)
-    rows = [(k, g) for k, g in groups.items() if len(g) >= MIN_GROUP]
-    if len(rows) < 2:
-        return ""
-    out = ["", "### By %s" % label, "", "| %s | posts | avg reach | shares/reach | saves/reach |" % label, "|---|---|---|---|---|"]
-    for k, g in sorted(rows, key=lambda kg: -(mean([e["share_rate"] for e in kg[1]]) or 0)):
-        out.append("| %s | %d | %.0f | %s | %s |" % (k, len(g), mean([e.get("reach") for e in g]) or 0,
-                                                      pct(mean([e["share_rate"] for e in g])), pct(mean([e["save_rate"] for e in g]))))
-    return "\n".join(out)
-
-
-def build_report(entries, followers):
-    mature = [e for e in entries if e["age_hours"] >= MATURE_HOURS and "error" not in e and e.get("reach") is not None]
-    lines = ["# Instagram results", "",
-             "Updated %s UTC. Followers: %s. Posts tracked: %d (%d older than %d h)." % (
-                 datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M"), followers, len(entries), len(mature), MATURE_HOURS), ""]
-    if len(mature) < 15:
-        lines += ["**Small sample (%d mature posts): treat everything below as noise, not as a trend.**" % len(mature), ""]
-    lines += ["## Posts, best first (shares per reach is the signal Instagram weights most)", "",
-              "| posted | title | category | slides | reach | shares | saves | comments | shares/reach | saves/reach | age h |",
-              "|---|---|---|---|---|---|---|---|---|---|---|"]
-    for e in sorted(entries, key=lambda e: -(e["share_rate"] or 0)):
-        lines.append("| %s | %s | %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
-            e["posted_local"], (e["title"] or "")[:50], e["category"] or "-", e["slides"] or "-", e.get("reach", "-"),
-            e.get("shares", "-"), e.get("saved", "-"), e.get("comments", "-"), pct(e["share_rate"]), pct(e["save_rate"]), e["age_hours"]))
-    for label, key in (("category", lambda e: e["category"]),
-                       ("posting hour", lambda e: "%02d:00" % e["hour"]),
-                       ("slide count", lambda e: e["slides"]),
-                       ("lane", lambda e: e["tags"].get("lane")),
-                       ("ending style", lambda e: e["tags"].get("end")),
-                       ("headline style", lambda e: e["tags"].get("headline"))):
-        lines.append(group_table(mature, label, key))
-    return "\n".join(l for l in lines if l is not None) + "\n"
-
-
 def main():
     config = json.loads((ROOT / "config.json").read_text())
     quick = "--quick" in sys.argv
@@ -186,8 +146,6 @@ def main():
     (ROOT / "state" / "stats.json").write_text(json.dumps(entries, indent=2) + "\n")
     account_file.write_text(json.dumps({"followers": account.get("followers_count"), "media_count": account.get("media_count"),
                                         "fetched_at": now.isoformat()}) + "\n")
-    if not quick:
-        (ROOT / "state" / "report.md").write_text(build_report(entries, account.get("followers_count")))
 
     today = datetime.now(ZoneInfo(config["timezone"])).strftime("%Y-%m-%d")
     log = ROOT / "state" / "followers.csv"
