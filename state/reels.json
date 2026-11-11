@@ -430,36 +430,6 @@
   "2026-11-11-01": {
     "attempts": 0,
     "credit": "In Search Of Solitude by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-    "file": "20261111-093620-2026-11-11-01.mp4",
-    "made_at": "2026-11-11T09:38:00.878284+00:00",
-    "music": "in-search-of-solitude.m4a",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/525976244a425994ec03089ef667424b451270bb/20261111-093620-2026-11-11-01.mp4",
-    "status": "made",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@525976244a425994ec03089ef667424b451270bb/20261111-093620-2026-11-11-01.mp4"
-  },
-  "2026-11-11-02": {
-    "attempts": 0,
-    "credit": "Adrift Among Infinite Stars by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-    "file": "20261111-093800-2026-11-11-02.mp4",
-    "made_at": "2026-11-11T09:39:42.947476+00:00",
-    "music": "adrift-among-infinite-stars.m4a",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/525976244a425994ec03089ef667424b451270bb/20261111-093800-2026-11-11-02.mp4",
-    "status": "made",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@525976244a425994ec03089ef667424b451270bb/20261111-093800-2026-11-11-02.mp4"
-  },
-  "2026-11-11-03": {
-    "attempts": 0,
-    "credit": "Permafrost by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-    "file": "20261111-093942-2026-11-11-03.mp4",
-    "made_at": "2026-11-11T09:41:25.153105+00:00",
-    "music": "permafrost.m4a",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/525976244a425994ec03089ef667424b451270bb/20261111-093942-2026-11-11-03.mp4",
-    "status": "made",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@525976244a425994ec03089ef667424b451270bb/20261111-093942-2026-11-11-03.mp4"
-  },
-  "2026-11-11-01": {
-    "attempts": 0,
-    "credit": "In Search Of Solitude by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
     "file": "20261111-093109-2026-11-11-01.mp4",
     "made_at": "2026-11-11T09:32:27.205324+00:00",
     "music": "in-search-of-solitude.m4a",
@@ -483,8 +453,9 @@
     "file": "20261111-093351-2026-11-11-03.mp4",
     "made_at": "2026-11-11T09:35:18.829369+00:00",
     "music": "permafrost.m4a",
+    "note": "found live on Instagram",
     "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/1c8017968414c174ade8ec6d7ff7abe0b1a1498a/20261111-093351-2026-11-11-03.mp4",
-    "status": "made",
+    "status": "posted",
     "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@1c8017968414c174ade8ec6d7ff7abe0b1a1498a/20261111-093351-2026-11-11-03.mp4"
   },
   "demo-02": {
