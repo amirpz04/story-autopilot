@@ -111,10 +111,6 @@ function render(t) {
       s.cardEl.style.transform = `scale(${1 + 0.04 * e})`;
       s.photoEl.style.transform = `translate(${-(s.pw - 1080) / 2}px, ${-(s.ph - 1920) / 2}px) scale(${1.1 + 0.05 * e})`;
       if (s.show) s.show(local - 0.7);
-    } else if (s.photoEl && s.frames) {                 // video: show the frame for this moment (the footage moves by itself)
-      const idx = Math.max(0, Math.min(s.frames.length - 1, Math.floor(local * 30)));
-      if (s.cur !== idx) { s.cur = idx; s.photoEl.src = s.frames[idx]; (window.__pend = window.__pend || []).push(s.photoEl.decode().catch(() => null)); }
-      s.photoEl.style.transform = `translate(${-(s.pw - 1080) / 2}px, ${-(s.ph - 1920) / 2}px) scale(1.02)`;
     } else if (s.photoEl) {
       const p = clamp(local / (s.dur + TR)), e = inOutCubic(p);
       const zoom = 1.0 + 0.085 * e;

@@ -93,44 +93,11 @@ def build_scenes(post, work):
                 path.write_bytes(data)
                 photo, ar = path.as_uri(), dims[0] / dims[1]
         dur = scene_duration(slide, pace) + (min(2.0, 0.55 * len(image.get("marks") or [])) if photo else 0)   # time to see the marks
-        frames = None
-        if image.get("video"):                                  # moving footage behind the text instead of a still picture
-            try:
-                vsrc, vpath = image["video"], work / f"video{n}.mp4"
-                if vsrc.startswith("file://"):
-                    shutil.copy(vsrc[7:], vpath)
-                else:
-                    for attempt in range(1, 5):
-                        try:
-                            req = urllib.request.Request(vsrc, headers={"User-Agent": USER_AGENT})
-                            with urllib.request.urlopen(req, timeout=180) as r, open(vpath, "wb") as f:
-                                shutil.copyfileobj(r, f)
-                            break
-                        except Exception as exc:
-                            time.sleep(6 * attempt)
-                    else:
-                        raise RuntimeError("video could not be downloaded: %s" % vsrc)
-                fdir = work / f"vid{n}"
-                fdir.mkdir()
-                seconds = dur + 0.5
-                fx = float(image.get("focus_x", 0.5))               # which part of a wide video stays in the 9:16 crop
-                subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(image.get("start", 0)), "-t", "%.2f" % seconds, "-i", str(vpath),
-                                "-vf", "fps=%d,scale=-2:1920,crop=1080:1920:(iw-1080)*%.3f:0" % (FPS, fx), "-q:v", "4", str(fdir / "f%04d.jpg")], check=True)
-                frames = [q.as_uri() for q in sorted(fdir.glob("f*.jpg"))]
-                if not frames:
-                    raise RuntimeError("no frames could be cut from the video: %s" % vsrc)
-                photo, ar = frames[0], 1080 / 1920
-            except Exception as exc:                            # a broken clip never stops a Reel: the still picture is used
-                print("Video not used on slide %d (%s); using the picture instead." % (n + 1, str(exc)[:120]))
-                frames = None
-                if not photo:
-                    raise
         scenes.append({
             "type": slide["type"], "kicker": (slide.get("kicker") or "").upper() if slide["type"] == "cover" else "",
             "text": slide.get("headline") or slide.get("text") or "", "photo": photo, "ar": ar,
             "credit": image.get("credit", "") if photo else "", "marks": (image.get("marks") or []) if photo else [],
             "focus": image.get("focus") if photo else None, "start": round(t, 3), "dur": round(dur, 3), "dir": 1 if n % 2 == 0 else -1,
-            **({"frames": frames} if frames else {}),
         })
         t += dur
     return scenes
@@ -148,7 +115,7 @@ def _render_frames(job):
         page.evaluate("Promise.all([...document.images].map(i => i.decode().catch(() => null)))")
         page.evaluate("fitAll()")
         for f in range(start, stop):
-            page.evaluate("async t => { render(t); await Promise.all((window.__pend || []).splice(0)); }", f / FPS)   # wait for video frames to load
+            page.evaluate("t => render(t)", f / FPS)
             page.screenshot(path=str(Path(frames_dir) / f"f_{f:05d}.jpg"), type="jpeg", quality=93)
         browser.close()
     return stop - start

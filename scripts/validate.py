@@ -192,17 +192,6 @@ def check_post(path, config):
     errors += check_duplicates(post, path)
 
     caption = post["caption"] + "\n\n" + " ".join(post.get("hashtags", []))
-    for i, sl in enumerate(post.get("slides", []), 1):          # optional moving footage on a slide (Reels only)
-        im = sl.get("image") or {}
-        if im.get("video"):
-            if not str(im["video"]).startswith("https://") or not str(im["video"]).split("?")[0].lower().endswith(".mp4"):
-                errors.append("slide %d: video must be a direct https .mp4 link" % i)
-            if not im.get("url"):
-                errors.append("slide %d: a video slide also needs a still picture (url) as its fallback" % i)
-            if not isinstance(im.get("start", 0), (int, float)) or im.get("start", 0) < 0:
-                errors.append("slide %d: video start must be a number of seconds" % i)
-    if sum(1 for sl in post.get("slides", []) if (sl.get("image") or {}).get("video")) > 2:
-        errors.append("at most 2 video slides per story")
     if len(post["caption"]) < MIN_CAPTION_CHARS:
         errors.append("caption is %d chars; write a detailed one of at least %d" % (len(post["caption"]), MIN_CAPTION_CHARS))
     if len(caption) > MAX_CAPTION_CHARS:
