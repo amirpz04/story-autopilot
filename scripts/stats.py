@@ -76,7 +76,7 @@ def collect(config, previous=None, quick=False):
         when = datetime.strptime(m["timestamp"], "%Y-%m-%dT%H:%M:%S%z")
         entry = {
             "media_id": m["id"], "permalink": m.get("permalink"),
-            "ig_thumb": m.get("thumbnail_url") or (m.get("media_url") if m.get("media_type") == "IMAGE" else None),   # what the profile grid shows "kind": "reel" if m.get("media_product_type") == "REELS" else "post",
+            "ig_thumb": m.get("thumbnail_url") or (m.get("media_url") if m.get("media_type") == "IMAGE" else None), "kind": "reel" if m.get("media_product_type") == "REELS" else "post",
             "id": post["id"] if post else None,
             "title": post["title"] if post else caption[:60],
             "category": post.get("category") if post else None,

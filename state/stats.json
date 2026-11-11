@@ -25,7 +25,8 @@
     "views": 51,
     "share_rate": 0.0,
     "save_rate": 0.0,
-    "interaction_rate": 0.0
+    "interaction_rate": 0.0,
+    "kind": "reel"
   },
   {
     "media_id": "18645975007003359",
@@ -53,7 +54,8 @@
     "views": 76,
     "share_rate": 0.0,
     "save_rate": 0.0,
-    "interaction_rate": 0.0
+    "interaction_rate": 0.0,
+    "kind": "reel"
   },
   {
     "media_id": "18075611138781342",
@@ -81,7 +83,8 @@
     "views": 116,
     "share_rate": 0.0,
     "save_rate": 0.0,
-    "interaction_rate": 0.0092
+    "interaction_rate": 0.0092,
+    "kind": "reel"
   },
   {
     "media_id": "18118479824011333",
@@ -109,7 +112,8 @@
     "views": 867,
     "share_rate": 0.0068,
     "save_rate": 0.0054,
-    "interaction_rate": 0.0341
+    "interaction_rate": 0.0341,
+    "kind": "reel"
   },
   {
     "media_id": "17904331527671425",
@@ -137,7 +141,8 @@
     "views": 4,
     "share_rate": 0.0,
     "save_rate": 0.0,
-    "interaction_rate": 0.0
+    "interaction_rate": 0.0,
+    "kind": "post"
   },
   {
     "media_id": "18122078389745187",
@@ -165,7 +170,8 @@
     "views": 1426,
     "share_rate": 0.0,
     "save_rate": 0.0044,
-    "interaction_rate": 0.0246
+    "interaction_rate": 0.0246,
+    "kind": "reel"
   },
   {
     "media_id": "18360697114222554",
@@ -193,7 +199,8 @@
     "views": 148,
     "share_rate": 0.0,
     "save_rate": 0.0,
-    "interaction_rate": 0.0
+    "interaction_rate": 0.0,
+    "kind": "reel"
   },
   {
     "media_id": "18135899092779274",
