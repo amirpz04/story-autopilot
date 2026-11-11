@@ -224,11 +224,12 @@
       </div>
 
       <div class="tile">
-        <div class="head"><span class="lbl">Avg reach</span><span class="lbl" id="avgRange"></span></div>
-        <div class="between"><span class="lbl">Reel</span><span class="num mid" id="avgReel"></span></div>
+        <div class="head"><span class="lbl">Reel reach</span><span class="lbl" id="avgRange"></span></div>
+        <div class="between"><span class="lbl">Typical</span><span class="num mid" id="avgReel"></span></div>
         <div class="bar" style="margin:8px 0 14px"><i id="avgReelBar"></i></div>
-        <div class="between"><span class="lbl">Carousel</span><span class="num mid" id="avgPost"></span></div>
-        <div class="bar" style="margin-top:8px"><i id="avgPostBar"></i></div>
+        <div class="between"><span class="lbl">Best</span><span class="num mid" id="avgPost"></span></div>
+        <div class="bar" style="margin:8px 0 14px"><i id="avgPostBar"></i></div>
+        <div class="between"><span class="lbl">Breakouts 600+</span><span id="avgBreak"></span></div>
       </div>
 
       <div class="tile">
@@ -334,7 +335,7 @@
         <div class="kv"><span>Times shown in</span><span class="seg" id="segTz"></span></div>
         <div class="kv"><span>Default chart range</span><span class="seg" id="segDefRange"></span></div>
         <div class="kv"><span>Chart counts</span><span class="seg" id="segDefMetric"></span></div>
-        <div class="kv"><span>Reload page every 5 min</span><span class="seg" id="segAuto"></span></div>
+        <div class="kv"><span>Update automatically</span><span class="seg" id="segAuto"></span></div>
         <div class="kv"><span>Color pictures</span><span class="seg" id="segColor"></span></div>
       </div>
 
@@ -485,7 +486,12 @@ function drawTicker() {
   $("ticker").innerHTML = `<div class="logo">${"<i></i>".repeat(9)}</div>` +
     tk.map(([l, v]) => `<div class="tk"><div class="lbl">${l}</div><b>${v}</b></div>`).join("") +
     `<div class="who"><div><div style="font-size:11px;font-weight:500">${esc((D.account || "").split(" @")[0])}</div><div class="faint" style="font-size:10px">@unclefactss</div></div><div class="av">UF</div></div>`;
-  $("fresh").textContent = "Updated " + ago(age);
+  drawFresh();
+}
+function drawFresh() {
+  const a = Date.now() - T(D.generated_at), stale = a > 90 * 60000;
+  $("fresh").textContent = (stale ? "Not updating · last " : "Updated ") + ago(a);
+  $("fresh").style.color = stale ? "var(--bad, #e07a6e)" : "";
 }
 
 // ================= OVERVIEW =================
@@ -547,7 +553,8 @@ function drawFollowers() {
   $("folN").textContent = nf(AN.followers);
   const wk = f.filter(x => x.date >= dayMinus(7));
   const delta = wk.length ? (AN.followers || 0) - wk[0].followers : null;
-  $("folDelta").textContent = delta == null ? "" : (delta >= 0 ? "+" : "") + delta + " 7d";
+  const days = wk.length ? Math.max(1, Math.round((now - T(wk[0].date + "T12:00:00Z")) / 864e5)) : 0;
+  $("folDelta").textContent = delta == null ? "" : (delta >= 0 ? "+" : "") + delta + " 7d" + (delta > 0 && days ? " · " + (delta / days).toFixed(1) + "/day" : "");
   if (f.length > 1) {
     const vs = f.map(x => x.followers), mx = Math.max(1, ...vs), mn = Math.min(...vs);
     const pts = vs.map((v, i) => `${(i / (vs.length - 1) * 200).toFixed(1)},${(38 - (v - mn) / Math.max(1, mx - mn) * 34).toFixed(1)}`).join(" ");
@@ -555,13 +562,14 @@ function drawFollowers() {
   }
 }
 
-function drawAvg() {
-  const items = LIVE.filter(p => inRange(p, PREF.range) && p.reach != null && (p.age_hours || 0) >= 24);
-  const r = avg(items.filter(p => p.kind === "reel").map(p => p.reach)), c = avg(items.filter(p => p.kind !== "reel").map(p => p.reach));
-  const mx = Math.max(1, r || 0, c || 0);
+function drawAvg() {   // Reels only: the typical one (median), the best one, and how many broke out of the ~100 test audience
+  const rs = LIVE.filter(p => p.kind === "reel" && inRange(p, PREF.range) && p.reach != null && (p.age_hours || 0) >= 24).map(p => p.reach).sort((x, y) => x - y);
+  const med = rs.length ? (rs.length % 2 ? rs[(rs.length - 1) / 2] : Math.round((rs[rs.length / 2 - 1] + rs[rs.length / 2]) / 2)) : null;
+  const best = rs.length ? rs[rs.length - 1] : null, hits = rs.filter(v => v >= 600).length;
   $("avgRange").textContent = PREF.range + " · 24h+ old";
-  $("avgReel").textContent = r == null ? "-" : nf(r); $("avgPost").textContent = c == null ? "-" : nf(c);
-  $("avgReelBar").style.width = (r || 0) / mx * 100 + "%"; $("avgPostBar").style.width = (c || 0) / mx * 100 + "%";
+  $("avgReel").textContent = med == null ? "-" : nf(med); $("avgPost").textContent = best == null ? "-" : nf(best);
+  $("avgReelBar").style.width = best ? Math.max(2, med / best * 100) + "%" : "0"; $("avgPostBar").style.width = best ? "100%" : "0";
+  $("avgBreak").innerHTML = rs.length ? `<b>${hits}</b> <span class="faint">of ${rs.length}</span>` : "-";
 }
 
 function drawRing() {
@@ -826,14 +834,24 @@ function drawControl() {
 const OPTS_HTML = [0, 1, 2, 3, 4, 5].map(n => `<option>${n}</option>`).join("");
 $("ppd").innerHTML = OPTS_HTML; $("rpd").innerHTML = OPTS_HTML;
 
-// auto reload (skipped while you are typing or watching a video)
-setInterval(() => {
-  if (PREF.auto !== "on" || document.hidden) return;
+// Stay current: every 2 minutes (and when you come back to the tab) ask the server, past any cache, whether newer data
+// has been published, and reload only then. Skipped while you are typing or watching a video.
+let checking = false;
+async function refreshIfNewer() {
+  if (PREF.auto !== "on" || document.hidden || checking || location.protocol === "file:") return;
   const a = document.activeElement;
   if (a && /INPUT|TEXTAREA|SELECT/.test(a.tagName)) return;
   if ([...document.querySelectorAll("video,audio")].some(m => !m.paused)) return;
-  location.reload();
-}, 5 * 60000);
+  checking = true;
+  try {
+    const t = await (await fetch(location.pathname + "?t=" + Date.now(), {cache: "no-store"})).text();
+    const m = t.match(/"generated_at":\s*"([^"]+)"/);
+    if (m && T(m[1]) > T(D.generated_at)) location.replace(location.pathname + "?v=" + Date.now() + location.hash);
+  } catch (e) {} finally { checking = false; }
+}
+setInterval(refreshIfNewer, 2 * 60000);
+document.addEventListener("visibilitychange", () => { if (!document.hidden) refreshIfNewer(); });
+setInterval(drawFresh, 30000);
 
 drawTicker(); drawAlerts(); drawToday(); drawFollowers(); drawRing(); drawThumbs(); drawSystem(); drawWork(); drawStats();
 drawKey(); drawMusic(); drawControl(); drawList(); route();
