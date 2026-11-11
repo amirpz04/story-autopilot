@@ -160,6 +160,7 @@ def build(now):
         entry = {k: s.get(k) for k in ("id", "kind", "title", "category", "posted_local", "hour", "permalink", "age_hours", "reach",
                                        "views", "likes", "comments", "shares", "saved", "total_interactions", "share_rate", "save_rate")}
         entry["hook"] = hooks.get(s.get("id"), "")
+        entry["ig_thumb"] = s.get("ig_thumb")
         posts.append(entry)
 
     # --- group averages (only posts old enough, only groups big enough)

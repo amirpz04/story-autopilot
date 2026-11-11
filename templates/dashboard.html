@@ -592,7 +592,7 @@ function drawEng() {
 
 function drawThumbs() {
   $("thumbs").innerHTML = LIVE.slice(0, 9).map(p => { const c = coverOf(p.id);
-    return `<a href="${esc(p.permalink || "#")}" target="_blank" rel="noopener" title="${esc(p.hook || p.title)}">${c ? `<img src="${esc(thumb(c))}" loading="lazy" alt="" onerror="this.remove()">` : ""}
+    return `<a href="${esc(p.permalink || "#")}" target="_blank" rel="noopener" title="${esc(p.hook || p.title)}">${p.ig_thumb || c ? `<img src="${esc(p.ig_thumb || thumb(c))}" loading="lazy" alt="" ${p.ig_thumb && c ? `onerror="this.onerror=function(){this.remove()};this.src='${esc(thumb(c))}'"` : `onerror="this.remove()"`}>` : ""}
       <span>${p.kind === "reel" ? "▶ " : ""}${short(p.reach)}</span></a>`; }).join("") || `<div class="dim">Nothing live yet.</div>`;
 }
 

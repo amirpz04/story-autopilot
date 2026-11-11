@@ -40,9 +40,13 @@ def publish_due_reel(post_id):
 COVER_MS = 2200     # the grid thumbnail is a frame of the video: at 0 s there is only a bare picture, by 2.2 s the headline is fully shown
 
 
+COVER_NOTE = {"last": ""}
+
+
 def create_container(user, config, video_url, caption):
     """Start the Reel upload with the cover frame set to the moment the headline is readable. If Instagram rejects that
     one setting, try once more without it so the Reel itself is never held back; any other error is raised as before."""
+    COVER_NOTE["last"] = "frame at %.1f s" % (COVER_MS / 1000)
     params = dict(media_type="REELS", video_url=video_url, caption=caption, share_to_feed="true", thumb_offset=str(COVER_MS))
     try:
         return publish.graph("POST", user + "/media", config, **params)["id"]
@@ -50,6 +54,7 @@ def create_container(user, config, video_url, caption):
         text = str(exc)
         if "thumb_offset" in text or '"code":100' in text or "Invalid parameter" in text:
             params.pop("thumb_offset")
+            COVER_NOTE["last"] = "default frame (Instagram refused the cover setting)"
             return publish.graph("POST", user + "/media", config, **params)["id"]
         raise
 
@@ -103,6 +108,7 @@ def post_reel(post_id):
         save_reels(reels)
         return "Reel not posted: %s" % str(exc)[:200]
     publish.note_api_ok()
+    entry["cover"] = COVER_NOTE["last"]
     entry.update(status="posted", media_id=media_id, permalink=permalink, posted_at=datetime.now(timezone.utc).isoformat(), attempts=0, error="")
     save_reels(reels)
     return "Reel posted: %s" % (permalink or media_id)

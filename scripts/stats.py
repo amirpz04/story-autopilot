@@ -63,8 +63,11 @@ def collect(config, previous=None, quick=False):
     tz = ZoneInfo(config["timezone"])
     now = datetime.now(timezone.utc)
     posts = load_posts()
-    media = graph(user + "/media", config, limit=50,
-                  fields="id,caption,timestamp,permalink,media_type,media_product_type,like_count,comments_count")["data"]
+    base = "id,caption,timestamp,permalink,media_type,media_product_type,like_count,comments_count"
+    try:
+        media = graph(user + "/media", config, limit=50, fields=base + ",thumbnail_url,media_url")["data"]
+    except Exception:                                   # the thumbnails are a nicety: never lose the numbers over them
+        media = graph(user + "/media", config, limit=50, fields=base)["data"]
     old = {e.get("media_id"): e for e in (previous or [])}
     entries = []
     for m in media:
@@ -72,7 +75,8 @@ def collect(config, previous=None, quick=False):
         post = next((p for p in posts if caption.startswith(p["caption"].strip()[:60])), None)
         when = datetime.strptime(m["timestamp"], "%Y-%m-%dT%H:%M:%S%z")
         entry = {
-            "media_id": m["id"], "permalink": m.get("permalink"), "kind": "reel" if m.get("media_product_type") == "REELS" else "post",
+            "media_id": m["id"], "permalink": m.get("permalink"),
+            "ig_thumb": m.get("thumbnail_url") or (m.get("media_url") if m.get("media_type") == "IMAGE" else None),   # what the profile grid shows "kind": "reel" if m.get("media_product_type") == "REELS" else "post",
             "id": post["id"] if post else None,
             "title": post["title"] if post else caption[:60],
             "category": post.get("category") if post else None,
