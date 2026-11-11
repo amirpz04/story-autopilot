@@ -427,6 +427,36 @@
     "status": "posted",
     "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@5eef9871f63ecae9793f632d04d94d68f8bfca63/20261110-110603-2026-11-10-03.mp4"
   },
+  "2026-11-11-01": {
+    "attempts": 0,
+    "credit": "In Search Of Solitude by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "file": "20261111-093109-2026-11-11-01.mp4",
+    "made_at": "2026-11-11T09:32:27.205324+00:00",
+    "music": "in-search-of-solitude.m4a",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/1c8017968414c174ade8ec6d7ff7abe0b1a1498a/20261111-093109-2026-11-11-01.mp4",
+    "status": "made",
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@1c8017968414c174ade8ec6d7ff7abe0b1a1498a/20261111-093109-2026-11-11-01.mp4"
+  },
+  "2026-11-11-02": {
+    "attempts": 0,
+    "credit": "Adrift Among Infinite Stars by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "file": "20261111-093227-2026-11-11-02.mp4",
+    "made_at": "2026-11-11T09:33:51.682331+00:00",
+    "music": "adrift-among-infinite-stars.m4a",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/1c8017968414c174ade8ec6d7ff7abe0b1a1498a/20261111-093227-2026-11-11-02.mp4",
+    "status": "made",
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@1c8017968414c174ade8ec6d7ff7abe0b1a1498a/20261111-093227-2026-11-11-02.mp4"
+  },
+  "2026-11-11-03": {
+    "attempts": 0,
+    "credit": "Permafrost by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "file": "20261111-093351-2026-11-11-03.mp4",
+    "made_at": "2026-11-11T09:35:18.829369+00:00",
+    "music": "permafrost.m4a",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/1c8017968414c174ade8ec6d7ff7abe0b1a1498a/20261111-093351-2026-11-11-03.mp4",
+    "status": "made",
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@1c8017968414c174ade8ec6d7ff7abe0b1a1498a/20261111-093351-2026-11-11-03.mp4"
+  },
   "demo-02": {
     "attempts": 0,
     "backfill": true,
