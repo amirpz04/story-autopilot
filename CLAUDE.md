@@ -95,6 +95,7 @@ Same photos and text as the carousel, animated, 1080x1920, 30 fps, each slide st
 - **Safe box for the owner's iPhone 13**: all text inside x 140-810, y ~460-1220 (Instagram covers the top 11%, right 13%,
   bottom 27%; iPhones crop ~9% per side). No progress bars, no @handle on the video; photo credits go in the caption. Do not move text out of the box.
 - Music: Instagram's own library is not available through the API. Owner likes the current six tracks, dislikes Kevin MacLeod and Satie.
+- **Video clips (optional, added Nov 11, not used by the daily run yet):** a slide's `image` may carry `"video": "https://...mp4"` plus `"start"` (seconds) and `"focus_x"` (0-1, which part of a wide clip stays in the 9:16 crop), next to its normal `url` still picture. The Reel plays the clip behind the text; if the clip fails, the still is used. Max 2 per story (`validate.py`). ROUTINE does not mention it: picking the right seconds needs looking at frames (a clip often opens on graphics), so turn it on only with the owner's OK. Free source that works: NASA's library (`images-api.nasa.gov/search?media_type=video`).
 - Hosting: Instagram fetches the mp4 from `raw.githubusercontent.com` (branch `reels`); the dashboard plays it via jsDelivr.
 
 ## 7. Accounts and secrets (never in files, commits or chat)
