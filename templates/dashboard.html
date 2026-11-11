@@ -29,7 +29,7 @@
   .num { font-weight: 300; font-variant-numeric: tabular-nums; line-height: 1; letter-spacing: -.02em; }
   .big { font-size: 44px; } .mid { font-size: 28px; } .of { font-size: 13px; color: var(--dim); margin-left: 6px; }
 
-  .wrap { max-width: 1280px; margin: 0 auto; padding: 14px; }
+  .wrap { padding: 14px; }
   .frame { background: var(--frame); border-radius: 6px; padding: 10px; }
 
   /* top ticker */
@@ -167,6 +167,66 @@
   .cap { white-space: pre-wrap; font-size: 12px; }
   details summary { cursor: pointer; list-style: none; } details summary::-webkit-details-marker { display: none; }
 
+
+  /* ===== Screen-fit layout (desktop): no centered column, the page IS the viewport =====
+     The overview bento stretches to at least one screen high; rows share the height, tiles fill their cell,
+     text and charts scale with the window. Short windows scroll instead of squashing. */
+  #alerts { margin-bottom: 8px; } #resultsTile { margin-top: 8px; }
+  #resultsTile.hide, #alerts:empty { display: none; }
+  @media (min-width: 900px) {
+    :root { --gap: clamp(8px, .7vw, 16px); --chrome: calc(8.6rem + 2 * var(--gap)); }
+    html { font-size: clamp(13px, calc(.28vw + .5vh + 6px), 21px); }
+    body { font-size: 1rem; }
+    .wrap { padding: var(--gap); min-height: 100dvh; }
+    .frame { padding: var(--gap); min-height: calc(100dvh - 2 * var(--gap)); }
+    .grid { gap: var(--gap); }
+    #alerts { margin-bottom: var(--gap); } #resultsTile { margin-top: var(--gap); }
+    .tile { padding: clamp(14px, 1.2vw, 26px); }
+    .lbl { font-size: .85em; } .tk .lbl { font-size: .75rem; } .tk b { font-size: .95rem; } .tk { padding: 0 1.4vw; }
+    .who .av { width: 2rem; height: 2rem; } nav a { font-size: .85rem; }
+    .seg button { font-size: .8rem; padding: .25rem .55rem; } .tag { font-size: .75rem; } .btn { font-size: .85rem; }
+    .kv, table { font-size: .95rem; } th { font-size: .8rem; }
+    .big { font-size: clamp(44px, 3.4vw + 2.2vh, 110px); } .mid { font-size: clamp(28px, 1.9vw + 1.4vh, 64px); }
+    .of { font-size: 1rem; } .arrow { width: 2.1rem; height: 2.1rem; font-size: 1rem; }
+    .dot { width: .55rem; height: .55rem; }
+
+    .bento .head { margin-bottom: .8rem; }
+    .bento .tile > .num.big { margin-top: auto; }
+    .tile.spread { justify-content: space-between; }
+    .cb { flex: 1; min-height: 0; }
+    .cw { align-self: stretch; display: flex; flex-direction: column; }
+    .chart { flex: 1; height: auto; min-height: 5rem; gap: clamp(3px, .45vw, 10px); }
+    .chart .c em { font-size: .8rem; } .axis { font-size: .8rem; }
+    .spark { flex: 1; display: flex; align-items: flex-end; min-height: 3rem; }
+    .spark svg { height: 100% !important; min-height: 2.5rem; }
+    .ringbox { flex: 1; min-height: 8rem; display: grid; place-items: center; container-type: size; }
+    .ring { width: min(100cqw, 100cqh); height: min(100cqw, 100cqh); margin: 0; }
+    .ring .mid { font-size: clamp(22px, 17cqmin, 60px); } .ring .lbl { font-size: clamp(8px, 4.5cqmin, 13px) !important; }
+    #eng, #sysList { flex: 1; display: flex; flex-direction: column; }
+    #eng .kv, #sysList .kv { flex: 1; align-items: center; }
+    .thumbs { flex: 1; min-height: 12rem; grid-auto-rows: 1fr; }
+    .thumbs a { aspect-ratio: auto; min-height: 0; } .thumbs img { position: absolute; inset: 0; } .thumbs span { font-size: .8rem; }
+    #topTitle { font-size: clamp(16px, 1.15vw + .9vh, 38px) !important; letter-spacing: .06em; }
+    #segWork { max-width: 100%; overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; } #segWork button { white-space: nowrap; }
+    #topMeta { font-size: .9rem !important; }
+    #workTile, #workTile .scroll { min-height: 0; } #work { flex: 1; overflow: auto; }
+    #todayList { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; }
+    #todayList .it { flex: 1; padding: 0; }
+    #nextTitle { white-space: normal; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+    .cards { grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)); }
+    .slides { grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); }
+  }
+
+  /* wide screens: 12 columns x 3 rows that share the full window height */
+  @media (min-width: 1280px) {
+    .bento { grid-template-columns: repeat(12, minmax(0, 1fr)); min-height: calc(100dvh - var(--chrome)); grid-auto-rows: minmax(15rem, 1fr); grid-auto-flow: dense; }
+    .bento > .tile { contain: size; overflow: hidden; grid-column: span 3; grid-row: auto; }
+    .bento > .tile:nth-child(3) { grid-column: span 6; }
+    .bento > .tile:nth-child(9) { grid-column: span 4; }
+    .bento > .tile:nth-child(10) { grid-column: span 2; order: 1; }
+    .bento > .tile.tall { grid-row: auto; }
+  }
+
   #toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: 18px; z-index: 50; display: none; max-width: 92vw;
     background: var(--light); color: var(--on-light); padding: 10px 14px; border-radius: var(--r); font-size: 12px; }
   .foot { text-align: center; color: var(--faint); font-size: 18px; letter-spacing: .25em; margin: 26px 0 8px; text-transform: uppercase; }
@@ -186,8 +246,8 @@
 
   <!-- ================= OVERVIEW ================= -->
   <section class="view" id="v-overview">
-    <div class="grid">
-      <div class="tile full" id="alerts"></div>
+    <div class="tile" id="alerts"></div>
+    <div class="grid bento">
 
       <div class="tile accent pf">
         <div class="head"><span class="lbl">Today</span><span class="lbl" id="todayDate"></span></div>
@@ -208,22 +268,22 @@
           <span class="lbl" id="chartLbl"></span>
           <span class="row" style="gap:10px"><span class="seg" id="segKind"></span><span class="seg" id="segRange"></span></span>
         </div>
-        <div class="between" style="align-items:flex-end;gap:16px">
+        <div class="between cb" style="align-items:flex-end;gap:16px">
           <div style="flex:none">
             <div class="num big" id="chartTotal"></div>
             <div class="seg" id="segMetric" style="margin-top:10px"></div>
           </div>
-          <div style="flex:1;min-width:0"><div class="chart" id="chart"></div><div class="axis" id="axis"></div></div>
+          <div class="cw" style="flex:1;min-width:0"><div class="chart" id="chart"></div><div class="axis" id="axis"></div></div>
         </div>
       </div>
 
       <div class="tile">
         <div class="head"><span class="lbl">Followers</span><span class="lbl" id="folDelta"></span></div>
         <div class="num big" id="folN"></div>
-        <div class="push" style="padding-top:14px"><svg id="folSpark" viewBox="0 0 200 40" preserveAspectRatio="none" style="width:100%;height:40px"></svg></div>
+        <div class="push spark" style="padding-top:14px"><svg id="folSpark" viewBox="0 0 200 40" preserveAspectRatio="none" style="width:100%;height:40px"></svg></div>
       </div>
 
-      <div class="tile">
+      <div class="tile spread">
         <div class="head"><span class="lbl">Reel reach</span><span class="lbl" id="avgRange"></span></div>
         <div class="between"><span class="lbl">Typical</span><span class="num mid" id="avgReel"></span></div>
         <div class="bar" style="margin:8px 0 14px"><i id="avgReelBar"></i></div>
@@ -234,9 +294,9 @@
 
       <div class="tile">
         <div class="head"><span class="lbl">Delivered</span><span class="lbl">7 days</span></div>
-        <div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="var(--line)" stroke-width="5"/>
+        <div class="ringbox"><div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="var(--line)" stroke-width="5"/>
           <circle id="ringArc" cx="60" cy="60" r="52" fill="none" stroke="var(--accent-hi)" stroke-width="5" stroke-linecap="round" stroke-dasharray="0 999"/></svg>
-          <div class="in"><div><div class="num mid" id="ringN"></div><div class="lbl" style="margin-top:6px;font-size:9px" id="ringSub"></div></div></div></div>
+          <div class="in"><div><div class="num mid" id="ringN"></div><div class="lbl" style="margin-top:6px;font-size:9px" id="ringSub"></div></div></div></div></div>
       </div>
 
       <div class="tile">
@@ -271,11 +331,11 @@
         <div class="scroll" id="work"></div>
       </div>
 
-      <div class="tile full">
-        <div class="head"><span class="lbl">Results</span><span class="lbl" id="resRange"></span></div>
-        <div class="scroll" id="results"></div>
-        <div id="resMore"></div>
-      </div>
+    </div>
+    <div class="tile" id="resultsTile">
+      <div class="head"><span class="lbl">Results</span><span class="lbl" id="resRange"></span></div>
+      <div class="scroll" id="results"></div>
+      <div id="resMore"></div>
     </div>
   </section>
 
