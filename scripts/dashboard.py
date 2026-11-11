@@ -57,6 +57,18 @@ def reel_time(config, day, post, reel):
     return None
 
 
+def hooks_by_id():
+    """The cover headline of every queued story: the line viewers actually read (the internal title is only a label)."""
+    out = {}
+    for path in (ROOT / "queue").glob("*/*/post.json"):
+        try:
+            post = json.loads(path.read_text())
+            out[post["id"]] = (post["slides"][0].get("headline") or "").strip()
+        except Exception:
+            pass
+    return out
+
+
 def music_list():
     meta = read_json(ROOT / "assets" / "music" / "music.json", {})
     out = []
@@ -119,6 +131,7 @@ def build(now):
             "reel": ({k: reel.get(k) for k in ("status", "url", "made_at", "music", "permalink", "posted_at", "attempts", "error", "post_at", "backfill") if k in reel} if reel else None),
             "reel_stats": {k: rs.get(k) for k in ("reach", "likes", "comments", "shares", "saved", "views", "share_rate")} if rs else None,
             "id": post["id"], "date": day.isoformat(), "slot": post["slot"], "title": post["title"],
+            "hook": (post["slides"][0].get("headline") or "").strip(),
             "category": post.get("category", ""), "lane": (post.get("tags") or {}).get("lane", ""),
             "status": rec.get("status") or ("posted" if st else None), "post_now": bool(rec.get("post_now")), "error": rec.get("error"),
             "scheduled_utc": None if post.get("slot") is None else (rec.get("post_at") or publish.slot_time(config, day, post["slot"]).astimezone(timezone.utc).isoformat()),
@@ -141,10 +154,13 @@ def build(now):
                               "stats": {k: s.get(k) for k in ("reach", "likes", "comments", "shares", "saved", "share_rate", "save_rate")}})
 
     # --- posts on Instagram, newest first
+    hooks = hooks_by_id()
     posts = []
     for s in sorted(stats, key=lambda s: s.get("posted_local", ""), reverse=True):
-        posts.append({k: s.get(k) for k in ("id", "kind", "title", "category", "posted_local", "hour", "permalink", "age_hours", "reach",
-                                            "views", "likes", "comments", "shares", "saved", "total_interactions", "share_rate", "save_rate")})
+        entry = {k: s.get(k) for k in ("id", "kind", "title", "category", "posted_local", "hour", "permalink", "age_hours", "reach",
+                                       "views", "likes", "comments", "shares", "saved", "total_interactions", "share_rate", "save_rate")}
+        entry["hook"] = hooks.get(s.get("id"), "")
+        posts.append(entry)
 
     # --- group averages (only posts old enough, only groups big enough)
     mature = [s for s in stats if s.get("age_hours", 0) >= MATURE_HOURS and s.get("reach") is not None and "error" not in s]

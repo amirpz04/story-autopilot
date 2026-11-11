@@ -507,7 +507,7 @@ function drawToday() {
   $("todayOf").textContent = "/ " + todayRows.length + " out";
   $("todayList").innerHTML = todayRows.length ? todayRows.map(r => `<div class="it">
       <span class="tm">${clock(r.time)}</span><span class="tag${r.kind === "Reel" ? " reel" : ""}" style="${r.kind === "Reel" ? "background:rgba(255,255,255,.2)" : "background:rgba(0,0,0,.18);color:#e6eaf4"}">${r.kind}</span>
-      <span class="ell"><a href="#post/${encodeURIComponent(r.p.id)}">${esc(r.p.title)}</a></span>${dot(r.st[0])}</div>`).join("")
+      <span class="ell"><a href="#post/${encodeURIComponent(r.p.id)}">${esc(r.p.hook || r.p.title)}</a></span>${dot(r.st[0])}</div>`).join("")
     : `<div class="dim">Nothing queued yet. The research run writes today's stories around 12:15 Istanbul.</div>`;
 
   if (next) {
@@ -515,7 +515,7 @@ function drawToday() {
     $("nextIn").textContent = d > 0 ? (d >= 3600e3 ? Math.floor(d / 3600e3) + "h " : "") + Math.round((d % 3600e3) / 60000) + "m" : "due";
     $("nextAt").textContent = clock(next.time) + " " + tzName() + " · " + next.st[1];
     $("nextKind").innerHTML = `<span class="tag${next.kind === "Reel" ? " reel" : ""}">${next.kind}</span>`;
-    $("nextTitle").innerHTML = `<a href="#post/${encodeURIComponent(next.p.id)}" style="text-decoration:none">${esc(next.p.title)}</a>`;
+    $("nextTitle").innerHTML = `<a href="#post/${encodeURIComponent(next.p.id)}" style="text-decoration:none">${esc(next.p.hook || next.p.title)}</a>`;
     const q = esc(next.p.id);
     $("nextBtns").innerHTML = next.kind === "Post"
       ? `<button class="btn mini" onclick="if(confirm('Post this carousel now?')) act('post_now','${q}')">Post now</button>`
@@ -592,7 +592,7 @@ function drawEng() {
 
 function drawThumbs() {
   $("thumbs").innerHTML = LIVE.slice(0, 9).map(p => { const c = coverOf(p.id);
-    return `<a href="${esc(p.permalink || "#")}" target="_blank" rel="noopener" title="${esc(p.title)}">${c ? `<img src="${esc(thumb(c))}" loading="lazy" alt="" onerror="this.remove()">` : ""}
+    return `<a href="${esc(p.permalink || "#")}" target="_blank" rel="noopener" title="${esc(p.hook || p.title)}">${c ? `<img src="${esc(thumb(c))}" loading="lazy" alt="" onerror="this.remove()">` : ""}
       <span>${p.kind === "reel" ? "▶ " : ""}${short(p.reach)}</span></a>`; }).join("") || `<div class="dim">Nothing live yet.</div>`;
 }
 
@@ -601,7 +601,7 @@ function drawTop() {
   const f = METRIC[PREF.metric][1], top = items.sort((a, b) => (f(b) || 0) - (f(a) || 0))[0];
   if (!top) { $("topTile").style.display = "none"; return; }
   $("topTile").style.display = "";
-  $("topTitle").textContent = top.title || "";
+  $("topTitle").textContent = top.hook || top.title || "";
   $("topLink").href = top.permalink || "#";
   $("topMeta").innerHTML = `${top.kind === "reel" ? "Reel" : "Carousel"} · ${nf(top.reach)} reach · ${nf(top.views)} views · ${nf(top.shares)} shares · ${esc((top.posted_local || "").slice(5, 10))}`;
 }
@@ -640,7 +640,7 @@ function drawResults() {
   $("resRange").textContent = PREF.range + " · " + all.length;
   $("results").innerHTML = items.length ? `<table><tr><th>Posted</th><th>Story</th><th class="r">Reach</th><th class="r">Views</th><th class="r hm">Likes</th><th class="r">Shares</th><th class="r hm">Saves</th></tr>` +
     items.map(p => `<tr><td class="dim">${esc((p.posted_local || "").slice(5, 16))}</td>
-      <td style="max-width:280px" class="ell"><span class="tag${p.kind === "reel" ? " reel" : ""}" style="margin-right:6px">${p.kind === "reel" ? "Reel" : "Post"}</span>${p.permalink ? `<a href="${esc(p.permalink)}" target="_blank" rel="noopener" style="text-decoration:none">${esc(p.title)}</a>` : esc(p.title)}</td>
+      <td style="max-width:280px" class="ell"><span class="tag${p.kind === "reel" ? " reel" : ""}" style="margin-right:6px">${p.kind === "reel" ? "Reel" : "Post"}</span>${p.permalink ? `<a href="${esc(p.permalink)}" target="_blank" rel="noopener" style="text-decoration:none">${esc(p.hook || p.title)}</a>` : esc(p.hook || p.title)}</td>
       <td class="r">${nf(p.reach)}</td><td class="r">${nf(p.views)}</td><td class="r hm">${nf(p.likes)}</td><td class="r">${nf(p.shares)}</td><td class="r hm">${nf(p.saved)}</td></tr>`).join("") + `</table>`
     : `<div class="dim">No live posts in this range.</div>`;
 }
@@ -664,13 +664,13 @@ function drawList() {
   $("sort").value = PREF.sort;
   const q = ($("q").value || "").toLowerCase(), st = p => p.stats || {}, rst = p => p.reel_stats || {};
   const metric = {reach: p => (st(p).reach || 0) + (rst(p).reach || 0), views: p => rst(p).views || 0, shares: p => (st(p).shares || 0) + (rst(p).shares || 0)}[PREF.sort];
-  const items = D.all_posts.filter(p => inFilter(p) && (!q || (p.title || "").toLowerCase().includes(q)))
+  const items = D.all_posts.filter(p => inFilter(p) && (!q || ((p.hook || "") + " " + (p.title || "")).toLowerCase().includes(q)))
     .sort((a, b) => metric ? metric(b) - metric(a) : (b.date || "").localeCompare(a.date || "") || ((a.slot || 9) - (b.slot || 9)));
   $("plist").innerHTML = items.length ? items.map(p => {
     const [lv, txt] = postStatus(p), rs = reelStatus(p), c = coverOf(p.id), s = p.stats, r = p.reel_stats;
     return `<a class="card" href="#post/${encodeURIComponent(p.id)}">
       <div class="im">${c ? `<img src="${esc(thumb(c))}" loading="lazy" alt="" onerror="this.remove()">` : ""}${p.reel_slot != null || p.reel ? `<span class="tag reel">Reel</span>` : ""}</div>
-      <div class="b"><div class="faint" style="font-size:10px">${esc(p.date)}</div><div class="ti">${esc(p.title)}</div>
+      <div class="b"><div class="faint" style="font-size:10px">${esc(p.date)}</div><div class="ti">${esc(p.hook || p.title)}</div>
         ${p.has_slot !== false ? `<div class="st">${dot(lv)}${esc(txt)}</div>` : ""}
         ${rs ? `<div class="st">${dot(rs[0])}${esc(rs[1])}</div>` : ""}
         <div class="mx">${s && s.reach != null ? "Post " + nf(s.reach) + " reach" : ""}${s && r ? " · " : ""}${r && r.reach != null ? "Reel " + nf(r.views) + " views" : ""}</div></div></a>`;
@@ -712,7 +712,7 @@ function showPost(id) {
   $("pdetail").innerHTML = `<div class="grid">
     <div class="tile ${p.slides.length && (p.reel_slot != null || p.reel) ? "s2" : "full"}">
       <div class="head"><span class="lbl">${esc(p.date)} · ${esc(p.category || "")}</span><span class="row" style="gap:6px">${p.has_slot !== false ? dot(lv) + esc(txt) : "Reel only"}</span></div>
-      <div class="up" style="font-size:20px;line-height:1.25;font-weight:500">${esc(p.title)}</div>
+      <div class="up" style="font-size:20px;line-height:1.25;font-weight:500">${esc(p.hook || p.title)}</div>
       <div class="dim" style="margin-top:8px">${live && p.posted_at ? "Posted " + when(p.posted_at) : p.scheduled_utc ? "Goes out " + when(p.scheduled_utc) : ""}</div>
       ${p.error ? `<div style="margin-top:8px;color:var(--bad)">${esc(p.error.slice(0, 220))}</div>` : ""}
       ${p.stats ? `<div class="rule"></div>` + metricsHtml(p.stats, [["reach", "Reach"], ["likes", "Likes"], ["comments", "Comments"], ["shares", "Shares"], ["saved", "Saves"]]) : ""}
