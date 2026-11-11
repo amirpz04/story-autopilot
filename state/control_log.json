@@ -1,5 +1,11 @@
 [
   {
+    "action": "remove",
+    "at": "2026-11-11T22:11:24.895585+00:00",
+    "result": "Removed demo-02; it will not be published.",
+    "target": "demo-02"
+  },
+  {
     "action": "posts_per_day",
     "at": "2026-11-09T15:22:21.447088+00:00",
     "result": "Now 0 carousel posts and 3 Reels a day, from 3 stories (takes effect from the next research run).",
