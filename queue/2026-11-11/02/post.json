@@ -1,0 +1,87 @@
+{
+  "id": "2026-11-11-02",
+  "date": "2026-11-11",
+  "slot": null,
+  "reel_slot": 5,
+  "title": "NRC approves construction of four reactors inside Dow's Texas chemical site (Long Mott)",
+  "category": "inventions",
+  "variety_exception": "Subject drawn was tech; this is an energy engineering story that is the strongest fresh item found, and it shares no organization with the other posts.",
+  "tags": {
+    "headline": "unexpected place",
+    "end": "pending caveat",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 6,
+    "shareability": 7,
+    "talkability": 8,
+    "no_context": 7,
+    "freshness": 10
+  },
+  "sources": [
+    {
+      "name": "U.S. Nuclear Regulatory Commission, news release 26-083",
+      "url": "https://www.nrc.gov/about-nrc/news-releases/2026/26-083"
+    },
+    {
+      "name": "TechCrunch: X-energy gets green light to build its first small modular nuclear reactors",
+      "url": "https://techcrunch.com/2026/11/10/x-energy-gets-green-light-to-build-its-first-small-modular-nuclear-reactors/"
+    }
+  ],
+  "verification": "News, rung 1 (NRC release Nov 9, 2026). NRC release read: Long Mott Generating Station, Dow Seadrift Operations, Calhoun County, Texas; four X-energy Xe-100 reactors, pebble-bed core, online refueling; mainly high-temperature industrial steam for the Dow site with excess power to the grid; first construction permit for a high-temperature gas-cooled reactor in nearly 60 years; permit builds but does not allow operation; review finished on an 18-month schedule. TechCrunch read: 80 MW electric and 200 MW heat per reactor, operation not before the early 2030s, Union of Concerned Scientists (Edwin Lyman) criticism that safety questions were pushed later. No claim beyond those two sources; the first-for-industrial-site claim is attributed to X-energy and not used.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "ENERGY",
+      "headline": "Four nuclear reactors are coming to a chemical plant.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0e/Dow_Chemical_Company_plant_in_Freeport%2C_Texas_-_DPLA_-_0496a5fc0baf4e9818500bb693b5673d.jpg/3840px-Dow_Chemical_Company_plant_in_Freeport%2C_Texas_-_DPLA_-_0496a5fc0baf4e9818500bb693b5673d.jpg",
+        "credit": "Illustrative photo: Dow Chemical Company plant in Freeport, Texas (a different Dow site) / Wikimedia Commons"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "On November 9, U.S. regulators approved construction at Dow's Seadrift site on the Texas coast. It is the first such permit for this kind of reactor in nearly 60 years.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/Seadrift_Quadrangle_-_DPLA_-_22b3379687458c3869355b6b59d7ef38.jpg/1280px-Seadrift_Quadrangle_-_DPLA_-_22b3379687458c3869355b6b59d7ef38.jpg",
+        "credit": "Map of the Seadrift area, Texas: U.S. Geological Survey / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "The reactors are X-energy's Xe-100. Their fuel is packed into pebbles, and new ones can be added while the reactor runs.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Pebble_Bed_Graphite_Ball.jpg/3840px-Pebble_Bed_Graphite_Ball.jpg",
+        "credit": "Illustrative photo: a graphite pebble from a pebble-bed reactor design, Weirdmeister / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The plant's main job is high-temperature steam for Dow's factory. Extra electricity goes to the grid. X-energy lists each reactor at 80 megawatts of power and 200 of heat."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "A critic says regulators got this done by pushing safety questions to later. The Union of Concerned Scientists says those should be settled first.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Dow_Chemical_Company_Texas_Division_plant_-_DPLA_-_2299464f05434adfceeee896c716fc59.jpg/3840px-Dow_Chemical_Company_Texas_Division_plant_-_DPLA_-_2299464f05434adfceeee896c716fc59.jpg",
+        "credit": "Illustrative photo: Dow Chemical Company Texas plant (older photo) / Wikimedia Commons"
+      }
+    },
+    {
+      "type": "end",
+      "text": "This permit lets Dow build, not run. Operation needs a separate license, and X-energy says power comes in the early 2030s."
+    }
+  ],
+  "caption": "Most people picture a nuclear plant on its own, behind a fence. This one is going inside a chemical factory.\n\nOn November 9, 2026, the U.S. Nuclear Regulatory Commission issued a construction permit for the Long Mott Generating Station at Dow's Seadrift site in Calhoun County, Texas. It would hold four X-energy Xe-100 reactors. The NRC calls it the first construction permit for a high-temperature gas-cooled reactor in nearly 60 years.\n\nThe design uses a pebble-bed core, meaning the fuel comes in pebbles, and it can be refueled while running. TechCrunch reports each reactor is rated at 80 megawatts of electricity and 200 megawatts of heat.\n\nThe heat is the point. The plant's main job is to supply high-temperature steam to Dow's industrial site, with extra electricity going to the grid.\n\nNot everyone is cheering. Edwin Lyman of the Union of Concerned Scientists says the NRC only managed this by pushing consideration of critical safety questions to a later date. The NRC says it delivered on its 18-month review schedule.\n\nTo be clear, the permit lets Dow build the facility but not operate it. A separate NRC operating license is required first, and X-energy says the reactors will not run until the early 2030s.\n\nWould you live near one of these if it kept a factory running?\n\nSource: U.S. NRC, TechCrunch",
+  "hashtags": [
+    "#nuclear",
+    "#energy",
+    "#engineering",
+    "#texas"
+  ]
+}

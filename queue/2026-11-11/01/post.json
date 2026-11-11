@@ -1,0 +1,82 @@
+{
+  "id": "2026-11-11-01",
+  "date": "2026-11-11",
+  "slot": null,
+  "reel_slot": 3,
+  "title": "Ethiopian water mouse, presumed extinct since 1928, reappears in a trap",
+  "category": "animals",
+  "tags": {
+    "headline": "absurd bait detail",
+    "end": "open question",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 9,
+    "surprise": 9,
+    "emotion": 8,
+    "shareability": 8,
+    "talkability": 7,
+    "no_context": 8,
+    "freshness": 10
+  },
+  "sources": [
+    {
+      "name": "National Geographic: Scientists Thought This Amphibious Mouse Was Extinct",
+      "url": "https://www.nationalgeographic.com/animals/article/ethiopia-water-mouse-extinct-rediscovery"
+    }
+  ],
+  "verification": "News, rung 1 (published Nov 9, 2026; team announcement planned Nov 10). National Geographic article read in full: species described 1928 from one specimen found 1927; Mengistu Wale (Ethiopian Biodiversity Institute) trapped it with peanut butter bait in Yayu Coffee Forest Biosphere Reserve, southwest Ethiopia; about 95% sure on sight; two more specimens later; genetic tests still underway, so identification is not yet fully confirmed (stated on the slides). Quotes and expert caution (Thomas Giarla) from the article. Single outlet (a second report could not be fetched); every claim kept to what the article says, with the pending-DNA caveat.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "ETHIOPIA",
+      "headline": "A mouse presumed extinct just fell for peanut butter.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Nilopegamys_plumbeus_2.jpg",
+        "credit": "Illustration of Nilopegamys plumbeus: Wilfred H. Osgood / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "The Ethiopian water mouse was described in 1928 from a single specimen. Then nobody saw one in the wild for nearly a century.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Distribution_of_Nilopegamys_plumbeus.png/1920px-Distribution_of_Nilopegamys_plumbeus.png",
+        "credit": "Map: A. Proietti / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "Most of its home was turned into farmland. It was presumed extinct, though the IUCN still listed it as critically endangered.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/47/Ethiopian_highlands_01_mod.jpg/1920px-Ethiopian_highlands_01_mod.jpg",
+        "credit": "Illustrative photo: Ethiopian highlands, Wikimedia Commons, CC BY-SA 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Ecologist Mengistu Wale found one in a trap baited with peanut butter, at a stream where villagers wash clothes. He was about 95% sure on sight.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Southern_Ethiopia_%28MODIS_2025-01-10%29.jpg/1920px-Southern_Ethiopia_%28MODIS_2025-01-10%29.jpg",
+        "credit": "Satellite view of southern Ethiopia: MODIS Land Rapid Response Team, NASA GSFC / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "He caught two more. The mouse seems built for water: silky fur, big hind feet like paddles, and long whiskers that may work like sonar."
+    },
+    {
+      "type": "end",
+      "text": "DNA tests are still running, so the find is not yet confirmed. If it holds, a mouse written off for a century was living by a laundry stream."
+    }
+  ],
+  "caption": "Imagine losing an entire species for almost a hundred years, then finding it with peanut butter.\n\nThe Ethiopian water mouse (Nilopegamys plumbeus) was described in 1928 from a single specimen collected in northern Ethiopia in 1927. After that, no one saw one in the wild. Most of its habitat was converted to farmland, and it was presumed extinct, even though the IUCN still lists it as critically endangered.\n\nNow ecologist Mengistu Wale of the Ethiopian Biodiversity Institute says he found one during a biodiversity survey in the Yayu Coffee Forest Biosphere Reserve, in southwestern Ethiopia. It was in a trap baited with peanut butter, set at a stream where villagers wash clothes. He was about 95% sure of the species the moment he saw it, then caught two more and compared them with the 1928 description.\n\nThe animal looks made for the water. The IUCN's small mammal specialists point to dense, silky fur that may help it float, large hind feet that may work as paddles, and a big muzzle with extensive whiskers that may act like sonar for finding insects underwater.\n\nOne big caveat: genetic tests are still underway. Mammalogist Thomas Giarla, who was not part of the survey, says it would be remarkable if confirmed, but he wants to see the detailed data.\n\nHow many other lost animals are sitting in a stream nobody has checked?\n\nSource: National Geographic",
+  "hashtags": [
+    "#wildlife",
+    "#nature",
+    "#rediscovered",
+    "#ethiopia"
+  ]
+}

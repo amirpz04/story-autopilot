@@ -1,0 +1,86 @@
+{
+  "id": "2026-11-11-03",
+  "date": "2026-11-11",
+  "slot": null,
+  "reel_slot": 1,
+  "title": "New WhatsApp chief Kunal Shah outlines plan: bills, borrowing, AI (Meta put $900M into his CRED)",
+  "category": "apps",
+  "tags": {
+    "headline": "number then pivot",
+    "end": "callback",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 7,
+    "surprise": 7,
+    "emotion": 5,
+    "shareability": 6,
+    "talkability": 8,
+    "no_context": 7,
+    "freshness": 9
+  },
+  "sources": [
+    {
+      "name": "Inc42: Kunal Shah outlines three priorities for WhatsApp",
+      "url": "https://inc42.com/buzz/ai-financial-services-better-connections-kunal-shah-outlines-three-priorities-for-whatsapp/"
+    },
+    {
+      "name": "CNBC: Meta's WhatsApp head to step down, replaced by Kunal Shah",
+      "url": "https://www.cnbc.com/2026/06/22/meta-kunal-shah-whatsapp-will-cathcart.html"
+    }
+  ],
+  "verification": "News, rung 1 (Shah's priorities note covered Nov 10-11, 2026). Inc42 read: users send over 10 billion voice messages and 4 billion stickers a day, 3 billion+ users, three priorities (richer communication, simpler tasks such as bill payments, borrowing and international connectivity with financial and telecom partners, AI for information, bookings and appointments), messages stay end-to-end encrypted, no timeline. CNBC (June 22, 2026) read: Meta investing $900M in CRED at a $4.5B post-money valuation as Shah succeeds Will Cathcart after more than seven years. Titles vary across outlets (head vs CEO), so the post says head.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "WHATSAPP",
+      "headline": "WhatsApp's next plan: your bills and your loans.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Kunal_Shah_in_FreeCharge_T-Shirt_%28cropped%29.jpg/1920px-Kunal_Shah_in_FreeCharge_T-Shirt_%28cropped%29.jpg",
+        "credit": "Photo: Kaustubha Dahibhate / Wikimedia Commons, CC BY-SA 3.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "People send more than 10 billion voice messages and 4 billion stickers on WhatsApp every day. More than 3 billion people use it.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Meta_Platforms_Headquarters_Menlo_Park_California.jpg/3840px-Meta_Platforms_Headquarters_Menlo_Park_California.jpg",
+        "credit": "Photo: Meta Platforms headquarters, Menlo Park, LPS.1 / Wikimedia Commons, CC0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Its new head is Kunal Shah, who founded the Indian payments app CRED. Meta put $900 million into CRED when it named him in June, replacing Will Cathcart after more than seven years."
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "Now Shah has a plan. WhatsApp will work with banks and phone companies to make paying bills, borrowing money and staying connected while traveling simpler.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Aerial_view_of_Facebook_campus_in_Menlo_Park%2C_September_2019.JPG/1920px-Aerial_view_of_Facebook_campus_in_Menlo_Park%2C_September_2019.JPG",
+        "credit": "Photo: Facebook campus aerial view, Pi.1415926535 / Wikimedia Commons, CC BY-SA 3.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "He also wants AI to help people look things up, book things and manage appointments. He says personal messages and calls will stay end-to-end encrypted.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Facebook_Offices_Menlo_Park_California_%2834183281176%29.jpg/3840px-Facebook_Offices_Menlo_Park_California_%2834183281176%29.jpg",
+        "credit": "Photo: Meta offices, Menlo Park, Anthony Quintano / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "No dates yet. For now, the app you use to send voice notes is getting ready to help with money. Would you let it?"
+    }
+  ],
+  "caption": "The app you use to send voice notes to your family wants to help with your bills. And your loans.\n\nWhatsApp has more than 3 billion users, who send over 10 billion voice messages and 4 billion stickers every day. Now its new head, Kunal Shah, has laid out where he wants it to go.\n\nShah founded the Indian payments company CRED. In June 2026, Meta announced it was putting $900 million into CRED as it named him to succeed Will Cathcart, who led WhatsApp for more than seven years and moved to another role at Meta.\n\nShah's three priorities: make voice notes, groups, stickers and video richer. Make everyday tasks like paying bills, borrowing money and staying connected abroad simpler, working with financial services and telecom partners. And use AI to help people find information and manage tasks, bookings and appointments.\n\nHe says personal messages and calls will stay end-to-end encrypted. No timeline has been given for any of the new features, and it is not yet clear which ones will reach the United States.\n\nA chat app that also handles your money would be a big shift. Outlets differ on whether Shah's title is head or CEO.\n\nSource: Inc42, CNBC",
+  "hashtags": [
+    "#whatsapp",
+    "#meta",
+    "#tech",
+    "#apps"
+  ]
+}
