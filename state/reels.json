@@ -471,36 +471,6 @@
   "2026-11-12-01": {
     "attempts": 0,
     "credit": "Life In Silico by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-    "file": "20261112-093654-2026-11-12-01.mp4",
-    "made_at": "2026-11-12T09:39:00.982384+00:00",
-    "music": "life-in-silico.m4a",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/089e2bd67c5444c02bb2a3c216c2e4857c7d061d/20261112-093654-2026-11-12-01.mp4",
-    "status": "made",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@089e2bd67c5444c02bb2a3c216c2e4857c7d061d/20261112-093654-2026-11-12-01.mp4"
-  },
-  "2026-11-12-02": {
-    "attempts": 0,
-    "credit": "Passage Of Time by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-    "file": "20261112-093900-2026-11-12-02.mp4",
-    "made_at": "2026-11-12T09:41:19.218694+00:00",
-    "music": "passage-of-time.m4a",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/089e2bd67c5444c02bb2a3c216c2e4857c7d061d/20261112-093900-2026-11-12-02.mp4",
-    "status": "made",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@089e2bd67c5444c02bb2a3c216c2e4857c7d061d/20261112-093900-2026-11-12-02.mp4"
-  },
-  "2026-11-12-03": {
-    "attempts": 0,
-    "credit": "The Long Dark by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
-    "file": "20261112-094119-2026-11-12-03.mp4",
-    "made_at": "2026-11-12T09:43:13.810428+00:00",
-    "music": "the-long-dark.m4a",
-    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/089e2bd67c5444c02bb2a3c216c2e4857c7d061d/20261112-094119-2026-11-12-03.mp4",
-    "status": "made",
-    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@089e2bd67c5444c02bb2a3c216c2e4857c7d061d/20261112-094119-2026-11-12-03.mp4"
-  },
-  "2026-11-12-01": {
-    "attempts": 0,
-    "credit": "Life In Silico by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
     "file": "20261112-092855-2026-11-12-01.mp4",
     "made_at": "2026-11-12T09:31:16.647079+00:00",
     "music": "life-in-silico.m4a",
@@ -520,12 +490,17 @@
   },
   "2026-11-12-03": {
     "attempts": 0,
+    "cover": "frame at 2.2 s",
     "credit": "The Long Dark by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "error": "",
     "file": "20261112-093351-2026-11-12-03.mp4",
     "made_at": "2026-11-12T09:35:57.220648+00:00",
+    "media_id": "18359273563170758",
     "music": "the-long-dark.m4a",
+    "permalink": "https://www.instagram.com/reel/DfpZ_tkHCQQ/",
+    "posted_at": "2026-11-12T15:44:46.387213+00:00",
     "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/3c8dbd22560b15dcf04ee0ceac2de18a26645391/20261112-093351-2026-11-12-03.mp4",
-    "status": "made",
+    "status": "posted",
     "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@3c8dbd22560b15dcf04ee0ceac2de18a26645391/20261112-093351-2026-11-12-03.mp4"
   },
   "demo-02": {
