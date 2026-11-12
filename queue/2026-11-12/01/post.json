@@ -1,0 +1,91 @@
+{
+ "id": "2026-11-12-01",
+ "date": "2026-11-12",
+ "slot": null,
+ "reel_slot": 3,
+ "title": "United bans personal AI agents from booking its flights",
+ "category": "apps",
+ "tags": {
+  "headline": "reversal",
+  "end": "one blocked loop",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 7,
+  "emotion": 6,
+  "shareability": 8,
+  "talkability": 9,
+  "no_context": 8,
+  "freshness": 10
+ },
+ "sources": [
+  {
+   "name": "CBS News MoneyWatch",
+   "url": "https://www.cbsnews.com/news/united-airlines-bans-ai-agents-booking-flights/"
+  }
+ ],
+ "verification": "News, rung 1 (Nov 11, 2026). CBS News article read in full: United's statement and quotes (credentials, unintended purchases, MileagePlus miles, federal in-person luggage rule), analyst Henry Harteveldt quotes, Southwest ChatGPT inventory, aggregators still bookable. Same news also seen in Google News results. No other claims used.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "AI",
+   "headline": "United just banned robots from booking its flights.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/United_Boeing_737-800_N78509_BWI_MD1.jpg/3840px-United_Boeing_737-800_N78509_BWI_MD1.jpg",
+    "credit": "Illustrative photo: a United Boeing 737-800, Acroterion / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "On November 11, United said it is banning personal AI agents from making reservations for travelers. These are the assistants people now use to shop, hunt for deals and buy things for them.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/United_Boeing_737-700_N23708_BWI_MD1.jpg/3840px-United_Boeing_737-700_N23708_BWI_MD1.jpg",
+    "credit": "Illustrative photo: a United Boeing 737-700, Acroterion / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "Reason one: a booking needs your login and payment details. United says handing those to a third-party AI can expose sensitive information and cause unintended purchases, or spent MileagePlus miles.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Self_Check-in_and_Baggage_Drop_Kiosks_at_Wuhan_Tianhe_Airport.jpg/3840px-Self_Check-in_and_Baggage_Drop_Kiosks_at_Wuhan_Tianhe_Airport.jpg",
+    "credit": "Illustrative photo: self check-in kiosks at Wuhan Tianhe Airport, Zheng Zhou / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Reason two: federal rules. Travelers must verify in person that their bags hold no banned substances. United says an AI agent checking you in could break that rule."
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Other airlines see it differently. Southwest has made its flight inventory viewable to ChatGPT users.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/68/Southwest_Boeing_737-700_N947WN_BWI_MD1.jpg/3840px-Southwest_Boeing_737-700_N947WN_BWI_MD1.jpg",
+    "credit": "Illustrative photo: a Southwest Boeing 737-700, Acroterion / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "One aviation analyst thinks it's also about control. United may not want \"yet another, and potentially even more powerful, intermediary.\" Flight searches cost airlines money.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Spirit_Airlines_check-in_kiosks_at_MCO%2C_2019.jpg/3840px-Spirit_Airlines_check-in_kiosks_at_MCO%2C_2019.jpg",
+    "credit": "Illustrative photo: airline check-in kiosks at Orlando airport, Todd Van Hoosear / Wikimedia Commons, CC BY-SA 2.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "You can still find United fares on Kayak, Hopper and Google Flights. The one buyer it now turns away is the bot you hired to do your booking."
+  }
+ ],
+ "caption": "United Airlines just told the AI assistants of the world to stay out of its booking system.\n\nOn Wednesday, November 11, 2026, the airline said it is banning artificial intelligence agents from making flight reservations on behalf of travelers.\n\nIt will restrict access directly on its own apps and website, and indirectly through travel agencies and aggregators.\n\nUnited's reasons are security and the law. Booking needs account credentials and payment information, and the airline says sharing them with a third-party AI can expose sensitive information and lead to unintended purchases, account changes or spent MileagePlus miles.\n\nIt also says using an agent to check in could violate federal rules that require travelers to verify in person that their luggage holds no banned substances.\n\nAviation analyst Henry Harteveldt told CBS News there's a business angle too: airlines already face powerful middlemen like Google search and online travel agencies, and a flood of bot searches costs money.\n\nOther airlines are moving the other way. Southwest has made its flights viewable to ChatGPT users.\n\nFares will stay bookable on Kayak, Hopper and Google Flights, so humans lose nothing.\n\nShould your AI assistant be allowed to buy things for you?\n\nSource: CBS News",
+ "hashtags": [
+  "#ai",
+  "#tech",
+  "#travel",
+  "#airlines"
+ ]
+}

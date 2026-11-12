@@ -1,0 +1,95 @@
+{
+ "id": "2026-11-12-02",
+ "date": "2026-11-12",
+ "slot": null,
+ "reel_slot": 5,
+ "title": "Toyota revives Scion with a 25 mph KEI-01 kei truck built in Indiana",
+ "category": "business",
+ "tags": {
+  "headline": "the catch up front",
+  "end": "open question",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 8,
+  "emotion": 7,
+  "shareability": 8,
+  "talkability": 8,
+  "no_context": 8,
+  "freshness": 10
+ },
+ "sources": [
+  {
+   "name": "The Verge",
+   "url": "https://www.theverge.com/transportation/1031554/oyota-scion-kei-01-truck-revival"
+  },
+  {
+   "name": "Toyota USA Newsroom",
+   "url": "https://pressroom.toyota.com/toyota-says-okei-to-america-introducing-the-scion-by-toyota-brand-and-kei-01/"
+  }
+ ],
+ "verification": "News, rung 1 (Nov 10-11, 2026). The Verge article read in full (specs, 25 mph LSV cap, 600 lb, 660cc three-cylinder, $34M Princeton Indiana, ~50 jobs, 2H 2027 fleet pilot, 30,000 used kei imports since 2020, Scion discontinued 2016). Toyota newsroom listing confirms the Nov 10 introduction of Scion by Toyota, the KEI-01 and 2H 2027 arrival; Google News shows the same story from Car and Driver, MotorTrend, Road & Track, The Drive.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "CARS",
+   "headline": "Toyota's new truck tops out at 25 mph.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/1983_Daihatsu_Hijet_Jumbo.jpg/3840px-1983_Daihatsu_Hijet_Jumbo.jpg",
+    "credit": "Illustrative photo: a Japanese kei truck (1983 Daihatsu Hijet), TTTNIS / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Toyota is reviving Scion, the brand it discontinued in 2016. The first vehicle is the KEI-01, a pickup about 11 feet long and under 5 feet wide.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/90/2009-2012_Suzuki_Carry_DA63T_rear.jpg/3840px-2009-2012_Suzuki_Carry_DA63T_rear.jpg",
+    "credit": "Illustrative photo: a Japanese kei truck (Suzuki Carry), TTTNIS / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "Kei trucks are tiny Japanese work vehicles. More than 30,000 used ones have been imported to the US since 2020. Toyota wants a piece of that.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8d/Unmarked_Amazon_worker_using_laptop_in_his_kei-truck.jpg/3840px-Unmarked_Amazon_worker_using_laptop_in_his_kei-truck.jpg",
+    "credit": "Illustrative photo: a kei truck in Tokyo, Japan, Syced / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "It has a 660cc three-cylinder gas engine. Four-wheel drive switches on with a button. The bed holds 600 pounds, and three sides fold flat."
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "The catch: it's certified as a low-speed vehicle, like a golf cart, so top speed is capped at 25 mph. The cabin is sealed, with heat and A/C. The steering wheel is on the right.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fb/Kei_truck_Calgary.jpg/1920px-Kei_truck_Calgary.jpg",
+    "credit": "Illustrative photo: a kei truck, Ash-M-Bishop / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Don't expect to buy one soon. It starts in the second half of 2027 as a fleet pilot for farms, campuses, cities and delivery. Toyota is putting $34 million into its Princeton, Indiana plant to build it.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Five_Axis_Scion_tC_-_Flickr_-_Moto%40Club4AG.jpg/3840px-Five_Axis_Scion_tC_-_Flickr_-_Moto%40Club4AG.jpg",
+    "credit": "Illustrative photo: a Scion tC from the old lineup, Motohide Miwa / Wikimedia Commons, CC BY 2.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "The old Scion sold sporty cars to young drivers. The new one sells a truck that fits through a garden gate and stops at 25. Would you drive one?"
+  }
+ ],
+ "caption": "Toyota's comeback car is a tiny truck that can't go faster than a golf cart.\n\nOn November 10, 2026, Toyota introduced Scion by Toyota, a revival of the brand it shut down in 2016. The first vehicle is the KEI-01, an ultra-compact utility truck.\n\nKei vehicles are built to Japan's light-vehicle rules, and they have become popular in the US. More than 30,000 used kei trucks have been imported since 2020, about 7,500 a year.\n\nThe KEI-01 is roughly 11 feet long and under 5 feet wide, about half the footprint of a full-size pickup. It has a 660cc three-cylinder gas engine, a continuously variable transmission, push-button four-wheel drive and a bed that holds up to 600 pounds.\n\nBecause it's certified under federal low-speed vehicle rules, the top speed is 25 mph.\n\nToyota is investing $34 million in its Princeton, Indiana plant, with about 50 jobs, to build it. It arrives in the second half of 2027 as a fleet pilot for farms, campuses, municipalities and delivery operators. Toyota says it may open retail sales later if demand is there.\n\nWould you drive a 25 mph truck?\n\nSource: The Verge, Toyota newsroom",
+ "hashtags": [
+  "#toyota",
+  "#cars",
+  "#trucks",
+  "#scion"
+ ]
+}

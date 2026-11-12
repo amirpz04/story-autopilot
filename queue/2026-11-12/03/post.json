@@ -1,0 +1,86 @@
+{
+ "id": "2026-11-12-03",
+ "date": "2026-11-12",
+ "slot": null,
+ "reel_slot": 1,
+ "title": "Chemically modified cutinase plus ionic liquid breaks down PET 9.2 times faster",
+ "category": "materials",
+ "tags": {
+  "headline": "number first",
+  "end": "honest caveat",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 7,
+  "surprise": 7,
+  "emotion": 6,
+  "shareability": 6,
+  "talkability": 7,
+  "no_context": 8,
+  "freshness": 9
+ },
+ "sources": [
+  {
+   "name": "Phys.org (King's College London release)",
+   "url": "https://phys.org/news/2026-11-approach-boosts-plastic-enzyme-tenfold.html"
+  },
+  {
+   "name": "ACS Sustainable Chemistry & Engineering (DOI 10.1021/acssuschemeng.6c08909)",
+   "url": "https://doi.org/10.1021/acssuschemeng.6c08909"
+  }
+ ],
+ "verification": "News, rung 1 (Nov 10, 2026). Phys.org/King's College London release read in full: 9.2-fold rate, 9.5x total reactions, stability 7 days vs about 36 hours, used-bottle flakes without pretreatment, pure terephthalic acid isolated, lab-scale, enzyme recovery failed, 'nearly tenfold' headline. DOI taken from the release, not opened.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "MATERIALS",
+   "headline": "A plastic-eating enzyme just got 9 times faster.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Recyclable_finnish_plastic_bottles_with_deposit.jpg/1920px-Recyclable_finnish_plastic_bottles_with_deposit.jpg",
+    "credit": "Illustrative photo: PET plastic bottles for recycling, Fourteenzerozero / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Researchers at King's College London and Rutgers paired a natural enzyme, cutinase, with a special liquid. It broke down PET, the plastic in bottles and clothing, 9.2 times faster.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Polyethylene-terephthalate-3D-spacefill.png/1920px-Polyethylene-terephthalate-3D-spacefill.png",
+    "credit": "Illustrative image: a model of the PET molecule, Jynto / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "The liquid loosens PET's tightly packed structure and lets the reaction run hot, where plastic breaks down more easily. The team also chemically altered the enzyme's surface so it survives the heat."
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "It worked on flakes cut from a used beverage bottle with no pretreatment. The team pulled out pure terephthalic acid powder, a main building block for new PET.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/FLAKES.jpg/3840px-FLAKES.jpg",
+    "credit": "Illustrative photo: PET bottle flakes, TOP PLASTIC / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "The plain enzyme in water lost much of its activity after about 36 hours. The modified one held a steady rate for at least seven days.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fc/Strand_Building%2C_King%27s_College_London.jpg/3840px-Strand_Building%2C_King%27s_College_London.jpg",
+    "credit": "Photo: Strand Building, King's College London, Shadowssettle / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "The catch: this is lab-scale, and after the enzyme was recovered it stopped working well. Until it can be reused, bottle-to-bottle recycling this way stays on the bench."
+  }
+ ],
+ "caption": "Scientists just made a plastic-eating enzyme work almost ten times faster.\n\nOn November 10, 2026, King's College London and Rutgers University reported a new way to break down PET, the plastic used in bottles, food packaging and clothing.\n\nThe team took cutinase, a natural enzyme that can digest PET, and chemically altered its surface so it holds up to heat and harsh chemistry. Then they paired it with an ionic liquid, which loosens PET's tightly packed structure and lets the reaction run at high temperature.\n\nThe result: a 9.2-fold increase in the rate of breaking the plastic's chemical bonds. With PET powder, the modified enzyme kept a steady rate for at least seven days. The unmodified one in water lost much of its activity after the first day.\n\nIt also worked on flakes cut from a used beverage bottle, no pretreatment needed, and the team isolated pure terephthalic acid, a building block for new PET.\n\nThe caveats matter. This is lab-scale only, the enzyme stopped working effectively after recovery, and the team hasn't tested engineered PET-eating enzymes yet. The researchers are working on better recovery.\n\nSource: Phys.org (King's College London), ACS Sustainable Chemistry & Engineering",
+ "hashtags": [
+  "#plastic",
+  "#recycling",
+  "#science",
+  "#chemistry"
+ ]
+}
