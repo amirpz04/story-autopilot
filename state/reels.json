@@ -468,6 +468,36 @@
     "status": "posted",
     "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@1c8017968414c174ade8ec6d7ff7abe0b1a1498a/20261111-093351-2026-11-11-03.mp4"
   },
+  "2026-11-12-01": {
+    "attempts": 0,
+    "credit": "Life In Silico by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "file": "20261112-092855-2026-11-12-01.mp4",
+    "made_at": "2026-11-12T09:31:16.647079+00:00",
+    "music": "life-in-silico.m4a",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/3c8dbd22560b15dcf04ee0ceac2de18a26645391/20261112-092855-2026-11-12-01.mp4",
+    "status": "made",
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@3c8dbd22560b15dcf04ee0ceac2de18a26645391/20261112-092855-2026-11-12-01.mp4"
+  },
+  "2026-11-12-02": {
+    "attempts": 0,
+    "credit": "Passage Of Time by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "file": "20261112-093116-2026-11-12-02.mp4",
+    "made_at": "2026-11-12T09:33:51.370957+00:00",
+    "music": "passage-of-time.m4a",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/3c8dbd22560b15dcf04ee0ceac2de18a26645391/20261112-093116-2026-11-12-02.mp4",
+    "status": "made",
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@3c8dbd22560b15dcf04ee0ceac2de18a26645391/20261112-093116-2026-11-12-02.mp4"
+  },
+  "2026-11-12-03": {
+    "attempts": 0,
+    "credit": "The Long Dark by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "file": "20261112-093351-2026-11-12-03.mp4",
+    "made_at": "2026-11-12T09:35:57.220648+00:00",
+    "music": "the-long-dark.m4a",
+    "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/3c8dbd22560b15dcf04ee0ceac2de18a26645391/20261112-093351-2026-11-12-03.mp4",
+    "status": "made",
+    "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@3c8dbd22560b15dcf04ee0ceac2de18a26645391/20261112-093351-2026-11-12-03.mp4"
+  },
   "demo-02": {
     "attempts": 0,
     "backfill": true,
