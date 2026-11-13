@@ -1,0 +1,85 @@
+{
+  "id": "2026-11-13-03",
+  "date": "2026-11-13",
+  "slot": null,
+  "reel_slot": 1,
+  "title": "Nous Research retrains Alibaba Qwen model, Arete-27B",
+  "category": "ai",
+  "tags": {
+    "headline": "before/after number",
+    "end": "open question",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 7,
+    "surprise": 8,
+    "emotion": 6,
+    "shareability": 7,
+    "talkability": 9,
+    "no_context": 7,
+    "freshness": 9
+  },
+  "sources": [
+    {
+      "name": "Hugging Face model card, Arete-27B (Nous Research)",
+      "url": "https://huggingface.co/botp/Arete-27B"
+    },
+    {
+      "name": "AI Weekly",
+      "url": "https://aiweekly.co/alerts/nous-researchs-arete-27b-cuts-qwen-propaganda-from-22-to-09"
+    },
+    {
+      "name": "Tech Enclave",
+      "url": "https://techenclave.com/news/items/nous-releases-a-qwen-model-tuned-to-change-its-answers-on-chinese-politics"
+    }
+  ],
+  "verification": "Numbers (22% to 0.9%, 803 prompts, 20,000 training prompts, Hermes Bench 65.77 to 65.60, free-expression 60% to 1%, temperature caveat, LLM judge) from the model card; release date about Nov 6 and critics' point from AI Weekly/AITool Ranked/Labmemo summaries. All results are Nous's own; stated as such on the slides.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "AI",
+      "headline": "One retrain cut a Chinese AI's party-line answers to 1%.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/27/Alibaba_group_Headquarters_%28cropped%29.jpg/3840px-Alibaba_group_Headquarters_%28cropped%29.jpg",
+        "credit": "Photo: Alibaba Group headquarters, Wikimedia Commons, CC BY-SA 3.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "An AI lab called Nous Research took Alibaba's open Qwen3.8-27B model and trained it further.\nIt released the result, Arete-27B, around November 6."
+    },
+    {
+      "type": "text",
+      "text": "On Nous's own test of 803 questions, 22% of Qwen's answers pushed the official line.\nArete's rate was 0.9%.\nOn free expression, it fell from 60% to 1%.",
+      "layout": "split",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/TaobaoCity_Alibaba_Xixi_Park.jpg",
+        "credit": "Photo: Alibaba's Xixi Park campus, Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "How: another AI, called Inkling, wrote model answers to 20,000 prompts on seven themes, including free expression and privacy.\nQwen was then trained on them, about 52.8 million tokens. Nothing else changed."
+    },
+    {
+      "type": "text",
+      "text": "The catch: Nous graded its own work, using an AI judge.\nThe two models also ran at different settings. Outside testing has not been reported yet.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Hangzhou_Skyline_on_West_Lake.jpg/3840px-Hangzhou_Skyline_on_West_Lake.jpg",
+        "credit": "Illustrative photo: Hangzhou, the city Alibaba is based in, Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Anyone can download it, with the training data and test questions.\nEverything else barely moved: a general benchmark went from 65.77% to 65.60%.\nBut is tuning an AI toward one set of values neutral?"
+    }
+  ],
+  "caption": "A Chinese AI model was retrained, and its answers on sensitive topics changed.\n\nAround November 6, Nous Research released Arete-27B, a version of Alibaba's open Qwen3.8-27B model. Nous says the goal was to cut answers that repeat a state-aligned line on politically sensitive questions.\n\nOn its own test of 803 prompts, Nous measured the share of answers containing propaganda. It fell from 22% for Qwen to 0.9% for Arete. On questions about freedom of expression, it went from 60% to 1%. Factual recall on the test rose from 2.32 to 2.98 out of 5.\n\nThe method was supervised fine-tuning only. Another AI model, Inkling, wrote answers to 20,000 prompts across seven value categories, and Qwen was trained on them for about 52.8 million tokens. A general benchmark barely changed, from 65.77% to 65.60%.\n\nThe caveats are Nous's own. An AI judge graded the answers, the two models ran at different settings, and nobody outside Nous has reported a replication yet. Critics also ask whether steering a model toward one set of values is truly neutral.\n\nThe weights, training data and test questions are public.\n\nWould you trust an AI more if it was tuned this way?\n\nSource: Nous Research model card, AI Weekly",
+  "hashtags": [
+    "#ai",
+    "#opensource",
+    "#tech",
+    "#china"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": "2026-11-13-02",
+  "date": "2026-11-13",
+  "slot": null,
+  "reel_slot": 5,
+  "title": "ACS updates prostate cancer screening guidelines",
+  "category": "health",
+  "tags": {
+    "headline": "specific age",
+    "end": "catch",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 7,
+    "surprise": 7,
+    "emotion": 6,
+    "shareability": 8,
+    "talkability": 8,
+    "no_context": 8,
+    "freshness": 10
+  },
+  "sources": [
+    {
+      "name": "STAT News",
+      "url": "https://www.statnews.com/2026/11/12/prostate-cancer-screening-guidelines-updated-acs/"
+    },
+    {
+      "name": "American Cancer Society (CA: A Cancer Journal for Clinicians)",
+      "url": "https://doi.org/10.3322/caac.70112"
+    }
+  ],
+  "verification": "Details checked against STAT's report of the ACS guideline published Nov 12, 2026 (ages, PSA 3.0 threshold, two readings then MRI/biomarker, USPSTF caveat) and the ACS 2010 guideline for the previous wording. Search could not open the paper itself; DOI taken from STAT.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "HEALTH",
+      "headline": "Some men should now get a prostate test at 45.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Checking_Blood_Sample_%289955279835%29.jpg/3840px-Checking_Blood_Sample_%289955279835%29.jpg",
+        "credit": "Illustrative photo: checking a blood sample, Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The American Cancer Society updated its prostate screening guidelines on November 12.\nBlack men and men with a strong family history should get a yearly PSA blood test starting at 45."
+    },
+    {
+      "type": "text",
+      "text": "For men at average risk, the new advice is a PSA test every two years from age 50 to 69.\nThe 2010 version left it to each man to decide after a talk with his doctor.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/U.S._Air_Force_Staff_Sgt._Thomas_C._Sullivan_Jr.%2C_a_laboratory_technician_assigned_to_the_319th_Medical_Support_Squadron%2C_places_a_medical_sample_into_a_test_tube_rack_at_the_medical_laboratory_on_Grand_Forks_130522-F-JB669-061.jpg/1920px-U.S._Air_Force_Staff_Sgt._Thomas_C._Sullivan_Jr.%2C_a_laboratory_technician_assigned_to_the_319th_Medical_Support_Squadron%2C_places_a_medical_sample_into_a_test_tube_rack_at_the_medical_laboratory_on_Grand_Forks_130522-F-JB669-061.jpg",
+        "credit": "Illustrative photo: a lab technician with a sample rack, U.S. Air Force, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "A PSA of 3.0 ng/mL or higher now counts as high for men 45 to 69.\nMany U.S. labs still call anything under 4.0 normal."
+    },
+    {
+      "type": "text",
+      "text": "After two high readings, doctors suggest an MRI or other biomarker tests before a biopsy, to avoid unneeded ones.\nSlow-growing cancers can be watched, not treated right away.",
+      "layout": "full",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Laboratory_Test_Tubes%3B_from_a_medical_laboratory_in_Abuja%2C_Nigeria.jpg/1920px-Laboratory_Test_Tubes%3B_from_a_medical_laboratory_in_Abuja%2C_Nigeria.jpg",
+        "credit": "Illustrative photo: laboratory test tubes, Wikimedia Commons, CC0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "One catch: the U.S. Preventive Services Task Force still advises against routine PSA screening.\nIt decides what insurers must cover.\nIts update is still to come."
+    }
+  ],
+  "caption": "A simple blood test is back in the spotlight.\n\nOn November 12 the American Cancer Society revised its prostate cancer screening guidelines. Men at higher risk, meaning Black men and men with a strong family history, should get a PSA blood test every year starting at age 45.\n\nFor men at average risk, the group now recommends a PSA test every two years from age 50 to 69. Its 2010 guideline left screening to each man's choice after a talk with his doctor. From age 70 it is an individual decision, and screening should stop after 80 or when a man is not expected to live another 10 years.\n\nA PSA level of 3.0 ng/mL or higher is now considered high for men 45 to 69. Many labs in the U.S. report anything under 4.0 as normal. After two elevated readings, the guideline points to an MRI or other biomarker tests before a biopsy, to reduce unnecessary ones. It also stresses active surveillance, so a slow-growing cancer does not automatically mean treatment right away.\n\nThe catch: the U.S. Preventive Services Task Force still recommends against routine screening for the whole population. Its advice decides which services insurers must cover, and it has announced an update.\n\nSource: STAT News, American Cancer Society",
+  "hashtags": [
+    "#health",
+    "#cancer",
+    "#prostate",
+    "#medicine"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "2026-11-13-01",
+  "date": "2026-11-13",
+  "slot": null,
+  "reel_slot": 3,
+  "title": "Microsoft 365 global outage passes 12 hours",
+  "category": "tech",
+  "tags": {
+    "headline": "duration",
+    "end": "open cause",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 7,
+    "emotion": 7,
+    "shareability": 8,
+    "talkability": 8,
+    "no_context": 9,
+    "freshness": 10
+  },
+  "sources": [
+    {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com/2026/11/12/microsoft-outage-outlook-aws-google.html"
+    },
+    {
+      "name": "The Next Web",
+      "url": "https://thenextweb.com/news/microsoft-outage-outlook-teams-12-hours-global"
+    }
+  ],
+  "verification": "Facts checked against CNBC (start time, services, Microsoft statements, no root cause confirmed) and The Next Web (74 countries via Downdetector, Japan ministries, US cities, banks, Burke CrowdStrike remark, scam warnings). Cause stated as unconfirmed; Microsoft promised a post-incident report.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "OUTAGE",
+      "headline": "Microsoft email went dark for over 12 hours.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Microsoft_Redmond_Campus_redevelopment_aerial_view%2C_Sept._2021.jpg/3840px-Microsoft_Redmond_Campus_redevelopment_aerial_view%2C_Sept._2021.jpg",
+        "credit": "Illustrative photo: Microsoft's Redmond campus, Atomic Taco / Wikimedia Commons, CC BY-SA 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "It began shortly before 1 p.m. Eastern on Thursday, November 12.\nWithin about an hour, Downdetector had outage reports from 74 countries and territories.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/30/Building92microsoft.jpg/3840px-Building92microsoft.jpg",
+        "credit": "Illustrative photo: a Microsoft campus building, Coolcaesar / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Outlook, Teams, SharePoint and Copilot were hit.\nMicrosoft blamed \"a number of servers being unexpectedly unavailable\" that kept failing automated health checks."
+    },
+    {
+      "type": "text",
+      "text": "Japan's ministries switched to paper.\nMiami Beach and Austin asked residents to call instead of email.\nStaff at two big banks in Hong Kong were locked out.",
+      "layout": "full",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Intersection_on_the_Microsoft_Redmond_campus.jpg",
+        "credit": "Illustrative photo: Microsoft's Redmond campus, Jonathan Schilling / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Microsoft says it sees no sign of an attack.\nAustralia's home affairs minister said Microsoft believes it resembles CrowdStrike in 2024, an update gone awry. Microsoft has not confirmed that.",
+      "layout": "split",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Plaza_on_the_Microsoft_Redmond_campus.jpg",
+        "credit": "Illustrative photo: Microsoft's Redmond campus, Jonathan Schilling / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Banks warned customers about scammers posing as tech support.\nThe email filters that normally catch them were down too.\nMicrosoft promises a full report on the cause."
+    }
+  ],
+  "caption": "Millions of people lost Outlook and Teams at the same time.\n\nThe trouble began shortly before 1 p.m. Eastern on Thursday, November 12, and had gone past 12 hours by Friday morning. Downdetector logged reports from 74 countries and territories within about an hour.\n\nMicrosoft said a number of servers were unexpectedly unavailable and failing automated health checks, which raised load across multiple regions. Outlook, Teams, SharePoint and Copilot were all affected. A fix that moved some traffic around gave only partial recovery at first. By Friday Microsoft reported positive results after patching some infrastructure.\n\nThe damage was wide. Japan's ministries used paper. Miami Beach and Austin asked residents to phone. A Colorado sheriff's office said bond payments were delayed, and two companies pushed back earnings releases.\n\nMicrosoft says it has no sign of malicious activity. It has not named a root cause. Australia's home affairs minister said Microsoft told him it looked like a bad update, like the CrowdStrike failure of 2024. Microsoft has not confirmed that.\n\nA full post-incident report is promised once the problem is fixed. Until then, banks warn that scammers may pose as tech support.\n\nWhen did you last notice your email was down?\n\nSource: CNBC, The Next Web",
+  "hashtags": [
+    "#microsoft",
+    "#outlook",
+    "#tech",
+    "#outage"
+  ]
+}
