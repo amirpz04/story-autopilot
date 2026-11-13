@@ -20,6 +20,7 @@ from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parent.parent
 METRICS = "reach,likes,comments,shares,saved,total_interactions,views"
+REEL_METRICS = "ig_reels_avg_watch_time,ig_reels_video_view_total_time"   # ms; asked separately so a refusal never loses the main numbers
 MATURE_HOURS = 48          # numbers before this age are still changing
 MIN_GROUP = 3              # don't show a group average from fewer posts than this
 
@@ -88,7 +89,7 @@ def collect(config, previous=None, quick=False):
             "age_hours": round((now - when).total_seconds() / 3600, 1),
         }
         prev = old.get(m["id"])
-        if quick and prev and prev.get("reach") is not None and entry["age_hours"] > 48:
+        if quick and prev and prev.get("reach") is not None and entry["age_hours"] > 48 and (entry["kind"] != "reel" or "avg_watch_s" in prev or "watch_error" in prev):
             # older posts change slowly: keep the numbers from the last full read, only refresh the age and likes
             keep = {k: v for k, v in prev.items() if k not in entry}
             entry.update(keep)
@@ -102,6 +103,16 @@ def collect(config, previous=None, quick=False):
             entry.update({d["name"]: d["values"][0]["value"] for d in data})
         except Exception as exc:
             entry["error"] = str(exc)[:150]
+        if entry["kind"] == "reel" and entry["age_hours"] <= 24 * 30:
+            try:
+                data = graph(m["id"] + "/insights", config, metric=REEL_METRICS)["data"]
+                w = {d["name"]: d["values"][0]["value"] for d in data}
+                if w.get("ig_reels_avg_watch_time") is not None:
+                    entry["avg_watch_s"] = round(w["ig_reels_avg_watch_time"] / 1000, 1)
+                if w.get("ig_reels_video_view_total_time") is not None:
+                    entry["total_watch_s"] = round(w["ig_reels_video_view_total_time"] / 1000)
+            except Exception as exc:
+                entry["watch_error"] = str(exc)[:150]
         reach = entry.get("reach") or 0
         entry["share_rate"] = ratio(entry.get("shares", 0), reach)
         entry["save_rate"] = ratio(entry.get("saved", 0), reach)
