@@ -1,0 +1,78 @@
+{
+  "id": "2026-11-14-03",
+  "date": "2026-11-14",
+  "slot": null,
+  "reel_slot": 1,
+  "title": "OpenAI launches ChatGPT Wallet so Dots AI agents can make purchases",
+  "category": "apps",
+  "variety_exception": "Assigned subject was tech; an AI-and-apps launch is a higher-priority tier and the day's strongest fresh tech story.",
+  "tags": {
+    "headline": "stakes",
+    "end": "question",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 7,
+    "emotion": 6,
+    "shareability": 8,
+    "talkability": 9,
+    "no_context": 8,
+    "freshness": 10
+  },
+  "sources": [
+    {
+      "name": "The Verge",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1033425/openai-chatgpt-wallet"
+    }
+  ],
+  "verification": "Checked The Verge's Nov 13, 2026 report on OpenAI's launch (ChatGPT Pro, US, 18+, US billing address, Amex/Chase/Mastercard/Visa; biometric check on every purchase; payment token; future spending limits; retailer blocks incl. Amazon blocking Meta's Muse agents). Headline coverage also seen at CNBC, Reuters, Mashable.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "AI",
+      "headline": "ChatGPT can now spend your money.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Person_using_a_credit_card_to_make_an_online_purchase_on_a_laptop_at_home.jpg/3840px-Person_using_a_credit_card_to_make_an_online_purchase_on_a_laptop_at_home.jpg",
+        "credit": "Illustrative photo: online card purchase / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "OpenAI is rolling out ChatGPT Wallet, starting November 13.\nYour Dots AI agents can use a card you add to buy things you ask for."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "But not without you.\nEvery single purchase needs your sign-off, plus a Face ID or fingerprint check.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/P059743-518704.jpg/3840px-P059743-518704.jpg",
+        "credit": "Illustrative photo: contactless payment / Wikimedia Commons, CC BY 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Like Apple Pay, the agent never sees your real card number.\nIt gets a payment token instead.\nFor now it is U.S. only, for ChatGPT Pro members 18 and older."
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "OpenAI expects people to eventually let agents buy on their own.\nYou would set spending limits, categories or time periods first.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Woman_shops_online_with_a_small_shopping_cart_and_cash_in_a_modern_office_setting_during_the_afternoon.jpg/3840px-Woman_shops_online_with_a_small_shopping_cart_and_cash_in_a_modern_office_setting_during_the_afternoon.jpg",
+        "credit": "Illustrative photo: online shopping / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "The catch: some stores block AI agents.\nEarlier this year Amazon blocked Meta's Muse agents.\nWould you let a bot check out for you?"
+    }
+  ],
+  "caption": "OpenAI just gave its AI agents a way to pay.\n\nChatGPT Wallet is rolling out starting November 13 for ChatGPT Pro subscribers in the U.S. who are 18 or older and have a U.S. billing address. It works with eligible American Express, Chase, Mastercard and Visa cards.\n\nOnce you add a card, OpenAI's Dots agents can buy things in response to your prompts. They check in before every checkout, and each purchase needs a security check with Face ID or a fingerprint.\n\nLike tap to pay, the wallet swaps your real card details for a payment token, so neither the agent nor the store sees the actual number.\n\nOpenAI says it eventually expects people to hand purchases to an agent entirely, within limits they set, such as a spending cap, a category or a time period.\n\nThere is a snag. Some retailers restrict AI agents or block them. Earlier this year Amazon blocked Meta's Muse agents. OpenAI says sites must make sure agents are not blocked by accident, and payment systems must recognize legitimate agent purchases.\n\nSource: The Verge, OpenAI",
+  "hashtags": [
+    "#openai",
+    "#chatgpt",
+    "#ai",
+    "#tech"
+  ]
+}

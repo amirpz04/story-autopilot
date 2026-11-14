@@ -1,0 +1,77 @@
+{
+  "id": "2026-11-14-01",
+  "date": "2026-11-14",
+  "slot": null,
+  "reel_slot": 3,
+  "title": "Perseverance confirms organic carbon just beneath the surface of Bright Angel rocks on Mars",
+  "category": "space",
+  "tags": {
+    "headline": "scale",
+    "end": "open question",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 7,
+    "talkability": 8,
+    "no_context": 7,
+    "freshness": 9
+  },
+  "sources": [
+    {
+      "name": "Science Advances / ScienceDaily",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261111005908.htm"
+    }
+  ],
+  "verification": "Checked the ScienceDaily write-up of the Science Advances study (Murphy, Uckert et al., Nov 12, 2026): two Bright Angel rocks, SHERLOC Raman detection of macromolecular carbon, depth below a sheet of paper, shallowest on Mars, Sept 2025 potential biosignature, Curiosity at Gale Crater 2,000+ miles away, non-biological origin not excluded. Wording kept to what the study says.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "MARS",
+      "headline": "Mars rocks hide organic carbon under a paper-thin skin.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/PIA25681_Perseverance%27s_Three_Forks_Sample_Depot_Selfie.jpg/3840px-PIA25681_Perseverance%27s_Three_Forks_Sample_Depot_Selfie.jpg",
+        "credit": "Photo: NASA/JPL-Caltech/MSSS / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "NASA's Perseverance rover has confirmed organic carbon in two ancient Martian rocks.\nOrganic means carbon-based molecules. Living things make them, but plain chemistry can too."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "The rocks are mudstone from the Bright Angel formation in Jezero crater.\nBillions of years ago, a river carried mud into a lake here.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/34/Perseverance_at_Bright_Angel_-_Sol_1176_%2853791339229%29.jpg/3840px-Perseverance_at_Bright_Angel_-_Sol_1176_%2853791339229%29.jpg",
+        "credit": "Photo: semeion.photo (NASA Perseverance raw images) / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The carbon sits only a few microns below the surface.\nThat is thinner than a sheet of paper.\nRadiation and harsh chemicals up there normally destroy organics."
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "The rover found it with SHERLOC, a laser on its arm.\nCuriosity found organics at Gale Crater, over 2,000 miles away.\nSuch carbon may have been widespread on ancient Mars.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/E1a-PIA26401-Mastcam-Z-Views-the-Cheyava-Falls-Workspace.jpg/3840px-E1a-PIA26401-Mastcam-Z-Views-the-Cheyava-Falls-Workspace.jpg",
+        "credit": "Photo: NASA/JPL-Caltech/ASU/MSSS / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Carbon alone is not proof of life.\nThe team does not yet know how this carbon formed.\nTelling fossils from chemistry needs lab tools no rover on Mars carries."
+    }
+  ],
+  "caption": "The carbon is hiding in a layer thinner than a sheet of paper.\n\nNASA's Perseverance rover has confirmed organic carbon in two ancient rocks in the Bright Angel formation of Jezero crater, according to a study published this week in Science Advances.\n\nThe same two rocks drew attention in September 2025, when NASA called them a potential biosignature: something that could have formed through life, though other explanations are possible.\n\nThe new work shows the carbon is a tangle of large, linked carbon networks. It sits only a few microns below the surface, the shallowest detection of this kind ever reported on Mars.\n\nThat matters because Mars' surface is bathed in radiation and chemicals that break organics down. The team says the carbon either resists damage or was shielded by clay or iron-rich soil.\n\nNASA's Curiosity rover also found organic compounds at Gale Crater, more than 2,000 miles away. Together, the finds hint that organics were widespread in ancient Martian lakes and rivers.\n\nCarbon can form without life, and how this one formed is still unknown. Proving fossils would take tools the rovers on Mars do not have.\n\nSource: Science Advances, via ScienceDaily",
+  "hashtags": [
+    "#mars",
+    "#nasa",
+    "#space",
+    "#perseverance"
+  ]
+}

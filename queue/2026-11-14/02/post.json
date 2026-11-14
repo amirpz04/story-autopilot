@@ -1,0 +1,78 @@
+{
+  "id": "2026-11-14-02",
+  "date": "2026-11-14",
+  "slot": null,
+  "reel_slot": 5,
+  "title": "Crows make visual decisions twice as fast as humans and monkeys (Tübingen, Science)",
+  "category": "animals",
+  "variety_exception": "Assigned subject was science; a brain study on birds was the strongest fresh find, and it is also the strongest picture story of the day.",
+  "tags": {
+    "headline": "comparison",
+    "end": "unknown mechanism",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 9,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 9,
+    "talkability": 8,
+    "no_context": 9,
+    "freshness": 9
+  },
+  "sources": [
+    {
+      "name": "University of Tübingen / Science",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261111005850.htm"
+    }
+  ],
+  "verification": "Checked the ScienceDaily release from University of Tübingen (Nov 12, 2026) on Schmidbauer and Nieder, Science 394(6822):445. Facts: two carrion crows, moving-dot direction task on touchscreen, 235 ms average, about twice as fast as humans and monkeys, near 100% accuracy on clear signals, neurons split by choice 70 ms after dots appeared, nidopallium caudolaterale, mechanism of the speed unknown. Small sample (two birds) stated.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "BIRDS",
+      "headline": "Crows decide twice as fast as you can.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Carrion_crow_%28Corvus_corone%29_head.jpg/3840px-Carrion_crow_%28Corvus_corone%29_head.jpg",
+        "credit": "Photo: Wikimedia Commons, CC BY 4.0 (Carrion crow, Corvus corone)"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Two carrion crows needed just 235 milliseconds to judge which way a swarm of dots was moving.\nHumans and monkeys take about twice as long."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "The crows pecked left or right on a touchscreen.\nWith clear signals they were right nearly 100 percent of the time.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Corvus_corone_Bob_20190916_t170115.jpg/3840px-Corvus_corone_Bob_20190916_t170115.jpg",
+        "credit": "Photo: Corvus corone, Bob / Wikimedia Commons, CC BY 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Researchers at Germany's University of Tübingen also recorded single brain cells.\nJust 70 milliseconds after the dots appeared, the cells already leaned toward a choice."
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "Birds have no layered cortex like ours.\nYet the crows' brain activity fit the same decision models used for humans and monkeys.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Carrion_crow_2023_12_31.jpg/3840px-Carrion_crow_2023_12_31.jpg",
+        "credit": "Photo: Wikimedia Commons, CC BY 4.0 (Carrion crow, 2023)"
+      }
+    },
+    {
+      "type": "end",
+      "text": "The team suspects flight and precise beak strikes reward quick eyes.\nHow a differently built brain is this fast is still unknown.\nThe study tested only two crows."
+    }
+  ],
+  "caption": "Crows can make a visual decision in about a quarter of a second, roughly twice as fast as people and monkeys.\n\nResearchers at Germany's University of Tübingen trained two carrion crows to watch a pattern of moving dots on a touchscreen and peck the side the dots were drifting toward.\n\nThe birds needed an average of 235 milliseconds. When the signal was clear, they got it right nearly every time. Even when the motion was hard to read, they did better than chance.\n\nThe team also recorded single neurons in a part of the crow brain called the nidopallium caudolaterale, a region that works somewhat like our prefrontal cortex. About 70 milliseconds after the dots appeared, cells tied to each choice already behaved differently, well before the bird moved.\n\nBirds do not have a layered cortex like mammals, yet the crows' brain signals fit the same decision-making models used for humans and monkeys.\n\nThe researchers think speed matters for animals that fly and strike with a beak, but they say the exact reason is unknown. The study was published in the journal Science, and it tested only two birds.\n\nSource: University of Tübingen, Science, via ScienceDaily",
+  "hashtags": [
+    "#crows",
+    "#birds",
+    "#neuroscience",
+    "#animals"
+  ]
+}
