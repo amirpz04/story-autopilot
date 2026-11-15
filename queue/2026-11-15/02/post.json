@@ -1,0 +1,81 @@
+{
+  "id": "2026-11-15-02",
+  "date": "2026-11-15",
+  "slot": null,
+  "reel_slot": 5,
+  "title": "1960 Science paper predicted doomsday on Friday, November 13, 2026",
+  "category": "science",
+  "tags": {
+    "headline": "date twist",
+    "end": "reveal",
+    "lane": "evergreen"
+  },
+  "scores": {
+    "hook": 9,
+    "surprise": 9,
+    "emotion": 7,
+    "shareability": 9,
+    "talkability": 8,
+    "no_context": 9,
+    "freshness": 7
+  },
+  "sources": [
+    {
+      "name": "The Conversation (Alan MacEachern, Western University)",
+      "url": "https://theconversation.com/scientists-predicted-friday-13-november-2026-would-be-doomsday-should-you-be-worried-290354"
+    },
+    {
+      "name": "Ars Technica",
+      "url": "https://arstechnica.com/science/2026/11/its-the-end-of-the-world-as-we-know-it-per-a-physicists-1960-prediction/"
+    }
+  ],
+  "verification": "Two independent sources. The Conversation (historian Alan MacEachern): 1960 Science article titled 'Doomsday: Friday, 13 November, A.D. 2026' by Heinz von Foerster (Austrian-American professor, cybernetics expert) and students Patricia Mora and Lawrence Amiot; population approaching infinity on that date; 'squeezed to death' quote; 24 population estimates over 2,000 years; recommended halving the birth rate; critics' 'ridiculous' and 'manifestly absurd'; better projections than most demographers in 1970s-80s; fell behind around 1993; birth rate slightly less than half the 1960 rate; Time, New York Times, Pogo strips; 1963 Canadian committee and 1971 US Supreme Court case citations; von Foerster once a stage magician. Ars Technica (Nov 13, 2026) confirms the paper, DOI 10.1126/science.132.3436.1291, critics' words, and Joel Cohen's quote that the all-time peak of growth was in the early 1960s. Tagged evergreen: the hook is the date that just passed, not new research. Growth-rate peak (2.3% in 1963) read from the Our World in Data / UN chart used on slide 5.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "1960",
+      "headline": "In 1960, scientists set doomsday for last Friday.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg/3840px-Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg",
+        "credit": "Illustrative photo: Benh LIEU SONG / Wikimedia Commons, CC BY-SA 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The paper ran in Science, one of the world's top journals.\nIts title: “Doomsday: Friday, 13 November, A.D. 2026.”\nIts math said the world's population would race toward infinity that day."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "The lead author was Heinz von Foerster, an Austrian-American cybernetics professor, writing with two students.\nTheir verdict: “Our great-great-grandchildren will not starve. They will be squeezed to death.”",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ad/HvF_01.jpg/3840px-HvF_01.jpg",
+        "credit": "Photo: U of I publicity department, 1963 / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Critics called it “ridiculous” and “manifestly absurd.”\nBut the equation predicted world population better than most experts did through the 1970s and 1980s."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Then, around 1993, the real numbers fell behind the forecast.\nGrowth had already peaked at 2.3% a year in 1963, the pink line here.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/78/World_population_growth%2C_1700-2100%2C_2022_revision.png/3840px-World_population_growth%2C_1700-2100%2C_2022_revision.png",
+        "credit": "Chart: Max Roser and Hannah Ritchie, Our World in Data (UN data) / Wikimedia Commons, CC BY 4.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "The authors' cure was to cut the world's birth rate in half.\nToday it is slightly less than half the 1960 rate.\nAnd von Foerster had once worked as a stage magician."
+    }
+  ],
+  "caption": "The end of the world was penciled in for this week, and a top journal printed the date.\n\nIn 1960, Science published “Doomsday: Friday, 13 November, A.D. 2026” by Heinz von Foerster and two of his students, Patricia Mora and Lawrence Amiot. They took 24 estimates of world population across 2,000 years and fit an equation in which growth keeps speeding up. Carried forward, it shot toward infinity on November 13, 2026.\n\nThe paper made Time and The New York Times and even turned up in Pogo comic strips. Mathematicians and demographers fired back in letters, and the authors doubled down on their math.\n\nIt was cited for decades, in textbooks, in a 1963 Canadian parliamentary committee and in a 1971 U.S. Supreme Court abortion case.\n\nThe forecast stayed close to reality until about 1993. Then the world did what the authors had urged and had fewer children.\n\nHistorian Alan MacEachern calls it an ordinary scientific article wrapped in an extraordinary title. Von Foerster, a former stage magician, knew how to grab a crowd.\n\nFriday came and went. We are still here.\n\nSource: The Conversation, Ars Technica, Science (1960)",
+  "hashtags": [
+    "#science",
+    "#history",
+    "#population",
+    "#math"
+  ]
+}

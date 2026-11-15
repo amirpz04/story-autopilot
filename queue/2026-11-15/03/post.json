@@ -1,0 +1,81 @@
+{
+  "id": "2026-11-15-03",
+  "date": "2026-11-15",
+  "slot": null,
+  "reel_slot": 1,
+  "title": "Tsinghua team flash-heats old wind turbine blades into silicon carbide and graphene",
+  "category": "materials",
+  "tags": {
+    "headline": "number",
+    "end": "callback",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 7,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 7,
+    "talkability": 7,
+    "no_context": 8,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "Cell Press via EurekAlert",
+      "url": "https://www.eurekalert.org/news-releases/1149670"
+    },
+    {
+      "name": "Interesting Engineering",
+      "url": "https://interestingengineering.com/innovation/scientists-heat-old-wind-turbine-blades"
+    }
+  ],
+  "verification": "Cell Press release on EurekAlert (Nov 6, 2026) for the Chem Circularity paper by Hao Bi and Bing Deng (Tsinghua University): blades last about 20 years, flash Joule heating to about 2,000 C within seconds, silicon carbide and graphene, 0.3% by weight gives 27% better resistance to deformation under tension and 9% when bent, profit about $80/ton vs costs of about $460/ton (pyrolysis) and $1,800/ton (chemical dissolution), scaling up and seeking partners. Interesting Engineering (Nov 6) confirms the same numbers and that decommissioned blades mostly end up in landfills. Within 14 days (rung 2). Lab-scale result, said so on the end slide.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "MATERIALS",
+      "headline": "Junked wind blades could now earn $80 a ton.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/70/Wind_turbine_blades_Hanna_Alberta_2.jpg/3840px-Wind_turbine_blades_Hanna_Alberta_2.jpg",
+        "credit": "Illustrative photo: new turbine blades in Hanna, Alberta, KenWalker / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Wind turbine blades last about 20 years, and most old ones end up buried in landfills.\nThey are built to survive lightning, which also makes them very hard to recycle."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "A team at Tsinghua University in Beijing, China, ground up old blade material.\nThen they hit it with a burst of electricity, reaching about 3,600 degrees F (2,000 C) within seconds.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Wind_turbine_blade_transport_I-35.jpg/1920px-Wind_turbine_blade_transport_I-35.jpg",
+        "credit": "Photo: Alexi Kostibas / Wikimedia Commons, CC BY-SA 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The flash turns the blade's glass fiber and resin into two prized materials.\nSilicon carbide, an ultra-hard ceramic.\nAnd graphene, a super-strong form of carbon."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Mixing just 0.3% of that powder into fresh resin made it 27% stiffer under tension.\nThat resin could go into new blades, so old turbines help build new ones.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Silicon_carbide_crystals.tif/lossless-page1-3840px-Silicon_carbide_crystals.tif.png",
+        "credit": "Photo: silicon carbide crystals, JayCubby / Wikimedia Commons, CC BY 4.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Today, getting rid of a blade costs money: about $460 a ton to bake it down, $1,800 to dissolve it.\nThis method could pay instead.\nIt is still lab-scale; the team is now scaling up."
+    }
+  ],
+  "caption": "The hardest part of a wind turbine to throw away may be worth money.\n\nTurbine blades are made of silica-rich glass fiber held together by carbon-rich resin. That makes them tough enough for 20 years of gales, sun and lightning, and tough to recycle. As the first big generation of turbines retires, most blades are buried in landfills. Germany and Austria ban landfilling this kind of waste.\n\nA team led by Bing Deng at Tsinghua University in Beijing tried flash Joule heating: a jolt of current that pushes ground-up blade waste to about 3,600 degrees F (2,000 C) in seconds. The silica and carbon react into silicon carbide, and leftover carbon becomes graphene.\n\nAdding 0.3% of the powder to new resin made it 27% stiffer under tension and 9% stronger when bent. At 0.1%, the resin spread heat 41% better.\n\nLead author Hao Bi says the method could make about $80 a ton, while pyrolysis costs about $460 and chemical dissolution about $1,800. It could also cut greenhouse emissions by 83% to 92% compared with those methods.\n\nThe team is scaling up and looking for industry partners.\n\nSource: Cell Press (Chem Circularity), Interesting Engineering",
+  "hashtags": [
+    "#recycling",
+    "#windenergy",
+    "#materials",
+    "#science"
+  ]
+}

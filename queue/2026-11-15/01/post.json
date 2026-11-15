@@ -1,0 +1,81 @@
+{
+  "id": "2026-11-15-01",
+  "date": "2026-11-15",
+  "slot": null,
+  "reel_slot": 3,
+  "title": "OpenAI breaks up its stand-alone robotics team as GPT-6 Astra starts running robots",
+  "category": "ai",
+  "tags": {
+    "headline": "odd detail",
+    "end": "counterpoint",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 6,
+    "shareability": 7,
+    "talkability": 8,
+    "no_context": 7,
+    "freshness": 9
+  },
+  "sources": [
+    {
+      "name": "Fortune",
+      "url": "https://fortune.com/2026/11/13/openai-disbands-robotics-team-as-its-general-models-start-running-robots/"
+    },
+    {
+      "name": "The Decoder",
+      "url": "https://the-decoder.com/openai-reassigns-robotics-researchers-to-other-teams-as-general-purpose-models-might-make-specialized-robotics-ai-unnecessary/"
+    }
+  ],
+  "verification": "Fortune exclusive (Nov 13, 2026) read in full: OpenAI confirmed the reorganization; robotics researchers moved to Mark Chen's research team, applied robotics and hardware to Greg Brockman's Applied org; registered booth #208 at CoRL in Austin sat empty; 2020 wind-down (Zaremba: limited robot data); rebuilt 2024 with Figure partnership, ended Feb 2025; Altman targets first public humanoid demo in 2027; Nvidia study 74.8% vs 51.0% on a simulated manipulation benchmark; Tedrake quote on deployment data; $10.9B quarterly loss (reported). The Decoder (Nov 14) confirms the same facts and OpenAI's clarification that it is a reorganization and robotics work continues. Wording kept to 'broke up its stand-alone team' and OpenAI's own framing included. Robot photos labelled illustrative.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "AI",
+      "headline": "OpenAI booked a robot booth. Then left it empty.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Humanoid_robot_at_Science_Square_Tsukuba_4.jpg",
+        "credit": "Illustrative photo: Syced / Wikimedia Commons, CC0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "OpenAI has broken up its stand-alone robotics team, Fortune reported on November 13.\nIt happened so fast that OpenAI's booth #208 at a top robot conference in Austin, Texas, sat empty."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "The reason, says OpenAI: its general AI model, GPT-6 Astra, turned out to run robots directly.\nThe company calls it a reorganization, not a retreat.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Halodi_Robotics%27_Perception_Engineer_With_a_Humanoid_Collaborative_Robot.jpg/1920px-Halodi_Robotics%27_Perception_Engineer_With_a_Humanoid_Collaborative_Robot.jpg",
+        "credit": "Illustrative photo: Nicholas-halodi / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "In an Nvidia study, an Astra-powered agent completed 74.8% of simulated robot tasks.\nThe best specialized robot models on that leaderboard scored 51%.\nThe robot was virtual, not real."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "It is OpenAI's second robot reset.\nIt wound down a team in 2020, citing too little robot data, and rebuilt one in 2024.\nCEO Sam Altman wants a first public humanoid demo in 2027.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Sam_Altman_TechCrunch_SF_2019_Day_2_Oct_3_%28cropped%29.jpg",
+        "credit": "Photo: TechCrunch / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Robot startups have raised billions betting that robots need brains of their own.\nAn MIT professor says they still have one edge: their robots are already at work in real factories."
+    }
+  ],
+  "caption": "The researchers were moved before the conference booth could be canceled.\n\nOpenAI confirmed to Fortune that it has disbanded its stand-alone robotics team. The robotics researchers now sit in the main research group under Chief Research Officer Mark Chen. The applied robotics and hardware teams moved to the Applied organization run by President Greg Brockman.\n\nOpenAI says robotics is still a core part of its long-term plan. Its view: models built for language, code and vision, like GPT-6 Astra, can steer robots themselves, so a separate robot brain may not be needed.\n\nThe early numbers are striking but limited. In an Nvidia study, an Astra-powered agent hit a 74.8% success rate on a simulated benchmark, against 51% for the best specialized models. Those tests used a virtual robot.\n\nThis is not OpenAI's first robot exit. It wound down a robotics team in 2020, partnered with the startup Figure in 2024, and lost that deal in February 2025.\n\nNot everyone is convinced. Large models are slow and need the cloud, and roboticists say small onboard models still matter.\n\nThe next real test: a working robot, not a simulation.\n\nSource: Fortune, The Decoder",
+  "hashtags": [
+    "#openai",
+    "#robots",
+    "#ai",
+    "#robotics"
+  ]
+}
