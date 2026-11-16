@@ -1,0 +1,114 @@
+{
+  "id": "2026-11-16-03",
+  "date": "2026-11-16",
+  "slot": null,
+  "reel_slot": 1,
+  "title": "FDA approves Bayer's asundexian (Sunharbo), first Factor XIa pill to prevent repeat strokes",
+  "category": "health",
+  "tags": {
+    "headline": "news for you",
+    "end": "the catch",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 7,
+    "surprise": 7,
+    "emotion": 7,
+    "shareability": 8,
+    "talkability": 6,
+    "no_context": 8,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "MedCity News",
+      "url": "https://medcitynews.com/2026/11/bayer-sunharbo-asundexian-fda-approval-secondary-stroke-prevention-factor-xia-bayry/"
+    },
+    {
+      "name": "Fox News Health",
+      "url": "https://www.foxnews.com/health/stroke-survivors-get-fda-approved-daily-pill-shown-cut-repeat-risk"
+    },
+    {
+      "name": "AJMC",
+      "url": "https://www.ajmc.com/view/fda-approves-asundexian-first-fxia-inhibitor-to-prevent-repeat-stroke"
+    },
+    {
+      "name": "CDC",
+      "url": "https://www.cdc.gov/stroke/data-research/facts-stats/index.html"
+    }
+  ],
+  "verification": "MedCity News (Nov 10, 2026): FDA approved asundexian (Sunharbo, 50 mg once daily) late Monday Nov 9; first FDA-approved Factor XIa inhibitor; for adults after recent non-cardioembolic ischemic stroke or high-risk TIA, with antiplatelet therapy; 26% lower stroke risk vs placebo plus antiplatelet; Phase 3 afib trial failed about three years ago; China approved first; launch mid-November. Fox News (Nov 14): 12,327 patients, 37 countries; no significant overall increase in major bleeding; GI bleeding more common; major bleeding higher in patients over 75 in the first 90 days; doctor quote 'blocks a very specific protein that's part of the cascade of blood clotting' and not for strokes from atrial fibrillation or heart valves. AJMC/NeurologyLive confirm the Nov 9 approval date, the 26% relative reduction and no increase in ISTH major bleeding. CDC: 795,000 US strokes a year, about 185,000 (nearly 1 in 4) in people who already had one. Exact event rates differ between outlets (6.2/8.4% vs 6.6/8.8%), so only the 26% figure is used. Cover is a real clot micrograph; slide 3 is a clotting-cascade diagram with Factor XIa circled; slide 4 shows aspirin, a common antiplatelet pill; end slide is a stroke MRI.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "HEALTH",
+      "headline": "Stroke survivors just got a new kind of pill.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Histopathology_of_a_fresh_thrombus.jpg/1920px-Histopathology_of_a_fresh_thrombus.jpg",
+        "credit": "A fresh blood clot under the microscope. Photo: Mikael Häggström, M.D. / Wikimedia Commons, CC0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "On November 9, the FDA approved Sunharbo, a once-a-day pill from Germany's Bayer.\nIt is for people who just had a stroke caused by a blood clot, to help prevent a second one."
+    },
+    {
+      "type": "text",
+      "text": "It is the first approved drug of its kind.\nIt blocks Factor XIa, one specific protein in the chain reaction that builds blood clots.",
+      "layout": "split",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/Coagulation_cascade.jpg/1280px-Coagulation_cascade.jpg",
+        "credit": "The clotting chain reaction. Diagram: Wikimedia Commons, CC0",
+        "focus": [
+          0.5,
+          0.12
+        ],
+        "marks": [
+          {
+            "type": "circle",
+            "at": [
+              0.405,
+              0.19
+            ],
+            "r": 0.05,
+            "label": "Sunharbo blocks this",
+            "side": "r"
+          }
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "In a trial of 12,327 stroke patients in 37 countries, adding it to usual anti-clot pills like aspirin cut new strokes by 26% versus a dummy pill.\nOverall, major bleeding did not rise.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Regular_strength_enteric_coated_aspirin_tablets.jpg/1920px-Regular_strength_enteric_coated_aspirin_tablets.jpg",
+        "credit": "Aspirin, a usual anti-clot pill. Photo: Ragesoss / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "That matters.\nIn the US, nearly 1 in 4 strokes, about 185,000 a year, hit people who already had one.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Unilateraler_Anteriorinfarkt_70M_-_MR_DWI_ADC_TOF_-_001.jpg/1920px-Unilateraler_Anteriorinfarkt_70M_-_MR_DWI_ADC_TOF_-_001.jpg",
+        "credit": "MRI of a stroke. Photo: Hellerhoff / Wikimedia Commons, CC BY-SA 4.0",
+        "focus": [
+          0.17,
+          0.4
+        ]
+      }
+    },
+    {
+      "type": "end",
+      "text": "The catch: stomach and bowel bleeding was more common, and so was major bleeding in people over 75 early on.\nAnd it is not for strokes caused by atrial fibrillation. It failed that trial about three years ago."
+    }
+  ],
+  "caption": "As one doctor told Fox News, it \"doesn't completely eliminate the risk of a second stroke.\" But it cut it.\n\nOn November 9, the US Food and Drug Administration approved Sunharbo (asundexian), a 50 mg once-daily pill from Germany's Bayer. It is for adults who recently had a mild-to-moderate ischemic stroke, the kind caused by a clot, when that clot did not come from the heart, and for people after a high-risk \"mini-stroke.\" It is taken together with the usual anti-platelet pills, like aspirin.\n\nIt is the first approved drug that blocks Factor XIa, a protein in the chain reaction that forms clots. In a Bayer-funded trial of 12,327 patients in 37 countries, it lowered the rate of new strokes by 26% compared with a dummy pill. Overall major bleeding did not rise, but stomach and bowel bleeding was more common, and patients over 75 had more major bleeding in the first 90 days.\n\nWhy it matters: every 40 seconds someone in the US has a stroke, and nearly 1 in 4 strokes happen to people who already had one.\n\nChina approved it first. Rival drugs from Bristol Myers Squibb and Johnson & Johnson are close behind. Ask a doctor whether it fits you.\n\nSource: MedCity News, Fox News, AJMC, CDC",
+  "hashtags": [
+    "#stroke",
+    "#health",
+    "#medicine",
+    "#fda"
+  ]
+}

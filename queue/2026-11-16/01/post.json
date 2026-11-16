@@ -1,0 +1,98 @@
+{
+  "id": "2026-11-16-01",
+  "date": "2026-11-16",
+  "slot": null,
+  "reel_slot": 3,
+  "title": "Jensen Huang resigns as Nvidia CEO; 160,000 sign letter asking for his return",
+  "category": "business",
+  "tags": {
+    "headline": "loss and pushback",
+    "end": "next test",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 9,
+    "surprise": 7,
+    "emotion": 7,
+    "shareability": 8,
+    "talkability": 9,
+    "no_context": 8,
+    "freshness": 9
+  },
+  "sources": [
+    {
+      "name": "Nvidia Form 8-K (SEC)",
+      "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000082/nvidiaannouncesceotransiti.htm"
+    },
+    {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com/2026/11/12/nvidia-nvda-jensen-huang-second-affair.html"
+    },
+    {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com/2026/11/16/nvidia-jensen-huang-return-tech.html"
+    },
+    {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com/2026/11/14/nvidia-investors-jensen-huang-return-board-letter.html"
+    },
+    {
+      "name": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/14/elon-musk-other-tech-execs-sign-petition-calling-on-nvidia-to-reinstate-jensen-huang/"
+    }
+  ],
+  "verification": "Nvidia 8-K/press release (Nov 12, 2026): Huang resigned as president, CEO and director effective immediately; CFO Colette Kress interim CEO while staying CFO; Harvey C. Jones first-ever board chair; Kress quote on 'the last 33 years'; Q3 results Tuesday Nov 17. CNBC Nov 12: co-founded 1993; on Nov 8 he admitted an affair (FT report); NYT and Reuters then reported a second relationship with an employee who reported to him; shares fell 4.34% Thursday after being down as much as 14% intraday. CNBC Nov 13 headline: closed below $4T market cap Friday for first time since July 2025. CNBC Nov 15/16: 'Stand with Jensen' letter passed 160,000 signatures (self-reported, unverified affiliations); Musk on X: 'A petition is underway to reinstate Jensen and I'm signing it too'; Sweeney and Tan also listed; FT reports Huang discussed a return with confidants. CNBC Nov 14: Altimeter (9.4M shares, ~$1.9B) and Atreides (1.2M shares, ~$250M) as of June 30 asked board to consider 'the potential return of Jensen Huang'. TechCrunch Nov 14 confirms petition and signers. Deliberately not naming the other people involved and not repeating espionage allegations (uncharged).",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "BIG TECH",
+      "headline": "Nvidia lost its founder. 160,000 people want him back.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Jensen_huang_stanford_2026-04-30_020.jpg/3840px-Jensen_huang_stanford_2026-04-30_020.jpg",
+        "credit": "Photo: Anders Eidesvik / Wikimedia Commons, CC BY 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Jensen Huang quit as Nvidia's CEO on November 12, effective immediately.\nHe co-founded the AI chip giant in 1993 and had led it ever since.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/NVIDIA_Headquarters.jpg/3840px-NVIDIA_Headquarters.jpg",
+        "credit": "Photo: Coolcaesar / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "It came four days after he admitted an affair.\nReports then described a second relationship, with an employee who reported to him.\nNvidia's stock fell 4% that day."
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "Now more than 160,000 people have signed an open letter asking the board to take him back.\nElon Musk posted: \"I'm signing it too.\"",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/08/Elon_Musk_at_a_Press_Conference.jpg/3840px-Elon_Musk_at_a_Press_Conference.jpg",
+        "credit": "Photo: Daniel Oberhaus / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Big money joined in.\nTwo investment firms holding about $2.1 billion of Nvidia stock asked the board to weigh \"the potential return of Jensen Huang.\"",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Nvidia_sign.jpg/1920px-Nvidia_sign.jpg",
+        "credit": "Photo: Will Buckner / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "For now, finance chief Colette Kress runs Nvidia.\nOnly the board can pick the next CEO, and a letter cannot force it.\nThe first test comes Tuesday, when Nvidia reports its earnings."
+    }
+  ],
+  "caption": "The man who built the company that powers the AI boom left it in a single day.\n\nOn November 12, Nvidia said Jensen Huang had resigned as president, CEO and board member, effective immediately. He co-founded the chipmaker in 1993. Finance chief Colette Kress is interim CEO and keeps her finance job, and the company named its first-ever board chair, former Synopsys CEO Harvey C. Jones.\n\nThe exit followed days of reports about his personal life. On November 8 he admitted an affair, and reports then described a second relationship with an employee who reported to him. Nvidia's shares fell 4.3% that day after dropping as much as 14%, and on Friday the company closed below $4 trillion in value for the first time since July 2025.\n\nThen came the pushback. A \"Stand with Jensen\" letter asks the board to reinstate him while an independent investigation runs. It has passed 160,000 signatures, including Elon Musk, Epic Games CEO Tim Sweeney and Y Combinator CEO Garry Tan. Two investment firms, Altimeter and Atreides, asked for a slow process that considers his return. The Financial Times reports Huang has talked with allies about coming back.\n\nThe board is picking a search firm for a permanent CEO. Can a company this big really go back?\n\nSource: Nvidia, CNBC, TechCrunch",
+  "hashtags": [
+    "#nvidia",
+    "#jensenhuang",
+    "#technews",
+    "#ai"
+  ]
+}

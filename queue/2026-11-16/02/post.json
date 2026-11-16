@@ -1,0 +1,86 @@
+{
+  "id": "2026-11-16-02",
+  "date": "2026-11-16",
+  "slot": null,
+  "reel_slot": 5,
+  "title": "ULA Vulcan rocket fails, losing 40 Amazon Leo satellites",
+  "category": "space",
+  "tags": {
+    "headline": "plain loss",
+    "end": "hidden stakes",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 7,
+    "talkability": 8,
+    "no_context": 8,
+    "freshness": 10
+  },
+  "sources": [
+    {
+      "name": "Ars Technica",
+      "url": "https://arstechnica.com/space/2026/11/vulcan-rocket-fails-during-launch-dealing-major-blow-to-spacex-competitors/"
+    },
+    {
+      "name": "Spaceflight Now",
+      "url": "https://spaceflightnow.com/2026/11/15/ula-suffers-first-total-mission-failure-with-loss-of-vulcan-rocket-carrying-40-amazon-leo-satellites/"
+    }
+  ],
+  "verification": "Ars Technica (Nov 15, 2026) read in full: Vulcan lifted off from Cape Canaveral at 12:40 pm EDT Sunday; it and 40 Amazon Leo satellites fell back to Earth; ULA statement: 'suffered an anomaly 10 minutes into the flight and failed to deliver the Amazon mission to orbit', no data yet on the cause; first total mission failure since ULA formed in 2006 from Boeing and Lockheed Martin rocket divisions; first of 38 Vulcan launches Amazon booked; Vulcan expected to be grounded indefinitely; Vulcan on contract for roughly half of US military national security launches in the next few years; Amazon Leo has 396 satellites of 3,292 planned first-generation; Amazon built its 1,000th satellite, more than half in storage; Amazon has 10 more Falcon 9 missions booked with SpaceX. Spaceflight Now and Space.com confirm the failure, the 40 satellites, first outright ULA failure, cause unknown. Ars and Spaceflight Now disagree on which stage failed, so no cause is stated. Rocket photos are earlier Vulcan flights (labelled). Slide 4 shows SpaceX Starlink satellite trails (the rival named on the slide).",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "SPACE",
+      "headline": "Amazon's 40 new satellites never reached orbit.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Vulcan_Cert_2_Launch_%288699035%29.jpg/3840px-Vulcan_Cert_2_Launch_%288699035%29.jpg",
+        "credit": "Earlier Vulcan launch (Oct 2024). Photo: U.S. Space Force / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "They launched from Florida on Sunday, November 15, on United Launch Alliance's Vulcan rocket.\nAbout 10 minutes in, the rocket failed. Rocket and satellites fell back to Earth.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Vulcan_Centaur_rollout_%28Peregrine%29_%28cropped_2%29.jpg/1920px-Vulcan_Centaur_rollout_%28Peregrine%29_%28cropped_2%29.jpg",
+        "credit": "Vulcan before its first flight, 2024. Photo: NASA/Ben Smegelsky / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "It was the first total mission failure for ULA since Boeing and Lockheed Martin created it in 2006.\nThe company says it does not yet know what went wrong."
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "The satellites were for Amazon Leo, Amazon's rival to SpaceX's Starlink internet.\nOnly 396 are in orbit, out of 3,292 planned.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Starlink_Satellites_Overhead.jpg/3840px-Starlink_Satellites_Overhead.jpg",
+        "credit": "Rival Starlink satellites streaking across the night sky. Photo: M. Lewinsky / Wikimedia Commons, CC BY 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "This was the first of 38 Vulcan launches Amazon booked.\nWith Vulcan likely grounded, Amazon still has 10 launches booked with SpaceX, the very rival it is racing.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/45th_Space_Wing_Supports_Successful_Falcon_9_SAOCOM_1B_Launch_02.jpg/1920px-45th_Space_Wing_Supports_Successful_Falcon_9_SAOCOM_1B_Launch_02.jpg",
+        "credit": "A SpaceX Falcon 9 launch. Photo: U.S. Space Force photo by Joshua Conti / Wikimedia Commons, Public domain"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Amazon is not the only one waiting.\nVulcan is also booked for about half of the US military's most important satellite launches over the next few years."
+    }
+  ],
+  "caption": "Amazon has built 1,000 internet satellites. More than half of them are still sitting in storage, waiting for rides.\n\nOn Sunday, November 15, 40 of them lifted off from Cape Canaveral, Florida, at 12:40 p.m. on a Vulcan rocket from United Launch Alliance, the company Boeing and Lockheed Martin formed in 2006. Ten minutes into the flight, ULA said, the rocket \"suffered an anomaly\" and failed to reach orbit. The satellites were lost.\n\nIt was ULA's first total mission failure ever. The company says it does not yet have data on the cause, and the rocket is expected to stay grounded while engineers investigate.\n\nThe satellites belong to Amazon Leo, Amazon's answer to SpaceX's Starlink. Only 396 are in orbit so far, out of 3,292 planned for the first network. Sunday's flight was the first of 38 Vulcan launches Amazon booked in 2022. Now its quickest path to space may be its 10 remaining launches on SpaceX's Falcon 9, plus Europe's Ariane 6.\n\nThe US Space Force has a problem too: Vulcan is booked for roughly half of its national security launches in the next few years.\n\nOne bad Sunday, and SpaceX's lead just got longer. 🚀\n\nSource: Ars Technica, Spaceflight Now",
+  "hashtags": [
+    "#amazon",
+    "#space",
+    "#rocketlaunch",
+    "#starlink"
+  ]
+}
