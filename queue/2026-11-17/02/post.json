@@ -1,0 +1,86 @@
+{
+  "id": "2026-11-17-02",
+  "date": "2026-11-17",
+  "slot": null,
+  "reel_slot": 5,
+  "title": "SpaceX catches Starship upper stage at the tower after 14 orbits on Flight 15; booster lost",
+  "category": "space",
+  "tags": {
+    "headline": "two beats",
+    "end": "next hurdle",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 9,
+    "surprise": 8,
+    "emotion": 9,
+    "shareability": 8,
+    "talkability": 8,
+    "no_context": 9,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "SpacePolicyOnline",
+      "url": "https://spacepolicyonline.com/?p=91811"
+    },
+    {
+      "name": "AP via CP24",
+      "url": "https://www.cp24.com/news/world/2026/11/14/spacexs-starship-returns-from-orbit-and-is-captured-by-launch-pad-arms-in-a-dramatic-first/"
+    }
+  ],
+  "verification": "SpacePolicyOnline: IFT-15 lifted off 5:47 pm ET Nov 13 from Starbase, Texas; 14 orbits; ship caught by tower arms ('Mechazilla'/'chopsticks') at 4:20 pm EST Nov 14; first attempt to catch the upper stage after an orbital mission; three boosters caught before (IFT-5, 7, 8); Booster 22 did not return, GNC diverted it, cause under investigation; 26 Starlink V3 deployed; Space Shuttle: five orbiters returned 133 times, core stage not reusable; HLS needs in-orbit refueling, not yet demonstrated; Moon landings from 2028; Isaacman 'almost magic'. AP (CP24): 407 ft rocket; 14 laps; caught about 22 hours after launch; first such capture of a returning Starship; booster engines cut off too early, guidance triggered self-destruct, crashed in Gulf of Mexico; NASA paying billions for Starship to land Artemis astronauts; Artemis IV targeted 2028. Photos are from earlier flights and say so in the credits.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "SPACE",
+      "headline": "A spaceship came home from orbit. A tower caught it.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Liftoff_of_SpaceX_IFT-5_%2854064037095%29.jpg",
+        "credit": "Photo: an earlier Starship launch, October 2024. Steve Jurvetson / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "SpaceX's Starship launched from Texas on November 13 and circled Earth 14 times. About 22 hours later, the launch tower's giant arms grabbed it in midair.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Tower_and_Booster.jpg/3840px-Tower_and_Booster.jpg",
+        "credit": "Photo: the Starbase launch tower and its catch arms, with a booster. Jenny Hautmann / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "It's the first time a Starship coming back from orbit has been caught. SpaceX's post: “Mechazilla catches Starship!” NASA's chief called it “almost magic.”"
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "The plan was a double catch. But the booster's engines cut off too early, and it destroyed itself over the Gulf of Mexico.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Starship_Booster_Return_on_Final_Approach_%2854063904149%29.jpg/1920px-Starship_Booster_Return_on_Final_Approach_%2854063904149%29.jpg",
+        "credit": "Photo: an earlier booster return, October 2024. Steve Jurvetson / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Why it matters: the Space Shuttle came back from orbit 133 times, but its core stage was never reused. Starship is built to reuse everything.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Space_Shuttle_Endeavour_landing_after_STS-127.jpg/1920px-Space_Shuttle_Endeavour_landing_after_STS-127.jpg",
+        "credit": "Photo: Space Shuttle Endeavour landing, 2009. NASA / Wikimedia Commons, public domain"
+      }
+    },
+    {
+      "type": "end",
+      "text": "NASA is paying SpaceX billions to land astronauts on the Moon with Starship. First it has to refuel in orbit. It has never done that."
+    }
+  ],
+  "caption": "The ship had \"Don't Panic\" written on its side. Fitting.\n\nSpaceX's Starship, the 407-foot rocket that is the biggest ever flown, lifted off from Starbase, Texas, at 5:47 p.m. Eastern on November 13. Its upper stage released 26 new Starlink internet satellites, then circled Earth 14 times.\n\nThe next afternoon it fell back to the same tower it launched from, and the tower's two huge arms, nicknamed \"chopsticks,\" caught it in midair. It was the first time a Starship returning from orbit has been caught. Elon Musk called it an \"epic day\" and climbed the tower to hug the ship.\n\nOnly half the plan worked. The Super Heavy booster was meant to be caught too, but its engines shut off too early and it self-destructed over the Gulf of Mexico. SpaceX has caught three boosters before and is still investigating.\n\nWhy this matters: a rocket you can catch and fly again is far cheaper than one you throw away. The Space Shuttle flew back from orbit 133 times, but part of it was always lost.\n\nNext up is the hard part: refueling a Starship in orbit, which NASA needs before Starship can land astronauts on the Moon, targeted for 2028.\n\nSource: SpacePolicyOnline, Associated Press",
+  "hashtags": [
+    "#spacex",
+    "#starship",
+    "#space",
+    "#rocket"
+  ]
+}

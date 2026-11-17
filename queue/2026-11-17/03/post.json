@@ -1,0 +1,90 @@
+{
+  "id": "2026-11-17-03",
+  "date": "2026-11-17",
+  "slot": null,
+  "reel_slot": 1,
+  "title": "Polymetallic nodules from the Pacific deep sea shelter distinct tiny animals, up to 245 in one nodule",
+  "category": "nature",
+  "tags": {
+    "headline": "scale number",
+    "end": "stakes",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 9,
+    "emotion": 8,
+    "shareability": 8,
+    "talkability": 8,
+    "no_context": 8,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "MARUM, University of Bremen (EurekAlert)",
+      "url": "https://www.eurekalert.org/news-releases/1151260"
+    },
+    {
+      "name": "Scientific Reports",
+      "url": "https://doi.org/10.1038/s41598-026-76737-w"
+    },
+    {
+      "name": "ScienceDaily",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261114202133.htm"
+    }
+  ],
+  "verification": "MARUM release (Nov 11, 2026) and ScienceDaily copy read: paper 'Polymetallic nodules provide a distinct habitat for abyssal meiofauna', Scientific Reports, DOI 10.1038/s41598-026-76737-w; nodules are fist-sized iron and manganese lumps, grow a few millimeters per million years, at 4,000-6,000 m in the Clarion-Clipperton Zone, central Pacific; 244 nodules, 4,139 animals, average 17, one with 245; animals smaller than a millimeter (Stratmann quote); nematodes ~10% and copepods ~25% of sediment numbers; nodule communities distinct from sediment and similar across up to 1,000 km; nodules hold nickel, cobalt, copper and are a mining target; Gollner: mining 'may result in an irreversible loss of undescribed and unique biodiversity'; Stratmann currently on an expedition to the zone. Seafloor photos are GEOMAR ROV Kiel 6000 images from the same region's expeditions; copepod photo is illustrative and labelled.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "DEEP SEA",
+      "headline": "One rock from the deep sea held 245 animals.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/2015-04-14_18-20-14_Sonne_SO239_157ROV11_Logo_original.jpg/3840px-2015-04-14_18-20-14_Sonne_SO239_157ROV11_Logo_original.jpg",
+        "credit": "Photo: ROV KIEL 6000, GEOMAR / Wikimedia Commons, CC BY 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "The rocks are fist-sized lumps of metal lying 13,000 to 20,000 feet down in the Pacific. They grow a few millimeters every million years.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Manganese-nodule-09_hg.jpg/1920px-Manganese-nodule-09_hg.jpg",
+        "credit": "Photo: Hannes Grobe / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Scientists cracked open 244 of them. Hiding in the tiny cracks: 4,139 animals, most smaller than a millimeter. That's 17 per rock on average."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Mostly roundworms and tiny crustaceans called copepods. And they are a different crowd from the animals in the mud around them, even 600 miles apart.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Copepodkils.jpg",
+        "credit": "Illustrative photo: a copepod. Uwe Kils / Wikimedia Commons, CC BY-SA 3.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "Mining companies want these rocks for nickel, cobalt and copper. Take the rocks, and you take the homes. New ones need millions of years to grow.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/2019-03-06_20-49-22_Sonne_SO268-1_029ROV04_OnlyLogo_klein_original%281%29.jpg/3840px-2019-03-06_20-49-22_Sonne_SO268-1_029ROV04_OnlyLogo_klein_original%281%29.jpg",
+        "credit": "Photo: ROV KIEL 6000, GEOMAR / Wikimedia Commons, CC BY 4.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "The team warns mining could wipe out life nobody has even described yet. One of the lead scientists is out there right now, looking for more."
+    }
+  ],
+  "caption": "They look like burnt potatoes. Some of them are apartment buildings.\n\nOn the floor of the central Pacific, in a vast area called the Clarion-Clipperton Zone, lie billions of dark, fist-sized lumps of iron and manganese known as polymetallic nodules. They sit 13,000 to 20,000 feet (4,000 to 6,000 m) down and grow only a few millimeters every million years.\n\nA European team collected 244 nodules with seafloor grabs and diving robots, then took them apart in the lab. Inside the cracks and hollows they found 4,139 animals, 17 per nodule on average. One nodule held 245.\n\nMost were roundworms (nematodes) and copepods, tiny relatives of shrimp, almost all smaller than a millimeter. DNA showed the crowd inside the rocks is different from the animals in the surrounding mud, and strikingly similar from site to site, up to 600 miles (1,000 km) apart.\n\nThat matters because the same nodules are rich in nickel, cobalt and copper, and companies want to scoop them up. \"Commercial mining may result in an irreversible loss of undescribed and unique biodiversity,\" said ecologist Sabine Gollner.\n\nThe study was published November 11 in Scientific Reports.\n\nSource: MARUM, University of Bremen; Scientific Reports",
+  "hashtags": [
+    "#deepsea",
+    "#ocean",
+    "#nature",
+    "#marinebiology"
+  ]
+}
