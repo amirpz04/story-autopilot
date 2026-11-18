@@ -1,0 +1,95 @@
+{
+  "id": "2026-11-18-02",
+  "date": "2026-11-18",
+  "slot": null,
+  "reel_slot": 5,
+  "title": "US, Mexico and Bolivia lose measles elimination status, PAHO says",
+  "category": "health",
+  "tags": {
+    "headline": "reversal",
+    "end": "stakes",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 7,
+    "emotion": 8,
+    "shareability": 9,
+    "talkability": 9,
+    "no_context": 9,
+    "freshness": 7
+  },
+  "sources": [
+    {
+      "name": "STAT News",
+      "url": "https://www.statnews.com/2026/11/17/us-loses-measles-elimination-status-public-health-victory-lost/"
+    },
+    {
+      "name": "Pan American Health Organization",
+      "url": "https://www.paho.org/en/news/17-11-2026-paho-urges-countries-step-efforts-stop-measles-outbreaks-and-move-towards"
+    }
+  ],
+  "verification": "PAHO news release Nov 17, 2026: after the Nov 10-13 meeting of the Regional Monitoring and Re-Verification Commission, accepted by PAHO Director Jarbas Barbosa, endemic measles transmission re-established in Bolivia, Mexico and the United States; lost status because the same lineage circulated 12+ months; PAHO director: 95% coverage with both doses in every community. PAHO March 2026 update: US review window from outbreak onset January 20, 2025. STAT (Andrew Joseph, Nov 17): elimination declared in US in 2000; this year more than 5,000 cases, first time since 1991; last year 2,289; 96% unvaccinated or unknown status; 10 measles-associated deaths this year per state data, CDC site lists six; New York and Wisconsin first measles deaths in at least 30 years; last year three deaths; pre-vaccine era 400-500 deaths a year; CDC Director Erica Schwartz: 'The measles elimination designation is not what protects Americans. Vaccination does,' $100 million to state and local health departments; MMR two doses, 12 months and 4-6 years. Political reactions left out on purpose (neutral report).",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "HEALTH",
+      "headline": "America beat measles in 2000. It just lost that title.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/55/Measles_Virus_Particle.jpg/3840px-Measles_Virus_Particle.jpg",
+        "credit": "Photo: a measles virus particle, colorized microscope image. NIAID / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "On November 17, the Pan American Health Organization, the World Health Organization's office for the Americas, ruled that measles is spreading in the US again. Mexico and Bolivia lost the title too.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Pan_American_Health_Organization_building.jpg/3840px-Pan_American_Health_Organization_building.jpg",
+        "credit": "Photo: PAHO headquarters, Washington, D.C. Ruhrfisch / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "The rule: if one strain of the virus keeps spreading for 12 months straight, a country loses the title. The US chain started in January 2025.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Measles_virus.JPG",
+        "credit": "Photo: measles virus under an electron microscope. Cynthia S. Goldsmith / CDC / Wikimedia Commons, public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "This year the US passed 5,000 cases, the most since 1991. Last year it was 2,289. 96% were people who were unvaccinated or whose status was unknown."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "States have reported 10 measles deaths this year. New York and Wisconsin had their first in at least 30 years. The CDC says it sent $100 million to outbreak areas.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/21st_TSC_gives_Afghan_evacuees_Measles_vaccine_%286844313%29.jpg/3840px-21st_TSC_gives_Afghan_evacuees_Measles_vaccine_%286844313%29.jpg",
+        "credit": "Photo: a measles vaccination, 2021. U.S. Army / Sgt. 1st Class Aaron Duncan / Wikimedia Commons, public domain"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "The shot is MMR: two doses, at 12 months and at 4 to 6 years. To win the title back, PAHO says 95% of every community needs both doses.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Priorix.jpg/3840px-Priorix.jpg",
+        "credit": "Photo: a measles, mumps and rubella vaccine. Dctrzl / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Before the vaccine, 400 to 500 Americans died of measles every year. Experts now fear deaths could become regular again."
+    }
+  ],
+  "caption": "For 26 years, measles could visit the United States but never settle in. That is over.\n\nOn November 17, the Pan American Health Organization (PAHO), the World Health Organization's regional office for the Americas, said measles is once again endemic in the United States, Mexico and Bolivia. An independent commission met November 10 to 13, found that the same strain of the virus had kept spreading for 12 months or more in each country, and PAHO's director accepted its finding.\n\nThe US had declared measles eliminated in 2000. Elimination never meant zero cases. Travelers still bring the virus in. It means outbreaks get stopped before a chain of infections lasts a year. The chain that ended it here began with an outbreak in January 2025.\n\nThe numbers: more than 5,000 US cases this year, the most since 1991, after 2,289 last year. 96% were in people who were unvaccinated or whose vaccination status was unknown. State data shows 10 deaths this year. The CDC's website lists six.\n\nThe CDC's director said the title itself is not what protects Americans, vaccination does, and that the agency has sent $100 million to areas with outbreaks.\n\nThe CDC recommends two MMR doses, the first at 12 months and the second at 4 to 6 years.\n\nSource: STAT News, Pan American Health Organization",
+  "hashtags": [
+    "#measles",
+    "#publichealth",
+    "#vaccines",
+    "#health"
+  ]
+}

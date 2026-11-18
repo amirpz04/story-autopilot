@@ -1,0 +1,86 @@
+{
+  "id": "2026-11-18-03",
+  "date": "2026-11-18",
+  "slot": null,
+  "reel_slot": 1,
+  "title": "Penn engineers stack hundreds of Mylar sheets into tough insulation for Moon bases",
+  "category": "materials",
+  "tags": {
+    "headline": "everyday object",
+    "end": "humble detail",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 7,
+    "talkability": 6,
+    "no_context": 9,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "University of Pennsylvania via ScienceDaily",
+      "url": "https://www.sciencedaily.com/releases/2026/11/261115085549.htm"
+    },
+    {
+      "name": "Universe Today",
+      "url": "https://www.universetoday.com/articles/moon-habitats-may-use-layered-mylar-to-block-extreme-heat"
+    }
+  ],
+  "verification": "Penn release via ScienceDaily (Nov 15, 2026) and Universe Today / Interesting Engineering coverage: Penn team (senior author Igor Bargatin, first author Danielle R. Levin) in ACS Applied Materials & Interfaces; hybrid layered insulating film stacks (HyLIFS) of hundreds of ultrathin Mylar (BoPET) sheets, some coated with alumina for stiffness; Mylar coated with aluminum is used in marathon emergency blankets; Moon temperatures swing from hundreds of degrees below zero to boiling; aerogels fragile under impacts and compression; multilayer insulation not meant to bear weight, routine contact can tear it; best stacks in vacuum reached conductivity comparable to other advanced vacuum insulation while flexible; compressed to about 20 MPa ('200 pounds of force onto an area the size of a fingertip'), 10 cycles, coated stacks kept insulating; much of the heat in vacuum passes through contact points of antiblocking particles; samples about 1 square centimeter, hand-stacked with two pairs of tweezers; Levin quote 'Even breathing near the stack can send the layers flying'; scale-up would need continuous coating of large rolls. Photos of Apollo hardware and NASA concept art are labelled as such.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "MATERIALS",
+      "headline": "Those marathon foil blankets could insulate Moon bases.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/Jerusalem_Marathon_2012_%286850306040%29.jpg/1920px-Jerusalem_Marathon_2012_%286850306040%29.jpg",
+        "credit": "Photo: runners in foil blankets at the 2012 Jerusalem Marathon. Israel Tourism / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "On the Moon, temperatures swing from hundreds of degrees below zero to boiling hot. A base there will need insulation that lasts for years.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Apollo_17_Cernan_on_moon.jpg/3840px-Apollo_17_Cernan_on_moon.jpg",
+        "credit": "Photo: astronaut Gene Cernan on the Moon, Apollo 17, 1972. NASA / Harrison H. Schmitt / Wikimedia Commons, public domain"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Spacecraft already wear layers of reflective foil. But they tear with ordinary contact, and aerogel, another top insulator, breaks when squeezed.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/AS11-40-5926_%2821880873688%29.jpg/3840px-AS11-40-5926_%2821880873688%29.jpg",
+        "credit": "Photo: foil-wrapped leg of Apollo 11's lunar module on the Moon, 1969. NASA / Project Apollo Archive / Wikimedia Commons, public domain"
+      }
+    },
+    {
+      "type": "text",
+      "text": "So engineers at the University of Pennsylvania stacked hundreds of ultrathin sheets of Mylar, the plastic in emergency blankets. Some sheets got a stiffening coat of alumina."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "In a vacuum, the stacks insulated like top space insulation and still bent. Squeezed with about 200 pounds on a fingertip-sized spot, 10 times, the coated ones kept working.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Concept_for_Sustained_Lunar_Surface_Operations_at_the_Moon_Base_%28stmd-exteriorlunarbase-hdlandscapeversion-2026-0521%29.png/1920px-Concept_for_Sustained_Lunar_Surface_Operations_at_the_Moon_Base_%28stmd-exteriorlunarbase-hdlandscapeversion-2026-0521%29.png",
+        "credit": "Illustration: NASA concept of a future Moon base. NASA / Wikimedia Commons, public domain"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Each sample is about the size of a fingernail, stacked by hand with two pairs of tweezers. “Even breathing near the stack can send the layers flying.”"
+    }
+  ],
+  "caption": "The plastic that keeps marathon runners warm after the finish line might one day keep astronauts alive.\n\nEngineers at the University of Pennsylvania built a new insulation out of Mylar, the thin plastic that, with an aluminum coating, makes the shiny emergency blankets handed out at races. They stacked hundreds of ultrathin sheets and coated some with a thin layer of alumina to make them stiffer. The study is in ACS Applied Materials & Interfaces.\n\nWhy bother? The Moon swings from hundreds of degrees below zero to boiling. Today's best space insulators are delicate. The foil layers on spacecraft are not built to carry weight and can tear with routine contact. Aerogel, mostly empty space, cracks under impacts.\n\nIn a vacuum, the best stacks matched other advanced vacuum insulation while staying flexible. The team then squeezed coated stacks to about 20 megapascals, like 200 pounds pressing on a fingertip, ten times in a row. They kept insulating. Inside a Moon base, air pressure would push on the walls all the time.\n\nOne surprise: much of the heat sneaks through tiny bumps that makers add to plastic film so the sheets don't stick together.\n\nThe catch: samples are about one square centimeter, stacked by hand. Big sheets will need a new way to make them.\n\nSource: University of Pennsylvania, ScienceDaily, Universe Today",
+  "hashtags": [
+    "#materials",
+    "#moon",
+    "#space",
+    "#engineering"
+  ]
+}
