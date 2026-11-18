@@ -710,12 +710,17 @@
   },
   "2026-11-17-02": {
     "attempts": 0,
+    "cover": "frame at 2.2 s",
     "credit": "Adrift Among Infinite Stars by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "error": "",
     "file": "20261117-095523-2026-11-17-02.mp4",
     "made_at": "2026-11-17T09:56:34.413443+00:00",
+    "media_id": "18112411507906715",
     "music": "adrift-among-infinite-stars.m4a",
+    "permalink": "https://www.instagram.com/reel/Df3b7MoEhjC/",
+    "posted_at": "2026-11-18T02:30:46.409367+00:00",
     "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/08b74fb6df1df60491dc94ce5ef0262d941fbd09/20261117-095523-2026-11-17-02.mp4",
-    "status": "made",
+    "status": "posted",
     "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@08b74fb6df1df60491dc94ce5ef0262d941fbd09/20261117-095523-2026-11-17-02.mp4"
   },
   "2026-11-17-03": {
