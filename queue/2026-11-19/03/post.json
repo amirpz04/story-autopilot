@@ -1,0 +1,91 @@
+{
+  "id": "2026-11-19-03",
+  "date": "2026-11-19",
+  "slot": null,
+  "reel_slot": 1,
+  "title": "MSK-invented vaccine galinpepimut-S extends survival in AML in Phase 3 REGAL trial",
+  "category": "health",
+  "tags": {
+    "headline": "number first",
+    "end": "honest caveat",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 9,
+    "shareability": 8,
+    "talkability": 7,
+    "no_context": 8,
+    "freshness": 9
+  },
+  "sources": [
+    {
+      "name": "Memorial Sloan Kettering Cancer Center",
+      "url": "https://www.mskcc.org/news/vaccine-improves-survival-in-people-with-acute-myeloid-leukemia-aml"
+    },
+    {
+      "name": "BioPharm International",
+      "url": "https://www.biopharminternational.com/view/sellas-cancer-vaccine-galinpepimut-s-overall-survival-phase-3-regal-aml"
+    },
+    {
+      "name": "SELLAS Life Sciences",
+      "url": "https://ir.sellaslifesciences.com/news/News-Details/2026/SELLAS-Life-Sciences-Announces-Positive-Pivotal-Phase-3-REGAL-Trial-Data-Showing-Immunotherapeutic-Cancer-Vaccine-Galinpepimut-S-GPS-Demonstrated-a-Statistically-Significant-and-Clinically-Meaningful-Improvement-in-Overall-Survival-in-Patients-with-A/default.aspx"
+    }
+  ],
+  "verification": "MSK news (Nov 17, 2026, Jim Stallard): Phase 3 trial of galinpepimut-S (GPS), 126 patients with AML in remission, led by SELLAS; reduced risk of death 41%; median overall survival 24.0 vs 14.7 months on standard treatments; minimal side effects, mostly injection-site reactions; invented by David A. Scheinberg at MSK, team worked on it more than two decades; peptide vaccine targeting WT1, found in cancer cells of more than 95% of AML patients; off-the-shelf, not personalized; MSK and Scheinberg have financial interests in SELLAS; quote 'These data bring us closer to having the first off-the-shelf vaccine for AML patients.' BioPharm International / SELLAS release (Nov 17): REGAL, adults in second or later complete remission, ineligible for or unable to undergo stem cell transplant, randomized 1:1; comparator best available treatment; HR 0.59, p=.035, after 80 deaths; topline, not peer reviewed; mostly grade 1-2 events; SELLAS plans to meet FDA on accelerated filing, BLA targeted first half 2027. 'Nine more months' = 24.0 - 14.7 = 9.3 months median (MSK: 'a difference of 9 months').",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "CANCER",
+      "headline": "Nine more months. A leukemia vaccine just passed its big test.",
+      "image": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Myeloblasts_on_peripheral_bloodsmear.jpg",
+        "credit": "Photo: leukemia cells (myeloblasts) in a blood sample. Laboratorio microscopico / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "In a final-stage trial of 126 people with a fast blood cancer called AML, those given the vaccine lived a median 24 months. Those on standard care: 14.7.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Memorial_Sloan_Kettering_Cancer_Center_Main_Entrance.jpg/1920px-Memorial_Sloan_Kettering_Cancer_Center_Main_Entrance.jpg",
+        "credit": "Photo: Memorial Sloan Kettering Cancer Center, New York. Kenneth C. Zirkel / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "These were hard cases. AML often comes back, and everyone here had already been through a second remission and could not get a stem cell transplant.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7e/Acute_Myelogenous_Leukemia_with_maturation.jpg/1920px-Acute_Myelogenous_Leukemia_with_maturation.jpg",
+        "credit": "Photo: acute myeloid leukemia under the microscope. Animalculist / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "The shot, galinpepimut-S, trains the immune system to hunt a protein called WT1. It sits in the cancer cells of more than 95% of AML patients."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Dr. David Scheinberg's team at Memorial Sloan Kettering has worked on it for over 20 years. It isn't custom-made per patient, so it can be mass-produced and given right away.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/57/Memorial_sloan-kettering_cancer_center.jpg/1920px-Memorial_sloan-kettering_cancer_center.jpg",
+        "credit": "Photo: Memorial Hospital in Manhattan, the forerunner of Memorial Sloan Kettering, in an archive photo. Unknown photographer / Wikimedia Commons, public domain"
+      }
+    },
+    {
+      "type": "end",
+      "text": "Overall it cut the risk of death by 41%. The catch: these are early numbers, not yet peer reviewed. The maker, SELLAS, aims to apply for FDA approval in the first half of 2027."
+    }
+  ],
+  "caption": "A shot that teaches your own immune system to find leukemia cells that treatment left behind.\n\nOn November 17, the company SELLAS and Memorial Sloan Kettering Cancer Center in New York shared the first results of the final-stage trial of galinpepimut-S, a vaccine for acute myeloid leukemia (AML). AML is one of the most common blood cancers in adults, moves fast and often comes back after chemotherapy.\n\nThe 126 people in the trial were in at least their second remission and could not have a stem cell transplant. Half got the vaccine; half got the best standard care. Median survival was 24.0 months with the vaccine and 14.7 months without it, a 41% lower risk of death. Side effects were mostly mild, usually at the injection site.\n\nThe vaccine is made of short protein pieces that point the immune system at WT1, a protein found in more than 95% of AML cases. Because it is not made for one patient, it can be stored and given right away.\n\nImportant caveats: these are top-line results, not yet peer reviewed, and MSK and inventor Dr. David Scheinberg have financial interests in SELLAS. Next step: talks with the FDA.\n\nSource: Memorial Sloan Kettering, SELLAS, BioPharm International",
+  "hashtags": [
+    "#cancer",
+    "#leukemia",
+    "#vaccine",
+    "#health",
+    "#medicine"
+  ]
+}

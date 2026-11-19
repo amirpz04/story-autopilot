@@ -1,0 +1,91 @@
+{
+  "id": "2026-11-19-01",
+  "date": "2026-11-19",
+  "slot": null,
+  "reel_slot": 3,
+  "title": "Anthropic prices record IPO at $83 a share, raising about $81.3 billion and topping SpaceX",
+  "category": "business",
+  "tags": {
+    "headline": "record flip",
+    "end": "then and now",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 9,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 8,
+    "talkability": 9,
+    "no_context": 8,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/18/anthropic-reportedly-prices-ipo-at-83-a-share-above-projected-range/"
+    },
+    {
+      "name": "Fortune",
+      "url": "https://fortune.com/2026/11/18/anthropic-prices-ipo-83-per-share-1-5-trillion/"
+    },
+    {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com/2026/11/18/anthropic-ipo-ai-offering-price.html"
+    }
+  ],
+  "verification": "TechCrunch (Nov 18): priced at $83, above $70-$78 range; 980 million shares, up from 825 million; $81.3 billion in proceeds, surpassing SpaceX's $75 billion record, largest IPO in history by proceeds; about $1.5 trillion fully diluted; Nasdaq ticker ANT, trading Thursday; Spark Capital led the $450 million Series C in 2023 at a $4.5 billion valuation; Amazon owns nearly 15%, Google almost 14%. Fortune (Nov 18): same price, range, share count, $1.5 trillion; second most valuable IPO behind SpaceX's $1.77 trillion in June; revenue $33.2 billion for the nine months to September 30 vs $2.5 billion a year earlier; $104 billion net loss, mostly from accounting for convertible notes; seven cofounders about five years ago; Dario Amodei left OpenAI at end of 2020. NPR and CNBC headlines confirm the $81.3 billion record (NPR: company itself about $79.4 billion, rest sold by existing holders). 1.5T / 4.5B = 333x. Claim check: 'biggest IPO' limited to money raised.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "WALL STREET",
+      "headline": "The biggest IPO in history isn't SpaceX's anymore.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Nasdaq_MarketSite_%2851494550508%29.jpg/1920px-Nasdaq_MarketSite_%2851494550508%29.jpg",
+        "credit": "Photo: Nasdaq MarketSite, Times Square. ajay_suresh / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "It's Anthropic, the company behind the AI assistant Claude. On November 18 it priced its shares at $83 and raised about $81.3 billion. SpaceX's record from June: $75 billion.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Secretary_of_State_Peter_Kyle_visits_Anthropic_in_San_Francisco._%2854098999333%29.jpg/3840px-Secretary_of_State_Peter_Kyle_visits_Anthropic_in_San_Francisco._%2854098999333%29.jpg",
+        "credit": "Photo: inside Anthropic's San Francisco office, 2024. Department for Science, Innovation and Technology (UK) / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Demand was so strong that Anthropic set the price above its planned $70 to $78. It also sold 980 million shares instead of the 825 million it first offered."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "CEO Dario Amodei left OpenAI at the end of 2020 and started Anthropic with six other cofounders. At $83 a share, it is now valued at about $1.5 trillion.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Dario_Amodei_at_TechCrunch_Disrupt_2023_01.jpg/3840px-Dario_Amodei_at_TechCrunch_Disrupt_2023_01.jpg",
+        "credit": "Photo: Dario Amodei in 2023. TechCrunch / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Revenue in the first nine months of 2026: $33.2 billion, up from $2.5 billion a year earlier. Same nine months: a $104 billion net loss, mostly from how it accounts for certain notes.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/Jack_Clark%2C_co-founder_of_Anthropic%2C_giving_a_talk_on_AI_at_the_Schwarzman_Centre_in_Oxford.jpg/1920px-Jack_Clark%2C_co-founder_of_Anthropic%2C_giving_a_talk_on_AI_at_the_Schwarzman_Centre_in_Oxford.jpg",
+        "credit": "Photo: Anthropic cofounder Jack Clark. Mvolz / Wikimedia Commons, CC0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "In 2023, investors valued the whole company at $4.5 billion. The IPO price puts it more than 300 times higher. Shares trade on Nasdaq as ANT."
+    }
+  ],
+  "caption": "Three years ago, you could have bought into Anthropic at a $4.5 billion valuation.\n\nOn November 18, its IPO priced at $83 a share, above the $70 to $78 range it had planned. It sold 980 million shares instead of 825 million and raised about $81.3 billion. That beats the $75 billion SpaceX raised in June, making it the largest IPO ever by money raised.\n\nBy total value, SpaceX still leads: it went public at about $1.77 trillion. Anthropic comes in at about $1.5 trillion.\n\nThe numbers behind the rush: $33.2 billion in revenue in the first nine months of 2026, up from $2.5 billion a year before. The same period shows a $104 billion net loss, which the company says comes mostly from how it accounts for convertible notes.\n\nAmazon owns nearly 15% of the company and Google almost 14%. Seven partners, including Google and Nvidia, also agreed to buy $26 billion of non-voting stock at the IPO price.\n\nOpenAI, its main rival, has not set a date for its own IPO.\n\nSource: TechCrunch, Fortune, CNBC, NPR",
+  "hashtags": [
+    "#Anthropic",
+    "#IPO",
+    "#AI",
+    "#stockmarket",
+    "#business"
+  ]
+}

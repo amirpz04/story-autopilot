@@ -1,0 +1,90 @@
+{
+  "id": "2026-11-19-02",
+  "date": "2026-11-19",
+  "slot": null,
+  "reel_slot": 5,
+  "title": "YouTube adds estimated TV co-viewers to public view counts",
+  "category": "apps",
+  "tags": {
+    "headline": "direct address",
+    "end": "catch",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 9,
+    "surprise": 9,
+    "emotion": 7,
+    "shareability": 9,
+    "talkability": 9,
+    "no_context": 9,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "TweakTown",
+      "url": "https://www.tweaktown.com/news/114751/youtube-view-counts-now-include-estimated-co-viewers-so-one-tv-play-can-count-as-several-views/index.html"
+    },
+    {
+      "name": "PPC Land",
+      "url": "https://ppc.land/youtube-adds-estimated-tv-co-viewers-to-public-view-counts/"
+    },
+    {
+      "name": "YouTube Help community",
+      "url": "https://support.google.com/youtube/thread/472646918?hl=en"
+    }
+  ],
+  "verification": "YouTube Help Center text quoted by PPC Land: beginning November 2026 public view counts on watch pages incorporate co-views by estimating the number of individual viewers watching together on TV screens; engaged views and unique viewers exclude co-views; Partner Program earnings and eligibility unaffected. Announced Nov 16 in a Creator Insider Short citing over 1 billion hours of YouTube watched on TVs every day. TweakTown (Nov 17): YouTube example, three people watching together on TV = three views; phones, tablets and PCs count once; quote 'one TV playback has only counted as a single public view'; estimates from demographic patterns, content metadata and viewing times; YouTube 'never uses cameras, microphones, or device sensors'; not retroactive but applies to new TV views on older videos (Rene Ritchie); from August 24 a view counts when playback starts; second public view count increase in about three months. PPC Land: Nielsen August Gauge, YouTube 15.8% of US TV time vs Netflix 7.7%. YouTube support thread title confirms the 'Co-view rate' announcement.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "YOUTUBE",
+      "headline": "Watch YouTube with two friends. That's three views now.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/YouTube_HQ_11.JPG/3840px-YouTube_HQ_11.JPG",
+        "credit": "Photo: YouTube headquarters, San Bruno, California. BrokenSphere / Wikimedia Commons, CC BY 3.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "YouTube now adds \"co-views\" to public view counts. If it estimates three people watched a video together on a TV, that one play counts as three views.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Karen_Refugees_become_Homeowners_%2820120718-RD-LSC-1163%29.jpg/3840px-Karen_Refugees_become_Homeowners_%2820120718-RD-LSC-1163%29.jpg",
+        "credit": "Illustrative photo: a family watching TV at home. USDA / Wikimedia Commons, public domain"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "It doesn't watch your living room. YouTube says it never uses cameras or microphones for this. It guesses from viewer patterns, the type of video and the time of day.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Neal_Mohan_at_Brandcast_in_May_2026.png/1920px-Neal_Mohan_at_Brandcast_in_May_2026.png",
+        "credit": "Photo: YouTube CEO Neal Mohan, May 2026. Andrew Federman / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "On phones, tablets and computers, a play still counts once. Old counts aren't changed, but new TV views on old videos get the boost."
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Why TV? People watch over 1 billion hours of YouTube on TV screens every day. In August, Nielsen put YouTube at 15.8% of all US TV time, about double Netflix.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/YouTube_HQ_1.JPG/3840px-YouTube_HQ_1.JPG",
+        "credit": "Photo: YouTube headquarters, San Bruno, California. BrokenSphere / Wikimedia Commons, CC BY 3.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "The catch: creators aren't paid a cent more. Pay still runs on \"engaged views,\" which leave co-views out. The bigger number is mostly for pitching brands."
+    }
+  ],
+  "caption": "Your couch just became worth more to YouTube than your phone.\n\nStarting in November 2026, YouTube's public view counts include \"co-views\": its estimate of how many people watched together on a TV. Until now, one TV play counted as one public view. Now, if YouTube thinks three people were watching, it counts three.\n\nHow does it know? It doesn't, exactly. YouTube says it never uses cameras, microphones or device sensors. The number is a model built from viewer demographics, the kind of video and when it was watched.\n\nViews on phones, tablets and computers still count once. Past counts are not rewritten, but new TV views on old videos are counted the new way.\n\nThe reason is TV itself. People watch more than 1 billion hours of YouTube on TVs every day, and Nielsen measured YouTube at 15.8% of all US TV viewing in August, compared with 7.7% for Netflix.\n\nIt is the second time in about three months that YouTube has changed what counts as a view. Since August, a view on long videos counts the moment playback starts.\n\nCreator pay does not change: it still runs on engaged views, which exclude co-views. YouTube itself names brand pitches as one purpose.\n\nSource: YouTube Help Center, TweakTown, PPC Land",
+  "hashtags": [
+    "#YouTube",
+    "#creators",
+    "#tech",
+    "#streaming"
+  ]
+}
