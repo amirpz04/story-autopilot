@@ -1,0 +1,86 @@
+{
+ "id": "2026-11-20-02",
+ "date": "2026-11-20",
+ "slot": null,
+ "reel_slot": 3,
+ "title": "Sodium in air decides whether hydrogen flames glow orange or vanish",
+ "category": "science",
+ "tags": {
+  "headline": "cause twist",
+  "end": "unreliable sense",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 9,
+  "emotion": 6,
+  "shareability": 8,
+  "talkability": 7,
+  "no_context": 9,
+  "freshness": 9
+ },
+ "sources": [
+  {
+   "name": "ScienceDaily",
+   "url": "https://www.sciencedaily.com/releases/2026/11/261118065509.htm"
+  },
+  {
+   "name": "Next Energy (journal)",
+   "url": "http://dx.doi.org/10.1016/j.nxener.2026.100962"
+  }
+ ],
+ "verification": "ScienceDaily summary (Nov 19, 2026) of Medwell et al., Adelaide University with UNSW and Gas Infrastructure Research Australia, Next Energy 2026;13:100962: hydrogen flames glow orange or nearly invisible with identical burner settings depending on airborne sodium; sea salt carried inland is one important source; sodium light signal varied by more than 28 times over two weeks of outdoor tests around Adelaide; air from the ocean gave stronger orange flames; hydrogen flames emitted less visible light than natural gas flames on average; authors suggest UV/infrared detectors and temperature sensors; the flame-test color of sodium is standard chemistry.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "ENERGY",
+   "headline": "A hydrogen flame can nearly vanish. Salt decides.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Gas_stove_burner_flame.jpg",
+    "credit": "Illustrative photo: a natural gas stove flame. Lisafern / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "Many homes burn natural gas, and its blue flame is easy to see.\nHydrogen is being tested as a cleaner swap.\nBut on average, hydrogen flames give off less visible light.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Gas_Stove_Burner_Blue_Flame_%2828409479226%29.jpg/3840px-Gas_Stove_Burner_Blue_Flame_%2828409479226%29.jpg",
+    "credit": "Illustrative photo: a natural gas stove flame. Federico Cardoner / Wikimedia Commons, CC BY 2.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Australian engineers found why the same burner can glow orange one day and almost disappear the next.\nThe cause is tiny amounts of sodium floating in the air.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Sodium_flame_color.jpg",
+    "credit": "Photo: Nefronus / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "The sodium rides on microscopic particles, and sea salt blown inland is one important source.\nAir that had come over the ocean made stronger orange flames."
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "In two weeks of outdoor tests around Adelaide, the sodium light varied by more than 28 times.\nSame burner settings. Very different flame.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Coloured_flames_of_methanol_solutions_of_metal_salts_and_compounds.jpg/3840px-Coloured_flames_of_methanol_solutions_of_metal_salts_and_compounds.jpg",
+    "credit": "Illustrative photo: flames colored by metal salts. Hegelrast / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "So flame color is an unreliable way to tell a hydrogen burner is on.\nThe researchers point to ultraviolet or infrared detectors and temperature sensors instead.\nWith hydrogen, your eyes may be the weak link."
+  }
+ ],
+ "caption": "Natural gas burns blue, and anyone can see it. Hydrogen is not so simple.\n\nResearchers at Adelaide University in Australia, working with the University of New South Wales and Gas Infrastructure Research Australia, have found that a hydrogen flame can look very different from one day to the next, even when the burner is set exactly the same way. Sometimes it glows bright orange. Sometimes it is almost invisible.\n\nThe reason is sodium in the air. Tiny airborne particles carry it, and sea salt blown inland by wind is one important source. Sodium makes flames glow orange, the same effect used in school flame tests. In two weeks of outdoor testing around Adelaide, the sodium light signal changed by more than 28 times. Air that had passed over the ocean generally gave stronger orange flames.\n\nOn average, hydrogen flames also gave off less visible light than natural gas flames. Hydrogen can make faint blue and red light, but that is easy to spot only in a darkened room.\n\nThat matters for safety. If you cannot trust your eyes to tell a hydrogen burner is lit, a stove or oven needs other ways to know, such as ultraviolet or infrared flame detectors and temperature sensors. The authors say this does not undermine hydrogen's promise. Appliances just have to be designed for its quirks.\n\nSource: Next Energy journal via ScienceDaily",
+ "hashtags": [
+  "#hydrogen",
+  "#science",
+  "#energy",
+  "#chemistry"
+ ]
+}

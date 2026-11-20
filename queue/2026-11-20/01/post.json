@@ -1,0 +1,86 @@
+{
+ "id": "2026-11-20-01",
+ "date": "2026-11-20",
+ "slot": null,
+ "reel_slot": 5,
+ "title": "Voyager 1 reaches one light-day from Earth; no science data since Nov 14",
+ "category": "tech",
+ "tags": {
+  "headline": "wait time",
+  "end": "delayed goodbye",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 9,
+  "surprise": 8,
+  "emotion": 8,
+  "shareability": 9,
+  "talkability": 7,
+  "no_context": 9,
+  "freshness": 9
+ },
+ "sources": [
+  {
+   "name": "NASA JPL",
+   "url": "https://www.jpl.nasa.gov/news/nasas-voyager-1-makes-history-reaching-one-light-day-from-earth/"
+  }
+ ],
+ "verification": "NASA JPL release of Nov 19, 2026: Voyager 1 reached one light-day (about 16.1 billion miles, 25.9 billion km) at 2:16 a.m. PST Nov 18; signal confirmed 24 hours later; no science or engineering data since Nov 14, carrier signal still received; power drops about 4 watts a year, three devices swapped for lower-power ones; instruments expected to run until at least 50th launch anniversary next summer; entered interstellar space in 2012; about 38,000 mph; daily listening, weekly commands. Two-day command round trip follows from the 24-hour one-way light time (qz.com also says fixes take 2 days). Single primary source (NASA), cited as such.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "NASA NEWS",
+   "headline": "Ask Voyager 1 a question. Wait 48 hours.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Voyager_spacecraft.jpg",
+    "credit": "Artist's concept of Voyager. NASA/JPL / Wikimedia Commons, Public domain"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "On November 18, Voyager 1 passed one light-day from Earth.\nThat is about 16.1 billion miles (25.9 billion km).\nA radio signal now needs 24 hours to get there.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Voyager_1_Launch.jpg",
+    "credit": "Photo: NASA on The Commons / Wikimedia Commons, Public domain"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "NASA confirmed the milestone a day later, when the probe's signal finally reached Earth.\nEngineers listen every day and send commands once a week.\nEvery command and its reply takes two days.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Goldstone_Deep_Space_Communication_Complex_-_GPN-2000-000506.jpg",
+    "credit": "Photo: NASA / Wikimedia Commons, Public domain"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "There is a catch.\nSince November 14, NASA has received no science or engineering data from Voyager 1.\nIt still sends a bare carrier signal, enough to prove it is there. Engineers are working on why.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Voyager_1_entering_heliosheath_region_CAT.jpg",
+    "credit": "Photo: Artist's concept. NASA/Walt Feimer / Wikimedia Commons, Public domain"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Its nuclear power source loses about 4 watts a year.\nTo stretch it, engineers switched off three devices and turned on lower-power substitutes.\nNASA says that move carried some risk."
+  },
+  {
+   "type": "end",
+   "text": "Someday Voyager 1 will stop answering.\nWe will learn about it a day later.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Pale_Blue_Dot_from_Voyager_1_-_PIA23645.png/3840px-Pale_Blue_Dot_from_Voyager_1_-_PIA23645.png",
+    "credit": "Photo: NASA/JPL-Caltech / Wikimedia Commons, Public domain"
+   }
+  }
+ ],
+ "caption": "Voyager 1 just crossed a line no spacecraft has crossed before: it is now one light-day from Earth.\n\nNASA says the probe reached that distance at 2:16 a.m. Pacific time on November 18, 2026. One light-day is about 16.1 billion miles (25.9 billion km). Radio waves travel at the speed of light, so a message sent to Voyager 1 now takes a full 24 hours to arrive, and the answer takes another 24 to come back.\n\nThe team heard from the probe a day after the milestone. It is traveling about 38,000 miles per hour in interstellar space, which it entered in 2012. Engineers listen to it every day and send commands once a week.\n\nBut NASA has had no science or engineering data from Voyager 1 since November 14. The spacecraft is still sending a carrier signal, and that is how the team confirmed the milestone. They are now analyzing the data problem.\n\nPower is the long-term worry. The plutonium-powered generator loses about 4 watts a year. Engineers switched off three devices and moved to three lower-power ones, a move NASA says carried some risk. The goal is to keep the current science instruments running until at least the 50th launch anniversaries of both Voyagers next summer.\n\nSource: NASA Jet Propulsion Laboratory",
+ "hashtags": [
+  "#nasa",
+  "#voyager",
+  "#space",
+  "#science"
+ ]
+}

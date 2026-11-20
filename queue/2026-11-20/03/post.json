@@ -1,0 +1,96 @@
+{
+ "id": "2026-11-20-03",
+ "date": "2026-11-20",
+ "slot": null,
+ "reel_slot": 1,
+ "title": "Vitamin B12 used as catalyst in rechargeable zinc-air battery (Córdoba)",
+ "category": "materials",
+ "variety_exception": "Both stories were found through ScienceDaily summaries of different universities' peer-reviewed studies; the original papers are linked.",
+ "tags": {
+  "headline": "unexpected ingredient",
+  "end": "pattern",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 8,
+  "emotion": 6,
+  "shareability": 7,
+  "talkability": 7,
+  "no_context": 9,
+  "freshness": 9
+ },
+ "sources": [
+  {
+   "name": "ScienceDaily",
+   "url": "https://www.sciencedaily.com/releases/2026/11/261117033909.htm"
+  },
+  {
+   "name": "Journal of Materials Chemistry A",
+   "url": "https://dx.doi.org/10.1039/d6ta02773c"
+  }
+ ],
+ "verification": "ScienceDaily (Nov 18, 2026) on University of Córdoba (IQUEMA) paper 'A vitamin B12-based air electrode for high-performance rechargeable zinc-air batteries', J. Mater. Chem. A 2026: B12 (cobalamin, cobalt(III) center) attached to single-walled carbon nanotubes using a method modeled on amino-acid linking; prototype ran up to 250 charge-discharge cycles; group's third biomolecule catalyst after hemoglobin and catalase; no voltage or comparison figures reported, so none are claimed; research stage only.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "BATTERIES",
+   "headline": "A vitamin just ran a rechargeable battery.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Zinc%E2%80%93Air_Battery_%28Wein_Cell_MRB625%29_%285477946544%29.jpg/3840px-Zinc%E2%80%93Air_Battery_%28Wein_Cell_MRB625%29_%285477946544%29.jpg",
+    "credit": "Illustrative photo: a zinc-air battery, not the prototype. huzu1959 / Wikimedia Commons, CC BY 2.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "It was vitamin B12, the nutrient doctors give as shots and stores sell as supplements.\nSpanish chemists used it as the key ingredient in a zinc-air battery.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/42/Vitamin_B12.JPG/3840px-Vitamin_B12.JPG",
+    "credit": "Illustrative photo: vitamin B12 ampoule and syringe. آرمین / Wikimedia Commons, Public domain"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "At the center of the B12 molecule sits an atom of cobalt.\nThat cobalt helps drive the reactions that make and store the power.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Cobalamin-general-structure-color.png/3840px-Cobalamin-general-structure-color.png",
+    "credit": "Diagram: structure of cobalamin (B12). Alsosaid1987 / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "A zinc-air battery makes electricity from zinc and oxygen in the air.\nWhile it discharges, the vitamin helps turn oxygen into water. While it recharges, it helps release oxygen again.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/Zink-Luft-Batterie_PR41_-_312.png/3840px-Zink-Luft-Batterie_PR41_-_312.png",
+    "credit": "Illustrative photo: a zinc-air cell. Laserlicht / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "The hard part: B12 dissolves in water, and the battery's liquid would wash it away.\nThe team bonded it to carbon nanotubes, copying how amino acids link into proteins.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Carbon_Nanotube_Rolled_Up_Vector.png",
+    "credit": "Illustration: a carbon nanotube. Jcasabar / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "The prototype survived up to 250 charge cycles.\nIt is still a lab prototype.\nThis group has already tried hemoglobin and the enzyme catalase too. Nature keeps turning up in batteries.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/Universidad_de_C%C3%B3rdoba_%2852018536050%29.jpg/3840px-Universidad_de_C%C3%B3rdoba_%2852018536050%29.jpg",
+    "credit": "Illustrative photo: University of Córdoba, Spain. Kent Wang / Wikimedia Commons, CC BY-SA 2.0"
+   }
+  }
+ ],
+ "caption": "A vitamin sold at the drugstore has just helped run a rechargeable battery.\n\nResearchers at the University of Córdoba in Spain built a zinc-air battery, a type that makes power from zinc and oxygen in the air. For the part that does the chemical work, they turned to vitamin B12, also called cobalamin. At its center sits a cobalt atom, and that cobalt helps drive the reactions during both discharging and recharging.\n\nThere was a problem. B12 dissolves easily in water, and the battery uses a water-based liquid. So the team bonded the vitamin to carbon nanotubes, using a method modeled on how amino acids join up to form proteins. That kept it in place.\n\nThe prototype lasted up to 250 charge and discharge cycles, according to the study in the Journal of Materials Chemistry A. The researchers say they looked at the properties of naturally occurring materials to find ones that could work in new batteries.\n\nThis is the group's third study using a biological molecule as a catalyst, after hemoglobin and catalase. It is still research. The team has built only a prototype, so it is too early to say how it would stack up against the lithium-ion batteries in your phone.\n\nSource: University of Córdoba via ScienceDaily; Journal of Materials Chemistry A",
+ "hashtags": [
+  "#battery",
+  "#chemistry",
+  "#science",
+  "#vitamin"
+ ]
+}
