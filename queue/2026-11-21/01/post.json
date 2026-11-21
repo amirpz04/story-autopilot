@@ -1,0 +1,86 @@
+{
+ "id": "2026-11-21-01",
+ "date": "2026-11-21",
+ "slot": null,
+ "reel_slot": 3,
+ "title": "Microplastics react with water to make reactive oxygen molecules (Columbia/Berkeley, Nature)",
+ "category": "materials",
+ "tags": {
+  "headline": "stakes",
+  "end": "quote",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 8,
+  "emotion": 6,
+  "shareability": 9,
+  "talkability": 8,
+  "no_context": 8,
+  "freshness": 9
+ },
+ "sources": [
+  {
+   "name": "ScienceDaily (Columbia University release)",
+   "url": "https://www.sciencedaily.com/releases/2026/11/261120075549.htm"
+  },
+  {
+   "name": "Nature",
+   "url": "https://doi.org/10.1038/s41586-026-11141-y"
+  }
+ ],
+ "verification": "Read the ScienceDaily/Columbia release of Nov 20, 2026 and the Nature paper citation (DOI 10.1038/s41586-026-11141-y, Nature 658:650). Mechanism, quotes and the 2024 bottled-water count taken from the release; health claims kept as association/plausible mechanism per the release.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "MICROPLASTICS",
+   "headline": "Plastic in water makes molecules that can damage cells.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Water_bottle_3.jpg/1920px-Water_bottle_3.jpg",
+    "credit": "Illustrative photo: a plastic water bottle. Pranavshivakumar / Wikimedia Commons, CC BY-SA 3.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Microplastics are not inert.\nColumbia and UC Berkeley researchers found that when they touch water, they produce reactive oxygen molecules, including hydroxyl radicals.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Flocculation_of_Microplastics_with_Fenugreek_Polymer.jpg/1920px-Flocculation_of_Microplastics_with_Fenugreek_Polymer.jpg",
+    "credit": "Illustrative photo: lab beakers of water. JosephTarletonTX / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Many plastics repel water. Hydroxide ions gather in the thin layer of water touching the surface.\nThere they lose electrons easily and turn into hydroxyl radicals."
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Smaller pieces have more surface, so more places to react.\nThe more plastic breaks down, the more reactive it gets.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Microplastics_that_have_penetrated_inside_cells.png/1920px-Microplastics_that_have_penetrated_inside_cells.png",
+    "credit": "Illustrative image: microplastics inside cells. Karimov Denis, Valova Iana / Wikimedia Commons, CC BY 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "These molecules are textbook examples of what can damage human tissue, the lead author says.\nIn a 2024 study, the same lab counted about 240,000 plastic fragments in a liter of bottled water.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Water_bottle_%2813779%29.jpg/1920px-Water_bottle_%2813779%29.jpg",
+    "credit": "Illustrative photo: a plastic water bottle. Mukesh721 / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "Nobody has shown this process causes disease in people. These were lab and computer results.\n\"Water is a key active player here, rather than just a spectator.\""
+  }
+ ],
+ "caption": "The plastic in your water may not be sitting there quietly.\n\nA team from Columbia University and UC Berkeley found that microplastics react with the water around them. The reaction produces reactive oxygen molecules, including hydroxyl radicals. They were reported in the journal Nature on November 20, 2026.\n\nHere is why it happens. Many plastics repel water. Hydroxide ions in the thin layer of water next to the plastic lose electrons more easily there, and that turns them into hydroxyl radicals.\n\nSmaller pieces have more surface, so breaking plastic down creates more places to react. Lead author Naixin Qian points out that reactive oxygen molecules are textbook examples of molecules that can damage animal and human tissue.\n\nThe same Columbia lab reported in 2024 that a liter of bottled water held about 240,000 detectable plastic fragments, mostly nanoplastics.\n\nThe catch: this does not prove the process causes any specific disease in people. The experiments were done in the lab and in simulations, not in living bodies. Earlier studies have linked micro and nanoplastics to heart and brain problems, but those are associations.\n\nSo the new question is how much of this happens inside us.\n\nSource: Columbia University via ScienceDaily; Nature",
+ "hashtags": [
+  "#microplastics",
+  "#science",
+  "#chemistry",
+  "#health"
+ ]
+}
