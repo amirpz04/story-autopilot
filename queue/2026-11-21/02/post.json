@@ -1,0 +1,81 @@
+{
+ "id": "2026-11-21-02",
+ "date": "2026-11-21",
+ "slot": null,
+ "reel_slot": 5,
+ "title": "Intuit sells Mailchimp to Bending Spoons for $3.68 billion, about $12 billion in 2021",
+ "category": "business",
+ "tags": {
+  "headline": "before and after",
+  "end": "callback",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 9,
+  "surprise": 8,
+  "emotion": 6,
+  "shareability": 8,
+  "talkability": 9,
+  "no_context": 8,
+  "freshness": 10
+ },
+ "sources": [
+  {
+   "name": "Bending Spoons press release",
+   "url": "https://investors.bendingspoons.com/newsroom/bending-spoons-to-acquire-mailchimp"
+  },
+  {
+   "name": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/20/bending-spoons-buys-mailchimp-for-3-68-billion/"
+  },
+  {
+   "name": "Reuters",
+   "url": "https://www.reuters.com/legal/transactional/intuit-sell-mailchimp-bending-spoons-368-billion-2026-11-19/"
+  }
+ ],
+ "verification": "Price, structure ($368M Intuit reinvestment) and closing timing from Bending Spoons' Nov 19, 2026 press release; Intuit's roughly $12B 2021 price, share-price context, past acquisitions and Miro $1.36B/90% below 2022 valuation from TechCrunch (Reuters linked, not opened). Milan base is general knowledge.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "BUSINESS",
+   "headline": "Mailchimp's price just fell by two-thirds in five years.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/2700coastavenue.jpg/3840px-2700coastavenue.jpg",
+    "credit": "Illustrative photo: Intuit's headquarters, Mountain View. Coolcaesar / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Mailchimp sends email campaigns for businesses.\nIntuit, the tax software company, paid roughly $12 billion for it in 2021.\nOn November 19, it agreed to sell it for $3.68 billion.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Ben_Chestnut_ENX_4495_%2847924549041%29.jpg/3840px-Ben_Chestnut_ENX_4495_%2847924549041%29.jpg",
+    "credit": "Photo: Ben Chestnut, Mailchimp co-founder. Collision Conf / Wikimedia Commons, CC BY 2.0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Intuit's stock is worth less than half of a year ago. TechCrunch ties that to AI shaking up software companies.\nIntuit says the cash will go to share buybacks and AI tools for small businesses."
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "The buyer is Bending Spoons, a Milan-based company that buys late-stage internet brands.\nThis year it also took AOL, Eventbrite and Airtable. In September it agreed to buy Miro for $1.36 billion, about 90% below Miro's 2022 valuation.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Milan_skyline_skyscrapers_of_Porta_Nuova_business_district.jpg/3840px-Milan_skyline_skyscrapers_of_Porta_Nuova_business_district.jpg",
+    "credit": "Photo: Francesco Ungaro / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "Even the seller keeps a stake: Intuit will put $368 million of the proceeds into new Bending Spoons shares.\nThe deal is expected to close in early 2027."
+  }
+ ],
+ "caption": "Five years ago, one of the biggest software deals of its time. Now, a big markdown.\n\nIntuit, the tax software company, bought Mailchimp in 2021 for roughly $12 billion. On November 19, 2026, it agreed to sell the email marketing company to Bending Spoons for $3.68 billion.\n\nThe buyer is a Milan-based company that specializes in taking over late-stage internet brands. Over the past year it has also bought AOL, Eventbrite and Airtable. In September it agreed to buy Miro for $1.36 billion, about 90% below what Miro was valued at in 2022.\n\nWhy is Intuit selling? Its shares are worth less than half what they were a year ago, which TechCrunch attributes to AI disrupting the software industry. Intuit says it will use the cash to repurchase shares and put its focus on AI tools for small businesses.\n\nThere is a twist: Intuit is investing $368 million of the proceeds back into new Bending Spoons shares, so it stays connected to the brand it just sold.\n\nThe deal is expected to close in early 2027, pending regulatory approval.\n\nSource: Bending Spoons; TechCrunch",
+ "hashtags": [
+  "#business",
+  "#tech",
+  "#mailchimp",
+  "#acquisition"
+ ]
+}

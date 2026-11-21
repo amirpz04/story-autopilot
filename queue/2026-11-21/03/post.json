@@ -1,0 +1,83 @@
+{
+ "id": "2026-11-21-03",
+ "date": "2026-11-21",
+ "slot": null,
+ "reel_slot": 1,
+ "title": "Rare 4K footage of the barreleye fish with a transparent head (MBARI)",
+ "category": "animals",
+ "tags": {
+  "headline": "strange detail",
+  "end": "rarity",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 9,
+  "emotion": 8,
+  "shareability": 8,
+  "talkability": 6,
+  "no_context": 9,
+  "freshness": 8
+ },
+ "sources": [
+  {
+   "name": "ScienceDaily (MBARI release)",
+   "url": "https://www.sciencedaily.com/releases/2026/11/261117033917.htm"
+  }
+ ],
+ "verification": "Read the MBARI-based ScienceDaily article of Nov 17, 2026: depth, distance, vessel, ROV, 11 encounters in ~4 decades and ~7,000 dives, eye behavior, diet. Single institutional source (MBARI first-hand observation); no journal paper.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "DEEP SEA",
+   "headline": "This fish's eyes live inside its see-through head.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Barreleye-fish_GoK.jpg/3840px-Barreleye-fish_GoK.jpg",
+    "credit": "Photo: Barreleye fish, Macropinna microstoma. Wikimedia Commons, Public domain"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Researchers at MBARI found it about 1,970 feet (600 m) down, roughly 55 miles (90 km) off the California coast in the Pacific.\nThey filmed it for about 20 minutes in 4K.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/RV_David_Packard_at_SIO_20250325.jpg/3840px-RV_David_Packard_at_SIO_20250325.jpg",
+    "credit": "Photo: Research vessel David Packard. Wünderbrot / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "The barreleye's tube-shaped eyes normally point straight up, to spot the silhouettes of animals overhead.\nWhen it sees food, they swing forward inside a clear, jelly-like dome."
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "It feeds on small crustaceans caught in the stinging tentacles of siphonophores.\nThe dome shields its eyes while it steals the meal.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Physonect_siphonophore_Puerto_Rico_April_2015.png/1280px-Physonect_siphonophore_Puerto_Rico_April_2015.png",
+    "credit": "Illustrative photo: a physonect siphonophore. NOAA Office of Ocean Exploration and Research / Wikimedia Commons, Public domain"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "In nearly four decades and about 7,000 dives, MBARI has met this fish only 11 times.\nThe last time was 2021.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/ROV_Ventana_on_Point_Lobos.jpg/1280px-ROV_Ventana_on_Point_Lobos.jpg",
+    "credit": "Illustrative photo: MBARI's ROV Ventana, not the vehicle used in this dive. Wusel007 / Wikimedia Commons, CC BY-SA 3.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "This was MBARI's first 4K footage of the species.\nIt took 7,000 dives and more than 41,000 hours of video to get 11 meetings."
+  }
+ ],
+ "caption": "Imagine eyes that sit inside your head, under a clear dome.\n\nThat is the barreleye fish, Macropinna microstoma. Researchers at the Monterey Bay Aquarium Research Institute (MBARI) spotted one about 1,970 feet (600 m) down, roughly 55 miles (90 km) offshore in the Pacific, and filmed it for about 20 minutes. It was reported on November 17, 2026.\n\nThe fish has tube-shaped eyes that normally point up, to catch the silhouettes of animals passing overhead. When it spots prey, the eyes rotate forward inside a transparent, jelly-like dome on top of its head. Big fins let it hover almost motionless.\n\nIt eats small crustaceans caught in the stinging tentacles of siphonophores, and the dome protects its eyes while it does.\n\nThis was only MBARI's 11th encounter in nearly four decades. Those meetings came out of about 7,000 dives and more than 41,000 hours of deep-sea video. The last one was in 2021. It was also the first 4K footage of the species, and the first from the research vessel David Packard.\n\nSenior scientist Steven Haddock called seeing it a rare treat.\n\nSource: MBARI via ScienceDaily",
+ "hashtags": [
+  "#deepsea",
+  "#ocean",
+  "#animals",
+  "#marinebiology"
+ ],
+ "variety_exception": "Both stories were found through ScienceDaily but come from different institutions (Columbia University and MBARI) and are far apart in subject."
+}
