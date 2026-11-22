@@ -1,0 +1,90 @@
+{
+ "id": "2026-11-22-02",
+ "date": "2026-11-22",
+ "slot": null,
+ "reel_slot": 5,
+ "title": "Meta re-evaluates its 2030 net-zero goal after emissions rise 45% in 2025",
+ "category": "business",
+ "tags": {
+  "headline": "number then stakes",
+  "end": "open question",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 8,
+  "emotion": 7,
+  "shareability": 8,
+  "talkability": 9,
+  "no_context": 8,
+  "freshness": 10
+ },
+ "sources": [
+  {
+   "name": "Meta 2026 Sustainability Report",
+   "url": "https://sustainability.atmeta.com/sustainability-report/"
+  },
+  {
+   "name": "Trellis",
+   "url": "https://trellis.net/article/meta-2026-sustainability-report/"
+  },
+  {
+   "name": "Sustainability Magazine",
+   "url": "https://sustainabilitymag.com/news/metas-sustainability-report-net-zero-water-circularity"
+  }
+ ],
+ "verification": "Quote, report date (Nov 19, 2026), authors (Rachel Peterson, Blair Swedeen), net footprint +45% to about 11.9M metric tons (Ars says 11.8M, so slides say 'nearly 12 million'), 21.7M location-based, capital goods +58%, 100% clean-electricity matching since 2020, rivals' increases (Microsoft 25%, Google 18%, Amazon 16%) and that Meta is the first of the four to consider revising, all from Trellis (Nov 19) and cross-checked with Ars Technica's Nov 20 report. No decision date was given by Meta.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "BIG TECH",
+   "headline": "Meta's carbon footprint jumped 45%. Its climate deadline may slip.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Lulea_Facebook_datacenter_building.jpg/3840px-Lulea_Facebook_datacenter_building.jpg",
+    "credit": "Photo: Meta's data center in Luleå, Sweden. Christopher Down / Wikimedia Commons, CC BY 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Meta promised net-zero emissions by 2030.\nIn its report of November 19, it says it is \"re-evaluating\" that timeframe.\nThe reason: \"demand for AI infrastructure has grown faster than almost anyone projected.\"",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Meta_Platforms_Headquarters_Menlo_Park_California.jpg/3840px-Meta_Platforms_Headquarters_Menlo_Park_California.jpg",
+    "credit": "Photo: Meta headquarters, Menlo Park, California. LPS.1 / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "In 2025 its net carbon footprint rose 45%, to nearly 12 million metric tons.\nEmissions from \"capital goods,\" like servers and buildings, rose 58%."
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "The twist: since 2020 Meta has matched all of its electricity with clean energy purchases.\nBuilding and filling the data centers is where much of the new carbon comes from.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Roscoe_Wind_Farm_in_West_Texas.jpg/1920px-Roscoe_Wind_Farm_in_West_Texas.jpg",
+    "credit": "Illustrative photo: Roscoe Wind Farm, Texas. Matthew T Rader / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Its rivals grew too: Microsoft's footprint rose 25%, Google's 18%, Amazon's 16%.\nAll three say they will keep their goals. Meta is the first of the four to say it may change its own.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Cern_datacenter.jpg/3840px-Cern_datacenter.jpg",
+    "credit": "Illustrative photo: a data center. Hugovanmeijeren / Wikimedia Commons, CC BY-SA 3.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "Meta gave no date for a decision. It only promised to \"share where this work lands.\"\nThe AI race or the 2030 promise: which one would you keep?"
+  }
+ ],
+ "caption": "Every chat with an AI runs on a building full of servers, and building them has a carbon cost.\n\nIn its 2026 sustainability report, released November 19, Meta says it is re-evaluating the timelines and interim milestones of its climate plan, including its goal of net-zero emissions across its whole supply chain by 2030. Rachel Peterson, Meta's vice president of data centers, and Blair Swedeen, its head of net zero, wrote that \"our long-term ambitions haven't changed, but our operating environment has.\"\n\nThe numbers explain why. Meta's net carbon footprint rose 45% in 2025, to about 11.9 million metric tons of CO2. Emissions tied to capital goods, such as servers and data center construction, jumped 58%. Its power use grew about 35%.\n\nMicrosoft, Google and Amazon also reported higher emissions for 2025, but all three say they are sticking to their goals. Meta is the first of the four to say publicly it might move its deadline.\n\nMeta points to clean energy projects stuck in long permitting and grid connection lines, and to slow progress on low-carbon building materials.\n\nSource: Meta 2026 Sustainability Report; Trellis",
+ "hashtags": [
+  "#meta",
+  "#ai",
+  "#climate",
+  "#business"
+ ]
+}

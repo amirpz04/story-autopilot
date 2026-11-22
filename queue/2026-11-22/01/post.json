@@ -1,0 +1,90 @@
+{
+ "id": "2026-11-22-01",
+ "date": "2026-11-22",
+ "slot": null,
+ "reel_slot": 3,
+ "title": "Dragos plants 2 million canary secrets in AI prompts; three providers breached, resellers and a Chinese lab read them",
+ "category": "ai",
+ "tags": {
+  "headline": "bait and catch",
+  "end": "practical advice",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 9,
+  "surprise": 9,
+  "emotion": 7,
+  "shareability": 9,
+  "talkability": 8,
+  "no_context": 8,
+  "freshness": 10
+ },
+ "sources": [
+  {
+   "name": "Dragos (HD Moore)",
+   "url": "https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens"
+  },
+  {
+   "name": "Ars Technica",
+   "url": "https://arstechnica.com/security/2026/11/a-leaky-ai-supply-chain-is-exposing-secret-user-data-at-an-alarming-rate/"
+  }
+ ],
+ "verification": "All numbers and findings from HD Moore's Dragos post of November 19, 2026 (nearly 2 million prompts, July-November, three breached hosting providers, late-October windows where every request was stolen, tens of thousands of AWS calls, marketplace resellers logging prompts, French home-broadband attacker, Chinese lab fetching links from more than half of prompts incl. about two-thirds marked no data collection/ZDR, US provider crawling a URL 2+ months later, advice to self-host or use a first-tier provider). Cross-checked against Ars Technica Nov 20 (incl. Nov 21 update: OpenRouter emailed customers about MiniMax endpoints). Canary-in-coal-mine meaning from Ars. Providers other than MiniMax are not named by Dragos, so none are named on the slides.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "AI PRIVACY",
+   "headline": "He hid fake keys in 2 million AI prompts. Thieves used them.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Domestic_canary_2.jpg",
+    "credit": "Illustrative photo: a domestic canary. Yavor Uzunov / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "HD Moore of the security firm Dragos sent nearly 2 million prompts to AI services from July to November.\nEach hid a unique fake password, key or secret link: a \"canary,\" like the birds miners carried to warn of gas.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Canary_resuscitator_apedale.JPG/1920px-Canary_resuscitator_apedale.JPG",
+    "credit": "Photo: a canary cage once used in coal mines, Apedale Heritage Centre. Geni / Wikimedia Commons, CC BY-SA 4.0",
+    "focus": [
+     0.5,
+     0.45
+    ]
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "The canaries sang.\nThree AI hosting companies had been hacked. At one, every request sent during a few windows in late October was copied.\nThe stolen keys were used tens of thousands of times.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Datacenter_Server_Racks_%2822370909788%29.jpg/3840px-Datacenter_Server_Racks_%2822370909788%29.jpg",
+    "credit": "Illustrative photo: server racks. Carl Lender / Wikimedia Commons, CC BY 2.0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Some leaks needed no hacking at all.\nSellers on an AI marketplace offered the lowest price, switched on logging and waited.\nOne person in France took passwords from the prompts and tried them by hand."
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "A Chinese AI lab's systems opened the secret links from more than half the prompts sent to its models.\nThat included about two-thirds of the prompts marked \"no data collection.\"",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Technician_with_laptop_working_on_server_rack_at_NERSC.jpg/3840px-Technician_with_laptop_working_on_server_rack_at_NERSC.jpg",
+    "credit": "Illustrative photo: a technician at a server rack, NERSC. Derrick Coetzee / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "Moore's advice: run AI on your own machines, or go straight to one big provider with one privacy policy.\nEvery middleman in between can read what you type."
+  }
+ ],
+ "caption": "Nobody told the AI services these secrets were bait.\n\nHD Moore, chief research officer at the security firm Dragos and creator of the hacking tool Metasploit, published the results on November 19, 2026. His team sent nearly 2 million prompts to AI providers over five months. Each prompt carried unique fake cloud keys, passwords or links that led to servers Dragos controlled, so any use showed exactly where a prompt had leaked.\n\nThe results: three hosting providers had been breached, and none knew until Dragos told them. Attackers tested stolen keys within hours and tried to dig deeper into the cloud accounts. Resellers on an AI marketplace simply logged customers' prompts. And a Chinese AI lab fetched secret links even from prompts sent through US companies that resell its models.\n\nMany AI apps pass your text through brokers called AI routers, and each hop can read it. After the report, the router OpenRouter emailed customers that some prompts sent to models from the Chinese company MiniMax may have been read, according to Ars Technica.\n\nThe simple lesson: never paste a password into a chatbot.\n\nSource: Dragos; Ars Technica",
+ "hashtags": [
+  "#ai",
+  "#privacy",
+  "#cybersecurity",
+  "#tech"
+ ]
+}

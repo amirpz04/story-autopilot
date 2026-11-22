@@ -1,0 +1,108 @@
+{
+ "id": "2026-11-22-03",
+ "date": "2026-11-22",
+ "slot": null,
+ "reel_slot": 1,
+ "title": "Webb and ground telescopes watch giant star Bao swallow its companion in Andromeda (AT 2025abao)",
+ "category": "space",
+ "variety_exception": "Assigned subject inventions had nothing strong in 72 h or 14 days after IEEE Spectrum, Google News and the German wildcard; space is a listed backup.",
+ "tags": {
+  "headline": "plain spectacle",
+  "end": "quote payoff",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 9,
+  "emotion": 9,
+  "shareability": 8,
+  "talkability": 6,
+  "no_context": 8,
+  "freshness": 9
+ },
+ "sources": [
+  {
+   "name": "NASA",
+   "url": "https://science.nasa.gov/missions/webb/nasa-data-clinches-first-of-its-kind-stellar-merger/"
+  },
+  {
+   "name": "Caltech ZTF",
+   "url": "https://www.ztf.caltech.edu/new/astronomers-witness-stellar-crash-from-beginning-to-end.html"
+  },
+  {
+   "name": "Nature",
+   "url": "https://doi.org/10.1038/s41586-026-11221-z"
+  }
+ ],
+ "verification": "NASA release (Nov 18-19, 2026): masses (7 Suns, about 0.7 Sun), 350x radius, 18,000x brighter, nicknames, steady before 2018, flagged Feb 2023 in NEOWISE, SPHEREx July 2025, ZTF eruption Oct 17 2025, seven orbits (about seven years), Webb Dec 24 2025 at 47 days after peak (earliest such follow-up), Blagorodnova and De quotes, merger into core. Caltech ZTF release: amateur Koichi Itagaki spotted first flash, about 10% of envelope ejected at about 800 km/s (about 1.8 million mph), Nature paper Nov 18. Andromeda distance (about 2.5 million light-years) is standard. Merge vs survival is debated in a separate arXiv preprint, so the slide attributes the merger to the team.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "SPACE",
+   "headline": "One star ate another. Telescopes caught every bite.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Andromeda_Galaxy_%28with_h-alpha%29.jpg/1920px-Andromeda_Galaxy_%28with_h-alpha%29.jpg",
+    "credit": "Photo: the Andromeda Galaxy. Adam Evans / Wikimedia Commons, CC BY 2.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "It happened in the Andromeda galaxy, about 2.5 million light-years away.\nA giant nicknamed Big Bao, 7 times the Sun's mass and 350 times wider, had a smaller partner: Little Bao.",
+   "image": {
+    "url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/11/STScI-01M6GTRN4J7R6FEJ4AJXM567QT.jpg",
+    "credit": "Image: NASA, ESA, CSA, STScI, V. Karambelkar, K. De (Columbia), A. Pagan (STScI); DSS, R. Gendler",
+    "marks": [
+     {
+      "type": "circle",
+      "at": [
+       0.643,
+       0.427
+      ],
+      "r": 0.035,
+      "label": "Bao was here",
+      "side": "l"
+     }
+    ]
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Before 2018 the star barely changed.\nThen astronomers noticed it slowly brightening in old NEOWISE data. In July 2025, NASA's new SPHEREx telescope saw it fade in visible light and glow in infrared.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/SPHEREx_telescope_and_detectors_2.jpg/1920px-SPHEREx_telescope_and_detectors_2.jpg",
+    "credit": "Photo: NASA's SPHEREx telescope. NASA / Wikimedia Commons, public domain"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Little Bao was spiraling into the giant's outer layers.\nIt took only about seven orbits, roughly seven years. On October 17, 2025, the star erupted. \"Within a week, it peaked!\"",
+   "image": {
+    "url": "https://assets.science.nasa.gov/content/dam/science/missions/webb/science/2026/11/STScI-01M75P16KDJ20MN2N5YEWFC18H.jpg",
+    "credit": "Illustration: NASA, ESA, CSA, STScI, Leah Hustak (STScI)"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "The blast threw off about a tenth of the giant's outer gas at around 1.8 million mph.\nWebb looked 47 days after the peak, the earliest follow-up of such an event.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Hale_Telescope%2C_Palomar_Observatory_041.jpg/3840px-Hale_Telescope%2C_Palomar_Observatory_041.jpg",
+    "credit": "Photo: the 200-inch Hale Telescope at Palomar Observatory, which helped track the eruption. Sebastian Wallroth / Wikimedia Commons, CC BY 4.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "The team says Little Bao was dragged into Big Bao's core.\n\"Almost like a bomb exploding inside a living star.\""
+  }
+ ],
+ "caption": "Stars usually change over millions of years. This one changed in about seven.\n\nIn the Andromeda galaxy, a giant star about seven times the mass of the Sun and 350 times wider had a smaller companion, about 0.7 times the Sun's mass. Astronomers nicknamed them Big Bao and Little Bao. The giant outshone its partner about 18,000 times.\n\nThe system first stood out in February 2023 in data from NASA's NEOWISE mission. In July 2025, NASA's SPHEREx caught it fading in visible light while brightening in infrared, a sign of trouble. On October 17, 2025, it erupted. Japanese amateur astronomer Koichi Itagaki spotted the first flash, and the Zwicky Transient Facility at Palomar Observatory in California recorded it.\n\nThe smaller star had spiraled into the giant in just about seven orbits. The James Webb Space Telescope observed on December 24, 2025, 47 days after the peak. The team, led by Viraj Karambelkar of Columbia University, published the result in Nature on November 18.\n\nWhy it matters: astronomers had long theorized this kind of swallowing, called common envelope evolution, but had never followed one from start to finish. Future telescopes like Rubin and Roman should find many more.\n\nSource: NASA; Caltech; Nature",
+ "hashtags": [
+  "#space",
+  "#astronomy",
+  "#jwst",
+  "#andromeda"
+ ]
+}
