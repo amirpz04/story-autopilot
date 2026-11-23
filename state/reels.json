@@ -935,12 +935,17 @@
   },
   "2026-11-22-02": {
     "attempts": 0,
+    "cover": "frame at 2.2 s",
     "credit": "Passage Of Time by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "error": "",
     "file": "20261122-094740-2026-11-22-02.mp4",
     "made_at": "2026-11-22T09:48:55.182172+00:00",
+    "media_id": "18087712937333474",
     "music": "passage-of-time.m4a",
+    "permalink": "https://www.instagram.com/reel/DgEZC-RgnCZ/",
+    "posted_at": "2026-11-23T03:16:03.242012+00:00",
     "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/2775baa543060cb6192aa35c443f26048f656257/20261122-094740-2026-11-22-02.mp4",
-    "status": "made",
+    "status": "posted",
     "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@2775baa543060cb6192aa35c443f26048f656257/20261122-094740-2026-11-22-02.mp4"
   },
   "2026-11-22-03": {
