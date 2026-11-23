@@ -1,0 +1,111 @@
+{
+ "id": "2026-11-23-01",
+ "date": "2026-11-23",
+ "slot": null,
+ "reel_slot": 3,
+ "title": "Deepest explosive (pyroclastic) volcanic deposits found near the Challenger Deep, Mariana Trench (TN438, Jason)",
+ "category": "nature",
+ "tags": {
+  "headline": "defied expectation",
+  "end": "bigger picture",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 9,
+  "surprise": 9,
+  "emotion": 8,
+  "shareability": 8,
+  "talkability": 6,
+  "no_context": 8,
+  "freshness": 10
+ },
+ "sources": [
+  {
+   "name": "Frontiers in Earth Science (Stern et al., 2026)",
+   "url": "https://doi.org/10.3389/feart.2026.1929806"
+  },
+  {
+   "name": "Frontiers news",
+   "url": "https://www.frontiersin.org/news/2026/11/23/robot-submarine-deepest-ocean-trench-unprecedented-volcanic-activity-frontiers-earth-science"
+  },
+  {
+   "name": "Live Science",
+   "url": "https://www.livescience.com/planet-earth/impossible-volcanic-eruption-spotted-in-deepest-part-of-the-ocean-perplexing-scientists"
+  }
+ ],
+ "verification": "Paper abstract (Crossref, published Nov 23, 2026, CC BY 4.0): TN438 cruise late 2024, ROV Jason/Medea, deepest known pyroclastic deposits (>6,000 m), likely driven by supercritical fluids and less explosive than low-pressure eruptions, magmatism unusually close to the trench, insight into why the Challenger Deep is so deep. Frontiers news: 6,148 m find, Jason limit 6,500 m, unsampled to about 11,000 m, eruption sites not found, Stern quotes ('very surprised', 'deepest pyroclastic rocks documented to date', 'Only Chinese scientists and some wealthy entrepreneurs...'). Live Science: about 592 atmospheres of pressure normally prevents explosive eruptions, no organized volcanic arc there, area expected too cool to melt, volcanic glass suggests fairly recent ('not yesterday... not a million years old'), team suspects a new subduction zone may be starting (hypothesis), outside quotes Nielsen and Self. Live Science's '2014' for the dive conflicts with the paper's late 2024; the paper is used. Feet conversions: 6,148 m = 20,170 ft; 6,500 m = 21,300 ft; 11,000 m = about 36,000 ft.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "MARIANA TRENCH",
+   "headline": "Explosive eruptions 20,000 feet underwater? That shouldn't happen.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/ROV_JASON_AT42-22.jpg/1920px-ROV_JASON_AT42-22.jpg",
+    "credit": "Photo: the robot sub Jason. Wünderbrot / Wikimedia Commons, CC BY-SA 4.0",
+    "focus": [
+     0.5,
+     0.5
+    ]
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "A robot sub named Jason found thin, flat sheets of volcanic rock 20,170 feet (6,148 m) down, beside the Challenger Deep.\nThey are the deepest pyroclastic rocks ever documented: debris from explosive eruptions.",
+   "image": {
+    "url": "https://images.ctfassets.net/mrbo2ykgx5lt/5DPNp4rnDkMA04GfQkHVLD/aa3a5edacb671d8e78fe4a15695ea09e/AngArtboard_1_1920x.png",
+    "credit": "Photo: Dr. Robert Stern, Cruise TN438, supported by the U.S. National Science Foundation (via Frontiers)"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Down there, the water presses with about 592 times the air pressure we feel.\nThat normally keeps gas trapped in magma, so lava oozes instead of exploding.\nThe team suspects a supercritical fluid, half gas, half liquid, did it."
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "The place was wrong too.\nVolcanoes usually rise farther from a trench, where rock is hot enough to melt.\nThis stretch of the Mariana Trench has no line of volcanoes at all.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a3/Mariana_trench.png/1920px-Mariana_trench.png",
+    "credit": "Map: the Mariana Trench, deepest in dark purple. astrobob / Wikimedia Commons, CC BY-SA 4.0",
+    "focus": [
+     0.49,
+     0.5
+    ],
+    "marks": [
+     {
+      "type": "circle",
+      "at": [
+       0.49,
+       0.557
+      ],
+      "r": 0.04,
+      "label": "Challenger Deep",
+      "side": "r"
+     }
+    ]
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "Jason can't dive below about 21,300 feet (6,500 m), so the deepest part, down to about 36,000 feet, went unsampled.\n\"Only Chinese scientists and some wealthy entrepreneurs\" have tools for that, lead author Robert Stern says.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Challenger_Deep_Dive_071222_by_V_Vescovo_in_DSV_Limiting_Factor_-_Southern_Wall_of_Western_Pool.jpg/1920px-Challenger_Deep_Dive_071222_by_V_Vescovo_in_DSV_Limiting_Factor_-_Southern_Wall_of_Western_Pool.jpg",
+    "credit": "Photo: a wall of the Challenger Deep from the private sub Limiting Factor. Victor Vescovo / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "Glass in the rock hints the eruptions are fairly recent.\n\"They're not yesterday,\" Stern said, \"but I don't think they're a million years old.\"\nThe magma may even help explain why the Challenger Deep is so deep."
+  }
+ ],
+ "caption": "The deepest spot on Earth was supposed to be volcanically quiet.\n\nIn late 2024 a U.S. expedition took the remotely operated vehicle Jason to the Mariana Trench in the western Pacific, near the Challenger Deep. On seven dives along about 190 miles (300 km) of the trench's inner slope, cameras spotted pancake-like sheets of rock about 20,170 feet (6,148 m) down. Samples showed volcanic glass and a texture made by pyroclastic flows, the hot, fast clouds of rock and gas from explosive eruptions.\n\nThe study, led by Robert Stern of the University of Texas at Dallas, was published November 23, 2026, in Frontiers in Earth Science. \"Explosive volcanism near trenches is unusual, so we were very surprised,\" Stern said.\n\nThe team thinks these deep blasts were weaker than eruptions on land, because crushing water pressure keeps gas from expanding. They have not found the vents yet, and the rocks are still being dated.\n\nThe finding also suggests the crust here is being pulled apart, partly by magma, which may help explain why the trench is so deep.\n\nThe deepest ocean still has a few surprises left, and most of it is out of reach.\n\nSource: Frontiers in Earth Science, Frontiers, Live Science",
+ "hashtags": [
+  "#ocean",
+  "#volcano",
+  "#marianatrench",
+  "#deepsea",
+  "#science"
+ ]
+}

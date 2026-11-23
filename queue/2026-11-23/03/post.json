@@ -1,0 +1,99 @@
+{
+ "id": "2026-11-23-03",
+ "date": "2026-11-23",
+ "slot": null,
+ "reel_slot": 1,
+ "title": "Google retires the Nest app on January 25, 2027 and Google Assistant on speakers on August 2, 2027",
+ "category": "apps",
+ "tags": {
+  "headline": "direct deadline",
+  "end": "send nudge",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 7,
+  "emotion": 6,
+  "shareability": 9,
+  "talkability": 7,
+  "no_context": 9,
+  "freshness": 9
+ },
+ "sources": [
+  {
+   "name": "Google Home & Nest Community",
+   "url": "https://support.google.com/googlehome/blog/478236207"
+  },
+  {
+   "name": "9to5Google",
+   "url": "https://9to5google.com/2026/11/20/nest-app-google-assistant/"
+  },
+  {
+   "name": "Android Central",
+   "url": "https://www.androidcentral.com/accessories/smart-home/google-sets-hard-deadline-for-the-nest-app-and-smart-display-assistant"
+  },
+  {
+   "name": "Android Headlines",
+   "url": "https://www.androidheadlines.com/2026/11/google-assistant-nest-app-shutdown-2027.html"
+  }
+ ],
+ "verification": "Google's community post (Nov 20, 2026, 'A Modern Foundation for Your Smart Home') is rendered by script; its content was checked through three reports quoting it. 9to5Google: Nest app on Android, iOS and web stops January 25, 2027; thermostats, cameras, doorbells, smoke alarms, locks move to Google Home automatically with schedules and settings; custom clips do not transfer, use Download All at home.nest.com; Nest Aware (1st gen) moves to Google Home Premium at no extra cost; Assistant on speakers and smart displays ends August 2, 2027, replaced by Gemini for Home with natural language instead of 'rigid, static and highly specific voice commands'. Android Central: same dates, camera video history transfers, March 25, 2027 deadline to link old Nest accounts or risk losing account, data and subscriptions; Google's reason is one platform. Android Headlines confirms dates.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "APPS",
+   "headline": "Your Nest camera clips have a deadline.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Nest_learning_thermostat_in_living_room.jpg/3840px-Nest_learning_thermostat_in_living_room.jpg",
+    "credit": "Photo: a Nest Learning Thermostat. AG20044018 / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "On January 25, 2027, Google shuts down the Nest app on iPhone, Android and the web.\nThermostats, cameras, doorbells, smoke alarms and locks move to the Google Home app on their own, schedules included."
+  },
+  {
+   "type": "text",
+   "text": "The catch: clips you saved in the Nest app don't move over.\nGoogle says to press \"Download All\" at home.nest.com before January 25.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Nest_Hello.jpg/1920px-Nest_Hello.jpg",
+    "credit": "Photo: a Nest Hello video doorbell. AG20044018 / Wikimedia Commons, CC BY-SA 4.0",
+    "focus": [
+     0.5,
+     0.25
+    ]
+   },
+   "layout": "split"
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Still signing in with an old Nest account?\nLink it to a Google account by March 25, 2027, or risk losing the account, its data and subscriptions.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Google_Home_with_Home_Hub_and_Home_Mini_on_table.jpg/3840px-Google_Home_with_Home_Hub_and_Home_Mini_on_table.jpg",
+    "credit": "Photo: Google Home speakers and display. Y2kcrazyjoker4 / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "Then on August 2, 2027, Google Assistant goes quiet on Google's speakers and smart displays.\nGemini for Home takes over, built to follow normal conversation instead of rigid voice commands.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Google_Nest_Hub_MAX.jpg/1920px-Google_Nest_Hub_MAX.jpg",
+    "credit": "Photo: a Google Nest Hub Max. KKPCW (Kyu3) / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "First-generation Nest Aware subscribers move to Google Home Premium at no extra cost.\nKnow someone with a Nest doorbell? Their saved clips have about two months."
+  }
+ ],
+ "caption": "Somewhere in a Nest account there is footage of a package thief, a raccoon, or a first day of school. Google just put a date on it.\n\nOn November 20, Google announced that the Nest app will stop working on Android, iPhone and the web on January 25, 2027. Nest thermostats, cameras, doorbells, Nest Protect smoke alarms and Nest x Yale locks will appear in the Google Home app automatically, with their settings, schedules and camera history. Custom clips saved in the Nest app will not. Google's advice is to use the Download All button at home.nest.com before the deadline.\n\nAnyone still logging in with an old Nest account (not a Google account) has until March 25, 2027, to link it, or risks losing the account, its data and subscriptions.\n\nThe bigger change comes later. On August 2, 2027, Google Assistant ends on Google's smart speakers and displays, and Gemini for Home replaces it. You can switch early in the Google Home app. Google says more details for older hardware are coming before then.\n\nGoogle's reason: one app and one platform instead of two.\n\nSource: Google, 9to5Google, Android Central, Android Headlines",
+ "hashtags": [
+  "#google",
+  "#nest",
+  "#smarthome",
+  "#tech",
+  "#gemini"
+ ]
+}

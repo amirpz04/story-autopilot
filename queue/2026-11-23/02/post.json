@@ -1,0 +1,94 @@
+{
+ "id": "2026-11-23-02",
+ "date": "2026-11-23",
+ "slot": null,
+ "reel_slot": 5,
+ "title": "University of Queensland sends the word 'Gravity' through a brick wall by moving an elevator counterweight",
+ "category": "inventions",
+ "tags": {
+  "headline": "negation tease",
+  "end": "quote payoff",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 9,
+  "surprise": 9,
+  "emotion": 8,
+  "shareability": 9,
+  "talkability": 7,
+  "no_context": 9,
+  "freshness": 8
+ },
+ "sources": [
+  {
+   "name": "University of Queensland",
+   "url": "https://news.uq.edu.au/2026-11-uq-researchers-send-unblockable-message-using-gravity"
+  },
+  {
+   "name": "EurekAlert! (UQ release)",
+   "url": "https://www.eurekalert.org/news-releases/1152152"
+  },
+  {
+   "name": "Science Advances (Groszek et al., 2026)",
+   "url": "https://doi.org/10.1126/sciadv.aee0802"
+  },
+  {
+   "name": "New Atlas",
+   "url": "https://newatlas.com/technology/gravity-unstoppable-messages-first-time/"
+  }
+ ],
+ "verification": "UQ release (Nov 19, 2026): Parnell Building, 1950s elevator, 1.8-tonne counterweight between two levels as 0 and 1, gravimeter in adjacent bathroom, brick wall, word 'Gravity', 1 bit per minute, about an hour per word, idea from a contactless weighbridge for trucks, quantum sensors could reach about 500 m at about 15 bits per minute under 'rather ambitious assumptions', White telegraph quote, Woffinden 'cannot simply be screened out'. Crossref: 'Unblockable communication with gravity', Science Advances, Nov 20, 2026. New Atlas: 49 bits plus start and end markers, 63 minutes, signal about 50 nm/s2 (about five billionths of Earth's pull), 2012 Fermilab neutrino message through about 790 ft of earth. Conversions: 1.8 t = about 4,000 lb; 500 m = about 1,640 ft.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "PHYSICS",
+   "headline": "No radio, no light. This message traveled by gravity.",
+   "image": {
+    "url": "https://news.uq.edu.au/sites/default/files/2026-11/p1066255.JPG",
+    "credit": "Photo: Matthew Davis, Charles Woffinden and Andrew White in the elevator. The University of Queensland"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "The transmitter was a 1950s elevator at the University of Queensland in Australia.\nThe receiver was a gravimeter, a gravity sensor, in the bathroom next door, behind a brick wall.",
+   "image": {
+    "url": "https://news.uq.edu.au/sites/default/files/styles/embedded_2x/public/2026-11/bathroom-floor-resized.jpg?h=a81fead4&itok=p6sGzrMJ",
+    "credit": "Photo: the gravimeter in the bathroom. The University of Queensland"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Each ride moved the elevator's counterweight, about 4,000 pounds (1.8 metric tons), up or down.\nUp meant 1. Down meant 0.\nThe sensor felt the change in pull: about five billionths of Earth's gravity."
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "One bit per minute.\n49 bits plus start and end markers took 63 minutes.\nThe word they spelled out: \"Gravity.\"",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/ElevatorCounterweight.jpg/1280px-ElevatorCounterweight.jpg",
+    "credit": "Illustrative photo: an elevator counterweight. Simiprof / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Why bother? Walls, water and metal can block radio and Wi-Fi. Ordinary material can't screen out gravity.\nThe closest cousin: in 2012, Fermilab sent a message through about 790 feet of earth using neutrinos.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/MINERvA_Neutrino_Detector_2011.jpg/1920px-MINERvA_Neutrino_Detector_2011.jpg",
+    "credit": "Photo: Fermilab's MINERvA neutrino detector. KeysPhotography.com / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "With quantum sensors, the team estimates about 1,640 feet (500 m) at 15 bits a minute, on \"rather ambitious assumptions.\"\n\"It took more than 100 years to go from the first telegraph system to the mobile phone.\""
+  }
+ ],
+ "caption": "The idea started with trucks: the team wanted to weigh them without a scale, just by measuring their tiny gravitational pull.\n\nOnce that worked, physicists at the University of Queensland in Brisbane, Australia, realized the same trick could carry information. In the university's Parnell Building they rode a 1950s elevator between two floors. Its counterweight, about 4,000 pounds (1.8 metric tons), sat either high (a 1) or low (a 0). In the bathroom next door, behind a brick wall, a commercial gravimeter picked up the change.\n\nAfter correcting for Earth's tides and instrument drift, they recovered every bit. It took 63 minutes to spell one word: \"Gravity.\" The study was published November 20, 2026, in Science Advances.\n\n\"A gravitational signal cannot simply be screened out by placing ordinary material in its path,\" said Dr. Charles Woffinden. The team admits the system is \"far from practical\": vibrations and other moving masses can drown out the signal, and it is painfully slow.\n\nStill, a message that walls cannot stop is a new tool. Think mines, ruins or sealed rooms someday.\n\nSource: University of Queensland, Science Advances, New Atlas",
+ "hashtags": [
+  "#physics",
+  "#gravity",
+  "#science",
+  "#invention"
+ ]
+}
