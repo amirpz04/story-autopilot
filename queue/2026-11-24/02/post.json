@@ -1,0 +1,99 @@
+{
+ "id": "2026-11-24-02",
+ "date": "2026-11-24",
+ "slot": null,
+ "reel_slot": 5,
+ "title": "NASA compares the 2026 El Nino to 1997-98 as NOAA reports Nino-3.4 at +2.5 C and the Atacama blooms",
+ "category": "nature",
+ "tags": {
+  "headline": "callback",
+  "end": "quote twist",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 7,
+  "emotion": 7,
+  "shareability": 8,
+  "talkability": 8,
+  "no_context": 8,
+  "freshness": 7
+ },
+ "sources": [
+  {
+   "name": "NOAA Climate Prediction Center",
+   "url": "https://www.cpc.ncep.noaa.gov/products/analysis_monitoring/enso_advisory/ensodisc.shtml"
+  },
+  {
+   "name": "NASA Earth Observatory via ScienceDaily",
+   "url": "https://www.sciencedaily.com/releases/2026/11/261114202227.htm"
+  },
+  {
+   "name": "NASA Earth Observatory",
+   "url": "https://science.nasa.gov/earth/earth-observatory/el-nino-rains-paint-the-atacama/"
+  },
+  {
+   "name": "NASA Science",
+   "url": "https://science.nasa.gov/earth/nasa-satellites-observe-historic-2026-el-nino/"
+  }
+ ],
+ "verification": "NOAA CPC ENSO diagnostic discussion, November 12, 2026: El Nino Advisory, Nino-3.4 index reached +2.5 C (4.5 F), strong-to-very-strong El Nino likely through January-March 2027 (>79%), about 60% odds of a 3-month RONI of +2.5 C or more for Oct-Dec and Nov-Jan, expected to keep strengthening before weakening in early 2027. NASA Earth Observatory story (Kathryn Hansen) as reprinted by ScienceDaily Nov 15, 2026: TOPEX/Poseidon Oct 13, 1997 vs Sentinel-6 Michael Freilich Oct 12, 2026 sea level, both with low west/high east and warm water to South America; 2026 intensified much more abruptly; 2015-16 warm water did not reach as far; 1997-98 brought heavy rain to California and the southern US, 2015-16 rain over Central America and the southeastern US; Josh Willis (JPL) quotes 'There's always a bit of a dice roll here'. NASA Earth Observatory Nov 19, 2026: one of the heaviest July rain events in decades in Chile, rains came as El Nino strengthened, PUCV scientists say 2026 desierto florido appears the most significant at least since remote sensing began. NASA Oct 15, 2026 article supplies the Oct 10, 2025 vs Oct 10, 2026 map. Cover photo is from the 1998 California floods (FEMA, public domain). Bloom photo is an earlier (2015) bloom, labelled illustrative.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "EL NIÑO",
+   "headline": "The Pacific looks like 1997 again. That winter flooded California.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/FEMA_-_1336_-_Photograph_by_Dave_Gatley_taken_on_03-03-1998_in_California.jpg/1920px-FEMA_-_1336_-_Photograph_by_Dave_Gatley_taken_on_03-03-1998_in_California.jpg",
+    "credit": "Photo: flooding in California, March 3, 1998, during the 1997-98 El Niño winter. Dave Gatley / FEMA, public domain"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "This fall, NASA satellites saw the Pacific bulging high in the east and sagging in the west, with warm water reaching South America.\nIn October 1997, they saw the same tilt.",
+   "image": {
+    "url": "https://assets.science.nasa.gov/content/dam/science/esd/articles/2026/elnino_2026_ssta_avw_ssha_1010.02200.jpg",
+    "credit": "Image: Pacific Ocean, October 10, 2025 vs October 10, 2026. NASA, public domain",
+    "focus": [
+     0.75,
+     0.5
+    ]
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "The 1997-98 El Niño soaked California and the southern US.\nThis one is different in one way: it grew much more abruptly.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/1997_El_Nino_TOPEX.jpg/1920px-1997_El_Nino_TOPEX.jpg",
+    "credit": "Image: TOPEX/Poseidon sea-level map, December 1, 1997. NASA/JPL, public domain"
+   }
+  },
+  {
+   "type": "text",
+   "text": "On November 12, NOAA reported a key stretch of the Pacific at 4.5°F (2.5°C) above normal.\nIt puts the odds of a \"very strong\" event at about 60%."
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "It's already at work. After one of Chile's heaviest July rains in decades, the Atacama Desert burst into flower.\nScientists call it possibly the biggest bloom of the satellite era.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Desierto_florido_2015_%2821922546479%29.jpg",
+    "credit": "Illustrative photo: an earlier Atacama bloom, 2015. Pato Novoa / Wikimedia Commons, CC BY 2.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "The 2015-16 El Niño, also very strong, sent its heaviest rain to the Southeast instead.\n\"There's always a bit of a dice roll here,\" says NASA's Josh Willis."
+  }
+ ],
+ "caption": "NASA has about 35 years of satellite maps of the Pacific's height. This fall, one of them looked very familiar.\n\nNASA compared sea-level maps from Sentinel-6 Michael Freilich (October 12, 2026) with TOPEX/Poseidon (October 13, 1997). Both show the same tilt: water piled high in the eastern Pacific, low in the west, and warm water stretching to the coast of South America. The big difference, NASA says, is that this El Niño intensified much more abruptly.\n\nOn November 12, NOAA's Climate Prediction Center reported the Niño-3.4 region at 2.5°C (4.5°F) above normal and said a strong to very strong El Niño is likely through early 2027 before it weakens.\n\nThe effects have started. Rain from storms in July and August set off a flowering desert in Chile's Atacama that scientists say may be the most extensive of the satellite era.\n\nWhat it means for the US is still a guess. In 1997-98, heavy rain hit California and the southern states. In 2015-16, the Southeast and Central America got more of it. NASA's Josh Willis says resemblance to 1997 \"doesn't mean it will be exactly the same.\"\n\nSource: NOAA Climate Prediction Center, NASA Earth Observatory",
+ "hashtags": [
+  "#elnino",
+  "#weather",
+  "#pacificocean",
+  "#nasa",
+  "#climate"
+ ]
+}

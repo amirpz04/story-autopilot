@@ -1,0 +1,95 @@
+{
+ "id": "2026-11-24-03",
+ "date": "2026-11-24",
+ "slot": null,
+ "reel_slot": 1,
+ "title": "FDA approves BridgeBio's Welgemda (ribitol), first drug for limb-girdle muscular dystrophy (LGMD2I/R9)",
+ "category": "health",
+ "tags": {
+  "headline": "two beats",
+  "end": "personal payoff",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 8,
+  "emotion": 9,
+  "shareability": 8,
+  "talkability": 6,
+  "no_context": 8,
+  "freshness": 9
+ },
+ "sources": [
+  {
+   "name": "BridgeBio press release (GlobeNewswire)",
+   "url": "https://www.manilatimes.net/2026/11/24/tmt-newswire/globenewswire/welgemda-bbp-418-ribitol-receives-traditional-approval-as-the-first-and-only-treatment-for-individuals-living-with-lgmd2ir9/2476675"
+  },
+  {
+   "name": "Muscular Dystrophy Association",
+   "url": "https://www.mda.org/press-releases/first-ever-treatment-for-limb-girdle-muscular-dystrophy-type-2ir9-approved-by-fda-a-milestone-for-a"
+  },
+  {
+   "name": "BioSpace",
+   "url": "https://www.biospace.com/fda/fda-approves-bridgebios-welgemda-as-1st-targeted-therapy-for-rare-muscle-disease"
+  },
+  {
+   "name": "Nature Communications (Cataldi et al., 2018)",
+   "url": "https://doi.org/10.1038/s41467-018-05990-z"
+  }
+ ],
+ "verification": "BridgeBio release (Nov 23, 2026): FDA traditional approval of Welgemda (BBP-418, ribitol), oral, for LGMD2I/R9 in adults and children of at least 30 kg; first approved treatment for any limb-girdle muscular dystrophy; FKRP mutations impair glycosylation of alpha-dystroglycan; disease starts in the legs, moves to the arms, lung and heart involvement often follows; FORTIFY 12-month interim: faster 100-meter timed test (+0.27 m/s) and FVC % predicted (+4.89%) vs placebo; about 7,000 people with LGMD2I/R9 and related alpha-dystroglycanopathies in US and Europe; Sammy Brazzo diagnosed at 5, family worked 15 years toward a treatment. MDA release (Nov 23): first-ever treatment, oral, defects in alpha-DG sugar modifications weaken attachment of muscle fibers to surrounding tissue; Qi Long Lu credits early support for basic research. BioSpace: 112 patients aged 12-60, taken as a pill, FDA cites walking speed and lung function, approval 4 days before Nov 27 action date. Nature Communications 2018 (Cataldi, Lu P, Blaeser, Lu QL) abstract: ribitol, 'a pentose alcohol', given orally restored functional alpha-DG and improved skeletal and respiratory function in FKRP-mutant mice. 'Sugar alcohol' = pentose alcohol (five-carbon sugar alcohol).",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "FIRST EVER",
+   "headline": "This disease had no drug. The first is a sugar alcohol.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/FDA_Entrance_%2816792957331%29.jpg/3840px-FDA_Entrance_%2816792957331%29.jpg",
+    "credit": "Photo: FDA headquarters, Silver Spring, Maryland. U.S. Food and Drug Administration, public domain"
+   }
+  },
+  {
+   "type": "text",
+   "text": "On November 23, the FDA approved Welgemda for limb-girdle muscular dystrophy type 2I/R9.\nIt's the first approved drug for any form of limb-girdle muscular dystrophy."
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "A faulty gene, FKRP, leaves a muscle protein without its sugar coating. Muscle fibers lose their grip on the tissue around them.\nLegs weaken first, then arms, and often lungs and heart.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Muscle_Tissue_Skeletal_Muscle_Fibers_%2841241952644%29.jpg",
+    "credit": "Photo: skeletal muscle fibers under a microscope. Berkshire Community College Bioscience Image Library / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "The drug is ribitol, a simple five-carbon sugar alcohol, taken by mouth.\nIt gives cells more raw material to build that missing coating.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Ribitol-3D-balls.png/1280px-Ribitol-3D-balls.png",
+    "credit": "Image: a ribitol molecule. CCoil / Wikimedia Commons, CC BY-SA 3.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "It started in mice: in 2018, Qi Long Lu's lab showed oral ribitol improved their muscles and breathing.\nIn a trial of 112 people, patients walked faster and breathed better than on placebo.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Lab_mice_436262.jpg/1920px-Lab_mice_436262.jpg",
+    "credit": "Illustrative photo: laboratory mice. Understanding Animal Research / Wikimedia Commons, CC BY 2.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "Sammy Brazzo was diagnosed at age 5. The family spent 15 years pushing for a treatment.\n\"Knowing that people may now have an option that did not exist before makes every late night... worth it.\""
+  }
+ ],
+ "caption": "The first drug ever approved for a limb-girdle muscular dystrophy is a molecule chemists call a pentose alcohol: a simple five-carbon sugar alcohol.\n\nOn November 23, 2026, the FDA gave full approval to Welgemda (ribitol) from BridgeBio, four days ahead of schedule. It treats limb-girdle muscular dystrophy type 2I/R9 in adults and children weighing at least 66 pounds (30 kg). Until now, doctors could only manage symptoms.\n\nThe disease is genetic. A faulty FKRP gene stops a muscle protein, alpha-dystroglycan, from getting the sugar chains it needs to anchor muscle fibers. Weakness usually starts in the legs, then the arms, and often reaches the lungs and heart.\n\nThe idea came from mouse studies in Qi Long Lu's lab in North Carolina, published in 2018. In BridgeBio's trial of 112 people aged 12 to 60, patients on ribitol walked faster on a 100-meter test and had better lung function after 12 months than those on placebo. Common side effects included diarrhea, stomach pain and nausea.\n\nBridgeBio counts about 7,000 people in the US and Europe with this disease and related ones. The price has not been announced.\n\nSource: BridgeBio, Muscular Dystrophy Association, BioSpace, Nature Communications",
+ "hashtags": [
+  "#musculardystrophy",
+  "#fda",
+  "#raredisease",
+  "#medicine",
+  "#health"
+ ]
+}

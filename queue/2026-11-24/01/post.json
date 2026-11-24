@@ -1,0 +1,96 @@
+{
+ "id": "2026-11-24-01",
+ "date": "2026-11-24",
+ "slot": null,
+ "reel_slot": 3,
+ "title": "Verreaux's eagles appear to kill adult male baboons of up to 26 kg in Chad's Ennedi Plateau (St Andrews study)",
+ "category": "animals",
+ "variety_exception": "The assigned science subject only turned up old studies being recirculated as new; this November 18 primate study was the strongest fresh story.",
+ "tags": {
+  "headline": "number shock",
+  "end": "open question",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 9,
+  "surprise": 9,
+  "emotion": 8,
+  "shareability": 9,
+  "talkability": 8,
+  "no_context": 9,
+  "freshness": 8
+ },
+ "sources": [
+  {
+   "name": "University of St Andrews via EurekAlert",
+   "url": "https://www.eurekalert.org/news-releases/1151693"
+  },
+  {
+   "name": "Popular Science",
+   "url": "https://www.popsci.com/environment/eagles-eating-baboons-sahara/"
+  },
+  {
+   "name": "American Journal of Biological Anthropology",
+   "url": "https://doi.org/10.1002/ajpa.70377"
+  }
+ ],
+ "verification": "St Andrews release (EurekAlert, Nov 18, 2026): study in American Journal of Biological Anthropology, 'Signs of Eagle Predation on a 22-kg Adult Primate' (doi 10.1002/ajpa.70377), Hobaiter lead, Dominy senior; Ennedi plateau, northern Chad, isolated baboon population in the Sahara; skulls and bones of adult male baboons with talon punctures on skulls and scrapes/rakes on shoulder bones; one individual over 26 kg; previously no primate over 13 kg confirmed killed by raptors; baboons relaxed around other large raptors but gave alarm calls and dropped to safety when a pair of Verreaux's eagles flew over; Hobaiter quote 'we never imagined'. Popular Science (Nov 18): olive baboons, over 57.3 lb (26 kg), Verreaux's eagle wingspan 71-86 inches, scientists believed hominins had escaped these predators for roughly 2.5 million years. Search summaries of coverage: masses estimated from thigh-bone measurements, no kill witnessed, scavenging not ruled out, outside experts cautious. Wording kept to 'appear to'.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "SAHARA",
+   "headline": "Eagles appear to be killing 57-pound baboons.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Verreaux%27s_Eagle._Black_Eagle%2C_Aquila_verreauxii%2C_at_Walter_Sisulu_National_Botanical_Garden%2C_Gauteng%2C_South_Africa_%2819609641425%29.jpg/3840px-Verreaux%27s_Eagle._Black_Eagle%2C_Aquila_verreauxii%2C_at_Walter_Sisulu_National_Botanical_Garden%2C_Gauteng%2C_South_Africa_%2819609641425%29.jpg",
+    "credit": "Photo: a Verreaux's eagle in flight, South Africa. Derek Keats / Wikimedia Commons, CC BY 2.0",
+    "focus": [
+     0.45,
+     0.45
+    ]
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Below cliffs on Chad's Ennedi Plateau, in the Sahara, researchers found skulls of adult male baboons with talon punctures.\nThe shoulder bones had scrapes and rakes.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/060_Olive_baboon_walking_at_Queen_Elizabeth_National_Park_Photo_by_Giles_Laurent.jpg/3840px-060_Olive_baboon_walking_at_Queen_Elizabeth_National_Park_Photo_by_Giles_Laurent.jpg",
+    "credit": "Photo: an olive baboon in Uganda. Giles Laurent / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "The likely killers: Verreaux's eagles, with wings up to about 7 feet across.\nOne baboon weighed over 57 pounds (26 kg), judging by its bones.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Verreaux%27s_Eagle._Black_Eagle%2C_Aquila_verreauxii%2C_at_Walter_Sisulu_National_Botanical_Garden%2C_Gauteng%2C_South_Africa_%2819583430156%29.jpg/1920px-Verreaux%27s_Eagle._Black_Eagle%2C_Aquila_verreauxii%2C_at_Walter_Sisulu_National_Botanical_Garden%2C_Gauteng%2C_South_Africa_%2819583430156%29.jpg",
+    "credit": "Photo: a Verreaux's eagle in South Africa. Derek Keats / Wikimedia Commons, CC BY 2.0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Until now, no primate over about 29 pounds (13 kg) had been confirmed killed by a bird of prey.\nThis one was twice that."
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "The baboons seem to know. They stayed calm around other big raptors.\nWhen two Verreaux's eagles flew over, they gave alarm calls and dropped to safety.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Guelta_Maya%2C_Ennedi%2C_Tschad.jpg/3840px-Guelta_Maya%2C_Ennedi%2C_Tschad.jpg",
+    "credit": "Photo: a guelta (rock pool) in the Ennedi, Chad. Sven.oehm / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "Nobody has watched a kill yet, and scavenging isn't ruled out.\nBut scientists had assumed our ancestors were too big for eagles. The team now wants to know who else was on the menu."
+  }
+ ],
+ "caption": "Primates are picky about alarm calls. These baboons ignored most big birds, and panicked for just one.\n\nIn a study published November 18 in the American Journal of Biological Anthropology, a team led by primatologist Catherine Hobaiter of the University of St Andrews (Scotland) describes baboon remains found below sandstone cliffs on the Ennedi Plateau in northern Chad, an isolated population living in the Sahara. Skulls of adult male olive baboons carried talon punctures. Shoulder bones had scrapes and rakes.\n\nThe main suspect is the Verreaux's eagle, a big African eagle with wings up to about 7 feet across. One baboon was estimated at more than 57 pounds (26 kg). Before this, no primate heavier than about 29 pounds (13 kg) had been confirmed as a raptor kill.\n\n\"We saw the eagles while we were searching for the baboons, but we never imagined that they might be a threat to them,\" Hobaiter said.\n\nThe caveats are real: no one saw an attack, and the eagles may have fed on animals that were already dead or weak. Still, scientists have long assumed human ancestors outgrew eagle danger roughly 2.5 million years ago. These bones reopen that question.\n\nSource: University of St Andrews, American Journal of Biological Anthropology, Popular Science",
+ "hashtags": [
+  "#eagles",
+  "#baboons",
+  "#wildlife",
+  "#humanevolution",
+  "#science"
+ ]
+}
