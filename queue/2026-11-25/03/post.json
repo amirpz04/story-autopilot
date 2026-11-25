@@ -1,0 +1,91 @@
+{
+ "id": "2026-11-25-03",
+ "date": "2026-11-25",
+ "slot": null,
+ "reel_slot": 1,
+ "title": "US jury in Brooklyn convicts Huawei on 10 of 12 counts incl. trade secret theft conspiracy; acquitted of racketeering",
+ "category": "tech",
+ "tags": {
+  "headline": "verdict first",
+  "end": "quote twist",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 7,
+  "emotion": 7,
+  "shareability": 7,
+  "talkability": 9,
+  "no_context": 8,
+  "freshness": 8
+ },
+ "sources": [
+  {
+   "name": "Associated Press via PBS News",
+   "url": "https://www.pbs.org/newshour/nation/u-s-jury-finds-chinese-tech-giant-huawei-guilty-of-conspiracy-to-steal-trade-secrets-bank-fraud"
+  },
+  {
+   "name": "BNN Bloomberg (AP)",
+   "url": "https://www.bnnbloomberg.ca/business/company-news/2026/11/24/chinese-tech-giant-huawei-is-guilty-of-conspiracy-to-steal-trade-secrets-us-jury-finds/"
+  },
+  {
+   "name": "CNBC",
+   "url": "https://www.cnbc.com/2026/11/25/huawei-fraud-trade-trial.html"
+  }
+ ],
+ "verification": "AP via PBS (Nov 24, 2026): jury convicted Huawei of conspiracy to steal trade secrets and bank fraud, acquitted of racketeering conspiracy; accused of business in sanctioned countries incl. Iran and North Korea and false statements to officials and banks; indictment examples: routers sold with source code copied from a competitor, worker slipped into a competitor's booth at a Chicago trade show to photograph circuits, worker removed a robotic arm from a competitor's lab to photograph and measure it; victims per court records Cisco, Motorola Solutions, T-Mobile, Quintel USA, Fujitsu; charges announced early 2019; Meng Wanzhou arrested in Canada 2018, returned to China 2021 in prisoner swap; Heberlig: 'You can't steal a secret that isn't a secret', will appeal; Huawei barred from selling gear to US carriers; China: 'economic bullying'. BNN/AP: convicted on 10 of 12 counts, also acquitted of conspiracy to obstruct justice; sentencing next September; could face billions in penalties; trial began in September. Search summary of CNBC/DOJ coverage agrees on 10 of 12 and sanctions violations. Cisco photo used as illustration only (Cisco named as victim by court records; source-code copying acknowledged by Huawei's lawyer).",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "BROOKLYN",
+   "headline": "Guilty: a US jury says Huawei conspired to steal tech secrets.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/74/Sidejo_de_Huawei_en_%C5%9Cen%C4%B5eno_09.jpg/1920px-Sidejo_de_Huawei_en_%C5%9Cen%C4%B5eno_09.jpg",
+    "credit": "Photo: a showroom at Huawei's headquarters in Shenzhen, China. RG72 / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "On November 24, a federal jury in Brooklyn, New York, found the Chinese tech giant guilty on 10 of 12 counts.\nThey include bank fraud and breaking US sanctions.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Bklyn_fed_court_Tech_Pl_jeh.jpg/1920px-Bklyn_fed_court_Tech_Pl_jeh.jpg",
+    "credit": "Photo: the federal courthouse in Brooklyn. Jim.henderson / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "Prosecutors listed the moves: routers sold with a competitor's copied source code.\nA worker photographing the circuits inside a rival's device at a Chicago trade show.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Cisco-2503-router-hdr-0a.jpg/1920px-Cisco-2503-router-hdr-0a.jpg",
+    "credit": "Illustrative photo: the inside of a Cisco router (Cisco is one of the companies named in court records). Adamantios / Wikimedia Commons, CC BY-SA 3.0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "And once, prosecutors said, a Huawei worker took a robotic arm out of a competitor's lab.\nThe goal: photograph it and measure it."
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Huawei has been barred from selling network gear to US carriers for years.\nIt still sells phones worldwide and has moved into AI chips, a Chinese alternative to Nvidia's.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/Huawei_Store_%282024-11-30%29.jpg/1920px-Huawei_Store_%282024-11-30%29.jpg",
+    "credit": "Photo: a Huawei store in China, November 2024. 茅野ふたば / Wikimedia Commons, CC BY 4.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "The jury cleared Huawei of the biggest charge, racketeering.\nIts lawyer: \"You can't steal a secret that isn't a secret.\" Huawei will appeal."
+  }
+ ],
+ "caption": "A robot arm, a trade show booth and some copied code just added up to a criminal conviction.\n\nOn November 24, a federal jury in Brooklyn, New York, found Huawei Technologies guilty on 10 of the 12 counts it faced, including conspiracy to steal trade secrets, bank fraud and breaking US sanctions. Prosecutors said the company did business in sanctioned countries, including Iran and North Korea, and lied to US officials and banks to hide it.\n\nThe examples came from the indictment: routers sold with source code copied from a competitor, a worker who slipped into a rival's booth at a Chicago trade show to photograph circuits, and a worker who removed a robotic arm from a competitor's lab to photograph and measure it. Companies named in court records include Cisco, Motorola Solutions, T-Mobile and Fujitsu.\n\nThe jury acquitted Huawei of racketeering conspiracy, the charge that tied it all together, and of conspiring to obstruct justice. Huawei's lawyer called that a rejection of the government's story and said the company will appeal. China called the case \"economic bullying.\"\n\nSentencing is set for next September, and penalties could reach billions of dollars. Huawei was first charged in the US in early 2019.\n\nSource: Associated Press, PBS News, CNBC",
+ "hashtags": [
+  "#huawei",
+  "#tech",
+  "#technews",
+  "#china",
+  "#business"
+ ]
+}

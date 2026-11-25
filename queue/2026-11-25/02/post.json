@@ -1,0 +1,96 @@
+{
+ "id": "2026-11-25-02",
+ "date": "2026-11-25",
+ "slot": null,
+ "reel_slot": 5,
+ "title": "Copenhagen team maps full Taxol (paclitaxel) pathway and makes the cancer drug in tobacco plants",
+ "category": "science",
+ "tags": {
+  "headline": "irony",
+  "end": "reality check",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 9,
+  "surprise": 9,
+  "emotion": 8,
+  "shareability": 8,
+  "talkability": 7,
+  "no_context": 8,
+  "freshness": 8
+ },
+ "sources": [
+  {
+   "name": "University of Copenhagen via EurekAlert",
+   "url": "https://www.eurekalert.org/news-releases/1153014"
+  },
+  {
+   "name": "Medical Daily",
+   "url": "https://www.medicaldaily.com/copenhagen-researchers-produce-taxol-tobacco-plants-481685"
+  },
+  {
+   "name": "Nature Chemical Biology",
+   "url": "https://doi.org/10.1038/s41589-026-02376-x"
+  }
+ ],
+ "verification": "University of Copenhagen release (EurekAlert, Nov 23, 2026): study 'Complete biosynthesis and production of paclitaxel in a plant host' in Nature Chemical Biology (doi 10.1038/s41589-026-02376-x), senior author Sotirios Kampranis, co-first author Zhen Fan; taxol treats breast, ovarian and lung cancer; produced today by extracting related compounds from plants and converting them through complex chemical reactions; active compound in the yew's bark; 'there has never been a complete manual'; more than twenty yew genes put into the tobacco species Nicotiana benthamiana; taxol at levels comparable to yew bark; next challenge: stable plants that permanently carry the genes; yeast also possible; could make treatment cheaper in low-income countries. Medical Daily (Nov 2026): first found in Pacific yew bark; stripping bark kills slow-growing trees; for decades scientists did not know every enzyme; no numerical yield, no human testing; Stanford 2025 made precursor baccatin III in same plant, so I avoided 'first' and said 'full recipe'. Genes were introduced temporarily (agroinfiltration-style), consistent with the leaf picture.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "CHEMISTRY",
+   "headline": "Tobacco plants just made a cancer drug.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Nicotiana_benthamiana.jpg/1920px-Nicotiana_benthamiana.jpg",
+    "credit": "Photo: Nicotiana benthamiana, the tobacco species used in the study. Chandres / Wikimedia Commons, CC BY-SA 3.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "The drug is Taxol (paclitaxel), used against breast, ovarian and lung cancer.\nIt was first found in the bark of the Pacific yew tree.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/32/Taxus_brevifolia_%28Pacific_yew%29_-_Flickr_-_brewbooks_%283%29.jpg/1920px-Taxus_brevifolia_%28Pacific_yew%29_-_Flickr_-_brewbooks_%283%29.jpg",
+    "credit": "Photo: a Pacific yew. brewbooks / Wikimedia Commons, CC BY-SA 2.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "Stripping that bark kills slow-growing trees.\nToday the drug is made by pulling related compounds from yew plants and converting them through complex chemistry.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Taxus_brevifolia_bark_-_Flickr_-_theforestprimeval.jpg/1920px-Taxus_brevifolia_bark_-_Flickr_-_theforestprimeval.jpg",
+    "credit": "Photo: Pacific yew bark. JOE BLOWE / Wikimedia Commons, CC BY-SA 2.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Researchers in Copenhagen, Denmark, put more than 20 yew genes into the fast-growing plant.\nIts leaves made Taxol at levels comparable to yew bark.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Agroinfiltration.jpg/1920px-Agroinfiltration.jpg",
+    "credit": "Photo: genes being injected into a Nicotiana benthamiana leaf, a standard lab method. Chandres / Wikimedia Commons, CC BY 3.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "For decades nobody knew every step the tree uses to build this molecule.\nThe team now has the full recipe, published November 23.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Taxol%28Paclitaxel%293D.png/1920px-Taxol%28Paclitaxel%293D.png",
+    "credit": "Image: 3D model of the paclitaxel molecule. Itineranttrader / Wikimedia Commons, public domain"
+   }
+  },
+  {
+   "type": "end",
+   "text": "Don't expect tobacco-grown chemo soon. The genes must first become a permanent part of the plant.\nThe hope: a cheaper drug for poorer countries, grown in a cousin of the plant behind cigarettes."
+  }
+ ],
+ "caption": "A cousin of the plant behind cigarettes may one day help make chemotherapy cheaper.\n\nTaxol, also called paclitaxel, treats breast, ovarian and lung cancer. It was first found in the bark of the Pacific yew, and stripping bark kills slow-growing trees. Today it is made by extracting related compounds from yew plants and turning them into the drug through a long chain of chemical reactions.\n\nFor decades, scientists knew where the tree started and where it ended up, but not every step in between. On November 23, a team at the University of Copenhagen in Denmark published the complete pathway in Nature Chemical Biology. They put more than 20 yew genes into Nicotiana benthamiana, a fast-growing tobacco species used in labs, and its leaves made Taxol at levels comparable to yew bark.\n\n\"We now have a blueprint, essentially a recipe,\" said senior author Sotirios Kampranis. It could also work in yeast.\n\nThe catch: the genes had to be added to each new batch of plants. Greenhouse production needs plants that carry them permanently, and any new source would still need regulators' approval. Nothing changes for patients today.\n\nThe team's goal is a cheaper drug for countries that struggle to afford it.\n\nSource: University of Copenhagen, Nature Chemical Biology, Medical Daily",
+ "hashtags": [
+  "#cancer",
+  "#chemistry",
+  "#science",
+  "#medicine",
+  "#plants"
+ ]
+}

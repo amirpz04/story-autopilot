@@ -1,0 +1,91 @@
+{
+ "id": "2026-11-25-01",
+ "date": "2026-11-25",
+ "slot": null,
+ "reel_slot": 3,
+ "title": "Tidal bans and deletes fully AI-generated music from December 9 (about 29 million tracks)",
+ "category": "apps",
+ "tags": {
+  "headline": "withheld reveal",
+  "end": "challenge",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 9,
+  "surprise": 8,
+  "emotion": 7,
+  "shareability": 9,
+  "talkability": 9,
+  "no_context": 9,
+  "freshness": 7
+ },
+ "sources": [
+  {
+   "name": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/24/tidal-to-ban-and-remove-millions-of-ai-generated-tracks-as-ai-slop-inundates-music-streaming/"
+  },
+  {
+   "name": "Variety",
+   "url": "https://variety.com/2026/music/news/tidal-bans-ai-generated-music-tracks-1236956924/"
+  },
+  {
+   "name": "Tidal AI policy",
+   "url": "https://support.tidal.com/hc/en-us/articles/48031883413521-AI-Policy"
+  }
+ ],
+ "verification": "TechCrunch (Nov 24, 2026): Tidal will start removing fully AI-generated music on December 9; more than 29 million songs deleted by end of year; will reject roughly 80,000-85,000 tracks a day; distributors banned from delivering 100% AI tracks, metadata-flagged submissions rejected; AI-assisted songs still accepted; more than 43% of tracks uploaded in the past 90 days were AI; 27 million (6.3%) of catalog fully AI, 96% of those with no streams; demonetized AI songs in June; quote 'get buried'; Spotify and YouTube Music label instead; Bandcamp banned earlier. Variety (Nov 24): Robert Andersen, Tidal Lead at parent company Block, X thread quote '43% of tracks distributed to us in the last 90 days', 29 million tracks, 80,000-85,000 a day, 'We encourage our peers to follow suit'; Spotify removed 75 million spam tracks. Avoided 'first ever' (Bandcamp banned earlier); 29 million attributed to Tidal.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "MUSIC APPS",
+   "headline": "Nobody wrote these 29 million songs. Now they're getting deleted.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7d/Recording_studio_console_for_DAW_work_%282016-03-23_15.01.29_by_DayronV_%40pixabay_1290087%29.jpg/3840px-Recording_studio_console_for_DAW_work_%282016-03-23_15.01.29_by_DayronV_%40pixabay_1290087%29.jpg",
+    "credit": "Illustrative photo: a home recording setup. Dayron Villaverde / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Starting December 9, the music app Tidal will remove every song it judges to be 100% made by AI.\nNew ones will be turned away at the door.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d0/Woman_listening_music_on_her_smartphone_%2850810304846%29.jpg/3840px-Woman_listening_music_on_her_smartphone_%2850810304846%29.jpg",
+    "credit": "Illustrative photo: listening to music on a phone. Vu Hoang / Wikimedia Commons, CC BY 2.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "The flood was huge: 43% of the tracks sent to Tidal in the last 90 days were detected as AI-generated.\nIt expects to reject 80,000 to 85,000 songs a day.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Larry_Crane_mixing_on_Rupert_Neve_Designs_5088_console%2C_Jackpot%21_Recording_Studio_%28Portland%2C_Oregon%29.jpg/1920px-Larry_Crane_mixing_on_Rupert_Neve_Designs_5088_console%2C_Jackpot%21_Recording_Studio_%28Portland%2C_Oregon%29.jpg",
+    "credit": "Illustrative photo: a mixing session at Jackpot! Recording Studio, Portland, Oregon. VACANT FEVER / Wikimedia Commons, CC BY-SA 2.0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "And almost nobody was listening.\nTidal says 96% of the fully AI tracks had zero plays. Tidal says they buried real artists."
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "In June, Tidal stopped paying royalties on AI songs. The uploads kept coming.\nSongs made with some AI help can stay. Only fully machine-made ones go.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/Acoustic_Guitar_Solo_%28240361337%29.jpeg/1920px-Acoustic_Guitar_Solo_%28240361337%29.jpeg",
+    "credit": "Illustrative photo: a guitarist on stage. Barão Mochileiro / Wikimedia Commons, CC BY 3.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "Spotify and YouTube Music mostly just label AI music.\nTidal's message to them: \"We encourage our peers to follow suit.\"\nWould you want the same on your app?"
+  }
+ ],
+ "caption": "Almost half of the new music arriving at one streaming app was never touched by a human.\n\nOn November 24, Tidal said it will start removing songs it judges to be wholly AI-generated on December 9, and reject new ones on arrival. The company says more than 43% of the tracks delivered to it in the last 90 days were detected as AI-generated. It expects to turn away 80,000 to 85,000 songs a day, and says about 29 million tracks will be gone by the start of the new year.\n\nThe twist: hardly anyone played them. Tidal says 96% of its fully AI tracks had no streams at all. \"At this scale, the authentic music and artists that Tidal subscribers are looking to listen to and discover get buried,\" the company said.\n\nTidal, owned by Block, already stopped paying royalties on AI songs in June. That was not enough of a deterrent, said Robert Andersen, who leads Tidal. Music made with AI tools as helpers can stay. Distributors are now banned from sending fully AI tracks.\n\nBandcamp banned AI music earlier. Spotify and YouTube Music have mostly chosen labels instead, although Spotify says it has removed 75 million spam tracks.\n\nThe real question is whether the bigger apps follow.\n\nSource: TechCrunch, Variety, Tidal",
+ "hashtags": [
+  "#music",
+  "#ai",
+  "#streaming",
+  "#tidal",
+  "#musicnews"
+ ]
+}
