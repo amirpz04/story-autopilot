@@ -1,0 +1,90 @@
+{
+  "id": "2026-11-26-03",
+  "date": "2026-11-26",
+  "slot": null,
+  "reel_slot": 1,
+  "title": "RMIT/ANU antimony selenide reflective display holds a laser-drawn image for months without power",
+  "category": "materials",
+  "tags": {
+    "headline": "tease",
+    "end": "next step",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 8,
+    "emotion": 7,
+    "shareability": 7,
+    "talkability": 6,
+    "no_context": 8,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "TMOS (ARC Centre of Excellence for Transformative Meta-Optical Systems)",
+      "url": "https://tmos.org.au/news/new-rewritable-displays-can-show-an-image-for-months-without-power/"
+    },
+    {
+      "name": "EurekAlert",
+      "url": "https://www.eurekalert.org/news-releases/1153130"
+    },
+    {
+      "name": "Advanced Photonics Research",
+      "url": "https://doi.org/10.1002/adpr.70305"
+    }
+  ],
+  "verification": "TMOS release, also on EurekAlert (Nov 24, 2026), and the paper abstract (Le et al., Advanced Photonics Research, doi 10.1002/adpr.70305): RMIT and ANU researchers built a reflective display from the phase-change material antimony selenide (Sb2Se3); everyday displays need constant power to keep an image; short laser pulses melt-quench regions into the amorphous phase giving different colors; heating uniformly to ~200 C anneals back to blank, with no residual image at 5x magnification; koala, map of Australia and TMOS logo drawn; koala left three months under ambient conditions without noticeable change; Dr Phuong Yen Le: 'It still looks the same a year later'; colors from deep blues to greys and oranges; limitations: needs a laser, working on electrical operation and more colors. The release says the team is 'the first to report a reflective display based on Antimony Selenide'; I did not use 'first' on the slides. 200 C = 392 F.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "MATERIALS",
+      "headline": "This screen holds a picture for months. Power off.",
+      "image": {
+        "url": "https://tmos.org.au/wp-content/uploads/2026/11/Dr-Le-with-a-sample-with-large-image-of-Australian-map-landscape_low-res-scaled.jpg",
+        "credit": "Photo: Dr. Phuong Yen Le with a sample showing a map of Australia. RMIT University / TMOS, media image"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Researchers in Australia drew a koala, a map and a logo onto a thin film with a laser.\nThen they left the koala alone. Three months later, it hadn't noticeably changed.",
+      "image": {
+        "url": "https://tmos.org.au/wp-content/uploads/2026/11/Figure-for-Media-Release-all-logos.webp",
+        "credit": "Images: the test pictures drawn on the display, seen under a microscope. Le et al. / TMOS, media image",
+        "focus": [
+          0.25,
+          0.5
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "text": "The film is antimony selenide. A quick laser pulse jumbles its atoms, and they freeze that way, reflecting a new color.\nHeating it to about 390°F (200°C) wipes it clean."
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "Lead researcher Phuong Yen Le kept the koala.\n\"It still looks the same a year later,\" she says.",
+      "image": {
+        "url": "https://tmos.org.au/wp-content/uploads/2026/11/Koala_after1y_media.webp",
+        "credit": "Image: the laser-drawn koala a year later, under a microscope. Le et al. / TMOS, media image",
+        "focus": [
+          0.5,
+          0.35
+        ]
+      }
+    },
+    {
+      "type": "end",
+      "text": "For now it needs a laser and shows mostly blues, grays and oranges.\nNext: drawing with electricity instead.\nThe goal: screens that use power only when the picture changes."
+    }
+  ],
+  "caption": "Your phone, laptop and TV all burn power every second just to keep showing the same image.\n\nA team from RMIT University and the Australian National University, working in the Australian research center TMOS, tried something different. They built a reflective display from a thin film of antimony selenide, a \"phase change\" material whose atoms can be switched between a neat crystal and a jumbled mess.\n\nA short laser pulse melts a tiny spot, and it cools so fast the atoms freeze in the jumbled state. That spot bends light differently and shows a different color. To erase, they heat the whole film to about 390°F (200°C) and the atoms settle back into crystals. Under a microscope, no ghost of the old picture remained.\n\nThey drew a koala, a map of Australia and their logo. The koala sat for three months under normal room conditions without noticeable change.\n\nOnce the picture is set, holding it takes no power at all. That could mean signs, labels and screens that only use energy when something changes.\n\nIt is still a lab demo, written by laser, with a limited color range. The study was published in Advanced Photonics Research.\n\nSource: TMOS, EurekAlert",
+  "hashtags": [
+    "#materials",
+    "#science",
+    "#technology",
+    "#innovation",
+    "#displays"
+  ]
+}

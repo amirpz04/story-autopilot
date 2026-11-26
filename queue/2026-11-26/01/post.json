@@ -1,0 +1,103 @@
+{
+  "id": "2026-11-26-01",
+  "date": "2026-11-26",
+  "slot": null,
+  "reel_slot": 3,
+  "title": "FCC authorizes SpaceX to deploy up to 1 million Starmind orbital data center satellites",
+  "category": "tech",
+  "tags": {
+    "headline": "scale",
+    "end": "open question",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 9,
+    "surprise": 9,
+    "emotion": 7,
+    "shareability": 9,
+    "talkability": 9,
+    "no_context": 8,
+    "freshness": 8
+  },
+  "sources": [
+    {
+      "name": "Ars Technica",
+      "url": "https://arstechnica.com/space/2026/11/the-fcc-has-authorized-spacex-to-deploy-1-million-satellites/"
+    },
+    {
+      "name": "Spaceflight Now",
+      "url": "https://spaceflightnow.com/2026/11/26/fcc-green-lights-spacexs-plan-to-launch-1-million-starmind-data-center-satellites/"
+    }
+  ],
+  "verification": "Ars Technica (Eric Berger, Nov 25, 2026): FCC on Wednesday granted SpaceX conditional authorization for up to 1 million Starmind satellites as orbital data centers; would increase satellites in orbit roughly 50-fold; Carr statement; FCC refused the waiver for disposal into other orbits; called reentry atmosphere concerns 'speculative and not supported in the record'; about 1,500 public comments; AAS and Secure World Foundation objected. Spaceflight Now (Nov 26): order published day before Thanksgiving; application filed Jan 30, 2026; first satellite by Nov 25, 2033, full constellation by Nov 25, 2040; Musk expects first launches in Q3 2027; built with Nvidia; Starlink has nearly 11,200 satellites in orbit (Jonathan McDowell); wingspan 75 m (246 ft), height 30 m; SpaceX's Michael Nicholls: about 250 kW per satellite, roughly a rack of compute, clusters of about 10; optical links; AAS 'disheartened and dismayed'. Ars and SFN differ on intermediate milestones, so only first/final dates are used.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "SPACE + AI",
+      "headline": "1 million satellites just got approved. They're for AI.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/36/Falcon_9_Starlink_4-43_Launch_%288281484%29.jpg/1920px-Falcon_9_Starlink_4-43_Launch_%288281484%29.jpg",
+        "credit": "Photo: a Falcon 9 launching Starlink satellites. SpaceX / Wikimedia Commons, public domain"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "On November 25, the FCC, the US agency that licenses satellites, let SpaceX launch up to 1 million of them.\nThe network is called Starmind: data centers in orbit.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Starlink_%C3%BCber_dem_Rathaus_in_T%C3%BCbingen.jpg/1920px-Starlink_%C3%BCber_dem_Rathaus_in_T%C3%BCbingen.jpg",
+        "credit": "Photo: a train of Starlink satellites over Tübingen, Germany. Wikimedia Commons, CC0",
+        "marks": [
+          {
+            "type": "arrow",
+            "to": [
+              0.42,
+              0.3
+            ],
+            "label": "Starlink satellites",
+            "side": "t"
+          }
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "For scale: SpaceX's Starlink internet fleet has about 11,200 satellites in orbit.\nFully built, Starmind would multiply the number of satellites in orbit about 50 times.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Starlink_Satellites_Imaged_from_CTIO.jpg/1920px-Starlink_Satellites_Imaged_from_CTIO.jpg",
+        "credit": "Photo: Starlink satellites crossing a telescope image at Cerro Tololo, Chile. CTIO/NOIRLab/NSF/AURA/DECam DELVE Survey / Wikimedia Commons, CC BY 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Each satellite would be about one rack of AI computers, built with Nvidia, with wings 246 feet (75 m) across.\nThey'd fly in clusters of about 10.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Datacenter_Server_Racks_%2822370909788%29.jpg/1920px-Datacenter_Server_Racks_%2822370909788%29.jpg",
+        "credit": "Illustrative photo: server racks in a data center on the ground. Carl Lender / Wikimedia Commons, CC BY 2.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "Astronomers said they were \"disheartened and dismayed.\"\nThe FCC called worries about satellites polluting the air as they burn up \"speculative.\"",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/75/Trails_made_by_Starlink_satellites_%28iau-ann19035a%29.jpg/1920px-Trails_made_by_Starlink_satellites_%28iau-ann19035a%29.jpg",
+        "credit": "Photo: Starlink trails across a telescope image. NSF's National Optical-Infrared Astronomy Research Laboratory/CTIO/AURA/DELVE / IAU, CC BY 4.0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "SpaceX has until 2033 to launch the first one and until 2040 for the rest.\nElon Musk hopes to start in 2027.\nFaster AI or a darker night sky: which matters more to you?"
+    }
+  ],
+  "caption": "Elon Musk answered the FCC chairman on X: \"Much appreciated. This will be a great asset to America and the world.\"\n\nOn November 25, the day before Thanksgiving, the Federal Communications Commission gave SpaceX conditional approval for Starmind, a network of up to 1 million satellites that would work as AI data centers in orbit. SpaceX applied on January 30, 2026.\n\nThe plan is enormous. Each satellite would be roughly one rack of AI computers, drawing about 250 kilowatts, with wings 246 feet (75 m) across. They would fly in tight clusters linked by laser. SpaceX is building them with Nvidia.\n\nFCC Chairman Brendan Carr said data centers are essential to America's lead in AI.\n\nNot everyone agrees. The American Astronomical Society said it was \"disheartened and dismayed\" and fears for the night sky. About 1,500 public comments came in. The FCC called concerns about pollution from burning satellites \"speculative\" and said rocket launch emissions were outside its job.\n\nThere is one limit: SpaceX may not park dead satellites in other orbits without more approval.\n\nNobody has shown yet that computing in space pays off.\n\nSource: Ars Technica, Spaceflight Now",
+  "hashtags": [
+    "#SpaceX",
+    "#AI",
+    "#satellites",
+    "#space",
+    "#technology"
+  ]
+}

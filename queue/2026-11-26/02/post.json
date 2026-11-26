@@ -1,0 +1,95 @@
+{
+  "id": "2026-11-26-02",
+  "date": "2026-11-26",
+  "slot": null,
+  "reel_slot": 5,
+  "title": "OpenAI posts unreviewed proof that the matrix multiplication exponent is exactly 9/4",
+  "category": "ai",
+  "tags": {
+    "headline": "old mystery",
+    "end": "quote",
+    "lane": "news"
+  },
+  "scores": {
+    "hook": 8,
+    "surprise": 9,
+    "emotion": 8,
+    "shareability": 8,
+    "talkability": 9,
+    "no_context": 7,
+    "freshness": 9
+  },
+  "sources": [
+    {
+      "name": "OpenAI math repository (release history)",
+      "url": "https://github.com/openai/math/blob/main/history.md"
+    },
+    {
+      "name": "Scott Aaronson, Shtetl-Optimized",
+      "url": "https://scottaaronson.blog/?p=10379"
+    },
+    {
+      "name": "Kingy AI breakthrough tracker",
+      "url": "https://kingy.ai/mathematics-science-breakthrough-tracker/records/cs-matrix-multiplication-exponent-nine-quarters-2026/"
+    }
+  ],
+  "verification": "OpenAI repo history.md: Nov 24, 2026 release includes 'The matrix multiplication exponent is nine fourths' (also VP/VNP hierarchy papers and a disproof of the polynomial Hirsch conjecture). README: 730 manuscripts, ~42% of top-line results formalized, 'Some of the unformalized results could have issues.' Kingy tracker: Oct 2, 2026 OpenAI upper bound 9/4; Nov 24 claimed matching lower bound; not peer reviewed; no completed independent audit of the lower bound; attributed to an internal OpenAI model. Aaronson blog (Nov 25): Strassen first showed omega < 3 in the late 1960s (log2 7); colleagues often confident omega = 2; 'I never expected this challenge to be all that much easier than P != NP'; labs just upload papers to GitHub instead of press releases; quote 'straight-up answered'. Previous human record about 2.371 (laser method), per arXiv expositions (2610.30054). Algorithms are 'galactic' with huge hidden constants (arXiv 2610.28627), so no practical speedup. Wording kept as 'says' / 'claims'.",
+  "slides": [
+    {
+      "type": "cover",
+      "kicker": "AI + MATH",
+      "headline": "AI says it cracked a math mystery from 1969.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/NVIDIA_H100_%28%E6%9E%81%E5%AE%A2%E6%B9%BEGeekerwan%29_011.png/1920px-NVIDIA_H100_%28%E6%9E%81%E5%AE%A2%E6%B9%BEGeekerwan%29_011.png",
+        "credit": "Illustrative photo: Nvidia H100 AI chips. Geekerwan / Wikimedia Commons, CC BY 3.0",
+        "focus": [
+          0.6,
+          0.6
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "The mystery: how fast can a computer multiply two huge grids of numbers?\nThat one operation is what AI chips spend much of their time doing.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Multiplying_Matrices_Basic_Tutorial_Diagram_With_Colors.png/1920px-Multiplying_Matrices_Basic_Tutorial_Diagram_With_Colors.png",
+        "credit": "Diagram: multiplying two grids (matrices). User1042 / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "layout": "split",
+      "text": "The school method gets slow fast: the work grows with the grid size cubed.\nIn 1969, German mathematician Volker Strassen showed a faster way. The race for the true limit began.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/VStrassen_19791026_340.jpg/1920px-VStrassen_19791026_340.jpg",
+        "credit": "Photo: Volker Strassen in 1979. Peter van Emde Boas / Wikimedia Commons, CC BY-SA 4.0"
+      }
+    },
+    {
+      "type": "text",
+      "text": "Over five decades, humans pushed that \"cubed\" (3) down to about 2.371.\nMany experts bet the true answer was 2."
+    },
+    {
+      "type": "text",
+      "layout": "full",
+      "text": "On November 24, OpenAI posted a paper titled \"The matrix multiplication exponent is nine fourths.\"\nIts AI claims the exact answer, 2.25, and a proof that nothing can beat it.",
+      "image": {
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Rear_of_rack_at_NERSC_data_center_-_closeup.jpg/1920px-Rear_of_rack_at_NERSC_data_center_-_closeup.jpg",
+        "credit": "Illustrative photo: AI computing hardware at the NERSC data center. Wikimedia Commons, CC0"
+      }
+    },
+    {
+      "type": "end",
+      "text": "No one has fully checked it yet, and it won't speed up your laptop.\nBut computer scientist Scott Aaronson wrote: old questions are \"now just getting … straight-up answered.\""
+    }
+  ],
+  "caption": "OpenAI didn't hold a press conference. It just uploaded the files to GitHub.\n\nThe question is one of the oldest in computer science: how few steps does it take to multiply two big grids of numbers (matrices)? The school method's work grows with the size cubed. In 1969, Volker Strassen found a faster trick, and for 50+ years people chipped the exponent down to about 2.371. Many experts guessed the real limit was 2.\n\nIn October, OpenAI posted a method from its internal AI model that reaches 2.25. On November 24 it added the other half: a claimed proof that no method can go below 2.25. Together, that would make the answer exactly 9/4.\n\nThe same release claims other famous results, including a disproof of the polynomial Hirsch conjecture.\n\nThe catch: these papers are not peer reviewed, and nobody has finished an independent check of the new lower bound. OpenAI's own repository warns that some unformalized results \"could have issues.\" The method is also far too unwieldy to make real computers faster.\n\nScott Aaronson, a computer scientist at UT Austin, wrote that he never expected AI to manage this.\n\nSource: OpenAI, Shtetl-Optimized, Kingy AI",
+  "hashtags": [
+    "#AI",
+    "#math",
+    "#OpenAI",
+    "#computerscience",
+    "#science"
+  ]
+}
