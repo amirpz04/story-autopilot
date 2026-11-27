@@ -1,0 +1,100 @@
+{
+ "id": "2026-11-27-03",
+ "date": "2026-11-27",
+ "slot": null,
+ "reel_slot": 1,
+ "title": "North Korea shows its first chatbot, 'Fountain of Wisdom', limited to science and tech questions",
+ "category": "ai",
+ "variety_exception": "No strong fresh materials story turned up (top leads were company press or already covered); this new AI story from North Korea was clearly stronger.",
+ "tags": {
+  "headline": "forbidden detail",
+  "end": "contrast",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 9,
+  "surprise": 9,
+  "emotion": 7,
+  "shareability": 9,
+  "talkability": 8,
+  "no_context": 9,
+  "freshness": 8
+ },
+ "sources": [
+  {
+   "name": "New Atlas",
+   "url": "https://newatlas.com/ai-humanoids/north-korea-chatbot-fountain-wisdom/"
+  },
+  {
+   "name": "Reuters via Newsweek Japan",
+   "url": "https://www.newsweekjapan.jp/articles/-/340686"
+  },
+  {
+   "name": "38 North",
+   "url": "https://www.38north.org/2026/11/north-korea-shows-off-an-ai-chatbot/"
+  }
+ ],
+ "verification": "Reuters via Newsweek Japan (Nov 19, 2026): 'AI Service System 1.0 Fountain of Wisdom' by Kim Il Sung University's AI technology research institute and Pyongyang software firm Pulunhanul Trading; shown at National Informatization Achievements Exhibition in Pyongyang, Oct 19-30; Ryongnamsan TV broadcast Nov 17; answers science and tech questions in Korean or English and translates; screen warns against social/political questions; filter appears to screen questions before the AI engine; 38 North thinks it is more likely an open-weight US or Chinese model such as Gemma or Qwen; North Korea lacks large data centers. New Atlas (citing 38 North): full warning text 'Only questions related to science and technology may be asked. Do not ask questions with socio-political content or uncultured questions...'; classifier labels a 'factual knowledge question'; banner 'Development of our style generative AI model', 'our style' meaning developed internally; 38 North says the warning hints the engine is capable of more. 38 North page blocked our fetch (403); its findings are taken as quoted by Reuters and New Atlas.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "AI",
+   "headline": "North Korea built a chatbot. Don't ask it about politics.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/35/Kim_Il-sung_University_computer_room.jpg/3840px-Kim_Il-sung_University_computer_room.jpg",
+    "credit": "Photo: a computer room at Kim Il Sung University, Pyongyang. Uri Tours / Wikimedia Commons, CC BY-SA 2.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Its name: \"AI Service System 1.0, Fountain of Wisdom.\"\nNorth Korean TV showed it on November 17. It answers science and tech questions in Korean or English, and translates.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/Kim_Il_Sung_University_%2814298360901%29.jpg/3840px-Kim_Il_Sung_University_%2814298360901%29.jpg",
+    "credit": "Photo: Kim Il Sung University, Pyongyang, whose AI institute built the chatbot. Uri Tours / Wikimedia Commons, CC BY-SA 2.0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "A warning sits on the screen:\n\"Only questions related to science and technology may be asked. Do not ask questions with socio-political content or uncultured questions.\""
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "In the TV demo, a filter sorts each question before it reaches the AI.\n38 North, a US think tank that tracks North Korea, says the warning hints the AI could answer far more.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Pyongyang_Skyline_-_02.jpg/3840px-Pyongyang_Skyline_-_02.jpg",
+    "credit": "Photo: Pyongyang and the Taedong River. Jan Engelhardt / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "A banner at the show called it \"our style\" generative AI, North Korean for homemade.\nIt was unveiled at a tech exhibition in Pyongyang that ran October 19 to 30.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Pyongyang_Sci_Tech_Center_%2832294245084%29.jpg/1920px-Pyongyang_Sci_Tech_Center_%2832294245084%29.jpg",
+    "credit": "Illustrative photo: the sign of the Sci-Tech Complex, a science center in Pyongyang. jennybento / Wikimedia Commons, CC BY-SA 2.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Homemade may be a stretch.\n38 North thinks it probably runs on a free model from the US or China, like Google's Gemma or Alibaba's Qwen. And the country has no large data centers.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/North_Korea-Pyongyang-Kim_Il-sung_University-01.jpg/1920px-North_Korea-Pyongyang-Kim_Il-sung_University-01.jpg",
+    "credit": "Photo: Kim Il Sung University, Pyongyang. (Stephan) at Flickr / Wikimedia Commons, CC BY-SA 3.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "The rest of the world argues over what chatbots should refuse to answer.\nNorth Korea printed its answer right on the screen."
+  }
+ ],
+ "caption": "Most chatbots try to answer anything. North Korea's first one comes with a list of things you're not allowed to ask.\n\nOn November 17, North Korean state TV channel Ryongnamsan TV showed \"AI Service System 1.0, Fountain of Wisdom.\" It was built by Kim Il Sung University's AI research institute and a Pyongyang tech company, and it was on display at a national IT exhibition in the capital from October 19 to 30.\n\nIt answers science and technology questions in Korean or English and can translate. Everything else is off limits. A warning on the screen says not to ask \"questions with socio-political content or uncultured questions.\" In the demo, a filter checks each question before it ever reaches the AI.\n\nThe analysts at 38 North, a US think tank that studies North Korea, doubt it was built from scratch. They think it more likely sits on a free \"open-weight\" model from the US or China, such as Google's Gemma or Alibaba's Qwen. North Korea also lacks big data centers, which limits how advanced its AI can get.\n\nIt's a chatbot built around what it won't say.\n\nSource: Reuters, New Atlas, 38 North",
+ "hashtags": [
+  "#ai",
+  "#northkorea",
+  "#chatbot",
+  "#technews"
+ ]
+}

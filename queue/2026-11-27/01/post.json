@@ -1,0 +1,100 @@
+{
+ "id": "2026-11-27-01",
+ "date": "2026-11-27",
+ "slot": null,
+ "reel_slot": 3,
+ "title": "Nvidia board reinstates Jensen Huang as CEO 11 days after his resignation",
+ "category": "business",
+ "tags": {
+  "headline": "reversal",
+  "end": "quote",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 9,
+  "surprise": 9,
+  "emotion": 7,
+  "shareability": 9,
+  "talkability": 9,
+  "no_context": 8,
+  "freshness": 7
+ },
+ "sources": [
+  {
+   "name": "Nvidia newsroom",
+   "url": "https://nvidianews.nvidia.com/news/nvidia-board-reinstates-jensen-huang-as-president-ceo-and-board-director"
+  },
+  {
+   "name": "Ars Technica",
+   "url": "https://arstechnica.com/ai/2026/11/jensen-huang-reinstated-as-nvidia-ceo-board-chair/"
+  },
+  {
+   "name": "Reuters via Khaleej Times",
+   "url": "https://www.khaleejtimes.com/business/nvidia-wont-rehire-jensen-huang-sec-probing-chipmaker"
+  }
+ ],
+ "verification": "Nvidia press release (Nov 23, 2026): board voted unanimously to reinstate Huang as President, CEO and board member, effective immediately; board 'received input from senior levels of the United States government' and is 'confident that Mr. Huang's reinstatement poses no national security risk'; Huang quote 'I can't wait to get back to work'; independent-director committee investigating 'recent reporting that Mr. Huang has been the target of a foreign intelligence effort', investigation 'will proceed to conclusion'; new National Security and Export Control Committee; search for a new Chief Compliance Officer; Harvey Jones remains chair. Ars Technica (Kyle Orland, Nov 23): reinstated 11 days after resigning; Trump on Truth Social 'I hope the Board of Nvidia rehires Jensen Huang' and afterwards called it 'the correct and proper decision'; stock had sunk roughly 25% since the resignation and was up about 30% in early trading; founding 1993. Reuters via Khaleej Times (Nov 18): chairman Harvey Jones said on the Tuesday (Nov 17) investor call the company would not rehire Huang. Resignation date Nov 12 from our Nov 16 post (Nvidia 8-K). Named woman in spy reports deliberately left out.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "NVIDIA",
+   "headline": "He quit Nvidia. 11 days later, he was back in charge.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Jensen_huang_stanford_2026-04-30_011.jpg/1920px-Jensen_huang_stanford_2026-04-30_011.jpg",
+    "credit": "Photo: Jensen Huang at Stanford, April 2026. Anders Eidesvik / Wikimedia Commons, CC BY 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "On November 23, Nvidia's board voted unanimously to make Jensen Huang CEO again, effective immediately.\nSix days earlier, its chairman had said Nvidia would not rehire him.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Nvdia_Endeavor_Grand_Opening_entry.jpg/3840px-Nvdia_Endeavor_Grand_Opening_entry.jpg",
+    "credit": "Photo: Nvidia's Endeavor building, Santa Clara, California. Daniel J. Prostak / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "What changed? The board says it got input from \"senior levels\" of the US government.\nPresident Trump had publicly urged the rehire. He called it \"the correct and proper decision.\"",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/North_Fa%C3%A7ade_White_House.JPG/1920px-North_Fa%C3%A7ade_White_House.JPG",
+    "credit": "Photo: the White House, Washington, DC. Nishkid64 / Wikimedia Commons, public domain"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Investors cheered.\nNvidia's stock had sunk about 25% after he left. On the news it jumped about 30% in early trading.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Nasdaq_MarketSite_%2851494550508%29.jpg/1920px-Nasdaq_MarketSite_%2851494550508%29.jpg",
+    "credit": "Photo: Nasdaq MarketSite, Times Square, New York, where Nvidia stock trades. ajay_suresh / Wikimedia Commons, CC BY 2.0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "The scandal isn't over.\nReports say Huang was the target of a foreign intelligence effort. The board says its independent investigation will \"proceed to conclusion.\""
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Nvidia is also adding a board committee for national security and export rules.\nAnd it's hiring for a brand-new job: chief compliance officer.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Jensen_huang_stanford_2026-04-30_018.jpg/3840px-Jensen_huang_stanford_2026-04-30_018.jpg",
+    "credit": "Photo: Jensen Huang at Stanford, April 2026. Anders Eidesvik / Wikimedia Commons, CC BY 4.0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "Huang has run Nvidia since founding it in 1993. His exit lasted 11 days.\nHis words on returning: \"I can't wait to get back to work.\""
+  }
+ ],
+ "caption": "Six days. That's how long \"we will not rehire him\" lasted at the world's most famous AI chip company.\n\nJensen Huang co-founded Nvidia in 1993 and led it ever since. On November 12 he resigned after admitting an affair; reports then described a second relationship. On November 17, chairman Harvey Jones told investors the company would not bring him back.\n\nThen, on November 23, the board voted unanimously to reinstate him as CEO and board member, effective immediately. Nvidia said it had received input from \"senior levels of the United States government\" and is confident his return \"poses no national security risk.\" President Trump had urged the move on Truth Social and later called it \"the correct and proper decision.\"\n\nThe stock had lost about a quarter of its value after he left. It jumped about 30% in early trading on the news.\n\nThe story isn't finished. A committee of independent directors is still investigating reports that Huang was the target of a foreign intelligence effort, and Nvidia is creating a national security and export control committee and a new chief compliance officer job. Government investigations continue.\n\nSix days from \"no\" to \"welcome back.\"\n\nSource: Nvidia, Ars Technica, Reuters",
+ "hashtags": [
+  "#nvidia",
+  "#jensenhuang",
+  "#technews",
+  "#business",
+  "#ai"
+ ]
+}

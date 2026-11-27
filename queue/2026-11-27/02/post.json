@@ -1,0 +1,100 @@
+{
+ "id": "2026-11-27-02",
+ "date": "2026-11-27",
+ "slot": null,
+ "reel_slot": 5,
+ "title": "ESA's Hera reveals stadium-sized DART crater on Dimorphos, tumbling moonlet and boulder swarm",
+ "category": "space",
+ "tags": {
+  "headline": "before/after",
+  "end": "next step",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 9,
+  "surprise": 8,
+  "emotion": 8,
+  "shareability": 8,
+  "talkability": 7,
+  "no_context": 8,
+  "freshness": 8
+ },
+ "sources": [
+  {
+   "name": "ESA",
+   "url": "https://www.esa.int/articles/about-us/directorates/operations/space-safety/hera/hera-reveals-stadium-sized-asteroid-crater-left-after-spacecraft-impact"
+  },
+  {
+   "name": "ESA image release",
+   "url": "https://www.esa.int/media/didymos-and-dimorphos-with-dart-impact-site-visible"
+  },
+  {
+   "name": "NASA DART mission",
+   "url": "https://science.nasa.gov/mission/dart/"
+  }
+ ],
+ "verification": "ESA release (Nov 25, 2026): DART hit Dimorphos on 26 September 2022, shortening its orbit by a much greater than predicted 33 minutes; face struck now flattened into a stadium-sized crater that extends across the asteroid's entire width (Patrick Michel quote 'Much to our surprise the answer turns out to be all three at once!'); rest of the boulder fields unchanged; Dimorphos 'tumbling wildly in its orbit' (Michael Kueppers); hundreds of previously unknown boulders just a few metres in size orbit the pair; Hera small-car-sized, about 25-30 km away; December approach to about 13 km; January 2027 deployment of two shoebox-sized CubeSats; Juventas radar will probe an asteroid's interior for the first time and later attempt a landing. ESA image page: Dimorphos 151 m, Didymos 730 m, image taken 7 November from 29 km, 2.7 m per pixel. NASA DART page: impact date Sept 26, 2022, first mission to demonstrate deflection by kinetic impact. Speed and '25 times' figures left out (only one source).",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "SPACE",
+   "headline": "NASA rammed this asteroid in 2022. Now we see the scar.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/ba/Stacked_image_of_Dimorphos_true_orientation.jpg/3840px-Stacked_image_of_Dimorphos_true_orientation.jpg",
+    "credit": "Photo: Dimorphos seconds before DART hit it, 2022. NASA DART images, stacked by Eydeet / Wikimedia Commons, public domain"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Europe's Hera spacecraft just got there.\nThe side DART hit is now one giant crater, the size of a sports stadium and as wide as the whole asteroid.",
+   "image": {
+    "url": "https://media.esa.int/global/public/common/misc/2026/11/hera-afc-dimorphos-crater-261107.png",
+    "credit": "Image: Dimorphos (front) and Didymos from Hera, November 7, 2026. ESA"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "Rewind to September 26, 2022.\nNASA flew its DART probe straight into Dimorphos on purpose, to test whether we could push an asteroid off course.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bc/NASA%E2%80%99s_Double_Asteroid_Redirection_Test_%28DART%29_command_team_at_Johns_Hopkins_University_%28LRC-2022-0926-H1_P_DART-000423%29.tiff/lossy-page1-3840px-NASA%E2%80%99s_Double_Asteroid_Redirection_Test_%28DART%29_command_team_at_Johns_Hopkins_University_%28LRC-2022-0926-H1_P_DART-000423%29.tiff.jpg",
+    "credit": "Photo: DART's command team at Johns Hopkins APL on impact day, September 26, 2022. NASA/Dave C. Bowman / Wikimedia Commons, public domain"
+   }
+  },
+  {
+   "type": "text",
+   "text": "It worked better than predicted.\nDimorphos, about 500 feet (151 m) wide, circles a bigger asteroid. The hit made that orbit 33 minutes shorter."
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Scientists argued: did it leave a crater, change the asteroid's shape, or barely change it?\n\"Much to our surprise the answer turns out to be all three at once,\" says Hera's lead scientist Patrick Michel.",
+   "image": {
+    "url": "https://media.esa.int/global/public/common/misc/2026/11/afc-tiri-comparison-261109.png",
+    "credit": "Image: Didymos and Dimorphos seen by Hera's camera and by JAXA's heat camera TIRI. ESA/JAXA"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Two more surprises.\nDimorphos is now tumbling wildly in its orbit. And hundreds of unknown boulders, a few yards across, circle the pair. Each dotted trail here is one.",
+   "image": {
+    "url": "https://media.esa.int/global/public/common/misc/2026/11/hsh-long-exposure-261103.png",
+    "credit": "Image: 11 long exposures from Hera's Hyperscout H, November 6, 2026, asteroids removed. ESA"
+   }
+  },
+  {
+   "type": "end",
+   "text": "Next, Hera moves closer.\nIn January it releases two shoebox-sized probes. One will use radar to look inside an asteroid for the first time, then try to land."
+  }
+ ],
+ "caption": "For four years, nobody knew what NASA's DART crash actually did to the asteroid it hit. Now we can see it.\n\nOn September 26, 2022, NASA deliberately flew its DART spacecraft into Dimorphos, a small asteroid that circles a bigger one called Didymos. It was humanity's first planetary defense test. Telescopes on Earth showed it worked: the orbit got 33 minutes shorter, much more than predicted.\n\nThis month the European Space Agency's Hera spacecraft, about the size of a small car, took its first close-ups from about 18 miles (29 km) away. They show the face DART hit flattened into a stadium-sized crater that stretches across the asteroid's entire width. The rest of Dimorphos looks just as it did in 2022.\n\nThere were surprises too. Dimorphos now tumbles wildly in its orbit, and hundreds of boulders a few yards across circle the pair.\n\nIn December Hera moves to about 8 miles (13 km). In January it releases two CubeSats, Juventas and Milani. Juventas carries the smallest radar ever flown in space.\n\nWhy it matters: to protect Earth from a real asteroid someday, scientists need to know exactly how a hit changes one.\n\nSource: ESA, NASA",
+ "hashtags": [
+  "#space",
+  "#asteroid",
+  "#nasa",
+  "#esa",
+  "#planetarydefense"
+ ]
+}
