@@ -1145,12 +1145,17 @@
   },
   "2026-11-27-01": {
     "attempts": 0,
+    "cover": "frame at 2.2 s",
     "credit": "In Search Of Solitude by Scott Buckley - released under CC-BY 4.0. www.scottbuckley.com.au",
+    "error": "",
     "file": "20261127-093609-2026-11-27-01.mp4",
     "made_at": "2026-11-27T09:39:03.295002+00:00",
+    "media_id": "18122027054328183",
     "music": "in-search-of-solitude.m4a",
+    "permalink": "https://www.instagram.com/reel/DgQl4PQvefk/",
+    "posted_at": "2026-11-27T20:58:58.709367+00:00",
     "raw_url": "https://raw.githubusercontent.com/amirpz04/story-autopilot/0effa16dccd82ab158b7948f568d47e9a0c868b7/20261127-093609-2026-11-27-01.mp4",
-    "status": "made",
+    "status": "posted",
     "url": "https://cdn.jsdelivr.net/gh/amirpz04/story-autopilot@0effa16dccd82ab158b7948f568d47e9a0c868b7/20261127-093609-2026-11-27-01.mp4"
   },
   "2026-11-27-02": {
