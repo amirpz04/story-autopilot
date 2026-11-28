@@ -1,0 +1,100 @@
+{
+ "id": "2026-11-28-01",
+ "date": "2026-11-28",
+ "slot": null,
+ "reel_slot": 3,
+ "title": "James T. Russell, physicist whose 1965 optical digital recording idea paved the way for the CD, dies at 95 without royalties",
+ "category": "inventions",
+ "tags": {
+  "headline": "injustice",
+  "end": "his own words",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 9,
+  "surprise": 8,
+  "emotion": 9,
+  "shareability": 9,
+  "talkability": 8,
+  "no_context": 9,
+  "freshness": 8
+ },
+ "sources": [
+  {
+   "name": "The Seattle Times via The Daily Chronicle",
+   "url": "https://www.chronline.com/stories/washington-state-inventor-who-pioneered-cd-dvd-technology-dies-at-95,412334"
+  },
+  {
+   "name": "The Seattle Times (2004 profile)",
+   "url": "https://archive.seattletimes.com/archive/20041129/cdman29/scientists-invention-was-let-go-for-a-song"
+  },
+  {
+   "name": "That Eric Alper",
+   "url": "https://www.thatericalper.com/2026/11/25/james-t-russell-physicist-whose-optical-digital-recording-helped-pave-the-way-for-the-compact-disc-dies-at-95/"
+  }
+ ],
+ "verification": "Seattle Times obituary by Ann Duan (TNS, posted by The Daily Chronicle Nov 25, 2026): died peacefully in Bellevue this month per his family, age 95; born Bremerton 1931; Reed physics 1953; GE Richland then Battelle Northwest; more than 70 patents; first digital-to-optical recording and playback system later licensed by Sony and Philips; 'didn't earn royalties, never made a fortune, and was rarely credited'; vinyl popping and hissing; final patent at 88 for a device measuring gases exhaled by anesthesia patients. That Eric Alper (Nov 25): moved to Battelle PNNL in Richland 1965 and conceived the optical digital system that year; frustrated by records wearing out; first patents 1966 and 1969; first working prototype 1973; about 100 companies including Philips and Sony visited 1973-75. Seattle Times 2004: Optical Recording Corp. (Toronto) bought the patents, won royalty agreements from Sony and Philips and over $30 million from Time Warner; Russell was let go before the settlements and got none of it; quote 'I didn't expect to get nothing.' Debate over how much his patents shaped the CD noted, so slides say 'paved the way' and 'licensed', not 'invented the CD'. Laser-in-prototype claim left out (sources differ).",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "1931-2026",
+   "headline": "His 1965 idea paved the way for CDs. He got no royalties.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/CDs%2C_Seitenansicht_--_2017_--_2212.jpg/3840px-CDs%2C_Seitenansicht_--_2017_--_2212.jpg",
+    "credit": "Photo: a stack of compact discs. Dietmar Rabich / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "James T. Russell died this month in Bellevue, Washington. He was 95.\nA lifelong music fan, he hated how vinyl records popped, hissed and wore down with every play.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ef/Close-up_of_a_woman_putting_a_turntable_needle_on_the_vinyl.jpg/3840px-Close-up_of_a_woman_putting_a_turntable_needle_on_the_vinyl.jpg",
+    "credit": "Illustrative photo: a turntable needle on vinyl. Shixart1985 / Wikimedia Commons, CC BY 2.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "In 1965, at a lab in Richland, Washington, he asked: what if a beam of light read music stored as numbers?\nNo needle would ever scrape the disc.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dc/CD_Optical_laser_head_Pickup_Unit_%28OPU%29.jpg/3840px-CD_Optical_laser_head_Pickup_Unit_%28OPU%29.jpg",
+    "credit": "Illustrative photo: the optical pickup that reads a CD. Jacopo Werther / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "He filed his first patents in 1966 and 1969. His first working prototype ran in 1973.\nBetween 1973 and 1975, about 100 companies came to see it, Sony and Philips among them."
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Sony and Philips brought the CD to stores in the early 1980s and got the credit.\nThe technology Russell built was later licensed by both companies.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/2/24/CDP101a.jpg",
+    "credit": "Photo: Sony's CDP-101, an early CD player from 1982. Atreyu / Wikimedia Commons, CC BY 3.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "A Toronto company that bought his patents won royalty deals from Sony and Philips, plus over $30 million from Time Warner.\nRussell had been let go before the settlements. He got none of it.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Compact-disc_in_de_handel%2C_Bestanddeelnr_932-5170.jpg/1920px-Compact-disc_in_de_handel%2C_Bestanddeelnr_932-5170.jpg",
+    "credit": "Photo: Compact discs on sale in the Netherlands, 1983. Marcel Antonisse / Anefo / Nationaal Archief / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "\"I didn't expect to get nothing,\" he told The Seattle Times in 2004.\nHe kept inventing anyway. His last patent, a device that measures the gases patients breathe out under anesthesia, came at age 88."
+  }
+ ],
+ "caption": "The man who first pictured music read by a beam of light never got rich from it.\n\nJames T. Russell, a physicist from Bremerton, Washington, died this month in Bellevue at 95, his family said.\n\nHe loved music and hated what records did to it: every play brought pops, hiss and a little more wear. In 1965, after joining the Battelle lab in Richland, Washington, he conceived a system that stored sound as digital code on a disc and read it with light.\n\nHe filed patents in 1966 and 1969 and had a working prototype by 1973. Around 100 companies came to look, including Sony and Philips, who went on to launch the compact disc and take the credit. His work was later licensed by both.\n\nThe money went elsewhere. A Toronto company that bought his patents won royalty agreements from Sony and Philips and more than $30 million from Time Warner, according to The Seattle Times. Russell had been let go before the settlements. Historians still argue how much his patents shaped the final CD design, but his place at the start of the story is not in doubt.\n\nHe ended up with more than 70 patents, the last one at 88.\n\nSource: The Seattle Times, The Daily Chronicle, That Eric Alper",
+ "hashtags": [
+  "#inventions",
+  "#music",
+  "#history",
+  "#technology",
+  "#compactdisc"
+ ]
+}

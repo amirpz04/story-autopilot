@@ -1,0 +1,108 @@
+{
+ "id": "2026-11-28-03",
+ "date": "2026-11-28",
+ "slot": null,
+ "reel_slot": 1,
+ "title": "Divers find copper-alloy chain mail on Gribshunden (Griffin), King Hans's flagship that exploded off Sweden in 1495",
+ "category": "history",
+ "tags": {
+  "headline": "then and now",
+  "end": "twist",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 8,
+  "surprise": 7,
+  "emotion": 7,
+  "shareability": 7,
+  "talkability": 6,
+  "no_context": 8,
+  "freshness": 8
+ },
+ "sources": [
+  {
+   "name": "University of Southampton",
+   "url": "https://www.southampton.ac.uk/news/2026/11/medieval-armour-discovered-on-centuries-old-danish-shipwreck.page"
+  },
+  {
+   "name": "Live Science",
+   "url": "https://www.livescience.com/archaeology/medieval-chain-mail-discovered-during-underwater-excavation-of-15th-century-floating-castle-that-sank-off-sweden"
+  },
+  {
+   "name": "Ancient Origins",
+   "url": "https://www.ancient-origins.net/news-history-archaeology/gribshunden-riveted-chain-mail-forecastle-ammunition-chest-00128465"
+  },
+  {
+   "name": "PLOS ONE (Larsson and Foley, 2023)",
+   "url": "https://doi.org/10.1371/journal.pone.0281010"
+  }
+ ],
+ "verification": "University of Southampton release (Nov 24, 2026): team from Southampton, Sodertorn and Stockholm universities found well-preserved fragments of high-quality copper-alloy chain mail on Griffin (Gribshunden) while documenting an ammunition-tool chest near the forecastle; quotes from Rodrigo Pacheco-Ruiz ('The remains of the armour were just below the forecastle') and Rolf Fabricius Warming ('doesn't necessarily indicate an association with a high-status individual'; armor often repaired or reused; analysis may reveal place of origin); historical sources say German mercenaries (Landsknechts) aboard; ship exploded, caught fire and sank off Sweden in 1495. Ancient Origins (citing dpa, Live Science, Larsson and Foley 2023 PLOS ONE, Sodertorn University, Store norske leksikon): recorded early October 2026; King Hans ashore; ship anchored off Stora Ekon near Ronneby; Hans heading to Kalmar hoping the Swedish Council would elect him king; Sten Sture kept him from the throne until 1497; wreck found by divers in the 1970s and identified about 20 years later; chest held tools for casting lead balls for early handguns; Live Science: about 150 mercenaries.",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "1495",
+   "headline": "A king's warship exploded in 1495. Divers just found chain mail.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bd/Gribshunden_%28Blekinge_Museum%29.jpg/3840px-Gribshunden_%28Blekinge_Museum%29.jpg",
+    "credit": "Photo: display of the Griffin's carved sea-monster figurehead, Blekinge Museum, Sweden. Orf3us / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "In October, divers found fragments of fine copper-alloy chain mail on the wreck of the Griffin, or Gribshunden, off southern Sweden.\nThey lay just below the raised deck at the bow.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Shirt_of_Mail_MET_DP334282.jpg/1920px-Shirt_of_Mail_MET_DP334282.jpg",
+    "credit": "Illustrative photo: a mail shirt at The Metropolitan Museum of Art / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "The ship belonged to King Hans of Denmark and Norway.\nIn 1495 he was sailing to Kalmar, hoping Sweden's council would make him king of Sweden too.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Hans%2C_King_of_Denmark%2C_Norway_and_Sweden_%28Joseph_Brecheisen%29_-_Nationalmuseum_-_28489.tif/lossy-page1-1920px-Hans%2C_King_of_Denmark%2C_Norway_and_Sweden_%28Joseph_Brecheisen%29_-_Nationalmuseum_-_28489.tif.jpg",
+    "credit": "Image: King Hans, engraving by Joseph Brecheisen (18th century). Nationalmuseum, Sweden / Wikimedia Commons, public domain"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "While Hans was ashore near Ronneby, the ship exploded, caught fire and sank.\nDivers found the wreck in the 1970s. It took about 20 more years to work out what it was.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Blekinge_archipelago_JF.jpg/3840px-Blekinge_archipelago_JF.jpg",
+    "credit": "Photo: the Blekinge archipelago, southern Sweden. Wolves201 / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "Whose armor was it? Historical records say German mercenaries were on board, about 150 by one count.\nThe mail lay beside a chest of tools for casting lead balls for early handguns."
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "The project lead is careful: fine armor \"doesn't necessarily indicate an association with a high-status individual.\"\nMail like this was often repaired and reused for years.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Stern_view_of_Gribshunden_shipwreck_with_diver.jpg/960px-Stern_view_of_Gribshunden_shipwreck_with_diver.jpg",
+    "credit": "Photo: a diver over the stern of the Gribshunden wreck. Ishkabibble / Wikimedia Commons, CC BY-SA 4.0",
+    "focus": [
+     0.4,
+     0.4
+    ]
+   }
+  },
+  {
+   "type": "end",
+   "text": "Labs will now test the metal to learn where it was made.\nAnd Hans? He did become king of Sweden, in 1497, two years after his flagship went down."
+  }
+ ],
+ "caption": "The armor survived 531 years underwater. The ship it sailed on did not survive a single afternoon at anchor.\n\nIn October, maritime archaeologists from the University of Southampton, Sodertorn University and Stockholm University were documenting a wooden chest on the wreck of the Griffin, known in Danish as Gribshunden. Next to it, just below the forecastle, they found well-preserved fragments of high-quality chain mail made of copper alloy. The find was announced on November 24.\n\nThe Griffin was the flagship of King Hans of Denmark and Norway. In the summer of 1495 it anchored off Ronneby in southern Sweden while Hans went ashore. He was on his way to Kalmar, hoping to be chosen as king of Sweden. Then the ship exploded, burned and sank in about 33 feet (10 m) of water.\n\nRecords say German mercenaries were aboard, and the chest beside the mail held tools for making lead shot for early handguns. That makes the soldiers likely owners, but the team says the case is not closed.\n\nTests on the metal may reveal where the armor was forged.\n\nSource: University of Southampton, Live Science, Ancient Origins",
+ "hashtags": [
+  "#history",
+  "#archaeology",
+  "#shipwreck",
+  "#medieval",
+  "#sweden"
+ ]
+}

@@ -1,0 +1,109 @@
+{
+ "id": "2026-11-28-02",
+ "date": "2026-11-28",
+ "slot": null,
+ "reel_slot": 5,
+ "title": "Grand Theft Auto VI sells $3.79 billion on day one; PS5 consoles sell out at Amazon and PlayStation Direct",
+ "category": "business",
+ "variety_exception": "Assigned subject materials had only recycled August studies after two entry points; took the backup subject business with the biggest launch of the year.",
+ "tags": {
+  "headline": "big number",
+  "end": "question",
+  "lane": "news"
+ },
+ "scores": {
+  "hook": 9,
+  "surprise": 8,
+  "emotion": 7,
+  "shareability": 9,
+  "talkability": 9,
+  "no_context": 9,
+  "freshness": 7
+ },
+ "sources": [
+  {
+   "name": "Take-Two Interactive",
+   "url": "https://www.take2games.com/ir/news/grand-theft-auto-vi-shatters-entertainment-box-office-records"
+  },
+  {
+   "name": "Business Wire",
+   "url": "https://www.businesswire.com/news/home/20261120446139/en/Grand-Theft-Auto-VI-Shatters-Entertainment-Box-Office-Records-with-%243.79-Billion-in-Day-One-Retail-Sales"
+  },
+  {
+   "name": "Game Rant",
+   "url": "https://gamerant.com/ps5-sold-out-gta-6-black-friday-2026/"
+  },
+  {
+   "name": "Quartz",
+   "url": "https://qz.com/gta-vi-day-one-sales-record-take-two-112326"
+  },
+  {
+   "name": "Dexerto",
+   "url": "https://dexerto.com/gta/former-rockstar-dev-says-threat-of-unofficial-ai-ports-could-force-gta-6-onto-pc-sooner-3425613"
+  }
+ ],
+ "verification": "Take-Two release (Business Wire, Nov 20, 2026): $3.79 billion day-one retail sales worldwide, company estimate through end of day Nov 19; 32.5 million units sold before release, a record across all platforms; called the biggest entertainment launch in history; Sam Houser quote 'We are incredibly humbled by the response from players around the world.' Coverage (Quartz, Make Tech Easier): total includes months of pre-orders; GTA V's 2013 first day was $800 million-plus over 24 hours, so 'almost five times' (3.79/0.8 = 4.7) with the window caveat on the slide. Game Rant (Nov 25): PS5 consoles sold out at major US retailers including Amazon and PlayStation Direct less than a week after the Nov 19 launch; PS5 Pro $899.99, resellers around $1,500; Circana: US PS5 sales week ending Nov 14 more than 2.4 times a year earlier. Platforms PS5 and Xbox Series X|S, no PC release date (multiple outlets). AI clone and Strauss Zelnick 'strengthening legal and technical defenses' from Dexerto/IBTimes coverage. Unofficial Sony/Alinea player counts left out (could not verify).",
+ "slides": [
+  {
+   "type": "cover",
+   "kicker": "GAMING",
+   "headline": "One video game sold $3.79 billion by the end of day one.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/ba/Studios_Rockstar_North_%C3%89dimbourg_1.jpg/3840px-Studios_Rockstar_North_%C3%89dimbourg_1.jpg",
+    "credit": "Photo: Rockstar North's studio in Edinburgh, Scotland. Chabe01 / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Grand Theft Auto VI came out on November 19 for PlayStation 5 and Xbox Series X|S.\nIts publisher, Take-Two, calls it the biggest entertainment launch in history.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Xbox_Series_X%E3%81%A8Series_S.jpg",
+    "credit": "Photo: Xbox Series X and Series S. Kyu3a / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "text": "The $3.79 billion includes months of pre-orders.\n32.5 million copies were sold before the game even came out, a record across all platforms, Take-Two says."
+  },
+  {
+   "type": "text",
+   "layout": "full",
+   "text": "For scale: GTA V made about $800 million in its first 24 hours in 2013.\nThe new one's first-day total is almost five times that.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/Playstation_5_DualSense_controller_in_Midnight_Black%2C_2026-02-07_%28front%29.jpg/3840px-Playstation_5_DualSense_controller_in_Midnight_Black%2C_2026-02-07_%28front%29.jpg",
+    "credit": "Photo: a PlayStation 5 DualSense controller. Chris Woodrich / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "Then the consoles ran out.\nLess than a week after launch, PS5s sold out at Amazon and on Sony's own PlayStation Direct store.",
+   "image": {
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/PlayStation_5_and_DualSense_with_transparent_background.png/1920px-PlayStation_5_and_DualSense_with_transparent_background.png",
+    "credit": "Photo: PlayStation 5 with its DualSense controller. Osh33m, retouched by Soberian / Wikimedia Commons, CC BY-SA 4.0"
+   }
+  },
+  {
+   "type": "text",
+   "layout": "split",
+   "text": "There is no PC version yet, so some coders are trying to rebuild the game with AI.\nTake-Two's CEO Strauss Zelnick says the company is strengthening its legal and technical defenses.",
+   "image": {
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Code_on_computer_monitor_%28Unsplash%29.jpg/3840px-Code_on_computer_monitor_%28Unsplash%29.jpg",
+    "credit": "Illustrative photo: code on a monitor. Markus Spiske / Wikimedia Commons, CC0"
+   }
+  },
+  {
+   "type": "end",
+   "text": "Rockstar's Sam Houser: \"We are incredibly humbled by the response from players around the world.\"\nStill no PC date. Would you buy a console for one game?"
+  }
+ ],
+ "caption": "Before Grand Theft Auto VI was even out, 32.5 million copies were already paid for.\n\nThe game launched on November 19 on PlayStation 5 and Xbox Series X|S. A day later, Take-Two, the company that owns Rockstar Games, said retail sales had reached $3.79 billion worldwide by the end of launch day. It calls that the biggest entertainment launch in history and the highest-grossing entertainment property ever.\n\nThe number needs one footnote: it includes months of pre-orders. GTA V's famous 2013 record, more than $800 million, covered only its first 24 hours on sale.\n\nThe effect showed up in stores. Less than a week after launch, PS5 consoles were sold out at major US retailers, including Amazon and Sony's PlayStation Direct, Game Rant reported. Resellers were asking around $1,500 for the $899.99 PS5 Pro.\n\nPC players are left waiting. Rockstar has not announced a PC date, and some developers are trying to build look-alike versions with AI tools. Take-Two says it is tightening its defenses.\n\nThe whole GTA series has now sold nearly 480 million units, Take-Two says.\n\nSource: Take-Two Interactive, Game Rant, Quartz, Dexerto",
+ "hashtags": [
+  "#gaming",
+  "#videogames",
+  "#gta6",
+  "#playstation",
+  "#business"
+ ]
+}
